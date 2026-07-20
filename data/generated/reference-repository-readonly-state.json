@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "record_kind": "reference-repository-readonly-verification",
+  "stage_start_head": "9d383fcdac3f93daad4b3d84bef37e31ca97027e",
+  "source_head": "a6a123cb206182629518336ebcf97a84ec8de25b",
+  "generated_from_head": "a6a123cb206182629518336ebcf97a84ec8de25b",
+  "reference_commits": {
+    "zhsh": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+    "astrbot": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de",
+    "dpcq": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39",
+    "zonghengsihai": "0b8996e8e5b7293321f9827994324d13e3c2509c"
+  },
+  "generator_version": "reference-state-capture/1.0.0",
+  "generated_at": "2026-07-18T00:00:00.000Z",
+  "verification_result": "passed",
+  "reference_repositories_modified": false,
+  "comparisons": [
+    {
+      "repository": "zhsh",
+      "before": {
+        "repository": "zhsh",
+        "head": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+        "branch": "main",
+        "tree": "ef5be51f76bf1e4abe17f28562ea83ad8596da6d",
+        "status_porcelain": ""
+      },
+      "after": {
+        "repository": "zhsh",
+        "head": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+        "branch": "main",
+        "tree": "ef5be51f76bf1e4abe17f28562ea83ad8596da6d",
+        "status_porcelain": ""
+      },
+      "unchanged": true,
+      "clean_before": true,
+      "clean_after": true
+    },
+    {
+      "repository": "astrbot",
+      "before": {
+        "repository": "astrbot",
+        "head": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de",
+        "branch": "master",
+        "tree": "e15a7f1e9eaf03681b6d5013a268275648f546e6",
+        "status_porcelain": ""
+      },
+      "after": {
+        "repository": "astrbot",
+        "head": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de",
+        "branch": "master",
+        "tree": "e15a7f1e9eaf03681b6d5013a268275648f546e6",
+        "status_porcelain": ""
+      },
+      "unchanged": true,
+      "clean_before": true,
+      "clean_after": true
+    },
+    {
+      "repository": "dpcq",
+      "before": {
+        "repository": "dpcq",
+        "head": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39",
+        "branch": "main",
+        "tree": "27754ec151c4bd22a2cd95388adf8492310a71ae",
+        "status_porcelain": ""
+      },
+      "after": {
+        "repository": "dpcq",
+        "head": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39",
+        "branch": "main",
+        "tree": "27754ec151c4bd22a2cd95388adf8492310a71ae",
+        "status_porcelain": ""
+      },
+      "unchanged": true,
+      "clean_before": true,
+      "clean_after": true
+    },
+    {
+      "repository": "zonghengsihai",
+      "before": {
+        "repository": "zonghengsihai",
+        "head": "0b8996e8e5b7293321f9827994324d13e3c2509c",
+        "branch": "master",
+        "tree": "b411c0f4e822de82495ae8a4149ab0a8b70a5776",
+        "status_porcelain": ""
+      },
+      "after": {
+        "repository": "zonghengsihai",
+        "head": "0b8996e8e5b7293321f9827994324d13e3c2509c",
+        "branch": "master",
+        "tree": "b411c0f4e822de82495ae8a4149ab0a8b70a5776",
+        "status_porcelain": ""
+      },
+      "unchanged": true,
+      "clean_before": true,
+      "clean_after": true
+    }
+  ]
+}

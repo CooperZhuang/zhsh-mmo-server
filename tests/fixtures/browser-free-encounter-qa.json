@@ -1,0 +1,666 @@
+{
+  "schema_version": 4,
+  "validated_from_head": "5ab189272f3c3c6836eff46f4ce78e4266df6c70",
+  "validation_scope": "third-batch DOM browser acceptance evidence repair",
+  "selection_hash": "59264c29ddea1cb2b2f059cef27fe71ee4a03b9efca8d71fc46ee93a1f10e241",
+  "browser_content_sha256": "b1ca33315c589c48c708fb778308234bc817e3571981996ff2fdd56d388f7717",
+  "url": "dynamic localhost port served from the final browser build",
+  "browser_context": {
+    "browser": "Edg/150.0.4078.65",
+    "viewport": "390x844 via DevTools device metrics",
+    "gameplay_e2e_run": true,
+    "direct_browser_storage_writes": false,
+    "internal_runtime_api_calls": false,
+    "formal_file_import_and_download": true,
+    "temporary_headless_profile": true
+  },
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "pages": [
+    {
+      "page": "venice_north_gate",
+      "display_name": "威尼斯北城门地点页",
+      "evidence_scope": "accepted baseline layout evidence; CSS unchanged in this stage",
+      "layout": {
+        "viewport_width": 390,
+        "body_client_width": 375,
+        "body_scroll_width": 375,
+        "wap_page_client_width": 375,
+        "wap_page_scroll_width": 375,
+        "document_scroll_width": 375,
+        "horizontal_overflow": false
+      },
+      "result": "passed",
+      "screenshot": "docs/development/browser-playable-evidence/dungeon-entry-390x844.jpg"
+    },
+    {
+      "page": "free_encounters",
+      "display_name": "自由遭遇页",
+      "evidence_scope": "accepted baseline layout evidence; CSS and reward rendering unchanged in this stage",
+      "layout": {
+        "viewport_width": 390,
+        "body_client_width": 375,
+        "body_scroll_width": 375,
+        "wap_page_client_width": 375,
+        "wap_page_scroll_width": 375,
+        "document_scroll_width": 375,
+        "horizontal_overflow": false
+      },
+      "reward_text_constraint": {
+        "computed_style": {
+          "overflow_wrap": "anywhere",
+          "word_break": "break-all",
+          "white_space": "normal"
+        },
+        "rows": [
+          {
+            "text": "自由遭遇，可重复挑战 · 经验4520 · 铜币565",
+            "client_width": 351,
+            "scroll_width": 351
+          },
+          {
+            "text": "自由遭遇，可重复挑战 · 经验40 · 铜币5",
+            "client_width": 351,
+            "scroll_width": 351
+          },
+          {
+            "text": "自由遭遇，可重复挑战 · 经验800 · 铜币100",
+            "client_width": 351,
+            "scroll_width": 351
+          },
+          {
+            "text": "自由遭遇，可重复挑战 · 经验2440 · 铜币305",
+            "client_width": 351,
+            "scroll_width": 351
+          }
+        ]
+      },
+      "result": "passed",
+      "screenshot": "docs/development/browser-playable-evidence/free-encounters-390x844.jpg"
+    },
+    {
+      "page": "venice_adventure",
+      "display_name": "威尼斯探险副本页",
+      "evidence_scope": "accepted baseline layout evidence; CSS unchanged in this stage",
+      "layout": {
+        "viewport_width": 390,
+        "body_client_width": 375,
+        "body_scroll_width": 375,
+        "wap_page_client_width": 375,
+        "wap_page_scroll_width": 375,
+        "document_scroll_width": 375,
+        "horizontal_overflow": false
+      },
+      "result": "passed",
+      "screenshot": "docs/development/browser-playable-evidence/venice-adventure-390x844.jpg"
+    },
+    {
+      "page": "task_series_selector",
+      "display_name": "任务系列选择页",
+      "observed_content": {
+        "selected_task_count": 57,
+        "selected_series_count": 11,
+        "series_buttons_visible": 11,
+        "series_counts_wrap_normally": true
+      },
+      "layout": {
+        "viewport_width": 390,
+        "viewport_height": 844,
+        "body_client_width": 375,
+        "body_scroll_width": 375,
+        "wap_page_client_width": 375,
+        "wap_page_scroll_width": 375,
+        "document_client_width": 375,
+        "document_scroll_width": 375,
+        "horizontal_overflow": false
+      },
+      "result": "passed",
+      "screenshot": "docs/development/browser-playable-evidence/task-count-57-390x844.png"
+    }
+  ],
+  "test_counts": {
+    "historical_formal_baseline": 87,
+    "preserved_tests": 91,
+    "dom_browser_e2e": 2,
+    "total": 93
+  },
+  "scenarios": [
+    {
+      "scenario": "new-save",
+      "result": "passed",
+      "duration_ms": 283272,
+      "completed_task_count": 57,
+      "formal_series_count": 11,
+      "legacy_checkpoint_task_count": null,
+      "extra_free_leveling_encounters": 0,
+      "context_reopens": 1,
+      "page_refreshes": 2,
+      "battle": {
+        "won": 184,
+        "lost": 11,
+        "recovered": 167,
+        "retreated": 1,
+        "rounds": 507
+      },
+      "completed_special_tasks": [
+        "task.series.07.041",
+        "task.series.04.020",
+        "task.series.07.042",
+        "task.series.07.043",
+        "task.series.09.048",
+        "task.series.09.049"
+      ],
+      "console": {
+        "errors": 0,
+        "warnings": 0
+      },
+      "network_error_count": 0,
+      "measurements": [
+        {
+          "label": "initial_location",
+          "page": "location",
+          "viewport_width": 390,
+          "viewport_height": 844,
+          "body_client_width": 375,
+          "body_scroll_width": 375,
+          "wap_page_client_width": 375,
+          "wap_page_scroll_width": 375,
+          "horizontal_overflow": false,
+          "visible_button_count": 14,
+          "obscured_buttons": [],
+          "clipped_or_truncated_text": []
+        },
+        {
+          "label": "map",
+          "page": "map",
+          "viewport_width": 390,
+          "viewport_height": 844,
+          "body_client_width": 375,
+          "body_scroll_width": 375,
+          "wap_page_client_width": 375,
+          "wap_page_scroll_width": 375,
+          "horizontal_overflow": false,
+          "visible_button_count": 8,
+          "obscured_buttons": [],
+          "clipped_or_truncated_text": []
+        },
+        {
+          "label": "combat",
+          "page": "encounter",
+          "viewport_width": 390,
+          "viewport_height": 844,
+          "body_client_width": 375,
+          "body_scroll_width": 375,
+          "wap_page_client_width": 375,
+          "wap_page_scroll_width": 375,
+          "horizontal_overflow": false,
+          "visible_button_count": 12,
+          "obscured_buttons": [],
+          "clipped_or_truncated_text": []
+        },
+        {
+          "label": "failure_recovery",
+          "page": "location",
+          "viewport_width": 390,
+          "viewport_height": 844,
+          "body_client_width": 375,
+          "body_scroll_width": 375,
+          "wap_page_client_width": 375,
+          "wap_page_scroll_width": 375,
+          "horizontal_overflow": false,
+          "visible_button_count": 11,
+          "obscured_buttons": [],
+          "clipped_or_truncated_text": []
+        },
+        {
+          "label": "task_series_selector",
+          "page": "tasks",
+          "viewport_width": 390,
+          "viewport_height": 844,
+          "body_client_width": 375,
+          "body_scroll_width": 375,
+          "wap_page_client_width": 375,
+          "wap_page_scroll_width": 375,
+          "horizontal_overflow": false,
+          "visible_button_count": 19,
+          "obscured_buttons": [],
+          "clipped_or_truncated_text": []
+        },
+        {
+          "label": "npc",
+          "page": "npc",
+          "viewport_width": 390,
+          "viewport_height": 844,
+          "body_client_width": 375,
+          "body_scroll_width": 375,
+          "wap_page_client_width": 375,
+          "wap_page_scroll_width": 375,
+          "horizontal_overflow": false,
+          "visible_button_count": 9,
+          "obscured_buttons": [],
+          "clipped_or_truncated_text": []
+        },
+        {
+          "label": "status",
+          "page": "status",
+          "viewport_width": 390,
+          "viewport_height": 844,
+          "body_client_width": 375,
+          "body_scroll_width": 375,
+          "wap_page_client_width": 375,
+          "wap_page_scroll_width": 375,
+          "horizontal_overflow": false,
+          "visible_button_count": 7,
+          "obscured_buttons": [],
+          "clipped_or_truncated_text": []
+        },
+        {
+          "label": "shop",
+          "page": "shop",
+          "viewport_width": 390,
+          "viewport_height": 844,
+          "body_client_width": 375,
+          "body_scroll_width": 375,
+          "wap_page_client_width": 375,
+          "wap_page_scroll_width": 375,
+          "horizontal_overflow": false,
+          "visible_button_count": 11,
+          "obscured_buttons": [],
+          "clipped_or_truncated_text": []
+        },
+        {
+          "label": "equipment",
+          "page": "item",
+          "viewport_width": 390,
+          "viewport_height": 844,
+          "body_client_width": 375,
+          "body_scroll_width": 375,
+          "wap_page_client_width": 375,
+          "wap_page_scroll_width": 375,
+          "horizontal_overflow": false,
+          "visible_button_count": 8,
+          "obscured_buttons": [],
+          "clipped_or_truncated_text": []
+        },
+        {
+          "label": "voyage",
+          "page": "voyage",
+          "viewport_width": 390,
+          "viewport_height": 844,
+          "body_client_width": 375,
+          "body_scroll_width": 375,
+          "wap_page_client_width": 375,
+          "wap_page_scroll_width": 375,
+          "horizontal_overflow": false,
+          "visible_button_count": 15,
+          "obscured_buttons": [],
+          "clipped_or_truncated_text": []
+        },
+        {
+          "label": "task.series.07.041.receive",
+          "page": "npc",
+          "viewport_width": 390,
+          "viewport_height": 844,
+          "body_client_width": 375,
+          "body_scroll_width": 375,
+          "wap_page_client_width": 375,
+          "wap_page_scroll_width": 375,
+          "horizontal_overflow": false,
+          "visible_button_count": 9,
+          "obscured_buttons": [],
+          "clipped_or_truncated_text": []
+        },
+        {
+          "label": "task.series.07.041.submit",
+          "page": "npc",
+          "viewport_width": 390,
+          "viewport_height": 844,
+          "body_client_width": 375,
+          "body_scroll_width": 375,
+          "wap_page_client_width": 375,
+          "wap_page_scroll_width": 375,
+          "horizontal_overflow": false,
+          "visible_button_count": 9,
+          "obscured_buttons": [],
+          "clipped_or_truncated_text": []
+        },
+        {
+          "label": "task.series.04.020.submit",
+          "page": "npc",
+          "viewport_width": 390,
+          "viewport_height": 844,
+          "body_client_width": 375,
+          "body_scroll_width": 375,
+          "wap_page_client_width": 375,
+          "wap_page_scroll_width": 375,
+          "horizontal_overflow": false,
+          "visible_button_count": 10,
+          "obscured_buttons": [],
+          "clipped_or_truncated_text": []
+        },
+        {
+          "label": "task.series.09.048.receive",
+          "page": "npc",
+          "viewport_width": 390,
+          "viewport_height": 844,
+          "body_client_width": 375,
+          "body_scroll_width": 375,
+          "wap_page_client_width": 375,
+          "wap_page_scroll_width": 375,
+          "horizontal_overflow": false,
+          "visible_button_count": 9,
+          "obscured_buttons": [],
+          "clipped_or_truncated_text": []
+        },
+        {
+          "label": "task.series.09.048.submit",
+          "page": "npc",
+          "viewport_width": 390,
+          "viewport_height": 844,
+          "body_client_width": 375,
+          "body_scroll_width": 375,
+          "wap_page_client_width": 375,
+          "wap_page_scroll_width": 375,
+          "horizontal_overflow": false,
+          "visible_button_count": 9,
+          "obscured_buttons": [],
+          "clipped_or_truncated_text": []
+        },
+        {
+          "label": "save",
+          "page": "save",
+          "viewport_width": 390,
+          "viewport_height": 844,
+          "body_client_width": 375,
+          "body_scroll_width": 375,
+          "wap_page_client_width": 375,
+          "wap_page_scroll_width": 375,
+          "horizontal_overflow": false,
+          "visible_button_count": 10,
+          "obscured_buttons": [],
+          "clipped_or_truncated_text": []
+        }
+      ]
+    },
+    {
+      "scenario": "legacy-1-of-13",
+      "result": "passed",
+      "duration_ms": 288084,
+      "completed_task_count": 57,
+      "formal_series_count": 11,
+      "legacy_checkpoint_task_count": 25,
+      "extra_free_leveling_encounters": 0,
+      "context_reopens": 2,
+      "page_refreshes": 2,
+      "battle": {
+        "won": 184,
+        "lost": 7,
+        "recovered": 163,
+        "retreated": 1,
+        "rounds": 499
+      },
+      "completed_special_tasks": [
+        "task.series.07.041",
+        "task.series.04.020",
+        "task.series.07.042",
+        "task.series.07.043",
+        "task.series.09.048",
+        "task.series.09.049"
+      ],
+      "console": {
+        "errors": 0,
+        "warnings": 0
+      },
+      "network_error_count": 0,
+      "measurements": [
+        {
+          "label": "save",
+          "page": "save",
+          "viewport_width": 390,
+          "viewport_height": 844,
+          "body_client_width": 375,
+          "body_scroll_width": 375,
+          "wap_page_client_width": 375,
+          "wap_page_scroll_width": 375,
+          "horizontal_overflow": false,
+          "visible_button_count": 10,
+          "obscured_buttons": [],
+          "clipped_or_truncated_text": []
+        },
+        {
+          "label": "initial_location",
+          "page": "save",
+          "viewport_width": 390,
+          "viewport_height": 844,
+          "body_client_width": 375,
+          "body_scroll_width": 375,
+          "wap_page_client_width": 375,
+          "wap_page_scroll_width": 375,
+          "horizontal_overflow": false,
+          "visible_button_count": 10,
+          "obscured_buttons": [],
+          "clipped_or_truncated_text": []
+        },
+        {
+          "label": "map",
+          "page": "map",
+          "viewport_width": 390,
+          "viewport_height": 844,
+          "body_client_width": 375,
+          "body_scroll_width": 375,
+          "wap_page_client_width": 375,
+          "wap_page_scroll_width": 375,
+          "horizontal_overflow": false,
+          "visible_button_count": 8,
+          "obscured_buttons": [],
+          "clipped_or_truncated_text": []
+        },
+        {
+          "label": "task_series_selector",
+          "page": "tasks",
+          "viewport_width": 390,
+          "viewport_height": 844,
+          "body_client_width": 375,
+          "body_scroll_width": 375,
+          "wap_page_client_width": 375,
+          "wap_page_scroll_width": 375,
+          "horizontal_overflow": false,
+          "visible_button_count": 20,
+          "obscured_buttons": [],
+          "clipped_or_truncated_text": []
+        },
+        {
+          "label": "npc",
+          "page": "npc",
+          "viewport_width": 390,
+          "viewport_height": 844,
+          "body_client_width": 375,
+          "body_scroll_width": 375,
+          "wap_page_client_width": 375,
+          "wap_page_scroll_width": 375,
+          "horizontal_overflow": false,
+          "visible_button_count": 9,
+          "obscured_buttons": [],
+          "clipped_or_truncated_text": []
+        },
+        {
+          "label": "status",
+          "page": "status",
+          "viewport_width": 390,
+          "viewport_height": 844,
+          "body_client_width": 375,
+          "body_scroll_width": 375,
+          "wap_page_client_width": 375,
+          "wap_page_scroll_width": 375,
+          "horizontal_overflow": false,
+          "visible_button_count": 7,
+          "obscured_buttons": [],
+          "clipped_or_truncated_text": []
+        },
+        {
+          "label": "combat",
+          "page": "encounter",
+          "viewport_width": 390,
+          "viewport_height": 844,
+          "body_client_width": 375,
+          "body_scroll_width": 375,
+          "wap_page_client_width": 375,
+          "wap_page_scroll_width": 375,
+          "horizontal_overflow": false,
+          "visible_button_count": 12,
+          "obscured_buttons": [],
+          "clipped_or_truncated_text": []
+        },
+        {
+          "label": "shop",
+          "page": "shop",
+          "viewport_width": 390,
+          "viewport_height": 844,
+          "body_client_width": 375,
+          "body_scroll_width": 375,
+          "wap_page_client_width": 375,
+          "wap_page_scroll_width": 375,
+          "horizontal_overflow": false,
+          "visible_button_count": 11,
+          "obscured_buttons": [],
+          "clipped_or_truncated_text": []
+        },
+        {
+          "label": "equipment",
+          "page": "item",
+          "viewport_width": 390,
+          "viewport_height": 844,
+          "body_client_width": 375,
+          "body_scroll_width": 375,
+          "wap_page_client_width": 375,
+          "wap_page_scroll_width": 375,
+          "horizontal_overflow": false,
+          "visible_button_count": 8,
+          "obscured_buttons": [],
+          "clipped_or_truncated_text": []
+        },
+        {
+          "label": "voyage",
+          "page": "voyage",
+          "viewport_width": 390,
+          "viewport_height": 844,
+          "body_client_width": 375,
+          "body_scroll_width": 375,
+          "wap_page_client_width": 375,
+          "wap_page_scroll_width": 375,
+          "horizontal_overflow": false,
+          "visible_button_count": 15,
+          "obscured_buttons": [],
+          "clipped_or_truncated_text": []
+        },
+        {
+          "label": "task.series.07.041.receive",
+          "page": "npc",
+          "viewport_width": 390,
+          "viewport_height": 844,
+          "body_client_width": 375,
+          "body_scroll_width": 375,
+          "wap_page_client_width": 375,
+          "wap_page_scroll_width": 375,
+          "horizontal_overflow": false,
+          "visible_button_count": 9,
+          "obscured_buttons": [],
+          "clipped_or_truncated_text": []
+        },
+        {
+          "label": "task.series.07.041.submit",
+          "page": "npc",
+          "viewport_width": 390,
+          "viewport_height": 844,
+          "body_client_width": 375,
+          "body_scroll_width": 375,
+          "wap_page_client_width": 375,
+          "wap_page_scroll_width": 375,
+          "horizontal_overflow": false,
+          "visible_button_count": 9,
+          "obscured_buttons": [],
+          "clipped_or_truncated_text": []
+        },
+        {
+          "label": "failure_recovery",
+          "page": "location",
+          "viewport_width": 390,
+          "viewport_height": 844,
+          "body_client_width": 375,
+          "body_scroll_width": 375,
+          "wap_page_client_width": 375,
+          "wap_page_scroll_width": 375,
+          "horizontal_overflow": false,
+          "visible_button_count": 11,
+          "obscured_buttons": [],
+          "clipped_or_truncated_text": []
+        },
+        {
+          "label": "task.series.04.020.submit",
+          "page": "npc",
+          "viewport_width": 390,
+          "viewport_height": 844,
+          "body_client_width": 375,
+          "body_scroll_width": 375,
+          "wap_page_client_width": 375,
+          "wap_page_scroll_width": 375,
+          "horizontal_overflow": false,
+          "visible_button_count": 10,
+          "obscured_buttons": [],
+          "clipped_or_truncated_text": []
+        },
+        {
+          "label": "task.series.09.048.receive",
+          "page": "npc",
+          "viewport_width": 390,
+          "viewport_height": 844,
+          "body_client_width": 375,
+          "body_scroll_width": 375,
+          "wap_page_client_width": 375,
+          "wap_page_scroll_width": 375,
+          "horizontal_overflow": false,
+          "visible_button_count": 9,
+          "obscured_buttons": [],
+          "clipped_or_truncated_text": []
+        },
+        {
+          "label": "task.series.09.048.submit",
+          "page": "npc",
+          "viewport_width": 390,
+          "viewport_height": 844,
+          "body_client_width": 375,
+          "body_scroll_width": 375,
+          "wap_page_client_width": 375,
+          "wap_page_scroll_width": 375,
+          "horizontal_overflow": false,
+          "visible_button_count": 9,
+          "obscured_buttons": [],
+          "clipped_or_truncated_text": []
+        }
+      ]
+    }
+  ],
+  "acceptance": {
+    "formal_tasks": 57,
+    "formal_series": 11,
+    "matrix_tasks": 651,
+    "series_07_complete": true,
+    "series_09_complete": true,
+    "series_04_final_complete": true,
+    "all_measurements_390x844": true,
+    "horizontal_overflow": false,
+    "obscured_primary_actions": false,
+    "clipped_or_truncated_text": false,
+    "console_errors": 0,
+    "console_warnings": 0,
+    "network_errors": 0
+  },
+  "raw_evidence": {
+    "dom_results": "docs/development/browser-dom-e2e-evidence/browser-dom-e2e-results.json",
+    "dom_stdout_stderr": "docs/development/browser-dom-e2e-evidence/dom-browser-e2e.log",
+    "npm_verify_stdout_stderr": "docs/development/browser-dom-e2e-evidence/npm-run-verify.log",
+    "content_invariance": "docs/development/browser-dom-e2e-evidence/formal-content-invariance.json"
+  }
+}

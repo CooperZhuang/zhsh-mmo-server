@@ -1,0 +1,900 @@
+{
+  "schema_version": 1,
+  "record_kind": "combat-survival-stage-summary",
+  "stage_start_head": "2cbae183aa369fe0ac60176f3a1396914d786440",
+  "source_head": "aacc1720682372b874d08ae006836aa09ad5d9e1",
+  "generated_from_head": "aacc1720682372b874d08ae006836aa09ad5d9e1",
+  "reference_commits": {
+    "zhsh": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+    "astrbot": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de",
+    "dpcq": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39",
+    "zonghengsihai": "0b8996e8e5b7293321f9827994324d13e3c2509c"
+  },
+  "generator_version": "combat-survival-stage-summary/1.0.0",
+  "generated_at": "2026-07-18T00:00:00.000Z",
+  "conclusion": {
+    "acceptance_status": "PASSED",
+    "stage_start_selected_task_count": 72,
+    "final_selected_task_count": 78,
+    "stage_start_selected_series_count": 13,
+    "final_selected_series_count": 13,
+    "natural_new_task_canonical_ids": [
+      "task.series.11.065",
+      "task.series.11.066",
+      "task.series.11.067",
+      "task.series.11.068",
+      "task.series.11.069",
+      "task.series.11.070"
+    ],
+    "selected_series_11_terminal_task_canonical_id": "task.series.11.070",
+    "remaining_task_count": 573
+  },
+  "source_stamina_item": {
+    "item_canonical_id": "entity.item.8a516352a5046efd",
+    "display_name": "体力宝",
+    "shop_entry_canonical_id": "entity.shop.ac4c2e8b8b6c1ac9.entry",
+    "price": 200000,
+    "location_canonical_id": "entity.location.49dc51be0614c062",
+    "location_reachable": true,
+    "available_quantity": 1,
+    "evidence_status": "SOURCE_EXPLICIT"
+  },
+  "allocation": {
+    "planner_rule_id": "zhsh.combat-survival.stamina-allocation.v1",
+    "accepted_state": {
+      "level": 45,
+      "money": 206995,
+      "completed_task_count": 72
+    },
+    "chosen_allocation": {
+      "task_canonical_id": "task.series.11.065",
+      "series_canonical_id": "task.series.11",
+      "consumables_required": 1,
+      "simulated_unlock_delta": 6,
+      "simulated_selected_task_count": 78,
+      "newly_selected_task_ids": [
+        "task.series.11.065",
+        "task.series.11.066",
+        "task.series.11.067",
+        "task.series.11.068",
+        "task.series.11.069",
+        "task.series.11.070"
+      ]
+    },
+    "money_ledger": {
+      "starting_money": 206995,
+      "purchase_cost": 200000,
+      "earned_money_from_new_tasks": 11070,
+      "remaining_money": 18065,
+      "second_purchase_price": 200000,
+      "second_purchase_affordable": false,
+      "remaining_affordable_quantity": 0,
+      "next_root_task_canonical_id": "task.series.11.071",
+      "rule_ids": [
+        "zhsh.shop.trade.v1",
+        "zhsh.monster.reward.copper.v1",
+        "zhsh.task.complete.v1"
+      ]
+    },
+    "chosen_candidate": {
+      "task_canonical_id": "task.series.11.065",
+      "series_canonical_id": "task.series.11",
+      "source_closed": true,
+      "closes_all_requirements": true,
+      "simulated_unlock_delta": 6,
+      "newly_selected_task_ids": [
+        "task.series.11.065",
+        "task.series.11.066",
+        "task.series.11.067",
+        "task.series.11.068",
+        "task.series.11.069",
+        "task.series.11.070"
+      ],
+      "terminal_task_canonical_id": "task.series.11.070",
+      "next_blocker": {
+        "task_canonical_id": "task.series.11.071",
+        "code": "combat_consumable_budget_exhausted",
+        "required_quantity": 1,
+        "available_quantity": 0,
+        "source_item_canonical_id": "entity.item.8a516352a5046efd",
+        "survival_proofs": [
+          {
+            "target_canonical_id": "task.series.11.071.target.01",
+            "monster_canonical_id": "derived.monster_definition.dc4ca73d4c218177",
+            "proof": {
+              "closed": true,
+              "best_play_closed": true,
+              "player_level": 45,
+              "player_base_max_health": 729,
+              "active_max_health": 5729,
+              "monster_canonical_id": "derived.monster_definition.dc4ca73d4c218177",
+              "stamina_item": {
+                "item_canonical_id": "entity.item.8a516352a5046efd",
+                "display_name": "体力宝",
+                "type": 45,
+                "add_hp": 5000,
+                "all_hp": 50000,
+                "rule_id": "zhsh.play.stamina-item.v1",
+                "trigger_health_ratio": 0.5,
+                "source_behavior": "active item adds temporary maximum health and is consumed automatically below 50% after all attacks"
+              },
+              "deterministic_best_play": {
+                "won": true,
+                "rounds": 20,
+                "remaining_health": 3164,
+                "monster_remaining_health": 0,
+                "stamina_uses": 0
+              },
+              "sample_count": 256,
+              "wins": 240,
+              "win_probability": 0.938,
+              "average_rounds": 40.305,
+              "average_stamina_uses": 1,
+              "consumables_required": 1,
+              "rule_ids": [
+                "zhsh.monster.type-level.v1",
+                "formal.damage.v1",
+                "zhsh.play.stamina-item.v1"
+              ]
+            }
+          }
+        ]
+      },
+      "proofs": [
+        {
+          "target_canonical_id": "task.series.11.065.target.01",
+          "origin": "task_target",
+          "monster_canonical_id": "derived.monster_definition.c841f7cefdde5fd0",
+          "acquisition_closed": true,
+          "base_closed": false,
+          "stamina_closed": true,
+          "sample_count": 256,
+          "wins": 256,
+          "win_probability": 1,
+          "average_stamina_uses": 1
+        }
+      ]
+    },
+    "residual_candidates": [
+      {
+        "task_canonical_id": "task.series.05.036",
+        "series_canonical_id": "task.series.05",
+        "source_closed": true,
+        "closes_all_requirements": false,
+        "simulated_unlock_delta": 0,
+        "newly_selected_task_ids": [],
+        "terminal_task_canonical_id": null,
+        "next_blocker": {
+          "code": "item_source_combat_not_closed",
+          "requirements": [
+            {
+              "origin": "item_source",
+              "target_canonical_id": "task.series.05.036.target.01",
+              "monster_canonical_id": "runtime.maritime.monster.6ca2406b64b15fa4",
+              "monster_level": 40,
+              "scheduled_player_level": 45,
+              "combat_proof": {
+                "closed": false,
+                "player_level": 45,
+                "player_max_health": 729,
+                "player_damage_per_round": 393,
+                "monster_damage_per_round": 282,
+                "rounds_to_win": 53,
+                "rounds_to_defeat": 3,
+                "loadout": [
+                  {
+                    "canonical_id": "entity.equipment.c337a5cc1d1ba768",
+                    "display_name": "猎户匕首",
+                    "required_level": 42,
+                    "equipment_type": 1
+                  },
+                  {
+                    "canonical_id": "entity.equipment.35c7ed6d3f1cfc4a",
+                    "display_name": "冰虫鳞盔",
+                    "required_level": 44,
+                    "equipment_type": 2
+                  },
+                  {
+                    "canonical_id": "entity.equipment.850146a8552ddfaa",
+                    "display_name": "行者护胸",
+                    "required_level": 42,
+                    "equipment_type": 3
+                  },
+                  {
+                    "canonical_id": "entity.equipment.3c546ec516b8de66",
+                    "display_name": "断网腰带",
+                    "required_level": 36,
+                    "equipment_type": 4
+                  },
+                  {
+                    "canonical_id": "entity.equipment.3fe2d9674da444ab",
+                    "display_name": "领主战靴",
+                    "required_level": 38,
+                    "equipment_type": 5
+                  },
+                  {
+                    "canonical_id": "entity.equipment.9e234981e986f49d",
+                    "display_name": "宇宙之光",
+                    "required_level": 40,
+                    "equipment_type": 6
+                  },
+                  {
+                    "canonical_id": "entity.equipment.c9fcbdd1622bbf4a",
+                    "display_name": "龙头护符",
+                    "required_level": 45,
+                    "equipment_type": 6
+                  },
+                  {
+                    "canonical_id": "entity.equipment.f01802ac86282e50",
+                    "display_name": "锁链护喉",
+                    "required_level": 44,
+                    "equipment_type": 6
+                  }
+                ],
+                "rule_ids": [
+                  "zhsh.monster.type-level.v1",
+                  "formal.damage.v1",
+                  "zhsh.equipment.actual-loadout.v1"
+                ],
+                "sample_count": 256,
+                "wins": 0,
+                "win_probability": 0,
+                "average_rounds": 2.383,
+                "maximum_rounds": 3,
+                "acquisition_closed": true,
+                "target_combat_closed": false,
+                "acquisition_plan": {
+                  "canonical_id": "equipment.acquisition.bd0e8cefacd94170",
+                  "detail_file": "data/generated/equipment-acquisition-analysis.json",
+                  "acquisition_closed": true,
+                  "target_combat_closed": false,
+                  "closed": false,
+                  "actual_loadout": [
+                    {
+                      "canonical_id": "entity.equipment.c337a5cc1d1ba768",
+                      "display_name": "猎户匕首",
+                      "required_level": 42,
+                      "equipment_type": 1,
+                      "slot": "weapon",
+                      "acquisition_wave": 0
+                    },
+                    {
+                      "canonical_id": "entity.equipment.35c7ed6d3f1cfc4a",
+                      "display_name": "冰虫鳞盔",
+                      "required_level": 44,
+                      "equipment_type": 2,
+                      "slot": "headgear",
+                      "acquisition_wave": 0
+                    },
+                    {
+                      "canonical_id": "entity.equipment.850146a8552ddfaa",
+                      "display_name": "行者护胸",
+                      "required_level": 42,
+                      "equipment_type": 3,
+                      "slot": "clothes",
+                      "acquisition_wave": 0
+                    },
+                    {
+                      "canonical_id": "entity.equipment.3c546ec516b8de66",
+                      "display_name": "断网腰带",
+                      "required_level": 36,
+                      "equipment_type": 4,
+                      "slot": "belt",
+                      "acquisition_wave": 0
+                    },
+                    {
+                      "canonical_id": "entity.equipment.3fe2d9674da444ab",
+                      "display_name": "领主战靴",
+                      "required_level": 38,
+                      "equipment_type": 5,
+                      "slot": "shoes",
+                      "acquisition_wave": 0
+                    },
+                    {
+                      "canonical_id": "entity.equipment.9e234981e986f49d",
+                      "display_name": "宇宙之光",
+                      "required_level": 40,
+                      "equipment_type": 6,
+                      "slot": "accessories",
+                      "acquisition_wave": 0
+                    },
+                    {
+                      "canonical_id": "entity.equipment.c9fcbdd1622bbf4a",
+                      "display_name": "龙头护符",
+                      "required_level": 45,
+                      "equipment_type": 6,
+                      "slot": "accessories",
+                      "acquisition_wave": 0
+                    },
+                    {
+                      "canonical_id": "entity.equipment.f01802ac86282e50",
+                      "display_name": "锁链护喉",
+                      "required_level": 44,
+                      "equipment_type": 6,
+                      "slot": "accessories",
+                      "acquisition_wave": 0
+                    }
+                  ],
+                  "acquired_equipment_count": 8,
+                  "cycle_dependencies": [],
+                  "unclosed_reasons": [
+                    {
+                      "code": "target_combat_not_closed",
+                      "monster_canonical_id": "runtime.maritime.monster.6ca2406b64b15fa4",
+                      "deterministic_best_play": false,
+                      "win_probability": 0,
+                      "rounds_to_win": 53,
+                      "rounds_to_defeat": 3
+                    }
+                  ],
+                  "source_confidence": "SOURCE_EXPLICIT",
+                  "runtime_adjudication_status": "BLOCKED_BY_FORMAL_COMBAT",
+                  "has_active_conflict": true,
+                  "compatibility_experience_dependency": true
+                },
+                "reason": "target_combat_not_closed"
+              }
+            }
+          ],
+          "evidence_rule": "source-backed equipment acquisition, formal source stats and damage formula must prove the scheduled player wins a deterministic best-play encounter before defeat"
+        },
+        "proofs": [
+          {
+            "target_canonical_id": "task.series.05.036.target.01",
+            "origin": "item_source",
+            "monster_canonical_id": "runtime.maritime.monster.6ca2406b64b15fa4",
+            "acquisition_closed": true,
+            "base_closed": false,
+            "stamina_closed": false,
+            "sample_count": 256,
+            "wins": 0,
+            "win_probability": 0,
+            "average_stamina_uses": 1
+          }
+        ]
+      },
+      {
+        "task_canonical_id": "task.series.10.057",
+        "series_canonical_id": "task.series.10",
+        "source_closed": true,
+        "closes_all_requirements": false,
+        "simulated_unlock_delta": 0,
+        "newly_selected_task_ids": [],
+        "terminal_task_canonical_id": null,
+        "next_blocker": {
+          "code": "combat_loadout_not_closed",
+          "requirements": [
+            {
+              "origin": "task_target",
+              "target_canonical_id": "task.series.10.057.target.01",
+              "monster_canonical_id": "derived.monster_definition.0366e752533f93ee",
+              "monster_level": 23,
+              "scheduled_player_level": 45,
+              "location_canonical_id": "entity.location.ca1fb156e0dedece",
+              "combat_proof": {
+                "closed": false,
+                "player_level": 45,
+                "player_max_health": 729,
+                "player_damage_per_round": 491,
+                "monster_damage_per_round": 187,
+                "rounds_to_win": 30,
+                "rounds_to_defeat": 4,
+                "loadout": [
+                  {
+                    "canonical_id": "entity.equipment.c337a5cc1d1ba768",
+                    "display_name": "猎户匕首",
+                    "required_level": 42,
+                    "equipment_type": 1
+                  },
+                  {
+                    "canonical_id": "entity.equipment.35c7ed6d3f1cfc4a",
+                    "display_name": "冰虫鳞盔",
+                    "required_level": 44,
+                    "equipment_type": 2
+                  },
+                  {
+                    "canonical_id": "entity.equipment.850146a8552ddfaa",
+                    "display_name": "行者护胸",
+                    "required_level": 42,
+                    "equipment_type": 3
+                  },
+                  {
+                    "canonical_id": "entity.equipment.3c546ec516b8de66",
+                    "display_name": "断网腰带",
+                    "required_level": 36,
+                    "equipment_type": 4
+                  },
+                  {
+                    "canonical_id": "entity.equipment.3fe2d9674da444ab",
+                    "display_name": "领主战靴",
+                    "required_level": 38,
+                    "equipment_type": 5
+                  },
+                  {
+                    "canonical_id": "entity.equipment.9e234981e986f49d",
+                    "display_name": "宇宙之光",
+                    "required_level": 40,
+                    "equipment_type": 6
+                  },
+                  {
+                    "canonical_id": "entity.equipment.c9fcbdd1622bbf4a",
+                    "display_name": "龙头护符",
+                    "required_level": 45,
+                    "equipment_type": 6
+                  },
+                  {
+                    "canonical_id": "entity.equipment.f01802ac86282e50",
+                    "display_name": "锁链护喉",
+                    "required_level": 44,
+                    "equipment_type": 6
+                  }
+                ],
+                "rule_ids": [
+                  "zhsh.monster.type-level.v1",
+                  "formal.damage.v1",
+                  "zhsh.equipment.actual-loadout.v1"
+                ],
+                "sample_count": 256,
+                "wins": 0,
+                "win_probability": 0,
+                "average_rounds": 3.281,
+                "maximum_rounds": 4,
+                "acquisition_closed": true,
+                "target_combat_closed": false,
+                "acquisition_plan": {
+                  "canonical_id": "equipment.acquisition.b56d6ec160772715",
+                  "detail_file": "data/generated/equipment-acquisition-analysis.json",
+                  "acquisition_closed": true,
+                  "target_combat_closed": false,
+                  "closed": false,
+                  "actual_loadout": [
+                    {
+                      "canonical_id": "entity.equipment.c337a5cc1d1ba768",
+                      "display_name": "猎户匕首",
+                      "required_level": 42,
+                      "equipment_type": 1,
+                      "slot": "weapon",
+                      "acquisition_wave": 0
+                    },
+                    {
+                      "canonical_id": "entity.equipment.35c7ed6d3f1cfc4a",
+                      "display_name": "冰虫鳞盔",
+                      "required_level": 44,
+                      "equipment_type": 2,
+                      "slot": "headgear",
+                      "acquisition_wave": 0
+                    },
+                    {
+                      "canonical_id": "entity.equipment.850146a8552ddfaa",
+                      "display_name": "行者护胸",
+                      "required_level": 42,
+                      "equipment_type": 3,
+                      "slot": "clothes",
+                      "acquisition_wave": 0
+                    },
+                    {
+                      "canonical_id": "entity.equipment.3c546ec516b8de66",
+                      "display_name": "断网腰带",
+                      "required_level": 36,
+                      "equipment_type": 4,
+                      "slot": "belt",
+                      "acquisition_wave": 0
+                    },
+                    {
+                      "canonical_id": "entity.equipment.3fe2d9674da444ab",
+                      "display_name": "领主战靴",
+                      "required_level": 38,
+                      "equipment_type": 5,
+                      "slot": "shoes",
+                      "acquisition_wave": 0
+                    },
+                    {
+                      "canonical_id": "entity.equipment.9e234981e986f49d",
+                      "display_name": "宇宙之光",
+                      "required_level": 40,
+                      "equipment_type": 6,
+                      "slot": "accessories",
+                      "acquisition_wave": 0
+                    },
+                    {
+                      "canonical_id": "entity.equipment.c9fcbdd1622bbf4a",
+                      "display_name": "龙头护符",
+                      "required_level": 45,
+                      "equipment_type": 6,
+                      "slot": "accessories",
+                      "acquisition_wave": 0
+                    },
+                    {
+                      "canonical_id": "entity.equipment.f01802ac86282e50",
+                      "display_name": "锁链护喉",
+                      "required_level": 44,
+                      "equipment_type": 6,
+                      "slot": "accessories",
+                      "acquisition_wave": 0
+                    }
+                  ],
+                  "acquired_equipment_count": 8,
+                  "cycle_dependencies": [],
+                  "unclosed_reasons": [
+                    {
+                      "code": "target_combat_not_closed",
+                      "monster_canonical_id": "derived.monster_definition.0366e752533f93ee",
+                      "deterministic_best_play": false,
+                      "win_probability": 0,
+                      "rounds_to_win": 30,
+                      "rounds_to_defeat": 4
+                    }
+                  ],
+                  "source_confidence": "SOURCE_EXPLICIT",
+                  "runtime_adjudication_status": "BLOCKED_BY_FORMAL_COMBAT",
+                  "has_active_conflict": true,
+                  "compatibility_experience_dependency": true
+                },
+                "reason": "target_combat_not_closed"
+              }
+            }
+          ],
+          "evidence_rule": "source-backed equipment acquisition, formal source stats and damage formula must prove the scheduled player wins a deterministic best-play encounter before defeat"
+        },
+        "proofs": [
+          {
+            "target_canonical_id": "task.series.10.057.target.01",
+            "origin": "task_target",
+            "monster_canonical_id": "derived.monster_definition.0366e752533f93ee",
+            "acquisition_closed": true,
+            "base_closed": false,
+            "stamina_closed": false,
+            "sample_count": 256,
+            "wins": 0,
+            "win_probability": 0,
+            "average_stamina_uses": 1
+          }
+        ]
+      }
+    ],
+    "unresolved_modules": {
+      "pet": {
+        "status": "BLOCKED_ORIGINAL_ENTRY_INCOMPLETE",
+        "reason": "source combat participation exists but hatch/activation entry is not formally reachable"
+      },
+      "team_or_crew": {
+        "status": "NOT_A_COMBAT_MODIFIER",
+        "reason": "source team persistence is not called by Monster.assault"
+      },
+      "strengthening": {
+        "status": "NO_FORMAL_EXECUTION_ENTRY_IN_CURRENT_CATALOG",
+        "reason": "do not invent strengthening as a survival modifier"
+      }
+    }
+  },
+  "series_endpoints": [
+    {
+      "series_canonical_id": "task.series.01",
+      "selected_task_count": 13,
+      "terminal_task_canonical_id": "task.series.01.011",
+      "selection_kind": "complete_series"
+    },
+    {
+      "series_canonical_id": "task.series.02",
+      "selected_task_count": 1,
+      "terminal_task_canonical_id": "task.series.02.012",
+      "selection_kind": "complete_series"
+    },
+    {
+      "series_canonical_id": "task.series.03",
+      "selected_task_count": 1,
+      "terminal_task_canonical_id": "task.series.03.013",
+      "selection_kind": "complete_series"
+    },
+    {
+      "series_canonical_id": "task.series.04",
+      "selected_task_count": 7,
+      "terminal_task_canonical_id": "task.series.04.020",
+      "selection_kind": "complete_series"
+    },
+    {
+      "series_canonical_id": "task.series.05",
+      "selected_task_count": 15,
+      "terminal_task_canonical_id": "task.series.05.035",
+      "selection_kind": "maximal_continuous_prefix"
+    },
+    {
+      "series_canonical_id": "task.series.06",
+      "selected_task_count": 1,
+      "terminal_task_canonical_id": "task.series.06.040",
+      "selection_kind": "complete_series"
+    },
+    {
+      "series_canonical_id": "task.series.07",
+      "selected_task_count": 3,
+      "terminal_task_canonical_id": "task.series.07.043",
+      "selection_kind": "complete_series"
+    },
+    {
+      "series_canonical_id": "task.series.08",
+      "selected_task_count": 4,
+      "terminal_task_canonical_id": "task.series.08.047",
+      "selection_kind": "complete_series"
+    },
+    {
+      "series_canonical_id": "task.series.09",
+      "selected_task_count": 2,
+      "terminal_task_canonical_id": "task.series.09.049",
+      "selection_kind": "complete_series"
+    },
+    {
+      "series_canonical_id": "task.series.10",
+      "selected_task_count": 7,
+      "terminal_task_canonical_id": "task.series.10.056",
+      "selection_kind": "maximal_continuous_prefix"
+    },
+    {
+      "series_canonical_id": "task.series.11",
+      "selected_task_count": 11,
+      "terminal_task_canonical_id": "task.series.11.070",
+      "selection_kind": "maximal_continuous_prefix"
+    },
+    {
+      "series_canonical_id": "task.series.12",
+      "selected_task_count": 10,
+      "terminal_task_canonical_id": "task.series.12.097",
+      "selection_kind": "maximal_continuous_prefix"
+    },
+    {
+      "series_canonical_id": "task.series.13",
+      "selected_task_count": 3,
+      "terminal_task_canonical_id": "task.series.13.103",
+      "selection_kind": "maximal_continuous_prefix"
+    }
+  ],
+  "validation": {
+    "all_tests": {
+      "artifact": "artifacts/combat-survival-stage/raw/all-tests-command.json",
+      "label": "combat-survival complete npm test",
+      "git_head": "aacc1720682372b874d08ae006836aa09ad5d9e1",
+      "node_version": "v22.16.0",
+      "command": "npm test",
+      "started_at": "2026-07-19T04:18:29.570Z",
+      "ended_at": "2026-07-19T04:18:53.257Z",
+      "duration_ms": 23687,
+      "exit_code": 0,
+      "test_count": 131
+    },
+    "verify_core": {
+      "artifact": "artifacts/combat-survival-stage/raw/verify-core-command.json",
+      "label": "combat-survival final verify:core",
+      "git_head": "aacc1720682372b874d08ae006836aa09ad5d9e1",
+      "node_version": "v22.16.0",
+      "command": "node scripts/verify.js --core",
+      "started_at": "2026-07-19T04:19:15.179Z",
+      "ended_at": "2026-07-19T04:20:10.551Z",
+      "duration_ms": 55247,
+      "exit_code": 0,
+      "test_count": 131,
+      "internal_command_count": 6,
+      "formal_core_playable": 78
+    },
+    "incremental_dom": [
+      {
+        "scenario": "combat-survival-incremental",
+        "browser_version": "Chrome/144.0.7559.96",
+        "duration_ms": 14216,
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "completed_task_count": 78,
+        "formal_task_count": 78,
+        "formal_series_count": 13,
+        "series_entered_count": 1,
+        "legacy_checkpoint_task_count": null,
+        "page_refreshes": 1,
+        "context_reopens": 1,
+        "ui_click_count": 266,
+        "direct_browser_storage_writes": false,
+        "console_errors": 0,
+        "console_warnings": 0,
+        "network_error_count": 0,
+        "stamina_feedback": [
+          "战斗胜利，经验+640，铜币+80。掉落：无掉落 体力宝自动使用，恢复体力2968。"
+        ],
+        "formal_equipment_acquisition": [
+          {
+            "task_canonical_id": "task.series.11.065",
+            "attempts": 8,
+            "victories": 8,
+            "losses": 0,
+            "recoveries": 7,
+            "voyages": 18,
+            "equipment_canonical_ids": [
+              "entity.equipment.c337a5cc1d1ba768",
+              "entity.equipment.35c7ed6d3f1cfc4a",
+              "entity.equipment.850146a8552ddfaa",
+              "entity.equipment.3c546ec516b8de66",
+              "entity.equipment.3fe2d9674da444ab",
+              "entity.equipment.9e234981e986f49d",
+              "entity.equipment.c9fcbdd1622bbf4a",
+              "entity.equipment.f01802ac86282e50"
+            ],
+            "stamina_item_canonical_id": "entity.item.8a516352a5046efd",
+            "stamina_price": 200000,
+            "direct_state_mutations": 0
+          }
+        ],
+        "measurement_count": 7,
+        "horizontal_overflow_count": 0,
+        "obscured_button_count": 0,
+        "clipped_or_truncated_text_count": 0
+      }
+    ],
+    "full_dom": [
+      {
+        "scenario": "new-save",
+        "browser_version": "Chrome/144.0.7559.96",
+        "duration_ms": 1029405,
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "completed_task_count": 78,
+        "formal_task_count": 78,
+        "formal_series_count": 13,
+        "series_entered_count": 13,
+        "legacy_checkpoint_task_count": null,
+        "page_refreshes": 2,
+        "context_reopens": 1,
+        "ui_click_count": 20279,
+        "direct_browser_storage_writes": false,
+        "console_errors": 0,
+        "console_warnings": 0,
+        "network_error_count": 0,
+        "stamina_feedback": [
+          "战斗胜利，经验+640，铜币+80。掉落：无掉落 体力宝自动使用，恢复体力2968。"
+        ],
+        "formal_equipment_acquisition": [
+          {
+            "task_canonical_id": "task.series.11.065",
+            "attempts": 7,
+            "victories": 7,
+            "losses": 0,
+            "recoveries": 6,
+            "voyages": 16,
+            "equipment_canonical_ids": [
+              "entity.equipment.c337a5cc1d1ba768",
+              "entity.equipment.35c7ed6d3f1cfc4a",
+              "entity.equipment.850146a8552ddfaa",
+              "entity.equipment.3c546ec516b8de66",
+              "entity.equipment.3fe2d9674da444ab",
+              "entity.equipment.9e234981e986f49d",
+              "entity.equipment.c9fcbdd1622bbf4a",
+              "entity.equipment.f01802ac86282e50"
+            ],
+            "stamina_item_canonical_id": "entity.item.8a516352a5046efd",
+            "stamina_price": 200000,
+            "direct_state_mutations": 0
+          }
+        ],
+        "measurement_count": 18,
+        "horizontal_overflow_count": 0,
+        "obscured_button_count": 0,
+        "clipped_or_truncated_text_count": 0
+      },
+      {
+        "scenario": "legacy-1-of-13",
+        "browser_version": "Chrome/144.0.7559.96",
+        "duration_ms": 1004128,
+        "viewport": {
+          "width": 390,
+          "height": 844
+        },
+        "completed_task_count": 78,
+        "formal_task_count": 78,
+        "formal_series_count": 13,
+        "series_entered_count": 13,
+        "legacy_checkpoint_task_count": 25,
+        "page_refreshes": 2,
+        "context_reopens": 2,
+        "ui_click_count": 19855,
+        "direct_browser_storage_writes": false,
+        "console_errors": 0,
+        "console_warnings": 0,
+        "network_error_count": 0,
+        "stamina_feedback": [
+          "战斗胜利，经验+640，铜币+80。掉落：无掉落 体力宝自动使用，恢复体力2968。"
+        ],
+        "formal_equipment_acquisition": [
+          {
+            "task_canonical_id": "task.series.11.065",
+            "attempts": 7,
+            "victories": 7,
+            "losses": 0,
+            "recoveries": 7,
+            "voyages": 18,
+            "equipment_canonical_ids": [
+              "entity.equipment.c337a5cc1d1ba768",
+              "entity.equipment.35c7ed6d3f1cfc4a",
+              "entity.equipment.850146a8552ddfaa",
+              "entity.equipment.3c546ec516b8de66",
+              "entity.equipment.3fe2d9674da444ab",
+              "entity.equipment.9e234981e986f49d",
+              "entity.equipment.c9fcbdd1622bbf4a",
+              "entity.equipment.f01802ac86282e50"
+            ],
+            "stamina_item_canonical_id": "entity.item.8a516352a5046efd",
+            "stamina_price": 200000,
+            "direct_state_mutations": 0
+          }
+        ],
+        "measurement_count": 18,
+        "horizontal_overflow_count": 0,
+        "obscured_button_count": 0,
+        "clipped_or_truncated_text_count": 0
+      }
+    ]
+  },
+  "machine_catalogs": [
+    {
+      "path": "data/generated/global-content-catalog.json",
+      "record_kind": null,
+      "schema_version": 2,
+      "source_head": "3f55158d8657fb91bef451cb6d927c9eb00d3f6b",
+      "generated_from_head": "3f55158d8657fb91bef451cb6d927c9eb00d3f6b",
+      "sha256": "8fad7f9ed14020d3e2c65295d831a852f140ed493d953f371ddaafde4480c9bd",
+      "random_rule_omissions": 0
+    },
+    {
+      "path": "data/generated/reference-rule-catalog.json",
+      "record_kind": null,
+      "schema_version": 2,
+      "source_head": "3f55158d8657fb91bef451cb6d927c9eb00d3f6b",
+      "generated_from_head": "3f55158d8657fb91bef451cb6d927c9eb00d3f6b",
+      "sha256": "22ea31ac2edabd556f8af84cfc0c3644555371a055017ea27660123375e4b5b8",
+      "random_rule_omissions": 0
+    },
+    {
+      "path": "data/generated/source-conflict-register.json",
+      "record_kind": null,
+      "schema_version": 2,
+      "source_head": "3f55158d8657fb91bef451cb6d927c9eb00d3f6b",
+      "generated_from_head": "3f55158d8657fb91bef451cb6d927c9eb00d3f6b",
+      "sha256": "c250496155fee673bf35cf2d3758c18f2932f35b2b00b92031b3cfb703aae7e1",
+      "random_rule_omissions": 0
+    },
+    {
+      "path": "data/generated/original-incomplete-feature-register.json",
+      "record_kind": null,
+      "schema_version": 2,
+      "source_head": "3f55158d8657fb91bef451cb6d927c9eb00d3f6b",
+      "generated_from_head": "3f55158d8657fb91bef451cb6d927c9eb00d3f6b",
+      "sha256": "3eb8b10b117b1453d37ffed515c5ef9d03c5844d158ee5f29da9d36ac6cf1a4e",
+      "random_rule_omissions": 0
+    },
+    {
+      "path": "data/generated/current-runtime-gap-matrix.json",
+      "record_kind": null,
+      "schema_version": 2,
+      "source_head": "3f55158d8657fb91bef451cb6d927c9eb00d3f6b",
+      "generated_from_head": "3f55158d8657fb91bef451cb6d927c9eb00d3f6b",
+      "sha256": "9c1756d34d685b967d38b87f3de17de502af5dbe62924f2f877934b083ce5e15",
+      "random_rule_omissions": 0
+    },
+    {
+      "path": "data/generated/feature-reachability-matrix.json",
+      "record_kind": null,
+      "schema_version": 2,
+      "source_head": "3f55158d8657fb91bef451cb6d927c9eb00d3f6b",
+      "generated_from_head": "3f55158d8657fb91bef451cb6d927c9eb00d3f6b",
+      "sha256": "e1eda004e3ff77ad1169c451813c0707e61924da460b669e92330faddcbc31fd",
+      "random_rule_omissions": 0
+    },
+    {
+      "path": "data/generated/task-unlock-impact-map.json",
+      "record_kind": null,
+      "schema_version": 2,
+      "source_head": "3f55158d8657fb91bef451cb6d927c9eb00d3f6b",
+      "generated_from_head": "3f55158d8657fb91bef451cb6d927c9eb00d3f6b",
+      "sha256": "b51635a8b29df77b5a29920d1aeeb6102fba41209443d3cabc59c6206be6dc49",
+      "random_rule_omissions": 0
+    }
+  ]
+}

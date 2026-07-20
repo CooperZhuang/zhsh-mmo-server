@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "rule_id": "compatibility.monster-rewards.v1",
+  "experience": {
+    "evidence_status": "PROVISIONAL_COMPATIBILITY",
+    "formula": "round(level * 40 * encounter_multiplier)",
+    "base_experience_per_level": 40,
+    "encounter_multipliers": {
+      "wild": 1,
+      "dungeon_normal": 1.5,
+      "task_exclusive": 1,
+      "elite": 1.5,
+      "boss": 2
+    },
+    "minimum": 40,
+    "evidence": [
+      {
+        "status": "SOURCE_EXPLICIT_CONFLICTING",
+        "locator": "zhsh/src/monster.js Monster constructor and assault victory settlement",
+        "finding": "The surviving source calculates experience as monster level multiplied by 2. This produces tens of thousands of low-level encounters against the imported cumulative level thresholds and is rejected as a formal compatibility rule."
+      },
+      {
+        "status": "SOURCE_EXPLICIT",
+        "locator": "zhsh-game_astrbot/server/src/routes/battle.js",
+        "finding": "The independent implementation reads exp_reward and money_reward_min/max from each monster record, proving rewards need not be derived from the level-times-2 formula. Exact populated values are not present in that repository."
+      },
+      {
+        "status": "USER_CONFIRMED",
+        "locator": "2026-07-17 runnable task expansion correction",
+        "finding": "Nearby level-appropriate monsters and instances close ordinary level gates in a reasonable number of encounters; thousands of encounters are abnormal."
+      }
+    ],
+    "derivation": "A single continuous level gradient is fitted to the formal cumulative thresholds and task reward scale. Encounter-type multipliers follow the source monster-type difficulty ordering; no task, series, city, or level receives a special multiplier.",
+    "replacement_condition": "Replace when an authoritative populated monster reward table or an unambiguous original reward formula is recovered and validated jointly against the original level thresholds and task rewards."
+  },
+  "copper": {
+    "evidence_status": "SOURCE_EXPLICIT",
+    "formula": "level * 5",
+    "minimum": 5,
+    "evidence_locator": "zhsh/src/monster.js Monster constructor and assault victory settlement",
+    "replacement_condition": "Replace only if stronger original data supplies per-monster copper rewards."
+  },
+  "encounter_duration_estimate_minutes": 2
+}

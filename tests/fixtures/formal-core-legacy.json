@@ -1,0 +1,352 @@
+{
+  "schema_version": 2,
+  "label": "node24-current",
+  "mode": "formal-core-old",
+  "git_head": "c4fcf3afb8db77a3120fbd96b069bbbb33039883",
+  "node_version": "v24.18.0",
+  "node_executable": "C:\\Program Files\\nodejs\\node.exe",
+  "os": {
+    "platform": "win32",
+    "release": "10.0.26200",
+    "arch": "x64"
+  },
+  "cpu": "11th Gen Intel(R) Core(TM) i7-11800H @ 2.30GHz",
+  "command": "\"C:\\\\Program Files\\\\nodejs\\\\node.exe\" --test \"--test-name-pattern=migrates the real legacy save\" tests/formal-core-e2e.test.js",
+  "started_at": "2026-07-18T12:11:31.897Z",
+  "ended_at": "2026-07-18T12:13:18.440Z",
+  "duration_ms": 106540,
+  "timeout_ms": 1200000,
+  "timed_out": false,
+  "exit_code": 0,
+  "signal": null,
+  "test_count": 1,
+  "formal_result": {
+    "scenario": "legacy_25_task_checkpoint_migration",
+    "player_canonical_id": "player.browser.task1",
+    "selected_task_count": 72,
+    "completed_task_count": 72,
+    "level_reachability": [
+      {
+        "planner_rule_id": "zhsh.progression-planner.v1",
+        "current_level": 27,
+        "target_level": 36,
+        "task_gate_required_level": 36,
+        "total_planned_victories": 573,
+        "total_reasonable_worst_attempts": 1427,
+        "reasonable_worst_minutes": 131.118,
+        "actual_fight_count": 571,
+        "recovery_count": 69,
+        "result_level": 36,
+        "result_experience": 876120,
+        "recovery_and_funding_closed": true,
+        "requires_unobtained_equipment": false,
+        "requires_ship": false,
+        "requires_party": false
+      },
+      {
+        "planner_rule_id": "zhsh.progression-planner.v1",
+        "current_level": 36,
+        "target_level": 38,
+        "task_gate_required_level": 38,
+        "total_planned_victories": 110,
+        "total_reasonable_worst_attempts": 249,
+        "reasonable_worst_minutes": 18.616,
+        "actual_fight_count": 110,
+        "recovery_count": 15,
+        "result_level": 38,
+        "result_experience": 1022320,
+        "recovery_and_funding_closed": true,
+        "requires_unobtained_equipment": false,
+        "requires_ship": false,
+        "requires_party": false
+      },
+      {
+        "planner_rule_id": "zhsh.progression-planner.v1",
+        "current_level": 38,
+        "target_level": 45,
+        "task_gate_required_level": 45,
+        "total_planned_victories": 1210,
+        "total_reasonable_worst_attempts": 2354,
+        "reasonable_worst_minutes": 222.25,
+        "actual_fight_count": 1207,
+        "recovery_count": 174,
+        "result_level": 45,
+        "result_experience": 2121640,
+        "recovery_and_funding_closed": true,
+        "requires_unobtained_equipment": false,
+        "requires_ship": false,
+        "requires_party": false
+      }
+    ],
+    "level_gate_summary": [
+      {
+        "required_level": 1,
+        "current_level": 1,
+        "current_experience": 1000,
+        "actual_fight_count": 0,
+        "recovery_count": 0,
+        "closure_path": "selected_task_rewards_and_mandatory_task_encounters",
+        "balance_anomaly": false,
+        "progression_plans": []
+      },
+      {
+        "required_level": 2,
+        "current_level": 9,
+        "current_experience": 36640,
+        "actual_fight_count": 0,
+        "recovery_count": 0,
+        "closure_path": "selected_task_rewards_and_mandatory_task_encounters",
+        "balance_anomaly": false,
+        "progression_plans": []
+      },
+      {
+        "required_level": 5,
+        "current_level": 8,
+        "current_experience": 30840,
+        "actual_fight_count": 0,
+        "recovery_count": 0,
+        "closure_path": "selected_task_rewards_and_mandatory_task_encounters",
+        "balance_anomaly": false,
+        "progression_plans": []
+      },
+      {
+        "required_level": 6,
+        "current_level": 10,
+        "current_experience": 49840,
+        "actual_fight_count": 0,
+        "recovery_count": 0,
+        "closure_path": "selected_task_rewards_and_mandatory_task_encounters",
+        "balance_anomaly": false,
+        "progression_plans": []
+      },
+      {
+        "required_level": 8,
+        "current_level": 18,
+        "current_experience": 144680,
+        "actual_fight_count": 0,
+        "recovery_count": 0,
+        "closure_path": "selected_task_rewards_and_mandatory_task_encounters",
+        "balance_anomaly": false,
+        "progression_plans": []
+      },
+      {
+        "required_level": 9,
+        "current_level": 15,
+        "current_experience": 74920,
+        "actual_fight_count": 0,
+        "recovery_count": 0,
+        "closure_path": "selected_task_rewards_and_mandatory_task_encounters",
+        "balance_anomaly": false,
+        "progression_plans": []
+      },
+      {
+        "required_level": 10,
+        "current_level": 15,
+        "current_experience": 89720,
+        "actual_fight_count": 0,
+        "recovery_count": 0,
+        "closure_path": "selected_task_rewards_and_mandatory_task_encounters",
+        "balance_anomaly": false,
+        "progression_plans": []
+      },
+      {
+        "required_level": 11,
+        "current_level": 22,
+        "current_experience": 233840,
+        "actual_fight_count": 0,
+        "recovery_count": 0,
+        "closure_path": "selected_task_rewards_and_mandatory_task_encounters",
+        "balance_anomaly": false,
+        "progression_plans": []
+      },
+      {
+        "required_level": 13,
+        "current_level": 23,
+        "current_experience": 287080,
+        "actual_fight_count": 0,
+        "recovery_count": 0,
+        "closure_path": "selected_task_rewards_and_mandatory_task_encounters",
+        "balance_anomaly": false,
+        "progression_plans": []
+      },
+      {
+        "required_level": 14,
+        "current_level": 23,
+        "current_experience": 294320,
+        "actual_fight_count": 0,
+        "recovery_count": 0,
+        "closure_path": "selected_task_rewards_and_mandatory_task_encounters",
+        "balance_anomaly": false,
+        "progression_plans": []
+      },
+      {
+        "required_level": 15,
+        "current_level": 24,
+        "current_experience": 339240,
+        "actual_fight_count": 0,
+        "recovery_count": 0,
+        "closure_path": "selected_task_rewards_and_mandatory_task_encounters",
+        "balance_anomaly": false,
+        "progression_plans": []
+      },
+      {
+        "required_level": 21,
+        "current_level": 26,
+        "current_experience": 391800,
+        "actual_fight_count": 0,
+        "recovery_count": 0,
+        "closure_path": "selected_task_rewards_and_mandatory_task_encounters",
+        "balance_anomaly": false,
+        "progression_plans": []
+      },
+      {
+        "required_level": 22,
+        "current_level": 25,
+        "current_experience": 369440,
+        "actual_fight_count": 0,
+        "recovery_count": 0,
+        "closure_path": "selected_task_rewards_and_mandatory_task_encounters",
+        "balance_anomaly": false,
+        "progression_plans": []
+      },
+      {
+        "required_level": 23,
+        "current_level": 25,
+        "current_experience": 350240,
+        "actual_fight_count": 0,
+        "recovery_count": 0,
+        "closure_path": "selected_task_rewards_and_mandatory_task_encounters",
+        "balance_anomaly": false,
+        "progression_plans": []
+      },
+      {
+        "required_level": 25,
+        "current_level": 26,
+        "current_experience": 414800,
+        "actual_fight_count": 0,
+        "recovery_count": 0,
+        "closure_path": "selected_task_rewards_and_mandatory_task_encounters",
+        "balance_anomaly": false,
+        "progression_plans": []
+      },
+      {
+        "required_level": 36,
+        "actual_fight_count": 571,
+        "recovery_count": 69,
+        "progression_plans": [
+          {
+            "planner_rule_id": "zhsh.progression-planner.v1",
+            "current_level": 27,
+            "target_level": 36,
+            "task_gate_required_level": 36,
+            "total_planned_victories": 573,
+            "total_reasonable_worst_attempts": 1427,
+            "reasonable_worst_minutes": 131.118,
+            "actual_fight_count": 571,
+            "recovery_count": 69,
+            "result_level": 36,
+            "result_experience": 876120,
+            "recovery_and_funding_closed": true,
+            "requires_unobtained_equipment": false,
+            "requires_ship": false,
+            "requires_party": false
+          }
+        ],
+        "closure_path": "repeatable_formal_location_encounters",
+        "balance_anomaly": false
+      },
+      {
+        "required_level": 38,
+        "actual_fight_count": 110,
+        "recovery_count": 15,
+        "progression_plans": [
+          {
+            "planner_rule_id": "zhsh.progression-planner.v1",
+            "current_level": 36,
+            "target_level": 38,
+            "task_gate_required_level": 38,
+            "total_planned_victories": 110,
+            "total_reasonable_worst_attempts": 249,
+            "reasonable_worst_minutes": 18.616,
+            "actual_fight_count": 110,
+            "recovery_count": 15,
+            "result_level": 38,
+            "result_experience": 1022320,
+            "recovery_and_funding_closed": true,
+            "requires_unobtained_equipment": false,
+            "requires_ship": false,
+            "requires_party": false
+          }
+        ],
+        "closure_path": "repeatable_formal_location_encounters",
+        "balance_anomaly": false
+      },
+      {
+        "required_level": 45,
+        "actual_fight_count": 1207,
+        "recovery_count": 174,
+        "progression_plans": [
+          {
+            "planner_rule_id": "zhsh.progression-planner.v1",
+            "current_level": 38,
+            "target_level": 45,
+            "task_gate_required_level": 45,
+            "total_planned_victories": 1210,
+            "total_reasonable_worst_attempts": 2354,
+            "reasonable_worst_minutes": 222.25,
+            "actual_fight_count": 1207,
+            "recovery_count": 174,
+            "result_level": 45,
+            "result_experience": 2121640,
+            "recovery_and_funding_closed": true,
+            "requires_unobtained_equipment": false,
+            "requires_ship": false,
+            "requires_party": false
+          }
+        ],
+        "closure_path": "repeatable_formal_location_encounters",
+        "balance_anomaly": false
+      }
+    ],
+    "accepted_25_checkpoint": {
+      "source_head": "a97c8afb7dee109dc7a34c983bb987a84ab20faa",
+      "completed_task_count": 25,
+      "level": 16,
+      "experience": 104720,
+      "money": 9190,
+      "reloaded": true
+    }
+  },
+  "process_metrics": {
+    "memory_usage": {
+      "rss": 355966976,
+      "heapTotal": 254570496,
+      "heapUsed": 132293744,
+      "external": 2719396,
+      "arrayBuffers": 143787
+    },
+    "resource_usage": {
+      "userCPUTime": 109906000,
+      "systemCPUTime": 1828000,
+      "maxRSS": 373856,
+      "sharedMemorySize": 0,
+      "unsharedDataSize": 0,
+      "unsharedStackSize": 0,
+      "minorPageFault": 0,
+      "majorPageFault": 1384566,
+      "swappedOut": 0,
+      "fsRead": 449,
+      "fsWrite": 1,
+      "ipcSent": 0,
+      "ipcReceived": 0,
+      "signalsCount": 0,
+      "voluntaryContextSwitches": 0,
+      "involuntaryContextSwitches": 0
+    }
+  },
+  "hotspot_result": null,
+  "stdout_sha256": "cc81956e1550b59425fe40e0766357e80e8ab2cff795b107637dda5affc3615e",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "raw_stdout": "ZHSH_LEVEL_REACHABILITY:{\"scenario\":\"legacy_25_task_checkpoint_migration\",\"player_canonical_id\":\"player.browser.task1\",\"selected_task_count\":72,\"completed_task_count\":72,\"level_reachability\":[{\"planner_rule_id\":\"zhsh.progression-planner.v1\",\"current_level\":27,\"target_level\":36,\"task_gate_required_level\":36,\"total_planned_victories\":573,\"total_reasonable_worst_attempts\":1427,\"reasonable_worst_minutes\":131.118,\"actual_fight_count\":571,\"recovery_count\":69,\"result_level\":36,\"result_experience\":876120,\"recovery_and_funding_closed\":true,\"requires_unobtained_equipment\":false,\"requires_ship\":false,\"requires_party\":false},{\"planner_rule_id\":\"zhsh.progression-planner.v1\",\"current_level\":36,\"target_level\":38,\"task_gate_required_level\":38,\"total_planned_victories\":110,\"total_reasonable_worst_attempts\":249,\"reasonable_worst_minutes\":18.616,\"actual_fight_count\":110,\"recovery_count\":15,\"result_level\":38,\"result_experience\":1022320,\"recovery_and_funding_closed\":true,\"requires_unobtained_equipment\":false,\"requires_ship\":false,\"requires_party\":false},{\"planner_rule_id\":\"zhsh.progression-planner.v1\",\"current_level\":38,\"target_level\":45,\"task_gate_required_level\":45,\"total_planned_victories\":1210,\"total_reasonable_worst_attempts\":2354,\"reasonable_worst_minutes\":222.25,\"actual_fight_count\":1207,\"recovery_count\":174,\"result_level\":45,\"result_experience\":2121640,\"recovery_and_funding_closed\":true,\"requires_unobtained_equipment\":false,\"requires_ship\":false,\"requires_party\":false}],\"level_gate_summary\":[{\"required_level\":1,\"current_level\":1,\"current_experience\":1000,\"actual_fight_count\":0,\"recovery_count\":0,\"closure_path\":\"selected_task_rewards_and_mandatory_task_encounters\",\"balance_anomaly\":false,\"progression_plans\":[]},{\"required_level\":2,\"current_level\":9,\"current_experience\":36640,\"actual_fight_count\":0,\"recovery_count\":0,\"closure_path\":\"selected_task_rewards_and_mandatory_task_encounters\",\"balance_anomaly\":false,\"progression_plans\":[]},{\"required_level\":5,\"current_level\":8,\"current_experience\":30840,\"actual_fight_count\":0,\"recovery_count\":0,\"closure_path\":\"selected_task_rewards_and_mandatory_task_encounters\",\"balance_anomaly\":false,\"progression_plans\":[]},{\"required_level\":6,\"current_level\":10,\"current_experience\":49840,\"actual_fight_count\":0,\"recovery_count\":0,\"closure_path\":\"selected_task_rewards_and_mandatory_task_encounters\",\"balance_anomaly\":false,\"progression_plans\":[]},{\"required_level\":8,\"current_level\":18,\"current_experience\":144680,\"actual_fight_count\":0,\"recovery_count\":0,\"closure_path\":\"selected_task_rewards_and_mandatory_task_encounters\",\"balance_anomaly\":false,\"progression_plans\":[]},{\"required_level\":9,\"current_level\":15,\"current_experience\":74920,\"actual_fight_count\":0,\"recovery_count\":0,\"closure_path\":\"selected_task_rewards_and_mandatory_task_encounters\",\"balance_anomaly\":false,\"progression_plans\":[]},{\"required_level\":10,\"current_level\":15,\"current_experience\":89720,\"actual_fight_count\":0,\"recovery_count\":0,\"closure_path\":\"selected_task_rewards_and_mandatory_task_encounters\",\"balance_anomaly\":false,\"progression_plans\":[]},{\"required_level\":11,\"current_level\":22,\"current_experience\":233840,\"actual_fight_count\":0,\"recovery_count\":0,\"closure_path\":\"selected_task_rewards_and_mandatory_task_encounters\",\"balance_anomaly\":false,\"progression_plans\":[]},{\"required_level\":13,\"current_level\":23,\"current_experience\":287080,\"actual_fight_count\":0,\"recovery_count\":0,\"closure_path\":\"selected_task_rewards_and_mandatory_task_encounters\",\"balance_anomaly\":false,\"progression_plans\":[]},{\"required_level\":14,\"current_level\":23,\"current_experience\":294320,\"actual_fight_count\":0,\"recovery_count\":0,\"closure_path\":\"selected_task_rewards_and_mandatory_task_encounters\",\"balance_anomaly\":false,\"progression_plans\":[]},{\"required_level\":15,\"current_level\":24,\"current_experience\":339240,\"actual_fight_count\":0,\"recovery_count\":0,\"closure_path\":\"selected_task_rewards_and_mandatory_task_encounters\",\"balance_anomaly\":false,\"progression_plans\":[]},{\"required_level\":21,\"current_level\":26,\"current_experience\":391800,\"actual_fight_count\":0,\"recovery_count\":0,\"closure_path\":\"selected_task_rewards_and_mandatory_task_encounters\",\"balance_anomaly\":false,\"progression_plans\":[]},{\"required_level\":22,\"current_level\":25,\"current_experience\":369440,\"actual_fight_count\":0,\"recovery_count\":0,\"closure_path\":\"selected_task_rewards_and_mandatory_task_encounters\",\"balance_anomaly\":false,\"progression_plans\":[]},{\"required_level\":23,\"current_level\":25,\"current_experience\":350240,\"actual_fight_count\":0,\"recovery_count\":0,\"closure_path\":\"selected_task_rewards_and_mandatory_task_encounters\",\"balance_anomaly\":false,\"progression_plans\":[]},{\"required_level\":25,\"current_level\":26,\"current_experience\":414800,\"actual_fight_count\":0,\"recovery_count\":0,\"closure_path\":\"selected_task_rewards_and_mandatory_task_encounters\",\"balance_anomaly\":false,\"progression_plans\":[]},{\"required_level\":36,\"actual_fight_count\":571,\"recovery_count\":69,\"progression_plans\":[{\"planner_rule_id\":\"zhsh.progression-planner.v1\",\"current_level\":27,\"target_level\":36,\"task_gate_required_level\":36,\"total_planned_victories\":573,\"total_reasonable_worst_attempts\":1427,\"reasonable_worst_minutes\":131.118,\"actual_fight_count\":571,\"recovery_count\":69,\"result_level\":36,\"result_experience\":876120,\"recovery_and_funding_closed\":true,\"requires_unobtained_equipment\":false,\"requires_ship\":false,\"requires_party\":false}],\"closure_path\":\"repeatable_formal_location_encounters\",\"balance_anomaly\":false},{\"required_level\":38,\"actual_fight_count\":110,\"recovery_count\":15,\"progression_plans\":[{\"planner_rule_id\":\"zhsh.progression-planner.v1\",\"current_level\":36,\"target_level\":38,\"task_gate_required_level\":38,\"total_planned_victories\":110,\"total_reasonable_worst_attempts\":249,\"reasonable_worst_minutes\":18.616,\"actual_fight_count\":110,\"recovery_count\":15,\"result_level\":38,\"result_experience\":1022320,\"recovery_and_funding_closed\":true,\"requires_unobtained_equipment\":false,\"requires_ship\":false,\"requires_party\":false}],\"closure_path\":\"repeatable_formal_location_encounters\",\"balance_anomaly\":false},{\"required_level\":45,\"actual_fight_count\":1207,\"recovery_count\":174,\"progression_plans\":[{\"planner_rule_id\":\"zhsh.progression-planner.v1\",\"current_level\":38,\"target_level\":45,\"task_gate_required_level\":45,\"total_planned_victories\":1210,\"total_reasonable_worst_attempts\":2354,\"reasonable_worst_minutes\":222.25,\"actual_fight_count\":1207,\"recovery_count\":174,\"result_level\":45,\"result_experience\":2121640,\"recovery_and_funding_closed\":true,\"requires_unobtained_equipment\":false,\"requires_ship\":false,\"requires_party\":false}],\"closure_path\":\"repeatable_formal_location_encounters\",\"balance_anomaly\":false}],\"accepted_25_checkpoint\":{\"source_head\":\"a97c8afb7dee109dc7a34c983bb987a84ab20faa\",\"completed_task_count\":25,\"level\":16,\"experience\":104720,\"money\":9190,\"reloaded\":true}}\nZHSH_PROCESS_METRICS:{\"memory_usage\":{\"rss\":355966976,\"heapTotal\":254570496,\"heapUsed\":132293744,\"external\":2719396,\"arrayBuffers\":143787},\"resource_usage\":{\"userCPUTime\":109906000,\"systemCPUTime\":1828000,\"maxRSS\":373856,\"sharedMemorySize\":0,\"unsharedDataSize\":0,\"unsharedStackSize\":0,\"minorPageFault\":0,\"majorPageFault\":1384566,\"swappedOut\":0,\"fsRead\":449,\"fsWrite\":1,\"ipcSent\":0,\"ipcReceived\":0,\"signalsCount\":0,\"voluntaryContextSwitches\":0,\"involuntaryContextSwitches\":0}}\n✔ formal core migrates the real legacy save, reloads at the accepted 25-task checkpoint and completes every added task (106321.6876ms)\nℹ tests 1\nℹ suites 0\nℹ pass 1\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 106460.2532\n",
+  "raw_stderr": ""
+}

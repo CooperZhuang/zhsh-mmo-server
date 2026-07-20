@@ -1,0 +1,22 @@
+{
+  "schema_version": 2,
+  "source": {
+    "classification": "源码明确",
+    "repository": "zhsh-references/zhsh",
+    "paths": ["config/monsterItems.json", "src/monster.js"],
+    "drop_probability": 0.4
+  },
+  "sources": [
+    { "monster_name": "走私者", "item_name": "走私酒" },
+    { "monster_name": "玳瑁", "item_name": "玳瑁壳" },
+    { "monster_name": "鳄鱼", "item_name": "鳄鱼肉" },
+    { "monster_name": "龙虾", "item_name": "龙虾肉" },
+    { "monster_name": "山猪", "item_name": "山猪肉" },
+    { "monster_name": "奶牛", "item_name": "奶牛" },
+    { "monster_name": "白虎", "item_name": "虎皮" },
+    { "monster_name": "乌龟", "item_name": "乌龟壳" },
+    { "monster_name": "野兔", "item_name": "兔毛" },
+    { "monster_name": "双头蛇", "item_name": "蛇胆" },
+    { "monster_name": "强悍劫匪", "item_name": "精铁矿" }
+  ]
+}

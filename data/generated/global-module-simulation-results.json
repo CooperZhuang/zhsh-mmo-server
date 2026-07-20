@@ -1,0 +1,955 @@
+{
+  "schema_version": 1,
+  "record_kind": "global-module-simulation-results",
+  "stage_start_head": "2cbae183aa369fe0ac60176f3a1396914d786440",
+  "source_head": "ced0a9fb69eec0ff90b95587a9e720f4af405a69",
+  "generated_from_head": "ced0a9fb69eec0ff90b95587a9e720f4af405a69",
+  "reference_commits": {
+    "zhsh": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+    "astrbot": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de",
+    "dpcq": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39",
+    "zonghengsihai": "0b8996e8e5b7293321f9827994324d13e3c2509c"
+  },
+  "generator_version": "global-module-simulator/1.0.0",
+  "generated_at": "2026-07-18T00:00:00.000Z",
+  "accepted_baseline_head": "4bb1b0097704b2754d63ae53b54c5f41a072bf21",
+  "total_catalog_task_count": 651,
+  "simulation_order": [
+    "baseline_all_modules_disabled",
+    "training_session_continuation",
+    "task_described_item_sources",
+    "projected_task_entry_combat_state",
+    "combined"
+  ],
+  "cases": {
+    "baseline_all_modules_disabled": {
+      "module_flags": {
+        "training_session_continuation": false,
+        "task_described_item_sources": false,
+        "projected_task_entry_combat_state": false
+      },
+      "duration_ms": 19005,
+      "selected_task_count": 78,
+      "selected_series_count": 13,
+      "remaining_task_count": 573,
+      "selection_hash": "9d646b9888a6735f1b18ac53911cf72102a76afda1857bd48ab1914700cff269",
+      "selected_series": [
+        {
+          "canonical_id": "task.series.01",
+          "display_name": "威尼斯新手成长",
+          "selected_task_count": 13,
+          "total_task_count": 13,
+          "selection_kind": "complete_series",
+          "terminal_task_canonical_id": "task.series.01.011"
+        },
+        {
+          "canonical_id": "task.series.02",
+          "display_name": "威尼斯早期地区任务",
+          "selected_task_count": 1,
+          "total_task_count": 1,
+          "selection_kind": "complete_series",
+          "terminal_task_canonical_id": "task.series.02.012"
+        },
+        {
+          "canonical_id": "task.series.03",
+          "display_name": "威尼斯早期地区任务",
+          "selected_task_count": 1,
+          "total_task_count": 1,
+          "selection_kind": "complete_series",
+          "terminal_task_canonical_id": "task.series.03.013"
+        },
+        {
+          "canonical_id": "task.series.04",
+          "display_name": "威尼斯早期地区任务",
+          "selected_task_count": 7,
+          "total_task_count": 7,
+          "selection_kind": "complete_series",
+          "terminal_task_canonical_id": "task.series.04.020"
+        },
+        {
+          "canonical_id": "task.series.05",
+          "display_name": "海盗与港口事件",
+          "selected_task_count": 15,
+          "total_task_count": 19,
+          "selection_kind": "maximal_continuous_prefix",
+          "terminal_task_canonical_id": "task.series.05.035"
+        },
+        {
+          "canonical_id": "task.series.06",
+          "display_name": "北海及各地区任务",
+          "selected_task_count": 1,
+          "total_task_count": 1,
+          "selection_kind": "complete_series",
+          "terminal_task_canonical_id": "task.series.06.040"
+        },
+        {
+          "canonical_id": "task.series.07",
+          "display_name": "北海及各地区任务",
+          "selected_task_count": 3,
+          "total_task_count": 3,
+          "selection_kind": "complete_series",
+          "terminal_task_canonical_id": "task.series.07.043"
+        },
+        {
+          "canonical_id": "task.series.08",
+          "display_name": "北海及各地区任务",
+          "selected_task_count": 4,
+          "total_task_count": 4,
+          "selection_kind": "complete_series",
+          "terminal_task_canonical_id": "task.series.08.047"
+        },
+        {
+          "canonical_id": "task.series.09",
+          "display_name": "北海及各地区任务",
+          "selected_task_count": 2,
+          "total_task_count": 2,
+          "selection_kind": "complete_series",
+          "terminal_task_canonical_id": "task.series.09.049"
+        },
+        {
+          "canonical_id": "task.series.10",
+          "display_name": "北海及各地区任务",
+          "selected_task_count": 7,
+          "total_task_count": 10,
+          "selection_kind": "maximal_continuous_prefix",
+          "terminal_task_canonical_id": "task.series.10.056"
+        },
+        {
+          "canonical_id": "task.series.11",
+          "display_name": "北海及各地区任务",
+          "selected_task_count": 11,
+          "total_task_count": 28,
+          "selection_kind": "maximal_continuous_prefix",
+          "terminal_task_canonical_id": "task.series.11.070"
+        },
+        {
+          "canonical_id": "task.series.12",
+          "display_name": "东亚—印度洋地区任务",
+          "selected_task_count": 10,
+          "total_task_count": 13,
+          "selection_kind": "maximal_continuous_prefix",
+          "terminal_task_canonical_id": "task.series.12.097"
+        },
+        {
+          "canonical_id": "task.series.13",
+          "display_name": "通商—圣火令—亚丁—龙珠候选链",
+          "selected_task_count": 3,
+          "total_task_count": 69,
+          "selection_kind": "maximal_continuous_prefix",
+          "terminal_task_canonical_id": "task.series.13.103"
+        }
+      ],
+      "root_blockers": [
+        {
+          "series_canonical_id": "task.series.05",
+          "task_canonical_id": "task.series.05.036",
+          "sequence_position": 15,
+          "reason_codes": [
+            "item_source_combat_not_closed"
+          ],
+          "blocked_task_count": 4
+        },
+        {
+          "series_canonical_id": "task.series.10",
+          "task_canonical_id": "task.series.10.057",
+          "sequence_position": 7,
+          "reason_codes": [
+            "combat_loadout_not_closed"
+          ],
+          "blocked_task_count": 3
+        },
+        {
+          "series_canonical_id": "task.series.11",
+          "task_canonical_id": "task.series.11.071",
+          "sequence_position": 11,
+          "reason_codes": [
+            "combat_consumable_budget_exhausted"
+          ],
+          "blocked_task_count": 17
+        },
+        {
+          "series_canonical_id": "task.series.12",
+          "task_canonical_id": "task.series.12.098",
+          "sequence_position": 10,
+          "reason_codes": [
+            "unresolved_dependency",
+            "item_without_formal_source"
+          ],
+          "blocked_task_count": 3
+        },
+        {
+          "series_canonical_id": "task.series.13",
+          "task_canonical_id": "task.series.13.104",
+          "sequence_position": 3,
+          "reason_codes": [
+            "level_balance_anomaly"
+          ],
+          "blocked_task_count": 66
+        },
+        {
+          "series_canonical_id": "task.series.14",
+          "task_canonical_id": "task.series.14.170",
+          "sequence_position": 0,
+          "reason_codes": [
+            "incomplete_task_definition",
+            "unresolved_dependency"
+          ],
+          "blocked_task_count": 10
+        },
+        {
+          "series_canonical_id": "task.series.15",
+          "task_canonical_id": "task.series.15.180",
+          "sequence_position": 0,
+          "reason_codes": [
+            "incomplete_task_definition",
+            "unresolved_dependency"
+          ],
+          "blocked_task_count": 470
+        }
+      ]
+    },
+    "training_session_continuation": {
+      "module_flags": {
+        "training_session_continuation": true,
+        "task_described_item_sources": false,
+        "projected_task_entry_combat_state": false
+      },
+      "duration_ms": 20211,
+      "selected_task_count": 103,
+      "selected_series_count": 13,
+      "remaining_task_count": 548,
+      "selection_hash": "cca941e5849a4ea7b579b60af571d19bc85221e023c28f85857c558f4830198d",
+      "selected_series": [
+        {
+          "canonical_id": "task.series.01",
+          "display_name": "威尼斯新手成长",
+          "selected_task_count": 13,
+          "total_task_count": 13,
+          "selection_kind": "complete_series",
+          "terminal_task_canonical_id": "task.series.01.011"
+        },
+        {
+          "canonical_id": "task.series.02",
+          "display_name": "威尼斯早期地区任务",
+          "selected_task_count": 1,
+          "total_task_count": 1,
+          "selection_kind": "complete_series",
+          "terminal_task_canonical_id": "task.series.02.012"
+        },
+        {
+          "canonical_id": "task.series.03",
+          "display_name": "威尼斯早期地区任务",
+          "selected_task_count": 1,
+          "total_task_count": 1,
+          "selection_kind": "complete_series",
+          "terminal_task_canonical_id": "task.series.03.013"
+        },
+        {
+          "canonical_id": "task.series.04",
+          "display_name": "威尼斯早期地区任务",
+          "selected_task_count": 7,
+          "total_task_count": 7,
+          "selection_kind": "complete_series",
+          "terminal_task_canonical_id": "task.series.04.020"
+        },
+        {
+          "canonical_id": "task.series.05",
+          "display_name": "海盗与港口事件",
+          "selected_task_count": 15,
+          "total_task_count": 19,
+          "selection_kind": "maximal_continuous_prefix",
+          "terminal_task_canonical_id": "task.series.05.035"
+        },
+        {
+          "canonical_id": "task.series.06",
+          "display_name": "北海及各地区任务",
+          "selected_task_count": 1,
+          "total_task_count": 1,
+          "selection_kind": "complete_series",
+          "terminal_task_canonical_id": "task.series.06.040"
+        },
+        {
+          "canonical_id": "task.series.07",
+          "display_name": "北海及各地区任务",
+          "selected_task_count": 3,
+          "total_task_count": 3,
+          "selection_kind": "complete_series",
+          "terminal_task_canonical_id": "task.series.07.043"
+        },
+        {
+          "canonical_id": "task.series.08",
+          "display_name": "北海及各地区任务",
+          "selected_task_count": 4,
+          "total_task_count": 4,
+          "selection_kind": "complete_series",
+          "terminal_task_canonical_id": "task.series.08.047"
+        },
+        {
+          "canonical_id": "task.series.09",
+          "display_name": "北海及各地区任务",
+          "selected_task_count": 2,
+          "total_task_count": 2,
+          "selection_kind": "complete_series",
+          "terminal_task_canonical_id": "task.series.09.049"
+        },
+        {
+          "canonical_id": "task.series.10",
+          "display_name": "北海及各地区任务",
+          "selected_task_count": 7,
+          "total_task_count": 10,
+          "selection_kind": "maximal_continuous_prefix",
+          "terminal_task_canonical_id": "task.series.10.056"
+        },
+        {
+          "canonical_id": "task.series.11",
+          "display_name": "北海及各地区任务",
+          "selected_task_count": 11,
+          "total_task_count": 28,
+          "selection_kind": "maximal_continuous_prefix",
+          "terminal_task_canonical_id": "task.series.11.070"
+        },
+        {
+          "canonical_id": "task.series.12",
+          "display_name": "东亚—印度洋地区任务",
+          "selected_task_count": 10,
+          "total_task_count": 13,
+          "selection_kind": "maximal_continuous_prefix",
+          "terminal_task_canonical_id": "task.series.12.097"
+        },
+        {
+          "canonical_id": "task.series.13",
+          "display_name": "通商—圣火令—亚丁—龙珠候选链",
+          "selected_task_count": 28,
+          "total_task_count": 69,
+          "selection_kind": "maximal_continuous_prefix",
+          "terminal_task_canonical_id": "task.series.13.128"
+        }
+      ],
+      "root_blockers": [
+        {
+          "series_canonical_id": "task.series.05",
+          "task_canonical_id": "task.series.05.036",
+          "sequence_position": 15,
+          "reason_codes": [
+            "item_source_combat_not_closed"
+          ],
+          "blocked_task_count": 4
+        },
+        {
+          "series_canonical_id": "task.series.10",
+          "task_canonical_id": "task.series.10.057",
+          "sequence_position": 7,
+          "reason_codes": [
+            "combat_loadout_not_closed"
+          ],
+          "blocked_task_count": 3
+        },
+        {
+          "series_canonical_id": "task.series.11",
+          "task_canonical_id": "task.series.11.071",
+          "sequence_position": 11,
+          "reason_codes": [
+            "combat_consumable_budget_exhausted"
+          ],
+          "blocked_task_count": 17
+        },
+        {
+          "series_canonical_id": "task.series.12",
+          "task_canonical_id": "task.series.12.098",
+          "sequence_position": 10,
+          "reason_codes": [
+            "unresolved_dependency",
+            "item_without_formal_source"
+          ],
+          "blocked_task_count": 3
+        },
+        {
+          "series_canonical_id": "task.series.13",
+          "task_canonical_id": "task.series.13.129",
+          "sequence_position": 28,
+          "reason_codes": [
+            "unresolved_dependency",
+            "item_without_formal_source"
+          ],
+          "blocked_task_count": 41
+        },
+        {
+          "series_canonical_id": "task.series.14",
+          "task_canonical_id": "task.series.14.170",
+          "sequence_position": 0,
+          "reason_codes": [
+            "incomplete_task_definition",
+            "unresolved_dependency"
+          ],
+          "blocked_task_count": 10
+        },
+        {
+          "series_canonical_id": "task.series.15",
+          "task_canonical_id": "task.series.15.180",
+          "sequence_position": 0,
+          "reason_codes": [
+            "incomplete_task_definition",
+            "unresolved_dependency"
+          ],
+          "blocked_task_count": 470
+        }
+      ]
+    },
+    "task_described_item_sources": {
+      "module_flags": {
+        "training_session_continuation": false,
+        "task_described_item_sources": true,
+        "projected_task_entry_combat_state": false
+      },
+      "duration_ms": 19399,
+      "selected_task_count": 79,
+      "selected_series_count": 13,
+      "remaining_task_count": 572,
+      "selection_hash": "c5258e9d0487341794aeb5f14178363502fe49c48ff1ce60656a9c9eeaa005a2",
+      "selected_series": [
+        {
+          "canonical_id": "task.series.01",
+          "display_name": "威尼斯新手成长",
+          "selected_task_count": 13,
+          "total_task_count": 13,
+          "selection_kind": "complete_series",
+          "terminal_task_canonical_id": "task.series.01.011"
+        },
+        {
+          "canonical_id": "task.series.02",
+          "display_name": "威尼斯早期地区任务",
+          "selected_task_count": 1,
+          "total_task_count": 1,
+          "selection_kind": "complete_series",
+          "terminal_task_canonical_id": "task.series.02.012"
+        },
+        {
+          "canonical_id": "task.series.03",
+          "display_name": "威尼斯早期地区任务",
+          "selected_task_count": 1,
+          "total_task_count": 1,
+          "selection_kind": "complete_series",
+          "terminal_task_canonical_id": "task.series.03.013"
+        },
+        {
+          "canonical_id": "task.series.04",
+          "display_name": "威尼斯早期地区任务",
+          "selected_task_count": 7,
+          "total_task_count": 7,
+          "selection_kind": "complete_series",
+          "terminal_task_canonical_id": "task.series.04.020"
+        },
+        {
+          "canonical_id": "task.series.05",
+          "display_name": "海盗与港口事件",
+          "selected_task_count": 15,
+          "total_task_count": 19,
+          "selection_kind": "maximal_continuous_prefix",
+          "terminal_task_canonical_id": "task.series.05.035"
+        },
+        {
+          "canonical_id": "task.series.06",
+          "display_name": "北海及各地区任务",
+          "selected_task_count": 1,
+          "total_task_count": 1,
+          "selection_kind": "complete_series",
+          "terminal_task_canonical_id": "task.series.06.040"
+        },
+        {
+          "canonical_id": "task.series.07",
+          "display_name": "北海及各地区任务",
+          "selected_task_count": 3,
+          "total_task_count": 3,
+          "selection_kind": "complete_series",
+          "terminal_task_canonical_id": "task.series.07.043"
+        },
+        {
+          "canonical_id": "task.series.08",
+          "display_name": "北海及各地区任务",
+          "selected_task_count": 4,
+          "total_task_count": 4,
+          "selection_kind": "complete_series",
+          "terminal_task_canonical_id": "task.series.08.047"
+        },
+        {
+          "canonical_id": "task.series.09",
+          "display_name": "北海及各地区任务",
+          "selected_task_count": 2,
+          "total_task_count": 2,
+          "selection_kind": "complete_series",
+          "terminal_task_canonical_id": "task.series.09.049"
+        },
+        {
+          "canonical_id": "task.series.10",
+          "display_name": "北海及各地区任务",
+          "selected_task_count": 7,
+          "total_task_count": 10,
+          "selection_kind": "maximal_continuous_prefix",
+          "terminal_task_canonical_id": "task.series.10.056"
+        },
+        {
+          "canonical_id": "task.series.11",
+          "display_name": "北海及各地区任务",
+          "selected_task_count": 11,
+          "total_task_count": 28,
+          "selection_kind": "maximal_continuous_prefix",
+          "terminal_task_canonical_id": "task.series.11.070"
+        },
+        {
+          "canonical_id": "task.series.12",
+          "display_name": "东亚—印度洋地区任务",
+          "selected_task_count": 11,
+          "total_task_count": 13,
+          "selection_kind": "maximal_continuous_prefix",
+          "terminal_task_canonical_id": "task.series.12.098"
+        },
+        {
+          "canonical_id": "task.series.13",
+          "display_name": "通商—圣火令—亚丁—龙珠候选链",
+          "selected_task_count": 3,
+          "total_task_count": 69,
+          "selection_kind": "maximal_continuous_prefix",
+          "terminal_task_canonical_id": "task.series.13.103"
+        }
+      ],
+      "root_blockers": [
+        {
+          "series_canonical_id": "task.series.05",
+          "task_canonical_id": "task.series.05.036",
+          "sequence_position": 15,
+          "reason_codes": [
+            "item_source_combat_not_closed"
+          ],
+          "blocked_task_count": 4
+        },
+        {
+          "series_canonical_id": "task.series.10",
+          "task_canonical_id": "task.series.10.057",
+          "sequence_position": 7,
+          "reason_codes": [
+            "combat_loadout_not_closed"
+          ],
+          "blocked_task_count": 3
+        },
+        {
+          "series_canonical_id": "task.series.11",
+          "task_canonical_id": "task.series.11.071",
+          "sequence_position": 11,
+          "reason_codes": [
+            "combat_consumable_budget_exhausted"
+          ],
+          "blocked_task_count": 17
+        },
+        {
+          "series_canonical_id": "task.series.12",
+          "task_canonical_id": "task.series.12.099",
+          "sequence_position": 11,
+          "reason_codes": [
+            "unresolved_dependency"
+          ],
+          "blocked_task_count": 2
+        },
+        {
+          "series_canonical_id": "task.series.13",
+          "task_canonical_id": "task.series.13.104",
+          "sequence_position": 3,
+          "reason_codes": [
+            "level_balance_anomaly"
+          ],
+          "blocked_task_count": 66
+        },
+        {
+          "series_canonical_id": "task.series.14",
+          "task_canonical_id": "task.series.14.170",
+          "sequence_position": 0,
+          "reason_codes": [
+            "incomplete_task_definition",
+            "unresolved_dependency"
+          ],
+          "blocked_task_count": 10
+        },
+        {
+          "series_canonical_id": "task.series.15",
+          "task_canonical_id": "task.series.15.180",
+          "sequence_position": 0,
+          "reason_codes": [
+            "incomplete_task_definition",
+            "unresolved_dependency"
+          ],
+          "blocked_task_count": 470
+        }
+      ]
+    },
+    "projected_task_entry_combat_state": {
+      "module_flags": {
+        "training_session_continuation": false,
+        "task_described_item_sources": false,
+        "projected_task_entry_combat_state": true
+      },
+      "duration_ms": 19260,
+      "selected_task_count": 78,
+      "selected_series_count": 13,
+      "remaining_task_count": 573,
+      "selection_hash": "243862cda75fc58ea3cfc566d22c521a8cb0f3398ec35eb43c2ed860ae62a518",
+      "selected_series": [
+        {
+          "canonical_id": "task.series.01",
+          "display_name": "威尼斯新手成长",
+          "selected_task_count": 13,
+          "total_task_count": 13,
+          "selection_kind": "complete_series",
+          "terminal_task_canonical_id": "task.series.01.011"
+        },
+        {
+          "canonical_id": "task.series.02",
+          "display_name": "威尼斯早期地区任务",
+          "selected_task_count": 1,
+          "total_task_count": 1,
+          "selection_kind": "complete_series",
+          "terminal_task_canonical_id": "task.series.02.012"
+        },
+        {
+          "canonical_id": "task.series.03",
+          "display_name": "威尼斯早期地区任务",
+          "selected_task_count": 1,
+          "total_task_count": 1,
+          "selection_kind": "complete_series",
+          "terminal_task_canonical_id": "task.series.03.013"
+        },
+        {
+          "canonical_id": "task.series.04",
+          "display_name": "威尼斯早期地区任务",
+          "selected_task_count": 7,
+          "total_task_count": 7,
+          "selection_kind": "complete_series",
+          "terminal_task_canonical_id": "task.series.04.020"
+        },
+        {
+          "canonical_id": "task.series.05",
+          "display_name": "海盗与港口事件",
+          "selected_task_count": 15,
+          "total_task_count": 19,
+          "selection_kind": "maximal_continuous_prefix",
+          "terminal_task_canonical_id": "task.series.05.035"
+        },
+        {
+          "canonical_id": "task.series.06",
+          "display_name": "北海及各地区任务",
+          "selected_task_count": 1,
+          "total_task_count": 1,
+          "selection_kind": "complete_series",
+          "terminal_task_canonical_id": "task.series.06.040"
+        },
+        {
+          "canonical_id": "task.series.07",
+          "display_name": "北海及各地区任务",
+          "selected_task_count": 3,
+          "total_task_count": 3,
+          "selection_kind": "complete_series",
+          "terminal_task_canonical_id": "task.series.07.043"
+        },
+        {
+          "canonical_id": "task.series.08",
+          "display_name": "北海及各地区任务",
+          "selected_task_count": 4,
+          "total_task_count": 4,
+          "selection_kind": "complete_series",
+          "terminal_task_canonical_id": "task.series.08.047"
+        },
+        {
+          "canonical_id": "task.series.09",
+          "display_name": "北海及各地区任务",
+          "selected_task_count": 2,
+          "total_task_count": 2,
+          "selection_kind": "complete_series",
+          "terminal_task_canonical_id": "task.series.09.049"
+        },
+        {
+          "canonical_id": "task.series.10",
+          "display_name": "北海及各地区任务",
+          "selected_task_count": 7,
+          "total_task_count": 10,
+          "selection_kind": "maximal_continuous_prefix",
+          "terminal_task_canonical_id": "task.series.10.056"
+        },
+        {
+          "canonical_id": "task.series.11",
+          "display_name": "北海及各地区任务",
+          "selected_task_count": 11,
+          "total_task_count": 28,
+          "selection_kind": "maximal_continuous_prefix",
+          "terminal_task_canonical_id": "task.series.11.070"
+        },
+        {
+          "canonical_id": "task.series.12",
+          "display_name": "东亚—印度洋地区任务",
+          "selected_task_count": 10,
+          "total_task_count": 13,
+          "selection_kind": "maximal_continuous_prefix",
+          "terminal_task_canonical_id": "task.series.12.097"
+        },
+        {
+          "canonical_id": "task.series.13",
+          "display_name": "通商—圣火令—亚丁—龙珠候选链",
+          "selected_task_count": 3,
+          "total_task_count": 69,
+          "selection_kind": "maximal_continuous_prefix",
+          "terminal_task_canonical_id": "task.series.13.103"
+        }
+      ],
+      "root_blockers": [
+        {
+          "series_canonical_id": "task.series.05",
+          "task_canonical_id": "task.series.05.036",
+          "sequence_position": 15,
+          "reason_codes": [
+            "item_source_combat_not_closed"
+          ],
+          "blocked_task_count": 4
+        },
+        {
+          "series_canonical_id": "task.series.10",
+          "task_canonical_id": "task.series.10.057",
+          "sequence_position": 7,
+          "reason_codes": [
+            "combat_loadout_not_closed"
+          ],
+          "blocked_task_count": 3
+        },
+        {
+          "series_canonical_id": "task.series.11",
+          "task_canonical_id": "task.series.11.071",
+          "sequence_position": 11,
+          "reason_codes": [
+            "combat_consumable_budget_exhausted"
+          ],
+          "blocked_task_count": 17
+        },
+        {
+          "series_canonical_id": "task.series.12",
+          "task_canonical_id": "task.series.12.098",
+          "sequence_position": 10,
+          "reason_codes": [
+            "unresolved_dependency",
+            "item_without_formal_source"
+          ],
+          "blocked_task_count": 3
+        },
+        {
+          "series_canonical_id": "task.series.13",
+          "task_canonical_id": "task.series.13.104",
+          "sequence_position": 3,
+          "reason_codes": [
+            "level_balance_anomaly"
+          ],
+          "blocked_task_count": 66
+        },
+        {
+          "series_canonical_id": "task.series.14",
+          "task_canonical_id": "task.series.14.170",
+          "sequence_position": 0,
+          "reason_codes": [
+            "incomplete_task_definition",
+            "unresolved_dependency"
+          ],
+          "blocked_task_count": 10
+        },
+        {
+          "series_canonical_id": "task.series.15",
+          "task_canonical_id": "task.series.15.180",
+          "sequence_position": 0,
+          "reason_codes": [
+            "incomplete_task_definition",
+            "unresolved_dependency"
+          ],
+          "blocked_task_count": 470
+        }
+      ]
+    },
+    "combined": {
+      "module_flags": {
+        "training_session_continuation": true,
+        "task_described_item_sources": true,
+        "projected_task_entry_combat_state": true
+      },
+      "duration_ms": 25755,
+      "selected_task_count": 117,
+      "selected_series_count": 13,
+      "remaining_task_count": 534,
+      "selection_hash": "ff602b9b6cc68ea2c785ee9db84806a00baca33097765495cfae3a39a5decc21",
+      "selected_series": [
+        {
+          "canonical_id": "task.series.01",
+          "display_name": "威尼斯新手成长",
+          "selected_task_count": 13,
+          "total_task_count": 13,
+          "selection_kind": "complete_series",
+          "terminal_task_canonical_id": "task.series.01.011"
+        },
+        {
+          "canonical_id": "task.series.02",
+          "display_name": "威尼斯早期地区任务",
+          "selected_task_count": 1,
+          "total_task_count": 1,
+          "selection_kind": "complete_series",
+          "terminal_task_canonical_id": "task.series.02.012"
+        },
+        {
+          "canonical_id": "task.series.03",
+          "display_name": "威尼斯早期地区任务",
+          "selected_task_count": 1,
+          "total_task_count": 1,
+          "selection_kind": "complete_series",
+          "terminal_task_canonical_id": "task.series.03.013"
+        },
+        {
+          "canonical_id": "task.series.04",
+          "display_name": "威尼斯早期地区任务",
+          "selected_task_count": 7,
+          "total_task_count": 7,
+          "selection_kind": "complete_series",
+          "terminal_task_canonical_id": "task.series.04.020"
+        },
+        {
+          "canonical_id": "task.series.05",
+          "display_name": "海盗与港口事件",
+          "selected_task_count": 15,
+          "total_task_count": 19,
+          "selection_kind": "maximal_continuous_prefix",
+          "terminal_task_canonical_id": "task.series.05.035"
+        },
+        {
+          "canonical_id": "task.series.06",
+          "display_name": "北海及各地区任务",
+          "selected_task_count": 1,
+          "total_task_count": 1,
+          "selection_kind": "complete_series",
+          "terminal_task_canonical_id": "task.series.06.040"
+        },
+        {
+          "canonical_id": "task.series.07",
+          "display_name": "北海及各地区任务",
+          "selected_task_count": 3,
+          "total_task_count": 3,
+          "selection_kind": "complete_series",
+          "terminal_task_canonical_id": "task.series.07.043"
+        },
+        {
+          "canonical_id": "task.series.08",
+          "display_name": "北海及各地区任务",
+          "selected_task_count": 4,
+          "total_task_count": 4,
+          "selection_kind": "complete_series",
+          "terminal_task_canonical_id": "task.series.08.047"
+        },
+        {
+          "canonical_id": "task.series.09",
+          "display_name": "北海及各地区任务",
+          "selected_task_count": 2,
+          "total_task_count": 2,
+          "selection_kind": "complete_series",
+          "terminal_task_canonical_id": "task.series.09.049"
+        },
+        {
+          "canonical_id": "task.series.10",
+          "display_name": "北海及各地区任务",
+          "selected_task_count": 7,
+          "total_task_count": 10,
+          "selection_kind": "maximal_continuous_prefix",
+          "terminal_task_canonical_id": "task.series.10.056"
+        },
+        {
+          "canonical_id": "task.series.11",
+          "display_name": "北海及各地区任务",
+          "selected_task_count": 11,
+          "total_task_count": 28,
+          "selection_kind": "maximal_continuous_prefix",
+          "terminal_task_canonical_id": "task.series.11.070"
+        },
+        {
+          "canonical_id": "task.series.12",
+          "display_name": "东亚—印度洋地区任务",
+          "selected_task_count": 11,
+          "total_task_count": 13,
+          "selection_kind": "maximal_continuous_prefix",
+          "terminal_task_canonical_id": "task.series.12.098"
+        },
+        {
+          "canonical_id": "task.series.13",
+          "display_name": "通商—圣火令—亚丁—龙珠候选链",
+          "selected_task_count": 41,
+          "total_task_count": 69,
+          "selection_kind": "maximal_continuous_prefix",
+          "terminal_task_canonical_id": "task.series.13.141"
+        }
+      ],
+      "root_blockers": [
+        {
+          "series_canonical_id": "task.series.05",
+          "task_canonical_id": "task.series.05.036",
+          "sequence_position": 15,
+          "reason_codes": [
+            "item_source_combat_not_closed"
+          ],
+          "blocked_task_count": 4
+        },
+        {
+          "series_canonical_id": "task.series.10",
+          "task_canonical_id": "task.series.10.057",
+          "sequence_position": 7,
+          "reason_codes": [
+            "combat_loadout_not_closed"
+          ],
+          "blocked_task_count": 3
+        },
+        {
+          "series_canonical_id": "task.series.11",
+          "task_canonical_id": "task.series.11.071",
+          "sequence_position": 11,
+          "reason_codes": [
+            "combat_consumable_budget_exhausted"
+          ],
+          "blocked_task_count": 17
+        },
+        {
+          "series_canonical_id": "task.series.12",
+          "task_canonical_id": "task.series.12.099",
+          "sequence_position": 11,
+          "reason_codes": [
+            "unresolved_dependency"
+          ],
+          "blocked_task_count": 2
+        },
+        {
+          "series_canonical_id": "task.series.13",
+          "task_canonical_id": "task.series.13.142",
+          "sequence_position": 41,
+          "reason_codes": [
+            "combat_loadout_not_closed"
+          ],
+          "blocked_task_count": 28
+        },
+        {
+          "series_canonical_id": "task.series.14",
+          "task_canonical_id": "task.series.14.170",
+          "sequence_position": 0,
+          "reason_codes": [
+            "incomplete_task_definition",
+            "unresolved_dependency"
+          ],
+          "blocked_task_count": 10
+        },
+        {
+          "series_canonical_id": "task.series.15",
+          "task_canonical_id": "task.series.15.180",
+          "sequence_position": 0,
+          "reason_codes": [
+            "incomplete_task_definition",
+            "unresolved_dependency"
+          ],
+          "blocked_task_count": 470
+        }
+      ]
+    }
+  }
+}

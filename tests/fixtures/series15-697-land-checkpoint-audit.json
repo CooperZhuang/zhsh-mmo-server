@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "record_kind": "release_dual_scenario_land_precondition",
+  "generated_at": "2026-07-20T02:00:00.000Z",
+  "source_fixture": "tests/fixtures/browser-save-v4-formal-72-of-72.json",
+  "output_fixture": "tests/fixtures/browser-save-v5-series15-697-level106.json",
+  "evidence_scope": {
+    "included_task_canonical_ids": [
+      "task.series.15.698",
+      "task.series.15.699",
+      "task.series.15.700",
+      "task.series.15.701",
+      "task.series.15.702",
+      "task.series.15.703",
+      "task.series.15.704",
+      "task.series.15.705",
+      "task.series.15.706"
+    ],
+    "training_evidence": "one visible repeatable wild encounter must cross level 106 to 107 before task.series.15.698",
+    "statement": "Historical task statuses, starting experience and equipped loadout are disclosed preconditions. Only visible browser actions after import count as dual-scenario evidence."
+  },
+  "historical_precondition": {
+    "terminal_task_canonical_id": "task.series.15.697",
+    "completed_task_count": 427,
+    "retained_conflicts": [
+      "task.series.15.269",
+      "task.series.15.601"
+    ],
+    "direct_task_state_mutations": 427
+  },
+  "progression_precondition": {
+    "starting_level": 106,
+    "starting_experience": 41986874,
+    "next_level": 107,
+    "next_level_threshold": 41987874,
+    "remaining_experience": 1000,
+    "disclosed_reason": "The imported source threshold table is non-monotonic around levels 101-102, so the exact level-106 checkpoint is established with the same per-level stat growth formula; the browser must still earn the final 1000 experience through a visible fight."
+  },
+  "economy_precondition": {
+    "starting_money": 1500000,
+    "stamina_item_preloaded": false
+  },
+  "equipment_precondition": {
+    "loadout": {
+      "weapon": "entity.equipment.5dab4dc3996b0926",
+      "offhand": null,
+      "headgear": "entity.equipment.119b1b777a34beb5",
+      "clothes": null,
+      "belt": "entity.equipment.a2e1b812d0cfd5b9",
+      "shoes": "entity.equipment.22176e1ac0fa66e3",
+      "accessories": [
+        "entity.equipment.9dc6753e905f40b7",
+        "entity.equipment.441466dc32f208bc",
+        "entity.equipment.ad153fc7e9b82159"
+      ]
+    },
+    "items": [
+      {
+        "canonical_id": "entity.equipment.5dab4dc3996b0926",
+        "display_name": "+月华相思剑",
+        "required_level": 30,
+        "equipment_type": 1
+      },
+      {
+        "canonical_id": "entity.equipment.119b1b777a34beb5",
+        "display_name": "+天魔荆棘皇冠",
+        "required_level": null,
+        "equipment_type": 2
+      },
+      {
+        "canonical_id": "entity.equipment.a2e1b812d0cfd5b9",
+        "display_name": "先知的束带",
+        "required_level": 66,
+        "equipment_type": 4
+      },
+      {
+        "canonical_id": "entity.equipment.22176e1ac0fa66e3",
+        "display_name": "主宰之履",
+        "required_level": 67,
+        "equipment_type": 5
+      },
+      {
+        "canonical_id": "entity.equipment.9dc6753e905f40b7",
+        "display_name": "+天魔玄夜战铠",
+        "required_level": null,
+        "equipment_type": 6
+      },
+      {
+        "canonical_id": "entity.equipment.441466dc32f208bc",
+        "display_name": "+奔月の玉鳞",
+        "required_level": 30,
+        "equipment_type": 6
+      },
+      {
+        "canonical_id": "entity.equipment.ad153fc7e9b82159",
+        "display_name": "+地魔龙脊护肩",
+        "required_level": 90,
+        "equipment_type": 6
+      }
+    ],
+    "clothes_slot_intentionally_empty": true,
+    "reason": "A source-backed equipment drop obtained during the visible training fight must enter inventory and be equipped through the browser UI."
+  },
+  "initial_evidence_scope_state": {
+    "first_task_status": "locked",
+    "completed_evidence_tasks": [],
+    "progressed_evidence_targets": [],
+    "task_item_reservations": [],
+    "level": 106,
+    "experience": 41986874,
+    "money": 1500000,
+    "current_map_node_canonical_id": "derived.map_node.location.899c13850b90b167"
+  }
+}

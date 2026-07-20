@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "evidence_policy": "Each case fixes a surviving reference input/output or an explicitly labelled compatibility boundary; current-runtime output is asserted separately.",
+  "cases": [
+    {
+      "canonical_id": "golden.level.thresholds",
+      "system": "level_experience",
+      "source": "zhsh/config/exp.json",
+      "input": { "levels": [1, 2, 3, 30, 210] },
+      "reference_output": { "thresholds": [1500, 3500, 5920, 508331, 1999995991] }
+    },
+    {
+      "canonical_id": "golden.monster.normal-level-10",
+      "system": "monster_stats",
+      "source": "zhsh/src/monster.js _setMonsterStats",
+      "input": { "level": 10, "monster_type": 5, "deterministic_stat_factor": 1 },
+      "reference_output": { "health": 230, "attack": 44, "max_attack": 66, "defense": 35, "agility": 23 }
+    },
+    {
+      "canonical_id": "golden.monster.task-boss-level-10",
+      "system": "boss_multiplier",
+      "source": "zhsh/src/monster.js _setMonsterStats",
+      "input": { "level": 10, "monster_type": 6, "deterministic_stat_factor": 1 },
+      "reference_output": { "health": 6900, "attack": 132, "max_attack": 198, "defense": 105, "agility": 69 }
+    },
+    {
+      "canonical_id": "golden.combat.damage-rounding",
+      "system": "damage",
+      "source": "zhsh/src/monster.js calculateDamage",
+      "input": { "min_attack": 50, "max_attack": 80, "defense": 35, "attacker_agility": 20, "defender_agility": 23, "random_values": [0, 0.99] },
+      "reference_output": { "damage": 45 }
+    },
+    {
+      "canonical_id": "golden.drop.probabilities",
+      "system": "drops",
+      "source": "zhsh/src/monster.js assault victory settlement",
+      "input": { "equipment_pool": true, "ordinary_items": true },
+      "reference_output": { "equipment_pool_probability": 0.2, "ordinary_item_probability": 0.4 }
+    },
+    {
+      "canonical_id": "golden.equipment.slots",
+      "system": "equipment",
+      "source": "zhsh/src/equipment.js and config/equipment.json",
+      "input": { "equipment_types": [1, 2, 3, 4, 5, 6, 7] },
+      "reference_output": { "slots": ["weapon", "headgear", "clothes", "belt", "shoes", "accessories", "offhand"] }
+    },
+    {
+      "canonical_id": "golden.fishing.wait-events",
+      "system": "fishing_wait",
+      "source": "zhsh/src/fish.js wait",
+      "input": { "event_rolls": [0, 0.249999, 0.25, 0.5, 0.75, 0.999999] },
+      "reference_output": { "events": ["nothing", "nothing", "bite", "line_snapped", "bait_eaten", "bait_eaten"] }
+    },
+    {
+      "canonical_id": "golden.fishing.rarity-weights",
+      "system": "fishing_rarity",
+      "source": "zhsh/src/fish.js calculateCatch",
+      "input": { "success_factors": [0.9, 1, 1.1] },
+      "reference_output": {
+        "weights": [
+          { "common": 70, "uncommon": 20, "rare": 10, "epic": 3 },
+          { "common": 50, "uncommon": 30, "rare": 15, "epic": 5 },
+          { "common": 40, "uncommon": 40, "rare": 20, "epic": 7 }
+        ]
+      }
+    },
+    {
+      "canonical_id": "golden.sailing.event-trigger",
+      "system": "sailing_events",
+      "source": "zhsh/src/sailing.js checkSpecialEvent and config/sailingSpecialEvents.json",
+      "input": { "rolls": [0, 0.049999, 0.05, 0.999999] },
+      "reference_output": { "triggered": [true, true, false, false], "probability": 0.05 }
+    },
+    {
+      "canonical_id": "golden.market.price-ranges",
+      "system": "market",
+      "source": "zhsh/config/marketItems.json",
+      "input": { "catalog": "all city-good pairs" },
+      "reference_output": { "city_good_ranges": 54, "boundary_values": 106 },
+      "current_runtime_output": { "queryable_city_good_ranges": 50, "numeric_boundary_values": 96 },
+      "gap_reason": "扎古拉和蒙巴萨没有正式城市定义；两条 50-76 单字符串范围保持阻塞，不能猜拆。"
+    },
+    {
+      "canonical_id": "golden.npc.task-state-entry",
+      "system": "npc_state",
+      "source": "zhsh/src/npc.js and src/task.js",
+      "input": { "task_statuses": ["available", "accepted", "in_progress", "completable"] },
+      "reference_output": { "contextual_placement_statuses": ["available", "accepted", "in_progress", "completable"] }
+    },
+    {
+      "canonical_id": "golden.task.reward-first",
+      "system": "task_rewards",
+      "source": "zhsh/config/task/task1.json JSON Pointer /0/prize",
+      "input": { "task_canonical_id": "task.series.01.000" },
+      "reference_output": { "rewards": { "经验": 1000, "声望": 1, "铜贝": 100 } }
+    }
+  ]
+}

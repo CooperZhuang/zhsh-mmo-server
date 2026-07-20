@@ -1,0 +1,3998 @@
+{
+  "schema_version": 2,
+  "catalog_kind": "reference-rule-catalog",
+  "stage_start_head": "2cbae183aa369fe0ac60176f3a1396914d786440",
+  "source_head": "3f55158d8657fb91bef451cb6d927c9eb00d3f6b",
+  "generated_from_head": "3f55158d8657fb91bef451cb6d927c9eb00d3f6b",
+  "reference_commits": {
+    "zhsh": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+    "astrbot": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de",
+    "dpcq": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39",
+    "zonghengsihai": "0b8996e8e5b7293321f9827994324d13e3c2509c"
+  },
+  "generator_version": "global-recovery-catalogs/2.0.0",
+  "generated_at": "2026-07-18T00:00:00.000Z",
+  "counts": {
+    "records": 37,
+    "by_repository": {
+      "zhsh": 35,
+      "astrbot": 25,
+      "dpcq": 22,
+      "zonghengsihai": 1
+    }
+  },
+  "repository_extraction_summary": {
+    "zhsh": {
+      "authority": "PRIMARY_ORIGINAL_IMPLEMENTATION",
+      "populated_data_records": 6359,
+      "task_records": 651,
+      "configuration_records": 5708,
+      "canonical_rule_records": 35,
+      "decision": "正式复原主证据"
+    },
+    "astrbot": {
+      "authority": "IMPLEMENTATION_CORROBORATION_ONLY",
+      "populated_game_data_records": 0,
+      "route_handlers": 0,
+      "referenced_database_tables": 0,
+      "canonical_rule_records": 25,
+      "decision": "用于交叉验证执行结构；空库模型不得替代 zhsh 原始数据"
+    },
+    "dpcq": {
+      "authority": "MOD_AUXILIARY_ONLY",
+      "sql_tables": 0,
+      "sql_insert_rows": 0,
+      "canonical_rule_records": 22,
+      "decision": "只作 MOD 辅助证据，不认定为原作规则"
+    },
+    "zonghengsihai": {
+      "authority": "NON_GAME_STATIC_SHELL",
+      "game_data_records": 0,
+      "game_rule_records": 0,
+      "external_request_call_sites": 0,
+      "canonical_rule_records": 1,
+      "decision": "静态外部信息页，不作为游戏数据或玩法规则来源"
+    }
+  },
+  "source_extraction_layer": {
+    "artifact": "data/generated/progression-source-extraction.json",
+    "method": "static exact-locator extraction; summaries are separate from source bytes and do not claim automatic adjudication",
+    "record_count": 35,
+    "records": [
+      {
+        "canonical_id": "progression.zhsh.add-exp",
+        "repository": "zhsh",
+        "relative_path": "src/play.js",
+        "locator_type": "function",
+        "locator": "addExp",
+        "line_start": 565,
+        "line_end": 570,
+        "file_sha256": "9481a9ac30bcb103fc46f5fb41a0e208cdd359bafc6c8b15e455a344472ce009",
+        "inputs": [
+          "experience amount"
+        ],
+        "outputs": [
+          "experience and possibly level"
+        ],
+        "state_changes": [
+          "play.exp",
+          "play.level"
+        ],
+        "entry": "combat/task/sailing rewards",
+        "random_rules": [],
+        "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+        "evidence_level": "SOURCE_EXPLICIT",
+        "current_runtime_module": "gameplay-state.applyExperienceProgression",
+        "golden_test": "tests/progression-source-golden.test.js",
+        "has_conflict": false
+      },
+      {
+        "canonical_id": "progression.zhsh.exp-threshold-lookup",
+        "repository": "zhsh",
+        "relative_path": "src/play.js",
+        "locator_type": "function",
+        "locator": "getExpToNextLevel",
+        "line_start": 573,
+        "line_end": 576,
+        "file_sha256": "9481a9ac30bcb103fc46f5fb41a0e208cdd359bafc6c8b15e455a344472ce009",
+        "inputs": [
+          "play.level"
+        ],
+        "outputs": [
+          "configured threshold"
+        ],
+        "state_changes": [],
+        "entry": "Play.addExp",
+        "random_rules": [],
+        "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+        "evidence_level": "SOURCE_EXPLICIT",
+        "current_runtime_module": "gameplay-state.applyExperienceProgression",
+        "golden_test": "tests/progression-source-golden.test.js",
+        "has_conflict": false
+      },
+      {
+        "canonical_id": "progression.zhsh.level-up-growth",
+        "repository": "zhsh",
+        "relative_path": "src/play.js",
+        "locator_type": "function",
+        "locator": "levelUp",
+        "line_start": 579,
+        "line_end": 586,
+        "file_sha256": "9481a9ac30bcb103fc46f5fb41a0e208cdd359bafc6c8b15e455a344472ce009",
+        "inputs": [
+          "current player state"
+        ],
+        "outputs": [
+          "incremented level and base attributes"
+        ],
+        "state_changes": [
+          "level",
+          "health",
+          "attack",
+          "defense",
+          "agility",
+          "morale"
+        ],
+        "entry": "Play.addExp",
+        "random_rules": [],
+        "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+        "evidence_level": "SOURCE_EXPLICIT",
+        "current_runtime_module": "gameplay-state.applyExperienceProgression",
+        "golden_test": "tests/progression-source-golden.test.js",
+        "has_conflict": true
+      },
+      {
+        "canonical_id": "progression.zhsh.copper-floor",
+        "repository": "zhsh",
+        "relative_path": "src/play.js",
+        "locator_type": "function",
+        "locator": "addCopper",
+        "line_start": 537,
+        "line_end": 542,
+        "file_sha256": "9481a9ac30bcb103fc46f5fb41a0e208cdd359bafc6c8b15e455a344472ce009",
+        "inputs": [
+          "signed copper delta"
+        ],
+        "outputs": [
+          "copper balance with zero lower bound"
+        ],
+        "random_rules": [],
+        "state_changes": [
+          "play.copper"
+        ],
+        "entry": "task/combat/sailing settlement",
+        "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+        "evidence_level": "SOURCE_EXPLICIT",
+        "current_runtime_module": "formal-gameplay.MaritimeRuntime",
+        "golden_test": "tests/progression-source-golden.test.js",
+        "has_conflict": false
+      },
+      {
+        "canonical_id": "progression.zhsh.level-thresholds",
+        "repository": "zhsh",
+        "relative_path": "config/exp.json",
+        "locator_type": "json_pointer",
+        "locator": "/",
+        "file_sha256": "5b545cf2876a2560f4560ee1804f2aa281745778dd9c1b787d96f07ccc36b686",
+        "inputs": [
+          "level 1..210"
+        ],
+        "outputs": [
+          "experience threshold"
+        ],
+        "state_changes": [],
+        "entry": "Play.getExpToNextLevel",
+        "random_rules": [],
+        "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+        "evidence_level": "SOURCE_EXPLICIT",
+        "current_runtime_module": "gameplay-state.applyExperienceProgression",
+        "golden_test": "tests/progression-source-golden.test.js",
+        "has_conflict": false
+      },
+      {
+        "canonical_id": "progression.zhsh.monster-reward",
+        "repository": "zhsh",
+        "relative_path": "src/monster.js",
+        "locator_type": "function",
+        "locator": "assault",
+        "line_start": 73,
+        "line_end": 356,
+        "file_sha256": "f8aa145b153069953dc5b2a2ac69d94c47d37df78df6bf616a564839d24361bd",
+        "inputs": [
+          "monster level",
+          "battle outcome",
+          "optional fighting pet; no team or ship parameter"
+        ],
+        "outputs": [
+          "level*2 experience",
+          "level*5 copper",
+          "optional pet damage"
+        ],
+        "random_rules": [
+          "equipment 0.2",
+          "ordinary item 0.4",
+          "pet damage/status when an active pet exists"
+        ],
+        "state_changes": [
+          "player experience",
+          "money",
+          "drops"
+        ],
+        "entry": "attack?type=monster.assault",
+        "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+        "evidence_level": "SOURCE_EXPLICIT",
+        "current_runtime_module": "formal-gameplay.CombatRuntime",
+        "golden_test": "tests/progression-source-golden.test.js",
+        "has_conflict": true
+      },
+      {
+        "canonical_id": "progression.zhsh.encounter-cache",
+        "repository": "zhsh",
+        "relative_path": "src/city.js",
+        "locator_type": "function",
+        "locator": "generateMonsterCache",
+        "line_start": 241,
+        "line_end": 347,
+        "file_sha256": "9d38877ff49d1112ed57f410c1bc6bf4a5377bc89a4bf36205acd152e183617d",
+        "inputs": [
+          "city",
+          "position",
+          "player"
+        ],
+        "outputs": [
+          "3..5 monster instances"
+        ],
+        "random_rules": [
+          "1..3 monster types",
+          "level variation",
+          "3..5 instances"
+        ],
+        "state_changes": [
+          "five-minute location cache"
+        ],
+        "entry": "City.getMonsterCache",
+        "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+        "evidence_level": "SOURCE_EXPLICIT",
+        "current_runtime_module": "progression-planner.planTrainingPath",
+        "golden_test": "tests/progression-source-golden.test.js",
+        "has_conflict": false
+      },
+      {
+        "canonical_id": "progression.zhsh.encounter-defeat",
+        "repository": "zhsh",
+        "relative_path": "src/city.js",
+        "locator_type": "function",
+        "locator": "removeDefeatedMonster",
+        "line_start": 353,
+        "line_end": 365,
+        "file_sha256": "9d38877ff49d1112ed57f410c1bc6bf4a5377bc89a4bf36205acd152e183617d",
+        "inputs": [
+          "monster instance id"
+        ],
+        "outputs": [
+          "remaining cache"
+        ],
+        "state_changes": [
+          "location monster cache"
+        ],
+        "entry": "Monster.assault victory",
+        "random_rules": [],
+        "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+        "evidence_level": "SOURCE_EXPLICIT",
+        "current_runtime_module": "progression-planner.planTrainingPath",
+        "golden_test": "tests/progression-source-golden.test.js",
+        "has_conflict": false
+      },
+      {
+        "canonical_id": "progression.zhsh.free-recovery",
+        "repository": "zhsh",
+        "relative_path": "src/user.js",
+        "locator_type": "function",
+        "locator": "priest_pray",
+        "line_start": 990,
+        "line_end": 1003,
+        "file_sha256": "04a0523bcf4007d59ac35582be59640034afb580cd50d35092c19826eacde4c4",
+        "inputs": [
+          "player health"
+        ],
+        "outputs": [
+          "full health"
+        ],
+        "state_changes": [
+          "currentHealth"
+        ],
+        "entry": "church priest action",
+        "random_rules": [],
+        "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+        "evidence_level": "SOURCE_EXPLICIT",
+        "current_runtime_module": "formal-gameplay.RecoveryRuntime",
+        "golden_test": "tests/progression-source-golden.test.js",
+        "has_conflict": false
+      },
+      {
+        "canonical_id": "progression.zhsh.task-prize-settlement",
+        "repository": "zhsh",
+        "relative_path": "src/task.js",
+        "locator_type": "function",
+        "locator": "completeTask",
+        "line_start": 458,
+        "line_end": 464,
+        "file_sha256": "4315d5e9ed273d873d60f84072f8d24cd991ae7f25baff64881b09a662124cce",
+        "inputs": [
+          "task prize object"
+        ],
+        "outputs": [
+          "experience, money or item prize through Play.addPrize"
+        ],
+        "state_changes": [
+          "player reward state",
+          "completedTasks"
+        ],
+        "entry": "task submission",
+        "random_rules": [],
+        "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+        "evidence_level": "SOURCE_EXPLICIT",
+        "current_runtime_module": "task-engine.TaskRuntimeEngine",
+        "golden_test": "tests/progression-source-golden.test.js",
+        "has_conflict": false
+      },
+      {
+        "canonical_id": "progression.zhsh.team-social-state",
+        "repository": "zhsh",
+        "relative_path": "src/team.js",
+        "locator_type": "function",
+        "locator": "createTeam",
+        "line_start": 21,
+        "line_end": 54,
+        "file_sha256": "7143b864fcc59009f5d85eacbb17224d0c3ce9b594a5caf305269e0e668b0c8c",
+        "inputs": [
+          "leader",
+          "team name/type/target"
+        ],
+        "outputs": [
+          "team record"
+        ],
+        "random_rules": [],
+        "state_changes": [
+          "team membership persistence"
+        ],
+        "entry": "team UI; not called by Monster.assault",
+        "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+        "evidence_level": "SOURCE_EXPLICIT",
+        "current_runtime_module": "progression-planner.planTrainingPath",
+        "golden_test": "tests/progression-source-golden.test.js",
+        "has_conflict": false
+      },
+      {
+        "canonical_id": "progression.zhsh.world-monster-distribution",
+        "repository": "zhsh",
+        "relative_path": "config/monsters.json",
+        "locator_type": "json_pointer",
+        "locator": "/",
+        "file_sha256": "157ecd8a3d0d4000adc5beec0f9a8bd461b769b80b8052ef6b20056de83e11c9",
+        "inputs": [
+          "city and location"
+        ],
+        "outputs": [
+          "monster types and base levels"
+        ],
+        "random_rules": [],
+        "state_changes": [],
+        "entry": "City.generateMonsterCache",
+        "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+        "evidence_level": "SOURCE_EXPLICIT",
+        "current_runtime_module": "progression-planner.planTrainingPath",
+        "golden_test": "tests/progression-source-golden.test.js",
+        "has_conflict": false
+      },
+      {
+        "canonical_id": "progression.zhsh.dungeon-monster-distribution",
+        "repository": "zhsh",
+        "relative_path": "config/fbNpc.json",
+        "locator_type": "json_pointer",
+        "locator": "/",
+        "file_sha256": "78fab9d4e63039aa4600c1ff3a46609407b17293406b983299afdba97c54779e",
+        "inputs": [
+          "dungeon and stage"
+        ],
+        "outputs": [
+          "dungeon monster types and levels"
+        ],
+        "random_rules": [],
+        "state_changes": [],
+        "entry": "City.generateMonsterCache",
+        "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+        "evidence_level": "SOURCE_EXPLICIT",
+        "current_runtime_module": "progression-planner.planTrainingPath",
+        "golden_test": "tests/progression-source-golden.test.js",
+        "has_conflict": false
+      },
+      {
+        "canonical_id": "progression.zhsh.auto-attack",
+        "repository": "zhsh",
+        "relative_path": "views/pages/attack.ejs",
+        "locator_type": "line_range",
+        "locator": "lines 14-19",
+        "line_start": 14,
+        "line_end": 19,
+        "file_sha256": "73f35fb0f830e7c96602ab0ddb5f1d8b9820e979a93e80e54990b71a39bd0549",
+        "inputs": [
+          "auto attack enabled"
+        ],
+        "outputs": [
+          "one assault request per second"
+        ],
+        "random_rules": [],
+        "state_changes": [
+          "battle rounds"
+        ],
+        "entry": "attack page",
+        "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+        "evidence_level": "SOURCE_EXPLICIT",
+        "current_runtime_module": "formal-gameplay.CombatRuntime",
+        "golden_test": "tests/progression-source-golden.test.js",
+        "has_conflict": false
+      },
+      {
+        "canonical_id": "progression.zhsh.training-session-scale",
+        "repository": "zhsh",
+        "relative_path": "config/trial.json",
+        "locator_type": "json_pointer",
+        "locator": "/0",
+        "file_sha256": "847194de75e21f4effe2fd434238b16f1ec80a37c7ac9421daab7c2bd5d21e2b",
+        "inputs": [
+          "level 5..15",
+          "six players"
+        ],
+        "outputs": [
+          "40 kills within 50 minutes"
+        ],
+        "state_changes": [
+          "trial progress"
+        ],
+        "entry": "Venice dungeon",
+        "random_rules": [],
+        "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+        "evidence_level": "SOURCE_EXPLICIT",
+        "current_runtime_module": "progression-planner.planTrainingPath",
+        "golden_test": "tests/progression-source-golden.test.js",
+        "has_conflict": false
+      },
+      {
+        "canonical_id": "progression.astrbot.battle-reward",
+        "repository": "astrbot",
+        "relative_path": "server/src/routes/battle.js",
+        "locator_type": "function",
+        "locator": "handleMonsterKill",
+        "line_start": 325,
+        "line_end": 405,
+        "file_sha256": "68f58f02110cbaa81d20352bc564f5949cf100a73114ba1d4c99dfd5a0c5135e",
+        "inputs": [
+          "monster.exp_reward",
+          "player state"
+        ],
+        "outputs": [
+          "experience, money, level"
+        ],
+        "state_changes": [
+          "user level/exp/stats",
+          "pet exp"
+        ],
+        "entry": "POST battle/action",
+        "random_rules": [],
+        "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de",
+        "evidence_level": "CORROBORATION_ONLY",
+        "current_runtime_module": "evidence-only",
+        "golden_test": "tests/progression-source-golden.test.js",
+        "has_conflict": true
+      },
+      {
+        "canonical_id": "progression.astrbot.failure-recovery",
+        "repository": "astrbot",
+        "relative_path": "server/src/routes/battle.js",
+        "locator_type": "function",
+        "locator": "handlePlayerDeath",
+        "line_start": 407,
+        "line_end": 443,
+        "file_sha256": "68f58f02110cbaa81d20352bc564f5949cf100a73114ba1d4c99dfd5a0c5135e",
+        "inputs": [
+          "money",
+          "hp_max",
+          "current city"
+        ],
+        "outputs": [
+          "10% HP and tavern return"
+        ],
+        "state_changes": [
+          "hp",
+          "money -5%",
+          "place"
+        ],
+        "entry": "battle loss",
+        "random_rules": [],
+        "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de",
+        "evidence_level": "CORROBORATION_ONLY",
+        "current_runtime_module": "formal-gameplay.RecoveryRuntime",
+        "golden_test": "tests/progression-source-golden.test.js",
+        "has_conflict": false
+      },
+      {
+        "canonical_id": "progression.astrbot.level-config",
+        "repository": "astrbot",
+        "relative_path": "server/src/config.js",
+        "locator_type": "line_range",
+        "locator": "lines 42-49",
+        "line_start": 42,
+        "line_end": 49,
+        "file_sha256": "0254dc8212fd450e38b1a5e8884e9bff991dc5225a63259cafc6e9b9c869a6be",
+        "inputs": [
+          "level"
+        ],
+        "outputs": [
+          "linear exp_max and fixed stat gains"
+        ],
+        "random_rules": [],
+        "state_changes": [],
+        "entry": "handleMonsterKill",
+        "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de",
+        "evidence_level": "CORROBORATION_ONLY",
+        "current_runtime_module": "evidence-only",
+        "golden_test": "tests/progression-source-golden.test.js",
+        "has_conflict": false
+      },
+      {
+        "canonical_id": "progression.dpcq.level-table",
+        "repository": "dpcq",
+        "relative_path": "dpcq.sql",
+        "locator_type": "sql_table",
+        "locator": "dp_levels",
+        "line_start": 289,
+        "line_end": 289,
+        "file_sha256": "9532ad9d98f28c2efb5ee262716d6607c0b32cfc2413178c61b6030739a6efb8",
+        "inputs": [
+          "cumulative MOD experience"
+        ],
+        "outputs": [
+          "MOD level mapping"
+        ],
+        "state_changes": [],
+        "entry": "IndexController attack settlement",
+        "random_rules": [],
+        "commit": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39",
+        "evidence_level": "MOD_AUXILIARY_ONLY",
+        "current_runtime_module": "evidence-only",
+        "golden_test": "tests/progression-source-golden.test.js",
+        "has_conflict": false
+      },
+      {
+        "canonical_id": "progression.dpcq.attack-settlement",
+        "repository": "dpcq",
+        "relative_path": "app/Http/Controllers/IndexController.php",
+        "locator_type": "function",
+        "locator": "attack",
+        "line_start": 145,
+        "line_end": 509,
+        "file_sha256": "39355ed7ed5f306f0a8fc798c6b817c0fc732b82cef6e9af11a0b02e8b73f134",
+        "inputs": [
+          "MOD target and drop table"
+        ],
+        "outputs": [
+          "drop-based experience and level"
+        ],
+        "random_rules": [
+          "drop_probability"
+        ],
+        "state_changes": [
+          "r_exp",
+          "r_level",
+          "attributes"
+        ],
+        "entry": "POST attack",
+        "commit": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39",
+        "evidence_level": "MOD_AUXILIARY_ONLY",
+        "current_runtime_module": "evidence-only",
+        "golden_test": "tests/progression-source-golden.test.js",
+        "has_conflict": true
+      },
+      {
+        "canonical_id": "progression.zhsh.task-series-1-rewards",
+        "repository": "zhsh",
+        "relative_path": "config/task/task1.json",
+        "locator_type": "json_pointer",
+        "locator": "/*/prize/经验",
+        "file_sha256": "9314438f5eff329cff946ed07ccfee6cd3d923bf473df1ec9ab4004e5fa1d9fe",
+        "inputs": [
+          "completed task"
+        ],
+        "outputs": [
+          "configured task experience prize"
+        ],
+        "random_rules": [],
+        "state_changes": [
+          "player experience"
+        ],
+        "entry": "Task.completeTask",
+        "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+        "evidence_level": "SOURCE_EXPLICIT",
+        "current_runtime_module": "task-engine.TaskRuntimeEngine",
+        "golden_test": "tests/progression-source-golden.test.js",
+        "has_conflict": false
+      },
+      {
+        "canonical_id": "progression.zhsh.task-series-2-rewards",
+        "repository": "zhsh",
+        "relative_path": "config/task/task2.json",
+        "locator_type": "json_pointer",
+        "locator": "/*/prize/经验",
+        "file_sha256": "f6d31a8dc7acf9ac3506fe21cf8f1e4125b55f484ee45105ba99a11b5a47618d",
+        "inputs": [
+          "completed task"
+        ],
+        "outputs": [
+          "configured task experience prize"
+        ],
+        "random_rules": [],
+        "state_changes": [
+          "player experience"
+        ],
+        "entry": "Task.completeTask",
+        "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+        "evidence_level": "SOURCE_EXPLICIT",
+        "current_runtime_module": "task-engine.TaskRuntimeEngine",
+        "golden_test": "tests/progression-source-golden.test.js",
+        "has_conflict": false
+      },
+      {
+        "canonical_id": "progression.zhsh.task-series-3-rewards",
+        "repository": "zhsh",
+        "relative_path": "config/task/task3.json",
+        "locator_type": "json_pointer",
+        "locator": "/*/prize/经验",
+        "file_sha256": "008c3212759944c940f94bb37c26a57a4cf20fad44da819e170c84d3792c60fe",
+        "inputs": [
+          "completed task"
+        ],
+        "outputs": [
+          "configured task experience prize"
+        ],
+        "random_rules": [],
+        "state_changes": [
+          "player experience"
+        ],
+        "entry": "Task.completeTask",
+        "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+        "evidence_level": "SOURCE_EXPLICIT",
+        "current_runtime_module": "task-engine.TaskRuntimeEngine",
+        "golden_test": "tests/progression-source-golden.test.js",
+        "has_conflict": false
+      },
+      {
+        "canonical_id": "progression.zhsh.task-series-4-rewards",
+        "repository": "zhsh",
+        "relative_path": "config/task/task4.json",
+        "locator_type": "json_pointer",
+        "locator": "/*/prize/经验",
+        "file_sha256": "fd5665db6367e678dcc11ccf7a761a4cdba473b05b4b1ad3c58889c75c37d9a0",
+        "inputs": [
+          "completed task"
+        ],
+        "outputs": [
+          "configured task experience prize"
+        ],
+        "random_rules": [],
+        "state_changes": [
+          "player experience"
+        ],
+        "entry": "Task.completeTask",
+        "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+        "evidence_level": "SOURCE_EXPLICIT",
+        "current_runtime_module": "task-engine.TaskRuntimeEngine",
+        "golden_test": "tests/progression-source-golden.test.js",
+        "has_conflict": false
+      },
+      {
+        "canonical_id": "progression.zhsh.task-series-5-rewards",
+        "repository": "zhsh",
+        "relative_path": "config/task/task5.json",
+        "locator_type": "json_pointer",
+        "locator": "/*/prize/经验",
+        "file_sha256": "6f8a6e6e843ee83101572c794a498e36cf1677d0e1c3af5c1950ef98c6ffc027",
+        "inputs": [
+          "completed task"
+        ],
+        "outputs": [
+          "configured task experience prize"
+        ],
+        "random_rules": [],
+        "state_changes": [
+          "player experience"
+        ],
+        "entry": "Task.completeTask",
+        "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+        "evidence_level": "SOURCE_EXPLICIT",
+        "current_runtime_module": "task-engine.TaskRuntimeEngine",
+        "golden_test": "tests/progression-source-golden.test.js",
+        "has_conflict": false
+      },
+      {
+        "canonical_id": "progression.zhsh.task-series-6-rewards",
+        "repository": "zhsh",
+        "relative_path": "config/task/task6.json",
+        "locator_type": "json_pointer",
+        "locator": "/*/prize/经验",
+        "file_sha256": "f8ffdd613d2fc74485ae7f024a2bf148ea6b79f944b31f85f16c3f5f1bf22c31",
+        "inputs": [
+          "completed task"
+        ],
+        "outputs": [
+          "configured task experience prize"
+        ],
+        "random_rules": [],
+        "state_changes": [
+          "player experience"
+        ],
+        "entry": "Task.completeTask",
+        "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+        "evidence_level": "SOURCE_EXPLICIT",
+        "current_runtime_module": "task-engine.TaskRuntimeEngine",
+        "golden_test": "tests/progression-source-golden.test.js",
+        "has_conflict": false
+      },
+      {
+        "canonical_id": "progression.zhsh.task-series-7-rewards",
+        "repository": "zhsh",
+        "relative_path": "config/task/task7.json",
+        "locator_type": "json_pointer",
+        "locator": "/*/prize/经验",
+        "file_sha256": "c5c890f8a8a959308a994d6bb5d998a14051282723717e4cfab9f145bace620d",
+        "inputs": [
+          "completed task"
+        ],
+        "outputs": [
+          "configured task experience prize"
+        ],
+        "random_rules": [],
+        "state_changes": [
+          "player experience"
+        ],
+        "entry": "Task.completeTask",
+        "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+        "evidence_level": "SOURCE_EXPLICIT",
+        "current_runtime_module": "task-engine.TaskRuntimeEngine",
+        "golden_test": "tests/progression-source-golden.test.js",
+        "has_conflict": false
+      },
+      {
+        "canonical_id": "progression.zhsh.task-series-8-rewards",
+        "repository": "zhsh",
+        "relative_path": "config/task/task8.json",
+        "locator_type": "json_pointer",
+        "locator": "/*/prize/经验",
+        "file_sha256": "26e5722f3950d74f36a2e5a5576a5cfbfd3ae5437742725343fbb980440768c5",
+        "inputs": [
+          "completed task"
+        ],
+        "outputs": [
+          "configured task experience prize"
+        ],
+        "random_rules": [],
+        "state_changes": [
+          "player experience"
+        ],
+        "entry": "Task.completeTask",
+        "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+        "evidence_level": "SOURCE_EXPLICIT",
+        "current_runtime_module": "task-engine.TaskRuntimeEngine",
+        "golden_test": "tests/progression-source-golden.test.js",
+        "has_conflict": false
+      },
+      {
+        "canonical_id": "progression.zhsh.task-series-9-rewards",
+        "repository": "zhsh",
+        "relative_path": "config/task/task9.json",
+        "locator_type": "json_pointer",
+        "locator": "/*/prize/经验",
+        "file_sha256": "e3b84983a4b1814b1d1b7a2d4498efebd92cc60497400200aaaa0ff8ba49012e",
+        "inputs": [
+          "completed task"
+        ],
+        "outputs": [
+          "configured task experience prize"
+        ],
+        "random_rules": [],
+        "state_changes": [
+          "player experience"
+        ],
+        "entry": "Task.completeTask",
+        "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+        "evidence_level": "SOURCE_EXPLICIT",
+        "current_runtime_module": "task-engine.TaskRuntimeEngine",
+        "golden_test": "tests/progression-source-golden.test.js",
+        "has_conflict": false
+      },
+      {
+        "canonical_id": "progression.zhsh.task-series-10-rewards",
+        "repository": "zhsh",
+        "relative_path": "config/task/task10.json",
+        "locator_type": "json_pointer",
+        "locator": "/*/prize/经验",
+        "file_sha256": "36afbfcb2f16668e7ab7d234fa25af6261979dac48810457be35a9e1e69ba96c",
+        "inputs": [
+          "completed task"
+        ],
+        "outputs": [
+          "configured task experience prize"
+        ],
+        "random_rules": [],
+        "state_changes": [
+          "player experience"
+        ],
+        "entry": "Task.completeTask",
+        "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+        "evidence_level": "SOURCE_EXPLICIT",
+        "current_runtime_module": "task-engine.TaskRuntimeEngine",
+        "golden_test": "tests/progression-source-golden.test.js",
+        "has_conflict": false
+      },
+      {
+        "canonical_id": "progression.zhsh.task-series-11-rewards",
+        "repository": "zhsh",
+        "relative_path": "config/task/task11.json",
+        "locator_type": "json_pointer",
+        "locator": "/*/prize/经验",
+        "file_sha256": "f05e05c1afea6ad088bcc813cc695f321a29a198ce9d8b36183f2e9adf295895",
+        "inputs": [
+          "completed task"
+        ],
+        "outputs": [
+          "configured task experience prize"
+        ],
+        "random_rules": [],
+        "state_changes": [
+          "player experience"
+        ],
+        "entry": "Task.completeTask",
+        "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+        "evidence_level": "SOURCE_EXPLICIT",
+        "current_runtime_module": "task-engine.TaskRuntimeEngine",
+        "golden_test": "tests/progression-source-golden.test.js",
+        "has_conflict": false
+      },
+      {
+        "canonical_id": "progression.zhsh.task-series-12-rewards",
+        "repository": "zhsh",
+        "relative_path": "config/task/task12.json",
+        "locator_type": "json_pointer",
+        "locator": "/*/prize/经验",
+        "file_sha256": "af7b7959c33a1991505de7104065739a8ad8d4a4dd45bebcf57c99a831a11cea",
+        "inputs": [
+          "completed task"
+        ],
+        "outputs": [
+          "configured task experience prize"
+        ],
+        "random_rules": [],
+        "state_changes": [
+          "player experience"
+        ],
+        "entry": "Task.completeTask",
+        "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+        "evidence_level": "SOURCE_EXPLICIT",
+        "current_runtime_module": "task-engine.TaskRuntimeEngine",
+        "golden_test": "tests/progression-source-golden.test.js",
+        "has_conflict": false
+      },
+      {
+        "canonical_id": "progression.zhsh.task-series-13-rewards",
+        "repository": "zhsh",
+        "relative_path": "config/task/task13.json",
+        "locator_type": "json_pointer",
+        "locator": "/*/prize/经验",
+        "file_sha256": "1c7e16a6a8e2945070ba6440bf40e803dfb3935703211333c4aaff357609c807",
+        "inputs": [
+          "completed task"
+        ],
+        "outputs": [
+          "configured task experience prize"
+        ],
+        "random_rules": [],
+        "state_changes": [
+          "player experience"
+        ],
+        "entry": "Task.completeTask",
+        "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+        "evidence_level": "SOURCE_EXPLICIT",
+        "current_runtime_module": "task-engine.TaskRuntimeEngine",
+        "golden_test": "tests/progression-source-golden.test.js",
+        "has_conflict": false
+      },
+      {
+        "canonical_id": "progression.zhsh.task-series-14-rewards",
+        "repository": "zhsh",
+        "relative_path": "config/task/task14.json",
+        "locator_type": "json_pointer",
+        "locator": "/*/prize/经验",
+        "file_sha256": "939c695a6ea755668dc2f9feb9c8f173e7af90df0c276f6d1046df2fa527f086",
+        "inputs": [
+          "completed task"
+        ],
+        "outputs": [
+          "configured task experience prize"
+        ],
+        "random_rules": [],
+        "state_changes": [
+          "player experience"
+        ],
+        "entry": "Task.completeTask",
+        "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+        "evidence_level": "SOURCE_EXPLICIT",
+        "current_runtime_module": "task-engine.TaskRuntimeEngine",
+        "golden_test": "tests/progression-source-golden.test.js",
+        "has_conflict": false
+      },
+      {
+        "canonical_id": "progression.zhsh.task-series-15-rewards",
+        "repository": "zhsh",
+        "relative_path": "config/task/task15.json",
+        "locator_type": "json_pointer",
+        "locator": "/*/prize/经验",
+        "file_sha256": "d61e0952a1fa9fd42add51d5865eb51fcd82a94db2883c3ecf5667d83901ee54",
+        "inputs": [
+          "completed task"
+        ],
+        "outputs": [
+          "configured task experience prize"
+        ],
+        "random_rules": [],
+        "state_changes": [
+          "player experience"
+        ],
+        "entry": "Task.completeTask",
+        "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+        "evidence_level": "SOURCE_EXPLICIT",
+        "current_runtime_module": "task-engine.TaskRuntimeEngine",
+        "golden_test": "tests/progression-source-golden.test.js",
+        "has_conflict": false
+      }
+    ]
+  },
+  "canonical_rule_layer": {
+    "artifact": "data/runtime/progression-rules.json",
+    "rules": {
+      "level_thresholds": {
+        "values": {
+          "1": 1500,
+          "2": 3500,
+          "3": 5920,
+          "4": 8897,
+          "5": 12618,
+          "6": 17344,
+          "7": 23441,
+          "8": 31428,
+          "9": 42051,
+          "10": 52781,
+          "11": 63619,
+          "12": 74566,
+          "13": 57649,
+          "14": 74361,
+          "15": 94416,
+          "16": 117813,
+          "17": 141445,
+          "18": 165314,
+          "19": 189423,
+          "20": 194288,
+          "21": 232526,
+          "22": 271147,
+          "23": 310155,
+          "24": 349554,
+          "25": 389348,
+          "26": 429541,
+          "27": 470137,
+          "28": 404138,
+          "29": 453170,
+          "30": 508331,
+          "31": 569620,
+          "32": 637039,
+          "33": 710587,
+          "34": 790264,
+          "35": 876070,
+          "36": 962735,
+          "37": 1022281,
+          "38": 1168491,
+          "39": 1316164,
+          "40": 1465315,
+          "41": 1545164,
+          "42": 1735384,
+          "43": 1927507,
+          "44": 2121552,
+          "45": 2317538,
+          "46": 2515485,
+          "47": 2715412,
+          "48": 2436322,
+          "49": 2690939,
+          "50": 2977382,
+          "51": 3295653,
+          "52": 3645751,
+          "53": 4027676,
+          "54": 4441428,
+          "55": 4887007,
+          "56": 5337043,
+          "57": 5791580,
+          "58": 6250663,
+          "59": 6714338,
+          "60": 7182651,
+          "61": 7655648,
+          "62": 8133376,
+          "63": 7058034,
+          "64": 7600790,
+          "65": 8203853,
+          "66": 8867222,
+          "67": 9590898,
+          "68": 10374880,
+          "69": 11219168,
+          "70": 12123762,
+          "71": 13088663,
+          "72": 14113870,
+          "73": 15149330,
+          "74": 16195146,
+          "75": 17251421,
+          "76": 18318260,
+          "77": 19395768,
+          "78": 20484052,
+          "79": 21583220,
+          "80": 22693381,
+          "81": 23814645,
+          "82": 24947123,
+          "83": 26090927,
+          "84": 27246170,
+          "85": 28412966,
+          "86": 29591431,
+          "87": 30781682,
+          "88": 31983837,
+          "89": 33198015,
+          "90": 34424336,
+          "91": 35662921,
+          "92": 36913893,
+          "93": 38177376,
+          "94": 39453495,
+          "95": 40742376,
+          "96": 42044147,
+          "97": 43358937,
+          "98": 44686876,
+          "99": 46028095,
+          "100": 47382727,
+          "101": 34492344,
+          "102": 35897756,
+          "103": 37350015,
+          "104": 38849121,
+          "105": 40395074,
+          "106": 41987874,
+          "107": 43627521,
+          "108": 45314016,
+          "109": 47047357,
+          "110": 48827546,
+          "111": 50654581,
+          "112": 52528464,
+          "113": 54449194,
+          "114": 56416770,
+          "115": 58431194,
+          "116": 60492465,
+          "117": 62600583,
+          "118": 64755548,
+          "119": 66957360,
+          "120": 69206019,
+          "121": 71501526,
+          "122": 73843879,
+          "123": 76233079,
+          "124": 78669127,
+          "125": 81152021,
+          "126": 83681763,
+          "127": 86258351,
+          "128": 88881787,
+          "129": 91531458,
+          "130": 94207627,
+          "131": 96910559,
+          "132": 99640521,
+          "133": 102397784,
+          "134": 105182621,
+          "135": 107995307,
+          "136": 110836121,
+          "137": 113705344,
+          "138": 116603260,
+          "139": 119530156,
+          "140": 122486322,
+          "141": 125472051,
+          "142": 128487638,
+          "143": 131533382,
+          "144": 134609584,
+          "145": 137716549,
+          "146": 140854585,
+          "147": 144024002,
+          "148": 147225114,
+          "149": 150458238,
+          "150": 153723694,
+          "151": 157021806,
+          "152": 130523385,
+          "153": 133993518,
+          "154": 137602456,
+          "155": 141350200,
+          "156": 145236749,
+          "157": 149262104,
+          "158": 153426263,
+          "159": 157729229,
+          "160": 162170999,
+          "161": 166657188,
+          "162": 171188240,
+          "163": 175764604,
+          "164": 180386733,
+          "165": 185055084,
+          "166": 189770120,
+          "167": 194532307,
+          "168": 199342117,
+          "169": 204200026,
+          "170": 209106515,
+          "171": 214062070,
+          "172": 219067182,
+          "173": 224122346,
+          "174": 229228063,
+          "175": 234384838,
+          "176": 239593182,
+          "177": 244853610,
+          "178": 250166643,
+          "179": 255532807,
+          "180": 219264852,
+          "181": 224761953,
+          "182": 230314026,
+          "183": 235921621,
+          "184": 241585293,
+          "185": 247305603,
+          "186": 253083117,
+          "187": 258918407,
+          "188": 264812051,
+          "189": 270764632,
+          "190": 276776740,
+          "191": 282848970,
+          "192": 288981923,
+          "193": 295176207,
+          "194": 301432435,
+          "195": 307751226,
+          "196": 314133206,
+          "197": 320579007,
+          "198": 327089267,
+          "199": 333664631,
+          "200": 340305750,
+          "201": 296872833,
+          "202": 315691876,
+          "203": 343920440,
+          "204": 403065995,
+          "205": 521357106,
+          "206": 698793772,
+          "207": 935375994,
+          "208": 1231103771,
+          "209": 1585977103,
+          "210": 1999995991
+        },
+        "semantics": "persistent experience compared to current level threshold",
+        "evidence_ids": [
+          "progression.zhsh.level-thresholds",
+          "progression.zhsh.add-exp",
+          "progression.zhsh.exp-threshold-lookup"
+        ],
+        "confidence": "high"
+      },
+      "player_growth": {
+        "health": "10 + floor(newLevel / 5)",
+        "attack": "2 + floor(newLevel / 10)",
+        "max_attack": "same gain as attack (technical interval repair)",
+        "defense": "1 + floor(newLevel / 15)",
+        "agility": 1,
+        "morale": 5,
+        "evidence_ids": [
+          "progression.zhsh.level-up-growth"
+        ],
+        "confidence": "high"
+      },
+      "encounter_rewards": {
+        "evidence_status": "PROVISIONAL_COMPATIBILITY",
+        "formula": "round(level * 40 * encounter_multiplier)",
+        "base_experience_per_level": 40,
+        "encounter_multipliers": {
+          "wild": 1,
+          "dungeon_normal": 1.5,
+          "task_exclusive": 1,
+          "elite": 1.5,
+          "boss": 2
+        },
+        "minimum": 40,
+        "evidence": [
+          {
+            "status": "SOURCE_EXPLICIT_CONFLICTING",
+            "locator": "zhsh/src/monster.js Monster constructor and assault victory settlement",
+            "finding": "The surviving source calculates experience as monster level multiplied by 2. This produces tens of thousands of low-level encounters against the imported cumulative level thresholds and is rejected as a formal compatibility rule."
+          },
+          {
+            "status": "SOURCE_EXPLICIT",
+            "locator": "zhsh-game_astrbot/server/src/routes/battle.js",
+            "finding": "The independent implementation reads exp_reward and money_reward_min/max from each monster record, proving rewards need not be derived from the level-times-2 formula. Exact populated values are not present in that repository."
+          },
+          {
+            "status": "USER_CONFIRMED",
+            "locator": "2026-07-17 runnable task expansion correction",
+            "finding": "Nearby level-appropriate monsters and instances close ordinary level gates in a reasonable number of encounters; thousands of encounters are abnormal."
+          }
+        ],
+        "derivation": "A single continuous level gradient is fitted to the formal cumulative thresholds and task reward scale. Encounter-type multipliers follow the source monster-type difficulty ordering; no task, series, city, or level receives a special multiplier.",
+        "replacement_condition": "Replace when an authoritative populated monster reward table or an unambiguous original reward formula is recovered and validated jointly against the original level thresholds and task rewards.",
+        "evidence_ids": [
+          "progression.zhsh.monster-reward",
+          "progression.astrbot.battle-reward",
+          "progression.dpcq.attack-settlement"
+        ],
+        "confidence": "conflict"
+      },
+      "task_rewards": {
+        "semantics": "each task prize experience value is settled through Task.completeTask -> Play.addPrize",
+        "evidence_ids": [
+          "progression.zhsh.task-prize-settlement",
+          "progression.zhsh.task-series-1-rewards",
+          "progression.zhsh.task-series-2-rewards",
+          "progression.zhsh.task-series-3-rewards",
+          "progression.zhsh.task-series-4-rewards",
+          "progression.zhsh.task-series-5-rewards",
+          "progression.zhsh.task-series-6-rewards",
+          "progression.zhsh.task-series-7-rewards",
+          "progression.zhsh.task-series-8-rewards",
+          "progression.zhsh.task-series-9-rewards",
+          "progression.zhsh.task-series-10-rewards",
+          "progression.zhsh.task-series-11-rewards",
+          "progression.zhsh.task-series-12-rewards",
+          "progression.zhsh.task-series-13-rewards",
+          "progression.zhsh.task-series-14-rewards",
+          "progression.zhsh.task-series-15-rewards"
+        ],
+        "confidence": "high"
+      },
+      "encounter_distribution": {
+        "world": "config/monsters.json city/location placement",
+        "dungeon": "config/fbNpc.json dungeon/stage placement",
+        "evidence_ids": [
+          "progression.zhsh.world-monster-distribution",
+          "progression.zhsh.dungeon-monster-distribution"
+        ],
+        "confidence": "high"
+      },
+      "repeatable_training": {
+        "cache_refresh_seconds": 300,
+        "minimum_instances_per_cache": 3,
+        "maximum_instances_per_cache": 5,
+        "automatic_attack_interval_seconds": 1,
+        "evidence_ids": [
+          "progression.zhsh.encounter-cache",
+          "progression.zhsh.encounter-defeat",
+          "progression.zhsh.auto-attack"
+        ],
+        "confidence": "high"
+      },
+      "failure_recovery": {
+        "formal_rule": "zhsh defeat returns with 1 HP; church prayer restores full health for zero fee",
+        "market_goods_loss_on_defeat": true,
+        "money_loss": 0,
+        "copper_lower_bound": 0,
+        "evidence_ids": [
+          "progression.zhsh.monster-reward",
+          "progression.zhsh.free-recovery",
+          "progression.zhsh.copper-floor"
+        ],
+        "confidence": "high"
+      },
+      "training_modifiers": {
+        "equipment": "directly changes player combat attributes",
+        "pet": "optional active pet adds damage and status effects",
+        "team": "social/persistence implementation; no Monster.assault integration found",
+        "ship": "sailing capability; no ordinary ground Monster.assault integration found",
+        "planner_policy": "close the current prefix without assuming an unobtained pet, team, crew or ship",
+        "evidence_ids": [
+          "progression.zhsh.monster-reward",
+          "progression.zhsh.team-social-state"
+        ],
+        "confidence": "high"
+      },
+      "reasonable_training": {
+        "maximum_minutes_per_level_segment": 50,
+        "derivation": "The earliest source dungeon requires 40 victories within a source-configured 50-minute session; planner uses combat rounds, deterministic win sampling, cache capacity and refresh delay instead of a fixed fight count.",
+        "evidence_ids": [
+          "progression.zhsh.training-session-scale",
+          "progression.zhsh.auto-attack",
+          "progression.zhsh.encounter-cache"
+        ],
+        "confidence": "high"
+      }
+    }
+  },
+  "adjudication_overlay": [
+    {
+      "canonical_id": "adjudication.monster-experience",
+      "status": "CONFLICT",
+      "source_confidence": "CONFLICT",
+      "runtime_adjudication_status": "COMPATIBILITY_PLAYABLE_RETAINED",
+      "has_active_conflict": true,
+      "decision": "retain accepted level*40 compatibility gradient only for the already accepted playable baseline until authoritative populated original rewards are recovered; do not use it for higher-level expansion",
+      "source_fact": "zhsh executes level*2; astrbot expects per-monster exp_reward but its database is unpopulated; dpcq is MOD drop-table experience",
+      "technical_bug": false
+    },
+    {
+      "canonical_id": "adjudication.max-attack-growth",
+      "status": "TECHNICAL_REPAIR",
+      "decision": "increase max attack with base attack to prevent the attack interval from inverting after repeated level-ups",
+      "source_fact": "zhsh levelUp increments attack but omits maxAttack",
+      "technical_bug": true
+    },
+    {
+      "canonical_id": "adjudication.copper-floor",
+      "status": "TECHNICAL_REPAIR",
+      "decision": "apply the source Play.addCopper zero lower bound to formal sailing repair charges",
+      "source_fact": "zhsh Sailing shipDamage calls Play.addCopper(-repairCost), whose implementation clamps copper at zero",
+      "technical_bug": true
+    },
+    {
+      "canonical_id": "adjudication.training-repeat",
+      "status": "SOURCE_EXPLICIT",
+      "decision": "ordinary location encounters are renewable through the five-minute cache; formal runtime may expose immediate replay but planner budgets source cache capacity and refresh delay",
+      "technical_bug": false
+    },
+    {
+      "canonical_id": "adjudication.training-modifiers",
+      "status": "SOURCE_EXPLICIT",
+      "decision": "equipment and an active pet can widen survivable training, but current closure must not assume either unless actually obtained; team and ship do not enter ordinary assault settlement",
+      "technical_bug": false
+    },
+    {
+      "canonical_id": "adjudication.astrbot-training",
+      "status": "CORROBORATION_ONLY",
+      "decision": "record linear exp_max, per-monster exp_reward, pet assist and 5% death loss as an alternative implementation, not original numeric authority",
+      "technical_bug": false
+    },
+    {
+      "canonical_id": "adjudication.dpcq-progression",
+      "status": "MOD_AUXILIARY_ONLY",
+      "decision": "record dp_levels and drop-driven experience only as MOD auxiliary evidence",
+      "technical_bug": false
+    }
+  ],
+  "records": [
+    {
+      "canonical_id": "rule.account.auth",
+      "system_canonical_id": "system.account.auth",
+      "display_name": "登录与账号",
+      "evidence_status": "CONSENSUS",
+      "confidence": "high",
+      "classification": "A",
+      "source_repositories": [
+        "zhsh",
+        "astrbot",
+        "dpcq"
+      ],
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "index.js",
+          "locator": "login/register routes",
+          "original_value_summary": "账号与 session；旧实现明文密码",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/auth.js",
+          "locator": "bcrypt/JWT",
+          "original_value_summary": "哈希密码与令牌",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "app/Http/Controllers/Auth",
+          "locator": "Laravel Auth",
+          "original_value_summary": "框架认证",
+          "commit": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39"
+        }
+      ],
+      "configuration_data": [],
+      "execution_functions": [
+        {
+          "repository": "zhsh",
+          "relative_path": "index.js",
+          "locator": "login/register routes"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/auth.js",
+          "locator": "bcrypt/JWT"
+        }
+      ],
+      "inputs": [
+        "credentials"
+      ],
+      "outputs": [
+        "session/token"
+      ],
+      "random_rules": [],
+      "state_changes": [
+        "account"
+      ],
+      "page_entries": [
+        "reference web/API entry"
+      ],
+      "reachable": true,
+      "current_runtime_modules": [],
+      "baseline": {
+        "baseline": "账号注册/登录与角色状态关联；正式实现必须使用安全密码哈希和安全会话"
+      }
+    },
+    {
+      "canonical_id": "rule.character.create",
+      "system_canonical_id": "system.character.create",
+      "display_name": "新建角色",
+      "evidence_status": "CONSENSUS",
+      "confidence": "high",
+      "classification": "A",
+      "source_repositories": [
+        "zhsh",
+        "astrbot",
+        "dpcq"
+      ],
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "index.js",
+          "locator": "lines 121-153",
+          "original_value_summary": "注册账号并创建用户",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/auth.js",
+          "locator": "lines 14-58",
+          "original_value_summary": "注册时直接初始化角色字段",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "app/Http/Controllers/CreateRoleController.php",
+          "locator": "lines 22-65",
+          "original_value_summary": "账号下创建角色与属性记录",
+          "commit": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39"
+        }
+      ],
+      "configuration_data": [],
+      "execution_functions": [
+        {
+          "repository": "zhsh",
+          "relative_path": "index.js",
+          "locator": "lines 121-153"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/auth.js",
+          "locator": "lines 14-58"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "app/Http/Controllers/CreateRoleController.php",
+          "locator": "lines 22-65"
+        }
+      ],
+      "inputs": [
+        "registration/character data"
+      ],
+      "outputs": [
+        "player state"
+      ],
+      "random_rules": [],
+      "state_changes": [
+        "player profile"
+      ],
+      "page_entries": [
+        "reference web/API entry"
+      ],
+      "reachable": true,
+      "current_runtime_modules": [],
+      "baseline": {
+        "baseline": "账号注册后建立角色状态；角色名唯一；具体账号与角色是否分表属于实现选择"
+      }
+    },
+    {
+      "canonical_id": "rule.character.initialize",
+      "system_canonical_id": "system.character.initialize",
+      "display_name": "角色属性初始化",
+      "evidence_status": "CONFLICT",
+      "confidence": "high",
+      "classification": "D",
+      "source_repositories": [
+        "zhsh",
+        "astrbot",
+        "dpcq"
+      ],
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/play.js",
+          "locator": "lines 5-24",
+          "original_value_summary": "默认属性",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/auth.js",
+          "locator": "lines 34-55",
+          "original_value_summary": "注册默认属性",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "app/Http/Controllers/CreateRoleController.php",
+          "locator": "lines 42-53",
+          "original_value_summary": "角色默认属性",
+          "commit": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39"
+        }
+      ],
+      "configuration_data": [],
+      "execution_functions": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/play.js",
+          "locator": "lines 5-24"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/auth.js",
+          "locator": "lines 34-55"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "app/Http/Controllers/CreateRoleController.php",
+          "locator": "lines 42-53"
+        }
+      ],
+      "inputs": [
+        "registration/character data"
+      ],
+      "outputs": [
+        "player state"
+      ],
+      "random_rules": [],
+      "state_changes": [
+        "player profile"
+      ],
+      "page_entries": [
+        "reference web/API entry"
+      ],
+      "reachable": true,
+      "current_runtime_modules": [],
+      "baseline": {
+        "baseline": "等级1；其余数值待定",
+        "variants": [
+          "zhsh HP100 攻50–80 防4 敏3",
+          "Astrbot HP100 攻1–28 防0 敏0 铜10000",
+          "dpcq HP500 攻20–30 防12"
+        ]
+      }
+    },
+    {
+      "canonical_id": "rule.combat.damage",
+      "system_canonical_id": "system.combat.damage",
+      "display_name": "伤害计算",
+      "evidence_status": "CONFLICT",
+      "confidence": "high",
+      "classification": "D",
+      "source_repositories": [
+        "zhsh",
+        "astrbot",
+        "dpcq"
+      ],
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/monster.js",
+          "locator": "lines 24-49",
+          "original_value_summary": "比例防御、敏捷、暴击",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/battle.js",
+          "locator": "lines 149-159, 304-311",
+          "original_value_summary": "攻减防，最小1",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "app/Http/Controllers/IndexController.php",
+          "locator": "calculateDamage",
+          "original_value_summary": "含暴击、攻防和随机",
+          "commit": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39"
+        }
+      ],
+      "configuration_data": [],
+      "execution_functions": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/monster.js",
+          "locator": "lines 24-49"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/battle.js",
+          "locator": "lines 149-159, 304-311"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "app/Http/Controllers/IndexController.php",
+          "locator": "calculateDamage"
+        }
+      ],
+      "inputs": [
+        "player/monster stats",
+        "action"
+      ],
+      "outputs": [
+        "damage/outcome"
+      ],
+      "random_rules": [
+        "damage/critical/drop rolls"
+      ],
+      "state_changes": [
+        "health",
+        "combat",
+        "inventory",
+        "experience",
+        "money"
+      ],
+      "page_entries": [
+        "reference web/API entry"
+      ],
+      "reachable": true,
+      "current_runtime_modules": [
+        "damage"
+      ],
+      "baseline": {
+        "baseline": "未定；三套公式逐源保留"
+      }
+    },
+    {
+      "canonical_id": "rule.combat.death",
+      "system_canonical_id": "system.combat.death",
+      "display_name": "死亡或失败",
+      "evidence_status": "CONFLICT",
+      "confidence": "medium",
+      "classification": "D",
+      "source_repositories": [
+        "astrbot",
+        "zhsh",
+        "dpcq"
+      ],
+      "sources": [
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/battle.js",
+          "locator": "lines 407-443",
+          "original_value_summary": "失败处理",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        },
+        {
+          "repository": "zhsh",
+          "relative_path": "views/pages/attack-fail.ejs",
+          "locator": "entire template",
+          "original_value_summary": "战败页面",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "app/Http/Controllers/IndexController.php",
+          "locator": "battle response",
+          "original_value_summary": "HP更新但无同等酒馆处罚",
+          "commit": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39"
+        }
+      ],
+      "configuration_data": [],
+      "execution_functions": [
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/battle.js",
+          "locator": "lines 407-443"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "app/Http/Controllers/IndexController.php",
+          "locator": "battle response"
+        }
+      ],
+      "inputs": [
+        "player/monster stats",
+        "action"
+      ],
+      "outputs": [
+        "damage/outcome"
+      ],
+      "random_rules": [
+        "damage/critical/drop rolls"
+      ],
+      "state_changes": [
+        "health",
+        "combat",
+        "inventory",
+        "experience",
+        "money"
+      ],
+      "page_entries": [
+        "reference web/API entry"
+      ],
+      "reachable": true,
+      "current_runtime_modules": [
+        "CombatRuntime.attack"
+      ],
+      "baseline": {
+        "baseline": "未定",
+        "astrbot": "扣5%铜、10%HP、送当前城酒馆",
+        "zhsh": "需从战败页面与 monster flow 继续核对",
+        "dpcq": "角色HP持久化，未见同等传送规则"
+      }
+    },
+    {
+      "canonical_id": "rule.combat.entry",
+      "system_canonical_id": "system.combat.entry",
+      "display_name": "战斗进入条件",
+      "evidence_status": "CONSENSUS",
+      "confidence": "medium",
+      "classification": "A",
+      "source_repositories": [
+        "zhsh",
+        "astrbot",
+        "dpcq"
+      ],
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/monster.js",
+          "locator": "lines 73-120",
+          "original_value_summary": "按当前位置缓存怪物初始化战斗",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/battle.js",
+          "locator": "lines 89-128",
+          "original_value_summary": "验证HP、怪物和地点",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "app/Http/Controllers/IndexController.php",
+          "locator": "lines 73-145",
+          "original_value_summary": "按 map_id/target_id 进入目标",
+          "commit": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39"
+        }
+      ],
+      "configuration_data": [],
+      "execution_functions": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/monster.js",
+          "locator": "lines 73-120"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/battle.js",
+          "locator": "lines 89-128"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "app/Http/Controllers/IndexController.php",
+          "locator": "lines 73-145"
+        }
+      ],
+      "inputs": [
+        "player/monster stats",
+        "action"
+      ],
+      "outputs": [
+        "damage/outcome"
+      ],
+      "random_rules": [
+        "damage/critical/drop rolls"
+      ],
+      "state_changes": [
+        "health",
+        "combat",
+        "inventory",
+        "experience",
+        "money"
+      ],
+      "page_entries": [
+        "reference web/API entry"
+      ],
+      "reachable": true,
+      "current_runtime_modules": [
+        "CombatRuntime.start"
+      ],
+      "baseline": {
+        "baseline": "在当前地点选择存在的敌人且角色仍可战斗；航行可触发海盗"
+      }
+    },
+    {
+      "canonical_id": "rule.combat.flee",
+      "system_canonical_id": "system.combat.flee",
+      "display_name": "逃跑与撤退",
+      "evidence_status": "CONFLICT",
+      "confidence": "high",
+      "classification": "D",
+      "source_repositories": [
+        "zhsh",
+        "astrbot",
+        "dpcq"
+      ],
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "views/pages/attack.ejs",
+          "locator": "line 31",
+          "original_value_summary": "撤退500铜",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "zhsh",
+          "relative_path": "src/monster.js",
+          "locator": "lines 52-58",
+          "original_value_summary": "实际加铜",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/battle.js",
+          "locator": "lines 179-195",
+          "original_value_summary": "50%逃跑",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "app/Http/Controllers/IndexController.php",
+          "locator": "lines 598-610",
+          "original_value_summary": "扣 retreat_amount",
+          "commit": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39"
+        }
+      ],
+      "configuration_data": [],
+      "execution_functions": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/monster.js",
+          "locator": "lines 52-58"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/battle.js",
+          "locator": "lines 179-195"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "app/Http/Controllers/IndexController.php",
+          "locator": "lines 598-610"
+        }
+      ],
+      "inputs": [
+        "player/monster stats",
+        "action"
+      ],
+      "outputs": [
+        "damage/outcome"
+      ],
+      "random_rules": [
+        "damage/critical/drop rolls"
+      ],
+      "state_changes": [
+        "health",
+        "combat",
+        "inventory",
+        "experience",
+        "money"
+      ],
+      "page_entries": [
+        "reference web/API entry"
+      ],
+      "reachable": true,
+      "current_runtime_modules": [
+        "CombatRuntime.retreat"
+      ],
+      "baseline": {
+        "zhsh": "页面显示500铜；代码实际 addCopper(+500)，属明显方向错误",
+        "astrbot": "50%成功，失败遭反击",
+        "dpcq": "支付目标 retreat_amount，余额不足失败"
+      }
+    },
+    {
+      "canonical_id": "rule.combat.outcome",
+      "system_canonical_id": "system.combat.outcome",
+      "display_name": "胜负处理",
+      "evidence_status": "CONFLICT",
+      "confidence": "medium",
+      "classification": "D",
+      "source_repositories": [
+        "zhsh",
+        "astrbot",
+        "dpcq"
+      ],
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/monster.js",
+          "locator": "assault/win flow",
+          "original_value_summary": "胜利、掉落、任务击杀",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/battle.js",
+          "locator": "lines 325-443",
+          "original_value_summary": "胜负结算",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "app/Http/Controllers/IndexController.php",
+          "locator": "lines 327-508",
+          "original_value_summary": "掉落与升级结算",
+          "commit": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39"
+        }
+      ],
+      "configuration_data": [],
+      "execution_functions": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/monster.js",
+          "locator": "assault/win flow"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/battle.js",
+          "locator": "lines 325-443"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "app/Http/Controllers/IndexController.php",
+          "locator": "lines 327-508"
+        }
+      ],
+      "inputs": [
+        "player/monster stats",
+        "action"
+      ],
+      "outputs": [
+        "damage/outcome"
+      ],
+      "random_rules": [
+        "damage/critical/drop rolls"
+      ],
+      "state_changes": [
+        "health",
+        "combat",
+        "inventory",
+        "experience",
+        "money"
+      ],
+      "page_entries": [
+        "reference web/API entry"
+      ],
+      "reachable": true,
+      "current_runtime_modules": [
+        "CombatRuntime.attack"
+      ],
+      "baseline": {
+        "zhsh": "胜利发经验/铜贝/掉落并记录任务击杀；战败行为需继续核对",
+        "astrbot": "胜利经验/铜币/宠物经验；失败扣5%铜并以10%HP送酒馆",
+        "dpcq": "胜利掉落/经验/升级"
+      }
+    },
+    {
+      "canonical_id": "rule.combat.stamina-item",
+      "system_canonical_id": "system.combat.stamina-item",
+      "display_name": "体力宝临时体力与战斗自动恢复",
+      "evidence_status": "SINGLE_SOURCE",
+      "confidence": "high",
+      "classification": "A",
+      "source_repositories": [
+        "zhsh"
+      ],
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "config/shopItems.json",
+          "locator": "JSON Pointer /8",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+          "file_sha256": null
+        },
+        {
+          "repository": "zhsh",
+          "relative_path": "src/play.js",
+          "locator": "updateStaminaBonus/useStaminaItem",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+          "file_sha256": "9481a9ac30bcb103fc46f5fb41a0e208cdd359bafc6c8b15e455a344472ce009"
+        },
+        {
+          "repository": "zhsh",
+          "relative_path": "src/monster.js",
+          "locator": "assault after monster attack",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+          "file_sha256": "f8aa145b153069953dc5b2a2ac69d94c47d37df78df6bf616a564839d24361bd"
+        }
+      ],
+      "configuration_data": [
+        {
+          "repository": "zhsh",
+          "relative_path": "config/shopItems.json",
+          "locator": "JSON Pointer /8"
+        }
+      ],
+      "execution_functions": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/play.js",
+          "locator": "updateStaminaBonus/useStaminaItem"
+        },
+        {
+          "repository": "zhsh",
+          "relative_path": "src/monster.js",
+          "locator": "assault after monster attack"
+        }
+      ],
+      "inputs": [
+        "inventory quantity",
+        "base maximum health",
+        "current health after monster attack"
+      ],
+      "outputs": [
+        "temporary maximum health +5000",
+        "automatic recovery up to 50000",
+        "one item consumed below 50% active maximum"
+      ],
+      "random_rules": [],
+      "state_changes": [
+        "inventory",
+        "current health",
+        "effective maximum health"
+      ],
+      "page_entries": [
+        "formal runtime API"
+      ],
+      "reachable": true,
+      "current_runtime_modules": [
+        "staminaItemSemantics",
+        "useActiveStaminaItem",
+        "CombatRuntime.attack",
+        "EconomyRuntime.buy"
+      ],
+      "baseline": {
+        "policy": "源码明确；不扩写未出现规则"
+      }
+    },
+    {
+      "canonical_id": "rule.combat.turns",
+      "system_canonical_id": "system.combat.turns",
+      "display_name": "回合与行动规则",
+      "evidence_status": "CONFLICT",
+      "confidence": "high",
+      "classification": "D",
+      "source_repositories": [
+        "zhsh",
+        "astrbot",
+        "dpcq"
+      ],
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/monster.js",
+          "locator": "lines 159-220 and following",
+          "original_value_summary": "玩家、宠物、怪物顺序",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "zhsh",
+          "relative_path": "views/pages/attack.ejs",
+          "locator": "lines 5-27",
+          "original_value_summary": "自动攻击一秒",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/battle.js",
+          "locator": "lines 149-195, 228-270",
+          "original_value_summary": "回合行动",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "app/Http/Controllers/IndexController.php",
+          "locator": "lines 185-327",
+          "original_value_summary": "速度多段攻击",
+          "commit": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39"
+        }
+      ],
+      "configuration_data": [],
+      "execution_functions": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/monster.js",
+          "locator": "lines 159-220 and following"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/battle.js",
+          "locator": "lines 149-195, 228-270"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "app/Http/Controllers/IndexController.php",
+          "locator": "lines 185-327"
+        }
+      ],
+      "inputs": [
+        "player/monster stats",
+        "action"
+      ],
+      "outputs": [
+        "damage/outcome"
+      ],
+      "random_rules": [
+        "damage/critical/drop rolls"
+      ],
+      "state_changes": [
+        "health",
+        "combat",
+        "inventory",
+        "experience",
+        "money"
+      ],
+      "page_entries": [
+        "reference web/API entry"
+      ],
+      "reachable": true,
+      "current_runtime_modules": [
+        "CombatRuntime.attack"
+      ],
+      "baseline": {
+        "zhsh": "玩家→宠物→怪物；自动攻击每秒触发一次",
+        "astrbot": "玩家→宠物→怪物，药品后怪物反击",
+        "dpcq": "速度可产生多次攻击并含麻痹"
+      }
+    },
+    {
+      "canonical_id": "rule.diving.entry",
+      "system_canonical_id": "system.diving.entry",
+      "display_name": "潜水入口与副本发现",
+      "evidence_status": "SINGLE_SOURCE",
+      "confidence": "high",
+      "classification": "A",
+      "source_repositories": [
+        "zhsh"
+      ],
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/sailing.js",
+          "locator": "diving/getAvailableDungeons/getEncounter",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "zhsh",
+          "relative_path": "config/shipFb.json",
+          "locator": "diving dungeons",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        }
+      ],
+      "configuration_data": [
+        {
+          "repository": "zhsh",
+          "relative_path": "config/shipFb.json",
+          "locator": "diving dungeons"
+        }
+      ],
+      "execution_functions": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/sailing.js",
+          "locator": "diving/getAvailableDungeons/getEncounter"
+        }
+      ],
+      "inputs": [
+        "voyage",
+        "level",
+        "random"
+      ],
+      "outputs": [
+        "discovery/no discovery"
+      ],
+      "random_rules": [
+        "configured encounter gate"
+      ],
+      "state_changes": [
+        "maritime encounter/dungeon"
+      ],
+      "page_entries": [
+        "formal runtime API"
+      ],
+      "reachable": true,
+      "current_runtime_modules": [
+        "DivingRuntime"
+      ],
+      "baseline": {
+        "policy": "源码明确；不扩写未出现规则"
+      }
+    },
+    {
+      "canonical_id": "rule.dpcq.auxiliary-combat",
+      "system_canonical_id": "auxiliary.dpcq.combat",
+      "display_name": "dpcq MOD 战斗辅助证据",
+      "evidence_status": "MOD_AUXILIARY_ONLY",
+      "confidence": "high",
+      "classification": "E",
+      "source_repositories": [
+        "dpcq"
+      ],
+      "sources": [
+        {
+          "repository": "dpcq",
+          "relative_path": "app/Http/Controllers/IndexController.php",
+          "locator": "attack/calculateDamage/calculateAttacks",
+          "commit": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39"
+        }
+      ],
+      "configuration_data": [
+        {
+          "repository": "dpcq",
+          "relative_path": "dpcq.sql",
+          "locator": "dp_attack_target/dp_attribute/dp_drop"
+        }
+      ],
+      "execution_functions": [
+        {
+          "repository": "dpcq",
+          "relative_path": "app/Http/Controllers/IndexController.php",
+          "locator": "attack/calculateDamage"
+        }
+      ],
+      "inputs": [
+        "MOD角色与目标属性"
+      ],
+      "outputs": [
+        "MOD战斗结果"
+      ],
+      "random_rules": [
+        "MOD伤害随机"
+      ],
+      "state_changes": [
+        "MOD角色/背包表"
+      ],
+      "page_entries": [
+        "POST /attack"
+      ],
+      "reachable": true,
+      "current_runtime_modules": [],
+      "baseline": {
+        "policy": "不得认定为《纵横四海》原作规则"
+      }
+    },
+    {
+      "canonical_id": "rule.equipment",
+      "system_canonical_id": "system.equipment",
+      "display_name": "装备",
+      "evidence_status": "CONSENSUS",
+      "confidence": "medium",
+      "classification": "A",
+      "source_repositories": [
+        "zhsh",
+        "astrbot",
+        "dpcq"
+      ],
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/equipment.js",
+          "locator": "lines 1-90",
+          "original_value_summary": "9个装备位置与替换",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "client/src/views/EquipmentView.vue",
+          "locator": "equipment load/unequip",
+          "original_value_summary": "穿脱装备",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "app/Http/Controllers/BagController.php",
+          "locator": "wear/takeOff",
+          "original_value_summary": "六装备位穿脱",
+          "commit": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39"
+        }
+      ],
+      "configuration_data": [],
+      "execution_functions": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/equipment.js",
+          "locator": "lines 1-90"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "client/src/views/EquipmentView.vue",
+          "locator": "equipment load/unequip"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "app/Http/Controllers/BagController.php",
+          "locator": "wear/takeOff"
+        }
+      ],
+      "inputs": [
+        "equipment item/slot"
+      ],
+      "outputs": [
+        "effective stats"
+      ],
+      "random_rules": [],
+      "state_changes": [
+        "equipment slots"
+      ],
+      "page_entries": [
+        "reference web/API entry"
+      ],
+      "reachable": true,
+      "current_runtime_modules": [
+        "EquipmentRuntime"
+      ],
+      "baseline": {
+        "baseline": "武器、防具、饰品槽；穿戴改变属性；同槽替换旧装备"
+      }
+    },
+    {
+      "canonical_id": "rule.equipment.acquisition",
+      "system_canonical_id": "system.equipment.acquisition",
+      "display_name": "装备取得链",
+      "evidence_status": "SINGLE_SOURCE",
+      "confidence": "high",
+      "classification": "A",
+      "source_repositories": [
+        "zhsh"
+      ],
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "config/equipment.json",
+          "locator": "423 definitions",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "zhsh",
+          "relative_path": "config/monsterDrops.json",
+          "locator": "equipment sources",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "zhsh",
+          "relative_path": "src/monster.js",
+          "locator": "_getWeightedEquipment lines 663-738",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        }
+      ],
+      "configuration_data": [
+        {
+          "repository": "zhsh",
+          "relative_path": "config/equipment.json",
+          "locator": "423 definitions"
+        },
+        {
+          "repository": "zhsh",
+          "relative_path": "config/monsterDrops.json",
+          "locator": "equipment sources"
+        }
+      ],
+      "execution_functions": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/monster.js",
+          "locator": "_getWeightedEquipment lines 663-738"
+        }
+      ],
+      "inputs": [
+        "monster drop pool",
+        "required level"
+      ],
+      "outputs": [
+        "source-backed equipment candidate"
+      ],
+      "random_rules": [
+        "weighted by required level"
+      ],
+      "state_changes": [
+        "inventory then equipment slots"
+      ],
+      "page_entries": [
+        "formal runtime API"
+      ],
+      "reachable": true,
+      "current_runtime_modules": [
+        "EquipmentRuntime",
+        "deterministicSourceBackedCombatProof"
+      ],
+      "baseline": {
+        "policy": "源码明确；不扩写未出现规则"
+      }
+    },
+    {
+      "canonical_id": "rule.external-api",
+      "system_canonical_id": "system.external-api",
+      "display_name": "外部 API 依赖",
+      "evidence_status": "IMPLEMENTATION_ONLY",
+      "confidence": "high",
+      "classification": "E",
+      "source_repositories": [
+        "zonghengsihai"
+      ],
+      "sources": [
+        {
+          "repository": "zonghengsihai",
+          "relative_path": "index.html",
+          "locator": "lines 22-83",
+          "original_value_summary": "第三方轮询、字段映射与自动开页",
+          "commit": "0b8996e8e5b7293321f9827994324d13e3c2509c"
+        }
+      ],
+      "configuration_data": [],
+      "execution_functions": [],
+      "inputs": [
+        "remote response"
+      ],
+      "outputs": [
+        "notice list"
+      ],
+      "random_rules": [],
+      "state_changes": [
+        "DOM only"
+      ],
+      "page_entries": [
+        "zonghengsihai/index.html"
+      ],
+      "reachable": false,
+      "current_runtime_modules": [],
+      "baseline": {
+        "baseline": "正式游戏不依赖 zonghengsihai 的第三方提示 API",
+        "endpoint": "admin.gbhome.com"
+      }
+    },
+    {
+      "canonical_id": "rule.fishing.catch",
+      "system_canonical_id": "system.fishing.catch",
+      "display_name": "钓鱼稀有度与鱼获",
+      "evidence_status": "SINGLE_SOURCE",
+      "confidence": "high",
+      "classification": "A",
+      "source_repositories": [
+        "zhsh"
+      ],
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/fish.js",
+          "locator": "calculateCatch lines 492-556",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "zhsh",
+          "relative_path": "config/fish.json",
+          "locator": "21 catches",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        }
+      ],
+      "configuration_data": [
+        {
+          "repository": "zhsh",
+          "relative_path": "config/fish.json",
+          "locator": "21 catches"
+        }
+      ],
+      "execution_functions": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/fish.js",
+          "locator": "calculateCatch lines 492-556"
+        }
+      ],
+      "inputs": [
+        "route",
+        "bait",
+        "successFactor"
+      ],
+      "outputs": [
+        "filtered weighted fish"
+      ],
+      "random_rules": [
+        "base 50/30/15/5; low factor +20/-10/-5/-2; high factor -10/+10/+5/+2"
+      ],
+      "state_changes": [
+        "inventory on catch"
+      ],
+      "page_entries": [
+        "formal runtime API"
+      ],
+      "reachable": true,
+      "current_runtime_modules": [
+        "FishingRuntime.reel",
+        "fishingRarityWeights"
+      ],
+      "baseline": {
+        "policy": "源码明确；不扩写未出现规则"
+      }
+    },
+    {
+      "canonical_id": "rule.fishing.wait",
+      "system_canonical_id": "system.fishing.wait",
+      "display_name": "钓鱼等待事件",
+      "evidence_status": "SINGLE_SOURCE",
+      "confidence": "high",
+      "classification": "A",
+      "source_repositories": [
+        "zhsh"
+      ],
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/fish.js",
+          "locator": "wait lines 198-282",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "zhsh",
+          "relative_path": "config/fish.json",
+          "locator": "21 catches",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        }
+      ],
+      "configuration_data": [
+        {
+          "repository": "zhsh",
+          "relative_path": "config/fish.json",
+          "locator": "21 catches"
+        }
+      ],
+      "execution_functions": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/fish.js",
+          "locator": "wait lines 198-282"
+        }
+      ],
+      "inputs": [
+        "fishing state",
+        "wait count"
+      ],
+      "outputs": [
+        "waiting/bite/line_snapped/bait_eaten"
+      ],
+      "random_rules": [
+        "uniform event candidate; independent trigger probability min(0.1+wait*0.05,0.5)"
+      ],
+      "state_changes": [
+        "wait count and successFactor"
+      ],
+      "page_entries": [
+        "formal runtime API"
+      ],
+      "reachable": true,
+      "current_runtime_modules": [
+        "FishingRuntime.wait",
+        "chooseFishingWaitOutcome"
+      ],
+      "baseline": {
+        "policy": "源码明确；不扩写未出现规则"
+      }
+    },
+    {
+      "canonical_id": "rule.gang.lifecycle",
+      "system_canonical_id": "system.gang.lifecycle",
+      "display_name": "帮会生命周期",
+      "evidence_status": "SINGLE_SOURCE",
+      "confidence": "high",
+      "classification": "B",
+      "source_repositories": [
+        "zhsh"
+      ],
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/gang.js",
+          "locator": "create/join/leave/storage/donate",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "zhsh",
+          "relative_path": "src/database.js",
+          "locator": "gang tables and methods",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        }
+      ],
+      "configuration_data": [],
+      "execution_functions": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/gang.js",
+          "locator": "create/join/leave/storage/donate"
+        },
+        {
+          "repository": "zhsh",
+          "relative_path": "src/database.js",
+          "locator": "gang tables and methods"
+        }
+      ],
+      "inputs": [
+        "player",
+        "gang",
+        "items/currency"
+      ],
+      "outputs": [
+        "membership/storage changes"
+      ],
+      "random_rules": [],
+      "state_changes": [
+        "gang database records"
+      ],
+      "page_entries": [],
+      "reachable": false,
+      "current_runtime_modules": [],
+      "baseline": {
+        "policy": "源码明确；不扩写未出现规则"
+      }
+    },
+    {
+      "canonical_id": "rule.inventory",
+      "system_canonical_id": "system.inventory",
+      "display_name": "背包",
+      "evidence_status": "CONFLICT",
+      "confidence": "medium",
+      "classification": "D",
+      "source_repositories": [
+        "zhsh",
+        "astrbot",
+        "dpcq"
+      ],
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/backpack.js",
+          "locator": "lines 1-5, 66-155",
+          "original_value_summary": "背包容量与叠加",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/user.js",
+          "locator": "inventory endpoints",
+          "original_value_summary": "关系表背包",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "dpcq.sql",
+          "locator": "dp_roles_equip_bag/dp_roles_item_bag",
+          "original_value_summary": "分表背包",
+          "commit": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39"
+        }
+      ],
+      "configuration_data": [
+        {
+          "repository": "dpcq",
+          "relative_path": "dpcq.sql",
+          "locator": "dp_roles_equip_bag/dp_roles_item_bag"
+        }
+      ],
+      "execution_functions": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/backpack.js",
+          "locator": "lines 1-5, 66-155"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/user.js",
+          "locator": "inventory endpoints"
+        }
+      ],
+      "inputs": [
+        "item/quantity"
+      ],
+      "outputs": [
+        "capacity and contents"
+      ],
+      "random_rules": [],
+      "state_changes": [
+        "inventory"
+      ],
+      "page_entries": [
+        "reference web/API entry"
+      ],
+      "reachable": true,
+      "current_runtime_modules": [
+        "gameplay-state.inventory"
+      ],
+      "baseline": {
+        "zhsh": "maxWeight 200，类型1–5计重量；非装备同名同类型叠加",
+        "astrbot": "inventory 行与 quantity/equipped",
+        "dpcq": "装备包/道具包分表且有容量处理"
+      }
+    },
+    {
+      "canonical_id": "rule.item.acquire-consume",
+      "system_canonical_id": "system.item.acquire-consume",
+      "display_name": "物品获得与消耗",
+      "evidence_status": "CONSENSUS",
+      "confidence": "medium",
+      "classification": "A",
+      "source_repositories": [
+        "zhsh",
+        "astrbot",
+        "dpcq"
+      ],
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/backpack.js",
+          "locator": "lines 19-117",
+          "original_value_summary": "添加、叠加、移除、数量检查",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/battle.js",
+          "locator": "lines 228-260",
+          "original_value_summary": "使用药品并减少 inventory",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "app/Http/Controllers/BagController.php",
+          "locator": "useItem method",
+          "original_value_summary": "道具使用",
+          "commit": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39"
+        }
+      ],
+      "configuration_data": [],
+      "execution_functions": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/backpack.js",
+          "locator": "lines 19-117"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/battle.js",
+          "locator": "lines 228-260"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "app/Http/Controllers/BagController.php",
+          "locator": "useItem method"
+        }
+      ],
+      "inputs": [
+        "inventory action"
+      ],
+      "outputs": [
+        "item grant/consume result"
+      ],
+      "random_rules": [
+        "drop selection"
+      ],
+      "state_changes": [
+        "inventory"
+      ],
+      "page_entries": [
+        "reference web/API entry"
+      ],
+      "reachable": true,
+      "current_runtime_modules": [
+        "ItemRuntime",
+        "DropRuntime"
+      ],
+      "baseline": {
+        "baseline": "物品进入背包；可叠加消耗品；使用或任务提交减少数量；装备独立实例"
+      }
+    },
+    {
+      "canonical_id": "rule.map.movement",
+      "system_canonical_id": "system.map.movement",
+      "display_name": "城市与地图移动",
+      "evidence_status": "CONSENSUS",
+      "confidence": "medium",
+      "classification": "A",
+      "source_repositories": [
+        "zhsh",
+        "astrbot",
+        "dpcq"
+      ],
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/city.js",
+          "locator": "lines 135-203",
+          "original_value_summary": "网格方向移动与跨城落点码头",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/map.js",
+          "locator": "lines 59-78",
+          "original_value_summary": "place 四向出口移动",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "app/Http/Controllers/IndexController.php",
+          "locator": "lines 17-65",
+          "original_value_summary": "主地图与分支地图导航",
+          "commit": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39"
+        }
+      ],
+      "configuration_data": [],
+      "execution_functions": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/city.js",
+          "locator": "lines 135-203"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/map.js",
+          "locator": "lines 59-78"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "app/Http/Controllers/IndexController.php",
+          "locator": "lines 17-65"
+        }
+      ],
+      "inputs": [
+        "current location",
+        "direction/target"
+      ],
+      "outputs": [
+        "next location"
+      ],
+      "random_rules": [],
+      "state_changes": [
+        "current location"
+      ],
+      "page_entries": [
+        "reference web/API entry"
+      ],
+      "reachable": true,
+      "current_runtime_modules": [
+        "TaskRuntimeEngine.move",
+        "FormalGameplayCatalog"
+      ],
+      "baseline": {
+        "baseline": "在地点连接约束下按方向移动；跨城到码头；移动技术可现代化"
+      }
+    },
+    {
+      "canonical_id": "rule.map.unlock",
+      "system_canonical_id": "system.map.unlock",
+      "display_name": "地点解锁",
+      "evidence_status": "INCOMPLETE",
+      "confidence": "medium",
+      "classification": "B",
+      "source_repositories": [
+        "zhsh",
+        "astrbot",
+        "dpcq"
+      ],
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/city.js",
+          "locator": "moveTo lines 177-182",
+          "original_value_summary": "直接切换城市，无解锁表",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/map.js",
+          "locator": "place exits",
+          "original_value_summary": "仅按出口移动，数据库 seed 缺失",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "dpcq.sql",
+          "locator": "dp_map",
+          "original_value_summary": "无任务解锁字段",
+          "commit": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39"
+        }
+      ],
+      "configuration_data": [
+        {
+          "repository": "dpcq",
+          "relative_path": "dpcq.sql",
+          "locator": "dp_map"
+        }
+      ],
+      "execution_functions": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/city.js",
+          "locator": "moveTo lines 177-182"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/map.js",
+          "locator": "place exits"
+        }
+      ],
+      "inputs": [
+        "current location",
+        "direction/target"
+      ],
+      "outputs": [
+        "next location"
+      ],
+      "random_rules": [],
+      "state_changes": [
+        "current location"
+      ],
+      "page_entries": [],
+      "reachable": false,
+      "current_runtime_modules": [],
+      "baseline": {
+        "baseline": "当前主要源没有全局城市锁；航线图/通行物多为任务文案；不得自行新增锁"
+      }
+    },
+    {
+      "canonical_id": "rule.market.prices",
+      "system_canonical_id": "system.market.prices",
+      "display_name": "市场货物价格区间",
+      "evidence_status": "SINGLE_SOURCE",
+      "confidence": "high",
+      "classification": "A",
+      "source_repositories": [
+        "zhsh"
+      ],
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "config/marketItems.json",
+          "locator": "54 city-goods ranges",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "zhsh",
+          "relative_path": "src/npc.js",
+          "locator": "market buy/sell methods",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        }
+      ],
+      "configuration_data": [
+        {
+          "repository": "zhsh",
+          "relative_path": "config/marketItems.json",
+          "locator": "54 city-goods ranges"
+        }
+      ],
+      "execution_functions": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/npc.js",
+          "locator": "market buy/sell methods"
+        }
+      ],
+      "inputs": [
+        "city",
+        "item",
+        "quantity",
+        "cargo weight"
+      ],
+      "outputs": [
+        "price and inventory/money changes"
+      ],
+      "random_rules": [
+        "configured price interval"
+      ],
+      "state_changes": [
+        "money",
+        "inventory"
+      ],
+      "page_entries": [
+        "formal runtime API"
+      ],
+      "reachable": true,
+      "current_runtime_modules": [
+        "EconomyRuntime"
+      ],
+      "baseline": {
+        "policy": "源码明确；不扩写未出现规则"
+      }
+    },
+    {
+      "canonical_id": "rule.money",
+      "system_canonical_id": "system.money",
+      "display_name": "金钱",
+      "evidence_status": "CONSENSUS",
+      "confidence": "medium",
+      "classification": "A",
+      "source_repositories": [
+        "zhsh",
+        "astrbot",
+        "dpcq"
+      ],
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/play.js",
+          "locator": "currency and addPrize",
+          "original_value_summary": "货币状态",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/auth.js",
+          "locator": "money/gold defaults",
+          "original_value_summary": "双货币",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "dpcq.sql",
+          "locator": "dp_roles.gold_coin",
+          "original_value_summary": "角色金币",
+          "commit": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39"
+        }
+      ],
+      "configuration_data": [
+        {
+          "repository": "dpcq",
+          "relative_path": "dpcq.sql",
+          "locator": "dp_roles.gold_coin"
+        }
+      ],
+      "execution_functions": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/play.js",
+          "locator": "currency and addPrize"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/auth.js",
+          "locator": "money/gold defaults"
+        }
+      ],
+      "inputs": [
+        "currency delta"
+      ],
+      "outputs": [
+        "balance"
+      ],
+      "random_rules": [],
+      "state_changes": [
+        "money"
+      ],
+      "page_entries": [
+        "reference web/API entry"
+      ],
+      "reachable": true,
+      "current_runtime_modules": [
+        "EconomyRuntime"
+      ],
+      "baseline": {
+        "baseline": "任务、战斗、交易改变货币；不可凭不同源默认值定初始钱"
+      }
+    },
+    {
+      "canonical_id": "rule.monster.drops",
+      "system_canonical_id": "system.monster.drops",
+      "display_name": "怪物物品与装备掉落",
+      "evidence_status": "SINGLE_SOURCE",
+      "confidence": "high",
+      "classification": "A",
+      "source_repositories": [
+        "zhsh"
+      ],
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/monster.js",
+          "locator": "drop construction and _getWeightedEquipment",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "zhsh",
+          "relative_path": "config/monsterDrops.json",
+          "locator": "all mappings",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "zhsh",
+          "relative_path": "config/monsterItems.json",
+          "locator": "all mappings",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        }
+      ],
+      "configuration_data": [
+        {
+          "repository": "zhsh",
+          "relative_path": "config/monsterDrops.json",
+          "locator": "all mappings"
+        },
+        {
+          "repository": "zhsh",
+          "relative_path": "config/monsterItems.json",
+          "locator": "all mappings"
+        }
+      ],
+      "execution_functions": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/monster.js",
+          "locator": "drop construction and _getWeightedEquipment"
+        }
+      ],
+      "inputs": [
+        "monster",
+        "active task",
+        "inventory capacity"
+      ],
+      "outputs": [
+        "equipment/item drops"
+      ],
+      "random_rules": [
+        "equipment gate 0.2; item default 0.4; active task item guaranteed"
+      ],
+      "state_changes": [
+        "inventory"
+      ],
+      "page_entries": [
+        "formal runtime API"
+      ],
+      "reachable": true,
+      "current_runtime_modules": [
+        "DropRuntime"
+      ],
+      "baseline": {
+        "policy": "源码明确；不扩写未出现规则"
+      }
+    },
+    {
+      "canonical_id": "rule.monster.stats",
+      "system_canonical_id": "system.monster.stats",
+      "display_name": "怪物类型与等级倍率",
+      "evidence_status": "SINGLE_SOURCE",
+      "confidence": "high",
+      "classification": "A",
+      "source_repositories": [
+        "zhsh"
+      ],
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/monster.js",
+          "locator": "_setMonsterStats lines 401-496",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        }
+      ],
+      "configuration_data": [],
+      "execution_functions": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/monster.js",
+          "locator": "_setMonsterStats lines 401-496"
+        }
+      ],
+      "inputs": [
+        "level",
+        "monster type"
+      ],
+      "outputs": [
+        "health/attack/defense/agility"
+      ],
+      "random_rules": [],
+      "state_changes": [
+        "combat monster snapshot"
+      ],
+      "page_entries": [
+        "formal runtime API"
+      ],
+      "reachable": true,
+      "current_runtime_modules": [
+        "monsterStats"
+      ],
+      "baseline": {
+        "policy": "源码明确；不扩写未出现规则"
+      }
+    },
+    {
+      "canonical_id": "rule.multiplayer.chat",
+      "system_canonical_id": "system.multiplayer.chat",
+      "display_name": "多人、聊天与 WebSocket",
+      "evidence_status": "IMPLEMENTATION_ONLY",
+      "confidence": "medium",
+      "classification": "A",
+      "source_repositories": [
+        "zhsh",
+        "astrbot",
+        "dpcq"
+      ],
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/chat.js",
+          "locator": "chat channels",
+          "original_value_summary": "轮询/数据库聊天",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/ws/WsServer.js",
+          "locator": "WebSocket server",
+          "original_value_summary": "实时通信",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "app/WebSocket",
+          "locator": "WebSocket chat",
+          "original_value_summary": "聊天实现",
+          "commit": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39"
+        }
+      ],
+      "configuration_data": [],
+      "execution_functions": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/chat.js",
+          "locator": "chat channels"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/ws/WsServer.js",
+          "locator": "WebSocket server"
+        }
+      ],
+      "inputs": [
+        "message/channel"
+      ],
+      "outputs": [
+        "chat events"
+      ],
+      "random_rules": [],
+      "state_changes": [
+        "chat history"
+      ],
+      "page_entries": [
+        "reference web/API entry"
+      ],
+      "reachable": true,
+      "current_runtime_modules": [],
+      "baseline": {
+        "baseline": "聊天/在线/公会/好友等仅作为复刻功能候选；具体 WebSocket 技术不是原作证据"
+      }
+    },
+    {
+      "canonical_id": "rule.npc.interaction",
+      "system_canonical_id": "system.npc.interaction",
+      "display_name": "NPC 交互",
+      "evidence_status": "CONSENSUS",
+      "confidence": "medium",
+      "classification": "A",
+      "source_repositories": [
+        "zhsh",
+        "astrbot",
+        "dpcq"
+      ],
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/npc.js",
+          "locator": "Npc class",
+          "original_value_summary": "按 NPC type 分派功能并连接任务",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/map.js",
+          "locator": "lines 114-181",
+          "original_value_summary": "NPC、任务状态与动态对白",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "dpcq.sql",
+          "locator": "dp_duihua",
+          "original_value_summary": "NPC 对话父子记录",
+          "commit": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39"
+        }
+      ],
+      "configuration_data": [
+        {
+          "repository": "dpcq",
+          "relative_path": "dpcq.sql",
+          "locator": "dp_duihua"
+        }
+      ],
+      "execution_functions": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/npc.js",
+          "locator": "Npc class"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/map.js",
+          "locator": "lines 114-181"
+        }
+      ],
+      "inputs": [
+        "player location",
+        "task state"
+      ],
+      "outputs": [
+        "NPC actions/dialogue"
+      ],
+      "random_rules": [],
+      "state_changes": [
+        "task/NPC interaction state"
+      ],
+      "page_entries": [
+        "reference web/API entry"
+      ],
+      "reachable": true,
+      "current_runtime_modules": [
+        "TaskRuntimeEngine.interactNpc"
+      ],
+      "baseline": {
+        "baseline": "当前位置列出 NPC；NPC 可承担任务、商店等功能；对白按状态选择"
+      }
+    },
+    {
+      "canonical_id": "rule.pet.lifecycle",
+      "system_canonical_id": "system.pet.lifecycle",
+      "display_name": "宠物孵化与成长",
+      "evidence_status": "SINGLE_SOURCE",
+      "confidence": "high",
+      "classification": "B",
+      "source_repositories": [
+        "zhsh"
+      ],
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "config/pet.json",
+          "locator": "pet systems",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "zhsh",
+          "relative_path": "src/petManager.js",
+          "locator": "hatch/feed/clean/grow/fight",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        }
+      ],
+      "configuration_data": [
+        {
+          "repository": "zhsh",
+          "relative_path": "config/pet.json",
+          "locator": "pet systems"
+        }
+      ],
+      "execution_functions": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/petManager.js",
+          "locator": "hatch/feed/clean/grow/fight"
+        }
+      ],
+      "inputs": [
+        "pet egg/items"
+      ],
+      "outputs": [
+        "pet state"
+      ],
+      "random_rules": [
+        "growth/talent randomization"
+      ],
+      "state_changes": [
+        "pet persistence"
+      ],
+      "page_entries": [],
+      "reachable": false,
+      "current_runtime_modules": [],
+      "baseline": {
+        "policy": "源码明确；不扩写未出现规则"
+      }
+    },
+    {
+      "canonical_id": "rule.progression.level",
+      "system_canonical_id": "system.progression.level",
+      "display_name": "经验与升级",
+      "evidence_status": "CONSENSUS",
+      "confidence": "medium",
+      "classification": "A",
+      "source_repositories": [
+        "zhsh",
+        "astrbot",
+        "dpcq"
+      ],
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/play.js",
+          "locator": "lines 562-585",
+          "original_value_summary": "经验与升级",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/battle.js",
+          "locator": "lines 359-379",
+          "original_value_summary": "经验循环升级",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "app/Http/Controllers/IndexController.php",
+          "locator": "lines 388-497",
+          "original_value_summary": "按 dp_levels 升级",
+          "commit": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39"
+        }
+      ],
+      "configuration_data": [],
+      "execution_functions": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/play.js",
+          "locator": "lines 562-585"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/battle.js",
+          "locator": "lines 359-379"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "app/Http/Controllers/IndexController.php",
+          "locator": "lines 388-497"
+        }
+      ],
+      "inputs": [
+        "experience",
+        "level table"
+      ],
+      "outputs": [
+        "level and stat gains"
+      ],
+      "random_rules": [],
+      "state_changes": [
+        "player attributes"
+      ],
+      "page_entries": [
+        "reference web/API entry"
+      ],
+      "reachable": true,
+      "current_runtime_modules": [
+        "applyExperienceProgression"
+      ],
+      "baseline": {
+        "baseline": "战斗和任务给予经验，达到阈值升级；阈值/属性成长未定"
+      }
+    },
+    {
+      "canonical_id": "rule.sailing",
+      "system_canonical_id": "system.sailing",
+      "display_name": "船只与航行",
+      "evidence_status": "CONSENSUS",
+      "confidence": "medium",
+      "classification": "A",
+      "source_repositories": [
+        "zhsh",
+        "astrbot"
+      ],
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/sailing.js",
+          "locator": "sail methods",
+          "original_value_summary": "船只、航行、事件",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/sail.js",
+          "locator": "lines 8-200",
+          "original_value_summary": "船只、码头、计时航行和事件",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        }
+      ],
+      "configuration_data": [],
+      "execution_functions": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/sailing.js",
+          "locator": "sail methods"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/sail.js",
+          "locator": "lines 8-200"
+        }
+      ],
+      "inputs": [
+        "ship",
+        "route",
+        "position"
+      ],
+      "outputs": [
+        "distance/time/events"
+      ],
+      "random_rules": [
+        "encounter/special event"
+      ],
+      "state_changes": [
+        "voyage"
+      ],
+      "page_entries": [
+        "reference web/API entry"
+      ],
+      "reachable": true,
+      "current_runtime_modules": [
+        "VoyageRuntime",
+        "MaritimeRuntime"
+      ],
+      "baseline": {
+        "baseline": "持有船只是出航硬条件；在码头选择目标城市；存在航行状态和随机事件；精确航时/事件待定"
+      }
+    },
+    {
+      "canonical_id": "rule.shop.trade",
+      "system_canonical_id": "system.shop.trade",
+      "display_name": "商店与交易",
+      "evidence_status": "CONSENSUS",
+      "confidence": "medium",
+      "classification": "A",
+      "source_repositories": [
+        "zhsh",
+        "astrbot",
+        "dpcq"
+      ],
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/npc.js",
+          "locator": "buy/sell methods",
+          "original_value_summary": "商店与市场交易",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/market.js",
+          "locator": "lines 48-98",
+          "original_value_summary": "购买/出售、钱和货舱约束",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "app/Http/Controllers/BagController.php",
+          "locator": "sell method",
+          "original_value_summary": "背包卖出",
+          "commit": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39"
+        }
+      ],
+      "configuration_data": [],
+      "execution_functions": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/npc.js",
+          "locator": "buy/sell methods"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/market.js",
+          "locator": "lines 48-98"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "app/Http/Controllers/BagController.php",
+          "locator": "sell method"
+        }
+      ],
+      "inputs": [
+        "shop/item/quantity"
+      ],
+      "outputs": [
+        "purchase/sale result"
+      ],
+      "random_rules": [
+        "market interval where configured"
+      ],
+      "state_changes": [
+        "money",
+        "inventory"
+      ],
+      "page_entries": [
+        "reference web/API entry"
+      ],
+      "reachable": true,
+      "current_runtime_modules": [
+        "EconomyRuntime"
+      ],
+      "baseline": {
+        "baseline": "货币购买、背包/载重约束、卖出获得货币；市场价格规则未定"
+      }
+    },
+    {
+      "canonical_id": "rule.skills",
+      "system_canonical_id": "system.skills",
+      "display_name": "技能",
+      "evidence_status": "INCOMPLETE",
+      "confidence": "high",
+      "classification": "C",
+      "source_repositories": [
+        "zhsh",
+        "astrbot"
+      ],
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "config/pet.json",
+          "locator": "innate_skills",
+          "original_value_summary": "宠物技能",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "zhsh",
+          "relative_path": "src/play.js",
+          "locator": "status effects",
+          "original_value_summary": "异常状态，不等于完整技能",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "README.md",
+          "locator": "line 69",
+          "original_value_summary": "宠物技能说明",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        }
+      ],
+      "configuration_data": [
+        {
+          "repository": "zhsh",
+          "relative_path": "config/pet.json",
+          "locator": "innate_skills"
+        }
+      ],
+      "execution_functions": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/play.js",
+          "locator": "status effects"
+        }
+      ],
+      "inputs": [
+        "skill/status config"
+      ],
+      "outputs": [
+        "incomplete"
+      ],
+      "random_rules": [],
+      "state_changes": [
+        "not fully implemented"
+      ],
+      "page_entries": [],
+      "reachable": false,
+      "current_runtime_modules": [],
+      "baseline": {
+        "baseline": "玩家技能目录缺失；宠物技能与装备状态效果存在"
+      }
+    },
+    {
+      "canonical_id": "rule.state.persistence",
+      "system_canonical_id": "system.state.persistence",
+      "display_name": "状态保存",
+      "evidence_status": "CONSENSUS",
+      "confidence": "medium",
+      "classification": "A",
+      "source_repositories": [
+        "zhsh",
+        "astrbot",
+        "dpcq"
+      ],
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/database.js",
+          "locator": "user_data save/load",
+          "original_value_summary": "JSON聚合存档",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes",
+          "locator": "MySQL UPDATE/INSERT",
+          "original_value_summary": "关系表持久化",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "dpcq.sql",
+          "locator": "角色/背包/地图表",
+          "original_value_summary": "Laravel/MySQL持久化",
+          "commit": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39"
+        }
+      ],
+      "configuration_data": [
+        {
+          "repository": "dpcq",
+          "relative_path": "dpcq.sql",
+          "locator": "角色/背包/地图表"
+        }
+      ],
+      "execution_functions": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/database.js",
+          "locator": "user_data save/load"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes",
+          "locator": "MySQL UPDATE/INSERT"
+        }
+      ],
+      "inputs": [
+        "runtime state"
+      ],
+      "outputs": [
+        "persisted state"
+      ],
+      "random_rules": [],
+      "state_changes": [
+        "save record"
+      ],
+      "page_entries": [
+        "reference web/API entry"
+      ],
+      "reachable": true,
+      "current_runtime_modules": [
+        "RuntimeStorage",
+        "BrowserRuntimeStorage"
+      ],
+      "baseline": {
+        "baseline": "必须持久化角色、地点、背包、装备、任务与成长；技术架构可现代化"
+      }
+    },
+    {
+      "canonical_id": "rule.task.accept",
+      "system_canonical_id": "system.task.accept",
+      "display_name": "任务接取",
+      "evidence_status": "CONFLICT",
+      "confidence": "high",
+      "classification": "D",
+      "source_repositories": [
+        "zhsh",
+        "astrbot",
+        "dpcq"
+      ],
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/task.js",
+          "locator": "lines 67-124, 215-262, 594-648",
+          "original_value_summary": "数组相邻前置",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/quest.js",
+          "locator": "lines 14-76",
+          "original_value_summary": "显式前置与日常规则",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "dpcq.sql",
+          "locator": "table list",
+          "original_value_summary": "无任务表",
+          "commit": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39"
+        }
+      ],
+      "configuration_data": [
+        {
+          "repository": "dpcq",
+          "relative_path": "dpcq.sql",
+          "locator": "table list"
+        }
+      ],
+      "execution_functions": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/task.js",
+          "locator": "lines 67-124, 215-262, 594-648"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/quest.js",
+          "locator": "lines 14-76"
+        }
+      ],
+      "inputs": [
+        "task definition",
+        "player event/state"
+      ],
+      "outputs": [
+        "task status/rewards"
+      ],
+      "random_rules": [],
+      "state_changes": [
+        "task progress",
+        "inventory",
+        "rewards"
+      ],
+      "page_entries": [
+        "reference web/API entry"
+      ],
+      "reachable": true,
+      "current_runtime_modules": [
+        "TaskRuntimeEngine.acceptTask"
+      ],
+      "baseline": {
+        "zhsh": "同一 task 文件数组前一项完成 + 等级 + receiveNpc",
+        "astrbot": "level_req + pre_quest_id + 非重复/日常重置",
+        "dpcq": "无任务系统"
+      }
+    },
+    {
+      "canonical_id": "rule.task.complete",
+      "system_canonical_id": "system.task.complete",
+      "display_name": "任务完成与奖励",
+      "evidence_status": "CONSENSUS",
+      "confidence": "medium",
+      "classification": "A",
+      "source_repositories": [
+        "zhsh",
+        "astrbot"
+      ],
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/task.js",
+          "locator": "lines 131-207, 458-463",
+          "original_value_summary": "验证目标、奖励并记录完成",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/quest.js",
+          "locator": "lines 79-117",
+          "original_value_summary": "claim 奖励并置 status=2",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        }
+      ],
+      "configuration_data": [],
+      "execution_functions": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/task.js",
+          "locator": "lines 131-207, 458-463"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/quest.js",
+          "locator": "lines 79-117"
+        }
+      ],
+      "inputs": [
+        "task definition",
+        "player event/state"
+      ],
+      "outputs": [
+        "task status/rewards"
+      ],
+      "random_rules": [],
+      "state_changes": [
+        "task progress",
+        "inventory",
+        "rewards"
+      ],
+      "page_entries": [
+        "reference web/API entry"
+      ],
+      "reachable": true,
+      "current_runtime_modules": [
+        "TaskRuntimeEngine.submitTask"
+      ],
+      "baseline": {
+        "baseline": "向完成 NPC 提交后发放经验/货币/物品并持久化完成状态；651条不可重复"
+      }
+    },
+    {
+      "canonical_id": "rule.task.progress",
+      "system_canonical_id": "system.task.progress",
+      "display_name": "任务推进",
+      "evidence_status": "CONFLICT",
+      "confidence": "high",
+      "classification": "D",
+      "source_repositories": [
+        "zhsh",
+        "astrbot"
+      ],
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/task.js",
+          "locator": "lines 145-198, 339-443, 470-566",
+          "original_value_summary": "按任务类型推进",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/battle.js",
+          "locator": "lines 388-398",
+          "original_value_summary": "击杀任务进度",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/quest.js",
+          "locator": "user_quest progress/status",
+          "original_value_summary": "通用任务状态",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        }
+      ],
+      "configuration_data": [],
+      "execution_functions": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/task.js",
+          "locator": "lines 145-198, 339-443, 470-566"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/battle.js",
+          "locator": "lines 388-398"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/quest.js",
+          "locator": "user_quest progress/status"
+        }
+      ],
+      "inputs": [
+        "task definition",
+        "player event/state"
+      ],
+      "outputs": [
+        "task status/rewards"
+      ],
+      "random_rules": [],
+      "state_changes": [
+        "task progress",
+        "inventory",
+        "rewards"
+      ],
+      "page_entries": [
+        "reference web/API entry"
+      ],
+      "reachable": true,
+      "current_runtime_modules": [
+        "TaskRuntimeEngine.processEvent"
+      ],
+      "baseline": {
+        "zhsh": "击杀名计数；背包物品计数；对话即完成；运货复用物品检查",
+        "astrbot": "user_quest.progress/status，战斗仅推进杀怪任务"
+      }
+    }
+  ]
+}

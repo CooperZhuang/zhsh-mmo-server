@@ -1,0 +1,913 @@
+{
+  "schema_version": 1,
+  "record_kind": "progression-source-extraction",
+  "stage_start_head": "737ddff706c0276addd29b0973854d5a8d777369",
+  "source_head": "1a5132d371bc3c6f592d3888be39dad4e17c26df",
+  "generated_from_head": "1a5132d371bc3c6f592d3888be39dad4e17c26df",
+  "reference_commits": {
+    "zhsh": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+    "astrbot": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de",
+    "dpcq": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39",
+    "zonghengsihai": "0b8996e8e5b7293321f9827994324d13e3c2509c"
+  },
+  "generator_version": "progression-source-extractor/1.0.0",
+  "generated_at": "2026-07-18T00:00:00.000Z",
+  "extraction_method": "static exact-locator extraction; summaries are separate from source bytes and do not claim automatic adjudication",
+  "records": [
+    {
+      "canonical_id": "progression.zhsh.add-exp",
+      "repository": "zhsh",
+      "relative_path": "src/play.js",
+      "locator_type": "function",
+      "locator": "addExp",
+      "line_start": 565,
+      "line_end": 570,
+      "file_sha256": "9481a9ac30bcb103fc46f5fb41a0e208cdd359bafc6c8b15e455a344472ce009",
+      "inputs": [
+        "experience amount"
+      ],
+      "outputs": [
+        "experience and possibly level"
+      ],
+      "state_changes": [
+        "play.exp",
+        "play.level"
+      ],
+      "entry": "combat/task/sailing rewards",
+      "random_rules": [],
+      "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+      "evidence_level": "SOURCE_EXPLICIT",
+      "current_runtime_module": "gameplay-state.applyExperienceProgression",
+      "golden_test": "tests/progression-source-golden.test.js",
+      "has_conflict": false
+    },
+    {
+      "canonical_id": "progression.zhsh.exp-threshold-lookup",
+      "repository": "zhsh",
+      "relative_path": "src/play.js",
+      "locator_type": "function",
+      "locator": "getExpToNextLevel",
+      "line_start": 573,
+      "line_end": 576,
+      "file_sha256": "9481a9ac30bcb103fc46f5fb41a0e208cdd359bafc6c8b15e455a344472ce009",
+      "inputs": [
+        "play.level"
+      ],
+      "outputs": [
+        "configured threshold"
+      ],
+      "state_changes": [],
+      "entry": "Play.addExp",
+      "random_rules": [],
+      "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+      "evidence_level": "SOURCE_EXPLICIT",
+      "current_runtime_module": "gameplay-state.applyExperienceProgression",
+      "golden_test": "tests/progression-source-golden.test.js",
+      "has_conflict": false
+    },
+    {
+      "canonical_id": "progression.zhsh.level-up-growth",
+      "repository": "zhsh",
+      "relative_path": "src/play.js",
+      "locator_type": "function",
+      "locator": "levelUp",
+      "line_start": 579,
+      "line_end": 586,
+      "file_sha256": "9481a9ac30bcb103fc46f5fb41a0e208cdd359bafc6c8b15e455a344472ce009",
+      "inputs": [
+        "current player state"
+      ],
+      "outputs": [
+        "incremented level and base attributes"
+      ],
+      "state_changes": [
+        "level",
+        "health",
+        "attack",
+        "defense",
+        "agility",
+        "morale"
+      ],
+      "entry": "Play.addExp",
+      "random_rules": [],
+      "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+      "evidence_level": "SOURCE_EXPLICIT",
+      "current_runtime_module": "gameplay-state.applyExperienceProgression",
+      "golden_test": "tests/progression-source-golden.test.js",
+      "has_conflict": true
+    },
+    {
+      "canonical_id": "progression.zhsh.copper-floor",
+      "repository": "zhsh",
+      "relative_path": "src/play.js",
+      "locator_type": "function",
+      "locator": "addCopper",
+      "line_start": 537,
+      "line_end": 542,
+      "file_sha256": "9481a9ac30bcb103fc46f5fb41a0e208cdd359bafc6c8b15e455a344472ce009",
+      "inputs": [
+        "signed copper delta"
+      ],
+      "outputs": [
+        "copper balance with zero lower bound"
+      ],
+      "random_rules": [],
+      "state_changes": [
+        "play.copper"
+      ],
+      "entry": "task/combat/sailing settlement",
+      "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+      "evidence_level": "SOURCE_EXPLICIT",
+      "current_runtime_module": "formal-gameplay.MaritimeRuntime",
+      "golden_test": "tests/progression-source-golden.test.js",
+      "has_conflict": false
+    },
+    {
+      "canonical_id": "progression.zhsh.level-thresholds",
+      "repository": "zhsh",
+      "relative_path": "config/exp.json",
+      "locator_type": "json_pointer",
+      "locator": "/",
+      "file_sha256": "5b545cf2876a2560f4560ee1804f2aa281745778dd9c1b787d96f07ccc36b686",
+      "inputs": [
+        "level 1..210"
+      ],
+      "outputs": [
+        "experience threshold"
+      ],
+      "state_changes": [],
+      "entry": "Play.getExpToNextLevel",
+      "random_rules": [],
+      "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+      "evidence_level": "SOURCE_EXPLICIT",
+      "current_runtime_module": "gameplay-state.applyExperienceProgression",
+      "golden_test": "tests/progression-source-golden.test.js",
+      "has_conflict": false
+    },
+    {
+      "canonical_id": "progression.zhsh.monster-reward",
+      "repository": "zhsh",
+      "relative_path": "src/monster.js",
+      "locator_type": "function",
+      "locator": "assault",
+      "line_start": 73,
+      "line_end": 356,
+      "file_sha256": "f8aa145b153069953dc5b2a2ac69d94c47d37df78df6bf616a564839d24361bd",
+      "inputs": [
+        "monster level",
+        "battle outcome",
+        "optional fighting pet; no team or ship parameter"
+      ],
+      "outputs": [
+        "level*2 experience",
+        "level*5 copper",
+        "optional pet damage"
+      ],
+      "random_rules": [
+        "equipment 0.2",
+        "ordinary item 0.4",
+        "pet damage/status when an active pet exists"
+      ],
+      "state_changes": [
+        "player experience",
+        "money",
+        "drops"
+      ],
+      "entry": "attack?type=monster.assault",
+      "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+      "evidence_level": "SOURCE_EXPLICIT",
+      "current_runtime_module": "formal-gameplay.CombatRuntime",
+      "golden_test": "tests/progression-source-golden.test.js",
+      "has_conflict": true
+    },
+    {
+      "canonical_id": "progression.zhsh.encounter-cache",
+      "repository": "zhsh",
+      "relative_path": "src/city.js",
+      "locator_type": "function",
+      "locator": "generateMonsterCache",
+      "line_start": 241,
+      "line_end": 347,
+      "file_sha256": "9d38877ff49d1112ed57f410c1bc6bf4a5377bc89a4bf36205acd152e183617d",
+      "inputs": [
+        "city",
+        "position",
+        "player"
+      ],
+      "outputs": [
+        "3..5 monster instances"
+      ],
+      "random_rules": [
+        "1..3 monster types",
+        "level variation",
+        "3..5 instances"
+      ],
+      "state_changes": [
+        "five-minute location cache"
+      ],
+      "entry": "City.getMonsterCache",
+      "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+      "evidence_level": "SOURCE_EXPLICIT",
+      "current_runtime_module": "progression-planner.planTrainingPath",
+      "golden_test": "tests/progression-source-golden.test.js",
+      "has_conflict": false
+    },
+    {
+      "canonical_id": "progression.zhsh.encounter-defeat",
+      "repository": "zhsh",
+      "relative_path": "src/city.js",
+      "locator_type": "function",
+      "locator": "removeDefeatedMonster",
+      "line_start": 353,
+      "line_end": 365,
+      "file_sha256": "9d38877ff49d1112ed57f410c1bc6bf4a5377bc89a4bf36205acd152e183617d",
+      "inputs": [
+        "monster instance id"
+      ],
+      "outputs": [
+        "remaining cache"
+      ],
+      "state_changes": [
+        "location monster cache"
+      ],
+      "entry": "Monster.assault victory",
+      "random_rules": [],
+      "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+      "evidence_level": "SOURCE_EXPLICIT",
+      "current_runtime_module": "progression-planner.planTrainingPath",
+      "golden_test": "tests/progression-source-golden.test.js",
+      "has_conflict": false
+    },
+    {
+      "canonical_id": "progression.zhsh.free-recovery",
+      "repository": "zhsh",
+      "relative_path": "src/user.js",
+      "locator_type": "function",
+      "locator": "priest_pray",
+      "line_start": 990,
+      "line_end": 1003,
+      "file_sha256": "04a0523bcf4007d59ac35582be59640034afb580cd50d35092c19826eacde4c4",
+      "inputs": [
+        "player health"
+      ],
+      "outputs": [
+        "full health"
+      ],
+      "state_changes": [
+        "currentHealth"
+      ],
+      "entry": "church priest action",
+      "random_rules": [],
+      "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+      "evidence_level": "SOURCE_EXPLICIT",
+      "current_runtime_module": "formal-gameplay.RecoveryRuntime",
+      "golden_test": "tests/progression-source-golden.test.js",
+      "has_conflict": false
+    },
+    {
+      "canonical_id": "progression.zhsh.task-prize-settlement",
+      "repository": "zhsh",
+      "relative_path": "src/task.js",
+      "locator_type": "function",
+      "locator": "completeTask",
+      "line_start": 458,
+      "line_end": 464,
+      "file_sha256": "4315d5e9ed273d873d60f84072f8d24cd991ae7f25baff64881b09a662124cce",
+      "inputs": [
+        "task prize object"
+      ],
+      "outputs": [
+        "experience, money or item prize through Play.addPrize"
+      ],
+      "state_changes": [
+        "player reward state",
+        "completedTasks"
+      ],
+      "entry": "task submission",
+      "random_rules": [],
+      "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+      "evidence_level": "SOURCE_EXPLICIT",
+      "current_runtime_module": "task-engine.TaskRuntimeEngine",
+      "golden_test": "tests/progression-source-golden.test.js",
+      "has_conflict": false
+    },
+    {
+      "canonical_id": "progression.zhsh.team-social-state",
+      "repository": "zhsh",
+      "relative_path": "src/team.js",
+      "locator_type": "function",
+      "locator": "createTeam",
+      "line_start": 21,
+      "line_end": 54,
+      "file_sha256": "7143b864fcc59009f5d85eacbb17224d0c3ce9b594a5caf305269e0e668b0c8c",
+      "inputs": [
+        "leader",
+        "team name/type/target"
+      ],
+      "outputs": [
+        "team record"
+      ],
+      "random_rules": [],
+      "state_changes": [
+        "team membership persistence"
+      ],
+      "entry": "team UI; not called by Monster.assault",
+      "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+      "evidence_level": "SOURCE_EXPLICIT",
+      "current_runtime_module": "progression-planner.planTrainingPath",
+      "golden_test": "tests/progression-source-golden.test.js",
+      "has_conflict": false
+    },
+    {
+      "canonical_id": "progression.zhsh.world-monster-distribution",
+      "repository": "zhsh",
+      "relative_path": "config/monsters.json",
+      "locator_type": "json_pointer",
+      "locator": "/",
+      "file_sha256": "157ecd8a3d0d4000adc5beec0f9a8bd461b769b80b8052ef6b20056de83e11c9",
+      "inputs": [
+        "city and location"
+      ],
+      "outputs": [
+        "monster types and base levels"
+      ],
+      "random_rules": [],
+      "state_changes": [],
+      "entry": "City.generateMonsterCache",
+      "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+      "evidence_level": "SOURCE_EXPLICIT",
+      "current_runtime_module": "progression-planner.planTrainingPath",
+      "golden_test": "tests/progression-source-golden.test.js",
+      "has_conflict": false
+    },
+    {
+      "canonical_id": "progression.zhsh.dungeon-monster-distribution",
+      "repository": "zhsh",
+      "relative_path": "config/fbNpc.json",
+      "locator_type": "json_pointer",
+      "locator": "/",
+      "file_sha256": "78fab9d4e63039aa4600c1ff3a46609407b17293406b983299afdba97c54779e",
+      "inputs": [
+        "dungeon and stage"
+      ],
+      "outputs": [
+        "dungeon monster types and levels"
+      ],
+      "random_rules": [],
+      "state_changes": [],
+      "entry": "City.generateMonsterCache",
+      "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+      "evidence_level": "SOURCE_EXPLICIT",
+      "current_runtime_module": "progression-planner.planTrainingPath",
+      "golden_test": "tests/progression-source-golden.test.js",
+      "has_conflict": false
+    },
+    {
+      "canonical_id": "progression.zhsh.auto-attack",
+      "repository": "zhsh",
+      "relative_path": "views/pages/attack.ejs",
+      "locator_type": "line_range",
+      "locator": "lines 14-19",
+      "line_start": 14,
+      "line_end": 19,
+      "file_sha256": "73f35fb0f830e7c96602ab0ddb5f1d8b9820e979a93e80e54990b71a39bd0549",
+      "inputs": [
+        "auto attack enabled"
+      ],
+      "outputs": [
+        "one assault request per second"
+      ],
+      "random_rules": [],
+      "state_changes": [
+        "battle rounds"
+      ],
+      "entry": "attack page",
+      "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+      "evidence_level": "SOURCE_EXPLICIT",
+      "current_runtime_module": "formal-gameplay.CombatRuntime",
+      "golden_test": "tests/progression-source-golden.test.js",
+      "has_conflict": false
+    },
+    {
+      "canonical_id": "progression.zhsh.training-session-scale",
+      "repository": "zhsh",
+      "relative_path": "config/trial.json",
+      "locator_type": "json_pointer",
+      "locator": "/0",
+      "file_sha256": "847194de75e21f4effe2fd434238b16f1ec80a37c7ac9421daab7c2bd5d21e2b",
+      "inputs": [
+        "level 5..15",
+        "six players"
+      ],
+      "outputs": [
+        "40 kills within 50 minutes"
+      ],
+      "state_changes": [
+        "trial progress"
+      ],
+      "entry": "Venice dungeon",
+      "random_rules": [],
+      "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+      "evidence_level": "SOURCE_EXPLICIT",
+      "current_runtime_module": "progression-planner.planTrainingPath",
+      "golden_test": "tests/progression-source-golden.test.js",
+      "has_conflict": false
+    },
+    {
+      "canonical_id": "progression.astrbot.battle-reward",
+      "repository": "astrbot",
+      "relative_path": "server/src/routes/battle.js",
+      "locator_type": "function",
+      "locator": "handleMonsterKill",
+      "line_start": 325,
+      "line_end": 405,
+      "file_sha256": "68f58f02110cbaa81d20352bc564f5949cf100a73114ba1d4c99dfd5a0c5135e",
+      "inputs": [
+        "monster.exp_reward",
+        "player state"
+      ],
+      "outputs": [
+        "experience, money, level"
+      ],
+      "state_changes": [
+        "user level/exp/stats",
+        "pet exp"
+      ],
+      "entry": "POST battle/action",
+      "random_rules": [],
+      "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de",
+      "evidence_level": "CORROBORATION_ONLY",
+      "current_runtime_module": "evidence-only",
+      "golden_test": "tests/progression-source-golden.test.js",
+      "has_conflict": true
+    },
+    {
+      "canonical_id": "progression.astrbot.failure-recovery",
+      "repository": "astrbot",
+      "relative_path": "server/src/routes/battle.js",
+      "locator_type": "function",
+      "locator": "handlePlayerDeath",
+      "line_start": 407,
+      "line_end": 443,
+      "file_sha256": "68f58f02110cbaa81d20352bc564f5949cf100a73114ba1d4c99dfd5a0c5135e",
+      "inputs": [
+        "money",
+        "hp_max",
+        "current city"
+      ],
+      "outputs": [
+        "10% HP and tavern return"
+      ],
+      "state_changes": [
+        "hp",
+        "money -5%",
+        "place"
+      ],
+      "entry": "battle loss",
+      "random_rules": [],
+      "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de",
+      "evidence_level": "CORROBORATION_ONLY",
+      "current_runtime_module": "formal-gameplay.RecoveryRuntime",
+      "golden_test": "tests/progression-source-golden.test.js",
+      "has_conflict": false
+    },
+    {
+      "canonical_id": "progression.astrbot.level-config",
+      "repository": "astrbot",
+      "relative_path": "server/src/config.js",
+      "locator_type": "line_range",
+      "locator": "lines 42-49",
+      "line_start": 42,
+      "line_end": 49,
+      "file_sha256": "0254dc8212fd450e38b1a5e8884e9bff991dc5225a63259cafc6e9b9c869a6be",
+      "inputs": [
+        "level"
+      ],
+      "outputs": [
+        "linear exp_max and fixed stat gains"
+      ],
+      "random_rules": [],
+      "state_changes": [],
+      "entry": "handleMonsterKill",
+      "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de",
+      "evidence_level": "CORROBORATION_ONLY",
+      "current_runtime_module": "evidence-only",
+      "golden_test": "tests/progression-source-golden.test.js",
+      "has_conflict": false
+    },
+    {
+      "canonical_id": "progression.dpcq.level-table",
+      "repository": "dpcq",
+      "relative_path": "dpcq.sql",
+      "locator_type": "sql_table",
+      "locator": "dp_levels",
+      "line_start": 289,
+      "line_end": 289,
+      "file_sha256": "9532ad9d98f28c2efb5ee262716d6607c0b32cfc2413178c61b6030739a6efb8",
+      "inputs": [
+        "cumulative MOD experience"
+      ],
+      "outputs": [
+        "MOD level mapping"
+      ],
+      "state_changes": [],
+      "entry": "IndexController attack settlement",
+      "random_rules": [],
+      "commit": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39",
+      "evidence_level": "MOD_AUXILIARY_ONLY",
+      "current_runtime_module": "evidence-only",
+      "golden_test": "tests/progression-source-golden.test.js",
+      "has_conflict": false
+    },
+    {
+      "canonical_id": "progression.dpcq.attack-settlement",
+      "repository": "dpcq",
+      "relative_path": "app/Http/Controllers/IndexController.php",
+      "locator_type": "function",
+      "locator": "attack",
+      "line_start": 145,
+      "line_end": 509,
+      "file_sha256": "39355ed7ed5f306f0a8fc798c6b817c0fc732b82cef6e9af11a0b02e8b73f134",
+      "inputs": [
+        "MOD target and drop table"
+      ],
+      "outputs": [
+        "drop-based experience and level"
+      ],
+      "random_rules": [
+        "drop_probability"
+      ],
+      "state_changes": [
+        "r_exp",
+        "r_level",
+        "attributes"
+      ],
+      "entry": "POST attack",
+      "commit": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39",
+      "evidence_level": "MOD_AUXILIARY_ONLY",
+      "current_runtime_module": "evidence-only",
+      "golden_test": "tests/progression-source-golden.test.js",
+      "has_conflict": true
+    },
+    {
+      "canonical_id": "progression.zhsh.task-series-1-rewards",
+      "repository": "zhsh",
+      "relative_path": "config/task/task1.json",
+      "locator_type": "json_pointer",
+      "locator": "/*/prize/经验",
+      "file_sha256": "9314438f5eff329cff946ed07ccfee6cd3d923bf473df1ec9ab4004e5fa1d9fe",
+      "inputs": [
+        "completed task"
+      ],
+      "outputs": [
+        "configured task experience prize"
+      ],
+      "random_rules": [],
+      "state_changes": [
+        "player experience"
+      ],
+      "entry": "Task.completeTask",
+      "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+      "evidence_level": "SOURCE_EXPLICIT",
+      "current_runtime_module": "task-engine.TaskRuntimeEngine",
+      "golden_test": "tests/progression-source-golden.test.js",
+      "has_conflict": false
+    },
+    {
+      "canonical_id": "progression.zhsh.task-series-2-rewards",
+      "repository": "zhsh",
+      "relative_path": "config/task/task2.json",
+      "locator_type": "json_pointer",
+      "locator": "/*/prize/经验",
+      "file_sha256": "f6d31a8dc7acf9ac3506fe21cf8f1e4125b55f484ee45105ba99a11b5a47618d",
+      "inputs": [
+        "completed task"
+      ],
+      "outputs": [
+        "configured task experience prize"
+      ],
+      "random_rules": [],
+      "state_changes": [
+        "player experience"
+      ],
+      "entry": "Task.completeTask",
+      "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+      "evidence_level": "SOURCE_EXPLICIT",
+      "current_runtime_module": "task-engine.TaskRuntimeEngine",
+      "golden_test": "tests/progression-source-golden.test.js",
+      "has_conflict": false
+    },
+    {
+      "canonical_id": "progression.zhsh.task-series-3-rewards",
+      "repository": "zhsh",
+      "relative_path": "config/task/task3.json",
+      "locator_type": "json_pointer",
+      "locator": "/*/prize/经验",
+      "file_sha256": "008c3212759944c940f94bb37c26a57a4cf20fad44da819e170c84d3792c60fe",
+      "inputs": [
+        "completed task"
+      ],
+      "outputs": [
+        "configured task experience prize"
+      ],
+      "random_rules": [],
+      "state_changes": [
+        "player experience"
+      ],
+      "entry": "Task.completeTask",
+      "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+      "evidence_level": "SOURCE_EXPLICIT",
+      "current_runtime_module": "task-engine.TaskRuntimeEngine",
+      "golden_test": "tests/progression-source-golden.test.js",
+      "has_conflict": false
+    },
+    {
+      "canonical_id": "progression.zhsh.task-series-4-rewards",
+      "repository": "zhsh",
+      "relative_path": "config/task/task4.json",
+      "locator_type": "json_pointer",
+      "locator": "/*/prize/经验",
+      "file_sha256": "fd5665db6367e678dcc11ccf7a761a4cdba473b05b4b1ad3c58889c75c37d9a0",
+      "inputs": [
+        "completed task"
+      ],
+      "outputs": [
+        "configured task experience prize"
+      ],
+      "random_rules": [],
+      "state_changes": [
+        "player experience"
+      ],
+      "entry": "Task.completeTask",
+      "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+      "evidence_level": "SOURCE_EXPLICIT",
+      "current_runtime_module": "task-engine.TaskRuntimeEngine",
+      "golden_test": "tests/progression-source-golden.test.js",
+      "has_conflict": false
+    },
+    {
+      "canonical_id": "progression.zhsh.task-series-5-rewards",
+      "repository": "zhsh",
+      "relative_path": "config/task/task5.json",
+      "locator_type": "json_pointer",
+      "locator": "/*/prize/经验",
+      "file_sha256": "6f8a6e6e843ee83101572c794a498e36cf1677d0e1c3af5c1950ef98c6ffc027",
+      "inputs": [
+        "completed task"
+      ],
+      "outputs": [
+        "configured task experience prize"
+      ],
+      "random_rules": [],
+      "state_changes": [
+        "player experience"
+      ],
+      "entry": "Task.completeTask",
+      "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+      "evidence_level": "SOURCE_EXPLICIT",
+      "current_runtime_module": "task-engine.TaskRuntimeEngine",
+      "golden_test": "tests/progression-source-golden.test.js",
+      "has_conflict": false
+    },
+    {
+      "canonical_id": "progression.zhsh.task-series-6-rewards",
+      "repository": "zhsh",
+      "relative_path": "config/task/task6.json",
+      "locator_type": "json_pointer",
+      "locator": "/*/prize/经验",
+      "file_sha256": "f8ffdd613d2fc74485ae7f024a2bf148ea6b79f944b31f85f16c3f5f1bf22c31",
+      "inputs": [
+        "completed task"
+      ],
+      "outputs": [
+        "configured task experience prize"
+      ],
+      "random_rules": [],
+      "state_changes": [
+        "player experience"
+      ],
+      "entry": "Task.completeTask",
+      "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+      "evidence_level": "SOURCE_EXPLICIT",
+      "current_runtime_module": "task-engine.TaskRuntimeEngine",
+      "golden_test": "tests/progression-source-golden.test.js",
+      "has_conflict": false
+    },
+    {
+      "canonical_id": "progression.zhsh.task-series-7-rewards",
+      "repository": "zhsh",
+      "relative_path": "config/task/task7.json",
+      "locator_type": "json_pointer",
+      "locator": "/*/prize/经验",
+      "file_sha256": "c5c890f8a8a959308a994d6bb5d998a14051282723717e4cfab9f145bace620d",
+      "inputs": [
+        "completed task"
+      ],
+      "outputs": [
+        "configured task experience prize"
+      ],
+      "random_rules": [],
+      "state_changes": [
+        "player experience"
+      ],
+      "entry": "Task.completeTask",
+      "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+      "evidence_level": "SOURCE_EXPLICIT",
+      "current_runtime_module": "task-engine.TaskRuntimeEngine",
+      "golden_test": "tests/progression-source-golden.test.js",
+      "has_conflict": false
+    },
+    {
+      "canonical_id": "progression.zhsh.task-series-8-rewards",
+      "repository": "zhsh",
+      "relative_path": "config/task/task8.json",
+      "locator_type": "json_pointer",
+      "locator": "/*/prize/经验",
+      "file_sha256": "26e5722f3950d74f36a2e5a5576a5cfbfd3ae5437742725343fbb980440768c5",
+      "inputs": [
+        "completed task"
+      ],
+      "outputs": [
+        "configured task experience prize"
+      ],
+      "random_rules": [],
+      "state_changes": [
+        "player experience"
+      ],
+      "entry": "Task.completeTask",
+      "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+      "evidence_level": "SOURCE_EXPLICIT",
+      "current_runtime_module": "task-engine.TaskRuntimeEngine",
+      "golden_test": "tests/progression-source-golden.test.js",
+      "has_conflict": false
+    },
+    {
+      "canonical_id": "progression.zhsh.task-series-9-rewards",
+      "repository": "zhsh",
+      "relative_path": "config/task/task9.json",
+      "locator_type": "json_pointer",
+      "locator": "/*/prize/经验",
+      "file_sha256": "e3b84983a4b1814b1d1b7a2d4498efebd92cc60497400200aaaa0ff8ba49012e",
+      "inputs": [
+        "completed task"
+      ],
+      "outputs": [
+        "configured task experience prize"
+      ],
+      "random_rules": [],
+      "state_changes": [
+        "player experience"
+      ],
+      "entry": "Task.completeTask",
+      "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+      "evidence_level": "SOURCE_EXPLICIT",
+      "current_runtime_module": "task-engine.TaskRuntimeEngine",
+      "golden_test": "tests/progression-source-golden.test.js",
+      "has_conflict": false
+    },
+    {
+      "canonical_id": "progression.zhsh.task-series-10-rewards",
+      "repository": "zhsh",
+      "relative_path": "config/task/task10.json",
+      "locator_type": "json_pointer",
+      "locator": "/*/prize/经验",
+      "file_sha256": "36afbfcb2f16668e7ab7d234fa25af6261979dac48810457be35a9e1e69ba96c",
+      "inputs": [
+        "completed task"
+      ],
+      "outputs": [
+        "configured task experience prize"
+      ],
+      "random_rules": [],
+      "state_changes": [
+        "player experience"
+      ],
+      "entry": "Task.completeTask",
+      "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+      "evidence_level": "SOURCE_EXPLICIT",
+      "current_runtime_module": "task-engine.TaskRuntimeEngine",
+      "golden_test": "tests/progression-source-golden.test.js",
+      "has_conflict": false
+    },
+    {
+      "canonical_id": "progression.zhsh.task-series-11-rewards",
+      "repository": "zhsh",
+      "relative_path": "config/task/task11.json",
+      "locator_type": "json_pointer",
+      "locator": "/*/prize/经验",
+      "file_sha256": "f05e05c1afea6ad088bcc813cc695f321a29a198ce9d8b36183f2e9adf295895",
+      "inputs": [
+        "completed task"
+      ],
+      "outputs": [
+        "configured task experience prize"
+      ],
+      "random_rules": [],
+      "state_changes": [
+        "player experience"
+      ],
+      "entry": "Task.completeTask",
+      "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+      "evidence_level": "SOURCE_EXPLICIT",
+      "current_runtime_module": "task-engine.TaskRuntimeEngine",
+      "golden_test": "tests/progression-source-golden.test.js",
+      "has_conflict": false
+    },
+    {
+      "canonical_id": "progression.zhsh.task-series-12-rewards",
+      "repository": "zhsh",
+      "relative_path": "config/task/task12.json",
+      "locator_type": "json_pointer",
+      "locator": "/*/prize/经验",
+      "file_sha256": "af7b7959c33a1991505de7104065739a8ad8d4a4dd45bebcf57c99a831a11cea",
+      "inputs": [
+        "completed task"
+      ],
+      "outputs": [
+        "configured task experience prize"
+      ],
+      "random_rules": [],
+      "state_changes": [
+        "player experience"
+      ],
+      "entry": "Task.completeTask",
+      "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+      "evidence_level": "SOURCE_EXPLICIT",
+      "current_runtime_module": "task-engine.TaskRuntimeEngine",
+      "golden_test": "tests/progression-source-golden.test.js",
+      "has_conflict": false
+    },
+    {
+      "canonical_id": "progression.zhsh.task-series-13-rewards",
+      "repository": "zhsh",
+      "relative_path": "config/task/task13.json",
+      "locator_type": "json_pointer",
+      "locator": "/*/prize/经验",
+      "file_sha256": "1c7e16a6a8e2945070ba6440bf40e803dfb3935703211333c4aaff357609c807",
+      "inputs": [
+        "completed task"
+      ],
+      "outputs": [
+        "configured task experience prize"
+      ],
+      "random_rules": [],
+      "state_changes": [
+        "player experience"
+      ],
+      "entry": "Task.completeTask",
+      "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+      "evidence_level": "SOURCE_EXPLICIT",
+      "current_runtime_module": "task-engine.TaskRuntimeEngine",
+      "golden_test": "tests/progression-source-golden.test.js",
+      "has_conflict": false
+    },
+    {
+      "canonical_id": "progression.zhsh.task-series-14-rewards",
+      "repository": "zhsh",
+      "relative_path": "config/task/task14.json",
+      "locator_type": "json_pointer",
+      "locator": "/*/prize/经验",
+      "file_sha256": "939c695a6ea755668dc2f9feb9c8f173e7af90df0c276f6d1046df2fa527f086",
+      "inputs": [
+        "completed task"
+      ],
+      "outputs": [
+        "configured task experience prize"
+      ],
+      "random_rules": [],
+      "state_changes": [
+        "player experience"
+      ],
+      "entry": "Task.completeTask",
+      "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+      "evidence_level": "SOURCE_EXPLICIT",
+      "current_runtime_module": "task-engine.TaskRuntimeEngine",
+      "golden_test": "tests/progression-source-golden.test.js",
+      "has_conflict": false
+    },
+    {
+      "canonical_id": "progression.zhsh.task-series-15-rewards",
+      "repository": "zhsh",
+      "relative_path": "config/task/task15.json",
+      "locator_type": "json_pointer",
+      "locator": "/*/prize/经验",
+      "file_sha256": "d61e0952a1fa9fd42add51d5865eb51fcd82a94db2883c3ecf5667d83901ee54",
+      "inputs": [
+        "completed task"
+      ],
+      "outputs": [
+        "configured task experience prize"
+      ],
+      "random_rules": [],
+      "state_changes": [
+        "player experience"
+      ],
+      "entry": "Task.completeTask",
+      "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+      "evidence_level": "SOURCE_EXPLICIT",
+      "current_runtime_module": "task-engine.TaskRuntimeEngine",
+      "golden_test": "tests/progression-source-golden.test.js",
+      "has_conflict": false
+    }
+  ]
+}

@@ -1,0 +1,1200 @@
+{
+  "schema_version": 2,
+  "catalog_kind": "source-conflict-register",
+  "stage_start_head": "2cbae183aa369fe0ac60176f3a1396914d786440",
+  "source_head": "3f55158d8657fb91bef451cb6d927c9eb00d3f6b",
+  "generated_from_head": "3f55158d8657fb91bef451cb6d927c9eb00d3f6b",
+  "reference_commits": {
+    "zhsh": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+    "astrbot": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de",
+    "dpcq": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39",
+    "zonghengsihai": "0b8996e8e5b7293321f9827994324d13e3c2509c"
+  },
+  "generator_version": "global-recovery-catalogs/2.0.0",
+  "generated_at": "2026-07-18T00:00:00.000Z",
+  "count": 32,
+  "records": [
+    {
+      "canonical_id": "conflict.story.opening.runtime-start",
+      "subject_canonical_id": "story.opening.runtime-start",
+      "status": "CONFLICT",
+      "variants": [
+        "intro 不可达",
+        "开场与威尼斯酒馆之间缺失因果"
+      ],
+      "tentative_decision": "同一仓库的叙事模板与可达路由不一致；不能补写海盗事件到酒馆的缺失连接。",
+      "decision_reason": "该主体被标记为 CONFLICT，已在此集中登记，采用版本与待核实事项见主体记录。",
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "views/pages/intro.ejs",
+          "locator": "lines 1-70",
+          "original_value_summary": "离乡远航、海盗围攻，末尾链接到 main",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "zhsh",
+          "relative_path": "src/city.js",
+          "locator": "constructor lines 12-21",
+          "original_value_summary": "新 User 默认威尼斯酒馆",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "zhsh",
+          "relative_path": "index.js",
+          "locator": "lines 83-94, 504-553",
+          "original_value_summary": "新用户直接创建 User 并进入 main；无 intro 路由",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        }
+      ],
+      "policy": "不静默选择；正式运行时仅采用 restoration-resolution-overlay 中有证据的裁决"
+    },
+    {
+      "canonical_id": "conflict.config.cities",
+      "subject_canonical_id": "config.cities",
+      "status": "CONFLICT",
+      "variants": [
+        "40 vs 7 vs 7",
+        "dpcq 为不同题材"
+      ],
+      "tentative_decision": "三仓数量和题材不一致；复原内容基线采用 zhsh 的 40 城，其他作为实现/冲突证据。",
+      "decision_reason": "该主体被标记为 CONFLICT，已在此集中登记，采用版本与待核实事项见主体记录。",
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "config/cityMap.json",
+          "locator": "40 top-level keys",
+          "original_value_summary": "40 个城市地图",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "README.md",
+          "locator": "line 63",
+          "original_value_summary": "后台说明为 7 个城市地图但无数据库 seed",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "dpcq.sql",
+          "locator": "dp_map inserts",
+          "original_value_summary": "7 条斗气大陆地图记录",
+          "commit": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39"
+        }
+      ],
+      "policy": "不静默选择；正式运行时仅采用 restoration-resolution-overlay 中有证据的裁决"
+    },
+    {
+      "canonical_id": "conflict.config.locations",
+      "subject_canonical_id": "config.locations",
+      "status": "CONFLICT",
+      "variants": [
+        "数据覆盖量和结构不同"
+      ],
+      "tentative_decision": "以 zhsh 地点清单作内容基线；数据库式地点结构仅作现代实现参考。",
+      "decision_reason": "该主体被标记为 CONFLICT，已在此集中登记，采用版本与待核实事项见主体记录。",
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "config/insideMapFlat.json",
+          "locator": "641 keys",
+          "original_value_summary": "城市-地点说明 641 条",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/map.js",
+          "locator": "lines 47-78, 98-200",
+          "original_value_summary": "place 表四向出口驱动场景，缺 seed",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "dpcq.sql",
+          "locator": "dp_map",
+          "original_value_summary": "父子 map 结构 7 条",
+          "commit": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39"
+        }
+      ],
+      "policy": "不静默选择；正式运行时仅采用 restoration-resolution-overlay 中有证据的裁决"
+    },
+    {
+      "canonical_id": "conflict.config.connections",
+      "subject_canonical_id": "config.connections",
+      "status": "CONFLICT",
+      "variants": [
+        "网格、四向外键、父子表三种实现"
+      ],
+      "tentative_decision": "内容采用 zhsh 网格和地点映射；连接存储方式不认定为原作规则。",
+      "decision_reason": "该主体被标记为 CONFLICT，已在此集中登记，采用版本与待核实事项见主体记录。",
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "config/insideMap.json",
+          "locator": "40 city objects; 475 n/w entries",
+          "original_value_summary": "入口列表与野外映射",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "zhsh",
+          "relative_path": "config/cityMap.json",
+          "locator": "city grids",
+          "original_value_summary": "相邻网格移动",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/map.js",
+          "locator": "lines 59-78, 191-198",
+          "original_value_summary": "place.n/s/e/w 数据库出口",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "app/Http/Controllers/IndexController.php",
+          "locator": "lines 17-65",
+          "original_value_summary": "dp_map pid 父子地图",
+          "commit": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39"
+        }
+      ],
+      "policy": "不静默选择；正式运行时仅采用 restoration-resolution-overlay 中有证据的裁决"
+    },
+    {
+      "canonical_id": "conflict.config.npcs",
+      "subject_canonical_id": "config.npcs",
+      "status": "CONFLICT",
+      "variants": [
+        "名称、数量、题材不同"
+      ],
+      "tentative_decision": "玩家可见名称以 zhsh 原文为基线；不把不同题材 NPC 合并。",
+      "decision_reason": "该主体被标记为 CONFLICT，已在此集中登记，采用版本与待核实事项见主体记录。",
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "config/npcs.json",
+          "locator": "40 cities; 636 nested placements",
+          "original_value_summary": "NPC 名称、等级、类型和地点",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/map.js",
+          "locator": "lines 114-181",
+          "original_value_summary": "npc/npc_dialog/quest 表交互，数据缺失",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "dpcq.sql",
+          "locator": "dp_duihua inserts",
+          "original_value_summary": "路人甲对话 6 条",
+          "commit": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39"
+        }
+      ],
+      "policy": "不静默选择；正式运行时仅采用 restoration-resolution-overlay 中有证据的裁决"
+    },
+    {
+      "canonical_id": "conflict.config.character-attributes",
+      "subject_canonical_id": "config.character-attributes",
+      "status": "CONFLICT",
+      "variants": [
+        "初始攻击、防御、敏捷、货币明显冲突"
+      ],
+      "tentative_decision": "数值不可平均；正式实现前必须选择有内容证据支持的版本，暂以 zhsh 为复原候选。",
+      "decision_reason": "该主体被标记为 CONFLICT，已在此集中登记，采用版本与待核实事项见主体记录。",
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/play.js",
+          "locator": "lines 5-24",
+          "original_value_summary": "Lv1 HP100 攻50–80 防4 敏3 士气50",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/auth.js",
+          "locator": "lines 34-55",
+          "original_value_summary": "Lv1 HP100 攻1–28 防0 敏0 铜10000",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "app/Http/Controllers/CreateRoleController.php",
+          "locator": "lines 42-53",
+          "original_value_summary": "Lv1 HP500 攻20–30 防12 速度1",
+          "commit": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39"
+        }
+      ],
+      "policy": "不静默选择；正式运行时仅采用 restoration-resolution-overlay 中有证据的裁决"
+    },
+    {
+      "canonical_id": "conflict.config.levels",
+      "subject_canonical_id": "config.levels",
+      "status": "CONFLICT",
+      "variants": [
+        "210、公式、168 三套成长"
+      ],
+      "tentative_decision": "保留所有版本；不得按现代平衡经验自行调和。",
+      "decision_reason": "该主体被标记为 CONFLICT，已在此集中登记，采用版本与待核实事项见主体记录。",
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "config/exp.json",
+          "locator": "keys 1–210",
+          "original_value_summary": "210 级经验阈值",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/quest.js",
+          "locator": "lines 88-99",
+          "original_value_summary": "500+300*(level-1) 升级需求",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "dpcq.sql",
+          "locator": "dp_levels 168 inserts",
+          "original_value_summary": "168 级/境界记录",
+          "commit": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39"
+        }
+      ],
+      "policy": "不静默选择；正式运行时仅采用 restoration-resolution-overlay 中有证据的裁决"
+    },
+    {
+      "canonical_id": "conflict.config.experience",
+      "subject_canonical_id": "config.experience",
+      "status": "CONFLICT",
+      "variants": [
+        "阈值和升级属性不同"
+      ],
+      "tentative_decision": "采用哪套数值待完整内容关联验证。",
+      "decision_reason": "该主体被标记为 CONFLICT，已在此集中登记，采用版本与待核实事项见主体记录。",
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "config/exp.json",
+          "locator": "210 keys",
+          "original_value_summary": "逐级阈值",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "zhsh",
+          "relative_path": "src/play.js",
+          "locator": "lines 562-585",
+          "original_value_summary": "达到阈值循环升级并增长属性",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/config.js",
+          "locator": "lines 43-48",
+          "original_value_summary": "等级属性与经验线性增长常量",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "dpcq.sql",
+          "locator": "dp_levels",
+          "original_value_summary": "逐级 exp 表",
+          "commit": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39"
+        }
+      ],
+      "policy": "不静默选择；正式运行时仅采用 restoration-resolution-overlay 中有证据的裁决"
+    },
+    {
+      "canonical_id": "conflict.config.currency",
+      "subject_canonical_id": "config.currency",
+      "status": "CONFLICT",
+      "variants": [
+        "货币层级和命名不同"
+      ],
+      "tentative_decision": "货币名称和换算保持各源原值；内容基线以任务和 zhsh UI 使用的名称为准。",
+      "decision_reason": "该主体被标记为 CONFLICT，已在此集中登记，采用版本与待核实事项见主体记录。",
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/play.js",
+          "locator": "lines 11-16, 588-628",
+          "original_value_summary": "gold/copper/reputation/luck 与奖励键映射",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "README.md",
+          "locator": "lines 236-241",
+          "original_value_summary": "铜币与金币",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "dpcq.sql",
+          "locator": "dp_roles.gold_coin",
+          "original_value_summary": "角色金币",
+          "commit": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39"
+        }
+      ],
+      "policy": "不静默选择；正式运行时仅采用 restoration-resolution-overlay 中有证据的裁决"
+    },
+    {
+      "canonical_id": "conflict.config.items",
+      "subject_canonical_id": "config.items",
+      "status": "CONFLICT",
+      "variants": [
+        "题材与数据集不同"
+      ],
+      "tentative_decision": "zhsh 名称与数值作为复原候选；dpcq 不混入纵横四海内容。",
+      "decision_reason": "该主体被标记为 CONFLICT，已在此集中登记，采用版本与待核实事项见主体记录。",
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "config/allItems.json",
+          "locator": "34 keys",
+          "original_value_summary": "通用物品价格",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "zhsh",
+          "relative_path": "config/shopItems.json",
+          "locator": "52 array items",
+          "original_value_summary": "商店物品属性",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "zhsh",
+          "relative_path": "config/taskItems.json",
+          "locator": "46 keys",
+          "original_value_summary": "任务物品",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "README.md",
+          "locator": "line 67",
+          "original_value_summary": "物品管理存在但 seed 缺失",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "dpcq.sql",
+          "locator": "dp_items 41 inserts",
+          "original_value_summary": "斗破题材物品",
+          "commit": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39"
+        }
+      ],
+      "policy": "不静默选择；正式运行时仅采用 restoration-resolution-overlay 中有证据的裁决"
+    },
+    {
+      "canonical_id": "conflict.config.equipment",
+      "subject_canonical_id": "config.equipment",
+      "status": "CONFLICT",
+      "variants": [
+        "装备集合和强化公式不同"
+      ],
+      "tentative_decision": "完整名称和属性先采用 zhsh；其他实现只作字段映射参考。",
+      "decision_reason": "该主体被标记为 CONFLICT，已在此集中登记，采用版本与待核实事项见主体记录。",
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "config/equipment.json",
+          "locator": "423 keys; type 1–6",
+          "original_value_summary": "装备等级与属性",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/user.js",
+          "locator": "inventory/item equipment queries",
+          "original_value_summary": "数据库装备，seed 缺失",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "dpcq.sql",
+          "locator": "dp_equip_attribute 7 inserts; dp_equip_suit 1",
+          "original_value_summary": "另一题材装备与套装",
+          "commit": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39"
+        }
+      ],
+      "policy": "不静默选择；正式运行时仅采用 restoration-resolution-overlay 中有证据的裁决"
+    },
+    {
+      "canonical_id": "conflict.config.enemies",
+      "subject_canonical_id": "config.enemies",
+      "status": "CONFLICT",
+      "variants": [
+        "数量、属性和题材不同"
+      ],
+      "tentative_decision": "野狼等个别名称相同不足以证明数值一致；以 zhsh 全集为内容候选。",
+      "decision_reason": "该主体被标记为 CONFLICT，已在此集中登记，采用版本与待核实事项见主体记录。",
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "config/monsters.json",
+          "locator": "278 nested placements",
+          "original_value_summary": "怪物名称、等级、类型和地点",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/battle.js",
+          "locator": "monster table queries",
+          "original_value_summary": "怪物表依赖但 seed 缺失",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "dpcq.sql",
+          "locator": "dp_attack_target 2 inserts",
+          "original_value_summary": "野狼、路人甲",
+          "commit": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39"
+        }
+      ],
+      "policy": "不静默选择；正式运行时仅采用 restoration-resolution-overlay 中有证据的裁决"
+    },
+    {
+      "canonical_id": "conflict.config.combat-parameters",
+      "subject_canonical_id": "config.combat-parameters",
+      "status": "CONFLICT",
+      "variants": [
+        "三套伤害/行动公式不兼容"
+      ],
+      "tentative_decision": "保留公式差异，不平均或重平衡。",
+      "decision_reason": "该主体被标记为 CONFLICT，已在此集中登记，采用版本与待核实事项见主体记录。",
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/monster.js",
+          "locator": "lines 24-49",
+          "original_value_summary": "伤害、防御、敏捷和暴击公式",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/battle.js",
+          "locator": "lines 149-195, 304-323",
+          "original_value_summary": "攻减防、最小1、逃跑50%",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "app/Http/Controllers/IndexController.php",
+          "locator": "lines 145-327, calculateDamage/calculateAttacks",
+          "original_value_summary": "多段、暴击、吸血、麻痹",
+          "commit": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39"
+        }
+      ],
+      "policy": "不静默选择；正式运行时仅采用 restoration-resolution-overlay 中有证据的裁决"
+    },
+    {
+      "canonical_id": "conflict.config.drops",
+      "subject_canonical_id": "config.drops",
+      "status": "CONFLICT",
+      "variants": [
+        "zhsh 关系表无统一概率，dpcq 有概率但题材不同"
+      ],
+      "tentative_decision": "zhsh 关系全集保留；实际概率与拾取行为另核对。",
+      "decision_reason": "该主体被标记为 CONFLICT，已在此集中登记，采用版本与待核实事项见主体记录。",
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "config/monsterDrops.json",
+          "locator": "512 monster keys; 2201 relations",
+          "original_value_summary": "装备掉落候选",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "zhsh",
+          "relative_path": "config/monsterItems.json",
+          "locator": "514 monster keys; 531 relations",
+          "original_value_summary": "材料掉落",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/battle.js",
+          "locator": "handleMonsterKill",
+          "original_value_summary": "当前代码仅经验/钱与任务进度，数据库掉落未见完整 seed",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "dpcq.sql",
+          "locator": "dp_drop 5 inserts",
+          "original_value_summary": "掉落概率/数量",
+          "commit": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39"
+        }
+      ],
+      "policy": "不静默选择；正式运行时仅采用 restoration-resolution-overlay 中有证据的裁决"
+    },
+    {
+      "canonical_id": "conflict.config.shops",
+      "subject_canonical_id": "config.shops",
+      "status": "CONFLICT",
+      "variants": [
+        "商品清单与卖出规则不同"
+      ],
+      "tentative_decision": "商品和价格以 zhsh 配置为内容候选；交易技术不视作原作证明。",
+      "decision_reason": "该主体被标记为 CONFLICT，已在此集中登记，采用版本与待核实事项见主体记录。",
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "config/cityShop.json",
+          "locator": "6 regions; 63 entries",
+          "original_value_summary": "地区商店商品",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "zhsh",
+          "relative_path": "config/shopItems.json",
+          "locator": "52 entries",
+          "original_value_summary": "商品详情",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/npc.js",
+          "locator": "npc_shop_item queries",
+          "original_value_summary": "数据库商店，seed 缺失",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "app/Http/Controllers/BagController.php",
+          "locator": "sell method",
+          "original_value_summary": "背包卖出逻辑",
+          "commit": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39"
+        }
+      ],
+      "policy": "不静默选择；正式运行时仅采用 restoration-resolution-overlay 中有证据的裁决"
+    },
+    {
+      "canonical_id": "conflict.config.prices",
+      "subject_canonical_id": "config.prices",
+      "status": "CONFLICT",
+      "variants": [
+        "随机时点、波动幅度和卖出折扣不同"
+      ],
+      "tentative_decision": "价格冲突逐源保留，暂以 zhsh 区间作为内容候选。",
+      "decision_reason": "该主体被标记为 CONFLICT，已在此集中登记，采用版本与待核实事项见主体记录。",
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "config/marketItems.json",
+          "locator": "32 cities; 106 goods ranges",
+          "original_value_summary": "城市商品价格区间",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "zhsh",
+          "relative_path": "config/index.js",
+          "locator": "lines 139-147",
+          "original_value_summary": "加载时在区间随机取价",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/market.js",
+          "locator": "lines 24-44, 48-98",
+          "original_value_summary": "每日±15%且卖出乘0.9",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "app/Http/Controllers/BagController.php",
+          "locator": "sell lines 299+",
+          "original_value_summary": "装备/道具卖出",
+          "commit": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39"
+        }
+      ],
+      "policy": "不静默选择；正式运行时仅采用 restoration-resolution-overlay 中有证据的裁决"
+    },
+    {
+      "canonical_id": "conflict.config.recovery-consumption",
+      "subject_canonical_id": "config.recovery-consumption",
+      "status": "CONFLICT",
+      "variants": [
+        "触发时机、免费恢复、自动恢复冲突"
+      ],
+      "tentative_decision": "行为差异保留，不能混合。",
+      "decision_reason": "该主体被标记为 CONFLICT，已在此集中登记，采用版本与待核实事项见主体记录。",
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/play.js",
+          "locator": "lines 408-424, 817-838",
+          "original_value_summary": "普通恢复与体力宝",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/battle.js",
+          "locator": "lines 228-270",
+          "original_value_summary": "快捷药品并触发反击",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/map.js",
+          "locator": "lines 82-95",
+          "original_value_summary": "酒馆/旅店回满",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "dpcq.sql",
+          "locator": "dp_recover_items 4 inserts",
+          "original_value_summary": "恢复物品数值",
+          "commit": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39"
+        }
+      ],
+      "policy": "不静默选择；正式运行时仅采用 restoration-resolution-overlay 中有证据的裁决"
+    },
+    {
+      "canonical_id": "conflict.config.cooldowns-time",
+      "subject_canonical_id": "config.cooldowns-time",
+      "status": "CONFLICT",
+      "variants": [
+        "时间单位和重置机制不同"
+      ],
+      "tentative_decision": "均可能是复刻技术实现；不直接定为原作节奏。",
+      "decision_reason": "该主体被标记为 CONFLICT，已在此集中登记，采用版本与待核实事项见主体记录。",
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "views/pages/attack.ejs",
+          "locator": "lines 5-27",
+          "original_value_summary": "自动攻击每秒刷新",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/sail.js",
+          "locator": "lines 6, 54-73",
+          "original_value_summary": "航时映射与30秒事件检查",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/quest.js",
+          "locator": "lines 6-12, 35-38",
+          "original_value_summary": "日常任务CST零点重置",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "app/Http/Controllers/IndexController.php",
+          "locator": "battle_status Redis keys",
+          "original_value_summary": "战斗临时状态",
+          "commit": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39"
+        }
+      ],
+      "policy": "不静默选择；正式运行时仅采用 restoration-resolution-overlay 中有证据的裁决"
+    },
+    {
+      "canonical_id": "conflict.config.random-probabilities",
+      "subject_canonical_id": "config.random-probabilities",
+      "status": "CONFLICT",
+      "variants": [
+        "事件集合与概率不兼容"
+      ],
+      "tentative_decision": "概率差异巨大，全部原样记录，暂不定稿。",
+      "decision_reason": "该主体被标记为 CONFLICT，已在此集中登记，采用版本与待核实事项见主体记录。",
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "config/sailingSpecialEvents.json",
+          "locator": "events[23]",
+          "original_value_summary": "0.3%–3% 等航海事件",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "zhsh",
+          "relative_path": "config/sailingEncounters.json",
+          "locator": "encounters[2]",
+          "original_value_summary": "泉州/大阪 3% 蓬莱遭遇",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/sail.js",
+          "locator": "lines 54-101",
+          "original_value_summary": "途中海盗20%，到港宝藏40%",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        }
+      ],
+      "policy": "不静默选择；正式运行时仅采用 restoration-resolution-overlay 中有证据的裁决"
+    },
+    {
+      "canonical_id": "conflict.config.save-state",
+      "subject_canonical_id": "config.save-state",
+      "status": "CONFLICT",
+      "variants": [
+        "JSON 聚合、MySQL 关系表、Laravel 表结构不同"
+      ],
+      "tentative_decision": "持久化结构属于实现证据，不视为原作玩法；字段语义用于迁移映射。",
+      "decision_reason": "该主体被标记为 CONFLICT，已在此集中登记，采用版本与待核实事项见主体记录。",
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/database.js",
+          "locator": "lines 35-389, 766-790",
+          "original_value_summary": "14 表与 user_data JSON 存档",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "zhsh",
+          "relative_path": "src/user.js",
+          "locator": "getStatus/restoreState",
+          "original_value_summary": "组合领域状态",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes",
+          "locator": "SQL table references",
+          "original_value_summary": "MySQL 状态字段但无 schema",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "dpcq.sql",
+          "locator": "21 CREATE TABLE statements",
+          "original_value_summary": "完整 SQL 转储",
+          "commit": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39"
+        }
+      ],
+      "policy": "不静默选择；正式运行时仅采用 restoration-resolution-overlay 中有证据的裁决"
+    },
+    {
+      "canonical_id": "conflict.config.ships",
+      "subject_canonical_id": "config.ships",
+      "status": "CONFLICT",
+      "variants": [
+        "zhsh 速度含 92，Astrbot 限制1–5"
+      ],
+      "tentative_decision": "船名和数值以 zhsh 为单源内容候选；Astrbot 船速域与 zhsh 数值明显冲突。",
+      "decision_reason": "该主体被标记为 CONFLICT，已在此集中登记，采用版本与待核实事项见主体记录。",
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "config/ship.json",
+          "locator": "5 groups; 14 ships",
+          "original_value_summary": "名称、价格、载重、速度",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/sail.js",
+          "locator": "lines 165-180",
+          "original_value_summary": "购买/切换 user_ship 船只",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "README.md",
+          "locator": "line 70",
+          "original_value_summary": "船速限制1–5",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        }
+      ],
+      "policy": "不静默选择；正式运行时仅采用 restoration-resolution-overlay 中有证据的裁决"
+    },
+    {
+      "canonical_id": "conflict.config.sailing",
+      "subject_canonical_id": "config.sailing",
+      "status": "CONFLICT",
+      "variants": [
+        "步进制/实时计时、事件概率与航线规则不同"
+      ],
+      "tentative_decision": "系统范围有共性，时间、可达城市和事件实现冲突。",
+      "decision_reason": "该主体被标记为 CONFLICT，已在此集中登记，采用版本与待核实事项见主体记录。",
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/sailing.js",
+          "locator": "class Sailing",
+          "original_value_summary": "航行状态、事件、货损、返航",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/sail.js",
+          "locator": "lines 8-200",
+          "original_value_summary": "数据库计时航行",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        },
+        {
+          "repository": "zhsh",
+          "relative_path": "config/sailingEncounters.json",
+          "locator": "2 encounters",
+          "original_value_summary": "蓬莱特殊航线",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        }
+      ],
+      "policy": "不静默选择；正式运行时仅采用 restoration-resolution-overlay 中有证据的裁决"
+    },
+    {
+      "canonical_id": "conflict.config.pets",
+      "subject_canonical_id": "config.pets",
+      "status": "CONFLICT",
+      "variants": [
+        "系统覆盖与数据缺失不一致"
+      ],
+      "tentative_decision": "内容配置以 zhsh 为候选，Astrbot 实现字段单独映射。",
+      "decision_reason": "该主体被标记为 CONFLICT，已在此集中登记，采用版本与待核实事项见主体记录。",
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "config/pet.json",
+          "locator": "8 top-level sections",
+          "original_value_summary": "类型、初始属性、骨骼、天赋、技能、繁殖",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/pet.js",
+          "locator": "pet/user_pet queries",
+          "original_value_summary": "数据库宠物系统",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "dpcq.sql",
+          "locator": "table list",
+          "original_value_summary": "无宠物表",
+          "commit": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39"
+        }
+      ],
+      "policy": "不静默选择；正式运行时仅采用 restoration-resolution-overlay 中有证据的裁决"
+    },
+    {
+      "canonical_id": "conflict.system.character.initialize",
+      "subject_canonical_id": "system.character.initialize",
+      "status": "CONFLICT",
+      "variants": [
+        "初始数值冲突"
+      ],
+      "tentative_decision": "只确认等级1共性；其他数值不可合并。",
+      "decision_reason": "该主体被标记为 CONFLICT，已在此集中登记，采用版本与待核实事项见主体记录。",
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/play.js",
+          "locator": "lines 5-24",
+          "original_value_summary": "默认属性",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/auth.js",
+          "locator": "lines 34-55",
+          "original_value_summary": "注册默认属性",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "app/Http/Controllers/CreateRoleController.php",
+          "locator": "lines 42-53",
+          "original_value_summary": "角色默认属性",
+          "commit": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39"
+        }
+      ],
+      "policy": "不静默选择；正式运行时仅采用 restoration-resolution-overlay 中有证据的裁决"
+    },
+    {
+      "canonical_id": "conflict.system.task.accept",
+      "subject_canonical_id": "system.task.accept",
+      "status": "CONFLICT",
+      "variants": [
+        "前置关系模型与重复规则不同"
+      ],
+      "tentative_decision": "651 条内容链以 zhsh 数组相邻逻辑为基线；Astrbot 仅作结构参考。",
+      "decision_reason": "该主体被标记为 CONFLICT，已在此集中登记，采用版本与待核实事项见主体记录。",
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/task.js",
+          "locator": "lines 67-124, 215-262, 594-648",
+          "original_value_summary": "数组相邻前置",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/quest.js",
+          "locator": "lines 14-76",
+          "original_value_summary": "显式前置与日常规则",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "dpcq.sql",
+          "locator": "table list",
+          "original_value_summary": "无任务表",
+          "commit": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39"
+        }
+      ],
+      "policy": "不静默选择；正式运行时仅采用 restoration-resolution-overlay 中有证据的裁决"
+    },
+    {
+      "canonical_id": "conflict.system.task.progress",
+      "subject_canonical_id": "system.task.progress",
+      "status": "CONFLICT",
+      "variants": [
+        "对话/收集/运货推进覆盖不同",
+        "task15/index=274 三个击杀目标仅有一个数量；后两个数量未知"
+      ],
+      "tentative_decision": "保留主要源实际行为；task15/index=274 仅确认第一目标数量为 5，后两项规范化为 null，等待外部证据。",
+      "decision_reason": "该主体被标记为 CONFLICT，已在此集中登记，采用版本与待核实事项见主体记录。",
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/task.js",
+          "locator": "lines 145-198, 339-443, 470-566",
+          "original_value_summary": "按任务类型推进",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/battle.js",
+          "locator": "lines 388-398",
+          "original_value_summary": "击杀任务进度",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/quest.js",
+          "locator": "user_quest progress/status",
+          "original_value_summary": "通用任务状态",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        },
+        {
+          "repository": "zhsh",
+          "relative_path": "config/task/task15.json",
+          "locator": "array_position=94; index=274",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+          "original_value_summary": "targetName 有 3 项，quantity 原始值仅为 \"5\""
+        }
+      ],
+      "policy": "不静默选择；正式运行时仅采用 restoration-resolution-overlay 中有证据的裁决"
+    },
+    {
+      "canonical_id": "conflict.system.combat.turns",
+      "subject_canonical_id": "system.combat.turns",
+      "status": "CONFLICT",
+      "variants": [
+        "单次/多段、药品是否耗回合"
+      ],
+      "tentative_decision": "基础轮流攻击有共性，行动次数与药品代价冲突。",
+      "decision_reason": "该主体被标记为 CONFLICT，已在此集中登记，采用版本与待核实事项见主体记录。",
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/monster.js",
+          "locator": "lines 159-220 and following",
+          "original_value_summary": "玩家、宠物、怪物顺序",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "zhsh",
+          "relative_path": "views/pages/attack.ejs",
+          "locator": "lines 5-27",
+          "original_value_summary": "自动攻击一秒",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/battle.js",
+          "locator": "lines 149-195, 228-270",
+          "original_value_summary": "回合行动",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "app/Http/Controllers/IndexController.php",
+          "locator": "lines 185-327",
+          "original_value_summary": "速度多段攻击",
+          "commit": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39"
+        }
+      ],
+      "policy": "不静默选择；正式运行时仅采用 restoration-resolution-overlay 中有证据的裁决"
+    },
+    {
+      "canonical_id": "conflict.system.combat.damage",
+      "subject_canonical_id": "system.combat.damage",
+      "status": "CONFLICT",
+      "variants": [
+        "伤害、防御、暴击公式冲突"
+      ],
+      "tentative_decision": "公式不兼容且影响全局平衡，不能平均。",
+      "decision_reason": "该主体被标记为 CONFLICT，已在此集中登记，采用版本与待核实事项见主体记录。",
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/monster.js",
+          "locator": "lines 24-49",
+          "original_value_summary": "比例防御、敏捷、暴击",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/battle.js",
+          "locator": "lines 149-159, 304-311",
+          "original_value_summary": "攻减防，最小1",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "app/Http/Controllers/IndexController.php",
+          "locator": "calculateDamage",
+          "original_value_summary": "含暴击、攻防和随机",
+          "commit": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39"
+        }
+      ],
+      "policy": "不静默选择；正式运行时仅采用 restoration-resolution-overlay 中有证据的裁决"
+    },
+    {
+      "canonical_id": "conflict.system.combat.outcome",
+      "subject_canonical_id": "system.combat.outcome",
+      "status": "CONFLICT",
+      "variants": [
+        "失败处罚与奖励规模不同"
+      ],
+      "tentative_decision": "奖励和失败处罚冲突；分项待定。",
+      "decision_reason": "该主体被标记为 CONFLICT，已在此集中登记，采用版本与待核实事项见主体记录。",
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/monster.js",
+          "locator": "assault/win flow",
+          "original_value_summary": "胜利、掉落、任务击杀",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/battle.js",
+          "locator": "lines 325-443",
+          "original_value_summary": "胜负结算",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "app/Http/Controllers/IndexController.php",
+          "locator": "lines 327-508",
+          "original_value_summary": "掉落与升级结算",
+          "commit": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39"
+        }
+      ],
+      "policy": "不静默选择；正式运行时仅采用 restoration-resolution-overlay 中有证据的裁决"
+    },
+    {
+      "canonical_id": "conflict.system.combat.flee",
+      "subject_canonical_id": "system.combat.flee",
+      "status": "CONFLICT",
+      "variants": [
+        "扣费、加钱、概率逃跑三种行为"
+      ],
+      "tentative_decision": "zhsh 自身已有显示/实现冲突；暂不能定最终规则。",
+      "decision_reason": "该主体被标记为 CONFLICT，已在此集中登记，采用版本与待核实事项见主体记录。",
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "views/pages/attack.ejs",
+          "locator": "line 31",
+          "original_value_summary": "撤退500铜",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "zhsh",
+          "relative_path": "src/monster.js",
+          "locator": "lines 52-58",
+          "original_value_summary": "实际加铜",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/battle.js",
+          "locator": "lines 179-195",
+          "original_value_summary": "50%逃跑",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "app/Http/Controllers/IndexController.php",
+          "locator": "lines 598-610",
+          "original_value_summary": "扣 retreat_amount",
+          "commit": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39"
+        }
+      ],
+      "policy": "不静默选择；正式运行时仅采用 restoration-resolution-overlay 中有证据的裁决"
+    },
+    {
+      "canonical_id": "conflict.system.combat.death",
+      "subject_canonical_id": "system.combat.death",
+      "status": "CONFLICT",
+      "variants": [
+        "扣钱、回血、传送规则冲突"
+      ],
+      "tentative_decision": "失败后状态差异显著。",
+      "decision_reason": "该主体被标记为 CONFLICT，已在此集中登记，采用版本与待核实事项见主体记录。",
+      "sources": [
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/battle.js",
+          "locator": "lines 407-443",
+          "original_value_summary": "失败处理",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        },
+        {
+          "repository": "zhsh",
+          "relative_path": "views/pages/attack-fail.ejs",
+          "locator": "entire template",
+          "original_value_summary": "战败页面",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "app/Http/Controllers/IndexController.php",
+          "locator": "battle response",
+          "original_value_summary": "HP更新但无同等酒馆处罚",
+          "commit": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39"
+        }
+      ],
+      "policy": "不静默选择；正式运行时仅采用 restoration-resolution-overlay 中有证据的裁决"
+    },
+    {
+      "canonical_id": "conflict.system.inventory",
+      "subject_canonical_id": "system.inventory",
+      "status": "CONFLICT",
+      "variants": [
+        "单背包、关系表、分包结构不同"
+      ],
+      "tentative_decision": "内容行为可保留，容量和存储模型不定。",
+      "decision_reason": "该主体被标记为 CONFLICT，已在此集中登记，采用版本与待核实事项见主体记录。",
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/backpack.js",
+          "locator": "lines 1-5, 66-155",
+          "original_value_summary": "背包容量与叠加",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/user.js",
+          "locator": "inventory endpoints",
+          "original_value_summary": "关系表背包",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "dpcq.sql",
+          "locator": "dp_roles_equip_bag/dp_roles_item_bag",
+          "original_value_summary": "分表背包",
+          "commit": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39"
+        }
+      ],
+      "policy": "不静默选择；正式运行时仅采用 restoration-resolution-overlay 中有证据的裁决"
+    }
+  ]
+}

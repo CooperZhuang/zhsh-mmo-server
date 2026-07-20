@@ -1,0 +1,1140 @@
+{
+  "schema_version": 1,
+  "record_kind": "equipment-combat-stage-summary",
+  "stage_start_head": "737ddff706c0276addd29b0973854d5a8d777369",
+  "source_head": "1a5132d371bc3c6f592d3888be39dad4e17c26df",
+  "generated_from_head": "1a5132d371bc3c6f592d3888be39dad4e17c26df",
+  "reference_commits": {
+    "zhsh": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+    "astrbot": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de",
+    "dpcq": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39",
+    "zonghengsihai": "0b8996e8e5b7293321f9827994324d13e3c2509c"
+  },
+  "generator_version": "equipment-combat-stage-summary/1.0.0",
+  "generated_at": "2026-07-18T00:00:00.000Z",
+  "conclusion": {
+    "acceptance_status": "PASSED",
+    "stage_status": "PASSED_WITH_NATURAL_PREFIX_EXPANSION_AND_RECORDED_RESIDUAL_GAMEPLAY_BLOCKERS",
+    "stage_start_selected_task_count": 71,
+    "final_selected_task_count": 72,
+    "stage_start_selected_series_count": 12,
+    "final_selected_series_count": 13,
+    "natural_new_task_canonical_ids": [
+      "task.series.02.012"
+    ],
+    "residual_root_blocker_task_canonical_ids": [
+      "task.series.05.036",
+      "task.series.10.057",
+      "task.series.11.065"
+    ]
+  },
+  "series_endpoints": [
+    {
+      "series_canonical_id": "task.series.01",
+      "selected_task_count": 13,
+      "terminal_task_canonical_id": "task.series.01.011",
+      "selection_kind": "complete_series"
+    },
+    {
+      "series_canonical_id": "task.series.02",
+      "selected_task_count": 1,
+      "terminal_task_canonical_id": "task.series.02.012",
+      "selection_kind": "complete_series"
+    },
+    {
+      "series_canonical_id": "task.series.03",
+      "selected_task_count": 1,
+      "terminal_task_canonical_id": "task.series.03.013",
+      "selection_kind": "complete_series"
+    },
+    {
+      "series_canonical_id": "task.series.04",
+      "selected_task_count": 7,
+      "terminal_task_canonical_id": "task.series.04.020",
+      "selection_kind": "complete_series"
+    },
+    {
+      "series_canonical_id": "task.series.05",
+      "selected_task_count": 15,
+      "terminal_task_canonical_id": "task.series.05.035",
+      "selection_kind": "maximal_continuous_prefix"
+    },
+    {
+      "series_canonical_id": "task.series.06",
+      "selected_task_count": 1,
+      "terminal_task_canonical_id": "task.series.06.040",
+      "selection_kind": "complete_series"
+    },
+    {
+      "series_canonical_id": "task.series.07",
+      "selected_task_count": 3,
+      "terminal_task_canonical_id": "task.series.07.043",
+      "selection_kind": "complete_series"
+    },
+    {
+      "series_canonical_id": "task.series.08",
+      "selected_task_count": 4,
+      "terminal_task_canonical_id": "task.series.08.047",
+      "selection_kind": "complete_series"
+    },
+    {
+      "series_canonical_id": "task.series.09",
+      "selected_task_count": 2,
+      "terminal_task_canonical_id": "task.series.09.049",
+      "selection_kind": "complete_series"
+    },
+    {
+      "series_canonical_id": "task.series.10",
+      "selected_task_count": 7,
+      "terminal_task_canonical_id": "task.series.10.056",
+      "selection_kind": "maximal_continuous_prefix"
+    },
+    {
+      "series_canonical_id": "task.series.11",
+      "selected_task_count": 5,
+      "terminal_task_canonical_id": "task.series.11.064",
+      "selection_kind": "maximal_continuous_prefix"
+    },
+    {
+      "series_canonical_id": "task.series.12",
+      "selected_task_count": 10,
+      "terminal_task_canonical_id": "task.series.12.097",
+      "selection_kind": "maximal_continuous_prefix"
+    },
+    {
+      "series_canonical_id": "task.series.13",
+      "selected_task_count": 3,
+      "terminal_task_canonical_id": "task.series.13.103",
+      "selection_kind": "maximal_continuous_prefix"
+    }
+  ],
+  "root_adjudications": [
+    {
+      "task_canonical_id": "task.series.02.012",
+      "target_count": 2,
+      "acquisition_closed": true,
+      "target_combat_closed": true,
+      "naturally_selected": true,
+      "residual_blockers": [],
+      "actual_loadout_size": 0,
+      "combat_proofs": [
+        {
+          "target_canonical_id": "task.series.02.012.target.01",
+          "rounds_to_win": 2,
+          "rounds_to_defeat": 11,
+          "sample_count": 256,
+          "wins": 256,
+          "win_probability": 1
+        },
+        {
+          "target_canonical_id": "task.series.02.012.target.02",
+          "rounds_to_win": 2,
+          "rounds_to_defeat": 11,
+          "sample_count": 256,
+          "wins": 256,
+          "win_probability": 1
+        }
+      ],
+      "cycle_dependency_count": 0,
+      "compatibility_experience_dependency": true,
+      "source_confidence": "SOURCE_EXPLICIT",
+      "runtime_adjudication_status": "CLOSED_WITH_ACCEPTED_STATE_NO_EQUIPMENT",
+      "has_active_conflict": true
+    },
+    {
+      "task_canonical_id": "task.series.05.036",
+      "target_count": 1,
+      "acquisition_closed": true,
+      "target_combat_closed": false,
+      "naturally_selected": false,
+      "residual_blockers": [
+        "item_source_combat_not_closed"
+      ],
+      "actual_loadout_size": 8,
+      "combat_proofs": [
+        {
+          "target_canonical_id": "task.series.05.036.target.01",
+          "rounds_to_win": 53,
+          "rounds_to_defeat": 3,
+          "sample_count": 256,
+          "wins": 0,
+          "win_probability": 0
+        }
+      ],
+      "cycle_dependency_count": 0,
+      "compatibility_experience_dependency": true,
+      "source_confidence": "SOURCE_EXPLICIT",
+      "runtime_adjudication_status": "BLOCKED_BY_FORMAL_COMBAT",
+      "has_active_conflict": true
+    },
+    {
+      "task_canonical_id": "task.series.10.057",
+      "target_count": 1,
+      "acquisition_closed": true,
+      "target_combat_closed": false,
+      "naturally_selected": false,
+      "residual_blockers": [
+        "combat_loadout_not_closed"
+      ],
+      "actual_loadout_size": 8,
+      "combat_proofs": [
+        {
+          "target_canonical_id": "task.series.10.057.target.01",
+          "rounds_to_win": 30,
+          "rounds_to_defeat": 4,
+          "sample_count": 256,
+          "wins": 0,
+          "win_probability": 0
+        }
+      ],
+      "cycle_dependency_count": 0,
+      "compatibility_experience_dependency": true,
+      "source_confidence": "SOURCE_EXPLICIT",
+      "runtime_adjudication_status": "BLOCKED_BY_FORMAL_COMBAT",
+      "has_active_conflict": true
+    },
+    {
+      "task_canonical_id": "task.series.11.065",
+      "target_count": 1,
+      "acquisition_closed": true,
+      "target_combat_closed": false,
+      "naturally_selected": false,
+      "residual_blockers": [
+        "combat_loadout_not_closed"
+      ],
+      "actual_loadout_size": 8,
+      "combat_proofs": [
+        {
+          "target_canonical_id": "task.series.11.065.target.01",
+          "rounds_to_win": 19,
+          "rounds_to_defeat": 6,
+          "sample_count": 256,
+          "wins": 0,
+          "win_probability": 0
+        }
+      ],
+      "cycle_dependency_count": 0,
+      "compatibility_experience_dependency": true,
+      "source_confidence": "SOURCE_EXPLICIT",
+      "runtime_adjudication_status": "BLOCKED_BY_FORMAL_COMBAT",
+      "has_active_conflict": true
+    }
+  ],
+  "source_closed_loadout": [
+    {
+      "equipment_canonical_id": "entity.equipment.35c7ed6d3f1cfc4a",
+      "display_name": "冰虫鳞盔",
+      "slot": "headgear",
+      "source_kind": "monster_drop",
+      "source_monster": "奶牛",
+      "source_city": "伦敦",
+      "source_location_canonical_id": "entity.location.0aa20304727932db",
+      "effective_probability": 0.030170316301703165,
+      "expected_attempts": 33.145,
+      "reasonable_worst_attempts": 151,
+      "recovery_count": 0,
+      "funding_closed": true,
+      "source_confidence": "SOURCE_EXPLICIT"
+    },
+    {
+      "equipment_canonical_id": "entity.equipment.3c546ec516b8de66",
+      "display_name": "断网腰带",
+      "slot": "belt",
+      "source_kind": "monster_drop",
+      "source_monster": "凤凰",
+      "source_city": "泉州",
+      "source_location_canonical_id": "entity.location.10d86a130938ee59",
+      "effective_probability": 0.03308641975308642,
+      "expected_attempts": 50.882,
+      "reasonable_worst_attempts": 233,
+      "recovery_count": 95,
+      "funding_closed": true,
+      "source_confidence": "SOURCE_EXPLICIT"
+    },
+    {
+      "equipment_canonical_id": "entity.equipment.3fe2d9674da444ab",
+      "display_name": "领主战靴",
+      "slot": "shoes",
+      "source_kind": "monster_drop",
+      "source_monster": "千年桐妖",
+      "source_city": "泉州",
+      "source_location_canonical_id": "entity.location.2186e2bef5ae3159",
+      "effective_probability": 0.034020618556701035,
+      "expected_attempts": 38.373,
+      "reasonable_worst_attempts": 175,
+      "recovery_count": 41,
+      "funding_closed": true,
+      "source_confidence": "SOURCE_EXPLICIT"
+    },
+    {
+      "equipment_canonical_id": "entity.equipment.850146a8552ddfaa",
+      "display_name": "行者护胸",
+      "slot": "clothes",
+      "source_kind": "monster_drop",
+      "source_monster": "疯野猪",
+      "source_city": "伦敦",
+      "source_location_canonical_id": "entity.location.1e21f90b554a025a",
+      "effective_probability": 0.03987538940809969,
+      "expected_attempts": 25.486,
+      "reasonable_worst_attempts": 116,
+      "recovery_count": 2,
+      "funding_closed": true,
+      "source_confidence": "SOURCE_EXPLICIT"
+    },
+    {
+      "equipment_canonical_id": "entity.equipment.9e234981e986f49d",
+      "display_name": "宇宙之光",
+      "slot": "accessories",
+      "source_kind": "monster_drop",
+      "source_monster": "棕熊",
+      "source_city": "威尼斯",
+      "source_location_canonical_id": "entity.location.921beee6eac98c05",
+      "effective_probability": 0.04727272727272727,
+      "expected_attempts": 21.154,
+      "reasonable_worst_attempts": 96,
+      "recovery_count": 0,
+      "funding_closed": true,
+      "source_confidence": "SOURCE_EXPLICIT"
+    },
+    {
+      "equipment_canonical_id": "entity.equipment.c337a5cc1d1ba768",
+      "display_name": "猎户匕首",
+      "slot": "weapon",
+      "source_kind": "monster_drop",
+      "source_monster": "熟透的葡萄",
+      "source_city": "锡兰",
+      "source_location_canonical_id": "entity.location.55af67be5a37d72c",
+      "effective_probability": 0.2,
+      "expected_attempts": 5,
+      "reasonable_worst_attempts": 21,
+      "recovery_count": 0,
+      "funding_closed": true,
+      "source_confidence": "SOURCE_EXPLICIT"
+    },
+    {
+      "equipment_canonical_id": "entity.equipment.c9fcbdd1622bbf4a",
+      "display_name": "龙头护符",
+      "slot": "accessories",
+      "source_kind": "monster_drop",
+      "source_monster": "千年桐妖",
+      "source_city": "泉州",
+      "source_location_canonical_id": "entity.location.2186e2bef5ae3159",
+      "effective_probability": 0.031958762886597936,
+      "expected_attempts": 40.849,
+      "reasonable_worst_attempts": 186,
+      "recovery_count": 44,
+      "funding_closed": true,
+      "source_confidence": "SOURCE_EXPLICIT"
+    },
+    {
+      "equipment_canonical_id": "entity.equipment.f01802ac86282e50",
+      "display_name": "锁链护喉",
+      "slot": "accessories",
+      "source_kind": "monster_drop",
+      "source_monster": "巨型蠕虫",
+      "source_city": "雅典",
+      "source_location_canonical_id": "entity.location.4953b5d317f7d9dc",
+      "effective_probability": 0.06595744680851064,
+      "expected_attempts": 59.69,
+      "reasonable_worst_attempts": 273,
+      "recovery_count": 204,
+      "funding_closed": true,
+      "source_confidence": "SOURCE_EXPLICIT"
+    }
+  ],
+  "cycle_dependencies": [],
+  "experience_adjudication": {
+    "formula_status": "PROVISIONAL_COMPATIBILITY",
+    "runtime_adjudication_status": "COMPATIBILITY_PLAYABLE_RETAINED",
+    "source_exact": false,
+    "has_active_conflict": true,
+    "higher_level_expansion_allowed": false,
+    "source_fact": "zhsh executes level*2; astrbot defines an unpopulated per-monster exp_reward field; dpcq evidence is MOD-only",
+    "retained_scope": "already accepted playable baseline only"
+  },
+  "training_segments": [
+    {
+      "from_level": 27,
+      "to_level": 36,
+      "planned_victories": 573,
+      "reasonable_worst_attempts": 1427,
+      "reasonable_worst_minutes": 131.118,
+      "actual_fight_count": 571,
+      "recovery_count": 69,
+      "result_level": 36,
+      "recovery_and_funding_closed": true
+    },
+    {
+      "from_level": 36,
+      "to_level": 38,
+      "planned_victories": 110,
+      "reasonable_worst_attempts": 249,
+      "reasonable_worst_minutes": 18.616,
+      "actual_fight_count": 110,
+      "recovery_count": 15,
+      "result_level": 38,
+      "recovery_and_funding_closed": true
+    },
+    {
+      "from_level": 38,
+      "to_level": 45,
+      "planned_victories": 1210,
+      "reasonable_worst_attempts": 2354,
+      "reasonable_worst_minutes": 222.25,
+      "actual_fight_count": 1207,
+      "recovery_count": 174,
+      "result_level": 45,
+      "recovery_and_funding_closed": true
+    }
+  ],
+  "incremental_dom": {
+    "artifact": "artifacts/equipment-combat-stage/raw/equipment-prefix-incremental-dom-results.json",
+    "scenario": "equipment-prefix-incremental",
+    "initial_completed_task_count": 71,
+    "completed_task_count": 72,
+    "newly_completed_task_canonical_ids": [
+      "task.series.02.012"
+    ],
+    "browser_ui_actions": 535,
+    "formal_runtime_adapter_actions": 0,
+    "direct_storage_mutations": 0,
+    "battles": {
+      "won": 10,
+      "lost": 0,
+      "recovered": 8,
+      "retreated": 0,
+      "rounds": 18
+    },
+    "console_errors": 0,
+    "network_error_count": 0,
+    "target_evidence": [
+      {
+        "target_canonical_id": "task.series.02.012.target.01",
+        "item_canonical_id": "runtime.item.ead34659a24d689e",
+        "item_name": "山猪肉",
+        "source_kind": "monster_drop",
+        "source_location_canonical_id": "entity.location.739c2e0db72acf09",
+        "visible_source_location": "农场",
+        "source_monster_canonical_id": "derived.monster_definition.ebc9853e7197601c",
+        "attempts": 5,
+        "inventory_quantity": 5,
+        "encounter_control_visible": true,
+        "backpack_item_visible": true
+      },
+      {
+        "target_canonical_id": "task.series.02.012.target.02",
+        "item_canonical_id": "runtime.item.6e1ec2b8b4a1f49a",
+        "item_name": "龙虾肉",
+        "source_kind": "monster_drop",
+        "source_location_canonical_id": "entity.location.739c2e0db72acf09",
+        "visible_source_location": "农场",
+        "source_monster_canonical_id": "derived.monster_definition.39f9a83a573c7d74",
+        "attempts": 5,
+        "inventory_quantity": 5,
+        "encounter_control_visible": true,
+        "backpack_item_visible": true
+      }
+    ],
+    "note": "selection hash predates provenance-only stage evidence pointer update; selected task IDs and runtime semantics are unchanged"
+  },
+  "performance": {
+    "formal_core": [
+      {
+        "artifact": "artifacts/equipment-combat-stage/raw/node22.16-formal-core-new.json",
+        "label": "node22.16",
+        "mode": "formal-core-new",
+        "git_head": "197f36ea49a6cd478153a54844f96ff4f69c5078",
+        "node_version": "v22.16.0",
+        "os": {
+          "platform": "win32",
+          "release": "10.0.26200",
+          "arch": "x64"
+        },
+        "cpu": "11th Gen Intel(R) Core(TM) i7-11800H @ 2.30GHz",
+        "command": "\"C:\\\\Users\\\\10281\\\\AppData\\\\Local\\\\Temp\\\\zhsh-equipment-node-runtimes\\\\node-v22.16.0-win-x64\\\\node.exe\" --test \"--test-name-pattern=new save\" tests/formal-core-e2e.test.js",
+        "started_at": "2026-07-18T12:02:22.777Z",
+        "ended_at": "2026-07-18T12:04:48.553Z",
+        "duration_ms": 145776,
+        "timeout_ms": 1200000,
+        "timed_out": false,
+        "exit_code": 0,
+        "test_count": 1,
+        "completed_task_count": 72,
+        "max_rss_kib": 149792,
+        "stdout_sha256": "7138b31a2eedff8f22887bc62ce3a228504d0755c3a2daf1d6a51821e263545f",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "artifact": "artifacts/equipment-combat-stage/raw/node22-current-formal-core-new.json",
+        "label": "node22-current",
+        "mode": "formal-core-new",
+        "git_head": "c4fcf3afb8db77a3120fbd96b069bbbb33039883",
+        "node_version": "v22.23.1",
+        "os": {
+          "platform": "win32",
+          "release": "10.0.26200",
+          "arch": "x64"
+        },
+        "cpu": "11th Gen Intel(R) Core(TM) i7-11800H @ 2.30GHz",
+        "command": "\"C:\\\\Users\\\\10281\\\\AppData\\\\Local\\\\Temp\\\\zhsh-equipment-node-runtimes\\\\node-v22.23.1-win-x64\\\\node.exe\" --test \"--test-name-pattern=new save\" tests/formal-core-e2e.test.js",
+        "started_at": "2026-07-18T12:07:29.387Z",
+        "ended_at": "2026-07-18T12:09:54.673Z",
+        "duration_ms": 145290,
+        "timeout_ms": 1200000,
+        "timed_out": false,
+        "exit_code": 0,
+        "test_count": 1,
+        "completed_task_count": 72,
+        "max_rss_kib": 147876,
+        "stdout_sha256": "58e3a85faf707e0783cae9b71d2c2295a06498f13dbc10cac8d1178a4500d2a9",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "artifact": "artifacts/equipment-combat-stage/raw/node24-current-formal-core-new.json",
+        "label": "node24-current",
+        "mode": "formal-core-new",
+        "git_head": "e71899d4075535ef4b33bd958e0b0a6b21b654a5",
+        "node_version": "v24.18.0",
+        "os": {
+          "platform": "win32",
+          "release": "10.0.26200",
+          "arch": "x64"
+        },
+        "cpu": "11th Gen Intel(R) Core(TM) i7-11800H @ 2.30GHz",
+        "command": "\"C:\\\\Program Files\\\\nodejs\\\\node.exe\" --test \"--test-name-pattern=new save\" tests/formal-core-e2e.test.js",
+        "started_at": "2026-07-18T11:51:17.795Z",
+        "ended_at": "2026-07-18T11:53:11.291Z",
+        "duration_ms": 113496,
+        "timeout_ms": 1200000,
+        "timed_out": false,
+        "exit_code": 0,
+        "test_count": 1,
+        "completed_task_count": 72,
+        "max_rss_kib": 359076,
+        "stdout_sha256": "7788aee49bdd89c167cf2a38b0eda684eca44d23bedf24cece70ba976253d9da",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      {
+        "artifact": "artifacts/equipment-combat-stage/raw/node24-current-formal-core-old.json",
+        "label": "node24-current",
+        "mode": "formal-core-old",
+        "git_head": "c4fcf3afb8db77a3120fbd96b069bbbb33039883",
+        "node_version": "v24.18.0",
+        "os": {
+          "platform": "win32",
+          "release": "10.0.26200",
+          "arch": "x64"
+        },
+        "cpu": "11th Gen Intel(R) Core(TM) i7-11800H @ 2.30GHz",
+        "command": "\"C:\\\\Program Files\\\\nodejs\\\\node.exe\" --test \"--test-name-pattern=migrates the real legacy save\" tests/formal-core-e2e.test.js",
+        "started_at": "2026-07-18T12:11:31.897Z",
+        "ended_at": "2026-07-18T12:13:18.440Z",
+        "duration_ms": 106540,
+        "timeout_ms": 1200000,
+        "timed_out": false,
+        "exit_code": 0,
+        "test_count": 1,
+        "completed_task_count": 72,
+        "max_rss_kib": 373856,
+        "stdout_sha256": "cc81956e1550b59425fe40e0766357e80e8ab2cff795b107637dda5affc3615e",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ],
+    "persistence_hotspots": [
+      {
+        "artifact": "artifacts/equipment-combat-stage/raw/node22.16-persistence-hotspots.json",
+        "label": "node22.16",
+        "git_head": "c4fcf3afb8db77a3120fbd96b069bbbb33039883",
+        "node_version": "v22.16.0",
+        "duration_ms": 76687,
+        "timeout_ms": 1200000,
+        "exit_code": 0,
+        "state_bytes": 215238,
+        "replay_window": 128,
+        "max_rss_kib": 79624,
+        "stdout_sha256": "e991a7ad535f1c6515d6c1121a40c7a10b093b5846d517ee1eaa91a3dc32810c",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "results": [
+          {
+            "operation": "structuredClone",
+            "revisions": 100,
+            "duration_ms": 159.926,
+            "operations_per_second": 625.29,
+            "durable_put_count": null
+          },
+          {
+            "operation": "checksum",
+            "revisions": 100,
+            "duration_ms": 27.226,
+            "operations_per_second": 3672.987,
+            "durable_put_count": null
+          },
+          {
+            "operation": "durable_put",
+            "revisions": 100,
+            "duration_ms": 161.393,
+            "operations_per_second": 619.605,
+            "durable_put_count": 100
+          },
+          {
+            "operation": "continuous_revision_coalesced_flush",
+            "revisions": 100,
+            "duration_ms": 158.364,
+            "operations_per_second": 631.457,
+            "durable_put_count": 1
+          },
+          {
+            "operation": "flush_after_each_revision",
+            "revisions": 100,
+            "duration_ms": 694.65,
+            "operations_per_second": 143.957,
+            "durable_put_count": 100
+          },
+          {
+            "operation": "structuredClone",
+            "revisions": 1000,
+            "duration_ms": 1433.953,
+            "operations_per_second": 697.373,
+            "durable_put_count": null
+          },
+          {
+            "operation": "checksum",
+            "revisions": 1000,
+            "duration_ms": 243.685,
+            "operations_per_second": 4103.652,
+            "durable_put_count": null
+          },
+          {
+            "operation": "durable_put",
+            "revisions": 1000,
+            "duration_ms": 1628.417,
+            "operations_per_second": 614.093,
+            "durable_put_count": 1000
+          },
+          {
+            "operation": "continuous_revision_coalesced_flush",
+            "revisions": 1000,
+            "duration_ms": 1733.671,
+            "operations_per_second": 576.811,
+            "durable_put_count": 1
+          },
+          {
+            "operation": "flush_after_each_revision",
+            "revisions": 1000,
+            "duration_ms": 7781.744,
+            "operations_per_second": 128.506,
+            "durable_put_count": 1000
+          },
+          {
+            "operation": "structuredClone",
+            "revisions": 5000,
+            "duration_ms": 7793.384,
+            "operations_per_second": 641.57,
+            "durable_put_count": null
+          },
+          {
+            "operation": "checksum",
+            "revisions": 5000,
+            "duration_ms": 1354.015,
+            "operations_per_second": 3692.721,
+            "durable_put_count": null
+          },
+          {
+            "operation": "durable_put",
+            "revisions": 5000,
+            "duration_ms": 8076.611,
+            "operations_per_second": 619.072,
+            "durable_put_count": 5000
+          },
+          {
+            "operation": "continuous_revision_coalesced_flush",
+            "revisions": 5000,
+            "duration_ms": 8116.593,
+            "operations_per_second": 616.022,
+            "durable_put_count": 1
+          },
+          {
+            "operation": "flush_after_each_revision",
+            "revisions": 5000,
+            "duration_ms": 37195.334,
+            "operations_per_second": 134.425,
+            "durable_put_count": 5000
+          }
+        ]
+      },
+      {
+        "artifact": "artifacts/equipment-combat-stage/raw/node22-current-persistence-hotspots.json",
+        "label": "node22-current",
+        "git_head": "c4fcf3afb8db77a3120fbd96b069bbbb33039883",
+        "node_version": "v22.23.1",
+        "duration_ms": 75265,
+        "timeout_ms": 1200000,
+        "exit_code": 0,
+        "state_bytes": 215238,
+        "replay_window": 128,
+        "max_rss_kib": 78040,
+        "stdout_sha256": "2a6f5371fa767b6cf94a45199f419a4e773cf2c8bb4de90e59633fe091287438",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "results": [
+          {
+            "operation": "structuredClone",
+            "revisions": 100,
+            "duration_ms": 165.18,
+            "operations_per_second": 605.4,
+            "durable_put_count": null
+          },
+          {
+            "operation": "checksum",
+            "revisions": 100,
+            "duration_ms": 31.169,
+            "operations_per_second": 3208.285,
+            "durable_put_count": null
+          },
+          {
+            "operation": "durable_put",
+            "revisions": 100,
+            "duration_ms": 167.171,
+            "operations_per_second": 598.19,
+            "durable_put_count": 100
+          },
+          {
+            "operation": "continuous_revision_coalesced_flush",
+            "revisions": 100,
+            "duration_ms": 158.743,
+            "operations_per_second": 629.95,
+            "durable_put_count": 1
+          },
+          {
+            "operation": "flush_after_each_revision",
+            "revisions": 100,
+            "duration_ms": 711.237,
+            "operations_per_second": 140.6,
+            "durable_put_count": 100
+          },
+          {
+            "operation": "structuredClone",
+            "revisions": 1000,
+            "duration_ms": 1426.068,
+            "operations_per_second": 701.229,
+            "durable_put_count": null
+          },
+          {
+            "operation": "checksum",
+            "revisions": 1000,
+            "duration_ms": 249.204,
+            "operations_per_second": 4012.777,
+            "durable_put_count": null
+          },
+          {
+            "operation": "durable_put",
+            "revisions": 1000,
+            "duration_ms": 1630.335,
+            "operations_per_second": 613.371,
+            "durable_put_count": 1000
+          },
+          {
+            "operation": "continuous_revision_coalesced_flush",
+            "revisions": 1000,
+            "duration_ms": 1674.178,
+            "operations_per_second": 597.308,
+            "durable_put_count": 1
+          },
+          {
+            "operation": "flush_after_each_revision",
+            "revisions": 1000,
+            "duration_ms": 7761.401,
+            "operations_per_second": 128.843,
+            "durable_put_count": 1000
+          },
+          {
+            "operation": "structuredClone",
+            "revisions": 5000,
+            "duration_ms": 8114.83,
+            "operations_per_second": 616.156,
+            "durable_put_count": null
+          },
+          {
+            "operation": "checksum",
+            "revisions": 5000,
+            "duration_ms": 1490.422,
+            "operations_per_second": 3354.754,
+            "durable_put_count": null
+          },
+          {
+            "operation": "durable_put",
+            "revisions": 5000,
+            "duration_ms": 7706.153,
+            "operations_per_second": 648.832,
+            "durable_put_count": 5000
+          },
+          {
+            "operation": "continuous_revision_coalesced_flush",
+            "revisions": 5000,
+            "duration_ms": 7387.438,
+            "operations_per_second": 676.825,
+            "durable_put_count": 1
+          },
+          {
+            "operation": "flush_after_each_revision",
+            "revisions": 5000,
+            "duration_ms": 36457.201,
+            "operations_per_second": 137.147,
+            "durable_put_count": 5000
+          }
+        ]
+      },
+      {
+        "artifact": "artifacts/equipment-combat-stage/raw/node24-current-persistence-hotspots.json",
+        "label": "node24-current",
+        "git_head": "e71899d4075535ef4b33bd958e0b0a6b21b654a5",
+        "node_version": "v24.18.0",
+        "duration_ms": 61449,
+        "timeout_ms": 1200000,
+        "exit_code": 0,
+        "state_bytes": 215238,
+        "replay_window": 128,
+        "max_rss_kib": 209120,
+        "stdout_sha256": "0d75524af7a2b0160436f7a5fbd5186fdec7b949391815b44d3a1bc1ef3ebef1",
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "results": [
+          {
+            "operation": "structuredClone",
+            "revisions": 100,
+            "duration_ms": 128.291,
+            "operations_per_second": 779.479,
+            "durable_put_count": null
+          },
+          {
+            "operation": "checksum",
+            "revisions": 100,
+            "duration_ms": 32.528,
+            "operations_per_second": 3074.237,
+            "durable_put_count": null
+          },
+          {
+            "operation": "durable_put",
+            "revisions": 100,
+            "duration_ms": 127.576,
+            "operations_per_second": 783.845,
+            "durable_put_count": 100
+          },
+          {
+            "operation": "continuous_revision_coalesced_flush",
+            "revisions": 100,
+            "duration_ms": 133.494,
+            "operations_per_second": 749.1,
+            "durable_put_count": 1
+          },
+          {
+            "operation": "flush_after_each_revision",
+            "revisions": 100,
+            "duration_ms": 620.693,
+            "operations_per_second": 161.11,
+            "durable_put_count": 100
+          },
+          {
+            "operation": "structuredClone",
+            "revisions": 1000,
+            "duration_ms": 1075.64,
+            "operations_per_second": 929.68,
+            "durable_put_count": null
+          },
+          {
+            "operation": "checksum",
+            "revisions": 1000,
+            "duration_ms": 244.355,
+            "operations_per_second": 4092.403,
+            "durable_put_count": null
+          },
+          {
+            "operation": "durable_put",
+            "revisions": 1000,
+            "duration_ms": 1053.233,
+            "operations_per_second": 949.458,
+            "durable_put_count": 1000
+          },
+          {
+            "operation": "continuous_revision_coalesced_flush",
+            "revisions": 1000,
+            "duration_ms": 1107.43,
+            "operations_per_second": 902.992,
+            "durable_put_count": 1
+          },
+          {
+            "operation": "flush_after_each_revision",
+            "revisions": 1000,
+            "duration_ms": 5777.27,
+            "operations_per_second": 173.092,
+            "durable_put_count": 1000
+          },
+          {
+            "operation": "structuredClone",
+            "revisions": 5000,
+            "duration_ms": 6264.045,
+            "operations_per_second": 798.206,
+            "durable_put_count": null
+          },
+          {
+            "operation": "checksum",
+            "revisions": 5000,
+            "duration_ms": 1481.741,
+            "operations_per_second": 3374.408,
+            "durable_put_count": null
+          },
+          {
+            "operation": "durable_put",
+            "revisions": 5000,
+            "duration_ms": 6303.468,
+            "operations_per_second": 793.214,
+            "durable_put_count": 5000
+          },
+          {
+            "operation": "continuous_revision_coalesced_flush",
+            "revisions": 5000,
+            "duration_ms": 6185.621,
+            "operations_per_second": 808.326,
+            "durable_put_count": 1
+          },
+          {
+            "operation": "flush_after_each_revision",
+            "revisions": 5000,
+            "duration_ms": 30764.55,
+            "operations_per_second": 162.525,
+            "durable_put_count": 5000
+          }
+        ]
+      }
+    ],
+    "adjudication": "Node 22.16 and current Node 22 are equivalent within measurement noise; both are supported but slower than Node 24. Keep engines >=22.5."
+  },
+  "final_validation": {
+    "acceptance_status": "PASSED",
+    "verify_core": {
+      "artifact": "artifacts/equipment-combat-stage/raw/verify-core-command.json",
+      "git_head": "c324885e0cbefe9df67a95224e39aec433cf1551",
+      "node_version": "v24.18.0",
+      "exit_code": 0,
+      "test_count": 123,
+      "duration_ms": 250714,
+      "stdout_sha256": "2b8543d5cb7555f81a2112be53ff77bce17630f11417d80c03f88c0014deaab3",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "internal_command_count": 6,
+      "full_tap_artifact": "artifacts/equipment-combat-stage/raw/verify-core-results.json"
+    },
+    "initial_full_dom_attempt": {
+      "artifact": "artifacts/equipment-combat-stage/raw/browser-dom-full-command.json",
+      "git_head": "c324885e0cbefe9df67a95224e39aec433cf1551",
+      "node_version": "v24.18.0",
+      "exit_code": 1,
+      "test_count": 2,
+      "duration_ms": 59347,
+      "stdout_sha256": "304650d9e12d03e346afb5b367200abaca1497bc824564ec1ca98c995f2434b9",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "historical_failure_preserved": true,
+      "failures": [
+        {
+          "scenario": "new-save",
+          "stage": "task task.series.01.009",
+          "message": "Expected one visible element for [data-item-id=\"entity.equipment.0e601dc4bfaf5bc3\"], found 2"
+        },
+        {
+          "scenario": "legacy-1-of-13",
+          "stage": "task task.series.05.032",
+          "message": "Expected one visible element for [data-fishing-reel=\"1\"], found 0"
+        }
+      ],
+      "post_attempt_fixes": [
+        "exclude equipment from medicine backpack group",
+        "use deterministic fishing RNG only in UAT"
+      ],
+      "post_attempt_targeted_tests": {
+        "command": "node --test tests/browser-playable.test.js tests/formal-gameplay.test.js",
+        "passed": 41,
+        "failed": 0
+      }
+    },
+    "full_dom": {
+      "artifact": "artifacts/equipment-combat-stage/raw/browser-dom-supplemental-command.json",
+      "scenario_artifact": "artifacts/equipment-combat-stage/raw/browser-dom-e2e-results.json",
+      "authorization_scope": "one supplemental complete new-save and real legacy 1-of-13 browser regression",
+      "executions_after_authorization": 1,
+      "git_head": "293b31364d09b458a4431c040032f8d529cd546e",
+      "node_version": "v24.18.0",
+      "exit_code": 0,
+      "test_count": 2,
+      "duration_ms": 1342721,
+      "stdout_sha256": "a7e0e23a01ce21a8f3fbf8f553b639000d085dd41be6c0fff364bc346e7ee611",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "verified_regressions": [
+        {
+          "task_canonical_id": "task.series.01.009",
+          "check": "belt appears as exactly one clickable backpack item",
+          "result": "PASSED",
+          "enforcement": "the equipment UI click helper rejects selectors unless exactly one visible data-item-id match exists"
+        },
+        {
+          "task_canonical_id": "task.series.05.032",
+          "check": "UAT fishing deterministically catches the required fish",
+          "result": "PASSED",
+          "enforcement": "the fishing helper asserts both caught=true and target progress before continuing"
+        }
+      ],
+      "scenarios": [
+        {
+          "scenario": "new-save",
+          "browser_version": "Edg/150.0.4078.65",
+          "duration_ms": 691910,
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "completed_task_count": 72,
+          "formal_task_count": 72,
+          "formal_series_count": 13,
+          "series_entered_count": 13,
+          "legacy_checkpoint_task_count": null,
+          "page_refreshes": 2,
+          "context_reopens": 1,
+          "ui_click_count": 18119,
+          "refresh_reopen_export_import_passed": true,
+          "direct_browser_storage_writes": false,
+          "console_errors": 0,
+          "console_warnings": 0,
+          "network_error_count": 0,
+          "layout": {
+            "measurement_count": 18,
+            "horizontal_overflow_count": 0,
+            "obscured_button_count": 0,
+            "clipped_or_truncated_text_count": 0,
+            "measured_labels": [
+              "initial_location",
+              "map",
+              "combat",
+              "failure_recovery",
+              "task_series_selector",
+              "npc",
+              "status",
+              "shop",
+              "save",
+              "voyage",
+              "task.series.07.041.receive",
+              "task.series.07.041.submit",
+              "equipment",
+              "maritime_shop",
+              "fishing",
+              "task.series.04.020.submit",
+              "task.series.09.048.receive",
+              "task.series.09.048.submit"
+            ]
+          }
+        },
+        {
+          "scenario": "legacy-1-of-13",
+          "browser_version": "Edg/150.0.4078.65",
+          "duration_ms": 643894,
+          "viewport": {
+            "width": 390,
+            "height": 844
+          },
+          "completed_task_count": 72,
+          "formal_task_count": 72,
+          "formal_series_count": 13,
+          "series_entered_count": 13,
+          "legacy_checkpoint_task_count": 25,
+          "page_refreshes": 2,
+          "context_reopens": 2,
+          "ui_click_count": 18187,
+          "refresh_reopen_export_import_passed": true,
+          "direct_browser_storage_writes": false,
+          "console_errors": 0,
+          "console_warnings": 0,
+          "network_error_count": 0,
+          "layout": {
+            "measurement_count": 18,
+            "horizontal_overflow_count": 0,
+            "obscured_button_count": 0,
+            "clipped_or_truncated_text_count": 0,
+            "measured_labels": [
+              "save",
+              "initial_location",
+              "map",
+              "task_series_selector",
+              "npc",
+              "status",
+              "combat",
+              "equipment",
+              "shop",
+              "voyage",
+              "task.series.07.041.receive",
+              "task.series.07.041.submit",
+              "maritime_shop",
+              "fishing",
+              "failure_recovery",
+              "task.series.04.020.submit",
+              "task.series.09.048.receive",
+              "task.series.09.048.submit"
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "machine_catalogs": [
+    {
+      "path": "data/generated/progression-source-extraction.json",
+      "record_kind": "progression-source-extraction",
+      "schema_version": 1,
+      "sha256": "e752ed4766a2a14415393ee77bd13a06529d56d227d3b09f8b0c2215d7412e7f",
+      "random_rule_omissions": 0
+    },
+    {
+      "path": "data/generated/global-content-catalog.json",
+      "record_kind": null,
+      "schema_version": 2,
+      "sha256": "14dcf1830c4fe725f1cfc8a11df6f15960b2cf99d3a1b57131f070c34141a28d",
+      "random_rule_omissions": 0
+    },
+    {
+      "path": "data/generated/reference-rule-catalog.json",
+      "record_kind": null,
+      "schema_version": 2,
+      "sha256": "071ac3cd7c5649ca72804d9583be88b2d80a92ca71117acd9a78ac18a66e3d95",
+      "random_rule_omissions": 0
+    },
+    {
+      "path": "data/generated/source-conflict-register.json",
+      "record_kind": null,
+      "schema_version": 2,
+      "sha256": "09877b2b3ff4ef13effa3f07c5fdfd822ca7852ba7b9203be9c6af8a28203680",
+      "random_rule_omissions": 0
+    },
+    {
+      "path": "data/generated/original-incomplete-feature-register.json",
+      "record_kind": null,
+      "schema_version": 2,
+      "sha256": "786c631106baad029d510a48379c92556693858fd2b0911fb4e7ebe2f51a2a71",
+      "random_rule_omissions": 0
+    },
+    {
+      "path": "data/generated/current-runtime-gap-matrix.json",
+      "record_kind": null,
+      "schema_version": 2,
+      "sha256": "2c3f2494ffb9916e54459de376b38f695ecc13f1ffcfe9c53358a4674831e60c",
+      "random_rule_omissions": 0
+    },
+    {
+      "path": "data/generated/feature-reachability-matrix.json",
+      "record_kind": null,
+      "schema_version": 2,
+      "sha256": "dade2f2484fd2dec66d93b8b059d27e11472431fd4e571f7aafae9c1fb953ddb",
+      "random_rule_omissions": 0
+    },
+    {
+      "path": "data/generated/task-unlock-impact-map.json",
+      "record_kind": null,
+      "schema_version": 2,
+      "sha256": "b8cd3a23ca287d9dc45195b1ed9da73c6ce91bd6bd6ea4257846fbd21680f6dc",
+      "random_rule_omissions": 0
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "schema_version": "1.0.0",
+  "overlay_kind": "restoration_resolution_overlay",
+  "baseline_file": "docs/reconstruction-baseline/multisource-baseline.json",
+  "resolutions": [
+    {
+      "resolution_id": "resolution.location.derived.7a7f7b6127a89313",
+      "action": "create_derived_entity",
+      "entity_kind": "location",
+      "derived_canonical_id": "derived.location.7a7f7b6127a89313",
+      "display_name": "荷姆兹-牛头山入口",
+      "restoration_status": "DERIVED",
+      "originality_status": "UNVERIFIED_AS_ORIGINAL",
+      "confidence": "high",
+      "runtime_policy": "queryable_map_entry_and_connection",
+      "evidence_canonical_ids": [
+        "entity.location_connection.bcedd08f9944c48b",
+        "entity.npc_placement.8b4f15b70705a612",
+        "entity.trial.2a7f00d4dd269f27"
+      ],
+      "decision_reason": "地点连接、牛头山守卫放置与牛头山试炼均明确引用荷姆兹牛头山入口；在不补写描述、不创建试炼内部楼层的前提下，批准建立可查询的派生地图入口。",
+      "unresolved_fields": [
+        "description"
+      ],
+      "created_from_baseline_commit": "f61da146c551436d2c3afd5da4eb3eb817b8ab13",
+      "canonical_value": {
+        "city_canonical_id": "entity.city.23309cf1b6d70914",
+        "city_name": "荷姆兹",
+        "location_name": "牛头山入口",
+        "description": null
+      }
+    }
+  ]
+}

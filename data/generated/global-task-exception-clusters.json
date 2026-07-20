@@ -1,0 +1,168 @@
+{
+  "schema_version": 1,
+  "stage_start_head": "2cbae183aa369fe0ac60176f3a1396914d786440",
+  "source_head": "709720ebd4a65eaaba5781bb6700790e6a5cacd7",
+  "generated_from_head": "709720ebd4a65eaaba5781bb6700790e6a5cacd7",
+  "reference_commits": {
+    "zhsh": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+    "astrbot": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de",
+    "dpcq": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39",
+    "zonghengsihai": "0b8996e8e5b7293321f9827994324d13e3c2509c"
+  },
+  "generator_version": "global-task-model/1.0.0",
+  "generated_at": "2026-07-18T00:00:00.000Z",
+  "total_task_count": 651,
+  "validated_baseline_count": 78,
+  "development_sample_count": 117,
+  "record_kind": "global-task-exception-clusters",
+  "exception_task_count": 11,
+  "ranking_formula": "coverage*100 + cross_series_reuse*20 + architecture_consistency*15 + evidence_strength*10 - implementation_cost*10",
+  "clusters": [
+    {
+      "cluster_id": "exception.source_data_and_placement_disagree",
+      "display_name": "source_data_and_placement_disagree",
+      "task_count": 5,
+      "task_canonical_ids": [
+        "task.series.15.264",
+        "task.series.15.269",
+        "task.series.15.583",
+        "task.series.15.601",
+        "task.series.15.728"
+      ],
+      "affected_series": [
+        {
+          "canonical_id": "task.series.15",
+          "display_name": "寻裔之路"
+        }
+      ],
+      "class_ids": [
+        7
+      ],
+      "reason_codes": [
+        "source_data_and_placement_disagree"
+      ],
+      "priority_inputs": {
+        "coverage": 5,
+        "cross_series_reuse": 1,
+        "architecture_consistency": 2,
+        "evidence_strength": 4,
+        "implementation_cost": 4
+      },
+      "priority_score": 550
+    },
+    {
+      "cluster_id": "exception.task_chain_item_ledger",
+      "display_name": "task_chain_item_ledger",
+      "task_count": 2,
+      "task_canonical_ids": [
+        "task.series.15.471",
+        "task.series.15.472"
+      ],
+      "affected_series": [
+        {
+          "canonical_id": "task.series.15",
+          "display_name": "寻裔之路"
+        }
+      ],
+      "class_ids": [
+        5
+      ],
+      "reason_codes": [
+        "task_chain_item_ledger"
+      ],
+      "priority_inputs": {
+        "coverage": 2,
+        "cross_series_reuse": 1,
+        "architecture_consistency": 5,
+        "evidence_strength": 4,
+        "implementation_cost": 2
+      },
+      "priority_score": 315
+    },
+    {
+      "cluster_id": "exception.dependency_evidence_missing",
+      "display_name": "dependency_evidence_missing",
+      "task_count": 2,
+      "task_canonical_ids": [
+        "task.series.15.457",
+        "task.series.15.463"
+      ],
+      "affected_series": [
+        {
+          "canonical_id": "task.series.15",
+          "display_name": "寻裔之路"
+        }
+      ],
+      "class_ids": [
+        10
+      ],
+      "reason_codes": [
+        "dependency_evidence_missing"
+      ],
+      "priority_inputs": {
+        "coverage": 2,
+        "cross_series_reuse": 1,
+        "architecture_consistency": 5,
+        "evidence_strength": 4,
+        "implementation_cost": 4
+      },
+      "priority_score": 295
+    },
+    {
+      "cluster_id": "exception.npc_duel_encounter",
+      "display_name": "npc_duel_encounter",
+      "task_count": 1,
+      "task_canonical_ids": [
+        "task.series.15.698"
+      ],
+      "affected_series": [
+        {
+          "canonical_id": "task.series.15",
+          "display_name": "寻裔之路"
+        }
+      ],
+      "class_ids": [
+        6
+      ],
+      "reason_codes": [
+        "npc_duel_encounter_required"
+      ],
+      "priority_inputs": {
+        "coverage": 1,
+        "cross_series_reuse": 1,
+        "architecture_consistency": 5,
+        "evidence_strength": 4,
+        "implementation_cost": 3
+      },
+      "priority_score": 205
+    },
+    {
+      "cluster_id": "exception.target_kind_migration_mismatch",
+      "display_name": "target_kind_migration_mismatch",
+      "task_count": 1,
+      "task_canonical_ids": [
+        "task.series.15.415"
+      ],
+      "affected_series": [
+        {
+          "canonical_id": "task.series.15",
+          "display_name": "寻裔之路"
+        }
+      ],
+      "class_ids": [
+        7
+      ],
+      "reason_codes": [
+        "target_kind_migration_mismatch"
+      ],
+      "priority_inputs": {
+        "coverage": 1,
+        "cross_series_reuse": 1,
+        "architecture_consistency": 5,
+        "evidence_strength": 4,
+        "implementation_cost": 4
+      },
+      "priority_score": 195
+    }
+  ]
+}

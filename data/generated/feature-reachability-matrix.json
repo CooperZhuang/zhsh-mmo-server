@@ -1,0 +1,494 @@
+{
+  "schema_version": 2,
+  "catalog_kind": "feature-reachability-matrix",
+  "stage_start_head": "2cbae183aa369fe0ac60176f3a1396914d786440",
+  "source_head": "3f55158d8657fb91bef451cb6d927c9eb00d3f6b",
+  "generated_from_head": "3f55158d8657fb91bef451cb6d927c9eb00d3f6b",
+  "reference_commits": {
+    "zhsh": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+    "astrbot": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de",
+    "dpcq": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39",
+    "zonghengsihai": "0b8996e8e5b7293321f9827994324d13e3c2509c"
+  },
+  "generator_version": "global-recovery-catalogs/2.0.0",
+  "generated_at": "2026-07-18T00:00:00.000Z",
+  "definitions": {
+    "A": "有配置、有执行代码、有可达入口",
+    "B": "有执行代码但入口断裂或尚未接线",
+    "C": "只有任务对白或配置，没有执行实现",
+    "D": "多仓实现冲突",
+    "E": "复刻作者、MOD、外部提示页或后期扩写"
+  },
+  "counts": {
+    "A": 22,
+    "B": 3,
+    "C": 1,
+    "D": 9,
+    "E": 2
+  },
+  "categories": {
+    "A": [
+      {
+        "canonical_id": "rule.account.auth",
+        "display_name": "登录与账号",
+        "has_configuration": false,
+        "has_execution_code": true,
+        "has_reachable_entry": true,
+        "source_repositories": [
+          "zhsh",
+          "astrbot",
+          "dpcq"
+        ],
+        "evidence_status": "CONSENSUS"
+      },
+      {
+        "canonical_id": "rule.character.create",
+        "display_name": "新建角色",
+        "has_configuration": false,
+        "has_execution_code": true,
+        "has_reachable_entry": true,
+        "source_repositories": [
+          "zhsh",
+          "astrbot",
+          "dpcq"
+        ],
+        "evidence_status": "CONSENSUS"
+      },
+      {
+        "canonical_id": "rule.combat.entry",
+        "display_name": "战斗进入条件",
+        "has_configuration": false,
+        "has_execution_code": true,
+        "has_reachable_entry": true,
+        "source_repositories": [
+          "zhsh",
+          "astrbot",
+          "dpcq"
+        ],
+        "evidence_status": "CONSENSUS"
+      },
+      {
+        "canonical_id": "rule.combat.stamina-item",
+        "display_name": "体力宝临时体力与战斗自动恢复",
+        "has_configuration": true,
+        "has_execution_code": true,
+        "has_reachable_entry": true,
+        "source_repositories": [
+          "zhsh"
+        ],
+        "evidence_status": "SINGLE_SOURCE"
+      },
+      {
+        "canonical_id": "rule.diving.entry",
+        "display_name": "潜水入口与副本发现",
+        "has_configuration": true,
+        "has_execution_code": true,
+        "has_reachable_entry": true,
+        "source_repositories": [
+          "zhsh"
+        ],
+        "evidence_status": "SINGLE_SOURCE"
+      },
+      {
+        "canonical_id": "rule.equipment",
+        "display_name": "装备",
+        "has_configuration": false,
+        "has_execution_code": true,
+        "has_reachable_entry": true,
+        "source_repositories": [
+          "zhsh",
+          "astrbot",
+          "dpcq"
+        ],
+        "evidence_status": "CONSENSUS"
+      },
+      {
+        "canonical_id": "rule.equipment.acquisition",
+        "display_name": "装备取得链",
+        "has_configuration": true,
+        "has_execution_code": true,
+        "has_reachable_entry": true,
+        "source_repositories": [
+          "zhsh"
+        ],
+        "evidence_status": "SINGLE_SOURCE"
+      },
+      {
+        "canonical_id": "rule.fishing.catch",
+        "display_name": "钓鱼稀有度与鱼获",
+        "has_configuration": true,
+        "has_execution_code": true,
+        "has_reachable_entry": true,
+        "source_repositories": [
+          "zhsh"
+        ],
+        "evidence_status": "SINGLE_SOURCE"
+      },
+      {
+        "canonical_id": "rule.fishing.wait",
+        "display_name": "钓鱼等待事件",
+        "has_configuration": true,
+        "has_execution_code": true,
+        "has_reachable_entry": true,
+        "source_repositories": [
+          "zhsh"
+        ],
+        "evidence_status": "SINGLE_SOURCE"
+      },
+      {
+        "canonical_id": "rule.item.acquire-consume",
+        "display_name": "物品获得与消耗",
+        "has_configuration": false,
+        "has_execution_code": true,
+        "has_reachable_entry": true,
+        "source_repositories": [
+          "zhsh",
+          "astrbot",
+          "dpcq"
+        ],
+        "evidence_status": "CONSENSUS"
+      },
+      {
+        "canonical_id": "rule.map.movement",
+        "display_name": "城市与地图移动",
+        "has_configuration": false,
+        "has_execution_code": true,
+        "has_reachable_entry": true,
+        "source_repositories": [
+          "zhsh",
+          "astrbot",
+          "dpcq"
+        ],
+        "evidence_status": "CONSENSUS"
+      },
+      {
+        "canonical_id": "rule.market.prices",
+        "display_name": "市场货物价格区间",
+        "has_configuration": true,
+        "has_execution_code": true,
+        "has_reachable_entry": true,
+        "source_repositories": [
+          "zhsh"
+        ],
+        "evidence_status": "SINGLE_SOURCE"
+      },
+      {
+        "canonical_id": "rule.money",
+        "display_name": "金钱",
+        "has_configuration": true,
+        "has_execution_code": true,
+        "has_reachable_entry": true,
+        "source_repositories": [
+          "zhsh",
+          "astrbot",
+          "dpcq"
+        ],
+        "evidence_status": "CONSENSUS"
+      },
+      {
+        "canonical_id": "rule.monster.drops",
+        "display_name": "怪物物品与装备掉落",
+        "has_configuration": true,
+        "has_execution_code": true,
+        "has_reachable_entry": true,
+        "source_repositories": [
+          "zhsh"
+        ],
+        "evidence_status": "SINGLE_SOURCE"
+      },
+      {
+        "canonical_id": "rule.monster.stats",
+        "display_name": "怪物类型与等级倍率",
+        "has_configuration": false,
+        "has_execution_code": true,
+        "has_reachable_entry": true,
+        "source_repositories": [
+          "zhsh"
+        ],
+        "evidence_status": "SINGLE_SOURCE"
+      },
+      {
+        "canonical_id": "rule.multiplayer.chat",
+        "display_name": "多人、聊天与 WebSocket",
+        "has_configuration": false,
+        "has_execution_code": true,
+        "has_reachable_entry": true,
+        "source_repositories": [
+          "zhsh",
+          "astrbot",
+          "dpcq"
+        ],
+        "evidence_status": "IMPLEMENTATION_ONLY"
+      },
+      {
+        "canonical_id": "rule.npc.interaction",
+        "display_name": "NPC 交互",
+        "has_configuration": true,
+        "has_execution_code": true,
+        "has_reachable_entry": true,
+        "source_repositories": [
+          "zhsh",
+          "astrbot",
+          "dpcq"
+        ],
+        "evidence_status": "CONSENSUS"
+      },
+      {
+        "canonical_id": "rule.progression.level",
+        "display_name": "经验与升级",
+        "has_configuration": false,
+        "has_execution_code": true,
+        "has_reachable_entry": true,
+        "source_repositories": [
+          "zhsh",
+          "astrbot",
+          "dpcq"
+        ],
+        "evidence_status": "CONSENSUS"
+      },
+      {
+        "canonical_id": "rule.sailing",
+        "display_name": "船只与航行",
+        "has_configuration": false,
+        "has_execution_code": true,
+        "has_reachable_entry": true,
+        "source_repositories": [
+          "zhsh",
+          "astrbot"
+        ],
+        "evidence_status": "CONSENSUS"
+      },
+      {
+        "canonical_id": "rule.shop.trade",
+        "display_name": "商店与交易",
+        "has_configuration": false,
+        "has_execution_code": true,
+        "has_reachable_entry": true,
+        "source_repositories": [
+          "zhsh",
+          "astrbot",
+          "dpcq"
+        ],
+        "evidence_status": "CONSENSUS"
+      },
+      {
+        "canonical_id": "rule.state.persistence",
+        "display_name": "状态保存",
+        "has_configuration": true,
+        "has_execution_code": true,
+        "has_reachable_entry": true,
+        "source_repositories": [
+          "zhsh",
+          "astrbot",
+          "dpcq"
+        ],
+        "evidence_status": "CONSENSUS"
+      },
+      {
+        "canonical_id": "rule.task.complete",
+        "display_name": "任务完成与奖励",
+        "has_configuration": false,
+        "has_execution_code": true,
+        "has_reachable_entry": true,
+        "source_repositories": [
+          "zhsh",
+          "astrbot"
+        ],
+        "evidence_status": "CONSENSUS"
+      }
+    ],
+    "B": [
+      {
+        "canonical_id": "rule.gang.lifecycle",
+        "display_name": "帮会生命周期",
+        "has_configuration": false,
+        "has_execution_code": true,
+        "has_reachable_entry": false,
+        "source_repositories": [
+          "zhsh"
+        ],
+        "evidence_status": "SINGLE_SOURCE"
+      },
+      {
+        "canonical_id": "rule.map.unlock",
+        "display_name": "地点解锁",
+        "has_configuration": true,
+        "has_execution_code": true,
+        "has_reachable_entry": false,
+        "source_repositories": [
+          "zhsh",
+          "astrbot",
+          "dpcq"
+        ],
+        "evidence_status": "INCOMPLETE"
+      },
+      {
+        "canonical_id": "rule.pet.lifecycle",
+        "display_name": "宠物孵化与成长",
+        "has_configuration": true,
+        "has_execution_code": true,
+        "has_reachable_entry": false,
+        "source_repositories": [
+          "zhsh"
+        ],
+        "evidence_status": "SINGLE_SOURCE"
+      }
+    ],
+    "C": [
+      {
+        "canonical_id": "rule.skills",
+        "display_name": "技能",
+        "has_configuration": true,
+        "has_execution_code": true,
+        "has_reachable_entry": false,
+        "source_repositories": [
+          "zhsh",
+          "astrbot"
+        ],
+        "evidence_status": "INCOMPLETE"
+      }
+    ],
+    "D": [
+      {
+        "canonical_id": "rule.character.initialize",
+        "display_name": "角色属性初始化",
+        "has_configuration": false,
+        "has_execution_code": true,
+        "has_reachable_entry": true,
+        "source_repositories": [
+          "zhsh",
+          "astrbot",
+          "dpcq"
+        ],
+        "evidence_status": "CONFLICT"
+      },
+      {
+        "canonical_id": "rule.combat.damage",
+        "display_name": "伤害计算",
+        "has_configuration": false,
+        "has_execution_code": true,
+        "has_reachable_entry": true,
+        "source_repositories": [
+          "zhsh",
+          "astrbot",
+          "dpcq"
+        ],
+        "evidence_status": "CONFLICT"
+      },
+      {
+        "canonical_id": "rule.combat.death",
+        "display_name": "死亡或失败",
+        "has_configuration": false,
+        "has_execution_code": true,
+        "has_reachable_entry": true,
+        "source_repositories": [
+          "astrbot",
+          "zhsh",
+          "dpcq"
+        ],
+        "evidence_status": "CONFLICT"
+      },
+      {
+        "canonical_id": "rule.combat.flee",
+        "display_name": "逃跑与撤退",
+        "has_configuration": false,
+        "has_execution_code": true,
+        "has_reachable_entry": true,
+        "source_repositories": [
+          "zhsh",
+          "astrbot",
+          "dpcq"
+        ],
+        "evidence_status": "CONFLICT"
+      },
+      {
+        "canonical_id": "rule.combat.outcome",
+        "display_name": "胜负处理",
+        "has_configuration": false,
+        "has_execution_code": true,
+        "has_reachable_entry": true,
+        "source_repositories": [
+          "zhsh",
+          "astrbot",
+          "dpcq"
+        ],
+        "evidence_status": "CONFLICT"
+      },
+      {
+        "canonical_id": "rule.combat.turns",
+        "display_name": "回合与行动规则",
+        "has_configuration": false,
+        "has_execution_code": true,
+        "has_reachable_entry": true,
+        "source_repositories": [
+          "zhsh",
+          "astrbot",
+          "dpcq"
+        ],
+        "evidence_status": "CONFLICT"
+      },
+      {
+        "canonical_id": "rule.inventory",
+        "display_name": "背包",
+        "has_configuration": true,
+        "has_execution_code": true,
+        "has_reachable_entry": true,
+        "source_repositories": [
+          "zhsh",
+          "astrbot",
+          "dpcq"
+        ],
+        "evidence_status": "CONFLICT"
+      },
+      {
+        "canonical_id": "rule.task.accept",
+        "display_name": "任务接取",
+        "has_configuration": true,
+        "has_execution_code": true,
+        "has_reachable_entry": true,
+        "source_repositories": [
+          "zhsh",
+          "astrbot",
+          "dpcq"
+        ],
+        "evidence_status": "CONFLICT"
+      },
+      {
+        "canonical_id": "rule.task.progress",
+        "display_name": "任务推进",
+        "has_configuration": false,
+        "has_execution_code": true,
+        "has_reachable_entry": true,
+        "source_repositories": [
+          "zhsh",
+          "astrbot"
+        ],
+        "evidence_status": "CONFLICT"
+      }
+    ],
+    "E": [
+      {
+        "canonical_id": "rule.dpcq.auxiliary-combat",
+        "display_name": "dpcq MOD 战斗辅助证据",
+        "has_configuration": true,
+        "has_execution_code": true,
+        "has_reachable_entry": true,
+        "source_repositories": [
+          "dpcq"
+        ],
+        "evidence_status": "MOD_AUXILIARY_ONLY"
+      },
+      {
+        "canonical_id": "rule.external-api",
+        "display_name": "外部 API 依赖",
+        "has_configuration": false,
+        "has_execution_code": false,
+        "has_reachable_entry": false,
+        "source_repositories": [
+          "zonghengsihai"
+        ],
+        "evidence_status": "IMPLEMENTATION_ONLY"
+      }
+    ]
+  }
+}

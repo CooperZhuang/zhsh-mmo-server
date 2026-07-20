@@ -1,0 +1,395 @@
+{
+  "schema_version": 2,
+  "catalog_kind": "original-incomplete-feature-register",
+  "stage_start_head": "2cbae183aa369fe0ac60176f3a1396914d786440",
+  "source_head": "3f55158d8657fb91bef451cb6d927c9eb00d3f6b",
+  "generated_from_head": "3f55158d8657fb91bef451cb6d927c9eb00d3f6b",
+  "reference_commits": {
+    "zhsh": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+    "astrbot": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de",
+    "dpcq": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39",
+    "zonghengsihai": "0b8996e8e5b7293321f9827994324d13e3c2509c"
+  },
+  "generator_version": "global-recovery-catalogs/2.0.0",
+  "generated_at": "2026-07-18T00:00:00.000Z",
+  "count": 15,
+  "records": [
+    {
+      "canonical_id": "backlog.astrbot.schema",
+      "kind": "baseline_backlog",
+      "display_name": "补齐 Astrbot 数据库证据",
+      "required_action": "在获得 schema/seed 前不得把 API 查询字段当作完整内容基线。",
+      "status": "INCOMPLETE",
+      "sources": [
+        {
+          "repository": "astrbot",
+          "relative_path": "README.md",
+          "locator": "database preparation",
+          "original_value_summary": "仓库要求另行准备 SQL",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes",
+          "locator": "SQL references",
+          "original_value_summary": "表被引用但定义缺失",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        }
+      ],
+      "blocks_formal_content": true
+    },
+    {
+      "canonical_id": "backlog.combat.flee-direction",
+      "kind": "baseline_backlog",
+      "display_name": "修复撤退费用方向",
+      "required_action": "页面称付费，代码却增加铜贝；需结合更多旧资料确定扣费规则。",
+      "status": "INCOMPLETE",
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "views/pages/attack.ejs",
+          "locator": "line 31",
+          "original_value_summary": "撤退500铜",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "zhsh",
+          "relative_path": "src/monster.js",
+          "locator": "lines 52-58",
+          "original_value_summary": "addCopper(+outPrice)",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        }
+      ],
+      "blocks_formal_content": true
+    },
+    {
+      "canonical_id": "backlog.opening.route",
+      "kind": "baseline_backlog",
+      "display_name": "处理 intro 不可达与酒馆起点冲突",
+      "required_action": "保留开场模板和实际酒馆起点，等待连接证据。",
+      "status": "INCOMPLETE",
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "views/pages/intro.ejs",
+          "locator": "lines 1-70",
+          "original_value_summary": "离乡远航、海盗围攻，末尾链接到 main",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "zhsh",
+          "relative_path": "src/city.js",
+          "locator": "constructor lines 12-21",
+          "original_value_summary": "新 User 默认威尼斯酒馆",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "zhsh",
+          "relative_path": "index.js",
+          "locator": "lines 83-94, 504-553",
+          "original_value_summary": "新用户直接创建 User 并进入 main；无 intro 路由",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        }
+      ],
+      "blocks_formal_content": true
+    },
+    {
+      "canonical_id": "backlog.sailing.speed-field",
+      "kind": "baseline_backlog",
+      "display_name": "修复航速字段 consumption/speed 错位",
+      "required_action": "代码读取不存在字段并回退50，需按配置原意校正。",
+      "status": "INCOMPLETE",
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "config/ship.json",
+          "locator": "ship.speed",
+          "original_value_summary": "船只速度",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "zhsh",
+          "relative_path": "src/sailing.js",
+          "locator": "lines 109-123",
+          "original_value_summary": "读取 consumption",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        }
+      ],
+      "blocks_formal_content": true
+    },
+    {
+      "canonical_id": "backlog.source.license",
+      "kind": "baseline_backlog",
+      "display_name": "核验内容与代码授权",
+      "required_action": "四仓均缺 LICENSE 正文，公开复用前需单独核验。",
+      "status": "INCOMPLETE",
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "package.json",
+          "locator": "license=ISC",
+          "original_value_summary": "无 LICENSE 正文",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "composer.json",
+          "locator": "license=MIT",
+          "original_value_summary": "无 LICENSE 正文",
+          "commit": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "repository root",
+          "locator": "无 LICENSE",
+          "original_value_summary": "",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        },
+        {
+          "repository": "zonghengsihai",
+          "relative_path": "repository root",
+          "locator": "无 LICENSE",
+          "original_value_summary": "",
+          "commit": "0b8996e8e5b7293321f9827994324d13e3c2509c"
+        }
+      ],
+      "blocks_formal_content": true
+    },
+    {
+      "canonical_id": "backlog.story.ending",
+      "kind": "baseline_backlog",
+      "display_name": "核实地魔之后的正式结局",
+      "required_action": "当前资料只到 index 738，无任务后记。",
+      "status": "INCOMPLETE",
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "config/task/task15.json",
+          "locator": "index=738; end of array",
+          "original_value_summary": "击败地魔并救人",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        }
+      ],
+      "blocks_formal_content": true
+    },
+    {
+      "canonical_id": "backlog.story.james",
+      "kind": "baseline_backlog",
+      "display_name": "核实铁箱、徽章与詹姆斯后续",
+      "required_action": "查找旧截图、录屏、数据库或玩家证词；当前不补写谜底。",
+      "status": "INCOMPLETE",
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "config/task/task5.json",
+          "locator": "index 32–39",
+          "original_value_summary": "线索在詹姆斯处断裂",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        }
+      ],
+      "blocks_formal_content": true
+    },
+    {
+      "canonical_id": "backlog.task.continue-gaps",
+      "kind": "baseline_backlog",
+      "display_name": "修复任务继续链接的三个编号断档",
+      "required_action": "页面应按数组真实 successor，而不是 index+1。",
+      "status": "INCOMPLETE",
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "views/pages/npc-task-direct.ejs",
+          "locator": "lines 17-31, 112-125",
+          "original_value_summary": "index+1 继续",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "zhsh",
+          "relative_path": "config/task/task15.json",
+          "locator": "312→400, 647→649, 685→687",
+          "original_value_summary": "数组相邻前置",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        }
+      ],
+      "blocks_formal_content": true
+    },
+    {
+      "canonical_id": "backlog.task.item-consumption",
+      "kind": "baseline_backlog",
+      "display_name": "修复任务物品消耗的名称/ID签名错位",
+      "required_action": "保持任务所需物品和数量原值，只修正 Task 到 Backpack 的删除调用，并验证收集、送物、运货三类。",
+      "status": "INCOMPLETE",
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/task.js",
+          "locator": "lines 186-191, 445-452",
+          "original_value_summary": "按名称和数量调用 backpack.removeItem",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "zhsh",
+          "relative_path": "src/backpack.js",
+          "locator": "lines 19-31",
+          "original_value_summary": "removeItem 只按 id 查找且忽略数量参数",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        }
+      ],
+      "blocks_formal_content": true
+    },
+    {
+      "canonical_id": "backlog.task.location-drift",
+      "kind": "baseline_backlog",
+      "display_name": "核对任务 NPC 与地点漂移",
+      "required_action": "逐项核对 task5/38–39、task13/161–163 和 task15 命名漂移。",
+      "status": "INCOMPLETE",
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "config/task/task5.json",
+          "locator": "index 38–39",
+          "original_value_summary": "伦敦提交后威尼斯接取",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "zhsh",
+          "relative_path": "config/task/task13.json",
+          "locator": "index 161–163",
+          "original_value_summary": "村庄/码头和卡拉迪字段错位",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        }
+      ],
+      "blocks_formal_content": true
+    },
+    {
+      "canonical_id": "backlog.task.quantity-274",
+      "kind": "baseline_backlog",
+      "display_name": "修复 task15/274 多目标数量维度",
+      "required_action": "确认三种怪物各自数量后再修复；当前不得猜测。",
+      "status": "INCOMPLETE",
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "config/task/task15.json",
+          "locator": "index=274",
+          "original_value_summary": "三目标仅一个数量5",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "zhsh",
+          "relative_path": "src/task.js",
+          "locator": "lines 150-161",
+          "original_value_summary": "后两项 parseInt(undefined)",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        }
+      ],
+      "blocks_formal_content": true
+    },
+    {
+      "canonical_id": "incomplete.rule.gang.lifecycle",
+      "kind": "broken_entry",
+      "display_name": "帮会生命周期",
+      "required_action": "保持现有证据并继续阻塞依赖任务；不得自行补完整系统。",
+      "status": "INCOMPLETE",
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/gang.js",
+          "locator": "create/join/leave/storage/donate",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "zhsh",
+          "relative_path": "src/database.js",
+          "locator": "gang tables and methods",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        }
+      ],
+      "blocks_formal_content": true
+    },
+    {
+      "canonical_id": "incomplete.rule.map.unlock",
+      "kind": "broken_entry",
+      "display_name": "地点解锁",
+      "required_action": "保持现有证据并继续阻塞依赖任务；不得自行补完整系统。",
+      "status": "INCOMPLETE",
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "src/city.js",
+          "locator": "moveTo lines 177-182",
+          "original_value_summary": "直接切换城市，无解锁表",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "server/src/routes/map.js",
+          "locator": "place exits",
+          "original_value_summary": "仅按出口移动，数据库 seed 缺失",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        },
+        {
+          "repository": "dpcq",
+          "relative_path": "dpcq.sql",
+          "locator": "dp_map",
+          "original_value_summary": "无任务解锁字段",
+          "commit": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39"
+        }
+      ],
+      "blocks_formal_content": true
+    },
+    {
+      "canonical_id": "incomplete.rule.pet.lifecycle",
+      "kind": "broken_entry",
+      "display_name": "宠物孵化与成长",
+      "required_action": "保持现有证据并继续阻塞依赖任务；不得自行补完整系统。",
+      "status": "INCOMPLETE",
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "config/pet.json",
+          "locator": "pet systems",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "zhsh",
+          "relative_path": "src/petManager.js",
+          "locator": "hatch/feed/clean/grow/fight",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        }
+      ],
+      "blocks_formal_content": true
+    },
+    {
+      "canonical_id": "incomplete.rule.skills",
+      "kind": "configuration_without_complete_runtime",
+      "display_name": "技能",
+      "required_action": "保持现有证据并继续阻塞依赖任务；不得自行补完整系统。",
+      "status": "INCOMPLETE",
+      "sources": [
+        {
+          "repository": "zhsh",
+          "relative_path": "config/pet.json",
+          "locator": "innate_skills",
+          "original_value_summary": "宠物技能",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "zhsh",
+          "relative_path": "src/play.js",
+          "locator": "status effects",
+          "original_value_summary": "异常状态，不等于完整技能",
+          "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+        },
+        {
+          "repository": "astrbot",
+          "relative_path": "README.md",
+          "locator": "line 69",
+          "original_value_summary": "宠物技能说明",
+          "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de"
+        }
+      ],
+      "blocks_formal_content": true
+    }
+  ]
+}

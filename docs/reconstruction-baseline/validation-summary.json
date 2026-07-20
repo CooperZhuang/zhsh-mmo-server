@@ -1,0 +1,41 @@
+{
+  "validated_at": "2026-07-17T01:14:39.459Z",
+  "baseline_file": "docs/reconstruction-baseline/multisource-baseline.json",
+  "checks": {
+    "utf8_without_bom": true,
+    "native_json_parse": true,
+    "canonical_id_global_uniqueness": true,
+    "complete_source_provenance": true,
+    "task_chain_closed": true,
+    "normalized_task_field_types": true,
+    "entity_counts_match_summaries": true,
+    "conflicts_one_to_one": true
+  },
+  "record_counts": {
+    "tasks": 651,
+    "story": 20,
+    "config_summaries": 31,
+    "config_entities": 5708,
+    "systems": 26,
+    "conflicts": 32,
+    "implementation_backlog": 11
+  },
+  "entity_counts": {
+    "world_regions": 6,
+    "cities": 40,
+    "locations": 641,
+    "location_connections": 627,
+    "npc_placements": 636,
+    "items": 153,
+    "equipment": 423,
+    "monsters": 278,
+    "drops": 2732,
+    "shops": 63,
+    "city_price_ranges": 54,
+    "ships": 14,
+    "fish": 21,
+    "pets": 8,
+    "trials": 12
+  },
+  "failures": []
+}

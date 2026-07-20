@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "dungeons": [
+    {
+      "canonical_id": "runtime.dungeon.venice-adventure",
+      "display_name": "威尼斯探险",
+      "entry_city": "威尼斯",
+      "entry_location": "北城门",
+      "entry_npc": "探险官",
+      "minimum_level": 5,
+      "maximum_level": 15,
+      "party_size": 6,
+      "duration_minutes": 50,
+      "completion_rewards_enabled": false,
+      "runtime_scope": "entry_encounters_repeat_and_exit_only",
+      "stages": [
+        { "display_name": "地宫大门", "npc": "秘密看守", "kind": "entry_exit" },
+        { "display_name": "地宫前厅", "monster": "抢劫者", "monster_level": 15, "monster_type": 50, "kind": "dungeon_normal" },
+        { "display_name": "地宫守卫室", "monster": "地宫守卫者", "monster_level": 15, "monster_type": 55, "kind": "boss" }
+      ],
+      "evidence_status": "SOURCE_EXPLICIT",
+      "evidence_locators": ["zhsh/config/trial.json", "zhsh/config/fbNpc.json", "zhsh/config/fbMap.json"],
+      "compatibility_note": "The source requires a six-player party. Party orchestration and completion rewards remain blocked; this stage exposes only the evidenced entrance, internal monster groups, repeat semantics and exit."
+    },
+    {
+      "canonical_id": "runtime.dungeon.windsor-manor",
+      "display_name": "温莎庄园",
+      "entry_city": "伦敦",
+      "entry_location": "花园",
+      "entry_npc": "温莎看守",
+      "minimum_level": 20,
+      "maximum_level": 30,
+      "party_size": 8,
+      "duration_minutes": 50,
+      "completion_rewards_enabled": false,
+      "runtime_scope": "entry_encounters_repeat_and_exit_only",
+      "stages": [
+        { "display_name": "庄园门口", "npc": "温莎公爵", "kind": "entry_exit" },
+        { "display_name": "庄园巡逻区", "monster": "温莎守卫", "monster_level": 30, "monster_type": 50, "kind": "dungeon_normal" },
+        { "display_name": "伯爵寝宫", "monster": "温莎伯爵", "monster_level": 30, "monster_type": 55, "kind": "boss" }
+      ],
+      "evidence_status": "SOURCE_EXPLICIT",
+      "evidence_locators": ["zhsh/config/trial.json", "zhsh/config/fbNpc.json", "zhsh/config/fbMap.json"],
+      "compatibility_note": "The source requires an eight-player party. Party orchestration and completion rewards remain blocked; this stage exposes only the evidenced entrance, internal monster groups, repeat semantics and exit."
+    }
+  ]
+}

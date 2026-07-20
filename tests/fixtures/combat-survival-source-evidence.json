@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "record_kind": "combat-survival-source-evidence-fixture",
+  "reference_commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+  "records": [
+    {
+      "canonical_id": "zhsh.config.stamina-item",
+      "repository": "zhsh",
+      "relative_path": "config/shopItems.json",
+      "locator_type": "json_pointer",
+      "locator": "/8",
+      "expected": {
+        "canonical_id": "entity.item.8a516352a5046efd",
+        "name": "体力宝",
+        "price": 200000,
+        "type": 45,
+        "addHp": 5000,
+        "allHp": 50000
+      },
+      "random_rules": [],
+      "evidence_level": "SOURCE_EXPLICIT"
+    },
+    {
+      "canonical_id": "zhsh.play.stamina-item",
+      "repository": "zhsh",
+      "relative_path": "src/play.js",
+      "locator_type": "functions",
+      "locator": "updateStaminaBonus/useStaminaItem",
+      "file_sha256": "9481a9ac30bcb103fc46f5fb41a0e208cdd359bafc6c8b15e455a344472ce009",
+      "expected": {
+        "temporary_max_health_bonus": 5000,
+        "recovery_cap": 50000,
+        "automatic_trigger_ratio": 0.5,
+        "consumes_one_item": true
+      },
+      "random_rules": [],
+      "evidence_level": "SOURCE_EXPLICIT"
+    },
+    {
+      "canonical_id": "zhsh.monster.stamina-auto-use",
+      "repository": "zhsh",
+      "relative_path": "src/monster.js",
+      "locator_type": "function",
+      "locator": "assault",
+      "file_sha256": "f8aa145b153069953dc5b2a2ac69d94c47d37df78df6bf616a564839d24361bd",
+      "expected": {
+        "trigger_phase": "after monster attack",
+        "automatic": true,
+        "threshold_comparator": "current_health / active_max_health < 0.5"
+      },
+      "random_rules": [],
+      "evidence_level": "SOURCE_EXPLICIT"
+    },
+    {
+      "canonical_id": "zhsh.shop.stamina-item",
+      "repository": "zhsh",
+      "relative_path": "config/shops.json",
+      "locator_type": "array_item",
+      "locator": "region=地中海, city=威尼斯, item=体力宝",
+      "expected": {
+        "shop_entry_canonical_id": "entity.shop.ac4c2e8b8b6c1ac9.entry",
+        "location_canonical_id": "entity.location.49dc51be0614c062",
+        "price": 200000
+      },
+      "random_rules": [],
+      "evidence_level": "SOURCE_EXPLICIT"
+    }
+  ]
+}

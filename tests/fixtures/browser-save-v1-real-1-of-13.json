@@ -1,0 +1,328 @@
+{
+  "format": "zhsh.task1.browser-save",
+  "schema_version": 1,
+  "player_canonical_id": "player.browser.task1",
+  "revision": 9,
+  "state": {
+    "player": {
+      "canonical_id": "player.browser.task1",
+      "current_map_node_canonical_id": "derived.map_node.location.96481d67f171db13",
+      "money": 100,
+      "experience": 1000,
+      "created_at": "2026-07-17T00:00:00.000Z",
+      "updated_at": "2026-07-17T00:00:00.000Z"
+    },
+    "unlocked_map_nodes": [
+      "derived.map_node.location.679f3820dc045fd3",
+      "derived.map_node.city.2a07be2deda87dc7",
+      "derived.map_node.location.8b4df089ecc630b1",
+      "derived.map_node.location.96481d67f171db13"
+    ],
+    "tasks": {
+      "task.series.01.neg001": {
+        "status": "completed",
+        "current_step": 3,
+        "reward_status": "granted_with_source_label_records",
+        "block_reasons": []
+      },
+      "task.series.01.000": {
+        "status": "completable",
+        "current_step": 3,
+        "reward_status": "not_granted",
+        "block_reasons": []
+      },
+      "task.series.01.001": {
+        "status": "locked",
+        "current_step": 0,
+        "reward_status": "not_granted",
+        "block_reasons": []
+      },
+      "task.series.01.002": {
+        "status": "locked",
+        "current_step": 0,
+        "reward_status": "not_granted",
+        "block_reasons": []
+      },
+      "task.series.01.003": {
+        "status": "locked",
+        "current_step": 0,
+        "reward_status": "not_granted",
+        "block_reasons": []
+      },
+      "task.series.01.004": {
+        "status": "locked",
+        "current_step": 0,
+        "reward_status": "not_granted",
+        "block_reasons": []
+      },
+      "task.series.01.005": {
+        "status": "locked",
+        "current_step": 0,
+        "reward_status": "not_granted",
+        "block_reasons": []
+      },
+      "task.series.01.006": {
+        "status": "locked",
+        "current_step": 0,
+        "reward_status": "not_granted",
+        "block_reasons": []
+      },
+      "task.series.01.007": {
+        "status": "locked",
+        "current_step": 0,
+        "reward_status": "not_granted",
+        "block_reasons": []
+      },
+      "task.series.01.008": {
+        "status": "locked",
+        "current_step": 0,
+        "reward_status": "not_granted",
+        "block_reasons": []
+      },
+      "task.series.01.009": {
+        "status": "locked",
+        "current_step": 0,
+        "reward_status": "not_granted",
+        "block_reasons": []
+      },
+      "task.series.01.010": {
+        "status": "locked",
+        "current_step": 0,
+        "reward_status": "not_granted",
+        "block_reasons": []
+      },
+      "task.series.01.011": {
+        "status": "locked",
+        "current_step": 0,
+        "reward_status": "not_granted",
+        "block_reasons": []
+      }
+    },
+    "progress": {
+      "task.series.01.neg001|task.series.01.neg001.target.01": 1,
+      "task.series.01.000|task.series.01.000.target.01": 1,
+      "task.series.01.001|task.series.01.001.target.01": 0,
+      "task.series.01.002|task.series.01.002.target.01": 0,
+      "task.series.01.003|task.series.01.003.target.01": 0,
+      "task.series.01.004|task.series.01.004.target.01": 0,
+      "task.series.01.005|task.series.01.005.target.01": 0,
+      "task.series.01.006|task.series.01.006.target.01": 0,
+      "task.series.01.007|task.series.01.007.target.01": 0,
+      "task.series.01.008|task.series.01.008.target.01": 0,
+      "task.series.01.009|task.series.01.009.target.01": 0,
+      "task.series.01.010|task.series.01.010.target.01": 0,
+      "task.series.01.011|task.series.01.011.target.01": 0
+    },
+    "inventory": {},
+    "reward_grants": {
+      "task.series.01.neg001.reward.01": {
+        "task_canonical_id": "task.series.01.neg001",
+        "quantity": 1000,
+        "effect_status": "applied"
+      },
+      "task.series.01.neg001.reward.02": {
+        "task_canonical_id": "task.series.01.neg001",
+        "quantity": 100,
+        "effect_status": "applied"
+      },
+      "task.series.01.neg001.reward.03": {
+        "task_canonical_id": "task.series.01.neg001",
+        "quantity": 1,
+        "effect_status": "recorded_source_label_only"
+      }
+    },
+    "flags": {
+      "task.completed.task.series.01.neg001": true
+    },
+    "processed_events": {
+      "legacy-capture.001.accept": {
+        "event_type": "talk_to_npc",
+        "payload": {
+          "event_id": "legacy-capture.001.accept",
+          "type": "talk_to_npc",
+          "npc_canonical_id": "derived.npc_definition.910401458dfb1656",
+          "location_canonical_id": "entity.location.4a8af28f92e5aa61"
+        },
+        "result": {
+          "applied": true,
+          "action": "accepted",
+          "task_canonical_id": "task.series.01.neg001",
+          "dialogue_canonical_ids": [
+            "task.series.01.neg001.dialogue.receive.01",
+            "task.series.01.neg001.dialogue.receive.02"
+          ],
+          "generated_task_items": []
+        },
+        "processed_at": "2026-07-17T00:00:00.000Z"
+      },
+      "legacy-capture.002.move": {
+        "event_type": "arrive_at_location",
+        "payload": {
+          "event_id": "legacy-capture.002.move",
+          "type": "arrive_at_location",
+          "destination_canonical_id": "derived.map_node.city.2a07be2deda87dc7"
+        },
+        "result": {
+          "applied": false,
+          "action": "arrived",
+          "location_canonical_id": null,
+          "changes": [],
+          "movement_connection_canonical_id": "entity.location_connection.33ebf6d6bb9ad6da",
+          "current_map_node_canonical_id": "derived.map_node.city.2a07be2deda87dc7"
+        },
+        "processed_at": "2026-07-17T00:00:00.000Z"
+      },
+      "legacy-capture.003.move": {
+        "event_type": "arrive_at_location",
+        "payload": {
+          "event_id": "legacy-capture.003.move",
+          "type": "arrive_at_location",
+          "destination_canonical_id": "derived.map_node.location.8b4df089ecc630b1"
+        },
+        "result": {
+          "applied": false,
+          "action": "arrived",
+          "location_canonical_id": "entity.location.a638e4fc01486755",
+          "changes": [],
+          "movement_connection_canonical_id": "entity.location_connection.ed49a08421bfad25",
+          "current_map_node_canonical_id": "derived.map_node.location.8b4df089ecc630b1"
+        },
+        "processed_at": "2026-07-17T00:00:00.000Z"
+      },
+      "legacy-capture.004.target": {
+        "event_type": "talk_to_npc",
+        "payload": {
+          "event_id": "legacy-capture.004.target",
+          "type": "talk_to_npc",
+          "npc_canonical_id": "derived.npc_definition.e4605e4a14ee8b35",
+          "location_canonical_id": "entity.location.a638e4fc01486755"
+        },
+        "result": {
+          "applied": true,
+          "event_type": "talk_to_npc",
+          "task_canonical_id": "task.series.01.neg001",
+          "target_canonical_id": "task.series.01.neg001.target.01",
+          "before": 0,
+          "after": 1,
+          "required": 1,
+          "status": "completable"
+        },
+        "processed_at": "2026-07-17T00:00:00.000Z"
+      },
+      "legacy-capture.005.submit": {
+        "event_type": "submit_to_npc",
+        "payload": {
+          "event_id": "legacy-capture.005.submit",
+          "type": "submit_to_npc",
+          "npc_canonical_id": "derived.npc_definition.e4605e4a14ee8b35",
+          "location_canonical_id": "entity.location.a638e4fc01486755"
+        },
+        "result": {
+          "applied": true,
+          "action": "completed",
+          "task_canonical_id": "task.series.01.neg001",
+          "unlocked_task_canonical_ids": [
+            "task.series.01.000"
+          ],
+          "dialogue_canonical_ids": [
+            "task.series.01.neg001.dialogue.submit.01",
+            "task.series.01.neg001.dialogue.submit.02",
+            "task.series.01.neg001.dialogue.submit.03",
+            "task.series.01.neg001.dialogue.submit.04"
+          ],
+          "reward_status": "granted_with_source_label_records",
+          "progression": {
+            "before": 1,
+            "after": 1,
+            "levels_gained": 0
+          },
+          "level_unlocked_task_canonical_ids": [
+            "task.series.01.000"
+          ]
+        },
+        "processed_at": "2026-07-17T00:00:00.000Z"
+      },
+      "legacy-capture.006.accept": {
+        "event_type": "talk_to_npc",
+        "payload": {
+          "event_id": "legacy-capture.006.accept",
+          "type": "talk_to_npc",
+          "npc_canonical_id": "derived.npc_definition.e4605e4a14ee8b35",
+          "location_canonical_id": "entity.location.a638e4fc01486755"
+        },
+        "result": {
+          "applied": true,
+          "action": "accepted",
+          "task_canonical_id": "task.series.01.000",
+          "dialogue_canonical_ids": [
+            "task.series.01.000.dialogue.receive.01",
+            "task.series.01.000.dialogue.receive.02"
+          ],
+          "generated_task_items": []
+        },
+        "processed_at": "2026-07-17T00:00:00.000Z"
+      },
+      "legacy-capture.007.move": {
+        "event_type": "arrive_at_location",
+        "payload": {
+          "event_id": "legacy-capture.007.move",
+          "type": "arrive_at_location",
+          "destination_canonical_id": "derived.map_node.city.2a07be2deda87dc7"
+        },
+        "result": {
+          "applied": false,
+          "action": "arrived",
+          "location_canonical_id": null,
+          "changes": [],
+          "movement_connection_canonical_id": "entity.location_connection.ed49a08421bfad25",
+          "current_map_node_canonical_id": "derived.map_node.city.2a07be2deda87dc7"
+        },
+        "processed_at": "2026-07-17T00:00:00.000Z"
+      },
+      "legacy-capture.008.move": {
+        "event_type": "arrive_at_location",
+        "payload": {
+          "event_id": "legacy-capture.008.move",
+          "type": "arrive_at_location",
+          "destination_canonical_id": "derived.map_node.location.96481d67f171db13"
+        },
+        "result": {
+          "applied": false,
+          "action": "arrived",
+          "location_canonical_id": "entity.location.401bc85e468d5c64",
+          "changes": [],
+          "movement_connection_canonical_id": "entity.location_connection.9f43c56f8076f9c9",
+          "current_map_node_canonical_id": "derived.map_node.location.96481d67f171db13"
+        },
+        "processed_at": "2026-07-17T00:00:00.000Z"
+      },
+      "legacy-capture.009.target": {
+        "event_type": "talk_to_npc",
+        "payload": {
+          "event_id": "legacy-capture.009.target",
+          "type": "talk_to_npc",
+          "npc_canonical_id": "derived.npc_definition.610b399ed8ff14c4",
+          "location_canonical_id": "entity.location.401bc85e468d5c64"
+        },
+        "result": {
+          "applied": true,
+          "event_type": "talk_to_npc",
+          "task_canonical_id": "task.series.01.000",
+          "target_canonical_id": "task.series.01.000.target.01",
+          "before": 0,
+          "after": 1,
+          "required": 1,
+          "status": "completable"
+        },
+        "processed_at": "2026-07-17T00:00:00.000Z"
+      }
+    }
+  },
+  "checksum": "fnv1a32:1ff63a8f",
+  "fixture_provenance": {
+    "source_commit": "502abf70b1867fe33e02333553a7c8def9e35b20",
+    "source_schema_version": 1,
+    "capture_method": "formal location_connections and NPC operations only",
+    "documented_state": "docs/development/browser-uat-issues.md:19"
+  }
+}

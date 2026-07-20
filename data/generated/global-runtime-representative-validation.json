@@ -1,0 +1,394 @@
+{
+  "schema_version": 1,
+  "record_kind": "global-runtime-representative-validation",
+  "stage_start_head": "2cbae183aa369fe0ac60176f3a1396914d786440",
+  "source_head": "3efdc763cf464067601ef228f4cec9478f1fbc8f",
+  "generated_from_head": "3efdc763cf464067601ef228f4cec9478f1fbc8f",
+  "reference_commits": {
+    "zhsh": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+    "astrbot": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de",
+    "dpcq": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39",
+    "zonghengsihai": "0b8996e8e5b7293321f9827994324d13e3c2509c"
+  },
+  "generator_version": "global-runtime-representative-validation/1.0.0",
+  "generated_at": "2026-07-18T00:00:00.000Z",
+  "source_content_sha256": "172c6a9e505587eb8e06580fcaf3f311a9b9155430a95043bd6ed99edf74eb78",
+  "selection_hash": "c7fd5c1d1d9b974015a893c8f2ac354ef997c21e08c9245826953cdabaa932c0",
+  "validation_strategy": "Representative semantic/runtime-content checks by executor family; no attempt to autoplay all pending tasks.",
+  "groups": [
+    {
+      "group_id": "dialogue_and_errand",
+      "scope": "普通对话、跨地点跑腿与长链中的对话节点",
+      "sample_task_canonical_ids": [
+        "task.series.01.neg001",
+        "task.series.15.455",
+        "task.series.15.464"
+      ],
+      "checks": [
+        {
+          "task_canonical_id": "task.series.01.neg001",
+          "directory_status": "validated",
+          "target_kinds": [
+            "npc"
+          ],
+          "result": "passed"
+        },
+        {
+          "task_canonical_id": "task.series.15.455",
+          "directory_status": "validated",
+          "target_kinds": [
+            "npc"
+          ],
+          "result": "passed"
+        },
+        {
+          "task_canonical_id": "task.series.15.464",
+          "directory_status": "validated",
+          "target_kinds": [
+            "npc"
+          ],
+          "result": "passed"
+        }
+      ],
+      "result": "passed"
+    },
+    {
+      "group_id": "purchase_and_delivery",
+      "scope": "正式商店来源、前序奖励交付与接取时任务物品交付",
+      "sample_task_canonical_ids": [
+        "task.series.01.007",
+        "task.series.15.457",
+        "task.series.15.463"
+      ],
+      "checks": [
+        {
+          "task_canonical_id": "task.series.01.007",
+          "directory_status": "validated",
+          "target_kinds": [
+            "item"
+          ],
+          "result": "passed"
+        },
+        {
+          "task_canonical_id": "task.series.15.457",
+          "directory_status": "validated",
+          "target_kinds": [
+            "item"
+          ],
+          "result": "passed"
+        },
+        {
+          "task_canonical_id": "task.series.15.463",
+          "directory_status": "validated",
+          "target_kinds": [
+            "item"
+          ],
+          "result": "passed"
+        }
+      ],
+      "result": "passed"
+    },
+    {
+      "group_id": "ordinary_monster_combat",
+      "scope": "低等级普通怪、多目标同区战斗与高等级边界战斗",
+      "sample_task_canonical_ids": [
+        "task.series.01.001",
+        "task.series.15.415",
+        "task.series.15.542"
+      ],
+      "checks": [
+        {
+          "task_canonical_id": "task.series.01.001",
+          "directory_status": "validated",
+          "target_kinds": [
+            "monster"
+          ],
+          "result": "passed"
+        },
+        {
+          "task_canonical_id": "task.series.15.415",
+          "directory_status": "runnable_pending_validation",
+          "target_kinds": [
+            "monster"
+          ],
+          "result": "passed"
+        },
+        {
+          "task_canonical_id": "task.series.15.542",
+          "directory_status": "runnable_pending_validation",
+          "target_kinds": [
+            "monster"
+          ],
+          "result": "passed"
+        }
+      ],
+      "result": "passed"
+    },
+    {
+      "group_id": "elite_boss_and_task_exclusive",
+      "scope": "剧情敌人、妖龙与末段首领；均使用任务专属遭遇而非普通刷怪",
+      "sample_task_canonical_ids": [
+        "task.series.13.142",
+        "task.series.15.470",
+        "task.series.15.738"
+      ],
+      "checks": [
+        {
+          "task_canonical_id": "task.series.13.142",
+          "directory_status": "runnable_pending_validation",
+          "target_kinds": [
+            "monster"
+          ],
+          "result": "passed"
+        },
+        {
+          "task_canonical_id": "task.series.15.470",
+          "directory_status": "validated",
+          "target_kinds": [
+            "monster"
+          ],
+          "result": "passed"
+        },
+        {
+          "task_canonical_id": "task.series.15.738",
+          "directory_status": "runnable_pending_validation",
+          "target_kinds": [
+            "monster"
+          ],
+          "result": "passed"
+        }
+      ],
+      "result": "passed"
+    },
+    {
+      "group_id": "specified_drop_and_collection",
+      "scope": "任务文字与monsterItems共同确定的锤子、破界符、千年黑珍珠",
+      "sample_task_canonical_ids": [
+        "task.series.15.264",
+        "task.series.15.583",
+        "task.series.15.728"
+      ],
+      "checks": [
+        {
+          "task_canonical_id": "task.series.15.264",
+          "directory_status": "runnable_pending_validation",
+          "target_kinds": [
+            "item"
+          ],
+          "result": "passed"
+        },
+        {
+          "task_canonical_id": "task.series.15.583",
+          "directory_status": "runnable_pending_validation",
+          "target_kinds": [
+            "item"
+          ],
+          "result": "passed"
+        },
+        {
+          "task_canonical_id": "task.series.15.728",
+          "directory_status": "runnable_pending_validation",
+          "target_kinds": [
+            "item"
+          ],
+          "result": "passed"
+        }
+      ],
+      "result": "passed"
+    },
+    {
+      "group_id": "level_experience_and_progression",
+      "scope": "低、中、高等级任务门槛与经验奖励；同时核对统一等级规则已导出",
+      "sample_task_canonical_ids": [
+        "task.series.01.001",
+        "task.series.15.542",
+        "task.series.15.738"
+      ],
+      "checks": [
+        {
+          "task_canonical_id": "task.series.01.001",
+          "directory_status": "validated",
+          "target_kinds": [
+            "monster"
+          ],
+          "result": "passed"
+        },
+        {
+          "task_canonical_id": "task.series.15.542",
+          "directory_status": "runnable_pending_validation",
+          "target_kinds": [
+            "monster"
+          ],
+          "result": "passed"
+        },
+        {
+          "task_canonical_id": "task.series.15.738",
+          "directory_status": "runnable_pending_validation",
+          "target_kinds": [
+            "monster"
+          ],
+          "result": "passed"
+        }
+      ],
+      "result": "passed"
+    },
+    {
+      "group_id": "money_inventory_and_equipment",
+      "scope": "购买支出、任务链库存保留、提交消耗及后续奖励继承",
+      "sample_task_canonical_ids": [
+        "task.series.01.007",
+        "task.series.15.457",
+        "task.series.15.472"
+      ],
+      "checks": [
+        {
+          "task_canonical_id": "task.series.01.007",
+          "directory_status": "validated",
+          "target_kinds": [
+            "item"
+          ],
+          "result": "passed"
+        },
+        {
+          "task_canonical_id": "task.series.15.457",
+          "directory_status": "validated",
+          "target_kinds": [
+            "item"
+          ],
+          "result": "passed"
+        },
+        {
+          "task_canonical_id": "task.series.15.472",
+          "directory_status": "validated",
+          "target_kinds": [
+            "item"
+          ],
+          "result": "passed"
+        }
+      ],
+      "result": "passed"
+    },
+    {
+      "group_id": "maritime_route_and_special_scene",
+      "scope": "钓鱼/航海公共能力、跨港运货与深海任务局部遭遇",
+      "sample_task_canonical_ids": [
+        "task.series.05.032",
+        "task.series.13.101",
+        "task.series.15.728"
+      ],
+      "checks": [
+        {
+          "task_canonical_id": "task.series.05.032",
+          "directory_status": "validated",
+          "target_kinds": [
+            "item"
+          ],
+          "result": "passed"
+        },
+        {
+          "task_canonical_id": "task.series.13.101",
+          "directory_status": "validated",
+          "target_kinds": [
+            "item"
+          ],
+          "result": "passed"
+        },
+        {
+          "task_canonical_id": "task.series.15.728",
+          "directory_status": "runnable_pending_validation",
+          "target_kinds": [
+            "item"
+          ],
+          "result": "passed"
+        }
+      ],
+      "result": "passed"
+    },
+    {
+      "group_id": "npc_duel",
+      "scope": "普通NPC切磋：任务进度结算、无普通怪掉落、失败可重试",
+      "sample_task_canonical_ids": [
+        "task.series.15.698"
+      ],
+      "checks": [
+        {
+          "task_canonical_id": "task.series.15.698",
+          "directory_status": "validated",
+          "target_kinds": [
+            "npc_duel"
+          ],
+          "result": "passed"
+        }
+      ],
+      "result": "passed"
+    }
+  ],
+  "long_chain": {
+    "task_count": 18,
+    "start": "task.series.15.455",
+    "end": "task.series.15.472",
+    "contains_previous_dialogue_reward_chain": true,
+    "contains_acceptance_item": true,
+    "contains_task_exclusive_boss": true,
+    "contains_two_step_item_ledger": true,
+    "result": "passed"
+  },
+  "coverage_summary": {
+    "validated_group_count": 9,
+    "representative_task_count": 19,
+    "long_chain_task_count": 18,
+    "task_type_counts": {
+      "打怪": 142,
+      "对话": 372,
+      "收集": 62,
+      "送物品": 62,
+      "运货": 11
+    },
+    "target_kind_counts": {
+      "item": 143,
+      "monster": 148,
+      "npc": 373,
+      "npc_duel": 1
+    },
+    "runtime_runnable_task_count": 649
+  },
+  "common_issues_detected_and_addressed": [
+    {
+      "issue": "连续任务奖励物品未进入后续真实库存",
+      "fix": "TaskItemLedger统一奖励入账、保留、预留、提交消耗与幂等回滚",
+      "direct_tasks": [
+        "task.series.15.456",
+        "task.series.15.457",
+        "task.series.15.470",
+        "task.series.15.471",
+        "task.series.15.472"
+      ]
+    },
+    {
+      "issue": "普通NPC被错误要求走怪物战斗/掉落接口",
+      "fix": "NpcDuelRuntime任务进度专用结算",
+      "direct_tasks": [
+        "task.series.15.698"
+      ]
+    },
+    {
+      "issue": "任务文字掉落与正式掉落表未被全局模型联结",
+      "fix": "证据审计生成透明任务局部覆盖，不改参考仓库与全局怪物配置",
+      "direct_tasks": [
+        "task.series.15.264",
+        "task.series.15.415",
+        "task.series.15.583",
+        "task.series.15.728"
+      ]
+    },
+    {
+      "issue": "接取对白明确给物品但结构化物品定义缺失",
+      "fix": "任务接取专用实体由账本管理",
+      "direct_tasks": [
+        "task.series.15.463"
+      ]
+    }
+  ],
+  "result": "passed",
+  "validation_sha256": "72887d985e10fcf381ea79201a27e940f8fdcc3962d83df8a55e8ac66c617c4e"
+}

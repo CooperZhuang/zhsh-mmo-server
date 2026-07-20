@@ -1,0 +1,178 @@
+{
+  "schema_version": 1,
+  "rule_set_id": "zhsh.task-golden-rules.v1",
+  "baseline": {
+    "validated_task_count": 78,
+    "development_sample_task_count": 117,
+    "total_task_count": 651,
+    "principle": "global_model_before_local_exception"
+  },
+  "repository_roles": {
+    "zhsh": {
+      "role": "primary_content_and_behavior_evidence",
+      "priority": 1
+    },
+    "astrbot": {
+      "role": "corroboration_and_alternative_implementation_evidence",
+      "priority": 2
+    },
+    "dpcq": {
+      "role": "auxiliary_mod_and_supplementary_evidence",
+      "priority": 3
+    },
+    "zonghengsihai": {
+      "role": "static_shell_and_non_game_reference",
+      "priority": 4
+    }
+  },
+  "rules": [
+    {
+      "id": "structure.series-order",
+      "domain": "task_structure",
+      "predicate": "task belongs to a source series and has source array position",
+      "action": "canonical order is task_series.source_series then task.sequence_position; adjacent source array entries define default predecessor/successor",
+      "confidence": "high"
+    },
+    {
+      "id": "structure.lifecycle",
+      "domain": "task_structure",
+      "predicate": "task is accepted, progressed and submitted",
+      "action": "publish -> accept -> in_progress -> completable -> submit -> completed; only submit grants rewards and consumes required deliverables",
+      "confidence": "high"
+    },
+    {
+      "id": "structure.contextual-npc",
+      "domain": "task_structure",
+      "predicate": "issuer, target or completion NPC is missing or globally ambiguous but raw NPC name and task location are explicit",
+      "action": "first resolve by exact name plus exact location; otherwise create a stable task-context NPC identity keyed by name and location without changing source text",
+      "confidence": "high"
+    },
+    {
+      "id": "structure.location-context",
+      "domain": "task_structure",
+      "predicate": "NPC placement is absent from static placement tables but task receive/submit/target location is explicit",
+      "action": "create contextual placement scoped to task lifecycle instead of rejecting the task",
+      "confidence": "high"
+    },
+    {
+      "id": "structure.target-executors",
+      "domain": "task_structure",
+      "predicate": "target kinds are npc, monster, item or location",
+      "action": "map to talk, combat, acquire/deliver or movement executor; mixed targets compose executors in source order",
+      "confidence": "high"
+    },
+    {
+      "id": "structure.target-kind-normalization",
+      "domain": "task_structure",
+      "predicate": "imported target kind is monster but the raw target name is an item, the task text uses an acquisition verb, and one placed encounter is uniquely named as its source",
+      "action": "preserve the raw record, normalize only the runtime target to item acquisition, and attach the source encounter plus reversible derivation metadata",
+      "confidence": "high"
+    },
+    {
+      "id": "structure.route-waypoint-destination",
+      "domain": "task_structure",
+      "predicate": "a task destination is a source-explicit sailing route encounter rather than a normal city port",
+      "action": "treat the encounter location and map node as a formal intermediate voyage destination; entering it preserves the active voyage for later resumption",
+      "confidence": "high"
+    },
+    {
+      "id": "state.reward-carry",
+      "domain": "state_inheritance",
+      "predicate": "a task completes successfully",
+      "action": "money, experience, items, equipment and story flags enter persistent player state before the successor task is evaluated",
+      "confidence": "high"
+    },
+    {
+      "id": "state.entry-projection",
+      "domain": "state_inheritance",
+      "predicate": "a later task is evaluated",
+      "action": "use projected task-entry level, experience, money, inventory, equipment, health and stamina after all prerequisite rewards and permitted preparation",
+      "confidence": "high"
+    },
+    {
+      "id": "state.player-preparation",
+      "domain": "state_inheritance",
+      "predicate": "level, money, health, stamina or equipment is insufficient at immediate task entry",
+      "action": "classify as player preparation when repeatable training, recovery, shops, drops or selling can close the gap; do not treat simulator non-completion as game impossibility",
+      "confidence": "high"
+    },
+    {
+      "id": "combat.encounter-match",
+      "domain": "combat_equipment_items",
+      "predicate": "task names a monster or boss and a matching encounter exists at the target location",
+      "action": "bind normal, elite, leader and boss identity by canonical monster plus location; do not substitute by level alone",
+      "confidence": "high"
+    },
+    {
+      "id": "combat.task-described-drop",
+      "domain": "combat_equipment_items",
+      "predicate": "task text explicitly says an encounter yields a required item but no standalone drop definition exists",
+      "action": "create a task-scoped item and deterministic task drop relation from the uniquely named encounter; preserve unresolved probability as compatibility adjudication",
+      "confidence": "high"
+    },
+    {
+      "id": "combat.equipment-acquisition",
+      "domain": "combat_equipment_items",
+      "predicate": "combat requires stronger equipment",
+      "action": "use source-backed shop, drop and prior reward acquisition; permit buy, replace and sell within source restrictions; reject circular acquisition plans",
+      "confidence": "high"
+    },
+    {
+      "id": "combat.continuous-state",
+      "domain": "combat_equipment_items",
+      "predicate": "multiple fights or tasks occur consecutively",
+      "action": "carry health, stamina, consumables, money, inventory and equipment through settlement; allow source-backed recovery and repeatable training between tasks",
+      "confidence": "high"
+    },
+    {
+      "id": "evidence.multi-source-agreement",
+      "domain": "evidence",
+      "predicate": "two or more fixed repositories agree on a field or behavior",
+      "action": "adopt automatically with high confidence and retain all source pointers",
+      "confidence": "high"
+    },
+    {
+      "id": "evidence.field-complement",
+      "domain": "evidence",
+      "predicate": "repositories provide non-conflicting complementary fields",
+      "action": "merge field-wise and record provenance per field",
+      "confidence": "high"
+    },
+    {
+      "id": "evidence.alias-normalization",
+      "domain": "evidence",
+      "predicate": "names differ only by known city, NPC, monster, item or identifier aliases",
+      "action": "normalize to canonical identity while retaining raw source labels",
+      "confidence": "high"
+    },
+    {
+      "id": "evidence.conflict-priority",
+      "domain": "evidence",
+      "predicate": "sources materially conflict",
+      "action": "prefer explicit primary-source task data, then multi-source agreement, exact contextual resolution, adjacent-chain consistency, auxiliary evidence and finally minimal compatibility inference; unresolved substantive conflicts remain registered",
+      "confidence": "high"
+    },
+    {
+      "id": "evidence.minimal-inference",
+      "domain": "evidence",
+      "predicate": "a small field is absent but exact task text, adjacent tasks and entity placement imply one unique value",
+      "action": "apply the smallest reversible runtime overlay, record derivation and confidence, and do not rewrite source records",
+      "confidence": "medium"
+    },
+    {
+      "id": "catalog.existence-separation",
+      "domain": "catalog",
+      "predicate": "task is structurally imported",
+      "action": "all 651 tasks exist in the unified directory; validation and blocker status are metadata, not import gates",
+      "confidence": "high"
+    }
+  ],
+  "allowed_directory_statuses": [
+    "validated",
+    "runnable_pending_validation",
+    "blocked_by_shared_system",
+    "data_conflict",
+    "evidence_missing",
+    "special_case_pending"
+  ]
+}

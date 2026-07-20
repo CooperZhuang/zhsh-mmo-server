@@ -1,0 +1,11 @@
+{
+  "source_head": "a97c8afb7dee109dc7a34c983bb987a84ab20faa",
+  "completed_task_count": 25,
+  "task_canonical_ids": [
+    "task.series.01.neg001", "task.series.01.000", "task.series.01.001", "task.series.01.002", "task.series.01.003",
+    "task.series.01.004", "task.series.01.005", "task.series.01.006", "task.series.01.007", "task.series.01.008",
+    "task.series.01.009", "task.series.01.010", "task.series.01.011", "task.series.03.013", "task.series.04.014",
+    "task.series.04.015", "task.series.04.016", "task.series.04.017", "task.series.05.021", "task.series.05.022",
+    "task.series.06.040", "task.series.08.044", "task.series.08.045", "task.series.08.046", "task.series.10.050"
+  ]
+}

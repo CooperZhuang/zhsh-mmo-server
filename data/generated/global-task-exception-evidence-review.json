@@ -1,0 +1,756 @@
+{
+  "schema_version": 1,
+  "record_kind": "global-task-exception-evidence-review",
+  "stage_start_head": "2cbae183aa369fe0ac60176f3a1396914d786440",
+  "source_head": "cccb0bff26be330ad057ff9390fa64f6d895b86b",
+  "generated_from_head": "cccb0bff26be330ad057ff9390fa64f6d895b86b",
+  "reference_commits": {
+    "zhsh": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+    "astrbot": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de",
+    "dpcq": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39",
+    "zonghengsihai": "0b8996e8e5b7293321f9827994324d13e3c2509c"
+  },
+  "generator_version": "global-task-exception-audit/1.0.0",
+  "generated_at": "2026-07-18T00:00:00.000Z",
+  "reference_repositories": [
+    {
+      "repository": "zhsh",
+      "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+      "read_only_verified": true
+    },
+    {
+      "repository": "astrbot",
+      "commit": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de",
+      "read_only_verified": true
+    },
+    {
+      "repository": "dpcq",
+      "commit": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39",
+      "read_only_verified": true
+    },
+    {
+      "repository": "zonghengsihai",
+      "commit": "0b8996e8e5b7293321f9827994324d13e3c2509c",
+      "read_only_verified": true
+    }
+  ],
+  "evidence_policy": "Exact task text, adjacent task chain, formal entity definitions, monster placements and monsterItems drops are compared. Task-local overlays are allowed only when they preserve source data and avoid global mutation.",
+  "reviewed_task_count": 8,
+  "resolved_task_count": 6,
+  "remaining_hold_count": 2,
+  "status_counts": {
+    "data_conflict": 2,
+    "runnable_pending_validation": 6
+  },
+  "reviews": [
+    {
+      "task_canonical_id": "task.series.15.264",
+      "display_name": "聚宝盆53",
+      "original_status": "runnable_pending_validation",
+      "resulting_status": "runnable_pending_validation",
+      "decision": "resolved_with_minimal_runtime_overlay",
+      "conclusion": "任务文字、monsterItems掉落表与同城唯一沼泽鼠定义相互吻合；任务字段“沼泽地”与正式怪物位置“沼泽”属于同城地点迁移/别名误挂。采用任务局部最小修正：目标改到威尼斯沼泽，不改全局地点或怪物。",
+      "evidence": [
+        {
+          "kind": "task_source",
+          "task_canonical_id": "task.series.15.264",
+          "repository": "zhsh",
+          "path": "config/task/task15.json",
+          "locator": "array_position=84; index=264",
+          "objective_text": "去沼泽地打沼泽鼠找回锤子回威尼斯铁匠铺找丹林斯。走法：从西城门一直向北走到甘风峡谷，然后再向西走就可以到沼泽地。",
+          "receive_dialogue": [
+            "丹林斯：我的锤子被沼泽鼠偷走了，你去帮我找回来。",
+            "你：老鼠也学人偷东西？看我怎么收拾它们！"
+          ],
+          "repositories": [
+            "zhsh"
+          ]
+        },
+        {
+          "kind": "monster_drop",
+          "canonical_id": "entity.drop.a862a1029469c696",
+          "monster": "沼泽鼠",
+          "item": "锤子",
+          "sources": [
+            {
+              "repository": "zhsh",
+              "relative_path": "config/monsterItems.json",
+              "locator": "JSON Pointer /沼泽鼠/0",
+              "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+            }
+          ],
+          "repositories": [
+            "zhsh"
+          ]
+        },
+        {
+          "kind": "monster_definition",
+          "canonical_id": "derived.monster_definition.1e234cbd770ce19f",
+          "source_canonical_id": "entity.monster.18f4a218dfedb113",
+          "name": "沼泽鼠",
+          "level": 68,
+          "city": "威尼斯",
+          "location": "沼泽",
+          "repositories": [
+            "zhsh"
+          ]
+        },
+        {
+          "kind": "location_definition",
+          "canonical_id": "entity.location.cfbacab4f4db489a",
+          "city": "威尼斯",
+          "name": "沼泽",
+          "sources": [
+            {
+              "repository": "zhsh",
+              "relative_path": "config/insideMapFlat.json",
+              "locator": "JSON Pointer /威尼斯-沼泽",
+              "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+            }
+          ],
+          "repositories": [
+            "zhsh"
+          ]
+        }
+      ],
+      "repositories_with_direct_evidence": [
+        "zhsh"
+      ],
+      "unresolved_issues": [],
+      "runtime_resolutions": {
+        "item_targets": [
+          {
+            "target_canonical_id": "task.series.15.264.target.01",
+            "runtime_entity_canonical_id": "runtime.task_chain.item.d753d54fa91fa2ae",
+            "target_kind_override": "item",
+            "original_target_kind": "item",
+            "resolution_rule": "task_drop_with_same_city_location_correction",
+            "target_location_canonical_id": "entity.location.cfbacab4f4db489a",
+            "task_item_policy": {
+              "acquisition_mode": "monster_drop",
+              "reservation": "required_until_submit",
+              "abandonment": "retain_obtained_item",
+              "consumption": "submit_only"
+            },
+            "formal_source": {
+              "canonical_id": "entity.drop.a862a1029469c696",
+              "source_canonical_id": "config/monsterItems.json",
+              "source_kind": "monster_drop",
+              "item_name": "锤子",
+              "monster_name": "沼泽鼠",
+              "monster_canonical_id": "derived.monster_definition.1e234cbd770ce19f",
+              "location_canonical_id": "entity.location.cfbacab4f4db489a",
+              "probability": null,
+              "quantity": null,
+              "task_scoped_placement": false,
+              "evidence_status": "SOURCE_EXPLICIT_AND_TASK_CONTEXT",
+              "evidence_locator": "config/monsterItems.json JSON Pointer /沼泽鼠/0; config/task/task15.json array_position=84; index=264"
+            }
+          }
+        ],
+        "target_entities": [],
+        "reward_resolutions": [],
+        "task_location_override": "entity.location.cfbacab4f4db489a"
+      }
+    },
+    {
+      "task_canonical_id": "task.series.15.269",
+      "display_name": "聚宝盆60",
+      "original_status": "data_conflict",
+      "resulting_status": "data_conflict",
+      "decision": "retain_evidence_hold",
+      "conclusion": "“巨熊→熊皮”掉落关系存在，但唯一巨熊位于长安凤凰山（Lv111），任务要求威尼斯枯树林，且该处只有魅精。跨城市、跨等级段冲突无法由别名解释；保留data_conflict，不生成威尼斯巨熊。",
+      "evidence": [
+        {
+          "kind": "task_source",
+          "task_canonical_id": "task.series.15.269",
+          "repository": "zhsh",
+          "path": "config/task/task15.json",
+          "locator": "array_position=89; index=269",
+          "objective_text": "去沼泽矿山古村落后山西边的枯树林杀死巨熊得5块熊皮交给杰尼。",
+          "receive_dialogue": [
+            "杰尼：我需要五块熊皮，你去枯树林猎杀一些巨熊。",
+            "你：熊皮？这可比水晶矿危险多了！"
+          ],
+          "repositories": [
+            "zhsh"
+          ]
+        },
+        {
+          "kind": "monster_drop",
+          "canonical_id": "entity.drop.d9c1cc53c90f8012",
+          "monster": "巨熊",
+          "item": "熊皮",
+          "sources": [
+            {
+              "repository": "zhsh",
+              "relative_path": "config/monsterItems.json",
+              "locator": "JSON Pointer /巨熊/0",
+              "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+            }
+          ],
+          "repositories": [
+            "zhsh"
+          ]
+        },
+        {
+          "kind": "monster_definition",
+          "canonical_id": "derived.monster_definition.9cdb92b5619a712d",
+          "source_canonical_id": "entity.monster.d1d3a36e79e07c75",
+          "name": "巨熊",
+          "level": 111,
+          "city": "长安",
+          "location": "凤凰山",
+          "repositories": [
+            "zhsh"
+          ]
+        }
+      ],
+      "repositories_with_direct_evidence": [
+        "zhsh"
+      ],
+      "unresolved_issues": [
+        "monster_location_city_conflict",
+        "level_band_conflict"
+      ],
+      "runtime_resolutions": {
+        "item_targets": [],
+        "target_entities": [],
+        "reward_resolutions": [],
+        "task_location_override": null
+      }
+    },
+    {
+      "task_canonical_id": "task.series.15.415",
+      "display_name": "妖气长安16",
+      "original_status": "runnable_pending_validation",
+      "resulting_status": "runnable_pending_validation",
+      "decision": "resolved_with_minimal_runtime_overlay",
+      "conclusion": "原模型把“僵尸”误推导为物品，与明确的“消灭8只僵尸和8只山地虎”文字矛盾。三只同名僵尸中，威尼斯矿洞Lv113僵尸与矿山Lv113山地虎同城、同等级且同属北城门矿区，证据唯一最强。采用任务局部矿山遭遇，不改全局僵尸位置。",
+      "evidence": [
+        {
+          "kind": "task_source",
+          "task_canonical_id": "task.series.15.415",
+          "repository": "zhsh",
+          "path": "config/task/task15.json",
+          "locator": "array_position=148; index=415",
+          "objective_text": "到威尼斯北城门外最北边的矿山消灭8只僵尸和8只山地虎，然后回威尼斯铁匠铺找丹林斯任务要求：杀僵尸8个，山地虎8个",
+          "receive_dialogue": [
+            "丹林斯：我这里确实有你需要的材料，不过北城门外的矿山被僵尸和山地虎占领了，你去清理一下吧。",
+            "你：没问题，为了材料，这些小怪不在话下。"
+          ],
+          "repositories": [
+            "zhsh"
+          ]
+        },
+        {
+          "kind": "monster_definition",
+          "canonical_id": "derived.monster_definition.b6c33ddc0a318a25",
+          "source_canonical_id": "entity.monster.b17ce8951e6153ad",
+          "name": "僵尸",
+          "level": 113,
+          "city": "威尼斯",
+          "location": "矿洞",
+          "repositories": [
+            "zhsh"
+          ]
+        },
+        {
+          "kind": "location_definition",
+          "canonical_id": "entity.location.6b994d2ecbcc7076",
+          "city": "威尼斯",
+          "name": "矿山",
+          "sources": [
+            {
+              "repository": "zhsh",
+              "relative_path": "config/insideMapFlat.json",
+              "locator": "JSON Pointer /威尼斯-矿山",
+              "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+            }
+          ],
+          "repositories": [
+            "zhsh"
+          ]
+        },
+        {
+          "kind": "monster_definition",
+          "canonical_id": "derived.monster_definition.faf1f5f9ac63a777",
+          "source_canonical_id": "entity.monster.2749cdb8fa632ce0",
+          "name": "山地虎",
+          "level": 113,
+          "city": "威尼斯",
+          "location": "矿山",
+          "repositories": [
+            "zhsh"
+          ]
+        }
+      ],
+      "repositories_with_direct_evidence": [
+        "zhsh"
+      ],
+      "unresolved_issues": [],
+      "runtime_resolutions": {
+        "item_targets": [],
+        "target_entities": [
+          {
+            "target_canonical_id": "task.series.15.415.target.01",
+            "runtime_entity_canonical_id": "derived.monster_definition.b6c33ddc0a318a25",
+            "target_kind_override": "monster",
+            "original_target_kind": "monster",
+            "resolution_rule": "same_city_same_level_adjacent_mine_complex",
+            "target_location_canonical_id": "entity.location.6b994d2ecbcc7076",
+            "formal_source": {
+              "canonical_id": "entity.monster.b17ce8951e6153ad",
+              "source_canonical_id": "entity.monster.b17ce8951e6153ad",
+              "source_kind": "monster_identity",
+              "monster_name": "僵尸",
+              "monster_canonical_id": "derived.monster_definition.b6c33ddc0a318a25",
+              "location_canonical_id": "entity.location.6b994d2ecbcc7076",
+              "task_scoped_placement": true,
+              "evidence_status": "SOURCE_DEFINITION_PLUS_TASK_CONTEXT",
+              "evidence_locator": "config/task/task15.json array_position=148; index=415; config/monsters.json"
+            }
+          }
+        ],
+        "reward_resolutions": [],
+        "task_location_override": null
+      }
+    },
+    {
+      "task_canonical_id": "task.series.15.457",
+      "display_name": "将黑珍珠交给流浪商人",
+      "original_status": "runnable_pending_validation",
+      "resulting_status": "runnable_pending_validation",
+      "decision": "resolved_with_task_chain_ledger",
+      "conclusion": "前一任务15.456提交对白明确把一枚黑珍珠交给玩家，15.457紧接着要求交付。结构化奖励字段漏记，但任务链文本闭合；由任务链物品账本补录奖励并在后续提交时消耗。",
+      "evidence": [
+        {
+          "kind": "task_source",
+          "task_canonical_id": "task.series.15.456",
+          "repository": "zhsh",
+          "path": "config/task/task15.json",
+          "locator": "array_position=189; index=456",
+          "objective_text": "去阿尔及尔的东城门外的深海寻找海怪，替大卫报仇。",
+          "receive_dialogue": [
+            "大卫：杀死我兄弟的海怪就在深海中，你替我报仇去吧。",
+            "你：放心，我一定会为你的兄弟报仇的。"
+          ],
+          "repositories": [
+            "zhsh"
+          ]
+        },
+        {
+          "kind": "submit_dialogue",
+          "task_canonical_id": "task.series.15.456",
+          "text": "大卫：谢谢你为我兄弟报仇，这枚黑珍珠就送给你了。"
+        },
+        {
+          "kind": "task_source",
+          "task_canonical_id": "task.series.15.457",
+          "repository": "zhsh",
+          "path": "config/task/task15.json",
+          "locator": "array_position=190; index=457",
+          "objective_text": "到阿尔及尔的商店找流浪商人聊聊。将黑珍珠交给阿尔及尔商店的流浪商人。",
+          "receive_dialogue": [
+            "大卫：现在你可以把黑珍珠交给流浪商人了，他正等着呢。",
+            "你：好的，我这就去商店找他。"
+          ],
+          "repositories": [
+            "zhsh"
+          ]
+        }
+      ],
+      "repositories_with_direct_evidence": [
+        "zhsh"
+      ],
+      "unresolved_issues": [],
+      "runtime_resolutions": {
+        "item_targets": [
+          {
+            "target_canonical_id": "task.series.15.457.target.01",
+            "runtime_entity_canonical_id": "runtime.task_chain.item.8b4fe6ffc18a39c1",
+            "target_kind_override": "item",
+            "original_target_kind": "item",
+            "resolution_rule": "explicit_previous_submit_dialogue_reward",
+            "task_item_policy": {
+              "acquisition_mode": "prerequisite_reward",
+              "reservation": "required_until_submit",
+              "source_task_canonical_id": "task.series.15.456",
+              "abandonment": "retain_source_reward",
+              "consumption": "submit_only"
+            },
+            "formal_source": {
+              "canonical_id": "runtime.task_chain.source.dc1ca3e1b7f875fe",
+              "source_canonical_id": "task.series.15.456",
+              "source_kind": "task_chain_reward",
+              "item_name": "黑珍珠",
+              "source_task_canonical_id": "task.series.15.456",
+              "evidence_status": "SOURCE_TEXT_AND_ADJACENT_CHAIN",
+              "evidence_locator": "task.series.15.456 submit dialogue -> task.series.15.457"
+            }
+          }
+        ],
+        "target_entities": [],
+        "reward_resolutions": [
+          {
+            "source_task_canonical_id": "task.series.15.456",
+            "reward_name": "黑珍珠",
+            "quantity": 1,
+            "runtime_entity_canonical_id": "runtime.task_chain.item.8b4fe6ffc18a39c1",
+            "resolution_rule": "explicit_previous_submit_dialogue_reward",
+            "source_target_canonical_id": "task.series.15.457.target.01"
+          }
+        ],
+        "task_location_override": null
+      }
+    },
+    {
+      "task_canonical_id": "task.series.15.463",
+      "display_name": "将渔网拿给渔民",
+      "original_status": "runnable_pending_validation",
+      "resulting_status": "runnable_pending_validation",
+      "decision": "resolved_with_acceptance_item_grant",
+      "conclusion": "接取对白明确由杂货商人把渔网交给玩家；缺失的是独立物品定义，不是来源证据。创建任务专用渔网实体，接取时入账、提交时消耗、放弃时回滚。",
+      "evidence": [
+        {
+          "kind": "task_source",
+          "task_canonical_id": "task.series.15.463",
+          "repository": "zhsh",
+          "path": "config/task/task15.json",
+          "locator": "array_position=196; index=463",
+          "objective_text": "将渔网拿给莫桑比克码头的渔民。",
+          "receive_dialogue": [
+            "杂货商人：这渔网你拿去给码头的渔民吧，他们正需要。",
+            "你：好的，我这就送去。"
+          ],
+          "repositories": [
+            "zhsh"
+          ]
+        },
+        {
+          "kind": "receive_dialogue",
+          "task_canonical_id": "task.series.15.463",
+          "text": "杂货商人：这渔网你拿去给码头的渔民吧，他们正需要。"
+        }
+      ],
+      "repositories_with_direct_evidence": [
+        "zhsh"
+      ],
+      "unresolved_issues": [],
+      "runtime_resolutions": {
+        "item_targets": [
+          {
+            "target_canonical_id": "task.series.15.463.target.01",
+            "runtime_entity_canonical_id": "runtime.task_acceptance.item.b3f305a6689e2e25",
+            "target_kind_override": "item",
+            "original_target_kind": "item",
+            "resolution_rule": "explicit_acceptance_dialogue_grant",
+            "task_item_policy": {
+              "acquisition_mode": "grant_on_accept",
+              "reservation": "required_until_submit",
+              "abandonment": "rollback_acceptance_grant",
+              "consumption": "submit_only"
+            },
+            "formal_source": {
+              "canonical_id": "runtime.task_acceptance.source.dffd32d8caf5074a",
+              "source_canonical_id": "task.series.15.463",
+              "source_kind": "task_acceptance_grant",
+              "item_name": "渔网",
+              "source_task_canonical_id": "task.series.15.463",
+              "evidence_status": "SOURCE_EXPLICIT_DIALOGUE",
+              "evidence_locator": "task.series.15.463 receive dialogue"
+            }
+          }
+        ],
+        "target_entities": [],
+        "reward_resolutions": [],
+        "task_location_override": null
+      }
+    },
+    {
+      "task_canonical_id": "task.series.15.583",
+      "display_name": "收集破碎的破界符",
+      "original_status": "runnable_pending_validation",
+      "resulting_status": "runnable_pending_validation",
+      "decision": "resolved_with_minimal_runtime_overlay",
+      "conclusion": "任务写“望马坡北边的白骨骷”，正式怪物与掉落表唯一指向长安骷髅山的白骨骷髅。将“白骨骷”规范为“白骨骷髅”，目标地点落到骷髅山；这是任务局部实体/地点映射，不改源表。",
+      "evidence": [
+        {
+          "kind": "task_source",
+          "task_canonical_id": "task.series.15.583",
+          "repository": "zhsh",
+          "path": "config/task/task15.json",
+          "locator": "array_position=316; index=583",
+          "objective_text": "去长安龙门镖局望马坡的北边杀死白骨骷获取7个破碎的破界符交给长安凤凰居的韩生。",
+          "receive_dialogue": [
+            "韩生：望马坡北边的白骨骷身上有破碎的破界符，你去收集一些。",
+            "你：破碎的破界符？这倒是稀有物品，我这就去收集。"
+          ],
+          "repositories": [
+            "zhsh"
+          ]
+        },
+        {
+          "kind": "monster_drop",
+          "canonical_id": "entity.drop.2fbace1b671f2ef7",
+          "monster": "白骨骷髅",
+          "item": "破碎的破界符",
+          "sources": [
+            {
+              "repository": "zhsh",
+              "relative_path": "config/monsterItems.json",
+              "locator": "JSON Pointer /白骨骷髅/0",
+              "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+            }
+          ],
+          "repositories": [
+            "zhsh"
+          ]
+        },
+        {
+          "kind": "monster_definition",
+          "canonical_id": "derived.monster_definition.e7939a80d14edfcf",
+          "source_canonical_id": "entity.monster.16a67e5e4f0681ef",
+          "name": "白骨骷髅",
+          "level": 83,
+          "city": "长安",
+          "location": "骷髅山",
+          "repositories": [
+            "zhsh"
+          ]
+        },
+        {
+          "kind": "location_definition",
+          "canonical_id": "entity.location.f45fd59cc5669c51",
+          "city": "长安",
+          "name": "骷髅山",
+          "sources": [
+            {
+              "repository": "zhsh",
+              "relative_path": "config/insideMapFlat.json",
+              "locator": "JSON Pointer /长安-骷髅山",
+              "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+            }
+          ],
+          "repositories": [
+            "zhsh"
+          ]
+        }
+      ],
+      "repositories_with_direct_evidence": [
+        "zhsh"
+      ],
+      "unresolved_issues": [],
+      "runtime_resolutions": {
+        "item_targets": [
+          {
+            "target_canonical_id": "task.series.15.583.target.01",
+            "runtime_entity_canonical_id": "runtime.task_chain.item.cd2182704d029476",
+            "target_kind_override": "item",
+            "original_target_kind": "item",
+            "resolution_rule": "task_text_alias_to_unique_monster_location",
+            "target_location_canonical_id": "entity.location.f45fd59cc5669c51",
+            "task_item_policy": {
+              "acquisition_mode": "monster_drop",
+              "reservation": "required_until_submit",
+              "abandonment": "retain_obtained_item",
+              "consumption": "submit_only"
+            },
+            "formal_source": {
+              "canonical_id": "entity.drop.2fbace1b671f2ef7",
+              "source_canonical_id": "config/monsterItems.json",
+              "source_kind": "monster_drop",
+              "item_name": "破碎的破界符",
+              "monster_name": "白骨骷髅",
+              "monster_canonical_id": "derived.monster_definition.e7939a80d14edfcf",
+              "location_canonical_id": "entity.location.f45fd59cc5669c51",
+              "probability": null,
+              "quantity": null,
+              "task_scoped_placement": false,
+              "evidence_status": "SOURCE_EXPLICIT_AND_TASK_CONTEXT",
+              "evidence_locator": "config/monsterItems.json JSON Pointer /白骨骷髅/0; config/task/task15.json array_position=316; index=583"
+            }
+          }
+        ],
+        "target_entities": [],
+        "reward_resolutions": [],
+        "task_location_override": "entity.location.f45fd59cc5669c51"
+      }
+    },
+    {
+      "task_canonical_id": "task.series.15.601",
+      "display_name": "找回小良的毛笔",
+      "original_status": "data_conflict",
+      "resulting_status": "data_conflict",
+      "decision": "retain_evidence_hold",
+      "conclusion": "monsterItems存在“邪恶花精→小良的毛笔”，但全局怪物定义与任何场景中都没有邪恶花精；杭州乌镇现有怪物是邪恶僵尸。缺少战斗属性与合法遭遇位置，不能仅凭掉落键凭空造怪，保留data_conflict。",
+      "evidence": [
+        {
+          "kind": "task_source",
+          "task_canonical_id": "task.series.15.601",
+          "repository": "zhsh",
+          "path": "config/task/task15.json",
+          "locator": "array_position=334; index=601",
+          "objective_text": "到乌镇西边杀死邪恶花精，找到小良的毛笔然后回杭州书店交给他。(西城门-龙井村西-乌镇)",
+          "receive_dialogue": [
+            "小良：我的毛笔被邪恶花精抢走了，你去帮我找回来吧。",
+            "你：好的，我这就去帮你找回来。"
+          ],
+          "repositories": [
+            "zhsh"
+          ]
+        },
+        {
+          "kind": "monster_drop",
+          "canonical_id": "entity.drop.e7bc3dc20a03e9a2",
+          "monster": "邪恶花精",
+          "item": "小良的毛笔",
+          "sources": [
+            {
+              "repository": "zhsh",
+              "relative_path": "config/monsterItems.json",
+              "locator": "JSON Pointer /邪恶花精/0",
+              "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+            }
+          ],
+          "repositories": [
+            "zhsh"
+          ]
+        }
+      ],
+      "repositories_with_direct_evidence": [
+        "zhsh"
+      ],
+      "unresolved_issues": [
+        "monster_definition_missing",
+        "monster_placement_missing"
+      ],
+      "runtime_resolutions": {
+        "item_targets": [],
+        "target_entities": [],
+        "reward_resolutions": [],
+        "task_location_override": null
+      }
+    },
+    {
+      "task_canonical_id": "task.series.15.728",
+      "display_name": "妖气长安340",
+      "original_status": "runnable_pending_validation",
+      "resulting_status": "runnable_pending_validation",
+      "decision": "resolved_with_minimal_runtime_overlay",
+      "conclusion": "结构化数量与接取对白均为5颗，说明中的“一颗干年黑珍珠”是单处错字/数量笔误；黑蚌定义和掉落关系唯一。按任务明确位置在大阪深海创建任务局部黑蚌遭遇，保留全局东城门配置不动。",
+      "evidence": [
+        {
+          "kind": "task_source",
+          "task_canonical_id": "task.series.15.728",
+          "repository": "zhsh",
+          "path": "config/task/task15.json",
+          "locator": "array_position=459; index=728",
+          "objective_text": "到大阪东城门外的浅海南边的深海杀死黑蚌获取一颗干年黑珍珠交给长安凤凰居的韩生",
+          "receive_dialogue": [
+            "韩生：大阪东城门外的浅海南边的深海里有黑蚌，你去杀死它们获取5颗千年黑珍珠。",
+            "你：黑蚌？这名字听起来挺神秘的，我这就去深海看看。"
+          ],
+          "repositories": [
+            "zhsh"
+          ]
+        },
+        {
+          "kind": "monster_drop",
+          "canonical_id": "entity.drop.b2d1222ee11cb10f",
+          "monster": "黑蚌",
+          "item": "千年黑珍珠",
+          "sources": [
+            {
+              "repository": "zhsh",
+              "relative_path": "config/monsterItems.json",
+              "locator": "JSON Pointer /黑蚌/0",
+              "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+            }
+          ],
+          "repositories": [
+            "zhsh"
+          ]
+        },
+        {
+          "kind": "monster_definition",
+          "canonical_id": "derived.monster_definition.ea809ac6a2d77833",
+          "source_canonical_id": "entity.monster.e5626a4fa1f06520",
+          "name": "黑蚌",
+          "level": 176,
+          "city": "大阪",
+          "location": "东城门",
+          "repositories": [
+            "zhsh"
+          ]
+        },
+        {
+          "kind": "location_definition",
+          "canonical_id": "entity.location.106efea8da420a7e",
+          "city": "大阪",
+          "name": "深海",
+          "sources": [
+            {
+              "repository": "zhsh",
+              "relative_path": "config/insideMapFlat.json",
+              "locator": "JSON Pointer /大阪-深海",
+              "commit": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e"
+            }
+          ],
+          "repositories": [
+            "zhsh"
+          ]
+        }
+      ],
+      "repositories_with_direct_evidence": [
+        "zhsh"
+      ],
+      "unresolved_issues": [],
+      "runtime_resolutions": {
+        "item_targets": [
+          {
+            "target_canonical_id": "task.series.15.728.target.01",
+            "runtime_entity_canonical_id": "runtime.task_chain.item.0564672479c8f2d0",
+            "target_kind_override": "item",
+            "original_target_kind": "item",
+            "resolution_rule": "majority_task_text_quantity_and_task_scoped_encounter",
+            "target_location_canonical_id": "entity.location.106efea8da420a7e",
+            "task_item_policy": {
+              "acquisition_mode": "monster_drop",
+              "reservation": "required_until_submit",
+              "abandonment": "retain_obtained_item",
+              "consumption": "submit_only"
+            },
+            "formal_source": {
+              "canonical_id": "entity.drop.b2d1222ee11cb10f",
+              "source_canonical_id": "config/monsterItems.json",
+              "source_kind": "monster_drop",
+              "item_name": "千年黑珍珠",
+              "monster_name": "黑蚌",
+              "monster_canonical_id": "derived.monster_definition.ea809ac6a2d77833",
+              "location_canonical_id": "entity.location.106efea8da420a7e",
+              "probability": null,
+              "quantity": null,
+              "task_scoped_placement": true,
+              "evidence_status": "SOURCE_EXPLICIT_AND_TASK_CONTEXT",
+              "evidence_locator": "config/monsterItems.json JSON Pointer /黑蚌/0; config/task/task15.json array_position=459; index=728"
+            }
+          }
+        ],
+        "target_entities": [],
+        "reward_resolutions": [],
+        "task_location_override": "entity.location.106efea8da420a7e"
+      },
+      "quantity_adjudication": {
+        "selected": 5,
+        "rejected_text": "一颗干年黑珍珠",
+        "basis": [
+          "structured_target_quantity=5",
+          "receive_dialogue=5颗",
+          "submit_dialogue=收集齐了"
+        ]
+      }
+    }
+  ],
+  "audit_sha256": "6cb24a3ea9ffdcf08349b39a3f89a449d22736693a3b116bf158ff95d7b682d9"
+}

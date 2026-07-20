@@ -1,0 +1,83 @@
+'use strict';
+
+const GAMEPLAY_SCHEMA_VERSION = 5;
+const INVENTORY_CAPACITY = 200;
+
+const LEVEL_THRESHOLDS = Object.freeze(require('../../data/runtime/level-experience.json').thresholds);
+
+function createGameplayState(player = {}) {
+  return {
+    schema_version: GAMEPLAY_SCHEMA_VERSION,
+    player: {
+      level: 1,
+      max_health: 100,
+      current_health: 100,
+      base_attack: 50,
+      base_max_attack: 80,
+      base_defense: 4,
+      base_agility: 3,
+      morale: 50,
+      luck: 60,
+      ...player,
+    },
+    inventory_capacity: INVENTORY_CAPACITY,
+    owned_ships: {},
+    current_ship_canonical_id: null,
+    voyage: null,
+    fishing: null,
+    maritime_encounter: null,
+    combat: null,
+    dungeon: null,
+    equipment: {
+      weapon: null,offhand: null,headgear: null,clothes: null,belt: null,shoes: null,
+      accessories: [null,null,null],
+    },
+    shop_transactions: {},
+    drop_settlements: {},
+    encounter_defeats: {},
+    gameplay_events: {},
+    task_item_ledger: { schema_version:1,reservations:{},grants:{},consumptions:{},abandonments:{} },
+    npc_duel: null,
+  };
+}
+
+function upgradeGameplayState(state) {
+  const defaults = createGameplayState(state?.player ?? {});
+  const upgraded = { ...defaults,...state,player:{ ...defaults.player,...state.player } };
+  upgraded.schema_version = GAMEPLAY_SCHEMA_VERSION;
+  upgraded.equipment = { ...defaults.equipment,...state.equipment };
+  upgraded.equipment.accessories = [...(state.equipment?.accessories ?? defaults.equipment.accessories)].slice(0,3);
+  while (upgraded.equipment.accessories.length < 3) upgraded.equipment.accessories.push(null);
+  for (const key of ['owned_ships','shop_transactions','drop_settlements','encounter_defeats','gameplay_events']) {
+    if (!upgraded[key] || typeof upgraded[key] !== 'object' || Array.isArray(upgraded[key])) upgraded[key] = {};
+  }
+  const {ensureTaskItemLedger}=require('./task-item-ledger');ensureTaskItemLedger(upgraded);
+  if(upgraded.npc_duel===undefined)upgraded.npc_duel=null;
+  applyExperienceProgression(upgraded);
+  return upgraded;
+}
+
+function applyExperienceProgression(state) {
+  const player = state.player;
+  const before = Number(player.level ?? 1);
+  let level = Math.max(1,before);
+  while (level < LEVEL_THRESHOLDS.length && Number(player.experience ?? 0) >= LEVEL_THRESHOLDS[level]) level += 1;
+  for (let next = before + 1;next <= level;next += 1) {
+    const healthGain = 10 + Math.floor(next / 5);
+    player.max_health += healthGain;
+    player.current_health = Math.min(player.max_health,player.current_health + healthGain);
+    player.base_attack += 2 + Math.floor(next / 10);
+    player.base_max_attack += 2 + Math.floor(next / 10);
+    player.base_defense += 1 + Math.floor(next / 15);
+    player.base_agility += 1;
+    player.morale += 5;
+  }
+  player.level = level;
+  return { before,after:level,levels_gained:level-before };
+}
+
+function inventoryUsed(state) {
+  return Object.values(state.inventory ?? {}).reduce((sum,value) => sum + Number(value),0);
+}
+
+module.exports = { GAMEPLAY_SCHEMA_VERSION,INVENTORY_CAPACITY,LEVEL_THRESHOLDS,createGameplayState,upgradeGameplayState,applyExperienceProgression,inventoryUsed };

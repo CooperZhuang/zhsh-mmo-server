@@ -1,0 +1,420 @@
+{
+  "schema_version": 2,
+  "catalog_kind": "current-runtime-gap-matrix",
+  "stage_start_head": "2cbae183aa369fe0ac60176f3a1396914d786440",
+  "source_head": "3f55158d8657fb91bef451cb6d927c9eb00d3f6b",
+  "generated_from_head": "3f55158d8657fb91bef451cb6d927c9eb00d3f6b",
+  "reference_commits": {
+    "zhsh": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
+    "astrbot": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de",
+    "dpcq": "f39aa76ce4d5c95b7cf6c565d815618395eb1d39",
+    "zonghengsihai": "0b8996e8e5b7293321f9827994324d13e3c2509c"
+  },
+  "generator_version": "global-recovery-catalogs/2.0.0",
+  "generated_at": "2026-07-18T00:00:00.000Z",
+  "counts": {
+    "not_integrated": 7,
+    "compatible_implementation": 8,
+    "accurately_integrated": 19,
+    "must_not_self_complete": 3
+  },
+  "records": [
+    {
+      "canonical_id": "gap.rule.account.auth",
+      "rule_canonical_id": "rule.account.auth",
+      "display_name": "登录与账号",
+      "status": "not_integrated",
+      "current_runtime_modules": [],
+      "source_status": "CONSENSUS",
+      "required_action": "只有执行源码明确时才接入现有运行时"
+    },
+    {
+      "canonical_id": "gap.rule.character.create",
+      "rule_canonical_id": "rule.character.create",
+      "display_name": "新建角色",
+      "status": "not_integrated",
+      "current_runtime_modules": [],
+      "source_status": "CONSENSUS",
+      "required_action": "只有执行源码明确时才接入现有运行时"
+    },
+    {
+      "canonical_id": "gap.rule.character.initialize",
+      "rule_canonical_id": "rule.character.initialize",
+      "display_name": "角色属性初始化",
+      "status": "not_integrated",
+      "current_runtime_modules": [],
+      "source_status": "CONFLICT",
+      "required_action": "只有执行源码明确时才接入现有运行时"
+    },
+    {
+      "canonical_id": "gap.rule.combat.damage",
+      "rule_canonical_id": "rule.combat.damage",
+      "display_name": "伤害计算",
+      "status": "compatible_implementation",
+      "current_runtime_modules": [
+        "damage"
+      ],
+      "source_status": "CONFLICT",
+      "required_action": "保留独立复原裁决覆盖层并记录差异"
+    },
+    {
+      "canonical_id": "gap.rule.combat.death",
+      "rule_canonical_id": "rule.combat.death",
+      "display_name": "死亡或失败",
+      "status": "compatible_implementation",
+      "current_runtime_modules": [
+        "CombatRuntime.attack"
+      ],
+      "source_status": "CONFLICT",
+      "required_action": "保留独立复原裁决覆盖层并记录差异"
+    },
+    {
+      "canonical_id": "gap.rule.combat.entry",
+      "rule_canonical_id": "rule.combat.entry",
+      "display_name": "战斗进入条件",
+      "status": "accurately_integrated",
+      "current_runtime_modules": [
+        "CombatRuntime.start"
+      ],
+      "source_status": "CONSENSUS",
+      "required_action": "保持并由黄金测试锁定"
+    },
+    {
+      "canonical_id": "gap.rule.combat.flee",
+      "rule_canonical_id": "rule.combat.flee",
+      "display_name": "逃跑与撤退",
+      "status": "compatible_implementation",
+      "current_runtime_modules": [
+        "CombatRuntime.retreat"
+      ],
+      "source_status": "CONFLICT",
+      "required_action": "保留独立复原裁决覆盖层并记录差异"
+    },
+    {
+      "canonical_id": "gap.rule.combat.outcome",
+      "rule_canonical_id": "rule.combat.outcome",
+      "display_name": "胜负处理",
+      "status": "compatible_implementation",
+      "current_runtime_modules": [
+        "CombatRuntime.attack"
+      ],
+      "source_status": "CONFLICT",
+      "required_action": "保留独立复原裁决覆盖层并记录差异"
+    },
+    {
+      "canonical_id": "gap.rule.combat.stamina-item",
+      "rule_canonical_id": "rule.combat.stamina-item",
+      "display_name": "体力宝临时体力与战斗自动恢复",
+      "status": "accurately_integrated",
+      "current_runtime_modules": [
+        "staminaItemSemantics",
+        "useActiveStaminaItem",
+        "CombatRuntime.attack",
+        "EconomyRuntime.buy"
+      ],
+      "source_status": "SINGLE_SOURCE",
+      "required_action": "保持并由黄金测试锁定"
+    },
+    {
+      "canonical_id": "gap.rule.combat.turns",
+      "rule_canonical_id": "rule.combat.turns",
+      "display_name": "回合与行动规则",
+      "status": "compatible_implementation",
+      "current_runtime_modules": [
+        "CombatRuntime.attack"
+      ],
+      "source_status": "CONFLICT",
+      "required_action": "保留独立复原裁决覆盖层并记录差异"
+    },
+    {
+      "canonical_id": "gap.rule.diving.entry",
+      "rule_canonical_id": "rule.diving.entry",
+      "display_name": "潜水入口与副本发现",
+      "status": "accurately_integrated",
+      "current_runtime_modules": [
+        "DivingRuntime"
+      ],
+      "source_status": "SINGLE_SOURCE",
+      "required_action": "保持并由黄金测试锁定"
+    },
+    {
+      "canonical_id": "gap.rule.dpcq.auxiliary-combat",
+      "rule_canonical_id": "rule.dpcq.auxiliary-combat",
+      "display_name": "dpcq MOD 战斗辅助证据",
+      "status": "must_not_self_complete",
+      "current_runtime_modules": [],
+      "source_status": "MOD_AUXILIARY_ONLY",
+      "required_action": "继续登记和阻塞，不自行设计"
+    },
+    {
+      "canonical_id": "gap.rule.equipment",
+      "rule_canonical_id": "rule.equipment",
+      "display_name": "装备",
+      "status": "accurately_integrated",
+      "current_runtime_modules": [
+        "EquipmentRuntime"
+      ],
+      "source_status": "CONSENSUS",
+      "required_action": "保持并由黄金测试锁定"
+    },
+    {
+      "canonical_id": "gap.rule.equipment.acquisition",
+      "rule_canonical_id": "rule.equipment.acquisition",
+      "display_name": "装备取得链",
+      "status": "accurately_integrated",
+      "current_runtime_modules": [
+        "EquipmentRuntime",
+        "deterministicSourceBackedCombatProof"
+      ],
+      "source_status": "SINGLE_SOURCE",
+      "required_action": "保持并由黄金测试锁定"
+    },
+    {
+      "canonical_id": "gap.rule.external-api",
+      "rule_canonical_id": "rule.external-api",
+      "display_name": "外部 API 依赖",
+      "status": "must_not_self_complete",
+      "current_runtime_modules": [],
+      "source_status": "IMPLEMENTATION_ONLY",
+      "required_action": "继续登记和阻塞，不自行设计"
+    },
+    {
+      "canonical_id": "gap.rule.fishing.catch",
+      "rule_canonical_id": "rule.fishing.catch",
+      "display_name": "钓鱼稀有度与鱼获",
+      "status": "accurately_integrated",
+      "current_runtime_modules": [
+        "FishingRuntime.reel",
+        "fishingRarityWeights"
+      ],
+      "source_status": "SINGLE_SOURCE",
+      "required_action": "保持并由黄金测试锁定"
+    },
+    {
+      "canonical_id": "gap.rule.fishing.wait",
+      "rule_canonical_id": "rule.fishing.wait",
+      "display_name": "钓鱼等待事件",
+      "status": "accurately_integrated",
+      "current_runtime_modules": [
+        "FishingRuntime.wait",
+        "chooseFishingWaitOutcome"
+      ],
+      "source_status": "SINGLE_SOURCE",
+      "required_action": "保持并由黄金测试锁定"
+    },
+    {
+      "canonical_id": "gap.rule.gang.lifecycle",
+      "rule_canonical_id": "rule.gang.lifecycle",
+      "display_name": "帮会生命周期",
+      "status": "not_integrated",
+      "current_runtime_modules": [],
+      "source_status": "SINGLE_SOURCE",
+      "required_action": "只有执行源码明确时才接入现有运行时"
+    },
+    {
+      "canonical_id": "gap.rule.inventory",
+      "rule_canonical_id": "rule.inventory",
+      "display_name": "背包",
+      "status": "compatible_implementation",
+      "current_runtime_modules": [
+        "gameplay-state.inventory"
+      ],
+      "source_status": "CONFLICT",
+      "required_action": "保留独立复原裁决覆盖层并记录差异"
+    },
+    {
+      "canonical_id": "gap.rule.item.acquire-consume",
+      "rule_canonical_id": "rule.item.acquire-consume",
+      "display_name": "物品获得与消耗",
+      "status": "accurately_integrated",
+      "current_runtime_modules": [
+        "ItemRuntime",
+        "DropRuntime"
+      ],
+      "source_status": "CONSENSUS",
+      "required_action": "保持并由黄金测试锁定"
+    },
+    {
+      "canonical_id": "gap.rule.map.movement",
+      "rule_canonical_id": "rule.map.movement",
+      "display_name": "城市与地图移动",
+      "status": "accurately_integrated",
+      "current_runtime_modules": [
+        "TaskRuntimeEngine.move",
+        "FormalGameplayCatalog"
+      ],
+      "source_status": "CONSENSUS",
+      "required_action": "保持并由黄金测试锁定"
+    },
+    {
+      "canonical_id": "gap.rule.map.unlock",
+      "rule_canonical_id": "rule.map.unlock",
+      "display_name": "地点解锁",
+      "status": "not_integrated",
+      "current_runtime_modules": [],
+      "source_status": "INCOMPLETE",
+      "required_action": "只有执行源码明确时才接入现有运行时"
+    },
+    {
+      "canonical_id": "gap.rule.market.prices",
+      "rule_canonical_id": "rule.market.prices",
+      "display_name": "市场货物价格区间",
+      "status": "accurately_integrated",
+      "current_runtime_modules": [
+        "EconomyRuntime"
+      ],
+      "source_status": "SINGLE_SOURCE",
+      "required_action": "保持并由黄金测试锁定"
+    },
+    {
+      "canonical_id": "gap.rule.money",
+      "rule_canonical_id": "rule.money",
+      "display_name": "金钱",
+      "status": "accurately_integrated",
+      "current_runtime_modules": [
+        "EconomyRuntime"
+      ],
+      "source_status": "CONSENSUS",
+      "required_action": "保持并由黄金测试锁定"
+    },
+    {
+      "canonical_id": "gap.rule.monster.drops",
+      "rule_canonical_id": "rule.monster.drops",
+      "display_name": "怪物物品与装备掉落",
+      "status": "accurately_integrated",
+      "current_runtime_modules": [
+        "DropRuntime"
+      ],
+      "source_status": "SINGLE_SOURCE",
+      "required_action": "保持并由黄金测试锁定"
+    },
+    {
+      "canonical_id": "gap.rule.monster.stats",
+      "rule_canonical_id": "rule.monster.stats",
+      "display_name": "怪物类型与等级倍率",
+      "status": "accurately_integrated",
+      "current_runtime_modules": [
+        "monsterStats"
+      ],
+      "source_status": "SINGLE_SOURCE",
+      "required_action": "保持并由黄金测试锁定"
+    },
+    {
+      "canonical_id": "gap.rule.multiplayer.chat",
+      "rule_canonical_id": "rule.multiplayer.chat",
+      "display_name": "多人、聊天与 WebSocket",
+      "status": "not_integrated",
+      "current_runtime_modules": [],
+      "source_status": "IMPLEMENTATION_ONLY",
+      "required_action": "只有执行源码明确时才接入现有运行时"
+    },
+    {
+      "canonical_id": "gap.rule.npc.interaction",
+      "rule_canonical_id": "rule.npc.interaction",
+      "display_name": "NPC 交互",
+      "status": "accurately_integrated",
+      "current_runtime_modules": [
+        "TaskRuntimeEngine.interactNpc"
+      ],
+      "source_status": "CONSENSUS",
+      "required_action": "保持并由黄金测试锁定"
+    },
+    {
+      "canonical_id": "gap.rule.pet.lifecycle",
+      "rule_canonical_id": "rule.pet.lifecycle",
+      "display_name": "宠物孵化与成长",
+      "status": "not_integrated",
+      "current_runtime_modules": [],
+      "source_status": "SINGLE_SOURCE",
+      "required_action": "只有执行源码明确时才接入现有运行时"
+    },
+    {
+      "canonical_id": "gap.rule.progression.level",
+      "rule_canonical_id": "rule.progression.level",
+      "display_name": "经验与升级",
+      "status": "accurately_integrated",
+      "current_runtime_modules": [
+        "applyExperienceProgression"
+      ],
+      "source_status": "CONSENSUS",
+      "required_action": "保持并由黄金测试锁定"
+    },
+    {
+      "canonical_id": "gap.rule.sailing",
+      "rule_canonical_id": "rule.sailing",
+      "display_name": "船只与航行",
+      "status": "accurately_integrated",
+      "current_runtime_modules": [
+        "VoyageRuntime",
+        "MaritimeRuntime"
+      ],
+      "source_status": "CONSENSUS",
+      "required_action": "保持并由黄金测试锁定"
+    },
+    {
+      "canonical_id": "gap.rule.shop.trade",
+      "rule_canonical_id": "rule.shop.trade",
+      "display_name": "商店与交易",
+      "status": "accurately_integrated",
+      "current_runtime_modules": [
+        "EconomyRuntime"
+      ],
+      "source_status": "CONSENSUS",
+      "required_action": "保持并由黄金测试锁定"
+    },
+    {
+      "canonical_id": "gap.rule.skills",
+      "rule_canonical_id": "rule.skills",
+      "display_name": "技能",
+      "status": "must_not_self_complete",
+      "current_runtime_modules": [],
+      "source_status": "INCOMPLETE",
+      "required_action": "继续登记和阻塞，不自行设计"
+    },
+    {
+      "canonical_id": "gap.rule.state.persistence",
+      "rule_canonical_id": "rule.state.persistence",
+      "display_name": "状态保存",
+      "status": "accurately_integrated",
+      "current_runtime_modules": [
+        "RuntimeStorage",
+        "BrowserRuntimeStorage"
+      ],
+      "source_status": "CONSENSUS",
+      "required_action": "保持并由黄金测试锁定"
+    },
+    {
+      "canonical_id": "gap.rule.task.accept",
+      "rule_canonical_id": "rule.task.accept",
+      "display_name": "任务接取",
+      "status": "compatible_implementation",
+      "current_runtime_modules": [
+        "TaskRuntimeEngine.acceptTask"
+      ],
+      "source_status": "CONFLICT",
+      "required_action": "保留独立复原裁决覆盖层并记录差异"
+    },
+    {
+      "canonical_id": "gap.rule.task.complete",
+      "rule_canonical_id": "rule.task.complete",
+      "display_name": "任务完成与奖励",
+      "status": "accurately_integrated",
+      "current_runtime_modules": [
+        "TaskRuntimeEngine.submitTask"
+      ],
+      "source_status": "CONSENSUS",
+      "required_action": "保持并由黄金测试锁定"
+    },
+    {
+      "canonical_id": "gap.rule.task.progress",
+      "rule_canonical_id": "rule.task.progress",
+      "display_name": "任务推进",
+      "status": "compatible_implementation",
+      "current_runtime_modules": [
+        "TaskRuntimeEngine.processEvent"
+      ],
+      "source_status": "CONFLICT",
+      "required_action": "保留独立复原裁决覆盖层并记录差异"
+    }
+  ]
+}

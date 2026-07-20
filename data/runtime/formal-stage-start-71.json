@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "record_kind": "accepted-formal-terminal-state-lower-bound",
+  "stage_start_head": "737ddff706c0276addd29b0973854d5a8d777369",
+  "selected_task_count": 71,
+  "completed_task_evidence": {
+    "path": "tests/fixtures/browser-save-v3-formal-71-of-71.json",
+    "sha256": "280983b5ad0ea715cd6eb25bfce66f21fa6ca1e564695975633dd5b9c2cdfcd0",
+    "json_pointer": "/state/tasks (status=completed)"
+  },
+  "terminal_level_evidence": {
+    "path": "artifacts/progression-stage/raw/progression-incremental-results.json",
+    "sha256": "e89f3179c9bba150e6739bf24ac9134f08aefbe8b6f63d0d24788b0aa47690dc",
+    "json_pointer": "/scenarios/0/final_level",
+    "value": 45
+  },
+  "browser_confirmation": {
+    "path": "artifacts/progression-stage/raw/browser-dom-e2e-results.json",
+    "sha256": "d447441a4c061b5600e6e5a19d43feaceabfc5b3e8803f07e886665d6e4a0d2e",
+    "new_save_completed_task_count": 71,
+    "legacy_save_completed_task_count": 71
+  },
+  "current_state_lower_bound": {
+    "level": 45,
+    "experience": 2121552,
+    "experience_semantics": "minimum cumulative threshold proving level 45; the prior accepted evidence did not retain the exact terminal experience",
+    "money": 0,
+    "money_semantics": "conservative lower bound; acquisition closure may not spend unretained money",
+    "location_canonical_id": null,
+    "ship_canonical_ids": [],
+    "inventory_equipment_canonical_ids": [],
+    "equipped_equipment_canonical_ids": [],
+    "equipment_semantics": "conservative empty lower bound; no prior random equipment drop is assumed"
+  },
+  "experience_adjudication": {
+    "source_confidence": "CONFLICT",
+    "runtime_adjudication_status": "COMPATIBILITY_PLAYABLE_RETAINED",
+    "has_active_conflict": true,
+    "formula_status": "PROVISIONAL_COMPATIBILITY",
+    "new_higher_level_unlocks_allowed": false
+  }
+}
