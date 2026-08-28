@@ -1,4 +1,4 @@
-import { BrowserRuntimeStorage,BrowserTaskCatalog,CombatRuntime,NpcDuelRuntime,DivingRuntime,DropRuntime,DungeonRuntime,EconomyRuntime,EquipmentRuntime,FishingRuntime,FormalGameplayCatalog,ItemRuntime,MaritimeRuntime,RecoveryRuntime,ShipRuntime,TaskRuntimeEngine,UiFeedback,VoyageRuntime,buildCityMapEntries,effectiveStats } from './generated/task-runtime-browser.js';
+import { BrowserRuntimeStorage,BrowserTaskCatalog,CombatRuntime,NpcDuelRuntime,DivingRuntime,DropRuntime,DungeonRuntime,EconomyRuntime,EquipmentRuntime,FishingRuntime,FormalGameplayCatalog,ItemRuntime,MaritimeRuntime,RecoveryRuntime,ShipRuntime,TaskRuntimeEngine,UiFeedback,VoyageRuntime,buildCityMapEntries,effectiveStats,applyExperienceProgression,LEVEL_THRESHOLDS } from './generated/task-runtime-browser.js';
 
 const captureMode = new URLSearchParams(location.search).get('uat') === 'capture';
 const PLAYER_ID = captureMode ? 'player.browser.task1.uat-capture' : 'player.browser.task1';
@@ -6,6 +6,7 @@ const app = document.querySelector('#app');
 const saveStatus = document.querySelector('#save-status');
 const importInput = document.querySelector('#save-import');
 const debugEnabled = new URLSearchParams(location.search).get('dev') === '1';
+const adminEnabled = new URLSearchParams(location.search).get('admin') === '1';
 let content,visuals,catalog,storage,engine,gameplayCatalog,combat,npcDuel,diving,drops,dungeon,economy,equipment,fishing,items,maritime,recovery,ships,voyage;
 let combatRandom=Math.random;
 const feedback = new UiFeedback();
@@ -65,7 +66,7 @@ function render() {
   if (!storage.hasPlayer(PLAYER_ID) || !gameEntered || page.name === 'start') { renderStart();return; }
   const renderers = {
     location:renderLocationPage,map:renderMapPage,world:renderWorldPage,npc:renderNpcPage,tasks:renderTaskListPage,task:renderTaskDetailPage,
-    backpack:renderBackpackPage,item:renderItemDetailPage,encounter:renderFormalEncounterPage,shop:renderFormalShopPage,voyage:renderFormalVoyagePage,status:renderStatusPage,save:renderSavePage,compendium:renderCompendiumPage,
+    backpack:renderBackpackPage,item:renderItemDetailPage,encounter:renderFormalEncounterPage,shop:renderFormalShopPage,voyage:renderFormalVoyagePage,status:renderStatusPage,save:renderSavePage,compendium:renderCompendiumPage,admin:renderAdminPage,
   };
   try { (renderers[page.name] ?? renderLocationPage)(); }
   catch (error) { showFatal(error); }
@@ -73,6 +74,7 @@ function render() {
 
 function showPage(name,params = {}) {
   if(name==='compendium'&&!debugEnabled)name='location';
+  if(name==='admin'&&!adminEnabled)name='location';
   page = { name,...params };
   render();
   window.scrollTo?.(0,0);
@@ -409,6 +411,56 @@ function renderCompendiumPage() {
     <p><button class="text-link" data-page="location">返回</button></p>${renderPrimaryNav()}</section>`;
 }
 
+function renderAdminPage() {
+  if(!adminEnabled||!storage.hasPlayer(PLAYER_ID)){showPage('location');return;}
+  document.body.dataset.page='admin';
+  const view=engine.getPlayerView(PLAYER_ID);
+  const player=view.player;
+  const inventory=Object.entries(view.inventory??{});
+  const taskStates=Object.values(view.all_task_chain??[]);
+  const equipmentRows=Object.entries(view.equipment??{});
+  const itemChoices=[...(content.content_entities??[]),...(content.formal_items??[]),...(content.equipment??[]),...(content.items??[])]
+    .filter((entry)=>entry?.canonical_id)
+    .map((entry)=>({canonical_id:entry.canonical_id,display_name:entry.display_name??entry.canonical_id}));
+  app.innerHTML=`<section class="wap-page"><p><strong>⛨ 超管控制台</strong></p>${renderFeedback()}
+    <details open><summary>玩家概况</summary>
+      <p>玩家：${escapeHtml(player.canonical_id)}</p>
+      <p>等级 ${player.level}　经验 ${player.experience}　铜贝 ${player.money}</p>
+      <p>体力 ${player.current_health}/${player.max_health}　攻击 ${player.base_attack}-${player.base_max_attack}　防御 ${player.base_defense}　敏捷 ${player.base_agility}</p>
+      <p>背包 ${inventory.reduce((s,[,q])=>s+q,0)}/${view.inventory_capacity}　任务 ${taskStates.length}</p>
+    </details>
+    <details open><summary>等级 / 经验</summary>
+      <p>设定等级：<input id="admin-level" type="number" min="1" max="${LEVEL_THRESHOLDS.length-1}" value="${player.level}">　
+        <button class="text-link" data-admin-action="set-level">应用</button></p>
+      <p>设定经验：<input id="admin-exp" type="number" min="0" value="${player.experience}">　
+        <button class="text-link" data-admin-action="set-exp">应用</button></p>
+    </details>
+    <details open><summary>货币 / 体力</summary>
+      <p>铜贝：<input id="admin-money" type="number" min="0" value="${player.money}">　
+        <button class="text-link" data-admin-action="set-money">应用</button></p>
+      <p>体力：<input id="admin-health" type="number" min="0" max="${player.max_health}" value="${player.current_health}">　
+        <button class="text-link" data-admin-action="set-health">应用</button></p>
+    </details>
+    <details><summary>背包物品</summary>
+      <p>物品：<select id="admin-item">${itemChoices.map((entry)=>`<option value="${attr(entry.canonical_id)}">${escapeHtml(entry.display_name)}</option>`).join('')}</select>
+        数量：<input id="admin-qty" type="number" min="1" value="1"></p>
+      <p><button class="text-link" data-admin-action="add-item">增加</button>　
+        <button class="text-link" data-admin-action="remove-item">移除</button></p>
+      <p>当前：${inventory.length?inventory.map(([id,q])=>`${escapeHtml(entityName(id))}×${q}`).join('、'):'空'}</p>
+    </details>
+    <details><summary>任务</summary>
+      <p>未完成：<input id="admin-task-state" type="text" placeholder="可接取/已完成/进行中">　
+        <button class="text-link" data-admin-action="unlock-tasks">全部解锁为可接取</button>　
+        <button class="text-link" data-admin-action="complete-tasks">全部标记为已完成</button></p>
+    </details>
+    <details><summary>危险操作</summary>
+      <p><button class="text-link danger-link" data-admin-action="reroll">重新初始化进度</button>　
+        <button class="text-link danger-link" data-admin-action="wipe">清空存档</button></p>
+    </details>
+    <p><button class="text-link" data-page="location">返回</button></p>${renderPrimaryNav()}</section>`;
+  bindAdminActions();
+}
+
 function renderPrimaryNav() {
   return `<nav class="primary-nav" aria-label="游戏功能">
     <button class="text-link nav-link" data-page="status">${renderUiIcon('角色状态')}状态</button> ·
@@ -417,6 +469,7 @@ function renderPrimaryNav() {
     <button class="text-link nav-link" data-page="shop">${renderUiIcon('商店交易')}商店</button> ·
     <button class="text-link nav-link" data-page="voyage">${renderUiIcon('航海')}航行</button> ·
     ${debugEnabled?'<button class="text-link nav-link" data-page="compendium">图像调试</button> ·':''}
+    ${adminEnabled?'<button class="text-link nav-link" data-page="admin">超管</button> ·':''}
     <button class="text-link" data-page="save">存档</button>
   </nav>`;
 }
@@ -496,8 +549,57 @@ function bindFormalPageActions() {
     ()=>diving.dive(PLAYER_ID,eventId('diving-attempt')),'潜水探查已经完成。','voyage')));
   document.querySelectorAll('[data-diving-enter]').forEach((button)=>button.addEventListener('click',()=>perform(
     ()=>diving.enter(PLAYER_ID,eventId('diving-enter')),'已经进入海底地点。','encounter')));
-  document.querySelectorAll('[data-maritime-dismiss]').forEach((button)=>button.addEventListener('click',()=>perform(
-    ()=>maritime.dismiss(PLAYER_ID,eventId('maritime-dismiss')),'已经继续航行。','voyage')));
+}
+
+function bindAdminActions() {
+  const readInt=(id,fallback)=>Number(document.querySelector(`#${id}`)?.value ?? fallback) || 0;
+  const readQty=(id)=>Math.max(0,Number(document.querySelector(`#${id}`)?.value ?? 0) || 0);
+  const applyMutation=(mutator,message)=>{
+    try { storage.transact(PLAYER_ID,mutator); storage.flush(); feedback.succeed(message); saveStatus.textContent='超管操作已保存'; renderAdminPage(); }
+    catch (error) { feedback.fail(`超管操作失败：${error.message}`); renderAdminPage(); }
+  };
+  document.querySelector('[data-admin-action="set-level"]')?.addEventListener('click',()=>applyMutation((state)=>{
+    const target=Math.max(1,Math.min(readInt('admin-level',1),LEVEL_THRESHOLDS.length-1));
+    state.player.experience=LEVEL_THRESHOLDS[target-1];
+    applyExperienceProgression(state);
+  },`等级已设为 ${LEVEL_THRESHOLDS.length?readInt('admin-level',1):1}。`));
+  document.querySelector('[data-admin-action="set-exp"]')?.addEventListener('click',()=>applyMutation((state)=>{
+    state.player.experience=readInt('admin-exp',0);
+    applyExperienceProgression(state);
+  },'经验已更新。'));
+  document.querySelector('[data-admin-action="set-money"]')?.addEventListener('click',()=>applyMutation((state)=>{
+    state.player.money=readInt('admin-money',0);
+  },'铜贝已更新。'));
+  document.querySelector('[data-admin-action="set-health"]')?.addEventListener('click',()=>applyMutation((state)=>{
+    const max=Number(state.player.max_health)||1;
+    state.player.current_health=Math.max(0,Math.min(readInt('admin-health',0),max));
+  },'体力已更新。'));
+  document.querySelector('[data-admin-action="add-item"]')?.addEventListener('click',()=>applyMutation((state)=>{
+    const id=document.querySelector('#admin-item')?.value; if(!id)return;
+    state.inventory[id]=(state.inventory[id]??0)+readQty('admin-qty');
+  },'物品已增加。'));
+  document.querySelector('[data-admin-action="remove-item"]')?.addEventListener('click',()=>applyMutation((state)=>{
+    const id=document.querySelector('#admin-item')?.value; if(!id)return;
+    state.inventory[id]=Math.max(0,(state.inventory[id]??0)-readQty('admin-qty'));
+    if(!state.inventory[id])delete state.inventory[id];
+  },'物品已移除。'));
+  document.querySelector('[data-admin-action="unlock-tasks"]')?.addEventListener('click',()=>applyMutation((state)=>{
+    for(const [id,task] of Object.entries(state.tasks??{})){ if(task.block_reasons?.length)continue;
+      task.status='available';task.reward_status='not_granted';task.current_step=0; }
+  },'任务已全部解锁为可接取。'));
+  document.querySelector('[data-admin-action="complete-tasks"]')?.addEventListener('click',()=>applyMutation((state)=>{
+    for(const task of Object.values(state.tasks??{})){ task.status='completed';task.reward_status='granted';task.current_step=task.current_step??0; }
+  },'任务已全部标记为已完成。'));
+  document.querySelector('[data-admin-action="reroll"]')?.addEventListener('click',async()=>{
+    if(!confirm('重新初始化进度将覆盖当前浏览器存档，是否继续？'))return;
+    try { engine.createPlayer(PLAYER_ID,{reset:true}); await storage.flush(); feedback.succeed('进度已重新初始化。'); saveStatus.textContent='进度已重置'; renderAdminPage(); }
+    catch (error) { feedback.fail(`重置失败：${error.message}`); renderAdminPage(); }
+  });
+  document.querySelector('[data-admin-action="wipe"]')?.addEventListener('click',async()=>{
+    if(!confirm('清空存档将永久删除当前浏览器存档，是否继续？'))return;
+    try { await storage.deletePlayer(PLAYER_ID); await storage.flush(); gameEntered=false; feedback.succeed('存档已清空。'); showPage('start'); }
+    catch (error) { feedback.fail(`清空失败：${error.message}`); renderAdminPage(); }
+  });
 }
 
 function bindCommonActions() {

@@ -12,7 +12,8 @@ function buildBrowser() {
   exportTask1Content();
   const bundle = bundleCommonJs(path.join(root,'src','task-runtime','browser-entry.js'));
   const formalNames = ['CombatRuntime','NpcDuelRuntime','DivingRuntime','DropRuntime','DungeonRuntime','EconomyRuntime','EquipmentRuntime','FishingRuntime','FormalGameplayCatalog','ItemRuntime','MaritimeRuntime','RecoveryRuntime','ShipRuntime','VoyageRuntime','effectiveStats'];
-  const browserBundle = `${bundle}\n${formalNames.map((name) => `export const ${name}=__entry.${name};`).join('\n')}\n`;
+  const adminNames = ['applyExperienceProgression','LEVEL_THRESHOLDS'];
+  const browserBundle = `${bundle}\n${[...formalNames,...adminNames].map((name) => `export const ${name}=__entry.${name};`).join('\n')}\n`;
   const generated = path.join(webRoot,'generated','task-runtime-browser.js');
   fs.mkdirSync(path.dirname(generated),{ recursive:true });
   fs.writeFileSync(generated,browserBundle,'utf8');

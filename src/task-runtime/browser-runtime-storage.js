@@ -38,6 +38,13 @@ class IndexedDbDurableStore {
     await transactionDone(transaction);
   }
 
+  async delete(playerCanonicalId) {
+    await this.open();
+    const transaction = this.db.transaction(this.storeName,'readwrite');
+    transaction.objectStore(this.storeName).delete(playerCanonicalId);
+    await transactionDone(transaction);
+  }
+
   close() {
     this.db?.close();
     this.db = null;
@@ -107,6 +114,16 @@ class BrowserRuntimeStorage {
     if (state.player.canonical_id !== playerCanonicalId) throw new Error('Reset player id mismatch');
     this.corruptRecords.delete(playerCanonicalId);
     return this.commit(playerCanonicalId,state);
+  }
+
+  async deletePlayer(playerCanonicalId) {
+    this.assertReady();
+    const removed = this.players.delete(playerCanonicalId);
+    this.revisions.delete(playerCanonicalId);
+    this.corruptRecords.delete(playerCanonicalId);
+    this.pendingRecords.delete(playerCanonicalId);
+    await this.durableStore.delete(playerCanonicalId);
+    return removed;
   }
 
   transact(playerCanonicalId,operation) {

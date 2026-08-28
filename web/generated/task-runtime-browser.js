@@ -9,10 +9,11 @@ const { BrowserRuntimeStorage,IndexedDbDurableStore } = require("src/task-runtim
 const { UiFeedback,buildCityMapEntries } = require("src/task-runtime/classic-ui-model.js");
 const { NpcDuelRuntime } = require("src/task-runtime/npc-duel.js");
 const { CombatRuntime,DivingRuntime,DropRuntime,DungeonRuntime,EconomyRuntime,EquipmentRuntime,FishingRuntime,FormalGameplayCatalog,ItemRuntime,MaritimeRuntime,RecoveryRuntime,ShipRuntime,VoyageRuntime,effectiveStats } = require("src/task-runtime/formal-gameplay.js");
+const { applyExperienceProgression,LEVEL_THRESHOLDS } = require("src/task-runtime/gameplay-state.js");
 
 module.exports = { BrowserRuntimeStorage,BrowserTaskCatalog,CombatRuntime,DivingRuntime,DropRuntime,DungeonRuntime,EconomyRuntime,EquipmentRuntime,FishingRuntime,
   FormalGameplayCatalog,IndexedDbDurableStore,NpcDuelRuntime,ItemRuntime,MaritimeRuntime,RecoveryRuntime,ShipRuntime,
-  TaskRuntimeEngine,UiFeedback,VoyageRuntime,buildCityMapEntries,effectiveStats };
+  TaskRuntimeEngine,UiFeedback,VoyageRuntime,buildCityMapEntries,effectiveStats,applyExperienceProgression,LEVEL_THRESHOLDS };
 
 },
 "src/task-runtime/task-engine.js": function(module,exports,require){
@@ -1012,6 +1013,13 @@ class IndexedDbDurableStore {
     await transactionDone(transaction);
   }
 
+  async delete(playerCanonicalId) {
+    await this.open();
+    const transaction = this.db.transaction(this.storeName,'readwrite');
+    transaction.objectStore(this.storeName).delete(playerCanonicalId);
+    await transactionDone(transaction);
+  }
+
   close() {
     this.db?.close();
     this.db = null;
@@ -1081,6 +1089,16 @@ class BrowserRuntimeStorage {
     if (state.player.canonical_id !== playerCanonicalId) throw new Error('Reset player id mismatch');
     this.corruptRecords.delete(playerCanonicalId);
     return this.commit(playerCanonicalId,state);
+  }
+
+  async deletePlayer(playerCanonicalId) {
+    this.assertReady();
+    const removed = this.players.delete(playerCanonicalId);
+    this.revisions.delete(playerCanonicalId);
+    this.corruptRecords.delete(playerCanonicalId);
+    this.pendingRecords.delete(playerCanonicalId);
+    await this.durableStore.delete(playerCanonicalId);
+    return removed;
   }
 
   transact(playerCanonicalId,operation) {
@@ -2177,3 +2195,5 @@ export const RecoveryRuntime=__entry.RecoveryRuntime;
 export const ShipRuntime=__entry.ShipRuntime;
 export const VoyageRuntime=__entry.VoyageRuntime;
 export const effectiveStats=__entry.effectiveStats;
+export const applyExperienceProgression=__entry.applyExperienceProgression;
+export const LEVEL_THRESHOLDS=__entry.LEVEL_THRESHOLDS;
