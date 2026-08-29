@@ -29,6 +29,7 @@ const { aiCombatNarrative } = require('./ai/ai-combat-narrative');
 const { aiDiscoveryDescription } = require('./ai/ai-discovery-description');
 const { memoryDigest, buildWorldContext } = require('./ai/ai-memory');
 const { aiGenerateWorldSidequest } = require('./ai/ai-quest-gen');
+const { aiCrewLine } = require('./ai/ai-crew');
 
 const ROOT = path.resolve(__dirname, '..');
 const DIST = process.env.ZHSH_DIST || path.join(ROOT, 'dist');
@@ -511,6 +512,27 @@ const server = http.createServer(async (req, res) => {
           activeEvents: snap.activeEvents.map((e) => ({ name: e.name, region: e.region, kind: e.effect_kind, field: e.target_field, strength: e.strength, tip: e.tip, remaining: e.remaining })),
           tips,
         });
+      }
+      if (pathname === '/api/game/crew_line' && req.method === 'POST') {
+        // AI 船员发言：贴合性格/忠诚度/世界动态（玩家侧感知船员人格）
+        const { instance_id: instanceId } = JSON.parse(await readBody(req) || '{}');
+        try {
+          const state = engine.loadPlayer(auth.playerCanonicalId);
+          const crew = (state.player?.crew ?? []).find((c) => c.instance_id === instanceId) || (state.player?.crew ?? [])[0];
+          if (!crew) return sendJson(res, 200, { line: '（无船员随行）', crew: null, source: 'fallback' });
+          const weatherSnapshot = getEconomy().snapshot();
+          const world = buildWorldContext(weatherSnapshot);
+          const line = await aiCrewLine({
+            crewName: crew.name ?? '船员',
+            personality: crew.personality ?? '忠诚的船员',
+            loyalty: crew.loyalty ?? 60,
+            mood: '正在海上航行',
+            worldContext: `${world.事件}，${world.天气}`,
+          });
+          return sendJson(res, 200, line);
+        } catch (err) {
+          return sendJson(res, 200, { line: `船员：${err.message}`, crew: null, source: 'fallback' });
+        }
       }
       if (pathname === '/api/game/world_quests' && req.method === 'GET') {
         // 只读：当前世界驱动生成的活跃支线（随世界事件涌现，事件消退后清理）

@@ -675,7 +675,8 @@ class RecruitRuntime {
       if (list.some((c)=>c.crew_canonical_id===crew.canonical_id)) throw new Error('Crew member already recruited');
       if (state.player.money<Number(crew.recruit_cost??0)) throw new Error('Insufficient money to recruit');
       state.player.money-=Number(crew.recruit_cost??0);
-      list.push({ instance_id:`crew.${crew.canonical_id}.${eventId}`,crew_canonical_id:crew.canonical_id,name:crew.name,role:crew.role,recruited_at:this.clock() });
+      list.push({ instance_id:`crew.${crew.canonical_id}.${eventId}`,crew_canonical_id:crew.canonical_id,name:crew.name,role:crew.role,
+        personality:crew.personality ?? '忠诚的船员',loyalty:60,recruited_at:this.clock() });
       state.player.crew=list;
       return { applied:true,action:'crew_recruited',crew:crew.canonical_id,money:state.player.money,crew_count:list.length };
     });
@@ -690,14 +691,16 @@ class RecruitRuntime {
     });
   }
   crewBonuses(state) {
+    const { loyaltyFactor } = require('../../server/ai/ai-crew');
     const bonuses={ attack:0,defense:0,agility:0,max_health:0 };
     for (const c of state.player.crew??[]) {
       const def=this.catalog.content?.crew?.crew?.find((x)=>x.canonical_id===c.crew_canonical_id);
       if (!def) continue;
-      bonuses.attack+=Number(def.attack_bonus??0);
-      bonuses.defense+=Number(def.defense_bonus??0);
-      bonuses.agility+=Number(def.agility_bonus??0);
-      bonuses.max_health+=Number(def.health_bonus??0);
+      const factor = loyaltyFactor(c.loyalty ?? 60); // 忠诚度折算加成
+      bonuses.attack+=Math.round(Number(def.attack_bonus??0)*factor);
+      bonuses.defense+=Math.round(Number(def.defense_bonus??0)*factor);
+      bonuses.agility+=Math.round(Number(def.agility_bonus??0)*factor);
+      bonuses.max_health+=Math.round(Number(def.health_bonus??0)*factor);
     }
     return bonuses;
   }
@@ -892,6 +895,7 @@ class CombatRuntime {
           if(activePet){activePet.experience=(activePet.experience??0)+Math.floor(experience*0.5);}
           if(monster.repeatable===false)state.encounter_defeats[combat.encounter_defeat_key??combat.placement_canonical_id]={defeated_at:this.clock(),monster_canonical_id:monster.canonical_id,task_context_canonical_id:combat.task_context_canonical_id??null};
           recordPlayerMemory(state,{type:'combat',text:`击败了${monster.display_name??monster.canonical_id}${monster.repeatable===false?'（强敌）':''}`,importance:monster.repeatable===false?3:1});
+          adjustCrewLoyalty(state, +2); // 并肩取胜 → 船员忠诚提升
           return { applied:true,action:'combat_won',combat_canonical_id:combatId,monster_canonical_id:monster.canonical_id,
             location_canonical_id:combat.location_canonical_id,player_damage:playerDamage,pet_damage:petDamage,experience,money,progression,
             stamina_item:appliedStaminaItems.at(-1)??null,stamina_items:[...appliedStaminaItems],batched_rounds:batchRound+1 };
@@ -906,6 +910,7 @@ class CombatRuntime {
           state.player.current_map_node_canonical_id=state.player.defeat_return_map_node_canonical_id ?? state.player.current_map_node_canonical_id;
           if (!state.unlocked_map_nodes.includes(state.player.current_map_node_canonical_id)) state.unlocked_map_nodes.push(state.player.current_map_node_canonical_id);
           state.combat=null;state.dungeon=null;state.voyage=null;state.fishing=null;state.maritime_encounter=null;
+          adjustCrewLoyalty(state, -5); // 落败 → 船员忠诚受挫
           return { applied:true,action:'combat_lost',player_damage:playerDamage,monster_damage:monsterDamage,
             stamina_item:appliedStaminaItems.at(-1)??staminaItem,stamina_items:[...appliedStaminaItems],
             defeated_at_map_node_canonical_id:defeatedAt,return_map_node_canonical_id:state.player.current_map_node_canonical_id,current_health:1,batched_rounds:batchRound+1 };
@@ -1101,6 +1106,16 @@ function atPort(state,cityId,mapNodeId) { return state.player.current_city_canon
 function setInventory(state,id,quantity) { if(quantity<=0)delete state.inventory[id];else state.inventory[id]=quantity; }
 function cargoUsed(state) {
   return Object.values(state.cargo??{}).reduce((sum,q)=>sum+Number(q),0);
+}
+function adjustCrewLoyalty(state, delta) {
+  const crew = state.player?.crew ?? [];
+  let changed = false;
+  for (const c of crew) {
+    const cur = Number(c.loyalty ?? 60);
+    const next = Math.max(0, Math.min(100, cur + delta));
+    if (next !== cur) { c.loyalty = next; changed = true; }
+  }
+  return changed;
 }
 function cargoCapacity(state) {
   return Number(state.cargo_capacity ?? 0) || 100;
