@@ -1,0 +1,203 @@
+{
+  "version": 1,
+  "regions": {
+    "region.mediterranean": {
+      "name": "地中海",
+      "culture": "希腊神话",
+      "chapter": "ch1",
+      "final_goal": "拿到羊皮航海图",
+      "faction": "威尼斯商会",
+      "cities": [
+        "entity.city.7ff6ada0319bc625",
+        "entity.city.43c4eac54a2bc976",
+        "entity.city.511c0211c97166d9",
+        "entity.city.74d85182a36af927",
+        "entity.city.4be04ecf72ab349f",
+        "entity.city.30822c49a681900d",
+        "entity.city.89fe5ed076412e8e",
+        "entity.city.2cd3f6c669c39c29",
+        "entity.city.87a20d666b80e436",
+        "entity.city.11e9890a687702ea"
+      ],
+      "designed_cities": []
+    },
+    "region.northsea": {
+      "name": "北海",
+      "culture": "北欧女巫",
+      "chapter": "ch2",
+      "final_goal": "解咒 + 雷神之锤",
+      "faction": "北海商会",
+      "cities": [
+        "entity.city.dc91518a8e2a3c03",
+        "entity.city.b20fb065c56043ec",
+        "entity.city.5d8adf9a8553ebca",
+        "entity.city.b9142ac1b39e9a0b",
+        "entity.city.aa28cc8cb68679d0",
+        "entity.city.a010634c03fc4600",
+        "entity.city.2fdce2b1f535e6df"
+      ],
+      "designed_cities": []
+    },
+    "region.westafrica": {
+      "name": "西非",
+      "culture": "非洲奇迹",
+      "chapter": "ch3",
+      "final_goal": "黄金面具 + 商路",
+      "faction": "部落联盟",
+      "cities": [
+        "entity.city.cd1aa779f4c5ab65",
+        "entity.city.768d3b313e7e0d19",
+        "entity.city.70e3006fcbd737ef"
+      ],
+      "designed_cities": []
+    },
+    "region.redsea": {
+      "name": "东非红海",
+      "culture": "红海秘宝",
+      "chapter": "ch4",
+      "final_goal": "所罗门宝藏",
+      "faction": "神庙祭司团",
+      "cities": [
+        "entity.city.e1f39f29db933bf8",
+        "entity.city.23b770feb5fe9dc5",
+        "entity.city.4d0bd89dbb3b1e2a"
+      ],
+      "designed_cities": []
+    },
+    "region.indianocean": {
+      "name": "印度洋",
+      "culture": "印度神话",
+      "chapter": "ch5",
+      "final_goal": "湿婆之眼",
+      "faction": "香料商会",
+      "cities": [
+        "entity.city.e51457158a9475bb",
+        "entity.city.23309cf1b6d70914",
+        "entity.city.b3e70c2f31e0fe58",
+        "entity.city.cc3725a08bba1f2b"
+      ],
+      "designed_cities": []
+    },
+    "region.seasia": {
+      "name": "东南亚",
+      "culture": "南洋风情",
+      "chapter": "ch6",
+      "final_goal": "航海图残卷·其一",
+      "faction": "马六甲苏丹",
+      "cities": [
+        "entity.city.4f5799fbd242a852"
+      ],
+      "designed_cities": [
+        {
+          "name": "新加坡",
+          "canonical_id": "design.city.seasia.新加坡"
+        },
+        {
+          "name": "雅加达",
+          "canonical_id": "design.city.seasia.雅加达"
+        }
+      ]
+    },
+    "region.chinahara": {
+      "name": "东亚·中国",
+      "culture": "聊斋·抗倭",
+      "chapter": "ch7",
+      "final_goal": "龙脉玉玺",
+      "faction": "长安朝廷",
+      "cities": [
+        "entity.city.3f395aab4eb9614b",
+        "entity.city.2f6ddd7ef142e99c",
+        "entity.city.ad6d700532e69857",
+        "entity.city.0fb27847083d81ed",
+        "entity.city.1e2bb8bf506477e1"
+      ],
+      "designed_cities": []
+    },
+    "region.japan": {
+      "name": "东亚·日本",
+      "culture": "樱花物语",
+      "chapter": "ch8",
+      "final_goal": "天丛云剑",
+      "faction": "幕府",
+      "cities": [
+        "entity.city.12dbc1806d984e5a",
+        "entity.city.1bbd7c60de1fc377"
+      ],
+      "designed_cities": []
+    },
+    "region.maya": {
+      "name": "新大陆·玛雅",
+      "culture": "玛雅文明",
+      "chapter": "ch9",
+      "final_goal": "太阳历石",
+      "faction": "玛雅祭司",
+      "cities": [
+        "entity.city.c507c1cf040924c5",
+        "entity.city.91a0b6d8c852c77c",
+        "entity.city.23fb8e4e3ff17c78"
+      ],
+      "designed_cities": []
+    },
+    "region.caribbean": {
+      "name": "加勒比",
+      "culture": "海盗黄金",
+      "chapter": "ch10",
+      "final_goal": "黑胡子藏宝图",
+      "faction": "海盗联盟",
+      "cities": [],
+      "designed_cities": [
+        {
+          "name": "哈瓦那",
+          "canonical_id": "design.city.caribbean.哈瓦那"
+        },
+        {
+          "name": "维拉克鲁斯",
+          "canonical_id": "design.city.caribbean.维拉克鲁斯"
+        },
+        {
+          "name": "特立尼达",
+          "canonical_id": "design.city.caribbean.特立尼达"
+        }
+      ]
+    },
+    "region.southamerica": {
+      "name": "南美",
+      "culture": "南美秘境",
+      "chapter": "ch11",
+      "final_goal": "黄金城秘钥",
+      "faction": "总督府",
+      "cities": [],
+      "designed_cities": [
+        {
+          "name": "马拉开波",
+          "canonical_id": "design.city.southamerica.马拉开波"
+        },
+        {
+          "name": "卡塔赫纳",
+          "canonical_id": "design.city.southamerica.卡塔赫纳"
+        },
+        {
+          "name": "里约",
+          "canonical_id": "design.city.southamerica.里约"
+        }
+      ]
+    },
+    "region.polar": {
+      "name": "极地未知",
+      "culture": "失落文明",
+      "chapter": "ch12",
+      "final_goal": "汇聚龙珠·终局",
+      "faction": "神秘势力",
+      "cities": [
+        "entity.city.e3ef537c106042c5",
+        "entity.city.4e787399665b40a0"
+      ],
+      "designed_cities": [
+        {
+          "name": "深海",
+          "canonical_id": "design.city.polar.深海"
+        }
+      ]
+    }
+  }
+}

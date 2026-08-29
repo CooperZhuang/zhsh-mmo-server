@@ -145,7 +145,37 @@ class TaskRuntimeEngine {
 
   listCurrentNpcs(playerCanonicalId) {
     const state = this.loadPlayer(playerCanonicalId);
-    return this.catalog.listNpcsAtNode(state.player.current_map_node_canonical_id).filter((placement)=>this.isNpcPlacementVisible(state,placement));
+    return this.catalog.listNpcsAtNode(state.player.current_map_node_canonical_id).filter((placement)=>this.isNpcPlacementVisible(state,placement))
+      .map((placement)=>({ ...placement,npc_dialogue:this.renderNpcDialogue(state,placement.npc_canonical_id,placement.display_name) }));
+  }
+
+  /** 注入 npc_dialogs 内容（来自 server/content/npc-dialogs.json） */
+  attachNpcDialogs(npcDialogs = {}) { this.npcDialogs = npcDialogs; return this; }
+
+  /**
+   * 判定该 NPC 的对话触发档：quest_ready > quest_active > all_done > idle。
+   * 依据：NPC 作为任务的 issuer/completion，关联任务状态。
+   */
+  renderNpcDialogue(state,npcCanonicalId,npcName = null) {
+    const dialogs = this.npcDialogs?.dialogs ?? {};
+    const entry = dialogs[npcName] ?? dialogs[`npc.${npcCanonicalId.split('.').at(-1)}`] ?? dialogs[npcCanonicalId] ?? null;
+    if (!entry) return null;
+    const tasks = this.listTasks();
+    let hasActive = false, hasReady = false, hasAny = false;
+    for (const task of tasks) {
+      const issuer = task.issuer_npc_canonical_id, completion = task.completion_npc_canonical_id;
+      const roleNpc = issuer === npcCanonicalId || completion === npcCanonicalId;
+      if (!roleNpc && !task.issuer_npc_canonical_id?.endsWith(npcCanonicalId.split('.').at(-1))) continue;
+      const status = state.tasks[task.canonical_id]?.status;
+      if (['accepted','in_progress'].includes(status)) hasActive = true;
+      if (status === 'completable') hasReady = true;
+      if (['accepted','in_progress','completable','completed'].includes(status)) hasAny = true;
+      if (issuer === npcCanonicalId && status === 'completed') hasAny = true;
+    }
+    if (hasReady) return { trigger_type:'quest_ready',text:entry.quest_ready };
+    if (hasActive) return { trigger_type:'quest_active',text:entry.quest_active };
+    if (hasAny) return { trigger_type:'all_done',text:entry.all_done };
+    return { trigger_type:'idle',text:entry.idle };
   }
 
   isNpcPlacementVisible(state,placement) {
@@ -419,6 +449,9 @@ class TaskRuntimeEngine {
     runtime.current_step = 3;
     runtime.reward_status = sourceLabelOnly ? 'granted_with_source_label_records' : 'granted';
     const progression = applyExperienceProgression(state);
+    // 声望填实：完成任一任务 +5 声望，晋升爵位（水手/船长/提督/总督/公爵）
+    state.player.reputation=(state.player.reputation??0)+5;
+    state.player.title=applyReputationTitle(state.player.reputation);
     const levelUnlocked = this.refreshLevelAvailabilityState(state);
     state.flags[`task.completed.${task.canonical_id}`] = true;
     reconcileTaskItemReservations(state,this.activeTasks(state));
@@ -584,6 +617,14 @@ function positiveInteger(value,field) {
   return number;
 }
 
+function applyReputationTitle(reputation) {
+  const rep=Number(reputation??0);
+  if (rep>=50000) return '公爵';
+  if (rep>=20000) return '总督';
+  if (rep>=5000) return '提督';
+  if (rep>=1000) return '船长';
+  return '水手';
+}
 function progressKey(taskId,targetId) {
   return `${taskId}|${targetId}`;
 }

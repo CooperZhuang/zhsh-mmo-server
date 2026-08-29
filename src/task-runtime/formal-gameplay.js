@@ -439,6 +439,369 @@ class EquipmentRuntime {
   }
 }
 
+class MarketRuntime {
+  /**
+   * 区域特产套利市场。当前城市所在区域特产价 = base_price × 0.75（产区便宜），
+   * 非产区商品 = base_price × 1.25（异区贵）。以 market_region.city_region 映射判定玩家所在区域。
+   */
+  constructor({ storage,catalog,clock = isoNow }) { this.storage=storage;this.catalog=catalog;this.clock=clock; }
+  marketRegionForCity(state) {
+    const marketRegion=this.catalog.content?.market_region?.city_region ?? {};
+    let cityId=state.player.current_city_canonical_id;
+    // 若玩家未显式记录城市，则从当前 map_node 的城市 canonical_id 派生（地图节点自带城市）
+    if (!cityId) {
+      const nodeId=state.player.current_map_node_canonical_id;
+      const node=(this.catalog.content?.map_nodes??[]).find((n)=>n.map_node_canonical_id===nodeId);
+      cityId=node?.city_canonical_id;
+    }
+    return cityId ? marketRegion[cityId] ?? null : null;
+  }
+  priceFor(state,good) {
+    const cityRegion=this.marketRegionForCity(state);
+    const factor=(cityRegion && good.region===cityRegion)?0.75:1.25;
+    return Math.max(1,Math.round(Number(good.base_price)*factor));
+  }
+  getMarketView(playerId,eventId) {
+    return transactEvent(this.storage,playerId,eventId||`market.view.${Date.now()}`,'market_view',{},this.clock,(state) => {
+      const cityRegion=this.marketRegionForCity(state);
+      const regions=this.catalog.content?.goods?.regions ?? {};
+      const allGoods=Object.values(regions).flatMap((entry)=>entry.specialty??[]);
+      const offers=allGoods.map((good)=>({ ...good,region_name:regions[good.region]?.name??good.region,
+        local_price:this.priceFor(state,good),is_local:cityRegion!=null&&good.region===cityRegion }));
+      return { applied:true,action:'market_view_loaded',city_canonical_id:state.player.current_city_canonical_id,
+        city_region:cityRegion,money:state.player.money,holds:formalInventoryUsed(state,this.catalog),capacity:state.inventory_capacity,offers };
+    });
+  }
+  buy(playerId,goodId,quantity,eventId) {
+    const good=this.findGood(goodId);
+    quantity=positive(quantity);
+    return transactEvent(this.storage,playerId,eventId,'market_buy',{ good_canonical_id:goodId,quantity },this.clock,(state) => {
+      if (!this.marketRegionForCity(state)) throw new Error('Market requires being in a city');
+      const price=this.priceFor(state,good);
+      const total=price*quantity;
+      if (state.player.money<total) throw new Error('Insufficient money');
+      if (formalInventoryUsed(state,this.catalog)+quantity>state.inventory_capacity) throw new Error('Inventory capacity exceeded');
+      state.player.money-=total;
+      state.inventory[goodId]=(state.inventory[goodId]??0)+quantity;
+      return { applied:true,action:'market_bought',good_canonical_id:goodId,quantity,unit_price:price,total,money:state.player.money };
+    });
+  }
+  sell(playerId,goodId,quantity,eventId) {
+    const good=this.findGood(goodId);
+    quantity=positive(quantity);
+    return transactEvent(this.storage,playerId,eventId,'market_sell',{ good_canonical_id:goodId,quantity },this.clock,(state) => {
+      if (!this.marketRegionForCity(state)) throw new Error('Market requires being in a city');
+      if ((state.inventory[goodId]??0)<quantity) throw new Error('Insufficient item quantity');
+      const price=this.priceFor(state,good);
+      const unit=Math.max(1,Math.floor(price*0.9));
+      const total=unit*quantity;
+      state.inventory[goodId]-=quantity;
+      if (state.inventory[goodId]<=0) delete state.inventory[goodId];
+      state.player.money+=total;
+      return { applied:true,action:'market_sold',good_canonical_id:goodId,quantity,unit_price:unit,total,money:state.player.money };
+    });
+  }
+  findGood(goodId) {
+    const regions=this.catalog.content?.goods?.regions ?? {};
+    for (const entry of Object.values(regions)) {
+      const good=(entry.specialty??[]).find((x)=>x.canonical_id===goodId||x.name===goodId);
+      if (good) return good;
+    }
+    throw new Error(`Unknown market good: ${goodId}`);
+  }
+}
+
+class EquipmentEnhanceRuntime {
+  /** 装备强化（原版15级失败不降级）。规则在 content.enhance_rules。 */
+  constructor({ storage,catalog,clock = isoNow }) { this.storage=storage;this.catalog=catalog;this.clock=clock; }
+  enhance(playerId,equipmentSlot,eventId) {
+    const rules=this.catalog.content?.enhance_rules ?? {};
+    return transactEvent(this.storage,playerId,eventId,'equipment_enhance',{ equipment_slot:equipmentSlot },this.clock,(state) => {
+      const itemId=state.equipment?.[equipmentSlot];
+      if (!itemId) throw new Error('Equipment slot is empty');
+      const instance=state.equipment_instances?.[itemId] ?? {};
+      const level=Number(instance.level??0);
+      if (level>=Number(rules.max_level??15)) throw new Error('Equipment already at max enhancement level');
+      const cost=Number(rules.cost_base??200)+level*Number(rules.cost_growth??150);
+      const materialId=rules.material?.canonical_id;
+      const materialQty=Number(rules.material?.per_level??1);
+      if (state.player.money<cost) throw new Error('Insufficient money for enhancement');
+      if (materialId&&(state.inventory[materialId]??0)<materialQty) throw new Error('Insufficient enhancement material');
+      const success=Math.random()<(Number(rules.success_rate??0.8));
+      state.player.money-=cost;
+      if (materialId) state.inventory[materialId]=Math.max(0,(state.inventory[materialId]??0)-materialQty);
+      const previousLevel=level;
+      if (success) {
+        instance.level=level+1;
+        state.equipment_instances[itemId]=instance;
+      }
+      const stats=effectiveStats(state,this.catalog);
+      return { applied:true,action:'equipment_enhanced',equipment_canonical_id:itemId,slot:equipmentSlot,
+        previous_level:previousLevel,current_level:instance.level,succeeded:success,cost,stats };
+    });
+  }
+}
+
+class PetRuntime {
+  /** 宠物（上限3），capture/feed/setActive/release/rename。 */
+  constructor({ storage,catalog,clock = isoNow }) { this.storage=storage;this.catalog=catalog;this.clock=clock; }
+  capture(playerId,petId,eventId) {
+    const pet=this.findPet(petId);
+    return transactEvent(this.storage,playerId,eventId,'pet_capture',{ pet_canonical_id:petId },this.clock,(state) => {
+      const max=Number(this.catalog.content?.pets?.max_pets??3);
+      const list=state.player.pets??[];
+      if (list.length>=max) throw new Error('Pet limit reached');
+      if (list.some((p)=>p.pet_canonical_id===pet.canonical_id)) throw new Error('Pet already owned');
+      const entry={ instance_id:`pet.${pet.canonical_id}.${eventId}`,pet_canonical_id:pet.canonical_id,name:pet.name,level:1,experience:0,
+        current_health:pet.max_health,max_health:pet.max_health,satiety:80,active:list.length===0,captured_at:this.clock() };
+      state.player.pets=[...list,entry];
+      return { applied:true,action:'pet_captured',pet:entry,owned:state.player.pets.length };
+    });
+  }
+  feed(playerId,petInstanceId,eventId) {
+    return transactEvent(this.storage,playerId,eventId,'pet_feed',{ pet_instance_id:petInstanceId },this.clock,(state) => {
+      const pet=(state.player.pets??[]).find((p)=>p.instance_id===petInstanceId);
+      if (!pet) throw new Error('Pet not found');
+      if ((state.inventory['item.口粮']??0)<1) throw new Error('Pet food is insufficient (需口粮)');
+      state.inventory['item.口粮']-=1;
+      pet.satiety=Math.min(100,Number(pet.satiety??0)+40);
+      pet.current_health=Math.min(pet.max_health,Number(pet.current_health??0)+Math.floor(Number(pet.max_health)*0.2));
+      return { applied:true,action:'pet_fed',pet:pet,satiety:pet.satiety };
+    });
+  }
+  setActive(playerId,petInstanceId,eventId) {
+    return transactEvent(this.storage,playerId,eventId,'pet_set_active',{ pet_instance_id:petInstanceId },this.clock,(state) => {
+      const list=state.player.pets??[];
+      const pet=list.find((p)=>p.instance_id===petInstanceId);
+      if (!pet) throw new Error('Pet not found');
+      for (const p of list) p.active=false;
+      pet.active=true;
+      return { applied:true,action:'pet_active',pet_instance_id:petInstanceId };
+    });
+  }
+  release(playerId,petInstanceId,eventId) {
+    return transactEvent(this.storage,playerId,eventId,'pet_release',{ pet_instance_id:petInstanceId },this.clock,(state) => {
+      const list=state.player.pets??[];
+      const pet=list.find((p)=>p.instance_id===petInstanceId);
+      if (!pet) throw new Error('Pet not found');
+      const next=list.filter((p)=>p.instance_id!==petInstanceId);
+      state.player.pets=next;
+      return { applied:true,action:'pet_released',pet_instance_id:petInstanceId,owned:next.length };
+    });
+  }
+  rename(playerId,petInstanceId,newName,eventId) {
+    return transactEvent(this.storage,playerId,eventId,'pet_rename',{ pet_instance_id:petInstanceId,new_name:newName },this.clock,(state) => {
+      const pet=(state.player.pets??[]).find((p)=>p.instance_id===petInstanceId);
+      if (!pet) throw new Error('Pet not found');
+      if (!newName||!String(newName).trim()) throw new Error('Pet name cannot be empty');
+      pet.name=String(newName).trim().slice(0,12);
+      return { applied:true,action:'pet_renamed',pet:pet };
+    });
+  }
+  findPet(petId) {
+    const pets=this.catalog.content?.pets?.pets??[];
+    const pet=pets.find((p)=>p.canonical_id===petId||p.name===petId);
+    if (!pet) throw new Error(`Unknown pet: ${petId}`);
+    return pet;
+  }
+}
+
+class DiscoverRuntime {
+  /** 大航海·探索发现：玩家到达发现物所在地点即触发，奖励金钱/经验/声望。 */
+  constructor({ storage,catalog,clock = isoNow }) { this.storage=storage;this.catalog=catalog;this.clock=clock; }
+  visit(playerId,discoveryId,eventId) {
+    const discovery=this.findDiscovery(discoveryId);
+    return transactEvent(this.storage,playerId,eventId,'discovery_visit',{ discovery_canonical_id:discovery.canonical_id },this.clock,(state) => {
+      const found=state.discoveries_found??{};
+      if (found[discovery.canonical_id]) return { applied:false,reason:'discovery_already_found',discovery_canonical_id:discovery.canonical_id };
+      const node=this.catalog.getNodeForLocation?.(discovery.location_canonical_id);
+      if (node && state.player.current_map_node_canonical_id!==node.map_node_canonical_id) throw new Error('Discovery is not at the current location');
+      found[discovery.canonical_id]={ found_at:this.clock(),name:discovery.name,reward:discovery.reward };
+      state.discoveries_found=found;
+      const reward=discovery.reward??{};
+      if (reward.money) state.player.money+=Number(reward.money);
+      if (reward.experience) { state.player.experience+=Number(reward.experience); applyExperienceProgression(state); }
+      if (reward.reputation) state.player.reputation=Number(state.player.reputation??0)+Number(reward.reputation);
+      state.player.title=applyTitle(state.player.reputation??0);
+      return { applied:true,action:'discovery_found',discovery_canonical_id:discovery.canonical_id,name:discovery.name,
+        reward:reward,reputation:state.player.reputation,title:state.player.title,money:state.player.money,experience:state.player.experience };
+    });
+  }
+  listFound(playerId) {
+    const state=this.storage.loadPlayer(playerId);
+    return { applied:true,action:'discoveries_listed',found:state.discoveries_found??{} };
+  }
+  findDiscovery(discoveryId) {
+    const list=this.catalog.content?.discoveries?.discoveries??[];
+    const d=list.find((x)=>x.canonical_id===discoveryId||x.name===discoveryId);
+    if (!d) throw new Error(`Unknown discovery: ${discoveryId}`);
+    return d;
+  }
+}
+
+class RecruitRuntime {
+  /** 大航海·船员随从：招募上限 max_crew(5)，对玩家属性加成（attack/defense/agility/max_health）。 */
+  constructor({ storage,catalog,clock = isoNow }) { this.storage=storage;this.catalog=catalog;this.clock=clock; }
+  recruit(playerId,crewId,eventId) {
+    const crew=this.findCrew(crewId);
+    return transactEvent(this.storage,playerId,eventId,'crew_recruit',{ crew_canonical_id:crew.canonical_id },this.clock,(state) => {
+      const max=Number(this.catalog.content?.crew?.max_crew??5);
+      const list=state.player.crew??[];
+      if (list.length>=max) throw new Error('Crew limit reached');
+      if (list.some((c)=>c.crew_canonical_id===crew.canonical_id)) throw new Error('Crew member already recruited');
+      if (state.player.money<Number(crew.recruit_cost??0)) throw new Error('Insufficient money to recruit');
+      state.player.money-=Number(crew.recruit_cost??0);
+      list.push({ instance_id:`crew.${crew.canonical_id}.${eventId}`,crew_canonical_id:crew.canonical_id,name:crew.name,role:crew.role,recruited_at:this.clock() });
+      state.player.crew=list;
+      return { applied:true,action:'crew_recruited',crew:crew.canonical_id,money:state.player.money,crew_count:list.length };
+    });
+  }
+  dismiss(playerId,crewInstanceId,eventId) {
+    return transactEvent(this.storage,playerId,eventId,'crew_dismiss',{ crew_instance_id:crewInstanceId },this.clock,(state) => {
+      const list=state.player.crew??[];
+      const crew=list.find((c)=>c.instance_id===crewInstanceId);
+      if (!crew) throw new Error('Crew member not found');
+      state.player.crew=list.filter((c)=>c.instance_id!==crewInstanceId);
+      return { applied:true,action:'crew_dismissed',crew_count:state.player.crew.length };
+    });
+  }
+  crewBonuses(state) {
+    const bonuses={ attack:0,defense:0,agility:0,max_health:0 };
+    for (const c of state.player.crew??[]) {
+      const def=this.catalog.content?.crew?.crew?.find((x)=>x.canonical_id===c.crew_canonical_id);
+      if (!def) continue;
+      bonuses.attack+=Number(def.attack_bonus??0);
+      bonuses.defense+=Number(def.defense_bonus??0);
+      bonuses.agility+=Number(def.agility_bonus??0);
+      bonuses.max_health+=Number(def.health_bonus??0);
+    }
+    return bonuses;
+  }
+  findCrew(crewId) {
+    const list=this.catalog.content?.crew?.crew??[];
+    const c=list.find((x)=>x.canonical_id===crewId||x.name===crewId);
+    if (!c) throw new Error(`Unknown crew: ${crewId}`);
+    return c;
+  }
+}
+
+class SkillRuntime {
+  /** 大航海·技能职业：skill_points 学习技能树，被动/主动加成战斗/航海/贸易/探索。 */
+  constructor({ storage,catalog,clock = isoNow }) { this.storage=storage;this.catalog=catalog;this.clock=clock; }
+  learn(playerId,skillId,eventId) {
+    const skill=this.findSkill(skillId);
+    return transactEvent(this.storage,playerId,eventId,'skill_learn',{ skill_canonical_id:skill.canonical_id },this.clock,(state) => {
+      const learned=state.player.skills??{};
+      const level=Number(learned[skill.canonical_id]?.level??0);
+      if (level>=Number(skill.max_level??5)) throw new Error('Skill already at max level');
+      const points=Number(state.player.skill_points??0);
+      const cost=Number(skill.points_per_level??1);
+      if (points<cost) throw new Error('Insufficient skill points');
+      state.player.skill_points=points-cost;
+      learned[skill.canonical_id]={ level:level+1,learned_at:this.clock() };
+      state.player.skills=learned;
+      return { applied:true,action:'skill_learned',skill:skill.canonical_id,level:learned[skill.canonical_id].level,skill_points:state.player.skill_points };
+    });
+  }
+  listLearned(playerId) {
+    const state=this.storage.loadPlayer(playerId);
+    const learned=state.player.skills??{};
+    return { applied:true,action:'skills_listed',skill_points:state.player.skill_points,learned };
+  }
+  findSkill(skillId) {
+    const list=this.catalog.content?.skills?.skills??[];
+    const s=list.find((x)=>x.canonical_id===skillId||x.name===skillId);
+    if (!s) throw new Error(`Unknown skill: ${skillId}`);
+    return s;
+  }
+}
+
+class GuildRuntime {
+  /** 大航海·商会：成立商会/置办产业（占用资金），商会城市信息存 state.guild。 */
+  constructor({ storage,catalog,clock = isoNow }) { this.storage=storage;this.catalog=catalog;this.clock=clock; }
+  establish(playerId,name,eventId) {
+    return transactEvent(this.storage,playerId,eventId,'guild_establish',{ name },this.clock,(state) => {
+      if (state.guild) throw new Error('A guild already exists');
+      const finalName=String(name||'').trim();
+      if (!finalName) throw new Error('Guild name cannot be empty');
+      const cost=Number(this.catalog.content?.cities?.guild_found_cost??10000);
+      if (state.player.money<cost) throw new Error('Insufficient money to found a guild');
+      state.player.money-=cost;
+      state.guild={ name:finalName,founded_at:this.clock(),city_canonical_id:state.player.current_city_canonical_id,treasury:0 };
+      return { applied:true,action:'guild_established',guild:state.guild,money:state.player.money };
+    });
+  }
+  deposit(playerId,amount,eventId) {
+    amount=positive(amount);
+    return transactEvent(this.storage,playerId,eventId,'guild_deposit',{ amount },this.clock,(state) => {
+      if (!state.guild) throw new Error('No guild exists');
+      if (state.player.money<amount) throw new Error('Insufficient money');
+      state.player.money-=amount;
+      state.guild.treasury=Number(state.guild.treasury??0)+amount;
+      return { applied:true,action:'guild_deposited',treasury:state.guild.treasury,money:state.player.money };
+    });
+  }
+  listState(playerId) {
+    const state=this.storage.loadPlayer(playerId);
+    return { applied:true,action:'guild_listed',guild:state.guild??null,city_influence:state.city_influence??{},occupied_cities:state.occupied_cities??[] };
+  }
+}
+
+class CityRuntime {
+  /** 大航海·城市占领/税收：invest 增影响力，占领高影响力城市（占领区免税+收日税）。 */
+  constructor({ storage,catalog,clock = isoNow }) { this.storage=storage;this.catalog=catalog;this.clock=clock; }
+  invest(playerId,cityId,eventId) {
+    return transactEvent(this.storage,playerId,eventId,'city_invest',{ city_canonical_id:cityId },this.clock,(state) => {
+      const city=this.findCity(cityId);
+      if (!state.guild) throw new Error('A guild is required to invest in cities');
+      const influence=state.city_influence??{};
+      const cost=Number(city.influence_cost??500);
+      if (state.player.money<cost) throw new Error('Insufficient money to invest');
+      state.player.money-=cost;
+      influence[cityId]=(Number(influence[cityId]??0)+1);
+      state.city_influence=influence;
+      return { applied:true,action:'city_invested',city:cityId,influence:influence[cityId],money:state.player.money };
+    });
+  }
+  declareOccupy(playerId,cityId,eventId) {
+    return transactEvent(this.storage,playerId,eventId,'city_occupy',{ city_canonical_id:cityId },this.clock,(state) => {
+      const city=this.findCity(cityId);
+      const influence=state.city_influence??{};
+      const threshold=Number(city.occupy_level??1)*10;
+      if (Number(influence[cityId]??0)<threshold) throw new Error('City influence is below the occupation threshold');
+      const occupied=state.occupied_cities??[];
+      if (occupied.includes(cityId)) throw new Error('City is already occupied');
+      occupied.push(cityId);
+      state.occupied_cities=occupied;
+      return { applied:true,action:'city_occupied',city:cityId,influence:influence[cityId],occupied_cities:occupied };
+    });
+  }
+  collectDailyTax(playerId,eventId) {
+    return transactEvent(this.storage,playerId,eventId,'city_tax_collect',{},this.clock,(state) => {
+      const occupied=state.occupied_cities??[];
+      if (!occupied.length) return { applied:false,reason:'no_occupied_cities' };
+      let total=0;
+      for (const cityId of occupied) {
+        const city=this.findCity(cityId);
+        total+=Number(city.daily_tax??0);
+      }
+      state.player.money+=total;
+      state.last_tax_collected_at=this.clock();
+      return { applied:true,action:'city_tax_collected',tax_total:total,cities:occupied.length,money:state.player.money };
+    });
+  }
+  listState(playerId) {
+    const state=this.storage.loadPlayer(playerId);
+    return { applied:true,action:'city_state',city_influence:state.city_influence??{},occupied_cities:state.occupied_cities??[] };
+  }
+  findCity(cityId) {
+    const list=this.catalog.content?.game_cities?.cities??this.catalog.content?.cities?.cities??[];
+    const c=list.find((x)=>x.canonical_id===cityId||x.name===cityId);
+    if (!c) throw new Error(`Unknown city: ${cityId}`);
+    return c;
+  }
+}
+
 class DropRuntime {
   constructor({ storage,catalog,taskEngine = null,random = Math.random,clock = isoNow }) { this.storage=storage;this.catalog=catalog;this.taskEngine=taskEngine;this.random=random;this.clock=clock; }
   settle(playerId,monsterId,combatId,eventId) {
@@ -494,15 +857,18 @@ class CombatRuntime {
         const stats=effectiveStats(state,this.catalog);const combat=state.combat;
         combat.round+=1;
         const playerDamage=damage(stats.attack,stats.max_attack,combat.monster_stats.defense,stats.agility,combat.monster_stats.agility,this.random);
-        combat.monster_current_health=Math.max(0,combat.monster_current_health-playerDamage);
+        const activePet=(state.player.pets??[]).find((p)=>p.active);
+        const petDamage=activePet?damage(activePet.attack??0,(activePet.attack??0)+Math.floor((activePet.attack??0)*0.6),combat.monster_stats.defense,activePet.speed??0,combat.monster_stats.agility,this.random):0;
+        combat.monster_current_health=Math.max(0,combat.monster_current_health-playerDamage-petDamage);
         if (combat.monster_current_health===0) {
           const monster=this.catalog.getMonster(combat.monster_canonical_id);const combatId=combat.canonical_id;
           const experience=Number(monster.rewards?.experience);const money=Number(monster.rewards?.copper);
           if(!Number.isFinite(experience)||!Number.isFinite(money))throw new Error(`Monster reward rule missing: ${monster.canonical_id}`);
           state.player.experience+=experience;state.player.money+=money;const progression=applyExperienceProgression(state);state.combat=null;
+          if(activePet){activePet.experience=(activePet.experience??0)+Math.floor(experience*0.5);}
           if(monster.repeatable===false)state.encounter_defeats[combat.encounter_defeat_key??combat.placement_canonical_id]={defeated_at:this.clock(),monster_canonical_id:monster.canonical_id,task_context_canonical_id:combat.task_context_canonical_id??null};
           return { applied:true,action:'combat_won',combat_canonical_id:combatId,monster_canonical_id:monster.canonical_id,
-            location_canonical_id:combat.location_canonical_id,player_damage:playerDamage,experience,money,progression,
+            location_canonical_id:combat.location_canonical_id,player_damage:playerDamage,pet_damage:petDamage,experience,money,progression,
             stamina_item:appliedStaminaItems.at(-1)??null,stamina_items:[...appliedStaminaItems],batched_rounds:batchRound+1 };
         }
         const monsterDamage=damage(combat.monster_stats.attack,combat.monster_stats.max_attack,stats.defense,combat.monster_stats.agility,stats.agility,this.random);
@@ -519,7 +885,7 @@ class CombatRuntime {
             stamina_item:appliedStaminaItems.at(-1)??staminaItem,stamina_items:[...appliedStaminaItems],
             defeated_at_map_node_canonical_id:defeatedAt,return_map_node_canonical_id:state.player.current_map_node_canonical_id,current_health:1,batched_rounds:batchRound+1 };
         }
-        result={ applied:true,action:'combat_round',player_damage:playerDamage,monster_damage:monsterDamage,
+        result={ applied:true,action:'combat_round',player_damage:playerDamage,monster_damage:monsterDamage,pet_damage:petDamage,
           stamina_item:appliedStaminaItems.at(-1)??staminaItem,stamina_items:[...appliedStaminaItems],combat:{ ...combat },player_health:state.player.current_health,batched_rounds:batchRound+1 };
       }
       return result;
@@ -714,6 +1080,14 @@ function formalInventoryUsed(state,catalog) {
     return sum+(exempt?0:Number(quantity));
   },0);
 }
+function applyTitle(reputation) {
+  const rep=Number(reputation??0);
+  if (rep>=50000) return '公爵';
+  if (rep>=20000) return '总督';
+  if (rep>=5000) return '提督';
+  if (rep>=1000) return '船长';
+  return '水手';
+}
 function positive(value) { const n=Number(value);if(!Number.isInteger(n)||n<=0)throw new Error('Quantity must be a positive integer');return n; }
 function index(values=[]) { return new Map(values.map((entry)=>[entry.canonical_id,entry])); }
 function group(values=[],key) { const map=new Map();for(const entry of values){const list=map.get(entry[key])??[];list.push(entry);map.set(entry[key],list);}return map; }
@@ -721,4 +1095,4 @@ function required(map,id,label) { const value=map.get(id);if(!value)throw new Er
 function stableJson(value) { if(value===null||typeof value!=='object')return JSON.stringify(value);if(Array.isArray(value))return`[${value.map(stableJson).join(',')}]`;return`{${Object.keys(value).sort().map((key)=>`${JSON.stringify(key)}:${stableJson(value[key])}`).join(',')}}`; }
 function isoNow() { return new Date().toISOString(); }
 
-module.exports = { CombatRuntime,DivingRuntime,DropRuntime,DungeonRuntime,EconomyRuntime,EquipmentRuntime,FishingRuntime,FormalGameplayCatalog,ItemRuntime,MaritimeRuntime,RecoveryRuntime,ShipRuntime,VoyageRuntime,EQUIPMENT_SLOT_BY_TYPE,chooseFishingWaitOutcome,damage,effectiveStats,fishingRarityWeights,monsterStats };
+module.exports = { CombatRuntime,DiscoverRuntime,DivingRuntime,DropRuntime,DungeonRuntime,EconomyRuntime,EquipmentRuntime,EquipmentEnhanceRuntime,FishingRuntime,FormalGameplayCatalog,GuildRuntime,CityRuntime,ItemRuntime,MarketRuntime,MaritimeRuntime,PetRuntime,RecoveryRuntime,RecruitRuntime,SkillRuntime,ShipRuntime,VoyageRuntime,EQUIPMENT_SLOT_BY_TYPE,applyTitle,chooseFishingWaitOutcome,damage,effectiveStats,fishingRarityWeights,monsterStats };

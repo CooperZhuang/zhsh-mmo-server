@@ -1,0 +1,391 @@
+{
+  "version": 1,
+  "chapters": [
+    {
+      "chapter": "ch1",
+      "region": "region.mediterranean",
+      "name": "新手启航",
+      "entry_npc": "npc.boss",
+      "main_goal": "集齐羊皮航海图碎片",
+      "chain": [
+        {
+          "name": "拜访酒馆老板",
+          "type": "对话",
+          "target": "npc.boss",
+          "quantity": 1
+        },
+        {
+          "name": "猎杀海兽",
+          "type": "打怪",
+          "target": "海妖",
+          "quantity": 3
+        },
+        {
+          "name": "收集航海图碎片",
+          "type": "收集",
+          "target": "航海图碎片",
+          "quantity": 5
+        }
+      ],
+      "boss": "海妖",
+      "reward": {
+        "title": "四海之王·序",
+        "reputation": 100,
+        "money": 500
+      }
+    },
+    {
+      "chapter": "ch2",
+      "region": "region.northsea",
+      "name": "女巫的诅咒",
+      "entry_npc": "npc.catherine",
+      "main_goal": "解除女巫诅咒，取得雷神之锤",
+      "chain": [
+        {
+          "name": "调查女巫小屋",
+          "type": "对话",
+          "target": "女巫",
+          "quantity": 1
+        },
+        {
+          "name": "击杀诅咒巨狼",
+          "type": "打怪",
+          "target": "巨狼",
+          "quantity": 3
+        },
+        {
+          "name": "收集回春药",
+          "type": "收集",
+          "target": "回春药",
+          "quantity": 2
+        }
+      ],
+      "boss": "巨狼",
+      "reward": {
+        "reputation": 150,
+        "money": 600
+      }
+    },
+    {
+      "chapter": "ch3",
+      "region": "region.westafrica",
+      "name": "沙漠商队",
+      "entry_npc": "npc.welfare",
+      "main_goal": "打通撒哈拉商路，夺得黄金面具",
+      "chain": [
+        {
+          "name": "与酋长议和",
+          "type": "对话",
+          "target": "部落酋长",
+          "quantity": 1
+        },
+        {
+          "name": "歼灭沙蝎王",
+          "type": "打怪",
+          "target": "沙蝎王",
+          "quantity": 1
+        },
+        {
+          "name": "收集黄金面具碎片",
+          "type": "收集",
+          "target": "面具碎片",
+          "quantity": 4
+        }
+      ],
+      "boss": "沙蝎王",
+      "reward": {
+        "reputation": 180,
+        "money": 800
+      }
+    },
+    {
+      "chapter": "ch4",
+      "region": "region.redsea",
+      "name": "法老的诅咒",
+      "entry_npc": "npc.casanova",
+      "main_goal": "夺回被夺的圣物",
+      "chain": [
+        {
+          "name": "听祭司讲述诅咒",
+          "type": "对话",
+          "target": "神庙祭司",
+          "quantity": 1
+        },
+        {
+          "name": "击败金字塔守卫",
+          "type": "打怪",
+          "target": "金字塔守卫",
+          "quantity": 3
+        },
+        {
+          "name": "收集圣物零件",
+          "type": "收集",
+          "target": "圣物零件",
+          "quantity": 3
+        }
+      ],
+      "boss": "金字塔守卫",
+      "reward": {
+        "reputation": 200,
+        "money": 1000
+      }
+    },
+    {
+      "chapter": "ch5",
+      "region": "region.indianocean",
+      "name": "象神神殿",
+      "entry_npc": "npc.livio",
+      "main_goal": "取得湿婆之眼",
+      "chain": [
+        {
+          "name": "拜访香料大亨",
+          "type": "对话",
+          "target": "香料大亨",
+          "quantity": 1
+        },
+        {
+          "name": "击杀多头蛇",
+          "type": "打怪",
+          "target": "多头蛇",
+          "quantity": 1
+        },
+        {
+          "name": "收集象神香供",
+          "type": "收集",
+          "target": "象神香供",
+          "quantity": 3
+        }
+      ],
+      "boss": "多头蛇",
+      "reward": {
+        "reputation": 220,
+        "money": 1200
+      }
+    },
+    {
+      "chapter": "ch6",
+      "region": "region.seasia",
+      "name": "郑和遗踪",
+      "entry_npc": "npc.littlepete",
+      "main_goal": "寻得航海图残卷之一",
+      "chain": [
+        {
+          "name": "询问马来头领",
+          "type": "对话",
+          "target": "马来头领",
+          "quantity": 1
+        },
+        {
+          "name": "击败海贼王",
+          "type": "打怪",
+          "target": "海贼王",
+          "quantity": 1
+        },
+        {
+          "name": "收集残卷碎片",
+          "type": "收集",
+          "target": "残卷碎片",
+          "quantity": 5
+        }
+      ],
+      "boss": "海贼王",
+      "reward": {
+        "reputation": 250,
+        "money": 1500
+      }
+    },
+    {
+      "chapter": "ch7",
+      "region": "region.chinahara",
+      "name": "抗击倭寇",
+      "entry_npc": "npc.inza",
+      "main_goal": "平定倭寇保卫边疆，夺回龙脉玉玺",
+      "chain": [
+        {
+          "name": "面圣领旨",
+          "type": "对话",
+          "target": "长安官吏",
+          "quantity": 1
+        },
+        {
+          "name": "剿灭倭寇头目",
+          "type": "打怪",
+          "target": "倭寇头目",
+          "quantity": 1
+        },
+        {
+          "name": "收集倭刀",
+          "type": "收集",
+          "target": "倭刀",
+          "quantity": 4
+        }
+      ],
+      "boss": "倭寇头目",
+      "reward": {
+        "reputation": 280,
+        "money": 1800
+      }
+    },
+    {
+      "chapter": "ch8",
+      "region": "region.japan",
+      "name": "幕府风云",
+      "entry_npc": "npc.catherine",
+      "main_goal": "助幕府平乱，取得天丛云剑",
+      "chain": [
+        {
+          "name": "会见大名",
+          "type": "对话",
+          "target": "大名",
+          "quantity": 1
+        },
+        {
+          "name": "击败妖刀持有者",
+          "type": "打怪",
+          "target": "妖刀持有者",
+          "quantity": 1
+        },
+        {
+          "name": "收集樱花令",
+          "type": "收集",
+          "target": "樱花令",
+          "quantity": 3
+        }
+      ],
+      "boss": "妖刀持有者",
+      "reward": {
+        "reputation": 300,
+        "money": 2000
+      }
+    },
+    {
+      "chapter": "ch9",
+      "region": "region.maya",
+      "name": "末日预言",
+      "entry_npc": "npc.boss",
+      "main_goal": "破解末日预言，取回太阳历石",
+      "chain": [
+        {
+          "name": "询问玛雅祭司",
+          "type": "对话",
+          "target": "玛雅祭司",
+          "quantity": 1
+        },
+        {
+          "name": "击败羽蛇神分身",
+          "type": "打怪",
+          "target": "羽蛇神分身",
+          "quantity": 1
+        },
+        {
+          "name": "收集历法铭文",
+          "type": "收集",
+          "target": "历法铭文",
+          "quantity": 4
+        }
+      ],
+      "boss": "羽蛇神分身",
+      "reward": {
+        "reputation": 320,
+        "money": 2200
+      }
+    },
+    {
+      "chapter": "ch10",
+      "region": "region.caribbean",
+      "name": "黄金船队",
+      "entry_npc": "npc.welfare",
+      "main_goal": "夺取黑胡子藏宝图",
+      "chain": [
+        {
+          "name": "混入海盗联盟",
+          "type": "对话",
+          "target": "海盗王",
+          "quantity": 1
+        },
+        {
+          "name": "击败黑胡子",
+          "type": "打怪",
+          "target": "黑胡子",
+          "quantity": 1
+        },
+        {
+          "name": "收集藏宝图残页",
+          "type": "收集",
+          "target": "藏宝图残页",
+          "quantity": 5
+        }
+      ],
+      "boss": "黑胡子",
+      "reward": {
+        "reputation": 350,
+        "money": 2500
+      }
+    },
+    {
+      "chapter": "ch11",
+      "region": "region.southamerica",
+      "name": "屠龙者",
+      "entry_npc": "npc.casanova",
+      "main_goal": "屠龙取得黄金城秘钥",
+      "chain": [
+        {
+          "name": "拜访总督",
+          "type": "对话",
+          "target": "殖民地总督",
+          "quantity": 1
+        },
+        {
+          "name": "讨伐巨龙",
+          "type": "打怪",
+          "target": "巨龙",
+          "quantity": 1
+        },
+        {
+          "name": "收集龙鳞",
+          "type": "收集",
+          "target": "龙鳞",
+          "quantity": 3
+        }
+      ],
+      "boss": "巨龙",
+      "reward": {
+        "reputation": 400,
+        "money": 3000
+      }
+    },
+    {
+      "chapter": "ch12",
+      "region": "region.polar",
+      "name": "沉没之都",
+      "entry_npc": "npc.livio",
+      "main_goal": "汇聚全部龙珠，挑战深渊之主",
+      "chain": [
+        {
+          "name": "拜见神秘老人",
+          "type": "对话",
+          "target": "神秘老人",
+          "quantity": 1
+        },
+        {
+          "name": "决斗深渊之主",
+          "type": "打怪",
+          "target": "深渊之主",
+          "quantity": 1
+        },
+        {
+          "name": "收集龙珠",
+          "type": "收集",
+          "target": "龙珠",
+          "quantity": 12
+        }
+      ],
+      "boss": "深渊之主",
+      "reward": {
+        "title": "四海之王",
+        "reputation": 1000,
+        "money": 10000
+      }
+    }
+  ]
+}

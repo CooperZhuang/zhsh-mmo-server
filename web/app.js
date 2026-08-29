@@ -1,4 +1,5 @@
-import { BrowserRuntimeStorage,BrowserTaskCatalog,CombatRuntime,NpcDuelRuntime,DivingRuntime,DropRuntime,DungeonRuntime,EconomyRuntime,EquipmentRuntime,FishingRuntime,FormalGameplayCatalog,ItemRuntime,MaritimeRuntime,RecoveryRuntime,RemoteCharacterRegistry,RemoteDurableStore,ShipRuntime,TaskRuntimeEngine,UiFeedback,VoyageRuntime,buildCityMapEntries,effectiveStats,applyExperienceProgression,LEVEL_THRESHOLDS } from './generated/task-runtime-browser.js';
+import { createGameApi } from './game-api.js';
+import { BrowserTaskCatalog, FormalGameplayCatalog } from './generated/task-runtime-browser.js';
 
 const captureMode = new URLSearchParams(location.search).get('uat') === 'capture';
 const DEFAULT_PLAYER_ID = captureMode ? 'player.browser.task1.uat-capture' : 'player.browser.task1';
@@ -8,11 +9,80 @@ const saveStatus = document.querySelector('#save-status');
 const importInput = document.querySelector('#save-import');
 const debugEnabled = new URLSearchParams(location.search).get('dev') === '1';
 const adminEnabled = new URLSearchParams(location.search).get('admin') !== '0';
-let content,visuals,catalog,storage,engine,gameplayCatalog,combat,npcDuel,diving,drops,dungeon,economy,equipment,fishing,items,maritime,recovery,ships,voyage,remoteRegistry;
-let combatRandom=Math.random;
-const feedback = new UiFeedback();
+let content,visuals,gameApi,catalog,gameplayCatalog;
+// 角色指针在服务器权威下由账号 JWT 决定，本地不再维护 active 指针
+let remoteRegistry = { setActive: async () => {}, getActive: async () => null };
+let serverView = null; // 服务器权威 state（getPlayerView 等价 view）
+let serverAdjacent = []; // 当前位置可移动节点（服务器 list_adjacent 结果）
+let serverNpcs = []; // 当前位置 NPC（服务器 list_current_npcs 结果）
+let serverWorld = null; // 服务器世界静态数据（12区/发现物/商品/宠物/主线/角色/支线）
+let combatRandom = Math.random;
+// 改为从服务器取 state；本地不再实例化引擎/runtime
+const feedback = { _snapshot:{error:null,message:null}, succeed(msg){ this._snapshot.message=msg||null; this._snapshot.error=null; }, fail(msg){ this._snapshot.error=msg||null; this._snapshot.message=null; }, setFeedback(msg){ this._snapshot.error=msg||null; }, snapshot(){ return { error:this._snapshot.error,message:this._snapshot.message }; } };
 let gameEntered = false;
 let page = { name:'start' };
+
+// ==== 服务器权威数据层：renderer/绑定保持原调用签名，底层转发到 gameApi ====
+// renderer 同步读取 serverView（由 render() 预取）；动作经 runtimeProxy/engineProxy 转发服务器。
+
+function bindRuntimeTargets() {
+  // 逻辑：各运行时方法 (playerId, ...args, eventId) -> gameApi.runtime(gadget, method, {_arg1.._arg3}, eventId)
+  const runtimeGadgets = ['combat','npcDuel','dungeon','diving','economy','equipment','enhance','fishing','items','market','maritime','pets','recovery','ships','voyage','discover'];
+  const proxies = {};
+  for (const gadget of runtimeGadgets) {
+    proxies[gadget] = new Proxy({}, {
+      get(_t, method) {
+        return function (...callArgs) {
+          // callArgs[0] 为 playerId，剥离
+          const rest = callArgs.slice(1);
+          const eventId = typeof rest.at(-1) === 'string' ? rest.pop() : undefined;
+          const args = { _arg1: rest[0], _arg2: rest[1], _arg3: rest[2] };
+          return gameApi.runtime(gadget, method, args, eventId);
+        };
+      },
+    });
+  }
+  // engine 动作代理（task engine：移动/对话/任务等）
+  proxies.engine = {
+    getPlayerView: () => serverView,
+    loadPlayer: () => serverView,
+    listAdjacentLocations: () => serverAdjacent,
+    listCurrentNpcs: () => serverNpcs,
+    processEvent: (playerId, event) => gameApi.action(event?.type === 'submit_to_npc' ? 'submit_to_npc' : event?.type === 'talk_to_npc' ? 'talk_to_npc' : 'talk_to_npc', { npc_canonical_id: event?.npc_canonical_id, location_canonical_id: event?.location_canonical_id }, event?.event_id),
+    move: (playerId, mapNodeId, eventId) => gameApi.action('move', { map_node_canonical_id: mapNodeId }, eventId),
+    travelToCityPort: (playerId, mapNodeId, eventId) => gameApi.action('travel_to_city_port', { map_node_canonical_id: mapNodeId }, eventId),
+    fastTravelToLocation: (playerId, locationId, eventId) => gameApi.action('fast_travel', { location_canonical_id: locationId }, eventId),
+    selectSeries: (playerId, seriesId, eventId) => gameApi.action('select_series', { series_canonical_id: seriesId }, eventId),
+    createPlayer: async () => ({ player: serverView?.player }),
+    synchronizeDefinitions: () => {},
+  };
+  return proxies;
+}
+
+// 延迟绑定：gameApi 在 bootstrap 创建后才可用
+let runtimeProxies = null;
+function ensureRuntimeProxies() { if (!runtimeProxies) runtimeProxies = bindRuntimeTargets(); return runtimeProxies; }
+let engine = null, storage = null, combat = null, npcDuel = null, diving = null, drops = null, dungeon = null, economy = null, equipment = null, enhance = null, fishing = null, items = null, maritime = null, market = null, pets = null, recovery = null, ships = null, voyage = null, discover = null;
+function bindGameplayProxies() {
+  const p = ensureRuntimeProxies();
+  engine = p.engine; combat = p.combat; npcDuel = p.npcDuel; diving = p.diving; dungeon = p.dungeon; economy = p.economy;
+  equipment = p.equipment; enhance = p.enhance; fishing = p.fishing; items = p.items; maritime = p.maritime;
+  market = p.market; pets = p.pets; recovery = p.recovery; ships = p.ships; voyage = p.voyage; discover = p.discover;
+  storage = {
+    hasPlayer: () => serverView != null,
+    corruptRecords: new Map(),
+    get players() { const map = new Map(); if (serverView) map.set(PLAYER_ID, serverView); return map; },
+    loadPlayer: () => serverView,
+    reloadPlayer: async () => { await ensurePlayerView(); return serverView; },
+    transact: (playerId, mutator) => { if (serverView) mutator(serverView); },
+    deletePlayer: async () => { gameEntered = false; serverView = null; },
+    createPlayer: async () => { await ensurePlayerView(); },
+    flush: async () => {},
+    ready: async () => {},
+    exportPlayer: async () => { await ensurePlayerView(); return serverView; },
+    importPlayer: async () => { feedback.succeed('存档由服务器权威管理，导入已跳过。'); },
+  };
+}
 function createBrowserLogger(){
   const queue=[];
   let timer=null;
@@ -57,6 +127,10 @@ bootstrap().catch(showFatal);
 
 async function bootstrap() {
   browserLog.info('bootstrap','start',{playerId:PLAYER_ID,captureMode,debugEnabled,adminEnabled});
+  gameApi = createGameApi();
+  // 引擎/存储/运行时在 bootstrap 中绑定为服务器转发代理
+  bindGameplayProxies();
+  // 内容/视觉由客户端静态拉取（用于渲染视觉资产）；状态/引擎由服务器权威
   content = await fetch('./generated/task1-content.json',{ cache:'no-store' }).then((response) => {
     if (!response.ok) throw new Error(`内容包读取失败：${response.status}`);
     return response.json();
@@ -65,47 +139,39 @@ async function bootstrap() {
     if (!response.ok) throw new Error(`权威美术索引读取失败：${response.status}`);
     return response.json();
   });
-  catalog = new BrowserTaskCatalog(content);
   browserLog.info('bootstrap','content loaded',{series:content.series.length,locations:content.locations.length});
-  remoteRegistry = new RemoteCharacterRegistry();
-  storage = new BrowserRuntimeStorage({ durableStore: new RemoteDurableStore() });
-  await storage.ready();
-  browserLog.info('bootstrap','storage ready');
-  browserLog.info('bootstrap','visuals loaded',{assets:visuals.assets.length});
-  const activeId = await remoteRegistry.getActive().catch(() => null);
-  if (activeId && storage.hasPlayer(activeId)) PLAYER_ID = activeId;
-  engine = new TaskRuntimeEngine({ catalog,storage,seriesCanonicalIds:content.series.map((entry)=>entry.canonical_id) });
-  if (storage.hasPlayer(PLAYER_ID)) engine.synchronizeDefinitions(PLAYER_ID);
-  browserLog.info('bootstrap','engine ready',{playerId:PLAYER_ID,activeId:typeof activeId==='undefined'?null:activeId});
+  // 渲染索引（只读，用于名称/图标查询）；引擎/存储走服务器代理
+  catalog = new BrowserTaskCatalog(content);
   gameplayCatalog = new FormalGameplayCatalog(content);
-  const uatDropRandom=globalThis.__ZHSH_UAT_DROP_RANDOM__;
-  drops = new DropRuntime({ storage,catalog:gameplayCatalog,taskEngine:engine,...(typeof uatDropRandom==='function'?{random:uatDropRandom}:{}) });
-  combat = new CombatRuntime({ storage,catalog:gameplayCatalog,taskEngine:engine,dropRuntime:drops,random:()=>combatRandom() });
-  npcDuel = new NpcDuelRuntime({ storage,taskCatalog:catalog,gameplayCatalog,taskEngine:engine,random:()=>combatRandom() });
-  dungeon = new DungeonRuntime({ storage,catalog:gameplayCatalog });
-  const uatDivingRandom=globalThis.__ZHSH_UAT_DIVING_RANDOM__;
-  diving = new DivingRuntime({ storage,catalog:gameplayCatalog,...(typeof uatDivingRandom==='function'?{random:uatDivingRandom}:{}) });
-  economy = new EconomyRuntime({ storage,catalog:gameplayCatalog,taskEngine:engine });
-  equipment = new EquipmentRuntime({ storage,catalog:gameplayCatalog });
-  const uatFishingRandom=globalThis.__ZHSH_UAT_FISHING_RANDOM__;
-  fishing = new FishingRuntime({ storage,catalog:gameplayCatalog,taskEngine:engine,...(typeof uatFishingRandom==='function'?{random:uatFishingRandom}:{}) });
-  items = new ItemRuntime({ storage,catalog:gameplayCatalog });
-  const uatMaritimeRandom=globalThis.__ZHSH_UAT_MARITIME_RANDOM__;
-  maritime = new MaritimeRuntime({ storage,catalog:gameplayCatalog,...(typeof uatMaritimeRandom==='function'?{random:uatMaritimeRandom}:{}) });
-  recovery = new RecoveryRuntime({ storage,catalog:gameplayCatalog });
-  ships = new ShipRuntime({ storage,catalog:gameplayCatalog });
-  voyage = new VoyageRuntime({ storage,catalog:gameplayCatalog,taskEngine:engine,maritimeRuntime:maritime });
-  saveStatus.textContent = storage.corruptRecords.has(PLAYER_ID) ? '检测到损坏存档，可重置或导入备份' : '存档已读取';
-  browserLog.info('bootstrap','booted',{playerId:PLAYER_ID,corrupt:storage.corruptRecords.has(PLAYER_ID)});
-  renderStart();
+  // 拉取服务器世界静态数据（若有令牌）；供世界地图/发现物图鉴/主线面板使用
+  if (gameApi.getToken()) { try { serverWorld = await gameApi.getWorld(); } catch { serverWorld = null; } }
+  // 有令牌则直接进入游戏；否则停在开始页（登录/注册）
+  if (gameApi.getToken()) {
+    try { await ensurePlayerView(); gameEntered = true; render(); }
+    catch (error) { browserLog.warn('bootstrap','token invalid, fall back to login',{error:error.message}); gameEntered = false; renderStart(); }
+  } else {
+    renderStart();
+  }
   if (debugEnabled) exposeDebugSurface();
 }
 
-function render() {
-  if (!storage.hasPlayer(PLAYER_ID) || !gameEntered || page.name === 'start') { renderStart();return; }
+/** 从服务器拉取权威玩家视图并缓存到 serverView */
+async function ensurePlayerView() {
+  serverView = await gameApi.getState();
+  // 并行拉取当前位置的相邻节点与 NPC（供 renderer 同步读取）
+  try { serverAdjacent = await gameApi.action('list_adjacent'); } catch { serverAdjacent = []; }
+  try { serverNpcs = await gameApi.action('list_current_npcs'); } catch { serverNpcs = []; }
+  return serverView;
+}
+
+async function render() {
+  if (!gameEntered || page.name === 'start') { renderStart();return; }
+  // 每次渲染都从服务器拉取权威视图，保证状态一致
+  try { await ensurePlayerView(); } catch (error) { showFatal(error); return; }
   const renderers = {
     location:renderLocationPage,map:renderMapPage,world:renderWorldPage,npc:renderNpcPage,tasks:renderTaskListPage,task:renderTaskDetailPage,
     backpack:renderBackpackPage,item:renderItemDetailPage,encounter:renderFormalEncounterPage,shop:renderFormalShopPage,voyage:renderFormalVoyagePage,status:renderStatusPage,save:renderSavePage,compendium:renderCompendiumPage,admin:renderAdminPage,settings:renderSettingsPage,
+    market:renderMarketPage,pets:renderPetsPage,enhance:renderEnhancePage,regions:renderRegionsPage,discoveries:renderDiscoveriesPage,questline:renderQuestlinePage,
   };
   try { (renderers[page.name] ?? renderLocationPage)(); }
   catch (error) { showFatal(error); }
@@ -124,7 +190,7 @@ function renderStart() {
   page = { name:'start' };
   document.body.dataset.page = 'start';
   const corrupt = storage.corruptRecords.get(PLAYER_ID);
-  const hasSave = storage.hasPlayer(PLAYER_ID);
+  const hasSave = serverView != null;
   const { error:lastError } = feedback.snapshot();
   app.innerHTML = `<section class="wap-page start-page">
     <div class="start-visual" role="img" aria-label="威尼斯港口">
@@ -132,6 +198,12 @@ function renderStart() {
     </div>
     <h1 class="start-logo">纵横四海</h1>
     <p class="start-lead">梦想的驱动，财富的蛊惑，帮会的火拼，刻骨铭心的生存危机，一串串的曲折离奇，一场场的霸者之征……</p>
+    ${gameApi?.getToken() ? '' : `<div class="auth-panel">
+      <p><strong>登录 / 注册（服务器账号）</strong></p>
+      <p><input id="auth-username" placeholder="角色名（2-12字符）" maxlength="12" autocomplete="off"></p>
+      <p><input id="auth-password" type="password" placeholder="密码（≥4位）" autocomplete="off"></p>
+      <p><button class="text-link" data-action="auth-login">登录</button>　<button class="text-link" data-action="auth-register">注册并进入</button></p>
+    </div>`}
     ${corrupt ? `<p class="error">存档损坏：${escapeHtml(corrupt)}</p>` : ''}
     ${lastError ? `<p class="error">${escapeHtml(lastError)}</p>` : ''}
     <p>${hasSave ? '<button class="text-link" data-action="continue-game">继续冒险之旅</button>' : '<button class="text-link" data-action="new-game">启动冒险之旅</button>'}</p>
@@ -143,7 +215,7 @@ function renderStart() {
 
 function renderLocationPage() {
   document.body.dataset.page = 'location';
-  const view = engine.getPlayerView(PLAYER_ID);
+  const view = serverView;
   const adjacent = engine.listAdjacentLocations(PLAYER_ID);
   const npcs = engine.listCurrentNpcs(PLAYER_ID);
   const encounterActions = listFormalEncounterActions(view);
@@ -180,7 +252,7 @@ function renderLocationPage() {
 
 function renderMapPage() {
   document.body.dataset.page = 'map';
-  const view = engine.getPlayerView(PLAYER_ID);
+  const view = serverView;
   const adjacent = engine.listAdjacentLocations(PLAYER_ID);
   const mapEntries = buildCityMapEntries(content,view.current_location,adjacent);
   const cityName = cityDisplayName(view.current_location?.city_canonical_id);
@@ -201,7 +273,7 @@ function renderMapPage() {
 
 function renderWorldPage() {
   document.body.dataset.page='world';
-  const view=engine.getPlayerView(PLAYER_ID);
+  const view=serverView;
   if(view.current_location?.display_name!=='码头'){showPage('location');return;}
   const ports=content.map_nodes.filter((entry)=>entry.location_canonical_id&&entry.display_name==='码头'&&entry.city_canonical_id!==view.current_location.city_canonical_id)
     .map((entry)=>({...entry,city_name:cityDisplayName(entry.city_canonical_id)})).sort((a,b)=>a.city_name.localeCompare(b.city_name,'zh-CN'));
@@ -217,9 +289,150 @@ function renderWorldPage() {
   bindPageActions();
 }
 
+// ==== 阶段6：新增玩法页面（市场/宠物/强化/天下/发现物/主线）====
+
+function renderMarketPage() {
+  document.body.dataset.page='market';
+  const view=serverView;
+  if(!view){ feedback.fail('状态未就绪。'); showPage('location'); return; }
+  app.innerHTML=`<section class="wap-page">
+    <p><strong>${escapeHtml(cityDisplayName(view.player.current_city_canonical_id))}市场</strong>（区域特产套利：产区便宜，异区贵）</p>
+    ${renderFeedback()}
+    <p>铜币：${view.player.money}</p>
+    <p id="market-holds">加载市场行情……</p>
+    <p><button class="text-link" data-page="location">返回</button></p>
+    ${renderPrimaryNav()}
+  </section>`;
+  bindPageActions();
+  // 异步拉取市场行情
+  market.getMarketView(PLAYER_ID,eventId('market-view')).then((mv)=>{
+    const holds=document.querySelector('#market-holds');
+    if(!holds)return;
+    const local=mv.offers.filter((o)=>o.is_local);
+    const remote=mv.offers.filter((o)=>!o.is_local);
+    holds.innerHTML=`<p>你所在区域：${escapeHtml(mv.city_region||'未知')}　货舱：${mv.holds}/${mv.capacity}</p>
+      <p><strong>本区特产（低价买入）</strong></p>
+      <div class="line-list">${local.slice(0,12).map((o)=>`<p>${escapeHtml(o.name)}（${o.local_price}铜）　<button class="text-link" data-market-buy="${attr(o.canonical_id)}" data-name="${attr(o.name)}">买入</button>　<button class="text-link" data-market-sell="${attr(o.canonical_id)}" data-name="${attr(o.name)}">卖出</button></p>`).join('')}</div>
+      <p><strong>异区商品（高价卖出）</strong></p>
+      <div class="line-list">${remote.slice(0,12).map((o)=>`<p>${escapeHtml(o.name)}（${o.local_price}铜）　<button class="text-link" data-market-buy="${attr(o.canonical_id)}" data-name="${attr(o.name)}">买入</button>　<button class="text-link" data-market-sell="${attr(o.canonical_id)}" data-name="${attr(o.name)}">卖出</button></p>`).join('')}</div>`;
+    bindMarketActions();
+  }).catch((e)=>{ feedback.fail(e.message); renderMarketPage(); });
+}
+
+function bindMarketActions() {
+  document.querySelectorAll('[data-market-buy]').forEach((b)=>b.addEventListener('click',()=>perform(
+    ()=>market.buy(PLAYER_ID,b.dataset.marketBuy,1,eventId('market-buy')),`已购入${b.dataset.name}。`,'market')));
+  document.querySelectorAll('[data-market-sell]').forEach((b)=>b.addEventListener('click',()=>perform(
+    ()=>market.sell(PLAYER_ID,b.dataset.marketSell,1,eventId('market-sell')),`已售出${b.dataset.name}。`,'market')));
+}
+
+function renderPetsPage() {
+  document.body.dataset.page='pets';
+  const view=serverView;
+  const pets=(view.player.pets??[]);
+  const petCatalog=serverWorld?.pets?.pets??[];
+  const ownedByType=pets.reduce((m,p)=>{m[p.pet_canonical_id]=p;return m;},{});
+  app.innerHTML=`<section class="wap-page">
+    <p><strong>宠物（${pets.length}/3）</strong></p>
+    ${renderFeedback()}
+    ${pets.length?`<div class="line-list">${pets.map((p)=>`<p>${escapeHtml(p.name)} Lv.${p.level} HP${p.current_health}/${p.max_health} 饱食${p.satiety} ${p.active?'（出战）':''}
+      <button class="text-link" data-pet-active="${attr(p.instance_id)}">出战</button>
+      <button class="text-link" data-pet-feed="${attr(p.instance_id)}">喂食</button>
+      <button class="text-link" data-pet-release="${attr(p.instance_id)}">放生</button></p>`).join('')}</div>`:'<p>没有宠物，去捕捉一只吧。</p>'}
+    <p><strong>宠物图鉴（可捕获）</strong></p>
+    <div class="line-list">${petCatalog.filter((c)=>!ownedByType[c.canonical_id]).slice(0,10).map((c)=>`<p>${escapeHtml(c.name)}（${c.type} 攻${c.attack}）　<button class="text-link" data-pet-capture="${attr(c.canonical_id)}">捕获</button></p>`).join('')}</div>
+    <p><button class="text-link" data-page="location">返回</button></p>
+    ${renderPrimaryNav()}
+  </section>`;
+  bindPetsActions();
+}
+
+function bindPetsActions() {
+  document.querySelectorAll('[data-pet-capture]').forEach((b)=>b.addEventListener('click',()=>perform(
+    ()=>pets.capture(PLAYER_ID,b.dataset.petCapture,eventId('pet-capture')),'宠物已捕获。','pets')));
+  document.querySelectorAll('[data-pet-feed]').forEach((b)=>b.addEventListener('click',()=>perform(
+    ()=>pets.feed(PLAYER_ID,b.dataset.petFeed,eventId('pet-feed')),'宠物已喂食。','pets')));
+  document.querySelectorAll('[data-pet-active]').forEach((b)=>b.addEventListener('click',()=>perform(
+    ()=>pets.setActive(PLAYER_ID,b.dataset.petActive,eventId('pet-active')),'宠物已设置出战。','pets')));
+  document.querySelectorAll('[data-pet-release]').forEach((b)=>b.addEventListener('click',()=>perform(
+    ()=>pets.release(PLAYER_ID,b.dataset.petRelease,eventId('pet-release')),'宠物已放生。','pets')));
+}
+
+function renderEnhancePage() {
+  document.body.dataset.page='enhance';
+  const view=serverView;
+  const rules=serverWorld?.enhance_rules??{};
+  const equipped=view.equipment;
+  const slotLabels={weapon:'武器',offhand:'副手',headgear:'头饰',clothes:'衣物',belt:'腰带',shoes:'鞋',accessories:'饰品'};
+  app.innerHTML=`<section class="wap-page">
+    <p><strong>装备强化</strong>（最高${rules.max_level??15}级，失败不降级）</p>
+    ${renderFeedback()}
+    <p>铜币：${view.player.money}　强化材料（龙泉水）：${view.inventory?.['item.龙泉水']??0}</p>
+    <div class="line-list">${Object.entries(equipped||{}).filter(([k,v])=>v).map(([slot,itemId])=>{const inst=view.equipment_instances?.[itemId]??{};const lv=inst.level??0;return `<p>${slotLabels[slot]||slot}：${escapeHtml(gameplayCatalog.getEquipment(itemId)?.display_name||itemId)} +${lv}　<button class="text-link" data-enhance-slot="${attr(slot)}">强化</button></p>`;}).join('')||'<p>当前没有已装备的装备。</p>'}</div>
+    <p><button class="text-link" data-page="location">返回</button></p>
+    ${renderPrimaryNav()}
+  </section>`;
+  bindEnhanceActions();
+}
+
+function bindEnhanceActions() {
+  document.querySelectorAll('[data-enhance-slot]').forEach((b)=>b.addEventListener('click',()=>perform(
+    ()=>enhance.enhance(PLAYER_ID,b.dataset.enhanceSlot,eventId('enhance')),(r)=>r&&r.succeeded?'强化成功！':'强化失败（等级不变）。','enhance')));
+}
+
+function renderRegionsPage() {
+  document.body.dataset.page='regions';
+  const regions=serverWorld?.world_regions?.regions??{};
+  const cityById=Object.fromEntries(content.cities?.map((c)=>[c.canonical_id,c.display_name])??[]);
+  app.innerHTML=`<section class="wap-page">
+    <p><strong>天下 · 12 大区域</strong></p>
+    ${renderFeedback()}
+    <div class="line-list">${Object.entries(regions).map(([id,r])=>`<p><strong>${escapeHtml(r.name)}</strong>（${escapeHtml(r.culture)}）<br>城市：${r.cities.map((c)=>escapeHtml(cityById[c]||c)).join('、')||'尚未开放'}<br>目标：${escapeHtml(r.final_goal)}　势力：${escapeHtml(r.faction)}</p>`).join('')}</div>
+    <p><button class="text-link" data-page="location">返回</button></p>
+    ${renderPrimaryNav()}
+  </section>`;
+  bindPageActions();
+}
+
+function renderDiscoveriesPage() {
+  document.body.dataset.page='discoveries';
+  const view=serverView;
+  const found=view.discoveries_found??{};
+  const disc=serverWorld?.discoveries?.discoveries??[];
+  const cityById=Object.fromEntries(content.cities?.map((c)=>[c.canonical_id,c.display_name])??[]);
+  app.innerHTML=`<section class="wap-page">
+    <p><strong>发现物图鉴</strong>（已发现 ${Object.keys(found).length}/${disc.length}）</p>
+    ${renderFeedback()}
+    <div class="line-list">${disc.map((d)=>Object.keys(found).includes(d.canonical_id)
+      ?`<p>✅ <strong>${escapeHtml(d.name)}</strong>（${escapeHtml(d.region)}）— ${escapeHtml(d.tip)}</p>`
+      :`<p>❓ <strong>${escapeHtml(d.name)}</strong>（${escapeHtml(d.region)}）— 尚未发现，线索：${escapeHtml(d.tip)}</p>`).join('')}</div>
+    <p><button class="text-link" data-page="location">返回</button></p>
+    ${renderPrimaryNav()}
+  </section>`;
+  bindPageActions();
+}
+
+function renderQuestlinePage() {
+  document.body.dataset.page='questline';
+  const view=serverView;
+  const chapters=serverWorld?.questline?.chapters??[];
+  const completed=(view.flags??{});
+  app.innerHTML=`<section class="wap-page">
+    <p><strong>主线 · 四海称雄</strong>（声望 ${view.player.reputation??0}　爵位：${escapeHtml(view.player.title||'水手')}）</p>
+    ${renderFeedback()}
+    <div class="line-list">${chapters.map((c)=>{
+      const chainDone=c.chain.map((t)=>`${t.type==='对话'?'会话':t.type==='打怪'?'讨伐':t.type==='收集'?'收集':'运送'} ${t.name}×${t.quantity}`).join('、');
+      return `<p><strong>第${c.chapter.replace('ch','')}章 ${escapeHtml(c.name)}</strong>（${escapeHtml(c.region)}）<br>目标：${escapeHtml(c.main_goal)}<br>${escapeHtml(chainDone)}<br>BOSS：${escapeHtml(c.boss)}　奖励声望+${c.reward?.reputation??0}</p>`;
+    }).join('')}</div>
+    <p><button class="text-link" data-page="location">返回</button></p>
+    ${renderPrimaryNav()}
+  </section>`;
+  bindPageActions();
+}
+
 function renderNpcPage() {
   document.body.dataset.page = 'npc';
-  const view = engine.getPlayerView(PLAYER_ID);
+  const view = serverView;
   const npcCanonicalId = page.npcId;
   if (!npcCanonicalId) { showPage('location');return; }
   const npcDisplayName = page.npcName || '当前人物';
@@ -232,6 +445,7 @@ function renderNpcPage() {
   app.innerHTML = `<section class="wap-page">
     <p><strong>${escapeHtml(npcDisplayName)}${related.length ? '的任务' : ''}</strong></p>
     ${renderCanonicalVisual(npcCanonicalId,'portrait-art')}
+    ${(serverNpcs.find((n)=>n.npc_canonical_id===npcCanonicalId)?.npc_dialogue?.text)?`<p class="message">${escapeHtml(serverNpcs.find((n)=>n.npc_canonical_id===npcCanonicalId)?.npc_dialogue?.text)}</p>`:''}
     ${renderFeedback()}
     ${related.length ? related.map((entry) => renderNpcTask(entry)).join('') : '<p>对方现在没有任务要交给你。</p>'}
     <p><button class="text-link" data-npc-action="${attr(npcCanonicalId)}">${actionLabel}</button></p>
@@ -254,7 +468,7 @@ function renderNpcTask(entry) {
 
 function renderTaskListPage() {
   document.body.dataset.page = 'tasks';
-  const view = engine.getPlayerView(PLAYER_ID);
+  const view = serverView;
   const visible = view.task_chain.filter((entry) => entry.runtime.status !== 'locked');
   const activeSeries=content.series.find((entry)=>entry.canonical_id===view.active_series_canonical_id);
   app.innerHTML = `<section class="wap-page">
@@ -271,7 +485,7 @@ function renderTaskListPage() {
 
 function renderTaskDetailPage() {
   document.body.dataset.page = 'task';
-  const view = engine.getPlayerView(PLAYER_ID);
+  const view = serverView;
   const entry = view.task_chain.find((item) => item.definition.canonical_id === page.taskId);
   if (!entry) { showPage('tasks');return; }
   const task = entry.definition;
@@ -295,7 +509,7 @@ function renderTaskDetailPage() {
 
 function renderBackpackPage() {
   document.body.dataset.page = 'backpack';
-  const view = engine.getPlayerView(PLAYER_ID);
+  const view = serverView;
   const inventory = Object.entries(view.inventory);
   const equipmentIds = new Set(content.equipment.map((entry)=>entry.canonical_id));
   const groups = [
@@ -317,7 +531,7 @@ function renderBackpackPage() {
 }
 
 function renderItemDetailPage() {
-  document.body.dataset.page='item';const view=engine.getPlayerView(PLAYER_ID);const id=page.itemId;
+  document.body.dataset.page='item';const view=serverView;const id=page.itemId;
   const item=gameplayCatalog.getItem(id);if(!item||!view.inventory[id]){showPage('backpack');return;}
   const data=item.normalized_data??item.attributes??{};const gear=content.equipment.find((entry)=>entry.canonical_id===id);
   const healing=Number(data.info?.heal??0);
@@ -333,7 +547,7 @@ function renderItemDetailPage() {
 
 function renderFormalEncounterPage() {
   document.body.dataset.page = 'encounter';
-  const view=engine.getPlayerView(PLAYER_ID);const actions=listFormalEncounterActions(view);const active=view.combat;const activeDuel=view.npc_duel;
+  const view=serverView;const actions=listFormalEncounterActions(view);const active=view.combat;const activeDuel=view.npc_duel;
   const activeDungeon=view.dungeon?gameplayCatalog.getDungeon(view.dungeon.canonical_id):null;
   const dungeonStage=activeDungeon?.stages.find((entry)=>entry.canonical_id===view.dungeon.stage_canonical_id);
   const dungeonIndex=activeDungeon?.stages.findIndex((entry)=>entry.canonical_id===view.dungeon.stage_canonical_id)??-1;
@@ -356,7 +570,7 @@ function renderFormalEncounterPage() {
 }
 
 function renderFormalShopPage() {
-  document.body.dataset.page='shop';const view=engine.getPlayerView(PLAYER_ID);
+  document.body.dataset.page='shop';const view=serverView;
   const entries=content.shop_entries.filter((entry)=>entry.map_node_canonical_id===view.player.current_map_node_canonical_id);
   app.innerHTML=`<section class="wap-page"><p><strong>${renderUiIcon('商店交易')}商店</strong></p>${renderFeedback()}<p>铜币：${view.player.money}</p>
     ${entries.length ? entries.map((entry)=>{const itemId=entry.task_item_canonical_id??entry.content_entity_canonical_id;const owned=view.inventory[itemId]??0;return `<p class="asset-row">${renderCanonicalVisual(itemId,'item-icon')}${escapeHtml(entry.display_name)}　${entry.price}铜　<button class="text-link" data-shop-buy="${attr(entry.canonical_id)}">购买</button>${owned?`　持有${owned}　<button class="text-link" data-shop-sell="${attr(entry.canonical_id)}">出售（${Math.max(1,Math.floor(entry.price*0.2))}铜）</button>`:''}</p>`;}).join('') : '<p>当前位置没有可购买商品。</p>'}
@@ -365,7 +579,7 @@ function renderFormalShopPage() {
 }
 
 function renderFormalVoyagePage() {
-  document.body.dataset.page='voyage';const view=engine.getPlayerView(PLAYER_ID);const routes=listFormalVoyages(view);
+  document.body.dataset.page='voyage';const view=serverView;const routes=listFormalVoyages(view);
   const portShips=content.ships.filter((ship)=>ship.port_map_node_canonical_id===view.player.current_map_node_canonical_id);
   const ownedShips=content.ships.filter((ship)=>view.owned_ships[ship.canonical_id]);
   const rods=content.maritime.fishing.gear.filter((entry)=>Number(entry.type)===14&&(view.inventory[entry.canonical_id]??0)>0);
@@ -399,7 +613,7 @@ function renderFishingControls(view) {
 
 function renderStatusPage() {
   document.body.dataset.page = 'status';
-  const view = engine.getPlayerView(PLAYER_ID);
+  const view = serverView;
   const completed = view.all_task_chain.filter((entry) => entry.runtime.status === 'completed').length;
   const stats=effectiveStats(view,gameplayCatalog);
   const slots=[['weapon','武器'],['offhand','副手'],['headgear','头部'],['clothes','衣服'],['belt','腰带'],['shoes','鞋子']];
@@ -495,9 +709,9 @@ function renderCompendiumPage() {
 }
 
 function renderAdminPage() {
-  if(!adminEnabled||!storage.hasPlayer(PLAYER_ID)){showPage('location');return;}
+  if(!adminEnabled||!serverView != null){showPage('location');return;}
   document.body.dataset.page='admin';
-  const view=engine.getPlayerView(PLAYER_ID);
+  const view=serverView;
   const player=view.player;
   const inventory=Object.entries(view.inventory??{});
   const taskStates=Object.values(view.all_task_chain??[]);
@@ -549,7 +763,12 @@ function renderPrimaryNav() {
     <button class="text-link nav-link" data-page="status">${renderUiIcon('角色状态')}状态</button> ·
     <button class="text-link nav-link" data-page="backpack">${renderUiIcon('背包')}物品</button> ·
     <button class="text-link nav-link" data-page="tasks">${renderUiIcon('任务日志')}任务</button> ·
-    <button class="text-link nav-link" data-page="shop">${renderUiIcon('商店交易')}商店</button> ·
+    <button class="text-link nav-link" data-page="market">${renderUiIcon('市场交易')}市场</button> ·
+    <button class="text-link nav-link" data-page="pets">${renderUiIcon('宠物')}宠物</button> ·
+    <button class="text-link nav-link" data-page="enhance">${renderUiIcon('强化')}强化</button> ·
+    <button class="text-link nav-link" data-page="regions">${renderUiIcon('世界地图')}天下</button> ·
+    <button class="text-link nav-link" data-page="discoveries">${renderUiIcon('发现物')}发现物</button> ·
+    <button class="text-link nav-link" data-page="questline">${renderUiIcon('主线')}主线</button> ·
     <button class="text-link nav-link" data-page="voyage">${renderUiIcon('航海')}航行</button> ·
     ${debugEnabled?'<button class="text-link nav-link" data-page="compendium">图像调试</button> ·':''}
     ${adminEnabled?'<button class="text-link nav-link" data-page="admin">超管</button> ·':''}
@@ -582,7 +801,7 @@ function bindFormalPageActions() {
   document.querySelectorAll('[data-dungeon-move]').forEach((button)=>button.addEventListener('click',()=>perform(
     ()=>dungeon.move(PLAYER_ID,button.dataset.dungeonMove,eventId('dungeon-move')),'已经到达副本内的新地点。','encounter')));
   document.querySelectorAll('[data-dungeon-exit]').forEach((button)=>button.addEventListener('click',()=>perform(
-    ()=>dungeon.exit(PLAYER_ID,eventId('dungeon-exit')),'已经退出副本。',()=>engine.loadPlayer(PLAYER_ID).voyage?'voyage':'location')));
+    ()=>dungeon.exit(PLAYER_ID,eventId('dungeon-exit')),'已经退出副本。',()=>serverView.voyage?'voyage':'location')));
   document.querySelectorAll('[data-npc-duel-start]').forEach((button)=>button.addEventListener('click',()=>perform(
     ()=>{const factory=globalThis.__ZHSH_UAT_COMBAT_RANDOM_FACTORY__;combatRandom=typeof factory==='function'?factory(button.dataset.npcDuelStart):Math.random;
       return npcDuel.start(PLAYER_ID,button.dataset.npcDuelStart,eventId('npc-duel-start'));},'切磋开始。','encounter')));
@@ -596,7 +815,7 @@ function bindFormalPageActions() {
   document.querySelectorAll('[data-combat-attack]').forEach((button)=>button.addEventListener('click',()=>perform(
     ()=>combat.attack(PLAYER_ID,eventId('combat-attack'),{rounds:Number(globalThis.__ZHSH_UAT_COMBAT_BATCH_ROUNDS__??1)}),'战斗回合已结算。',(result)=>result.action==='combat_lost'?'location':'encounter')));
   document.querySelectorAll('[data-combat-retreat]').forEach((button)=>button.addEventListener('click',()=>perform(
-    ()=>combat.retreat(PLAYER_ID,eventId('combat-retreat')),'已撤退并支付500铜。',()=>engine.loadPlayer(PLAYER_ID).dungeon?'encounter':'location')));
+    ()=>combat.retreat(PLAYER_ID,eventId('combat-retreat')),'已撤退并支付500铜。',()=>serverView.dungeon?'encounter':'location')));
   document.querySelectorAll('[data-shop-buy]').forEach((button)=>button.addEventListener('click',()=>perform(
     ()=>economy.buy(PLAYER_ID,button.dataset.shopBuy,1,eventId('shop-buy')),'购买成功。','shop')));
   document.querySelectorAll('[data-shop-sell]').forEach((button)=>button.addEventListener('click',()=>perform(
@@ -742,12 +961,38 @@ function bindAdminActions() {
  }
 
  function bindCommonActions() {
+   // 服务器账号登录/注册
+   document.querySelector('[data-action="auth-login"]')?.addEventListener('click',async () => {
+     const username=document.querySelector('#auth-username')?.value?.trim();
+     const password=document.querySelector('#auth-password')?.value??'';
+     if (!username||!password){feedback.fail('请输入角色名与密码。');renderStart();return;}
+     try {
+       await gameApi.login(username,password);
+       PLAYER_ID=gameApi.getPlayerId()||PLAYER_ID;
+       serverWorld=await gameApi.getWorld().catch(()=>null);
+       await ensurePlayerView();gameEntered=true;
+       feedback.succeed(`欢迎回来，${username}！`);showPage('location');
+     } catch (error) { feedback.fail(`登录失败：${error.message}`);renderStart(); }
+   });
+   document.querySelector('[data-action="auth-register"]')?.addEventListener('click',async () => {
+     const username=document.querySelector('#auth-username')?.value?.trim();
+     const password=document.querySelector('#auth-password')?.value??'';
+     if (!username||username.length<2||username.length>12){feedback.fail('角色名需 2-12 个字符。');renderStart();return;}
+     if (!password||password.length<4){feedback.fail('密码至少 4 位。');renderStart();return;}
+     try {
+       await gameApi.register(username,password);
+       PLAYER_ID=gameApi.getPlayerId()||PLAYER_ID;
+       serverWorld=await gameApi.getWorld().catch(()=>null);
+       await ensurePlayerView();gameEntered=true;
+       feedback.succeed(`欢迎，${username}！冒险开始。`);showPage('location');
+     } catch (error) { feedback.fail(`注册失败：${error.message}`);renderStart(); }
+   });
    document.querySelector('[data-action="continue-game"]')?.addEventListener('click',() => {
      gameEntered=true;feedback.succeed('已继续浏览器存档。');showPage('location');
    });
   document.querySelector('[data-action="new-game"]')?.addEventListener('click',async () => {
     try {
-      const existing = storage.hasPlayer(PLAYER_ID);
+      const existing = serverView != null;
       if (existing && !confirm('开始新游戏将覆盖当前 task1 浏览器存档，是否继续？')) return;
       engine.createPlayer(PLAYER_ID,{ reset:existing || storage.corruptRecords.has(PLAYER_ID) });
       await storage.flush();
@@ -765,7 +1010,7 @@ function bindAdminActions() {
 }
 
 async function interactNpc(npcCanonicalId) {
-  const view = engine.getPlayerView(PLAYER_ID);
+  const view = serverView;
   const locationId = view.current_location?.location_canonical_id;
   if (!locationId) return;
   const completable = view.task_chain.find((entry) => entry.runtime.status === 'completable'
@@ -777,7 +1022,7 @@ async function interactNpc(npcCanonicalId) {
 async function perform(operation,fallbackMessage,nextPage,nextParams = {}) {
   try {
     saveStatus.textContent = '正在保存……';
-    const result = operation();
+    const result = await operation();
     await storage.flush();
     feedback.succeed(resultMessage(result) || fallbackMessage);
     browserLog.info('action','saved',{action:result?.action??null,outcome:result?.outcome??null,playerId:PLAYER_ID});
@@ -842,6 +1087,7 @@ function staminaResultText(result,{prefix='',includeCurrent=false}={}){
 
 function isNpcRelated(entry,npcCanonicalId,locationId) {
   const task = entry.definition;
+  if (entry.runtime.status === 'completed') return false;
   if (entry.runtime.status === 'available') return task.issuer_npc_canonical_id === npcCanonicalId && task.receive_location_canonical_id === locationId;
   if (entry.runtime.status === 'completable') return task.completion_npc_canonical_id === npcCanonicalId && task.submit_location_canonical_id === locationId;
   return task.targets.some((target) => target.target_kind === 'npc' && target.entity_canonical_id === npcCanonicalId)
@@ -985,7 +1231,7 @@ function listFormalVoyages(view) {
     && (!route.required_task_canonical_id||route.allowed_task_statuses.includes(view.tasks[route.required_task_canonical_id]?.status)));
 }
 
-function finishVoyage() { let result;while(engine.loadPlayer(PLAYER_ID).voyage)result=voyage.advance(PLAYER_ID,eventId('voyage-advance'));return result; }
+function finishVoyage() { let result;while(serverView.voyage)result=voyage.advance(PLAYER_ID,eventId('voyage-advance'));return result; }
 
 function eventId(prefix) { return `${prefix}.${crypto.randomUUID()}`; }
 function statusLabel(status) { return ({available:'可接取',accepted:'已接取',in_progress:'进行中',completable:'可以提交',completed:'已完成',locked:'未解锁',blocked:'暂不可运行'})[status] ?? status; }
@@ -994,7 +1240,7 @@ function attr(value) { return escapeHtml(value); }
 
 function exposeDebugSurface() {
   window.__zhshBrowserSlice = {
-    getState:() => storage?.hasPlayer(PLAYER_ID) ? engine.getPlayerView(PLAYER_ID) : null,
+    getState:() => storage?.hasPlayer(PLAYER_ID) ? serverView : null,
     content:() => content,
     currentPage:() => ({ ...page }),
   };
@@ -1016,7 +1262,7 @@ importInput.addEventListener('change',async () => {
     await storage.flush();
     gameEntered=true;feedback.succeed('存档导入成功。');saveStatus.textContent='导入结果已保存';showPage('location');
   } catch (error) {
-    feedback.fail(`无法导入存档：${error.message}`);saveStatus.textContent='存档导入失败';storage.hasPlayer(PLAYER_ID)?render():renderStart();
+    feedback.fail(`无法导入存档：${error.message}`);saveStatus.textContent='存档导入失败';serverView != null?render():renderStart();
   } finally { importInput.value=''; }
 });
 

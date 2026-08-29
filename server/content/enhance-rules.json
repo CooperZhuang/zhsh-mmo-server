@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "max_level": 15,
+  "cost_base": 200,
+  "cost_growth": 150,
+  "success_rate": 0.8,
+  "hp_per_level": 10,
+  "stat_per_level": 0.2,
+  "stat_start_level": 3,
+  "fail_downgrade": false,
+  "material": {
+    "canonical_id": "item.龙泉水",
+    "name": "龙泉水",
+    "per_level": 1
+  }
+}

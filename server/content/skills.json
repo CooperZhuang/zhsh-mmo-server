@@ -1,0 +1,279 @@
+{
+  "version": 1,
+  "max_skill_points": 20,
+  "skills": [
+    {
+      "canonical_id": "skill.航海精通",
+      "name": "航海精通",
+      "slot": "navigation",
+      "type": "passive",
+      "effect": {
+        "field": "agility",
+        "amount": 1
+      },
+      "max_level": 5,
+      "points_per_level": 1,
+      "prereq": null
+    },
+    {
+      "canonical_id": "skill.贸易头脑",
+      "name": "贸易头脑",
+      "slot": "commerce",
+      "type": "passive",
+      "effect": {
+        "field": "money_bonus",
+        "amount": 0.05
+      },
+      "max_level": 5,
+      "points_per_level": 1,
+      "prereq": null
+    },
+    {
+      "canonical_id": "skill.战斗本能",
+      "name": "战斗本能",
+      "slot": "combat",
+      "type": "passive",
+      "effect": {
+        "field": "attack",
+        "amount": 1
+      },
+      "max_level": 5,
+      "points_per_level": 1,
+      "prereq": null
+    },
+    {
+      "canonical_id": "skill.坚固护甲",
+      "name": "坚固护甲",
+      "slot": "defense",
+      "type": "passive",
+      "effect": {
+        "field": "defense",
+        "amount": 1
+      },
+      "max_level": 5,
+      "points_per_level": 1,
+      "prereq": null
+    },
+    {
+      "canonical_id": "skill.医者仁心",
+      "name": "医者仁心",
+      "slot": "medical",
+      "type": "passive",
+      "effect": {
+        "field": "recovery",
+        "amount": 0.1
+      },
+      "max_level": 5,
+      "points_per_level": 1,
+      "prereq": null
+    },
+    {
+      "canonical_id": "skill.航海术",
+      "name": "航海术",
+      "slot": "navigation",
+      "type": "active",
+      "effect": {
+        "field": "speed",
+        "amount": 1
+      },
+      "max_level": 5,
+      "points_per_level": 1,
+      "prereq": null
+    },
+    {
+      "canonical_id": "skill.航海图解读",
+      "name": "航海图解读",
+      "slot": "navigation",
+      "type": "passive",
+      "effect": {
+        "field": "voyage",
+        "amount": 0.1
+      },
+      "max_level": 5,
+      "points_per_level": 1,
+      "prereq": null
+    },
+    {
+      "canonical_id": "skill.交易磋商",
+      "name": "交易磋商",
+      "slot": "commerce",
+      "type": "active",
+      "effect": {
+        "field": "price_discount",
+        "amount": 0.05
+      },
+      "max_level": 5,
+      "points_per_level": 1,
+      "prereq": null
+    },
+    {
+      "canonical_id": "skill.精准打击",
+      "name": "精准打击",
+      "slot": "combat",
+      "type": "active",
+      "effect": {
+        "field": "critical",
+        "amount": 0.05
+      },
+      "max_level": 5,
+      "points_per_level": 1,
+      "prereq": null
+    },
+    {
+      "canonical_id": "skill.铁壁防御",
+      "name": "铁壁防御",
+      "slot": "defense",
+      "type": "active",
+      "effect": {
+        "field": "damage_reduce",
+        "amount": 0.05
+      },
+      "max_level": 5,
+      "points_per_level": 1,
+      "prereq": null
+    },
+    {
+      "canonical_id": "skill.妙手回春",
+      "name": "妙手回春",
+      "slot": "medical",
+      "type": "active",
+      "effect": {
+        "field": "heal",
+        "amount": 0.1
+      },
+      "max_level": 5,
+      "points_per_level": 1,
+      "prereq": null
+    },
+    {
+      "canonical_id": "skill.探索者",
+      "name": "探索者",
+      "slot": "exploration",
+      "type": "passive",
+      "effect": {
+        "field": "discovery_bonus",
+        "amount": 0.1
+      },
+      "max_level": 5,
+      "points_per_level": 1,
+      "prereq": null
+    },
+    {
+      "canonical_id": "skill.深海健儿",
+      "name": "深海健儿",
+      "slot": "exploration",
+      "type": "passive",
+      "effect": {
+        "field": "diving",
+        "amount": 0.1
+      },
+      "max_level": 5,
+      "points_per_level": 1,
+      "prereq": null
+    },
+    {
+      "canonical_id": "skill.驭风者",
+      "name": "驭风者",
+      "slot": "navigation",
+      "type": "passive",
+      "effect": {
+        "field": "sail_speed",
+        "amount": 0.1
+      },
+      "max_level": 5,
+      "points_per_level": 1,
+      "prereq": null
+    },
+    {
+      "canonical_id": "skill.商会才能",
+      "name": "商会才能",
+      "slot": "commerce",
+      "type": "passive",
+      "effect": {
+        "field": "guild",
+        "amount": 0.1
+      },
+      "max_level": 5,
+      "points_per_level": 1,
+      "prereq": null
+    },
+    {
+      "canonical_id": "skill.兵刃宗师",
+      "name": "兵刃宗师",
+      "slot": "combat",
+      "type": "active",
+      "effect": {
+        "field": "weapon_bonus",
+        "amount": 0.1
+      },
+      "max_level": 5,
+      "points_per_level": 1,
+      "prereq": null
+    },
+    {
+      "canonical_id": "skill.全体士气",
+      "name": "全体士气",
+      "slot": "combat",
+      "type": "passive",
+      "effect": {
+        "field": "morale",
+        "amount": 2
+      },
+      "max_level": 5,
+      "points_per_level": 1,
+      "prereq": null
+    },
+    {
+      "canonical_id": "skill.香料鉴别",
+      "name": "香料鉴别",
+      "slot": "commerce",
+      "type": "passive",
+      "effect": {
+        "field": "spice",
+        "amount": 0.1
+      },
+      "max_level": 5,
+      "points_per_level": 1,
+      "prereq": null
+    },
+    {
+      "canonical_id": "skill.水下呼吸",
+      "name": "水下呼吸",
+      "slot": "exploration",
+      "type": "active",
+      "effect": {
+        "field": "diving_time",
+        "amount": 0.1
+      },
+      "max_level": 5,
+      "points_per_level": 1,
+      "prereq": null
+    },
+    {
+      "canonical_id": "skill.统领之姿",
+      "name": "统领之姿",
+      "slot": "guild",
+      "type": "active",
+      "effect": {
+        "field": "city_control",
+        "amount": 0.1
+      },
+      "max_level": 5,
+      "points_per_level": 1,
+      "prereq": null
+    },
+    {
+      "canonical_id": "skill.海上霸者",
+      "name": "海上霸者",
+      "slot": "guild",
+      "type": "passive",
+      "effect": {
+        "field": "capture_bonus",
+        "amount": 0.1
+      },
+      "max_level": 5,
+      "points_per_level": 1,
+      "prereq": null
+    }
+  ]
+}

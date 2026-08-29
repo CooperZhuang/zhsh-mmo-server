@@ -32,6 +32,7 @@ pnpm-debug.log*
 *.pid
 *.pid.lock
 data/*.sqlite-*
+server/data/
 
 # 本地环境变量与私密配置
 .env

@@ -1,0 +1,1973 @@
+{
+  "version": 1,
+  "regions": {
+    "region.mediterranean": {
+      "specialty": [
+        {
+          "canonical_id": "goods.mediterranean.01",
+          "name": "古希腊典籍",
+          "base_price": 500,
+          "weight": 2,
+          "category": "luxury",
+          "region": "region.mediterranean"
+        },
+        {
+          "canonical_id": "goods.mediterranean.02",
+          "name": "大理石雕刻",
+          "base_price": 500,
+          "weight": 2,
+          "category": "luxury",
+          "region": "region.mediterranean"
+        },
+        {
+          "canonical_id": "goods.mediterranean.03",
+          "name": "芬尼基玻璃",
+          "base_price": 500,
+          "weight": 2,
+          "category": "luxury",
+          "region": "region.mediterranean"
+        },
+        {
+          "canonical_id": "goods.mediterranean.04",
+          "name": "紫染羊毛",
+          "base_price": 500,
+          "weight": 2,
+          "category": "luxury",
+          "region": "region.mediterranean"
+        },
+        {
+          "canonical_id": "goods.mediterranean.05",
+          "name": "葡萄酒",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.mediterranean"
+        },
+        {
+          "canonical_id": "goods.mediterranean.06",
+          "name": "橄榄油",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.mediterranean"
+        },
+        {
+          "canonical_id": "goods.mediterranean.07",
+          "name": "葡萄干",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.mediterranean"
+        },
+        {
+          "canonical_id": "goods.mediterranean.08",
+          "name": "蜂蜜",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.mediterranean"
+        },
+        {
+          "canonical_id": "goods.mediterranean.09",
+          "name": "无花果",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.mediterranean"
+        },
+        {
+          "canonical_id": "goods.mediterranean.10",
+          "name": "塞浦路斯铜",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.mediterranean"
+        },
+        {
+          "canonical_id": "goods.mediterranean.11",
+          "name": "爱琴海珍珠",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.mediterranean"
+        },
+        {
+          "canonical_id": "goods.mediterranean.12",
+          "name": "克里特陶瓷",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.mediterranean"
+        },
+        {
+          "canonical_id": "goods.mediterranean.13",
+          "name": "爱琴海珊瑚",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.mediterranean"
+        },
+        {
+          "canonical_id": "goods.mediterranean.14",
+          "name": "帕罗斯羊毛毡",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.mediterranean"
+        },
+        {
+          "canonical_id": "goods.mediterranean.15",
+          "name": "铁锭",
+          "base_price": 100,
+          "weight": 3,
+          "category": "material",
+          "region": "region.mediterranean"
+        },
+        {
+          "canonical_id": "goods.mediterranean.16",
+          "name": "铜块",
+          "base_price": 100,
+          "weight": 3,
+          "category": "material",
+          "region": "region.mediterranean"
+        },
+        {
+          "canonical_id": "goods.mediterranean.17",
+          "name": "大理石料",
+          "base_price": 100,
+          "weight": 3,
+          "category": "material",
+          "region": "region.mediterranean"
+        },
+        {
+          "canonical_id": "goods.mediterranean.18",
+          "name": "小麦",
+          "base_price": 80,
+          "weight": 3,
+          "category": "food",
+          "region": "region.mediterranean"
+        },
+        {
+          "canonical_id": "goods.mediterranean.19",
+          "name": "橄榄",
+          "base_price": 80,
+          "weight": 3,
+          "category": "food",
+          "region": "region.mediterranean"
+        },
+        {
+          "canonical_id": "goods.mediterranean.20",
+          "name": "葡萄",
+          "base_price": 80,
+          "weight": 3,
+          "category": "food",
+          "region": "region.mediterranean"
+        }
+      ]
+    },
+    "region.northsea": {
+      "specialty": [
+        {
+          "canonical_id": "goods.northsea.01",
+          "name": "鲸油",
+          "base_price": 500,
+          "weight": 2,
+          "category": "luxury",
+          "region": "region.northsea"
+        },
+        {
+          "canonical_id": "goods.northsea.02",
+          "name": "维京族银器",
+          "base_price": 500,
+          "weight": 2,
+          "category": "luxury",
+          "region": "region.northsea"
+        },
+        {
+          "canonical_id": "goods.northsea.03",
+          "name": "维京挂毯",
+          "base_price": 500,
+          "weight": 2,
+          "category": "luxury",
+          "region": "region.northsea"
+        },
+        {
+          "canonical_id": "goods.northsea.04",
+          "name": "貂皮",
+          "base_price": 500,
+          "weight": 2,
+          "category": "luxury",
+          "region": "region.northsea"
+        },
+        {
+          "canonical_id": "goods.northsea.05",
+          "name": "琥珀",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.northsea"
+        },
+        {
+          "canonical_id": "goods.northsea.06",
+          "name": "北极毛皮",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.northsea"
+        },
+        {
+          "canonical_id": "goods.northsea.07",
+          "name": "咸鱼",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.northsea"
+        },
+        {
+          "canonical_id": "goods.northsea.08",
+          "name": "鳕鱼干",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.northsea"
+        },
+        {
+          "canonical_id": "goods.northsea.09",
+          "name": "浪花珍珠",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.northsea"
+        },
+        {
+          "canonical_id": "goods.northsea.10",
+          "name": "雷神铁",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.northsea"
+        },
+        {
+          "canonical_id": "goods.northsea.11",
+          "name": "桦木",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.northsea"
+        },
+        {
+          "canonical_id": "goods.northsea.12",
+          "name": "蜜酒",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.northsea"
+        },
+        {
+          "canonical_id": "goods.northsea.13",
+          "name": "海象牙",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.northsea"
+        },
+        {
+          "canonical_id": "goods.northsea.14",
+          "name": "黑麦芽",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.northsea"
+        },
+        {
+          "canonical_id": "goods.northsea.15",
+          "name": "生铁",
+          "base_price": 100,
+          "weight": 6,
+          "category": "material",
+          "region": "region.northsea"
+        },
+        {
+          "canonical_id": "goods.northsea.16",
+          "name": "木材",
+          "base_price": 100,
+          "weight": 6,
+          "category": "material",
+          "region": "region.northsea"
+        },
+        {
+          "canonical_id": "goods.northsea.17",
+          "name": "皮革",
+          "base_price": 100,
+          "weight": 3,
+          "category": "material",
+          "region": "region.northsea"
+        },
+        {
+          "canonical_id": "goods.northsea.18",
+          "name": "黑麦",
+          "base_price": 80,
+          "weight": 3,
+          "category": "food",
+          "region": "region.northsea"
+        },
+        {
+          "canonical_id": "goods.northsea.19",
+          "name": "燕麦",
+          "base_price": 80,
+          "weight": 3,
+          "category": "food",
+          "region": "region.northsea"
+        },
+        {
+          "canonical_id": "goods.northsea.20",
+          "name": "土豆",
+          "base_price": 80,
+          "weight": 3,
+          "category": "food",
+          "region": "region.northsea"
+        }
+      ]
+    },
+    "region.westafrica": {
+      "specialty": [
+        {
+          "canonical_id": "goods.westafrica.01",
+          "name": "黄金面具",
+          "base_price": 500,
+          "weight": 2,
+          "category": "luxury",
+          "region": "region.westafrica"
+        },
+        {
+          "canonical_id": "goods.westafrica.02",
+          "name": "象牙雕",
+          "base_price": 500,
+          "weight": 2,
+          "category": "luxury",
+          "region": "region.westafrica"
+        },
+        {
+          "canonical_id": "goods.westafrica.03",
+          "name": "古曼多鼓",
+          "base_price": 500,
+          "weight": 2,
+          "category": "luxury",
+          "region": "region.westafrica"
+        },
+        {
+          "canonical_id": "goods.westafrica.04",
+          "name": "孔雀石",
+          "base_price": 500,
+          "weight": 2,
+          "category": "luxury",
+          "region": "region.westafrica"
+        },
+        {
+          "canonical_id": "goods.westafrica.05",
+          "name": "可可",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.westafrica"
+        },
+        {
+          "canonical_id": "goods.westafrica.06",
+          "name": "椰子油",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.westafrica"
+        },
+        {
+          "canonical_id": "goods.westafrica.07",
+          "name": "棕榈仁",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.westafrica"
+        },
+        {
+          "canonical_id": "goods.westafrica.08",
+          "name": "黄金砂",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.westafrica"
+        },
+        {
+          "canonical_id": "goods.westafrica.09",
+          "name": "咖啡豆",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.westafrica"
+        },
+        {
+          "canonical_id": "goods.westafrica.10",
+          "name": "非洲红木",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.westafrica"
+        },
+        {
+          "canonical_id": "goods.westafrica.11",
+          "name": "乳香",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.westafrica"
+        },
+        {
+          "canonical_id": "goods.westafrica.12",
+          "name": "珊瑚珠",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.westafrica"
+        },
+        {
+          "canonical_id": "goods.westafrica.13",
+          "name": "羚羊皮",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.westafrica"
+        },
+        {
+          "canonical_id": "goods.westafrica.14",
+          "name": "河马牙",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.westafrica"
+        },
+        {
+          "canonical_id": "goods.westafrica.15",
+          "name": "铁矿石",
+          "base_price": 100,
+          "weight": 3,
+          "category": "material",
+          "region": "region.westafrica"
+        },
+        {
+          "canonical_id": "goods.westafrica.16",
+          "name": "玛瑙石",
+          "base_price": 100,
+          "weight": 3,
+          "category": "material",
+          "region": "region.westafrica"
+        },
+        {
+          "canonical_id": "goods.westafrica.17",
+          "name": "酋长金矿砂",
+          "base_price": 100,
+          "weight": 3,
+          "category": "material",
+          "region": "region.westafrica"
+        },
+        {
+          "canonical_id": "goods.westafrica.18",
+          "name": "木薯",
+          "base_price": 80,
+          "weight": 3,
+          "category": "food",
+          "region": "region.westafrica"
+        },
+        {
+          "canonical_id": "goods.westafrica.19",
+          "name": "小米",
+          "base_price": 80,
+          "weight": 3,
+          "category": "food",
+          "region": "region.westafrica"
+        },
+        {
+          "canonical_id": "goods.westafrica.20",
+          "name": "玉米",
+          "base_price": 80,
+          "weight": 3,
+          "category": "food",
+          "region": "region.westafrica"
+        }
+      ]
+    },
+    "region.redsea": {
+      "specialty": [
+        {
+          "canonical_id": "goods.redsea.01",
+          "name": "黑曜石碑",
+          "base_price": 500,
+          "weight": 2,
+          "category": "luxury",
+          "region": "region.redsea"
+        },
+        {
+          "canonical_id": "goods.redsea.02",
+          "name": "蓝晶石",
+          "base_price": 500,
+          "weight": 2,
+          "category": "luxury",
+          "region": "region.redsea"
+        },
+        {
+          "canonical_id": "goods.redsea.03",
+          "name": "尼罗圣水",
+          "base_price": 500,
+          "weight": 2,
+          "category": "luxury",
+          "region": "region.redsea"
+        },
+        {
+          "canonical_id": "goods.redsea.04",
+          "name": "麝香",
+          "base_price": 500,
+          "weight": 2,
+          "category": "luxury",
+          "region": "region.redsea"
+        },
+        {
+          "canonical_id": "goods.redsea.05",
+          "name": "乳香树脂",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.redsea"
+        },
+        {
+          "canonical_id": "goods.redsea.06",
+          "name": "没药",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.redsea"
+        },
+        {
+          "canonical_id": "goods.redsea.07",
+          "name": "红珊瑚",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.redsea"
+        },
+        {
+          "canonical_id": "goods.redsea.08",
+          "name": "象牙",
+          "base_price": 250,
+          "weight": 6,
+          "category": "specialty",
+          "region": "region.redsea"
+        },
+        {
+          "canonical_id": "goods.redsea.09",
+          "name": "珍珠",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.redsea"
+        },
+        {
+          "canonical_id": "goods.redsea.10",
+          "name": "龙涎香",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.redsea"
+        },
+        {
+          "canonical_id": "goods.redsea.11",
+          "name": "古埃及金器",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.redsea"
+        },
+        {
+          "canonical_id": "goods.redsea.12",
+          "name": "香草",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.redsea"
+        },
+        {
+          "canonical_id": "goods.redsea.13",
+          "name": "肉桂",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.redsea"
+        },
+        {
+          "canonical_id": "goods.redsea.14",
+          "name": "黑檀木",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.redsea"
+        },
+        {
+          "canonical_id": "goods.redsea.15",
+          "name": "沥青",
+          "base_price": 100,
+          "weight": 3,
+          "category": "material",
+          "region": "region.redsea"
+        },
+        {
+          "canonical_id": "goods.redsea.16",
+          "name": "花岗岩",
+          "base_price": 100,
+          "weight": 3,
+          "category": "material",
+          "region": "region.redsea"
+        },
+        {
+          "canonical_id": "goods.redsea.17",
+          "name": "沙漠水晶",
+          "base_price": 100,
+          "weight": 3,
+          "category": "material",
+          "region": "region.redsea"
+        },
+        {
+          "canonical_id": "goods.redsea.18",
+          "name": "椰枣",
+          "base_price": 80,
+          "weight": 3,
+          "category": "food",
+          "region": "region.redsea"
+        },
+        {
+          "canonical_id": "goods.redsea.19",
+          "name": "大麦",
+          "base_price": 80,
+          "weight": 3,
+          "category": "food",
+          "region": "region.redsea"
+        },
+        {
+          "canonical_id": "goods.redsea.20",
+          "name": "香蕉",
+          "base_price": 80,
+          "weight": 3,
+          "category": "food",
+          "region": "region.redsea"
+        }
+      ]
+    },
+    "region.indianocean": {
+      "specialty": [
+        {
+          "canonical_id": "goods.indianocean.01",
+          "name": "湿婆金",
+          "base_price": 500,
+          "weight": 2,
+          "category": "luxury",
+          "region": "region.indianocean"
+        },
+        {
+          "canonical_id": "goods.indianocean.02",
+          "name": "孔雀宝石",
+          "base_price": 500,
+          "weight": 2,
+          "category": "luxury",
+          "region": "region.indianocean"
+        },
+        {
+          "canonical_id": "goods.indianocean.03",
+          "name": "恒河圣水",
+          "base_price": 500,
+          "weight": 2,
+          "category": "luxury",
+          "region": "region.indianocean"
+        },
+        {
+          "canonical_id": "goods.indianocean.04",
+          "name": "佛骨舍利",
+          "base_price": 500,
+          "weight": 2,
+          "category": "luxury",
+          "region": "region.indianocean"
+        },
+        {
+          "canonical_id": "goods.indianocean.05",
+          "name": "胡椒",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.indianocean"
+        },
+        {
+          "canonical_id": "goods.indianocean.06",
+          "name": "丁香",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.indianocean"
+        },
+        {
+          "canonical_id": "goods.indianocean.07",
+          "name": "豆蔻",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.indianocean"
+        },
+        {
+          "canonical_id": "goods.indianocean.08",
+          "name": "桂皮",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.indianocean"
+        },
+        {
+          "canonical_id": "goods.indianocean.09",
+          "name": "檀香木",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.indianocean"
+        },
+        {
+          "canonical_id": "goods.indianocean.10",
+          "name": "象牙",
+          "base_price": 250,
+          "weight": 6,
+          "category": "specialty",
+          "region": "region.indianocean"
+        },
+        {
+          "canonical_id": "goods.indianocean.11",
+          "name": "印度洋珍珠",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.indianocean"
+        },
+        {
+          "canonical_id": "goods.indianocean.12",
+          "name": "棉纱",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.indianocean"
+        },
+        {
+          "canonical_id": "goods.indianocean.13",
+          "name": "蓝宝石",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.indianocean"
+        },
+        {
+          "canonical_id": "goods.indianocean.14",
+          "name": "菠萝蜜",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.indianocean"
+        },
+        {
+          "canonical_id": "goods.indianocean.15",
+          "name": "黑曜石",
+          "base_price": 100,
+          "weight": 3,
+          "category": "material",
+          "region": "region.indianocean"
+        },
+        {
+          "canonical_id": "goods.indianocean.16",
+          "name": "乌木",
+          "base_price": 100,
+          "weight": 6,
+          "category": "material",
+          "region": "region.indianocean"
+        },
+        {
+          "canonical_id": "goods.indianocean.17",
+          "name": "竹材",
+          "base_price": 100,
+          "weight": 3,
+          "category": "material",
+          "region": "region.indianocean"
+        },
+        {
+          "canonical_id": "goods.indianocean.18",
+          "name": "稻米",
+          "base_price": 80,
+          "weight": 3,
+          "category": "food",
+          "region": "region.indianocean"
+        },
+        {
+          "canonical_id": "goods.indianocean.19",
+          "name": "蔗糖",
+          "base_price": 80,
+          "weight": 3,
+          "category": "food",
+          "region": "region.indianocean"
+        },
+        {
+          "canonical_id": "goods.indianocean.20",
+          "name": "椰子",
+          "base_price": 80,
+          "weight": 3,
+          "category": "food",
+          "region": "region.indianocean"
+        }
+      ]
+    },
+    "region.seasia": {
+      "specialty": [
+        {
+          "canonical_id": "goods.seasia.01",
+          "name": "金翅鸟羽",
+          "base_price": 500,
+          "weight": 2,
+          "category": "luxury",
+          "region": "region.seasia"
+        },
+        {
+          "canonical_id": "goods.seasia.02",
+          "name": "占婆金器",
+          "base_price": 500,
+          "weight": 2,
+          "category": "luxury",
+          "region": "region.seasia"
+        },
+        {
+          "canonical_id": "goods.seasia.03",
+          "name": "螺钿漆器",
+          "base_price": 500,
+          "weight": 2,
+          "category": "luxury",
+          "region": "region.seasia"
+        },
+        {
+          "canonical_id": "goods.seasia.04",
+          "name": "龙涎香",
+          "base_price": 500,
+          "weight": 2,
+          "category": "luxury",
+          "region": "region.seasia"
+        },
+        {
+          "canonical_id": "goods.seasia.05",
+          "name": "胡椒",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.seasia"
+        },
+        {
+          "canonical_id": "goods.seasia.06",
+          "name": "肉豆蔻",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.seasia"
+        },
+        {
+          "canonical_id": "goods.seasia.07",
+          "name": "丁香",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.seasia"
+        },
+        {
+          "canonical_id": "goods.seasia.08",
+          "name": "苏木",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.seasia"
+        },
+        {
+          "canonical_id": "goods.seasia.09",
+          "name": "南洋珍珠",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.seasia"
+        },
+        {
+          "canonical_id": "goods.seasia.10",
+          "name": "柚木",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.seasia"
+        },
+        {
+          "canonical_id": "goods.seasia.11",
+          "name": "橡胶",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.seasia"
+        },
+        {
+          "canonical_id": "goods.seasia.12",
+          "name": "椰壳油",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.seasia"
+        },
+        {
+          "canonical_id": "goods.seasia.13",
+          "name": "燕窝",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.seasia"
+        },
+        {
+          "canonical_id": "goods.seasia.14",
+          "name": "藤黄",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.seasia"
+        },
+        {
+          "canonical_id": "goods.seasia.15",
+          "name": "锡矿石",
+          "base_price": 100,
+          "weight": 3,
+          "category": "material",
+          "region": "region.seasia"
+        },
+        {
+          "canonical_id": "goods.seasia.16",
+          "name": "柚木原木",
+          "base_price": 100,
+          "weight": 6,
+          "category": "material",
+          "region": "region.seasia"
+        },
+        {
+          "canonical_id": "goods.seasia.17",
+          "name": "藤条",
+          "base_price": 100,
+          "weight": 3,
+          "category": "material",
+          "region": "region.seasia"
+        },
+        {
+          "canonical_id": "goods.seasia.18",
+          "name": "稻米",
+          "base_price": 80,
+          "weight": 3,
+          "category": "food",
+          "region": "region.seasia"
+        },
+        {
+          "canonical_id": "goods.seasia.19",
+          "name": "香蕉",
+          "base_price": 80,
+          "weight": 3,
+          "category": "food",
+          "region": "region.seasia"
+        },
+        {
+          "canonical_id": "goods.seasia.20",
+          "name": "椰子",
+          "base_price": 80,
+          "weight": 3,
+          "category": "food",
+          "region": "region.seasia"
+        }
+      ]
+    },
+    "region.chinahara": {
+      "specialty": [
+        {
+          "canonical_id": "goods.chinahara.01",
+          "name": "龙纹玉玺",
+          "base_price": 500,
+          "weight": 2,
+          "category": "luxury",
+          "region": "region.chinahara"
+        },
+        {
+          "canonical_id": "goods.chinahara.02",
+          "name": "蜀锦",
+          "base_price": 500,
+          "weight": 2,
+          "category": "luxury",
+          "region": "region.chinahara"
+        },
+        {
+          "canonical_id": "goods.chinahara.03",
+          "name": "青花瓷",
+          "base_price": 500,
+          "weight": 2,
+          "category": "luxury",
+          "region": "region.chinahara"
+        },
+        {
+          "canonical_id": "goods.chinahara.04",
+          "name": "太湖石",
+          "base_price": 500,
+          "weight": 2,
+          "category": "luxury",
+          "region": "region.chinahara"
+        },
+        {
+          "canonical_id": "goods.chinahara.05",
+          "name": "丝绸",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.chinahara"
+        },
+        {
+          "canonical_id": "goods.chinahara.06",
+          "name": "瓷器",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.chinahara"
+        },
+        {
+          "canonical_id": "goods.chinahara.07",
+          "name": "茶叶",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.chinahara"
+        },
+        {
+          "canonical_id": "goods.chinahara.08",
+          "name": "人参",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.chinahara"
+        },
+        {
+          "canonical_id": "goods.chinahara.09",
+          "name": "牡丹花",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.chinahara"
+        },
+        {
+          "canonical_id": "goods.chinahara.10",
+          "name": "宣纸",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.chinahara"
+        },
+        {
+          "canonical_id": "goods.chinahara.11",
+          "name": "漆器",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.chinahara"
+        },
+        {
+          "canonical_id": "goods.chinahara.12",
+          "name": "和田玉",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.chinahara"
+        },
+        {
+          "canonical_id": "goods.chinahara.13",
+          "name": "桂圆",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.chinahara"
+        },
+        {
+          "canonical_id": "goods.chinahara.14",
+          "name": "荔枝",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.chinahara"
+        },
+        {
+          "canonical_id": "goods.chinahara.15",
+          "name": "铁锭",
+          "base_price": 100,
+          "weight": 3,
+          "category": "material",
+          "region": "region.chinahara"
+        },
+        {
+          "canonical_id": "goods.chinahara.16",
+          "name": "铜锭",
+          "base_price": 100,
+          "weight": 3,
+          "category": "material",
+          "region": "region.chinahara"
+        },
+        {
+          "canonical_id": "goods.chinahara.17",
+          "name": "高岭土",
+          "base_price": 100,
+          "weight": 3,
+          "category": "material",
+          "region": "region.chinahara"
+        },
+        {
+          "canonical_id": "goods.chinahara.18",
+          "name": "稻米",
+          "base_price": 80,
+          "weight": 3,
+          "category": "food",
+          "region": "region.chinahara"
+        },
+        {
+          "canonical_id": "goods.chinahara.19",
+          "name": "小麦",
+          "base_price": 80,
+          "weight": 3,
+          "category": "food",
+          "region": "region.chinahara"
+        },
+        {
+          "canonical_id": "goods.chinahara.20",
+          "name": "竹笋",
+          "base_price": 80,
+          "weight": 3,
+          "category": "food",
+          "region": "region.chinahara"
+        }
+      ]
+    },
+    "region.japan": {
+      "specialty": [
+        {
+          "canonical_id": "goods.japan.01",
+          "name": "妖刀铁",
+          "base_price": 500,
+          "weight": 2,
+          "category": "luxury",
+          "region": "region.japan"
+        },
+        {
+          "canonical_id": "goods.japan.02",
+          "name": "金莳绘",
+          "base_price": 500,
+          "weight": 2,
+          "category": "luxury",
+          "region": "region.japan"
+        },
+        {
+          "canonical_id": "goods.japan.03",
+          "name": "樱染布",
+          "base_price": 500,
+          "weight": 2,
+          "category": "luxury",
+          "region": "region.japan"
+        },
+        {
+          "canonical_id": "goods.japan.04",
+          "name": "武士甲胄",
+          "base_price": 500,
+          "weight": 2,
+          "category": "luxury",
+          "region": "region.japan"
+        },
+        {
+          "canonical_id": "goods.japan.05",
+          "name": "和纸",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.japan"
+        },
+        {
+          "canonical_id": "goods.japan.06",
+          "name": "和服锦",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.japan"
+        },
+        {
+          "canonical_id": "goods.japan.07",
+          "name": "樱花枝",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.japan"
+        },
+        {
+          "canonical_id": "goods.japan.08",
+          "name": "宇治茶",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.japan"
+        },
+        {
+          "canonical_id": "goods.japan.09",
+          "name": "伊势珍珠",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.japan"
+        },
+        {
+          "canonical_id": "goods.japan.10",
+          "name": "白珊瑚",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.japan"
+        },
+        {
+          "canonical_id": "goods.japan.11",
+          "name": "漆胶",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.japan"
+        },
+        {
+          "canonical_id": "goods.japan.12",
+          "name": "干昆布",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.japan"
+        },
+        {
+          "canonical_id": "goods.japan.13",
+          "name": "鲍鱼",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.japan"
+        },
+        {
+          "canonical_id": "goods.japan.14",
+          "name": "山葵",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.japan"
+        },
+        {
+          "canonical_id": "goods.japan.15",
+          "name": "铁矿石",
+          "base_price": 100,
+          "weight": 3,
+          "category": "material",
+          "region": "region.japan"
+        },
+        {
+          "canonical_id": "goods.japan.16",
+          "name": "铜料",
+          "base_price": 100,
+          "weight": 3,
+          "category": "material",
+          "region": "region.japan"
+        },
+        {
+          "canonical_id": "goods.japan.17",
+          "name": "青竹",
+          "base_price": 100,
+          "weight": 3,
+          "category": "material",
+          "region": "region.japan"
+        },
+        {
+          "canonical_id": "goods.japan.18",
+          "name": "稻米",
+          "base_price": 80,
+          "weight": 3,
+          "category": "food",
+          "region": "region.japan"
+        },
+        {
+          "canonical_id": "goods.japan.19",
+          "name": "海苔",
+          "base_price": 80,
+          "weight": 3,
+          "category": "food",
+          "region": "region.japan"
+        },
+        {
+          "canonical_id": "goods.japan.20",
+          "name": "味增",
+          "base_price": 80,
+          "weight": 3,
+          "category": "food",
+          "region": "region.japan"
+        }
+      ]
+    },
+    "region.maya": {
+      "specialty": [
+        {
+          "canonical_id": "goods.maya.01",
+          "name": "翡翠面具",
+          "base_price": 500,
+          "weight": 2,
+          "category": "luxury",
+          "region": "region.maya"
+        },
+        {
+          "canonical_id": "goods.maya.02",
+          "name": "太阳历石",
+          "base_price": 500,
+          "weight": 2,
+          "category": "luxury",
+          "region": "region.maya"
+        },
+        {
+          "canonical_id": "goods.maya.03",
+          "name": "黑曜石镜",
+          "base_price": 500,
+          "weight": 2,
+          "category": "luxury",
+          "region": "region.maya"
+        },
+        {
+          "canonical_id": "goods.maya.04",
+          "name": "玛雅金像",
+          "base_price": 500,
+          "weight": 2,
+          "category": "luxury",
+          "region": "region.maya"
+        },
+        {
+          "canonical_id": "goods.maya.05",
+          "name": "可可",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.maya"
+        },
+        {
+          "canonical_id": "goods.maya.06",
+          "name": "玉米",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.maya"
+        },
+        {
+          "canonical_id": "goods.maya.07",
+          "name": "辣椒",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.maya"
+        },
+        {
+          "canonical_id": "goods.maya.08",
+          "name": "胭脂红",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.maya"
+        },
+        {
+          "canonical_id": "goods.maya.09",
+          "name": "橡胶球",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.maya"
+        },
+        {
+          "canonical_id": "goods.maya.10",
+          "name": "鹅卵玉",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.maya"
+        },
+        {
+          "canonical_id": "goods.maya.11",
+          "name": "玛雅蓝",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.maya"
+        },
+        {
+          "canonical_id": "goods.maya.12",
+          "name": "烟草",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.maya"
+        },
+        {
+          "canonical_id": "goods.maya.13",
+          "name": "蜂蜡",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.maya"
+        },
+        {
+          "canonical_id": "goods.maya.14",
+          "name": "凤梨",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.maya"
+        },
+        {
+          "canonical_id": "goods.maya.15",
+          "name": "黑曜石",
+          "base_price": 100,
+          "weight": 3,
+          "category": "material",
+          "region": "region.maya"
+        },
+        {
+          "canonical_id": "goods.maya.16",
+          "name": "玉石",
+          "base_price": 100,
+          "weight": 3,
+          "category": "material",
+          "region": "region.maya"
+        },
+        {
+          "canonical_id": "goods.maya.17",
+          "name": "石灰岩",
+          "base_price": 100,
+          "weight": 3,
+          "category": "material",
+          "region": "region.maya"
+        },
+        {
+          "canonical_id": "goods.maya.18",
+          "name": "玉米",
+          "base_price": 80,
+          "weight": 3,
+          "category": "food",
+          "region": "region.maya"
+        },
+        {
+          "canonical_id": "goods.maya.19",
+          "name": "豆子",
+          "base_price": 80,
+          "weight": 3,
+          "category": "food",
+          "region": "region.maya"
+        },
+        {
+          "canonical_id": "goods.maya.20",
+          "name": "南瓜",
+          "base_price": 80,
+          "weight": 3,
+          "category": "food",
+          "region": "region.maya"
+        }
+      ]
+    },
+    "region.caribbean": {
+      "specialty": [
+        {
+          "canonical_id": "goods.caribbean.01",
+          "name": "西班牙金币",
+          "base_price": 500,
+          "weight": 2,
+          "category": "luxury",
+          "region": "region.caribbean"
+        },
+        {
+          "canonical_id": "goods.caribbean.02",
+          "name": "藏宝剑",
+          "base_price": 500,
+          "weight": 2,
+          "category": "luxury",
+          "region": "region.caribbean"
+        },
+        {
+          "canonical_id": "goods.caribbean.03",
+          "name": "陈年朗姆",
+          "base_price": 500,
+          "weight": 2,
+          "category": "luxury",
+          "region": "region.caribbean"
+        },
+        {
+          "canonical_id": "goods.caribbean.04",
+          "name": "黑曜石杯",
+          "base_price": 500,
+          "weight": 2,
+          "category": "luxury",
+          "region": "region.caribbean"
+        },
+        {
+          "canonical_id": "goods.caribbean.05",
+          "name": "朗姆酒",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.caribbean"
+        },
+        {
+          "canonical_id": "goods.caribbean.06",
+          "name": "甘蔗",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.caribbean"
+        },
+        {
+          "canonical_id": "goods.caribbean.07",
+          "name": "可可",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.caribbean"
+        },
+        {
+          "canonical_id": "goods.caribbean.08",
+          "name": "烟草",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.caribbean"
+        },
+        {
+          "canonical_id": "goods.caribbean.09",
+          "name": "咖啡",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.caribbean"
+        },
+        {
+          "canonical_id": "goods.caribbean.10",
+          "name": "香蕉",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.caribbean"
+        },
+        {
+          "canonical_id": "goods.caribbean.11",
+          "name": "菠萝",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.caribbean"
+        },
+        {
+          "canonical_id": "goods.caribbean.12",
+          "name": "天然海绵",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.caribbean"
+        },
+        {
+          "canonical_id": "goods.caribbean.13",
+          "name": "胭脂虫",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.caribbean"
+        },
+        {
+          "canonical_id": "goods.caribbean.14",
+          "name": "黑珍珠",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.caribbean"
+        },
+        {
+          "canonical_id": "goods.caribbean.15",
+          "name": "桃花心木",
+          "base_price": 100,
+          "weight": 6,
+          "category": "material",
+          "region": "region.caribbean"
+        },
+        {
+          "canonical_id": "goods.caribbean.16",
+          "name": "砂金",
+          "base_price": 100,
+          "weight": 3,
+          "category": "material",
+          "region": "region.caribbean"
+        },
+        {
+          "canonical_id": "goods.caribbean.17",
+          "name": "礁石",
+          "base_price": 100,
+          "weight": 3,
+          "category": "material",
+          "region": "region.caribbean"
+        },
+        {
+          "canonical_id": "goods.caribbean.18",
+          "name": "木薯",
+          "base_price": 80,
+          "weight": 3,
+          "category": "food",
+          "region": "region.caribbean"
+        },
+        {
+          "canonical_id": "goods.caribbean.19",
+          "name": "甘薯",
+          "base_price": 80,
+          "weight": 3,
+          "category": "food",
+          "region": "region.caribbean"
+        },
+        {
+          "canonical_id": "goods.caribbean.20",
+          "name": "玉米",
+          "base_price": 80,
+          "weight": 3,
+          "category": "food",
+          "region": "region.caribbean"
+        }
+      ]
+    },
+    "region.southamerica": {
+      "specialty": [
+        {
+          "canonical_id": "goods.southamerica.01",
+          "name": "黄金城秘钥",
+          "base_price": 500,
+          "weight": 2,
+          "category": "luxury",
+          "region": "region.southamerica"
+        },
+        {
+          "canonical_id": "goods.southamerica.02",
+          "name": "安第斯银器",
+          "base_price": 500,
+          "weight": 2,
+          "category": "luxury",
+          "region": "region.southamerica"
+        },
+        {
+          "canonical_id": "goods.southamerica.03",
+          "name": "暴雨神像",
+          "base_price": 500,
+          "weight": 2,
+          "category": "luxury",
+          "region": "region.southamerica"
+        },
+        {
+          "canonical_id": "goods.southamerica.04",
+          "name": "翡翠王冠",
+          "base_price": 500,
+          "weight": 2,
+          "category": "luxury",
+          "region": "region.southamerica"
+        },
+        {
+          "canonical_id": "goods.southamerica.05",
+          "name": "黄金",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.southamerica"
+        },
+        {
+          "canonical_id": "goods.southamerica.06",
+          "name": "白银",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.southamerica"
+        },
+        {
+          "canonical_id": "goods.southamerica.07",
+          "name": "羊驼毛",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.southamerica"
+        },
+        {
+          "canonical_id": "goods.southamerica.08",
+          "name": "古柯叶",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.southamerica"
+        },
+        {
+          "canonical_id": "goods.southamerica.09",
+          "name": "玛雅蓝",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.southamerica"
+        },
+        {
+          "canonical_id": "goods.southamerica.10",
+          "name": "亚马逊玉",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.southamerica"
+        },
+        {
+          "canonical_id": "goods.southamerica.11",
+          "name": "热带红木",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.southamerica"
+        },
+        {
+          "canonical_id": "goods.southamerica.12",
+          "name": "咖啡",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.southamerica"
+        },
+        {
+          "canonical_id": "goods.southamerica.13",
+          "name": "可可",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.southamerica"
+        },
+        {
+          "canonical_id": "goods.southamerica.14",
+          "name": "凤梨",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.southamerica"
+        },
+        {
+          "canonical_id": "goods.southamerica.15",
+          "name": "银矿石",
+          "base_price": 100,
+          "weight": 3,
+          "category": "material",
+          "region": "region.southamerica"
+        },
+        {
+          "canonical_id": "goods.southamerica.16",
+          "name": "金矿石",
+          "base_price": 100,
+          "weight": 3,
+          "category": "material",
+          "region": "region.southamerica"
+        },
+        {
+          "canonical_id": "goods.southamerica.17",
+          "name": "亚马逊石",
+          "base_price": 100,
+          "weight": 3,
+          "category": "material",
+          "region": "region.southamerica"
+        },
+        {
+          "canonical_id": "goods.southamerica.18",
+          "name": "马铃薯",
+          "base_price": 80,
+          "weight": 3,
+          "category": "food",
+          "region": "region.southamerica"
+        },
+        {
+          "canonical_id": "goods.southamerica.19",
+          "name": "木薯",
+          "base_price": 80,
+          "weight": 3,
+          "category": "food",
+          "region": "region.southamerica"
+        },
+        {
+          "canonical_id": "goods.southamerica.20",
+          "name": "藜麦",
+          "base_price": 80,
+          "weight": 3,
+          "category": "food",
+          "region": "region.southamerica"
+        }
+      ]
+    },
+    "region.polar": {
+      "specialty": [
+        {
+          "canonical_id": "goods.polar.01",
+          "name": "亚特兰蒂斯之珠",
+          "base_price": 500,
+          "weight": 2,
+          "category": "luxury",
+          "region": "region.polar"
+        },
+        {
+          "canonical_id": "goods.polar.02",
+          "name": "冰封龙骨",
+          "base_price": 500,
+          "weight": 2,
+          "category": "luxury",
+          "region": "region.polar"
+        },
+        {
+          "canonical_id": "goods.polar.03",
+          "name": "美人鱼泪",
+          "base_price": 500,
+          "weight": 2,
+          "category": "luxury",
+          "region": "region.polar"
+        },
+        {
+          "canonical_id": "goods.polar.04",
+          "name": "黄泉引路石",
+          "base_price": 500,
+          "weight": 2,
+          "category": "luxury",
+          "region": "region.polar"
+        },
+        {
+          "canonical_id": "goods.polar.05",
+          "name": "鲸油",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.polar"
+        },
+        {
+          "canonical_id": "goods.polar.06",
+          "name": "海象牙",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.polar"
+        },
+        {
+          "canonical_id": "goods.polar.07",
+          "name": "极地毛皮",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.polar"
+        },
+        {
+          "canonical_id": "goods.polar.08",
+          "name": "冰晶石",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.polar"
+        },
+        {
+          "canonical_id": "goods.polar.09",
+          "name": "龙涎香",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.polar"
+        },
+        {
+          "canonical_id": "goods.polar.10",
+          "name": "白鲨鱼翅",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.polar"
+        },
+        {
+          "canonical_id": "goods.polar.11",
+          "name": "极光贝",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.polar"
+        },
+        {
+          "canonical_id": "goods.polar.12",
+          "name": "海冰盐",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.polar"
+        },
+        {
+          "canonical_id": "goods.polar.13",
+          "name": "深海油",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.polar"
+        },
+        {
+          "canonical_id": "goods.polar.14",
+          "name": "冰蘑菇",
+          "base_price": 250,
+          "weight": 1,
+          "category": "specialty",
+          "region": "region.polar"
+        },
+        {
+          "canonical_id": "goods.polar.15",
+          "name": "寒铁",
+          "base_price": 100,
+          "weight": 6,
+          "category": "material",
+          "region": "region.polar"
+        },
+        {
+          "canonical_id": "goods.polar.16",
+          "name": "冰岩",
+          "base_price": 100,
+          "weight": 3,
+          "category": "material",
+          "region": "region.polar"
+        },
+        {
+          "canonical_id": "goods.polar.17",
+          "name": "深海矿石",
+          "base_price": 100,
+          "weight": 3,
+          "category": "material",
+          "region": "region.polar"
+        },
+        {
+          "canonical_id": "goods.polar.18",
+          "name": "冰鱼",
+          "base_price": 80,
+          "weight": 3,
+          "category": "food",
+          "region": "region.polar"
+        },
+        {
+          "canonical_id": "goods.polar.19",
+          "name": "海苔",
+          "base_price": 80,
+          "weight": 3,
+          "category": "food",
+          "region": "region.polar"
+        },
+        {
+          "canonical_id": "goods.polar.20",
+          "name": "极地浆果",
+          "base_price": 80,
+          "weight": 3,
+          "category": "food",
+          "region": "region.polar"
+        }
+      ]
+    }
+  }
+}

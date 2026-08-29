@@ -1,0 +1,410 @@
+{
+  "version": 1,
+  "items": [
+    {
+      "canonical_id": "item.龙泉水",
+      "name": "龙泉水",
+      "type": 3,
+      "subtype": "enhance_material",
+      "price_buy": 40,
+      "price_sell": 12,
+      "use": "装备强化材料"
+    },
+    {
+      "canonical_id": "item.玄铁石",
+      "name": "玄铁石",
+      "type": 3,
+      "subtype": "enhance_material",
+      "price_buy": 60,
+      "price_sell": 18,
+      "use": "装备强化材料"
+    },
+    {
+      "canonical_id": "item.翡翠石",
+      "name": "翡翠石",
+      "type": 3,
+      "subtype": "enhance_material",
+      "price_buy": 120,
+      "price_sell": 36,
+      "use": "装备强化材料"
+    },
+    {
+      "canonical_id": "item.琥珀",
+      "name": "琥珀",
+      "type": 3,
+      "subtype": "enhance_material",
+      "price_buy": 90,
+      "price_sell": 27,
+      "use": "装备强化材料"
+    },
+    {
+      "canonical_id": "item.聚凝石",
+      "name": "聚凝石",
+      "type": 3,
+      "subtype": "enhance_material",
+      "price_buy": 150,
+      "price_sell": 45,
+      "use": "装备强化材料"
+    },
+    {
+      "canonical_id": "item.天然玉",
+      "name": "天然玉",
+      "type": 3,
+      "subtype": "enhance_material",
+      "price_buy": 200,
+      "price_sell": 60,
+      "use": "装备强化材料"
+    },
+    {
+      "canonical_id": "item.虚无宝石",
+      "name": "虚无宝石",
+      "type": 3,
+      "subtype": "enhance_material",
+      "price_buy": 500,
+      "price_sell": 150,
+      "use": "高级强化材料"
+    },
+    {
+      "canonical_id": "item.雪块",
+      "name": "雪块",
+      "type": 3,
+      "subtype": "enhance_material",
+      "price_buy": 30,
+      "price_sell": 9,
+      "use": "装备强化材料"
+    },
+    {
+      "canonical_id": "item.龙珠碎片",
+      "name": "龙珠碎片",
+      "type": 3,
+      "subtype": "rare",
+      "price_buy": 0,
+      "price_sell": 0,
+      "use": "稀有合成材料"
+    },
+    {
+      "canonical_id": "item.口粮",
+      "name": "口粮",
+      "type": 4,
+      "subtype": "food",
+      "price_buy": 50,
+      "price_sell": 30,
+      "use": "恢复船队体力"
+    },
+    {
+      "canonical_id": "item.优质口粮",
+      "name": "优质口粮",
+      "type": 4,
+      "subtype": "food",
+      "price_buy": 150,
+      "price_sell": 60,
+      "use": "恢复较多体力"
+    },
+    {
+      "canonical_id": "item.高级口粮",
+      "name": "高级口粮",
+      "type": 4,
+      "subtype": "food",
+      "price_buy": 400,
+      "price_sell": 100,
+      "use": "恢复大量体力"
+    },
+    {
+      "canonical_id": "item.宠物蛋",
+      "name": "宠物蛋",
+      "type": 4,
+      "subtype": "pet",
+      "price_buy": 500,
+      "price_sell": 0,
+      "use": "可孵化宠物"
+    },
+    {
+      "canonical_id": "item.迷你兽栏",
+      "name": "迷你兽栏",
+      "type": 4,
+      "subtype": "pet_capacity",
+      "price_buy": 3000,
+      "price_sell": 0,
+      "use": "宠物栏扩1格"
+    },
+    {
+      "canonical_id": "item.魔纹果实",
+      "name": "魔纹果实",
+      "type": 4,
+      "subtype": "pet",
+      "price_buy": 500,
+      "price_sell": 0,
+      "use": "宠物技能领悟"
+    },
+    {
+      "canonical_id": "item.体力宝",
+      "name": "体力宝",
+      "type": 4,
+      "subtype": "stamina",
+      "price_buy": 200,
+      "price_sell": 50,
+      "use": "恢复50体力"
+    },
+    {
+      "canonical_id": "item.大体力宝",
+      "name": "大体力宝",
+      "type": 4,
+      "subtype": "stamina",
+      "price_buy": 800,
+      "price_sell": 150,
+      "use": "恢复150体力"
+    },
+    {
+      "canonical_id": "item.奶瓶",
+      "name": "奶瓶",
+      "type": 4,
+      "subtype": "pet",
+      "price_buy": 10000,
+      "price_sell": 0,
+      "use": "宠物回血道具"
+    },
+    {
+      "canonical_id": "item.急救箱",
+      "name": "急救箱",
+      "type": 4,
+      "subtype": "stamina",
+      "price_buy": 100,
+      "price_sell": 30,
+      "use": "恢复20体力"
+    },
+    {
+      "canonical_id": "item.百宝箱",
+      "name": "百宝箱",
+      "type": 4,
+      "subtype": "loot",
+      "price_buy": 0,
+      "price_sell": 0,
+      "use": "开启随机掉落"
+    },
+    {
+      "canonical_id": "item.复活药",
+      "name": "复活药",
+      "type": 4,
+      "subtype": "revive",
+      "price_buy": 600,
+      "price_sell": 0,
+      "use": "复活倒下的宠物"
+    },
+    {
+      "canonical_id": "item.传送符",
+      "name": "传送符",
+      "type": 4,
+      "subtype": "teleport",
+      "price_buy": 200,
+      "price_sell": 0,
+      "use": "快速传送至已解锁地点"
+    },
+    {
+      "canonical_id": "item.引路蜂",
+      "name": "引路蜂",
+      "type": 4,
+      "subtype": "loot",
+      "price_buy": 2000,
+      "price_sell": 0,
+      "use": "开启掉落稀有物"
+    },
+    {
+      "canonical_id": "item.治愈药水",
+      "name": "治愈药水",
+      "type": 4,
+      "subtype": "heal",
+      "price_buy": 300,
+      "price_sell": 100,
+      "use": "恢复100生命"
+    },
+    {
+      "canonical_id": "item.朗姆酒",
+      "name": "朗姆酒",
+      "type": 4,
+      "subtype": "heal",
+      "price_buy": 80,
+      "price_sell": 10,
+      "use": "恢复10生命"
+    },
+    {
+      "canonical_id": "item.紫宝石",
+      "name": "紫宝石",
+      "type": 5,
+      "subtype": "gem",
+      "price_buy": 1500,
+      "price_sell": 450,
+      "use": "镶嵌武器"
+    },
+    {
+      "canonical_id": "item.红宝石",
+      "name": "红宝石",
+      "type": 5,
+      "subtype": "gem",
+      "price_buy": 1800,
+      "price_sell": 540,
+      "use": "镶嵌武器"
+    },
+    {
+      "canonical_id": "item.蓝宝石",
+      "name": "蓝宝石",
+      "type": 5,
+      "subtype": "gem",
+      "price_buy": 1600,
+      "price_sell": 480,
+      "use": "镶嵌武器"
+    },
+    {
+      "canonical_id": "item.绿宝石",
+      "name": "绿宝石",
+      "type": 5,
+      "subtype": "gem",
+      "price_buy": 1400,
+      "price_sell": 420,
+      "use": "镶嵌武器"
+    },
+    {
+      "canonical_id": "item.橙宝石",
+      "name": "橙宝石",
+      "type": 5,
+      "subtype": "gem",
+      "price_buy": 1700,
+      "price_sell": 510,
+      "use": "镶嵌武器"
+    },
+    {
+      "canonical_id": "item.普通卡片",
+      "name": "普通卡片",
+      "type": 5,
+      "subtype": "card",
+      "price_buy": 300,
+      "price_sell": 90,
+      "use": "收集品"
+    },
+    {
+      "canonical_id": "item.精致卡片",
+      "name": "精致卡片",
+      "type": 5,
+      "subtype": "card",
+      "price_buy": 800,
+      "price_sell": 240,
+      "use": "收集品"
+    },
+    {
+      "canonical_id": "item.珍贵卡片",
+      "name": "珍贵卡片",
+      "type": 5,
+      "subtype": "card",
+      "price_buy": 2000,
+      "price_sell": 600,
+      "use": "收集品"
+    },
+    {
+      "canonical_id": "item.稀有卡片",
+      "name": "稀有卡片",
+      "type": 5,
+      "subtype": "card",
+      "price_buy": 5000,
+      "price_sell": 1500,
+      "use": "收集品"
+    },
+    {
+      "canonical_id": "item.传说卡片",
+      "name": "传说卡片",
+      "type": 5,
+      "subtype": "card",
+      "price_buy": 12000,
+      "price_sell": 3600,
+      "use": "收集品"
+    },
+    {
+      "canonical_id": "item.白圣痕",
+      "name": "白圣痕",
+      "type": 5,
+      "subtype": "stigma",
+      "price_buy": 400,
+      "price_sell": 120,
+      "use": "收藏增强"
+    },
+    {
+      "canonical_id": "item.紫圣痕",
+      "name": "紫圣痕",
+      "type": 5,
+      "subtype": "stigma",
+      "price_buy": 4000,
+      "price_sell": 1200,
+      "use": "收藏增强"
+    },
+    {
+      "canonical_id": "item.暴风狮鹫",
+      "name": "暴风狮鹫",
+      "type": 5,
+      "subtype": "mount",
+      "price_buy": 15000,
+      "price_sell": 0,
+      "use": "全体速度+5"
+    },
+    {
+      "canonical_id": "item.炽焰战蝎",
+      "name": "炽焰战蝎",
+      "type": 5,
+      "subtype": "mount",
+      "price_buy": 30000,
+      "price_sell": 0,
+      "use": "全体攻击+8"
+    },
+    {
+      "canonical_id": "item.自由之翼",
+      "name": "自由之翼",
+      "type": 5,
+      "subtype": "wing",
+      "price_buy": 12000,
+      "price_sell": 0,
+      "use": "闪避+5"
+    },
+    {
+      "canonical_id": "item.魔龙之翼",
+      "name": "魔龙之翼",
+      "type": 5,
+      "subtype": "wing",
+      "price_buy": 26000,
+      "price_sell": 0,
+      "use": "攻击+10"
+    },
+    {
+      "canonical_id": "item.路飞",
+      "name": "路飞",
+      "type": 5,
+      "subtype": "follower",
+      "price_buy": 0,
+      "price_sell": 0,
+      "use": "随从·可招募船员"
+    },
+    {
+      "canonical_id": "item.索隆",
+      "name": "索隆",
+      "type": 5,
+      "subtype": "follower",
+      "price_buy": 0,
+      "price_sell": 0,
+      "use": "随从·可招募船员"
+    },
+    {
+      "canonical_id": "item.娜美",
+      "name": "娜美",
+      "type": 5,
+      "subtype": "follower",
+      "price_buy": 0,
+      "price_sell": 0,
+      "use": "随从·可招募船员"
+    },
+    {
+      "canonical_id": "item.乔巴",
+      "name": "乔巴",
+      "type": 5,
+      "subtype": "follower",
+      "price_buy": 0,
+      "price_sell": 0,
+      "use": "随从·可招募船员"
+    }
+  ]
+}
