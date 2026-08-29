@@ -888,9 +888,11 @@ function renderFastTravelForLocation(locationCanonicalId, view) {
   if (node.map_node_canonical_id === view.current_location?.map_node_canonical_id) return '';
   return `<button class="text-link" data-fast-travel="${attr(locationCanonicalId)}">快速旅行</button>`;
 }
+
 function renderFastTravel(entry, view) {
   const target = fastTravelTarget(entry.definition, view);
-  return target ? `<button class="text-link" data-fast-travel="${attr(target.location_canonical_id)}">快速旅行到${escapeHtml(target.display_name)}</button>` : '';
+  const active = ['accepted','in_progress','completable'].includes(entry.runtime.status);
+  return target && active ? `<button class="text-link" data-fast-travel="${attr(target.location_canonical_id)}">快速旅行到${escapeHtml(target.display_name)}</button>` : '';
 }
 
 function entityName(canonicalId) {
