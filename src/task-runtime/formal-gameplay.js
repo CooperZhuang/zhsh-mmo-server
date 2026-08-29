@@ -482,7 +482,7 @@ class MarketRuntime {
       const offers=allGoods.map((good)=>({ ...good,region_name:regions[good.region]?.name??good.region,
         local_price:this.priceFor(state,good),is_local:cityRegion!=null&&good.region===cityRegion }));
       return { applied:true,action:'market_view_loaded',city_canonical_id:state.player.current_city_canonical_id,
-        city_region:cityRegion,money:state.player.money,holds:formalInventoryUsed(state,this.catalog),capacity:state.inventory_capacity,cargo_holds:cargoUsed(state),cargo_capacity:cargoCapacity(state),offers };
+        city_region:cityRegion,city_region_name:this.regionNameForSlug(cityRegion),money:state.player.money,holds:formalInventoryUsed(state,this.catalog),capacity:state.inventory_capacity,cargo_holds:cargoUsed(state),cargo_capacity:cargoCapacity(state),offers };
     });
   }
   buy(playerId,goodId,quantity,eventId) {

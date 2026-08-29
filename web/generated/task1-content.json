@@ -3131,7 +3131,7 @@
       "canonical_id": "task.series.01.008",
       "source_canonical_id": "task.series.01.008",
       "sequence_position": 9,
-      "display_name": "去找里皮聊聊",
+      "display_name": "小皮特的委托",
       "task_type": "对话",
       "description": "去找里皮聊聊",
       "level_requirement": null,
@@ -281488,7 +281488,7 @@
     "preview_routes_supported": false,
     "normal_runtime_reads_this_section": false
   },
-  "content_sha256": "e8a84d47d9db2e1b7cdd5522d744af2c52f5cf101cac06b331d7c7c7dfaa2e8d",
+  "content_sha256": "37e3f248c65ac850d6d153fe70d05d0a18851466d9dbf056ca74868dd2b38df8",
   "entity_counts": {
     "tasks": 651,
     "cities": 28,

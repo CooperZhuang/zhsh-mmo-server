@@ -683,12 +683,22 @@ class TaskRuntimeEngine {
     };
   }
 
+  /** 统计任务物品目标在背包中的数量。同一实物可能被内容库解析为多个实体副本
+   *  (candidate_canonical_ids 与 entity_canonical_id 不同)，进度应累计候选集总量，
+   *  否则玩家买到正确的物品(任一候选实体)却因 id 不同而永不达标。 */
+  itemTargetQuantity(state, target) {
+    const candidates = new Set([target.entity_canonical_id, ...(target.candidate_canonical_ids ?? [])].filter(Boolean));
+    let total = 0;
+    for (const id of candidates) total += Number(state.inventory?.[id] ?? 0);
+    return total;
+  }
+
   syncItemTargets(state,task,onlyItemId = null) {
     const changes = [];
     for (const target of task.targets.filter((entry) => entry.target_kind === 'item'
-      && (!onlyItemId || entry.entity_canonical_id === onlyItemId))) {
+      && (!onlyItemId || entry.entity_canonical_id === onlyItemId || (target.candidate_canonical_ids ?? []).includes(onlyItemId)))) {
       const before = this.getTaskProgress(state,task.canonical_id,target.canonical_id);
-      const after = Math.min(target.required_quantity,state.inventory[target.entity_canonical_id] ?? 0);
+      const after = Math.min(target.required_quantity,this.itemTargetQuantity(state,target));
       this.setTaskProgress(state,task.canonical_id,target.canonical_id,after);
       if (after !== before) changes.push({ task_canonical_id: task.canonical_id,target_canonical_id: target.canonical_id,before,after,required: target.required_quantity });
     }
@@ -2355,7 +2365,7 @@ class MarketRuntime {
       const offers=allGoods.map((good)=>({ ...good,region_name:regions[good.region]?.name??good.region,
         local_price:this.priceFor(state,good),is_local:cityRegion!=null&&good.region===cityRegion }));
       return { applied:true,action:'market_view_loaded',city_canonical_id:state.player.current_city_canonical_id,
-        city_region:cityRegion,money:state.player.money,holds:formalInventoryUsed(state,this.catalog),capacity:state.inventory_capacity,cargo_holds:cargoUsed(state),cargo_capacity:cargoCapacity(state),offers };
+        city_region:cityRegion,city_region_name:this.regionNameForSlug(cityRegion),money:state.player.money,holds:formalInventoryUsed(state,this.catalog),capacity:state.inventory_capacity,cargo_holds:cargoUsed(state),cargo_capacity:cargoCapacity(state),offers };
     });
   }
   buy(playerId,goodId,quantity,eventId) {
