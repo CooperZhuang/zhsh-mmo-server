@@ -92,12 +92,20 @@ export function createGameApi({ base = '' } = {}) {
     return request('/api/game/market_advice', { method: 'POST', body: {} });
   }
 
+  async function discoveryDescription(payload) {
+    return request('/api/game/discovery_description', { method: 'POST', body: payload });
+  }
+
+  async function taskNarrative(payload) {
+    return request('/api/game/task_narrative', { method: 'POST', body: payload });
+  }
+
   function getToken() { return token; }
   function getPlayerId() { return currentPlayerId; }
 
   return {
     request, register, login, setToken, setPlayer,
-    getState, action, runtime, getWorld, getPlayers, getIntel, npcBanter, combatNarrative, marketAdvice,
+    getState, action, runtime, getWorld, getPlayers, getIntel, npcBanter, combatNarrative, marketAdvice, discoveryDescription, taskNarrative,
     getToken, getPlayerId,
   };
 }

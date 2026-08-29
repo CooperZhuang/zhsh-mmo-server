@@ -430,12 +430,19 @@ function renderDiscoveriesPage() {
     <p><strong>发现物图鉴</strong>（已发现 ${Object.keys(found).length}/${disc.length}）</p>
     ${renderFeedback()}
     <div class="line-list">${disc.map((d)=>Object.keys(found).includes(d.canonical_id)
-      ?`<p>✅ <strong>${escapeHtml(d.name)}</strong>（${escapeHtml(d.region)}）— ${escapeHtml(d.tip)}</p>`
+      ?`<p>✅ <strong>${escapeHtml(d.name)}</strong>（${escapeHtml(d.region)}）— ${escapeHtml(d.tip)}<br><span class="disc-ai" data-disc-name="${attr(d.name)}" data-disc-region="${attr(d.region)}"></span></p>`
       :`<p>❓ <strong>${escapeHtml(d.name)}</strong>（${escapeHtml(d.region)}）— 尚未发现，线索：${escapeHtml(d.tip)}</p>`).join('')}</div>
     <p><button class="text-link" data-page="location">返回</button></p>
     ${renderPrimaryNav()}
   </section>`;
   bindPageActions();
+  // 已发现项异步填充 AI 探索叙事描述
+  document.querySelectorAll('.disc-ai').forEach((el)=>{
+    const name=el.dataset.discName, region=el.dataset.discRegion;
+    gameApi.discoveryDescription({ discovery_name:name, region }).then((d)=>{
+      if(d?.description) el.innerHTML=`<em class="message">${escapeHtml(d.description)}</em>`;
+    }).catch(()=>{});
+  });
 }
 
 function renderQuestlinePage() {
@@ -1062,6 +1069,15 @@ async function perform(operation,fallbackMessage,nextPage,nextParams = {}) {
       const outcome = result.action === 'combat_won' ? '战斗胜利' : '战斗失败';
       gameApi.combatNarrative({ outcome, monster_name: entityName(result.monster_canonical_id) ?? result.monster_canonical_id ?? null, rounds: result.batched_rounds ?? null }).then((narr) => {
         if (narr?.line) feedback.succeed(`${resultMessage(result)}\n${narr.line}`);
+      }).catch(()=>{});
+    }
+    // 任务接取/提交：异步补一句 AI 任务情境叙述（NPC 口吻鼓励/赞许）
+    if (result.action === 'accepted' || result.action === 'completed') {
+      const task = result?.task_canonical_id ? catalog.getTask(result.task_canonical_id) : null;
+      const issuerNpc = task?.issuer_npc_canonical_id ?? null;
+      const npc = serverNpcs.find((n)=>n.npc_canonical_id === issuerNpc) || serverNpcs[0];
+      gameApi.taskNarrative({ npc_name: npc?.display_name || 'NPC', task_name: task?.display_name || '', phase: result.action === 'accepted' ? '接受' : '提交' }).then((narr)=>{
+        if (narr?.line) { const msg=document.querySelector('.message'); if(msg) msg.textContent += `\n${narr.line}`; }
       }).catch(()=>{});
     }
     browserLog.info('action','saved',{action:result?.action??null,outcome:result?.outcome??null,playerId:PLAYER_ID});

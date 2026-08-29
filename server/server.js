@@ -26,6 +26,8 @@ const { aiMarketAdvice } = require('./eco/ai-market-advice');
 const { aiEventNarrative } = require('./ai/ai-narrative');
 const { aiNpcBanter } = require('./ai/ai-npc-banter');
 const { aiCombatNarrative } = require('./ai/ai-combat-narrative');
+const { aiDiscoveryDescription } = require('./ai/ai-discovery-description');
+const { aiTaskNarrative } = require('./ai/ai-task-narrative');
 
 const ROOT = path.resolve(__dirname, '..');
 const DIST = process.env.ZHSH_DIST || path.join(ROOT, 'dist');
@@ -210,6 +212,8 @@ let economy = null;
 let economyStarted = false;
 const banterCache = new Map(); // npcName -> { line, at, source }（NPC 情境台词短时缓存）
 const combatNarrCache = new Map(); // `${outcome}|${monster}` -> { line, at, source }（战斗叙述短时缓存）
+const discDescCache = new Map(); // `${discovery}|${region}` -> { description, at, source }（发现物描述缓存）
+const taskNarrCache = new Map(); // `${npc}|${task}|${phase}` -> { line, at, source }（任务叙述缓存）
 function getEconomy() {
   if (!economy) {
     economy = new WorldEconomy({
@@ -428,6 +432,40 @@ const server = http.createServer(async (req, res) => {
           return sendJson(res, 200, advice);
         } catch (err) {
           return sendJson(res, 200, { advice: '行情瞬息万变，稳妥起见先观望。', region: '当前区域', source: 'fallback' });
+        }
+      }
+      if (pathname === '/api/game/discovery_description' && req.method === 'POST') {
+        // AI 发现物叙事：玩家发现某发现物时生成探索描述（短时缓存）
+        const { discovery_name: discoveryName, region } = JSON.parse(await readBody(req) || '{}');
+        const key = `${discoveryName}|${region}`;
+        const cached = discDescCache.get(key);
+        if (cached && Date.now() - cached.at < 120000) return sendJson(res, 200, { description: cached.description, source: cached.source });
+        try {
+          const view = engine.getPlayerView(auth.playerCanonicalId);
+          const desc = await aiDiscoveryDescription({
+            discoveryName: discoveryName || '神秘之物', region: region || '未知海域',
+            playerLevel: view.player?.level, playerTitle: view.player?.title,
+            discoveredCount: Object.keys(view.discoveries_found ?? {}).length,
+          });
+          discDescCache.set(key, { description: desc.description, at: Date.now(), source: desc.source });
+          return sendJson(res, 200, desc);
+        } catch (err) {
+          return sendJson(res, 200, { description: `迷雾深处，${discoveryName || '它'}静候有缘人。`, source: 'fallback' });
+        }
+      }
+      if (pathname === '/api/game/task_narrative' && req.method === 'POST') {
+        // AI 任务情境叙述：接取/提交任务时生成一句NPC鼓励/赞许
+        const { npc_name: npcName, task_name: taskName, phase } = JSON.parse(await readBody(req) || '{}');
+        const key = `${npcName}|${taskName}|${phase}`;
+        const cached = taskNarrCache.get(key);
+        if (cached && Date.now() - cached.at < 60000) return sendJson(res, 200, { line: cached.line, source: cached.source });
+        try {
+          const view = engine.getPlayerView(auth.playerCanonicalId);
+          const narr = await aiTaskNarrative({ npcName: npcName || 'NPC', taskName: taskName || '一项委托', phase: phase === '接受' ? '接受' : '提交', playerTitle: view.player?.title, playerLevel: view.player?.level });
+          taskNarrCache.set(key, { line: narr.line, at: Date.now(), source: narr.source });
+          return sendJson(res, 200, narr);
+        } catch (err) {
+          return sendJson(res, 200, { line: `${npcName || 'NPC'}：这事就拜托你了。`, source: 'fallback' });
         }
       }
     }
