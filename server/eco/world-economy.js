@@ -57,7 +57,7 @@ class WorldEconomy {
    * @param {number} options.tickMs  经济刷新间隔
    * @param {(event:object)=>void} options.onEvent  事件触发回调（广播/日志）
    */
-  constructor({ content, statePath, tickMs = 60000, onEvent = null, aiEnabled = true, aiDecide = null, random = Math.random }) {
+  constructor({ content, statePath, tickMs = 60000, onEvent = null, aiEnabled = true, aiDecide = null, aiReport = null, random = Math.random }) {
     this.content = content;
     this.statePath = statePath || path.join(__dirname, '..', 'data', 'economy.json');
     this.tickMs = tickMs;
@@ -66,6 +66,9 @@ class WorldEconomy {
     // AI 决策层：aiDecide 为注入的 async 函数（llm 调用），akEnabled=true 且 aiDecide 存在时用于生成事件
     this.aiEnabled = aiEnabled && typeof aiDecide === 'function';
     this.aiDecide = aiDecide;
+    // AI 情报综述：aiReport 为 async 函数，tick 时生成市场/天气综述，供玩家查看
+    this.aiReport = typeof aiReport === 'function' ? aiReport : null;
+    this.lastReportAt = 0;
     this.regions = Object.values(content.world_regions?.regions ?? {}).map((r) => r.name);
     this.categoryByGood = this.buildCategoryMap();
     this.economy = null;
@@ -136,6 +139,15 @@ class WorldEconomy {
       if (event) { eco.activeEvents.push(event); eco.eventLog.push({ ...event, occurred_at: new Date().toISOString() }); if (this.onEvent) this.onEvent(event); }
       // 5) 应用事件影响（价格/天气/遭遇）
       this.applyEvents(eco);
+      // 6) AI 生成市场/天气综述（玩家查看的"情报"；AI 失败用规则摘要保底）
+      if (this.aiReport) {
+        const now = Date.now();
+        if (now - this.lastReportAt > this.tickMs - 5000) {
+          this.lastReportAt = now;
+          try { eco.marketReport = await this.aiReport(this.snapshot()); }
+          catch { eco.marketReport = this.ruleReport(); }
+        }
+      }
       eco.updated_at = new Date().toISOString();
       this.persist();
       this.tickLock = null;
@@ -227,9 +239,24 @@ class WorldEconomy {
     return Math.max(1, Math.round(price));
   }
 
+  /** 规则保底的市场综述（AI 失败时用） */
+  ruleReport() {
+    const eco = this.economy;
+    const hot = [];
+    for (const r of this.regions) {
+      const sup = eco.regionSupply[r];
+      for (const cat of ['food','specialty','material','luxury']) {
+        const s = sup[cat];
+        if (s >= 1.1) hot.push(`${r}${cat}富余`);
+        else if (s <= 0.9) hot.push(`${r}${cat}紧缺`);
+      }
+    }
+    return { summary: hot.length ? `${hot.slice(0,3).join('、')}，随行情波动。` : '各区域供需基本平衡，天下太平。', generated_at: new Date().toISOString(), fallback: true };
+  }
+
   /** 世界状态快照（供 /api/game/world 与前端展示） */
   snapshot() {
-    return { weather: this.economy.weather, activeEvents: this.economy.activeEvents, eventLog: this.economy.eventLog.slice(-20), tick_count: this.economy.tick_count, updated_at: this.economy.updated_at };
+    return { weather: this.economy.weather, activeEvents: this.economy.activeEvents, eventLog: this.economy.eventLog.slice(-20), tick_count: this.economy.tick_count, updated_at: this.economy.updated_at, marketReport: this.economy.marketReport ?? null };
   }
 }
 

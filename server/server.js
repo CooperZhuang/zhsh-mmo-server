@@ -21,6 +21,7 @@ const { attachWebSocket } = require('./ws');
 const { AiPlayerSimulator } = require('./ai/ai-players');
 const { WorldEconomy } = require('./eco/world-economy');
 const { decideEvent } = require('./eco/ai-decision');
+const { aiMarketReport } = require('./eco/ai-market-report');
 
 const ROOT = path.resolve(__dirname, '..');
 const DIST = process.env.ZHSH_DIST || path.join(ROOT, 'dist');
@@ -211,6 +212,7 @@ function getEconomy() {
       tickMs: Number(process.env.ZHSH_ECO_TICK_MS || 60000),
       aiEnabled: process.env.ZHSH_ECO_AI !== '0',
       aiDecide: decideEvent,
+      aiReport: aiMarketReport,
       onEvent: (event) => {
         const payload = { type: 'world', kind: 'world_event', event };
         registry.broadcast(payload);
@@ -329,6 +331,33 @@ const server = http.createServer(async (req, res) => {
           skills: content.skills,
           game_cities: content.game_cities,
           economy: getEconomy().snapshot(),
+        });
+      }
+      if (pathname === '/api/game/intel' && req.method === 'GET') {
+        // 世界经济情报：各区域天气/供需热度 + 套利机会提示（玩家据此决定何时何地买卖）
+        const eco = getEconomy();
+        const snap = eco.snapshot();
+        const regions = loadContent().world_regions?.regions ?? {};
+        const regionList = Object.entries(regions).map(([slug, r]) => ({
+          slug, name: r.name,
+          weather: snap.weather[r.name] ?? '晴天',
+          supply: snap.regionSupply?.[r.name] ?? { food: 1, specialty: 1, material: 1, luxury: 1 },
+        }));
+        // 套利提示：某区域某类商品供给明显低于1（稀缺→本地贵，宜卖出）；高于1（富余→本地便宜，宜买入）
+        const tips = [];
+        for (const { name, supply } of regionList) {
+          for (const cat of ['food','specialty','material','luxury']) {
+            const s = supply[cat];
+            if (s >= 1.12) tips.push({ region: name, category: cat, action: 'buy', note: `${name}${catLabel(cat)}富余，价格走低，宜买入屯货` });
+            else if (s <= 0.88) tips.push({ region: name, category: cat, action: 'sell', note: `${name}${catLabel(cat)}紧缺，价格走高，宜卖出获利` });
+          }
+        }
+        return sendJson(res, 200, {
+          updated_at: snap.updated_at,
+          tick_count: snap.tick_count,
+          regions: regionList,
+          activeEvents: snap.activeEvents.map((e) => ({ name: e.name, region: e.region, kind: e.effect_kind, field: e.target_field, strength: e.strength, tip: e.tip, remaining: e.remaining })),
+          tips,
         });
       }
     }
