@@ -45,29 +45,26 @@
 
 ## 快速开始
 
-### 服务器权威版（推荐，从源码运行）
+### 服务器权威版（推荐，Windows 启动脚本）
 
-本仓库的核心即服务器权威多人在线版，**无需构建、零第三方依赖**（纯 Node 内置模块 + 本地 SQLite）。
+本仓库的核心即服务器权威多人在线版。**Windows 用户直接双击根目录 `启动游戏.cmd`**（或 `启动游戏.vbs`，无控制台窗口），游戏服务器将以**系统托盘**方式常驻后台并自动打开浏览器；右键托盘图标可「打开游戏 / 启动服务器 / 停止服务器 / 退出」。
+
+- 服务器监听 `http://0.0.0.0:4173`；浏览器打开 `http://127.0.0.1:4173/`，**注册账号**即可进入。
+- 局域网其他设备：`http://<本机局域网IP>:4173/`（首次启动自动放行防火墙端口）。
+- 存档位于 `server/data/`（账号库 accounts.db / 玩家库 players.sqlite / 运行时库 runtime.sqlite / 经济状态 economy.json），服务器权威落盘、多设备共档。
+- 需 Node.js 22 或更高版本，**无需安装 npm 依赖**。
+
+#### 手动启动（跨平台）
 
 ```powershell
 cd <仓库根目录>
 node server/server.js
 ```
 
-服务器监听 `http://0.0.0.0:4173`（可用 `PORT` 环境变量调整）。浏览器打开 `http://127.0.0.1:4173/`，**注册账号**即可进入游戏。
-
-- 局域网其他设备：`http://<本机局域网IP>:4173/`（监听 `0.0.0.0`）。
-- 存档位于 `server/data/`（账号库 accounts.db / 玩家库 players.sqlite / 运行时库 runtime.sqlite / 经济状态 economy.json），服务器权威落盘、多设备共档。
-- 经济 tick / AI tick 间隔可用 `ZHSH_ECO_TICK_MS` / `ZHSH_AI_TICK_MS` 调整。
-
-### 可玩版 ZIP（上游遗留，非本仓库发布）
-仓库 `downloads/zhsh-remake.zip` 为**上游复原项目遗留的单人浏览器版**，**不代表本仓库的服务器权威多人在线版**，本仓库**尚无正式发布的打包**。若需体验上游修复成果：解压后双击 `启动游戏.cmd`（系统托盘常驻），需 Node.js 22+，无需 npm 依赖。
+服务器监听 `http://0.0.0.0:4173`。经济 tick / AI tick 间隔可用 `ZHSH_ECO_TICK_MS` / `ZHSH_AI_TICK_MS` 调整。
 
 ### AI 模型（可选，增强体验）
 AI 系统依赖本地 ollama（默认 `http://127.0.0.1:11434`，`qwen3.8-2b/4b-distill`、`qwen3.5:9b`）。未部署时 AI 场景走规则保底（游戏核心玩法不受影响）。模型可用 `ZHSH_AI_MODEL` / `ZHSH_AI_MODEL_LIGHT` / `ZHSH_AI_MODEL_FAST` 切换。
-
-### 单人浏览器版（上游骨架，保留）
-`node scripts/dev-server.js`（或 `启动游戏.vbs`）启动上游遗留的单人浏览器版，打开终端显示的本地地址。单人版存档在本机 `web/.zhsh-player-saves.sqlite`（不上传外部）。该版本为**上游复原项目的骨架**，不是本仓库服务器权威版。
 
 ## 构建与数据
 

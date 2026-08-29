@@ -3,7 +3,6 @@
   "private": true,
   "description": "《纵横四海》高保真复原项目",
   "scripts": {
-    "dev": "node scripts/dev-server.js",
     "build": "node scripts/build-browser.js",
     "assets:authoritative": "node scripts/integrate-authoritative-assets.js",
     "content:export-task1": "node scripts/export-task1-content.js",
@@ -56,8 +55,7 @@
     "test:browser-dom:series15-long-chain": "node scripts/run-browser-test.js --budget-ms 900000 browser-tests/series15-long-chain-e2e.test.js",
     "test:browser-dom:release-land": "node scripts/run-browser-test.js --budget-ms 1200000 browser-tests/release-land-scenario-e2e.test.js",
     "test:browser-dom:release-maritime": "node scripts/run-browser-test.js --budget-ms 1200000 browser-tests/release-maritime-scenario-e2e.test.js",
-    "package:browser-acceptance": "node scripts/package-browser-acceptance-stage.js",
-    "package:public": "node scripts/package-public-release.js"
+    "package:browser-acceptance": "node scripts/package-browser-acceptance-stage.js"
   },
   "engines": {
     "node": ">=22.5"
