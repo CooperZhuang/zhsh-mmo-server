@@ -147,7 +147,12 @@ async function bootstrap() {
   if (gameApi.getToken()) { try { serverWorld = await gameApi.getWorld(); } catch { serverWorld = null; } }
   // 有令牌则直接进入游戏；否则停在开始页（登录/注册）
   if (gameApi.getToken()) {
-    try { await ensurePlayerView(); gameEntered = true; render(); }
+    try {
+      await ensurePlayerView();
+      gameEntered = true;
+      page = { name:'location' };
+      render();
+    }
     catch (error) { browserLog.warn('bootstrap','token invalid, fall back to login',{error:error.message}); gameEntered = false; renderStart(); }
   } else {
     renderStart();
