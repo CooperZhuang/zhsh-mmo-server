@@ -165,7 +165,7 @@ class TaskRuntimeEngine {
   listCurrentNpcs(playerCanonicalId) {
     const state = this.loadPlayer(playerCanonicalId);
     return this.catalog.listNpcsAtNode(state.player.current_map_node_canonical_id).filter((placement)=>this.isNpcPlacementVisible(state,placement))
-      .map((placement)=>({ ...placement,npc_dialogue:this.renderNpcDialogue(state,placement.npc_canonical_id) }));
+      .map((placement)=>({ ...placement,npc_dialogue:this.renderNpcDialogue(state,placement.npc_canonical_id,placement.display_name) }));
   }
 
   /** 注入 npc_dialogs 内容（来自 server/content/npc-dialogs.json） */
@@ -175,9 +175,9 @@ class TaskRuntimeEngine {
    * 判定该 NPC 的对话触发档：quest_ready > quest_active > all_done > idle。
    * 依据：NPC 作为任务的 issuer/completion，关联任务状态。
    */
-  renderNpcDialogue(state,npcCanonicalId) {
+  renderNpcDialogue(state,npcCanonicalId,npcName = null) {
     const dialogs = this.npcDialogs?.dialogs ?? {};
-    const entry = dialogs[`npc.${npcCanonicalId.split('.').at(-1)}`] ?? dialogs[npcCanonicalId] ?? null;
+    const entry = dialogs[npcName] ?? dialogs[`npc.${npcCanonicalId.split('.').at(-1)}`] ?? dialogs[npcCanonicalId] ?? null;
     if (!entry) return null;
     const tasks = this.listTasks();
     let hasActive = false, hasReady = false, hasAny = false;

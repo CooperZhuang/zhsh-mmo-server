@@ -1,5 +1,5 @@
 import { createGameApi } from './game-api.js';
-import { BrowserTaskCatalog, FormalGameplayCatalog } from './generated/task-runtime-browser.js';
+import { BrowserTaskCatalog, FormalGameplayCatalog, effectiveStats } from './generated/task-runtime-browser.js';
 
 const captureMode = new URLSearchParams(location.search).get('uat') === 'capture';
 const DEFAULT_PLAYER_ID = captureMode ? 'player.browser.task1.uat-capture' : 'player.browser.task1';
