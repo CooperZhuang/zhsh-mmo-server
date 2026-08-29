@@ -944,7 +944,8 @@ class DungeonRuntime {
     return transactEvent(this.storage,playerId,eventId,'dungeon_enter',{dungeon_canonical_id:dungeonId},this.clock,(state)=>{
       if(state.dungeon||state.combat||state.voyage)throw new Error('Dungeon entry requires an idle world state');
       if(state.player.current_map_node_canonical_id!==dungeon.map_node_canonical_id)throw new Error('Dungeon entrance is not at the current formal location');
-      if(state.player.level<dungeon.minimum_level||state.player.level>dungeon.maximum_level)throw new Error('Dungeon level requirement is not met');
+      if(state.player.level<dungeon.minimum_level||state.player.level>dungeon.maximum_level)
+        throw new Error(`等级不足，无法进入此探险（需 ${dungeon.minimum_level}-${dungeon.maximum_level} 级）。`);
       state.dungeon={canonical_id:dungeonId,stage_canonical_id:dungeon.entry_stage_canonical_id,entered_at:this.clock(),completion_rewards_enabled:false};
       return {applied:true,action:'dungeon_entered',dungeon:{...state.dungeon}};
     });

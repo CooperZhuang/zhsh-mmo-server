@@ -1111,9 +1111,9 @@ async function perform(operation,fallbackMessage,nextPage,nextParams = {}) {
     page = { name:typeof nextPage==='function'?nextPage(result):nextPage,...nextParams };
     render();
   } catch (error) {
-    feedback.fail(error);
-    browserLog.error('action','failed',{playerId:PLAYER_ID,reason:error.message,stack:error.stack});
-    saveStatus.textContent = '保存或操作失败';
+    feedback.fail(error?.message ?? String(error));
+    browserLog.error('action','failed',{playerId:PLAYER_ID,reason:error?.message,stack:error?.stack});
+    saveStatus.textContent = '操作失败';
     render();
   }
 }
