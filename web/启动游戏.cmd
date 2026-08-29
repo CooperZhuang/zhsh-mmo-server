@@ -1,5 +1,5 @@
 @echo off
 setlocal
 cd /d "%~dp0"
-start "" wscript.exe "%~dp0å¯åŠ¨æ¸¸æˆ.vbs"
+start "" wscript.exe "%~dp0Æô¶¯ÓÎÏ·.vbs"
 endlocal & exit /b 0
