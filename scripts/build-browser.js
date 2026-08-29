@@ -17,8 +17,17 @@ function buildBrowser() {
   const generated = path.join(webRoot,'generated','task-runtime-browser.js');
   fs.mkdirSync(path.dirname(generated),{ recursive:true });
   fs.writeFileSync(generated,browserBundle,'utf8');
+  // Rebuild dist from a clean slate so stale runtime data (player saves, lock file, logs)
+  // never leaks into the shipped browser bundle or a fresh player's save.
+  fs.rmSync(distRoot,{ recursive:true,force:true });
   fs.mkdirSync(distRoot,{ recursive:true });
-  fs.cpSync(webRoot,distRoot,{ recursive:true,force:true });
+  const shouldCopy=(sourcePath)=>{
+    const relative=path.relative(webRoot,sourcePath);
+    if(relative.startsWith(`.zhsh-logs${path.sep}`))return false;
+    if(path.basename(sourcePath).startsWith('.zhsh-'))return false;
+    return true;
+  };
+  fs.cpSync(webRoot,distRoot,{ recursive:true,force:true,filter:shouldCopy });
   return { generated,distRoot };
 }
 

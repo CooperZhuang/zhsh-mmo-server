@@ -38,6 +38,7 @@
     "evidence:equipment-combat-summary": "node scripts/build-equipment-combat-stage-summary.js",
     "test": "node --test tests/*.test.js",
     "test:browser-dom": "node scripts/run-browser-test.js --budget-ms 1200000 browser-tests/browser-dom-e2e.test.js",
+    "test:browser-tutorial": "node scripts/run-browser-test.js --budget-ms 600000 browser-tests/new-player-tutorial-e2e.test.js",
     "test:browser-dom:incremental": "node scripts/run-browser-test.js --budget-ms 1200000 browser-tests/progression-incremental-e2e.test.js",
     "test:browser-dom:equipment-incremental": "node scripts/run-browser-test.js --budget-ms 600000 browser-tests/equipment-prefix-incremental-e2e.test.js",
     "verify:release": "node scripts/run-browser-test.js --budget-ms 1200000 browser-tests/browser-dom-e2e.test.js",

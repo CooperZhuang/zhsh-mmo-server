@@ -13,6 +13,35 @@ let combatRandom=Math.random;
 const feedback = new UiFeedback();
 let gameEntered = false;
 let page = { name:'start' };
+function createBrowserLogger(){
+  const queue=[];
+  let timer=null;
+  function flush(){
+    if(timer){clearTimeout(timer);timer=null;}
+    if(!queue.length)return;
+    const batch=queue.splice(0,100);
+    try{fetch('/api/logs',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(batch),keepalive:true}).catch(()=>{});}catch{}
+  }
+  function push(level,cat,msg,meta){
+    const entry={ts:new Date().toISOString(),level,cat,msg,...(meta?{meta}:{})};
+    const method=level==='ERROR'?'error':level==='WARN'?'warn':'log';
+    try{console[method](`[${cat}] ${msg}`,meta??'');}catch{}
+    queue.push(entry);
+    if(queue.length>=100)flush();
+    else if(!timer)timer=setTimeout(flush,1200);
+  }
+  return{
+    debug:(cat,msg,meta)=>push('DEBUG',cat,msg,meta),
+    info:(cat,msg,meta)=>push('INFO',cat,msg,meta),
+    warn:(cat,msg,meta)=>push('WARN',cat,msg,meta),
+    error:(cat,msg,meta)=>push('ERROR',cat,msg,meta),
+    flush,
+  };
+}
+const browserLog=createBrowserLogger();
+window.addEventListener('error',(event)=>browserLog.error('window',event.message||String(event.error??''),{source:event.filename,line:event.lineno,col:event.colno,stack:event.error?.stack}));
+window.addEventListener('unhandledrejection',(event)=>browserLog.error('promise',String(event.reason?.message??event.reason),{stack:event.reason?.stack}));
+window.addEventListener('pagehide',()=>browserLog.flush());
 
 app.addEventListener('click',(event) => {
   const button = event.target.closest?.('[data-page]');
@@ -27,6 +56,7 @@ app.addEventListener('click',(event) => {
 bootstrap().catch(showFatal);
 
 async function bootstrap() {
+  browserLog.info('bootstrap','start',{playerId:PLAYER_ID,captureMode,debugEnabled,adminEnabled});
   content = await fetch('./generated/task1-content.json',{ cache:'no-store' }).then((response) => {
     if (!response.ok) throw new Error(`内容包读取失败：${response.status}`);
     return response.json();
@@ -36,13 +66,17 @@ async function bootstrap() {
     return response.json();
   });
   catalog = new BrowserTaskCatalog(content);
+  browserLog.info('bootstrap','content loaded',{series:content.series.length,locations:content.locations.length});
   remoteRegistry = new RemoteCharacterRegistry();
   storage = new BrowserRuntimeStorage({ durableStore: new RemoteDurableStore() });
   await storage.ready();
+  browserLog.info('bootstrap','storage ready');
+  browserLog.info('bootstrap','visuals loaded',{assets:visuals.assets.length});
   const activeId = await remoteRegistry.getActive().catch(() => null);
   if (activeId && storage.hasPlayer(activeId)) PLAYER_ID = activeId;
   engine = new TaskRuntimeEngine({ catalog,storage,seriesCanonicalIds:content.series.map((entry)=>entry.canonical_id) });
   if (storage.hasPlayer(PLAYER_ID)) engine.synchronizeDefinitions(PLAYER_ID);
+  browserLog.info('bootstrap','engine ready',{playerId:PLAYER_ID,activeId:typeof activeId==='undefined'?null:activeId});
   gameplayCatalog = new FormalGameplayCatalog(content);
   const uatDropRandom=globalThis.__ZHSH_UAT_DROP_RANDOM__;
   drops = new DropRuntime({ storage,catalog:gameplayCatalog,taskEngine:engine,...(typeof uatDropRandom==='function'?{random:uatDropRandom}:{}) });
@@ -62,6 +96,7 @@ async function bootstrap() {
   ships = new ShipRuntime({ storage,catalog:gameplayCatalog });
   voyage = new VoyageRuntime({ storage,catalog:gameplayCatalog,taskEngine:engine,maritimeRuntime:maritime });
   saveStatus.textContent = storage.corruptRecords.has(PLAYER_ID) ? '检测到损坏存档，可重置或导入备份' : '存档已读取';
+  browserLog.info('bootstrap','booted',{playerId:PLAYER_ID,corrupt:storage.corruptRecords.has(PLAYER_ID)});
   renderStart();
   if (debugEnabled) exposeDebugSurface();
 }
@@ -80,6 +115,7 @@ function showPage(name,params = {}) {
   if(name==='compendium'&&!debugEnabled)name='location';
   if(name==='admin'&&!adminEnabled)name='location';
   page = { name,...params };
+  browserLog.info('page',`navigate -> ${name}`,params);
   render();
   window.scrollTo?.(0,0);
 }
@@ -707,7 +743,7 @@ function bindAdminActions() {
 
  function bindCommonActions() {
    document.querySelector('[data-action="continue-game"]')?.addEventListener('click',() => {
-     gameEntered=true;feedback.succeed('已继续浏览器存档。');showPage('admin');
+     gameEntered=true;feedback.succeed('已继续浏览器存档。');showPage('location');
    });
   document.querySelector('[data-action="new-game"]')?.addEventListener('click',async () => {
     try {
@@ -715,7 +751,7 @@ function bindAdminActions() {
       if (existing && !confirm('开始新游戏将覆盖当前 task1 浏览器存档，是否继续？')) return;
       engine.createPlayer(PLAYER_ID,{ reset:existing || storage.corruptRecords.has(PLAYER_ID) });
       await storage.flush();
-      gameEntered=true;feedback.succeed('你在威尼斯酒馆醒来。');saveStatus.textContent='新游戏已保存';showPage('admin');
+      gameEntered=true;feedback.succeed('你在威尼斯酒馆醒来。');saveStatus.textContent='新游戏已保存';showPage('location');
     } catch (error) { showFatal(error); }
   });
   document.querySelectorAll('[data-action="import-save"]').forEach((button) => button.addEventListener('click',() => importInput.click()));
@@ -724,7 +760,7 @@ function bindAdminActions() {
     if (!confirm('确定重置 task1 测试进度吗？当前浏览器存档将被覆盖。')) return;
     engine.createPlayer(PLAYER_ID,{ reset:true });
     await storage.flush();
-    feedback.succeed('进度已重置。');saveStatus.textContent='重置结果已保存';showPage('admin');
+    feedback.succeed('进度已重置。');saveStatus.textContent='重置结果已保存';showPage('location');
   });
 }
 
@@ -744,11 +780,13 @@ async function perform(operation,fallbackMessage,nextPage,nextParams = {}) {
     const result = operation();
     await storage.flush();
     feedback.succeed(resultMessage(result) || fallbackMessage);
+    browserLog.info('action','saved',{action:result?.action??null,outcome:result?.outcome??null,playerId:PLAYER_ID});
     saveStatus.textContent = `纵横报时（${new Date().toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit',second:'2-digit'})}）`;
     page = { name:typeof nextPage==='function'?nextPage(result):nextPage,...nextParams };
     render();
   } catch (error) {
     feedback.fail(error);
+    browserLog.error('action','failed',{playerId:PLAYER_ID,reason:error.message,stack:error.stack});
     saveStatus.textContent = '保存或操作失败';
     render();
   }
@@ -961,6 +999,7 @@ function exposeDebugSurface() {
 }
 
 function showFatal(error) {
+  browserLog.error('fatal',error.message,{stack:error.stack});
   console.error(error);
   saveStatus.textContent='启动失败';
   app.innerHTML=`<section class="wap-page"><p><strong>无法启动</strong></p><p class="error">${escapeHtml(error.message)}</p></section>`;
@@ -973,7 +1012,7 @@ importInput.addEventListener('change',async () => {
     await storage.importPlayer(await file.text(),{ expectedPlayerCanonicalId:PLAYER_ID });
     engine.synchronizeDefinitions(PLAYER_ID);
     await storage.flush();
-    gameEntered=true;feedback.succeed('存档导入成功。');saveStatus.textContent='导入结果已保存';showPage('admin');
+    gameEntered=true;feedback.succeed('存档导入成功。');saveStatus.textContent='导入结果已保存';showPage('location');
   } catch (error) {
     feedback.fail(`无法导入存档：${error.message}`);saveStatus.textContent='存档导入失败';storage.hasPlayer(PLAYER_ID)?render():renderStart();
   } finally { importInput.value=''; }
