@@ -15,9 +15,11 @@ const http = require('node:http');
 
 const OLLAMA_URL = process.env.ZHSH_OLLAMA_URL || 'http://127.0.0.1:11434';
 
-/** 当前默认模型（环境变量可覆盖）；分层的轻量模型命名可在 MODEL_LIGHT 指定 */
+/** 当前默认模型（环境变量可覆盖）。分层：MODEL_LIGHT=内容生成主力(4b，质量速度均衡)，
+ *  MODEL_FAST=极高频短任务(2b)。实测 4b 在台词/播报/叙述质量更佳且全程≤0.63s。 */
 const MODEL = process.env.ZHSH_AI_MODEL || 'qwen3.5:9b';
-const MODEL_LIGHT = process.env.ZHSH_AI_MODEL_LIGHT || 'qwen3.8-2b-distill:latest';
+const MODEL_LIGHT = process.env.ZHSH_AI_MODEL_LIGHT || 'qwen3.8-4b-distill:latest';
+const MODEL_FAST = process.env.ZHSH_AI_MODEL_FAST || 'qwen3.8-2b-distill:latest';
 
 /** 唤起 ollama 生成，返回原始响应文本。
  *  注意：qwen 系列思考开关必须放请求体顶层 `think: false`（否则模型输出完整推理链，
@@ -78,4 +80,4 @@ async function safeJsonDecide(aiDecide, context, fallback) {
   catch { return fallback; }
 }
 
-module.exports = { ollamaGenerate, ollamaJson, safeJsonDecide, ping, MODEL, MODEL_LIGHT, OLLAMA_URL };
+module.exports = { ollamaGenerate, ollamaJson, safeJsonDecide, ping, MODEL, MODEL_LIGHT, MODEL_FAST, OLLAMA_URL };
