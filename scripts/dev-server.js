@@ -3,6 +3,7 @@
 const http = require('node:http');
 const fs = require('node:fs');
 const path = require('node:path');
+const { createSaveApi } = require('../web/save-service');
 const { buildBrowser } = require('./build-browser');
 
 const root = path.resolve(__dirname,'..');
@@ -12,8 +13,13 @@ const port = Number(process.env.PORT ?? 4173);
 const host = process.env.HOST ?? '127.0.0.1';
 const contentTypes = { '.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8','.json':'application/json; charset=utf-8','.png':'image/png' };
 
+const saveApi = createSaveApi({ databasePath: path.join(distRoot,'.zhsh-player-saves.sqlite') });
+process.once('exit',()=>{try{saveApi.close();}catch{}});
+
 const server = http.createServer((request,response) => {
   const pathname = decodeURIComponent(new URL(request.url,'http://localhost').pathname);
+  if (saveApi.handle(request,response,pathname,new URL(request.url,'http://localhost'))) return;
+  if (request.method !== 'GET' && request.method !== 'HEAD') { response.writeHead(405);response.end('Method Not Allowed');return; }
   const relative = pathname === '/' ? 'index.html' : pathname.replace(/^\/+/, '');
   const filePath = path.resolve(distRoot,relative);
   if (!filePath.startsWith(`${distRoot}${path.sep}`) && filePath !== path.join(distRoot,'index.html')) { response.writeHead(403);response.end('Forbidden');return; }

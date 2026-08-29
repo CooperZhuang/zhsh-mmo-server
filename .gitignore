@@ -37,6 +37,12 @@ data/*.sqlite-*
 !.env.example
 *.local
 
+# 服务器端玩家存档（运行时数据）
+web/*.sqlite
+web/*.sqlite-*
+dist/*.sqlite
+dist/*.sqlite-*
+
 # 编辑器与系统文件
 .vscode/
 .idea/

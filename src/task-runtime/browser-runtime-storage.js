@@ -143,6 +143,34 @@ class BrowserRuntimeStorage {
     return returnState?cloneState(copy):undefined;
   }
 
+  /**
+   * Re-fetches a single player's newest envelope from the durable store and
+   * replaces the in-memory state. Used when character switching must resume
+   * progress written by another device. Returns the fresh state (or null when
+   * the player no longer exists), and clears any corrupt marker.
+   */
+  async reloadPlayer(playerCanonicalId) {
+    this.assertReady();
+    const record = await this.durableStore.get(playerCanonicalId);
+    if (!record) {
+      this.players.delete(playerCanonicalId);
+      this.revisions.delete(playerCanonicalId);
+      this.corruptRecords.delete(playerCanonicalId);
+      return null;
+    }
+    try {
+      const envelope = validateAndUpgradeEnvelope(record);
+      this.players.set(envelope.player_canonical_id,cloneState(envelope.state));
+      this.revisions.set(envelope.player_canonical_id,envelope.revision);
+      this.corruptRecords.delete(envelope.player_canonical_id);
+      if (envelope !== record) await this.durableStore.put(envelope);
+      return cloneState(envelope.state);
+    } catch (error) {
+      this.corruptRecords.set(record?.player_canonical_id ?? 'unknown',error.message);
+      return null;
+    }
+  }
+
   async flush() {
     while(this.persistDrain||this.pendingRecords.size){
       if(!this.persistDrain)this.startPersistDrain();
@@ -245,4 +273,84 @@ function transactionDone(transaction) {
   });
 }
 
-module.exports = { BrowserRuntimeStorage,IndexedDbDurableStore,SAVE_FORMAT,SAVE_SCHEMA_VERSION,checksum,makeEnvelope,validateAndUpgradeEnvelope };
+/**
+ * Durable store backed by the same-origin game server /api/saves endpoints.
+ * Implements the same surface as IndexedDbDurableStore (open/list/put/delete),
+ * so BrowserRuntimeStorage swaps its persistence sink without any other change.
+ *
+ * Writes are persisted server-side (SQLite keyed by player_canonical_id), so any
+ * device hitting the same server shares every character and, by default, resumes
+ * the most-recently-used one.
+ */
+class RemoteDurableStore {
+  constructor({ baseUrl = '' } = {}) {
+    this.baseUrl = baseUrl.replace(/\/+$/, '');
+    this.opened = false;
+  }
+
+  async open() {
+    this.opened = true;
+    return this;
+  }
+
+  async list() {
+    await this.open();
+    const response = await fetch(`${this.baseUrl}/api/saves`, { cache: 'no-store' });
+    if (!response.ok) throw new Error(`存档列表读取失败：${response.status}`);
+    const data = await response.json();
+    return Array.isArray(data.saves) ? data.saves : [];
+  }
+   
+   async put(record) {
+     await this.open();
+     const response = await fetch(`${this.baseUrl}/api/saves/${encodeURIComponent(record.player_canonical_id)}`, {
+       method: 'PUT',
+       headers: { 'Content-Type': 'application/json' },
+       body: JSON.stringify(record),
+     });
+     if (!response.ok) throw new Error(`存档写入失败：${response.status}`);
+   }
+
+   async get(playerCanonicalId) {
+     await this.open();
+     const response = await fetch(`${this.baseUrl}/api/saves/${encodeURIComponent(playerCanonicalId)}`, { cache: 'no-store' });
+     if (response.status === 404) return null;
+     if (!response.ok) throw new Error(`存档读取失败：${response.status}`);
+     return response.json();
+   }
+
+   async delete(playerCanonicalId) {
+     await this.open();
+     const response = await fetch(`${this.baseUrl}/api/saves/${encodeURIComponent(playerCanonicalId)}`, { method: 'DELETE' });
+     if (!response.ok && response.status !== 404) throw new Error(`存档删除失败：${response.status}`);
+   }
+
+   close() {
+     this.opened = false;
+   }
+}
+
+/** Registry used by RemoteDurableStore clients to track the last-used character. */
+class RemoteCharacterRegistry {
+  constructor({ baseUrl = '' } = {}) {
+    this.baseUrl = baseUrl.replace(/\/+$/, '');
+  }
+
+  async getActive() {
+    const response = await fetch(`${this.baseUrl}/api/active`, { cache: 'no-store' });
+    if (!response.ok) throw new Error(`激活角色读取失败：${response.status}`);
+    const data = await response.json();
+    return data.player_canonical_id;
+  }
+
+  async setActive(playerCanonicalId) {
+    const response = await fetch(`${this.baseUrl}/api/active`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ player_canonical_id: playerCanonicalId ?? null }),
+    });
+    if (!response.ok) throw new Error(`激活角色写入失败：${response.status}`);
+  }
+}
+
+module.exports = { BrowserRuntimeStorage,IndexedDbDurableStore,RemoteDurableStore,RemoteCharacterRegistry,SAVE_FORMAT,SAVE_SCHEMA_VERSION,checksum,makeEnvelope,validateAndUpgradeEnvelope };

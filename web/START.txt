@@ -6,4 +6,14 @@
 
 启动窗口会显示“游戏已启动”和本地地址。关闭该窗口或按 Ctrl+C 即可停止游戏。
 
+局域网访问：游戏默认绑定 0.0.0.0 的 20109 端口，同一局域网内的其他设备可用
+“http://<本机局域网IP>:20109/”访问（本机 IP 见启动窗口横幅，或 ipconfig 查询）。
+双击“启动游戏.cmd”时会自动检测 20109 端口是否已在 Windows 防火墙放行；若未放行会弹出一次
+管理员授权（UAC），确认后即永久放行，无需手动配置。
+
+若自动放行被拒绝，请以管理员身份在命令提示符手动执行一次：
+
+    netsh advfirewall firewall add rule name="Zhsh Game Server" dir=in action=allow protocol=TCP localport=20109
+
 要求：Windows 系统中已安装 Node.js 22 或更高版本。无需安装 npm 依赖，无需管理员权限。
+角色存档保存在本机游戏服务器（web/.zhsh-player-saves.sqlite）中，多台设备访问同一服务器时共用同一批角色：新设备默认进入最近使用的角色，可在“设置 → 角色管理”切换或新建角色。
