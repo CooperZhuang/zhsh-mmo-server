@@ -8,7 +8,7 @@
  *
  * 依赖：server/ai/ai-decision-service.js（统一 ollama 服务）。
  */
-const { ollamaGenerate } = require('../ai/ai-decision-service');
+const { ollamaGenerate, MODEL_LIGHT } = require('../ai/ai-decision-service');
 
 const CAT_LABEL = { food: '粮食', specialty: '特产', material: '材料', luxury: '奢侈品' };
 
@@ -24,7 +24,7 @@ async function aiMarketReport(state) {
 2) 有哪些正在发生的事件值得注意（海盗封锁/丰收/风暴等及其影响）；
 3) 天气对出航/贸易的整体建议。
 用中文口语化叙述，不要输出 JSON，不要重复系统信息。`;
-  const raw = await ollamaGenerate(prompt, { system: '你是经验丰富的航海行商，用精炼中文给出实用情报。', temperature: 0.7, maxTokens: 220 });
+  const raw = await ollamaGenerate(prompt, { system: '你是经验丰富的航海行商，用精炼中文给出实用情报。', temperature: 0.7, maxTokens: 220, model: MODEL_LIGHT, think: false });
   return {
     summary: String(raw || '').trim().slice(0, 160),
     generated_at: new Date().toISOString(),

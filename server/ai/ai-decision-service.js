@@ -14,11 +14,22 @@
 const http = require('node:http');
 
 const OLLAMA_URL = process.env.ZHSH_OLLAMA_URL || 'http://127.0.0.1:11434';
-const MODEL = process.env.ZHSH_AI_MODEL || 'qwen3.5:9b';
 
-/** 唤起 ollama 生成，返回原始响应文本 */
-function ollamaGenerate(prompt, { format = null, temperature = 0.8, maxTokens = 300, system = null } = {}) {
-  const body = { model: MODEL, prompt, stream: false, options: { temperature, max_tokens: maxTokens, think: false } };
+/** 当前默认模型（环境变量可覆盖）；分层的轻量模型命名可在 MODEL_LIGHT 指定 */
+const MODEL = process.env.ZHSH_AI_MODEL || 'qwen3.5:9b';
+const MODEL_LIGHT = process.env.ZHSH_AI_MODEL_LIGHT || 'qwen3.8-2b-distill:latest';
+
+/** 唤起 ollama 生成，返回原始响应文本。
+ *  注意：qwen 系列思考开关必须放请求体顶层 `think: false`（否则模型输出完整推理链，
+ *  拖慢且污染结果）；options.think 无效。可按调用传入 model 选择分层模型。 */
+function ollamaGenerate(prompt, { format = null, temperature = 0.8, maxTokens = 300, system = null, model = null, think = true } = {}) {
+  const body = {
+    model: model || MODEL,
+    prompt,
+    stream: false,
+    think,
+    options: { temperature, max_tokens: maxTokens },
+  };
   if (system) body.system = system;
   if (format) body.format = format;
   return new Promise((resolve, reject) => {
@@ -65,4 +76,4 @@ async function safeJsonDecide(aiDecide, context, fallback) {
   catch { return fallback; }
 }
 
-module.exports = { ollamaGenerate, ollamaJson, safeJsonDecide, ping, MODEL, OLLAMA_URL };
+module.exports = { ollamaGenerate, ollamaJson, safeJsonDecide, ping, MODEL, MODEL_LIGHT, OLLAMA_URL };

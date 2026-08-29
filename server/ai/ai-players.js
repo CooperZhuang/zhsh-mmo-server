@@ -11,13 +11,13 @@
  *
  * 依赖：http://127.0.0.1:11434（ollama），qwen3.5:9b。
  */
-const { ollamaGenerate, MODEL } = require('./ai-decision-service');
+const { ollamaGenerate, MODEL_LIGHT } = require('./ai-decision-service');
 
 const TICK_MS = Number(process.env.ZHSH_AI_TICK_MS || 45000);
 
 // 统一走 ai-decision-service 的 ollama 调用（含降级/超时管理）
 async function ollamaComplete(prompt, { maxTokens = 200 } = {}) {
-  return ollamaGenerate(prompt, { temperature: 0.8, maxTokens });
+  return ollamaGenerate(prompt, { temperature: 0.8, maxTokens, model: MODEL_LIGHT, think: false });
 }
 
 class AiPlayerSimulator {
@@ -46,7 +46,7 @@ class AiPlayerSimulator {
     this.tickTimer = setInterval(() => {
       void this.tickAll().catch((err) => console.error('[AI] tick error', err?.message));
     }, TICK_MS);
-    console.log(`[AI] simulator started, tick=${TICK_MS}ms, model=${MODEL}`);
+    console.log(`[AI] simulator started, tick=${TICK_MS}ms, model=${MODEL_LIGHT}`);
   }
 
   stopTick() {

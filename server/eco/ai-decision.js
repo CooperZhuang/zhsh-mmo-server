@@ -8,27 +8,10 @@
  *
  * 依赖：http://127.0.0.1:11434（ollama），qwen3.5:9b。
  */
-const http = require('node:http');
-
-const OLLAMA_URL = process.env.ZHSH_OLLAMA_URL || 'http://127.0.0.1:11434';
-const MODEL = process.env.ZHSH_AI_MODEL || 'qwen3.5:9b';
+const { ollamaJson, MODEL_LIGHT } = require('../ai/ai-decision-service');
 const CATEGORIES = ['economy', 'weather', 'encounter'];
 const EFFECT_KINDS = ['price', 'supply', 'weather', 'discovery'];
 const FIELDS = ['food', 'specialty', 'material', 'luxury'];
-
-async function ollamaJson(prompt, { maxTokens = 300 } = {}) {
-  const body = JSON.stringify({ model: MODEL, prompt, stream: false, format: 'json', options: { temperature: 0.9, max_tokens: maxTokens, think: false } });
-  return new Promise((resolve, reject) => {
-    const req = http.request(new URL('/api/generate', OLLAMA_URL), { method: 'POST', headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(body) } }, (res) => {
-      let data = '';
-      res.on('data', (c) => { data += c; });
-      res.on('end', () => { try { resolve(JSON.parse(data).response ?? ''); } catch (err) { reject(err); } });
-    });
-    req.on('error', reject);
-    req.write(body);
-    req.end();
-  });
-}
 
 /**
  * 生成一次世界事件（AI 决策）。返回规范化事件对象，失败返回 null（规则层接管）。
@@ -45,7 +28,7 @@ async function decideEvent(state) {
 请构思一件正在世界上发生的事件（影响商品价格或天气或产生新遭遇）。请只输出一个 JSON 对象，字段：
 {"id":"唯一英文id","name":"中文事件名(≤12字)","region":"影响区域(必须来自区域列表)","category":"${CATEGORIES.join('/')}","effect_kind":"${EFFECT_KINDS.join('/')}","target_field":"${FIELDS.join('/')}","strength":-0.3到0.35的小数,"duration":2到8整数,"tip":"一句话剧情描述(≤40字)","tag":"事件/天气/遭遇"}
 strength 为价格或供应影响的强度：正数=涨价/短缺，负数=跌价/富余。只输出 JSON。`;
-  const raw = await ollamaJson(prompt);
+  const raw = await ollamaJson(prompt, { model: MODEL_LIGHT, think: false });
   const m = raw.match(/\{[\s\S]*\}/);
   if (!m) return null;
   const obj = JSON.parse(m[0]);
@@ -65,4 +48,4 @@ strength 为价格或供应影响的强度：正数=涨价/短缺，负数=跌�
   };
 }
 
-module.exports = { decideEvent, ollamaJson, MODEL };
+module.exports = { decideEvent, ollamaJson, MODEL_LIGHT };
