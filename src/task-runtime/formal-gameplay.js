@@ -586,7 +586,7 @@ class PetRuntime {
     return transactEvent(this.storage,playerId,eventId,'pet_feed',{ pet_instance_id:petInstanceId },this.clock,(state) => {
       const pet=(state.player.pets??[]).find((p)=>p.instance_id===petInstanceId);
       if (!pet) throw new Error('Pet not found');
-      if ((state.inventory['item.口粮']??0)<1) throw new Error('Pet food is insufficient (需口粮)');
+      if ((state.inventory['item.口粮']??0)<1) throw new Error('口粮不足，无法喂食（需先获取宠物口粮）。');
       state.inventory['item.口粮']-=1;
       pet.satiety=Math.min(100,Number(pet.satiety??0)+40);
       pet.current_health=Math.min(pet.max_health,Number(pet.current_health??0)+Math.floor(Number(pet.max_health)*0.2));
