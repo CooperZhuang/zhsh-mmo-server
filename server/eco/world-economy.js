@@ -241,6 +241,22 @@ class WorldEconomy {
 
   clampSupply(value) { return Math.max(REGION_SUPPLY_RANGE.min, Math.min(REGION_SUPPLY_RANGE.max, value)); }
 
+  /** 玩家/AI 商人交易对区域供需的反馈（AI 商人博弈的核心联动）。
+   *  buy：商品被买走 → 该区供给收紧 → 价格抬升；sell：抛售 → 供给增 → 价格走低。
+   *  delta 约定：buy 为负（吸走供给）、sell 为正（灌入供给），量级按交易量折算。 */
+  applyTrade(region, category, delta) {
+    const eco = this.economy;
+    const sup = eco.regionSupply?.[region];
+    if (!sup) return null;
+    const before = Number(sup[category] ?? 1);
+    sup[category] = this.clampSupply(before + Number(delta ?? 0));
+    eco.tradeCount = (eco.tradeCount ?? 0) + 1;
+    eco.tradeLog = eco.tradeLog ?? [];
+    eco.tradeLog.push({ region, category, delta, before, after: sup[category], at: new Date().toISOString() });
+    if (eco.tradeLog.length > 200) eco.tradeLog.shift();
+    return { region, category, before, after: sup[category] };
+  }
+
   /**
    * 供 MarketRuntime 调用的最终价格。
    * @param {object} good 商品 { base_price, category, region }
@@ -278,7 +294,9 @@ class WorldEconomy {
 
   /** 世界状态快照（供 /api/game/world 与前端展示） */
   snapshot() {
-    return { weather: this.economy.weather, activeEvents: this.economy.activeEvents, eventLog: this.economy.eventLog.slice(-20), tick_count: this.economy.tick_count, updated_at: this.economy.updated_at, marketReport: this.economy.marketReport ?? null };
+    return { weather: this.economy.weather, activeEvents: this.economy.activeEvents, eventLog: this.economy.eventLog.slice(-20),
+      tick_count: this.economy.tick_count, updated_at: this.economy.updated_at, marketReport: this.economy.marketReport ?? null,
+      regionSupply: this.economy.regionSupply, tradeCount: this.economy.tradeCount ?? 0, tradeLog: (this.economy.tradeLog ?? []).slice(-10) };
   }
 }
 

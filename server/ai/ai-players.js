@@ -32,9 +32,27 @@ class AiPlayerSimulator {
     this.tickTimer = null;
   }
 
-  registerAiPlayer(playerId, { personality = '冒险家', goal = '执行任务与贸易赚钱' } = {}) {
-    this.players.set(playerId, { personality, goal, last_tick: 0, online: true });
+  registerAiPlayer(playerId, { personality = '冒险家', goal = '执行任务与贸易赚钱', role = 'adventurer' } = {}) {
+    this.players.set(playerId, { personality, goal, role, last_tick: 0, online: true });
     return playerId;
+  }
+
+  /** 商人决策：基于市场行情，AI 决定买入/卖出/观望 + 商品（囤货待涨/高价抛出）。
+   *  商人买卖经 market runtime → 世界经济 applyTrade → 影响 regionSupply/价格，
+   *  这就是"AI 作为影响世界发展"的核心通道。 */
+  async decideMarket(view, record) {
+    const instruction = `你是《纵横四海》的商人（${record.personality}）。目标：${record.goal}。
+当前资金 ${view.player?.money ?? 0}，在市场城市。
+请你做最合理的**一个**市场动作。只输出 JSON：
+{"action":"buy|sell|hold","good":"商品名(从当地特产中选)","quantity":整数}
+低价买入(囤货待涨)，高价抛出(已有库存则卖)。若无把握则 hold。`;
+    const raw = await ollamaComplete(instruction, { maxTokens: 40 });
+    try {
+      const m = raw.match(/{[\s\S]*}/);
+      const decision = m ? JSON.parse(m[0]) : null;
+      if (decision && ['buy','sell','hold'].includes(decision.action)) return { action: 'market', trade: decision };
+    } catch {}
+    return { action: 'rest' };
   }
 
   unregisterAiPlayer(playerId) {
@@ -71,6 +89,10 @@ class AiPlayerSimulator {
   }
 
   async decide(view, record) {
+    // 商人人格：优先市场决策（其买卖经市场 runtime → 世界经济影响价格）
+    if (record.role === 'merchant' && this.runtime.market) {
+      try { const marketDecision = await this.decideMarket(view, record); if (marketDecision.action === 'market') return marketDecision; } catch {}
+    }
     // 组装简报：当前地点、任务、可交互NPC、市场价
     const summary = {
       location: view.current_location?.display_name ?? '未知',
@@ -133,7 +155,23 @@ class AiPlayerSimulator {
       case 'market': {
         const marketRt = this.runtime.market;
         if (!marketRt) return this.rest(playerId, 'no market runtime');
-        return this.rest(playerId, 'market deferred to city');
+        const trade = decision.trade;
+        if (!trade || !['buy','sell'].includes(trade.action)) return this.rest(playerId, 'market hold');
+        // 解析商品 canonical_id（按名称匹配当地特产）
+        const goodName = String(trade.good ?? '').trim();
+        const marketView = marketRt.getMarketView(playerId, this.createEventId('ai-market-view'));
+        const good = (marketView.offers ?? []).find((o) => o.name === goodName || o.canonical_id === goodName);
+        if (!good) return this.rest(playerId, `market good not found: ${goodName}`);
+        const quantity = Math.max(1, Math.min(20, Number(trade.quantity ?? 5)));
+        try {
+          if (trade.action === 'buy') return marketRt.buy(playerId, good.canonical_id, quantity, this.createEventId('ai-market-buy'));
+          // sell：仅当货舱有库存
+          const cargoCount = view.cargo?.[good.canonical_id] ?? 0;
+          if (cargoCount <= 0) return this.rest(playerId, 'no cargo to sell');
+          return marketRt.sell(playerId, good.canonical_id, Math.min(quantity, cargoCount), this.createEventId('ai-market-sell'));
+        } catch (err) {
+          return this.rest(playerId, `market exec: ${err.message}`);
+        }
       }
       case 'recovery': {
         const recovery = (this.catalog?.listRecoveryServicesAt?.(view.player.current_map_node_canonical_id) ?? [])[0];

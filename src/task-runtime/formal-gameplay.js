@@ -482,7 +482,7 @@ class MarketRuntime {
       const offers=allGoods.map((good)=>({ ...good,region_name:regions[good.region]?.name??good.region,
         local_price:this.priceFor(state,good),is_local:cityRegion!=null&&good.region===cityRegion }));
       return { applied:true,action:'market_view_loaded',city_canonical_id:state.player.current_city_canonical_id,
-        city_region:cityRegion,money:state.player.money,holds:formalInventoryUsed(state,this.catalog),capacity:state.inventory_capacity,offers };
+        city_region:cityRegion,money:state.player.money,holds:formalInventoryUsed(state,this.catalog),capacity:state.inventory_capacity,cargo_holds:cargoUsed(state),cargo_capacity:cargoCapacity(state),offers };
     });
   }
   buy(playerId,goodId,quantity,eventId) {
@@ -493,10 +493,16 @@ class MarketRuntime {
       const price=this.priceFor(state,good);
       const total=price*quantity;
       if (state.player.money<total) throw new Error('Insufficient money');
-      if (formalInventoryUsed(state,this.catalog)+quantity>state.inventory_capacity) throw new Error('Inventory capacity exceeded');
+      // 货物入 cargo 栏（goods 与随身物品不同，独立持久化避开 player_inventory 外键）
+      if (cargoUsed(state)+quantity>cargoCapacity(state)) throw new Error('Cargo capacity exceeded');
       state.player.money-=total;
-      state.inventory[goodId]=(state.inventory[goodId]??0)+quantity;
-      return { applied:true,action:'market_bought',good_canonical_id:goodId,quantity,unit_price:price,total,money:state.player.money };
+      state.cargo[goodId]=(state.cargo[goodId]??0)+quantity;
+      // 交易反馈到世界经济（买走商品 → 该区供给收紧 → 价格抬升），AI 商人博弈核心
+      if (this.economy) {
+        const regionName = this.regionNameForSlug(this.marketRegionForCity(state));
+        if (regionName) this.economy.applyTrade(regionName, good.category ?? 'specialty', -Math.min(0.05, quantity * 0.001));
+      }
+      return { applied:true,action:'market_bought',good_canonical_id:goodId,quantity,unit_price:price,total,money:state.player.money,cargo:cargoUsed(state) };
     });
   }
   sell(playerId,goodId,quantity,eventId) {
@@ -504,14 +510,19 @@ class MarketRuntime {
     quantity=positive(quantity);
     return transactEvent(this.storage,playerId,eventId,'market_sell',{ good_canonical_id:goodId,quantity },this.clock,(state) => {
       if (!this.marketRegionForCity(state)) throw new Error('Market requires being in a city');
-      if ((state.inventory[goodId]??0)<quantity) throw new Error('Insufficient item quantity');
+      if ((state.cargo[goodId]??0)<quantity) throw new Error('Insufficient cargo quantity');
       const price=this.priceFor(state,good);
       const unit=Math.max(1,Math.floor(price*0.9));
       const total=unit*quantity;
-      state.inventory[goodId]-=quantity;
-      if (state.inventory[goodId]<=0) delete state.inventory[goodId];
+      state.cargo[goodId]-=quantity;
+      if (state.cargo[goodId]<=0) delete state.cargo[goodId];
       state.player.money+=total;
-      return { applied:true,action:'market_sold',good_canonical_id:goodId,quantity,unit_price:unit,total,money:state.player.money };
+      // 交易反馈到世界经济（抛售 → 该区供给增 → 价格走低）
+      if (this.economy) {
+        const regionName = this.regionNameForSlug(this.marketRegionForCity(state));
+        if (regionName) this.economy.applyTrade(regionName, good.category ?? 'specialty', Math.min(0.05, quantity * 0.001));
+      }
+      return { applied:true,action:'market_sold',good_canonical_id:goodId,quantity,unit_price:unit,total,money:state.player.money,cargo:cargoUsed(state) };
     });
   }
   findGood(goodId) {
@@ -1088,6 +1099,12 @@ function activeItemTargetIds(state,taskCatalog) {
 }
 function atPort(state,cityId,mapNodeId) { return state.player.current_city_canonical_id ? state.player.current_city_canonical_id===cityId && state.player.current_map_node_canonical_id===mapNodeId : state.player.current_map_node_canonical_id===mapNodeId; }
 function setInventory(state,id,quantity) { if(quantity<=0)delete state.inventory[id];else state.inventory[id]=quantity; }
+function cargoUsed(state) {
+  return Object.values(state.cargo??{}).reduce((sum,q)=>sum+Number(q),0);
+}
+function cargoCapacity(state) {
+  return Number(state.cargo_capacity ?? 0) || 100;
+}
 function formalInventoryUsed(state,catalog) {
   return Object.entries(state.inventory??{}).reduce((sum,[id,quantity])=>{
     const item=catalog?.getItem(id);const exempt=item?.inventory_weight_exempt||item?.normalized_data?.inventory_weight_exempt;

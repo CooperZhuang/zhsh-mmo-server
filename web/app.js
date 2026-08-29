@@ -317,7 +317,7 @@ function renderMarketPage() {
     if(!holds)return;
     const local=mv.offers.filter((o)=>o.is_local);
     const remote=mv.offers.filter((o)=>!o.is_local);
-    holds.innerHTML=`<p>你所在区域：${escapeHtml(mv.city_region||'未知')}　货舱：${mv.holds}/${mv.capacity}</p>
+    holds.innerHTML=`<p>你所在区域：${escapeHtml(mv.city_region||'未知')}　货舱：${mv.cargo_holds ?? mv.holds ?? 0}/${mv.cargo_capacity ?? mv.capacity ?? 100}</p>
       <p><strong>本区特产（低价买入）</strong></p>
       <div class="line-list">${local.slice(0,12).map((o)=>`<p>${escapeHtml(o.name)}（${o.local_price}铜）　<button class="text-link" data-market-buy="${attr(o.canonical_id)}" data-name="${attr(o.name)}">买入</button>　<button class="text-link" data-market-sell="${attr(o.canonical_id)}" data-name="${attr(o.name)}">卖出</button></p>`).join('')}</div>
       <p><strong>异区商品（高价卖出）</strong></p>

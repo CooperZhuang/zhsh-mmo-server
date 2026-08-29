@@ -55,6 +55,11 @@ function createGameplayState(player = {}) {
     // 静态任务的 state.tasks/state.progress（sqlite 持久化）区分，保证动态任务完整可玩。
     runtime_tasks: {},
     runtime_progress: {},
+    // 市场货物栏（cargo）：goods 商品（货物）与 player_inventory 的随身物品/装备
+    // (FK content_entities) 语义不同，用独立 JSON 容器持久化，避免外键阻断且贴合
+    // 航海贸易『货舱』语义。
+    cargo: {},
+    cargo_capacity: 100,
   };
 }
 
@@ -80,6 +85,8 @@ function upgradeGameplayState(state) {
   if (!upgraded.npc_affinity || typeof upgraded.npc_affinity !== 'object' || Array.isArray(upgraded.npc_affinity)) upgraded.npc_affinity = {};
   if (!upgraded.runtime_tasks || typeof upgraded.runtime_tasks !== 'object' || Array.isArray(upgraded.runtime_tasks)) upgraded.runtime_tasks = {};
   if (!upgraded.runtime_progress || typeof upgraded.runtime_progress !== 'object' || Array.isArray(upgraded.runtime_progress)) upgraded.runtime_progress = {};
+  if (!upgraded.cargo || typeof upgraded.cargo !== 'object' || Array.isArray(upgraded.cargo)) upgraded.cargo = {};
+  if (upgraded.cargo_capacity === undefined) upgraded.cargo_capacity = 100;
   const {ensureTaskItemLedger}=require('./task-item-ledger');ensureTaskItemLedger(upgraded);
   if(upgraded.npc_duel===undefined)upgraded.npc_duel=null;
   applyExperienceProgression(upgraded);

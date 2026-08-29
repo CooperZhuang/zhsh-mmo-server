@@ -427,6 +427,9 @@ const server = http.createServer(async (req, res) => {
           activeEvents: (snap.activeEvents ?? []).map((e) => ({ name: e.name, region: e.region, remaining: e.remaining, duration: e.duration })),
           weather: snap.weather ?? {},
           regionSupply: snap.regionSupply ?? {},
+          tradeCount: snap.tradeCount ?? 0,
+          tradeLog: snap.tradeLog ?? [],
+          diag: { marketEconomy: typeof getRuntime().market?.economy, economy: typeof getEconomy() },
         });
       }
       return sendJson(res, 404, { error: `no admin endpoint ${pathname}` });
@@ -650,12 +653,18 @@ function startAiSimulator() {
   // 注册固定 AI 船员（首个 tick 前创建其玩家存档，若不存在）
   const aiCrew = [
     { id: 'ai.captain_xu', personality: '豪爽的远东航主', goal: '通过贸易积累巨额财富并称雄各大港埠' },
-    { id: 'ai.lady_song', personality: '谨慎的江南女商', goal: '囤积区域特产在跨城套利中获利' },
+    { id: 'ai.lady_song', personality: '谨慎的江南女商', goal: '囤积区域特产在跨城套利中获利', role: 'merchant' },
     { id: 'ai.pirate_black', personality: '狂放的海盗头子', goal: '挑战强敌夺取名声与战利品' },
   ];
   for (const crew of aiCrew) {
     try { engine.createPlayer(crew.id, { reset: false }); } catch { /* 已存在则忽略 */ }
-    aiSimulator.registerAiPlayer(crew.id, { personality: crew.personality, goal: crew.goal });
+    // 商人启动资金：无本金无法交易 → 无法通过贸易影响世界。给商人 seed 资本。
+    if (crew.role === 'merchant') {
+      try {
+        engine.storage.transact(crew.id, (state) => { if (Number(state.player.money ?? 0) < 1000) state.player.money = 5000; });
+      } catch {}
+    }
+    aiSimulator.registerAiPlayer(crew.id, { personality: crew.personality, goal: crew.goal, role: crew.role ?? 'adventurer' });
     aiSimulator.players.get(crew.id).online = true;
     registry.registerVirtual(crew.id);
     registry.refresh(crew.id);

@@ -212,6 +212,7 @@ function gameplayProjection(state) {
     guild:state.guild,city_influence:state.city_influence,occupied_cities:state.occupied_cities,
     player_memory:state.player_memory,npc_affinity:state.npc_affinity,
     runtime_tasks:state.runtime_tasks,runtime_progress:state.runtime_progress,
+    cargo:state.cargo,cargo_capacity:state.cargo_capacity,
   };
 }
 
