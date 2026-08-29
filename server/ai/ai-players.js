@@ -11,7 +11,7 @@
  *
  * 依赖：http://127.0.0.1:11434（ollama），qwen3.5:9b。
  */
-const { ollamaGenerate } = require('./ai-decision-service');
+const { ollamaGenerate, MODEL } = require('./ai-decision-service');
 
 const TICK_MS = Number(process.env.ZHSH_AI_TICK_MS || 45000);
 
