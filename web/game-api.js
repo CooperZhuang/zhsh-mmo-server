@@ -76,12 +76,16 @@ export function createGameApi({ base = '' } = {}) {
     return request('/api/game/players');
   }
 
+  async function getIntel() {
+    return request('/api/game/intel');
+  }
+
   function getToken() { return token; }
   function getPlayerId() { return currentPlayerId; }
 
   return {
     request, register, login, setToken, setPlayer,
-    getState, action, runtime, getWorld, getPlayers,
+    getState, action, runtime, getWorld, getPlayers, getIntel,
     getToken, getPlayerId,
   };
 }

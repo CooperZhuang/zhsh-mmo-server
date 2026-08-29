@@ -22,6 +22,7 @@ const { AiPlayerSimulator } = require('./ai/ai-players');
 const { WorldEconomy } = require('./eco/world-economy');
 const { decideEvent } = require('./eco/ai-decision');
 const { aiMarketReport } = require('./eco/ai-market-report');
+const { aiEventNarrative } = require('./ai/ai-narrative');
 
 const ROOT = path.resolve(__dirname, '..');
 const DIST = process.env.ZHSH_DIST || path.join(ROOT, 'dist');
@@ -214,8 +215,11 @@ function getEconomy() {
       aiDecide: decideEvent,
       aiReport: aiMarketReport,
       onEvent: (event) => {
-        const payload = { type: 'world', kind: 'world_event', event };
-        registry.broadcast(payload);
+        // 先广播事件本体，再异步生成 AI 叙述播报补充（不阻塞事件触发）
+        registry.broadcast({ type: 'world', kind: 'world_event', event });
+        void aiEventNarrative(event).then((narr) => {
+          registry.broadcast({ type: 'world', kind: 'world_event_narrative', narrative: narr });
+        });
         console.log(`[ECO] 事件触发：${event.name}（${event.region} ${event.effect_kind}+${Number(event.strength).toFixed(2)}，${event.duration} tick）`);
       },
     });

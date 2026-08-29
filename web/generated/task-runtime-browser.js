@@ -2036,8 +2036,9 @@ class MarketRuntime {
   /**
    * 区域特产套利市场。当前城市所在区域特产价 = base_price × 0.75（产区便宜），
    * 非产区商品 = base_price × 1.25（异区贵）。以 market_region.city_region 映射判定玩家所在区域。
+   * 若注入了 WorldEconomy（server/eco），则价格进一步叠加 动态供需 + 天气 + 随机波动 影响。
    */
-  constructor({ storage,catalog,clock = isoNow }) { this.storage=storage;this.catalog=catalog;this.clock=clock; }
+  constructor({ storage,catalog,clock = isoNow,economy = null }) { this.storage=storage;this.catalog=catalog;this.clock=clock;this.economy=economy; }
   marketRegionForCity(state) {
     const marketRegion=this.catalog.content?.market_region?.city_region ?? {};
     let cityId=state.player.current_city_canonical_id;
@@ -2049,10 +2050,21 @@ class MarketRuntime {
     }
     return cityId ? marketRegion[cityId] ?? null : null;
   }
+  /** 区域 slug（region.mediterranean）→ 区域中文名（地中海），供世界经济引擎 */
+  regionNameForSlug(slug) {
+    if (!slug) return null;
+    return this.catalog.content?.world_regions?.regions?.[slug]?.name ?? null;
+  }
   priceFor(state,good) {
     const cityRegion=this.marketRegionForCity(state);
-    const factor=(cityRegion && good.region===cityRegion)?0.75:1.25;
-    return Math.max(1,Math.round(Number(good.base_price)*factor));
+    const regionFactor=(cityRegion && good.region===cityRegion)?0.75:1.25;
+    if (this.economy) {
+      // 动态经济：区域基准系数 + 供需/天气/抖动的小幅扰动
+      const regionName=this.regionNameForSlug(cityRegion);
+      if (regionName) return this.economy.getPrice(good,regionName,regionFactor);
+    }
+    // 静态回退
+    return Math.max(1,Math.round(Number(good.base_price)*regionFactor));
   }
   getMarketView(playerId,eventId) {
     return transactEvent(this.storage,playerId,eventId||`market.view.${Date.now()}`,'market_view',{},this.clock,(state) => {

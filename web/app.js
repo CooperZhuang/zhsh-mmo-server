@@ -392,11 +392,24 @@ function renderRegionsPage() {
   app.innerHTML=`<section class="wap-page">
     <p><strong>天下 · 12 大区域</strong></p>
     ${renderFeedback()}
+    <div id="intel-panel"><p>正在读取世界经济情报……</p></div>
     <div class="line-list">${Object.entries(regions).map(([id,r])=>`<p><strong>${escapeHtml(r.name)}</strong>（${escapeHtml(r.culture)}）<br>城市：${r.cities.map((c)=>escapeHtml(cityById[c]||c)).join('、')||'尚未开放'}<br>目标：${escapeHtml(r.final_goal)}　势力：${escapeHtml(r.faction)}</p>`).join('')}</div>
     <p><button class="text-link" data-page="location">返回</button></p>
     ${renderPrimaryNav()}
   </section>`;
   bindPageActions();
+  // 拉取世界经济情报（天气/供需/事件/AI市场综述/套利提示）
+  gameApi.getIntel().then((it)=>{
+    const panel=document.querySelector('#intel-panel'); if(!panel)return;
+    const weatherLine=it.regions.map((r)=>`${r.name}${r.weather}`).join('　');
+    const eventsLine=it.activeEvents.length?it.activeEvents.map((e)=>`【${e.name}】${e.region}（${e.tip||''}，剩${e.remaining}tick）`).join('<br>') : '暂无重大事件';
+    const tipsLine=it.tips.length?it.tips.map((t)=>t.note).join('<br>') : '各区域供需平衡，暂无明显套利机会（可留意后续天气/事件）。';
+    const report=it.updated_at?`（${new Date(it.updated_at).toLocaleString('zh-CN')}）`:'';
+    panel.innerHTML=`<p><strong>世界经济情报</strong>${report}</p>
+      <p>天气：${escapeHtml(weatherLine)}</p>
+      <p>活跃事件：<br>${eventsLine}</p>
+      <p>套利提示：<br>${tipsLine}</p>`;
+  }).catch((e)=>{ const panel=document.querySelector('#intel-panel'); if(panel)panel.innerHTML=`<p class="error">情报读取失败：${escapeHtml(e.message)}</p>`; });
 }
 
 function renderDiscoveriesPage() {
