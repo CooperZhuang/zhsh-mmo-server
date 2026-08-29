@@ -23,6 +23,8 @@ coverage/
 # 日志与运行时临时文件
 logs/
 *.log
+web/*.lock
+web/.zhsh-logs/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
