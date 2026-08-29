@@ -202,6 +202,7 @@ function gameplayProjection(state) {
       level:state.player.level,max_health:state.player.max_health,current_health:state.player.current_health,
       base_attack:state.player.base_attack,base_max_attack:state.player.base_max_attack,
       base_defense:state.player.base_defense,base_agility:state.player.base_agility,morale:state.player.morale,
+      defeat_return_map_node_canonical_id:state.player.defeat_return_map_node_canonical_id ?? null,
       reputation:state.player.reputation,title:state.player.title,
       pets:state.player.pets,crew:state.player.crew,skills:state.player.skills,skill_points:state.player.skill_points,
     },
