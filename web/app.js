@@ -822,6 +822,11 @@ function renderProgressText(entry) {
 function cityDisplayName(canonicalId) {
   return content.cities.find((entry) => entry.canonical_id === canonicalId)?.display_name ?? '';
 }
+function locationDisplayName(canonicalId) {
+  if (!canonicalId) return '';
+  const location = content.locations.find((entry) => entry.canonical_id === canonicalId);
+  return location ? `${location.city_display_name} ${location.display_name}` : canonicalId;
+}
 
 function fastTravelTarget(task, view) {
   const candidates = [task.target_location_canonical_id,task.submit_location_canonical_id].filter(Boolean);
@@ -844,6 +849,10 @@ function renderFastTravelForLocation(locationCanonicalId, view) {
   if (node.city_canonical_id !== view.current_location?.city_canonical_id) return '';
   if (node.map_node_canonical_id === view.current_location?.map_node_canonical_id) return '';
   return `<button class="text-link" data-fast-travel="${attr(locationCanonicalId)}">快速旅行</button>`;
+}
+function renderFastTravel(entry, view) {
+  const target = fastTravelTarget(entry.definition, view);
+  return target ? `<button class="text-link" data-fast-travel="${attr(target.location_canonical_id)}">快速旅行到${escapeHtml(target.display_name)}</button>` : '';
 }
 
 function entityName(canonicalId) {
