@@ -42,7 +42,7 @@ function bundleCommonJs(entryPath) {
   }
   const entryId = add(entryPath);
   const table = [...modules.entries()].map(([id,source]) => `${JSON.stringify(id)}: function(module,exports,require){\n${source}\n}`).join(',\n');
-  return `// Generated from the shared CommonJS task runtime. Do not edit by hand.\nconst __modules={\n${table}\n};\nconst __cache={};\nfunction __require(id){if(__cache[id])return __cache[id].exports;const module={exports:{}};__cache[id]=module;__modules[id](module,module.exports,__require);return module.exports;}\nconst __entry=__require(${JSON.stringify(entryId)});\n${['BrowserRuntimeStorage','BrowserTaskCatalog','IndexedDbDurableStore','TaskRuntimeEngine','UiFeedback','buildCityMapEntries'].map((name) => `export const ${name}=__entry.${name};`).join('\n')}\n`;
+  return `// Generated from the shared CommonJS task runtime. Do not edit by hand.\nconst __modules={\n${table}\n};\nconst __cache={};\nfunction __require(id){if(__cache[id])return __cache[id].exports;const module={exports:{}};__cache[id]=module;__modules[id](module,module.exports,__require);return module.exports;}\nconst __entry=__require(${JSON.stringify(entryId)});\n${['BrowserRuntimeStorage','BrowserTaskCatalog','IndexedDbDurableStore','RemoteDurableStore','RemoteCharacterRegistry','TaskRuntimeEngine','UiFeedback','buildCityMapEntries'].map((name) => `export const ${name}=__entry.${name};`).join('\n')}\n`;
 }
 
 if (require.main === module) {

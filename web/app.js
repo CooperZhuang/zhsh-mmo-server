@@ -1,13 +1,14 @@
-import { BrowserRuntimeStorage,BrowserTaskCatalog,CombatRuntime,NpcDuelRuntime,DivingRuntime,DropRuntime,DungeonRuntime,EconomyRuntime,EquipmentRuntime,FishingRuntime,FormalGameplayCatalog,ItemRuntime,MaritimeRuntime,RecoveryRuntime,ShipRuntime,TaskRuntimeEngine,UiFeedback,VoyageRuntime,buildCityMapEntries,effectiveStats,applyExperienceProgression,LEVEL_THRESHOLDS } from './generated/task-runtime-browser.js';
+import { BrowserRuntimeStorage,BrowserTaskCatalog,CombatRuntime,NpcDuelRuntime,DivingRuntime,DropRuntime,DungeonRuntime,EconomyRuntime,EquipmentRuntime,FishingRuntime,FormalGameplayCatalog,ItemRuntime,MaritimeRuntime,RecoveryRuntime,RemoteCharacterRegistry,RemoteDurableStore,ShipRuntime,TaskRuntimeEngine,UiFeedback,VoyageRuntime,buildCityMapEntries,effectiveStats,applyExperienceProgression,LEVEL_THRESHOLDS } from './generated/task-runtime-browser.js';
 
 const captureMode = new URLSearchParams(location.search).get('uat') === 'capture';
-const PLAYER_ID = captureMode ? 'player.browser.task1.uat-capture' : 'player.browser.task1';
+const DEFAULT_PLAYER_ID = captureMode ? 'player.browser.task1.uat-capture' : 'player.browser.task1';
+let PLAYER_ID = DEFAULT_PLAYER_ID;
 const app = document.querySelector('#app');
 const saveStatus = document.querySelector('#save-status');
 const importInput = document.querySelector('#save-import');
 const debugEnabled = new URLSearchParams(location.search).get('dev') === '1';
-const adminEnabled = new URLSearchParams(location.search).get('admin') === '1';
-let content,visuals,catalog,storage,engine,gameplayCatalog,combat,npcDuel,diving,drops,dungeon,economy,equipment,fishing,items,maritime,recovery,ships,voyage;
+const adminEnabled = new URLSearchParams(location.search).get('admin') !== '0';
+let content,visuals,catalog,storage,engine,gameplayCatalog,combat,npcDuel,diving,drops,dungeon,economy,equipment,fishing,items,maritime,recovery,ships,voyage,remoteRegistry;
 let combatRandom=Math.random;
 const feedback = new UiFeedback();
 let gameEntered = false;
@@ -35,8 +36,11 @@ async function bootstrap() {
     return response.json();
   });
   catalog = new BrowserTaskCatalog(content);
-  storage = new BrowserRuntimeStorage();
+  remoteRegistry = new RemoteCharacterRegistry();
+  storage = new BrowserRuntimeStorage({ durableStore: new RemoteDurableStore() });
   await storage.ready();
+  const activeId = await remoteRegistry.getActive().catch(() => null);
+  if (activeId && storage.hasPlayer(activeId)) PLAYER_ID = activeId;
   engine = new TaskRuntimeEngine({ catalog,storage,seriesCanonicalIds:content.series.map((entry)=>entry.canonical_id) });
   if (storage.hasPlayer(PLAYER_ID)) engine.synchronizeDefinitions(PLAYER_ID);
   gameplayCatalog = new FormalGameplayCatalog(content);
@@ -66,7 +70,7 @@ function render() {
   if (!storage.hasPlayer(PLAYER_ID) || !gameEntered || page.name === 'start') { renderStart();return; }
   const renderers = {
     location:renderLocationPage,map:renderMapPage,world:renderWorldPage,npc:renderNpcPage,tasks:renderTaskListPage,task:renderTaskDetailPage,
-    backpack:renderBackpackPage,item:renderItemDetailPage,encounter:renderFormalEncounterPage,shop:renderFormalShopPage,voyage:renderFormalVoyagePage,status:renderStatusPage,save:renderSavePage,compendium:renderCompendiumPage,admin:renderAdminPage,
+    backpack:renderBackpackPage,item:renderItemDetailPage,encounter:renderFormalEncounterPage,shop:renderFormalShopPage,voyage:renderFormalVoyagePage,status:renderStatusPage,save:renderSavePage,compendium:renderCompendiumPage,admin:renderAdminPage,settings:renderSettingsPage,
   };
   try { (renderers[page.name] ?? renderLocationPage)(); }
   catch (error) { showFatal(error); }
@@ -222,7 +226,7 @@ function renderTaskListPage() {
     ${renderFeedback()}
     <p>当前系列：${escapeHtml(activeSeries?.display_name??view.active_series_canonical_id)}</p>
     <p>${view.task_series.map((series)=>`<button class="text-link" data-series-select="${attr(series.canonical_id)}">${escapeHtml(content.series.find((entry)=>entry.canonical_id===series.canonical_id)?.display_name??series.canonical_id)} ${series.completed}/${series.total}</button>`).join(' · ')}</p>
-    ${visible.map((entry,index) => `<p class="asset-row">${renderTaskTargetVisual(entry.definition,'item-icon')}${index + 1}. <button class="text-link" data-page="task" data-task-id="${attr(entry.definition.canonical_id)}">${escapeHtml(entry.definition.display_name)}</button>　${statusLabel(entry.runtime.status)}</p>`).join('') || '<p>当前没有任务。</p>'}
+    ${visible.map((entry,index) => `<p class="asset-row">${renderTaskTargetVisual(entry.definition,'item-icon')}${index + 1}. <button class="text-link" data-page="task" data-task-id="${attr(entry.definition.canonical_id)}">${escapeHtml(entry.definition.display_name)}</button>　${statusLabel(entry.runtime.status)}　${renderFastTravel(entry,view)}</p>`).join('') || '<p>当前没有任务。</p>'}
     <p><button class="text-link" data-page="location">返回</button></p>
     ${renderPrimaryNav()}
   </section>`;
@@ -244,8 +248,8 @@ function renderTaskDetailPage() {
     <p>任务奖励：${renderRewardsText(task)}</p>
     <p class="progress-text">当前进度：${renderProgressText(entry)}</p>
     <p>接取地点：${escapeHtml(locationDisplayName(task.receive_location_canonical_id))}</p>
-    <p>目标地点：${escapeHtml(locationDisplayName(task.target_location_canonical_id) || '未单独指定')}</p>
-    <p>提交地点：${escapeHtml(locationDisplayName(task.submit_location_canonical_id))}</p>
+    <p>目标地点：${escapeHtml(locationDisplayName(task.target_location_canonical_id) || '未单独指定')}${renderFastTravelForLocation(task.target_location_canonical_id,view)}</p>
+    <p>提交地点：${escapeHtml(locationDisplayName(task.submit_location_canonical_id))}${renderFastTravelForLocation(task.submit_location_canonical_id,view)}</p>
     <p>任务状态：${statusLabel(entry.runtime.status)}</p>
     <p><button class="text-link" data-page="tasks">返回</button></p>
     ${renderPrimaryNav()}
@@ -393,12 +397,55 @@ function renderSavePage() {
     <p><button class="text-link" data-action="export-save">导出存档</button></p>
     <p><button class="text-link" data-action="import-save">导入存档</button></p>
     <p><button class="text-link danger-link" data-action="reset-save">重置测试进度</button></p>
-    <p>进度保存在当前浏览器 IndexedDB 中。</p>
+    <p>角色进度保存在游戏服务器（本地 SQLite）中，其他设备访问同一服务器可继续使用同一角色。</p>
     <p><button class="text-link" data-page="location">返回</button></p>
     ${renderPrimaryNav()}
   </section>`;
   bindPageActions();
   bindCommonActions();
+}
+
+function listPlayerSaves() {
+  const players = [];
+  for (const [playerId, state] of storage.players) {
+    players.push({ playerId, state });
+  }
+  return players.sort((a,b) => a.playerId.localeCompare(b.playerId));
+}
+
+function characterLabel(playerId,state) {
+  const level = state?.player?.level ?? 1;
+  const name = state?.player?.display_name || `角色 ${playerId.replace(/^player\./, '')}`;
+  return { name, level };
+}
+
+function renderSettingsPage() {
+  document.body.dataset.page = 'settings';
+  const players = listPlayerSaves();
+  const current = players.find((entry) => entry.playerId === PLAYER_ID);
+  const { name:currentName,level:currentLevel } = characterLabel(PLAYER_ID,current?.state);
+  app.innerHTML = `<section class="wap-page">
+    <p><strong>设置</strong></p>
+    ${renderFeedback()}
+    <details open><summary>当前角色</summary>
+      <p>角色：${escapeHtml(currentName)}</p>
+      <p>等级 ${currentLevel}</p>
+      <p>标识：${escapeHtml(PLAYER_ID)}</p>
+    </details>
+    <details open><summary>角色管理</summary>
+      <p>切换角色后会回到该角色自己的存档位置；新设备默认进入上次使用的角色。</p>
+      ${players.length ? `<ul class="character-list">${players.map(({ playerId,state }) => {
+        const { name,level } = characterLabel(playerId,state);
+        const active = playerId === PLAYER_ID;
+        return `<li>${active?'<strong>':''}${escapeHtml(name)}${active?'</strong>':''}（Lv.${level}）　${!active?`<button class="text-link" data-character-select="${attr(playerId)}">切换</button>`:'<span>当前</span>'}　<button class="text-link danger-link" data-character-delete="${attr(playerId)}">删除</button></li>`;
+      }).join('')}</ul>` : '<p>还没有角色存档。</p>'}
+      <p><input id="new-character-name" type="text" maxlength="20" placeholder="角色名，例如：孙悟空">　<button class="text-link" data-action="new-character">创建新角色</button></p>
+    </details>
+    <p><button class="text-link" data-page="location">返回游戏</button></p>
+    ${renderPrimaryNav()}
+  </section>`;
+  bindPageActions();
+  bindSettingsActions();
 }
 
 function renderCompendiumPage() {
@@ -470,7 +517,8 @@ function renderPrimaryNav() {
     <button class="text-link nav-link" data-page="voyage">${renderUiIcon('航海')}航行</button> ·
     ${debugEnabled?'<button class="text-link nav-link" data-page="compendium">图像调试</button> ·':''}
     ${adminEnabled?'<button class="text-link nav-link" data-page="admin">超管</button> ·':''}
-    <button class="text-link" data-page="save">存档</button>
+    <button class="text-link" data-page="save">存档</button> ·
+    <button class="text-link" data-page="settings">设置</button>
   </nav>`;
 }
 
@@ -487,8 +535,8 @@ function bindPageActions() {
     ()=>engine.travelToCityPort(PLAYER_ID,button.dataset.cityPort,eventId('city-port-travel')),'已抵达目标城市码头。','location')));
   document.querySelectorAll('[data-recovery]').forEach((button)=>button.addEventListener('click',()=>perform(
     ()=>recovery.recover(PLAYER_ID,button.dataset.recovery,eventId('recovery')),'体力已经恢复。','location')));
-  document.querySelectorAll('[data-series-select]').forEach((button)=>button.addEventListener('click',()=>perform(
-    ()=>engine.selectSeries(PLAYER_ID,button.dataset.seriesSelect,eventId('series-select')),'任务系列已经切换。','tasks')));
+  document.querySelectorAll('[data-fast-travel]').forEach((button)=>button.addEventListener('click',()=>perform(
+    ()=>engine.fastTravelToLocation(PLAYER_ID,button.dataset.fastTravel,eventId('fast-travel')),'已抵达目的地。','location')));
   document.querySelector('[data-action="refresh"]')?.addEventListener('click',() => { feedback.succeed('页面已刷新。');renderLocationPage(); });
 }
 
@@ -602,17 +650,72 @@ function bindAdminActions() {
   });
 }
 
-function bindCommonActions() {
-  document.querySelector('[data-action="continue-game"]')?.addEventListener('click',() => {
-    gameEntered=true;feedback.succeed('已继续浏览器存档。');showPage('location');
-  });
+ function bindSettingsActions() {
+   document.querySelectorAll('[data-character-select]').forEach((button) => button.addEventListener('click',async () => {
+     const targetId = button.dataset.characterSelect;
+     if (targetId === PLAYER_ID) { feedback.succeed('已经是当前角色。'); renderSettingsPage(); return; }
+     try {
+       PLAYER_ID = targetId;
+      const fresh = await storage.reloadPlayer(PLAYER_ID);
+      if (fresh) engine.synchronizeDefinitions(PLAYER_ID);
+       await remoteRegistry.setActive(PLAYER_ID);
+       await storage.flush();
+       const { name,level } = characterLabel(PLAYER_ID,storage.loadPlayer(PLAYER_ID));
+       gameEntered = true;
+       feedback.succeed(`已切换到「${name}」（Lv.${level}）。`);
+       saveStatus.textContent = `当前角色：${name}`;
+       showPage('location');
+     } catch (error) { feedback.fail(`角色切换失败：${error.message}`); renderSettingsPage(); }
+   }));
+   document.querySelector('[data-action="new-character"]')?.addEventListener('click',async () => {
+     const input = document.querySelector('#new-character-name');
+     const rawName = input?.value.trim() ?? '';
+     if (!rawName) { feedback.fail('请先输入角色名。'); renderSettingsPage(); return; }
+     const safeSlug = rawName.replace(/[^A-Za-z0-9\u4e00-\u9fff]+/g,'').slice(0,12) || 'character';
+     const playerId = `player.${safeSlug}.${crypto.randomUUID().slice(0,8)}`;
+     try {
+       if (storage.hasPlayer(playerId)) throw new Error(`角色标识已存在：${playerId}`);
+       engine.createPlayer(playerId,{ reset:false });
+       storage.transact(playerId,(state) => { state.player.display_name = rawName; });
+       PLAYER_ID = playerId;
+       await remoteRegistry.setActive(PLAYER_ID);
+       await storage.flush();
+       gameEntered = true;
+       feedback.succeed(`角色「${rawName}」已创建，开始你的冒险。`);
+       saveStatus.textContent = `当前角色：${rawName}`;
+       showPage('location');
+     } catch (error) { feedback.fail(`创建角色失败：${error.message}`); renderSettingsPage(); }
+           });
+   document.querySelectorAll('[data-character-delete]').forEach((button) => button.addEventListener('click',async () => {
+     const targetId = button.dataset.characterDelete;
+     const { name } = characterLabel(targetId,storage.players.get(targetId));
+     if (!confirm(`确定删除角色「${name}」及其全部进度吗？此操作不可恢复。`)) return;
+     try {
+       const wasActive = targetId === PLAYER_ID;
+       await storage.deletePlayer(targetId);
+       await storage.flush();
+       if (wasActive) {
+         const remaining = listPlayerSaves();
+         PLAYER_ID = remaining.length ? remaining[0].playerId : DEFAULT_PLAYER_ID;
+         await remoteRegistry.setActive(PLAYER_ID);
+       }
+       feedback.succeed(`角色「${name}」已删除。`);
+       renderSettingsPage();
+     } catch (error) { feedback.fail(`删除角色失败：${error.message}`); renderSettingsPage(); }
+   }));
+ }
+
+ function bindCommonActions() {
+   document.querySelector('[data-action="continue-game"]')?.addEventListener('click',() => {
+     gameEntered=true;feedback.succeed('已继续浏览器存档。');showPage('admin');
+   });
   document.querySelector('[data-action="new-game"]')?.addEventListener('click',async () => {
     try {
       const existing = storage.hasPlayer(PLAYER_ID);
       if (existing && !confirm('开始新游戏将覆盖当前 task1 浏览器存档，是否继续？')) return;
       engine.createPlayer(PLAYER_ID,{ reset:existing || storage.corruptRecords.has(PLAYER_ID) });
       await storage.flush();
-      gameEntered=true;feedback.succeed('你在威尼斯酒馆醒来。');saveStatus.textContent='新游戏已保存';showPage('location');
+      gameEntered=true;feedback.succeed('你在威尼斯酒馆醒来。');saveStatus.textContent='新游戏已保存';showPage('admin');
     } catch (error) { showFatal(error); }
   });
   document.querySelectorAll('[data-action="import-save"]').forEach((button) => button.addEventListener('click',() => importInput.click()));
@@ -621,7 +724,7 @@ function bindCommonActions() {
     if (!confirm('确定重置 task1 测试进度吗？当前浏览器存档将被覆盖。')) return;
     engine.createPlayer(PLAYER_ID,{ reset:true });
     await storage.flush();
-    feedback.succeed('进度已重置。');saveStatus.textContent='重置结果已保存';showPage('location');
+    feedback.succeed('进度已重置。');saveStatus.textContent='重置结果已保存';showPage('admin');
   });
 }
 
@@ -720,10 +823,27 @@ function cityDisplayName(canonicalId) {
   return content.cities.find((entry) => entry.canonical_id === canonicalId)?.display_name ?? '';
 }
 
-function locationDisplayName(canonicalId) {
-  if (!canonicalId) return '';
-  const location = content.locations.find((entry) => entry.canonical_id === canonicalId);
-  return location ? `${location.city_display_name} ${location.display_name}` : canonicalId;
+function fastTravelTarget(task, view) {
+  const candidates = [task.target_location_canonical_id,task.submit_location_canonical_id].filter(Boolean);
+  const currentCity = view.current_location?.city_canonical_id ?? null;
+  const currentNode = view.current_location?.map_node_canonical_id ?? null;
+  for (const locationCanonicalId of candidates) {
+    const node = catalog.getNodeForLocation(locationCanonicalId);
+    if (!node?.location_canonical_id) continue;
+    if (node.city_canonical_id !== currentCity) continue;
+    if (node.map_node_canonical_id === currentNode) continue;
+    return { location_canonical_id:locationCanonicalId,map_node_canonical_id:node.map_node_canonical_id,display_name:locationDisplayName(locationCanonicalId) };
+  }
+  return null;
+}
+
+function renderFastTravelForLocation(locationCanonicalId, view) {
+  if (!locationCanonicalId) return '';
+  const node = catalog.getNodeForLocation(locationCanonicalId);
+  if (!node?.location_canonical_id) return '';
+  if (node.city_canonical_id !== view.current_location?.city_canonical_id) return '';
+  if (node.map_node_canonical_id === view.current_location?.map_node_canonical_id) return '';
+  return `<button class="text-link" data-fast-travel="${attr(locationCanonicalId)}">快速旅行</button>`;
 }
 
 function entityName(canonicalId) {
@@ -844,7 +964,7 @@ importInput.addEventListener('change',async () => {
     await storage.importPlayer(await file.text(),{ expectedPlayerCanonicalId:PLAYER_ID });
     engine.synchronizeDefinitions(PLAYER_ID);
     await storage.flush();
-    gameEntered=true;feedback.succeed('存档导入成功。');saveStatus.textContent='导入结果已保存';showPage('location');
+    gameEntered=true;feedback.succeed('存档导入成功。');saveStatus.textContent='导入结果已保存';showPage('admin');
   } catch (error) {
     feedback.fail(`无法导入存档：${error.message}`);saveStatus.textContent='存档导入失败';storage.hasPlayer(PLAYER_ID)?render():renderStart();
   } finally { importInput.value=''; }

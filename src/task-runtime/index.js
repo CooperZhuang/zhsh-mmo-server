@@ -6,7 +6,7 @@ const { MemoryRuntimeStorage } = require('./memory-runtime-storage');
 const { EVENT_TYPES, TaskRuntimeEngine } = require('./task-engine');
 const { RUNTIME_STORAGE_METHODS,TASK_CATALOG_METHODS } = require('./ports');
 const { BrowserTaskCatalog } = require('./browser-task-catalog');
-const { BrowserRuntimeStorage,IndexedDbDurableStore,checksum,makeEnvelope,validateAndUpgradeEnvelope } = require('./browser-runtime-storage');
+const { BrowserRuntimeStorage,IndexedDbDurableStore,RemoteDurableStore,RemoteCharacterRegistry,checksum,makeEnvelope,validateAndUpgradeEnvelope } = require('./browser-runtime-storage');
 const { UiFeedback,buildCityMapEntries } = require('./classic-ui-model');
 const gameplayState = require('./gameplay-state');
 const formalGameplay = require('./formal-gameplay');
@@ -32,6 +32,8 @@ module.exports = {
   checksum,
   validateAndUpgradeEnvelope,
   IndexedDbDurableStore,
+  RemoteDurableStore,
+  RemoteCharacterRegistry,
   RUNTIME_STORAGE_METHODS,
   MemoryRuntimeStorage,
   SqliteRuntimeStorage,
