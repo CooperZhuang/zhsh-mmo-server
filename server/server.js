@@ -19,6 +19,8 @@ const { verifyJwt, hashPassword, verifyPassword, issueToken } = require('./auth'
 const { WorldStateRegistry } = require('./state');
 const { attachWebSocket } = require('./ws');
 const { AiPlayerSimulator } = require('./ai/ai-players');
+const { WorldEconomy } = require('./eco/world-economy');
+const { decideEvent } = require('./eco/ai-decision');
 
 const ROOT = path.resolve(__dirname, '..');
 const DIST = process.env.ZHSH_DIST || path.join(ROOT, 'dist');
@@ -144,7 +146,7 @@ function buildGameplayRuntimes() {
     enhance: new EquipmentEnhanceRuntime({ storage, catalog: gameplayCatalog }),
     fishing: new FishingRuntime({ storage, catalog: gameplayCatalog, taskEngine: engine }),
     items: new ItemRuntime({ storage, catalog: gameplayCatalog }),
-    market: new MarketRuntime({ storage, catalog: gameplayCatalog }),
+    market: new MarketRuntime({ storage, catalog: gameplayCatalog, economy: getEconomy() }),
     maritime: new MaritimeRuntime({ storage, catalog: gameplayCatalog }),
     pets: new PetRuntime({ storage, catalog: gameplayCatalog }),
     discover: new DiscoverRuntime({ storage, catalog: gameplayCatalog }),
@@ -196,6 +198,34 @@ let runtime = null;
 function getRuntime() {
   if (!runtime) runtime = buildGameplayRuntimes();
   return runtime;
+}
+
+// ---- 世界经济引擎（动态价格/天气/随机事件，AI 决策） ----
+let economy = null;
+let economyStarted = false;
+function getEconomy() {
+  if (!economy) {
+    economy = new WorldEconomy({
+      content: loadContent(),
+      statePath: path.join(__dirname, 'data', 'economy.json'),
+      tickMs: Number(process.env.ZHSH_ECO_TICK_MS || 60000),
+      aiEnabled: process.env.ZHSH_ECO_AI !== '0',
+      aiDecide: decideEvent,
+      onEvent: (event) => {
+        const payload = { type: 'world', kind: 'world_event', event };
+        registry.broadcast(payload);
+        console.log(`[ECO] 事件触发：${event.name}（${event.region} ${event.effect_kind}+${Number(event.strength).toFixed(2)}，${event.duration} tick）`);
+      },
+    });
+  }
+  return economy;
+}
+function startEconomy() {
+  if (economyStarted) return;
+  economyStarted = true;
+  const eco = getEconomy();
+  eco.start();
+  console.log('[ZHSH] 世界经济引擎已启动（动态价格/天气/随机事件，AI 决策）');
 }
 
 // ---- 静态托管 ----
@@ -298,6 +328,7 @@ const server = http.createServer(async (req, res) => {
           crew: content.crew,
           skills: content.skills,
           game_cities: content.game_cities,
+          economy: getEconomy().snapshot(),
         });
       }
     }
@@ -382,6 +413,7 @@ function handleWsMessage(conn, msg) {
 
 server.listen(PORT, HOST, () => {
   console.log(`[ZHSH] 权威服务器运行于 http://${HOST}:${PORT}`);
+  startEconomy();
   startAiSimulator();
 });
 process.on('SIGTERM', () => server.close(() => process.exit(0)));
