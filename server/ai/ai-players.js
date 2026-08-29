@@ -11,33 +11,13 @@
  *
  * 依赖：http://127.0.0.1:11434（ollama），qwen3.5:9b。
  */
-const http = require('node:http');
+const { ollamaGenerate } = require('./ai-decision-service');
 
-const OLLAMA_URL = process.env.ZHSH_OLLAMA_URL || 'http://127.0.0.1:11434';
-const MODEL = process.env.ZHSH_AI_MODEL || 'qwen3.5:9b';
 const TICK_MS = Number(process.env.ZHSH_AI_TICK_MS || 45000);
 
+// 统一走 ai-decision-service 的 ollama 调用（含降级/超时管理）
 async function ollamaComplete(prompt, { maxTokens = 200 } = {}) {
-  const body = JSON.stringify({
-    model: MODEL,
-    prompt,
-    stream: false,
-    options: { temperature: 0.8, max_tokens: maxTokens, think: false },
-  });
-  return new Promise((resolve, reject) => {
-    const url = new URL('/api/generate', OLLAMA_URL);
-    const req = http.request(url, { method: 'POST', headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(body) } }, (res) => {
-      let data = '';
-      res.on('data', (chunk) => { data += chunk; });
-      res.on('end', () => {
-        try { resolve(JSON.parse(data).response ?? ''); }
-        catch (err) { reject(new Error(`ollama response parse failed: ${err.message}`)); }
-      });
-    });
-    req.on('error', reject);
-    req.write(body);
-    req.end();
-  });
+  return ollamaGenerate(prompt, { temperature: 0.8, maxTokens });
 }
 
 class AiPlayerSimulator {
