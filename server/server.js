@@ -23,6 +23,8 @@ const { WorldEconomy } = require('./eco/world-economy');
 const { decideEvent } = require('./eco/ai-decision');
 const { aiMarketReport } = require('./eco/ai-market-report');
 const { aiEventNarrative } = require('./ai/ai-narrative');
+const { aiNpcBanter } = require('./ai/ai-npc-banter');
+const { aiCombatNarrative } = require('./ai/ai-combat-narrative');
 
 const ROOT = path.resolve(__dirname, '..');
 const DIST = process.env.ZHSH_DIST || path.join(ROOT, 'dist');
@@ -205,6 +207,8 @@ function getRuntime() {
 // ---- 世界经济引擎（动态价格/天气/随机事件，AI 决策） ----
 let economy = null;
 let economyStarted = false;
+const banterCache = new Map(); // npcName -> { line, at, source }（NPC 情境台词短时缓存）
+const combatNarrCache = new Map(); // `${outcome}|${monster}` -> { line, at, source }（战斗叙述短时缓存）
 function getEconomy() {
   if (!economy) {
     economy = new WorldEconomy({
@@ -363,6 +367,44 @@ const server = http.createServer(async (req, res) => {
           activeEvents: snap.activeEvents.map((e) => ({ name: e.name, region: e.region, kind: e.effect_kind, field: e.target_field, strength: e.strength, tip: e.tip, remaining: e.remaining })),
           tips,
         });
+      }
+      if (pathname === '/api/game/npc_banter' && req.method === 'POST') {
+        // AI 情境台词：由 NPC 身份/玩家任务/世界天气事件生成一句贴合语境台词（短时缓存复用）
+        const { npc_name: npcName } = JSON.parse(await readBody(req) || '{}');
+        const name = npcName || '某人';
+        const cached = banterCache.get(name);
+        if (cached && Date.now() - cached.at < 180000) return sendJson(res, 200, { line: cached.line, npc: name, source: cached.source });
+        try {
+          const view = engine.getPlayerView(auth.playerCanonicalId);
+          const weatherSnapshot = getEconomy().snapshot();
+          const banter = await aiNpcBanter({
+            npcName: name,
+            taskHint: view.task_chain?.find((t) => ['accepted','in_progress','completable'].includes(t.runtime?.status))?.definition?.display_name ?? null,
+            playerTitle: view.player?.title,
+            playerLevel: view.player?.level,
+            weather: (Object.values(weatherSnapshot.weather ?? {}))[0] ?? null,
+            activeEvents: (weatherSnapshot.activeEvents ?? []).map((e) => e.name),
+          });
+          banterCache.set(name, { line: banter.line, at: Date.now(), source: banter.source });
+          return sendJson(res, 200, banter);
+        } catch (err) {
+          return sendJson(res, 200, { line: `${name}：${err.message}`, npc: name, source: 'fallback' });
+        }
+      }
+      if (pathname === '/api/game/combat_narrative' && req.method === 'POST') {
+        // AI 战斗叙述：战斗胜利/失败后一句凯旋/落败叙述（短时缓存复用）
+        const { outcome, monster_name: monsterName, rounds } = JSON.parse(await readBody(req) || '{}');
+        const key = `${outcome}|${monsterName}`;
+        const cached = combatNarrCache.get(key);
+        if (cached && Date.now() - cached.at < 60000) return sendJson(res, 200, { line: cached.line, source: cached.source });
+        try {
+          const view = engine.getPlayerView(auth.playerCanonicalId);
+          const narr = await aiCombatNarrative({ outcome, monsterName, playerLevel: view.player?.level, playerHealth: view.player?.current_health, rounds });
+          combatNarrCache.set(key, { line: narr.line, at: Date.now(), source: narr.source });
+          return sendJson(res, 200, narr);
+        } catch (err) {
+          return sendJson(res, 200, { line: '一番恶战，尘埃落定。', outcome, source: 'fallback' });
+        }
       }
     }
 

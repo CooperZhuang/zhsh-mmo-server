@@ -80,12 +80,20 @@ export function createGameApi({ base = '' } = {}) {
     return request('/api/game/intel');
   }
 
+  async function npcBanter(npcName) {
+    return request('/api/game/npc_banter', { method: 'POST', body: { npc_name: npcName } });
+  }
+
+  async function combatNarrative(payload) {
+    return request('/api/game/combat_narrative', { method: 'POST', body: payload });
+  }
+
   function getToken() { return token; }
   function getPlayerId() { return currentPlayerId; }
 
   return {
     request, register, login, setToken, setPlayer,
-    getState, action, runtime, getWorld, getPlayers, getIntel,
+    getState, action, runtime, getWorld, getPlayers, getIntel, npcBanter, combatNarrative,
     getToken, getPlayerId,
   };
 }

@@ -464,6 +464,7 @@ function renderNpcPage() {
     <p><strong>${escapeHtml(npcDisplayName)}${related.length ? '的任务' : ''}</strong></p>
     ${renderCanonicalVisual(npcCanonicalId,'portrait-art')}
     ${(serverNpcs.find((n)=>n.npc_canonical_id===npcCanonicalId)?.npc_dialogue?.text)?`<p class="message">${escapeHtml(serverNpcs.find((n)=>n.npc_canonical_id===npcCanonicalId)?.npc_dialogue?.text)}</p>`:''}
+    <div id="npc-banter"></div>
     ${renderFeedback()}
     ${related.length ? related.map((entry) => renderNpcTask(entry)).join('') : '<p>对方现在没有任务要交给你。</p>'}
     <p><button class="text-link" data-npc-action="${attr(npcCanonicalId)}">${actionLabel}</button></p>
@@ -471,6 +472,11 @@ function renderNpcPage() {
     ${renderPrimaryNav()}
   </section>`;
   bindPageActions();
+  // AI 情境台词（异步填充，NPC 世界更有生命力）
+  gameApi.npcBanter(npcDisplayName).then((b)=>{
+    const box=document.querySelector('#npc-banter'); if(!box)return;
+    box.innerHTML=`<p class="message npc-banter">${escapeHtml(b.line)}</p>`;
+  }).catch(()=>{});
 }
 
 function renderNpcTask(entry) {
@@ -1043,6 +1049,13 @@ async function perform(operation,fallbackMessage,nextPage,nextParams = {}) {
     const result = await operation();
     await storage.flush();
     feedback.succeed(resultMessage(result) || fallbackMessage);
+    // 战斗胜利/失败：异步补一句 AI 战斗叙述（增强演出，不阻塞结算）
+    if (result.action === 'combat_won' || result.action === 'combat_lost') {
+      const outcome = result.action === 'combat_won' ? '战斗胜利' : '战斗失败';
+      gameApi.combatNarrative({ outcome, monster_name: entityName(result.monster_canonical_id) ?? result.monster_canonical_id ?? null, rounds: result.batched_rounds ?? null }).then((narr) => {
+        if (narr?.line) feedback.succeed(`${resultMessage(result)}\n${narr.line}`);
+      }).catch(()=>{});
+    }
     browserLog.info('action','saved',{action:result?.action??null,outcome:result?.outcome??null,playerId:PLAYER_ID});
     saveStatus.textContent = `纵横报时（${new Date().toLocaleTimeString('zh-CN',{hour:'2-digit',minute:'2-digit',second:'2-digit'})}）`;
     page = { name:typeof nextPage==='function'?nextPage(result):nextPage,...nextParams };
