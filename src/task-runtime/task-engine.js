@@ -210,6 +210,24 @@ class TaskRuntimeEngine {
     });
   }
 
+  fastTravelToLocation(playerCanonicalId,locationCanonicalId,eventId) {
+    assertCanonicalId(locationCanonicalId,'location_canonical_id');
+    return this.storage.transact(playerCanonicalId,(state)=>{
+      const event={ event_id:eventId,type:'arrive_at_location',location_canonical_id:locationCanonicalId,movement_mode:'fast_travel' };
+      const repeated=this.getRepeatedEvent(state,event);if(repeated)return repeated;
+      if(state.combat||state.npc_duel||state.voyage||state.fishing||state.dungeon||state.maritime_encounter)throw new Error('Fast travel requires an idle world state');
+      const current=this.catalog.getMapNode(state.player.current_map_node_canonical_id);
+      const destination=this.catalog.getNodeForLocation(locationCanonicalId);
+      if(!destination||!destination.map_node_canonical_id)throw new Error(`Fast travel destination has no map node: ${locationCanonicalId}`);
+      if(!destination.location_canonical_id)throw new Error('Fast travel destination must be a formal location');
+      if(current?.city_canonical_id!==destination.city_canonical_id)throw new Error('Fast travel must stay within the current city');
+      state.player.current_map_node_canonical_id=destination.map_node_canonical_id;unlockNode(state,destination.map_node_canonical_id);
+      const result=this.advanceLocationTargets(state,destination.location_canonical_id);
+      result.movement_mode='fast_travel';result.source_map_node_canonical_id=current?.map_node_canonical_id??null;result.destination_city_canonical_id=destination.city_canonical_id;
+      result.current_map_node_canonical_id=destination.map_node_canonical_id;this.finishEvent(state,event,result);return result;
+    });
+  }
+
   processEvent(playerCanonicalId, event) {
     validateEvent(event);
     return this.storage.transact(playerCanonicalId, (state) => {
