@@ -70,10 +70,10 @@ class ShipRuntime {
     const ship = this.catalog.getShip(shipId);
     return transactEvent(this.storage,playerId,eventId,'ship_purchase',{ ship_canonical_id:shipId },this.clock,(state) => {
       if (state.owned_ships[shipId]) return { applied:false,reason:'already_owned',ship_canonical_id:shipId };
-      if (!atPort(state,ship.city_canonical_id,ship.port_map_node_canonical_id)) throw new Error('Ship purchase requires its formal port location');
+      if (!atPort(state,ship.city_canonical_id,ship.port_map_node_canonical_id)) throw new Error('购买船只需在对应港口码头。');
       const limit = Math.min(6,Math.floor(state.player.level / 10) + 1);
-      if (Object.keys(state.owned_ships).length >= limit) throw new Error('Owned ship limit reached');
-      if (state.player.money < ship.price) throw new Error('Insufficient money for ship');
+      if (Object.keys(state.owned_ships).length >= limit) throw new Error('船只数量已达上限。');
+      if (state.player.money < ship.price) throw new Error('金币不足，无法购买此船。');
       state.player.money -= ship.price;
       state.owned_ships[shipId] = { purchased_at:this.clock(),source_canonical_id:ship.source_canonical_id ?? null };
       state.current_ship_canonical_id = shipId;
@@ -82,7 +82,7 @@ class ShipRuntime {
   }
   select(playerId,shipId,eventId) {
     return transactEvent(this.storage,playerId,eventId,'ship_select',{ ship_canonical_id:shipId },this.clock,(state) => {
-      if (!state.owned_ships[shipId]) throw new Error('Ship is not owned');
+      if (!state.owned_ships[shipId]) throw new Error('未持有此船。');
       state.current_ship_canonical_id = shipId;
       return { applied:true,action:'ship_selected',ship_canonical_id:shipId };
     });
@@ -96,13 +96,13 @@ class VoyageRuntime {
   start(playerId,routeId,eventId) {
     const route = this.catalog.getRoute(routeId);
     return transactEvent(this.storage,playerId,eventId,'voyage_start',{ route_canonical_id:routeId },this.clock,(state) => {
-      if (state.voyage) throw new Error('A voyage is already active');
-      if (!state.current_ship_canonical_id || !state.owned_ships[state.current_ship_canonical_id]) throw new Error('Voyage requires an owned current ship');
-      if (!atPort(state,route.from_city_canonical_id,route.from_port_map_node_canonical_id)) throw new Error('Voyage must start at the formal departure port');
+      if (state.voyage) throw new Error('航海已在进行中。');
+      if (!state.current_ship_canonical_id || !state.owned_ships[state.current_ship_canonical_id]) throw new Error('航海需要一艘已持有的当前船只。');
+      if (!atPort(state,route.from_city_canonical_id,route.from_port_map_node_canonical_id)) throw new Error('航海须在正式出发港码头开始。');
       if (route.required_task_canonical_id && !route.allowed_task_statuses.includes(state.tasks[route.required_task_canonical_id]?.status)) {
-        throw new Error('Voyage task condition is not satisfied');
+        throw new Error('尚未满足此航线的任务条件。');
       }
-      if (state.player.money < Number(route.fee ?? 0)) throw new Error('Insufficient money for voyage fee');
+      if (state.player.money < Number(route.fee ?? 0)) throw new Error('金币不足，无法支付航海费用。');
       state.player.money -= Number(route.fee ?? 0);
       const ship = this.catalog.getShip(state.current_ship_canonical_id);
       state.voyage = {
@@ -117,8 +117,8 @@ class VoyageRuntime {
   advance(playerId,eventId,{ ticks=1 }={}) {
     ticks=positive(ticks);
     const result=transactEvent(this.storage,playerId,eventId,'voyage_advance',{ ticks },this.clock,(state) => {
-      if (!state.voyage) throw new Error('No active voyage');
-      if (state.fishing || state.dungeon || state.maritime_encounter) throw new Error('Resolve the active maritime activity before advancing');
+      if (!state.voyage) throw new Error('当前没有进行中的航海。');
+      if (state.fishing || state.dungeon || state.maritime_encounter) throw new Error('请先处理当前的航海活动再继续前进。');
       const maritimeResult=this.maritimeRuntime?.step(state);
       if(maritimeResult)return {applied:true,...maritimeResult};
       if (state.voyage.last_advance_event_id) delete state.gameplay_events[state.voyage.last_advance_event_id];
@@ -173,8 +173,8 @@ class MaritimeRuntime {
   enterRouteLocation(playerId,eventId) {
     return transactEvent(this.storage,playerId,eventId,'maritime_route_location_enter',{},this.clock,(state)=>{
       const encounter=state.maritime_encounter;
-      if(!state.voyage||encounter?.kind!=='route_location')throw new Error('No route location encounter is active');
-      if(!encounter.map_node_canonical_id||!encounter.location_canonical_id)throw new Error('Route location encounter lacks a formal map destination');
+      if(!state.voyage||encounter?.kind!=='route_location')throw new Error('当前没有进行中的航线地点遭遇。');
+      if(!encounter.map_node_canonical_id||!encounter.location_canonical_id)throw new Error('航线地点遭遇缺少正式地图目的地。');
       state.player.current_map_node_canonical_id=encounter.map_node_canonical_id;
       if(!state.unlocked_map_nodes.includes(encounter.map_node_canonical_id))state.unlocked_map_nodes.push(encounter.map_node_canonical_id);
       state.voyage.route_location_context={city_canonical_id:encounter.city_canonical_id,location_canonical_id:encounter.location_canonical_id,
@@ -228,10 +228,10 @@ class FishingRuntime {
   start(playerId,rodId,baitId,eventId) {
     const rod=this.catalog.getFishingGear(rodId);const bait=this.catalog.getFishingGear(baitId);
     return transactEvent(this.storage,playerId,eventId,'fishing_start',{rod_canonical_id:rodId,bait_canonical_id:baitId},this.clock,(state)=>{
-      if(!state.voyage||state.combat||state.dungeon)throw new Error('Fishing requires an active idle voyage');
-      if(state.fishing)throw new Error('Fishing is already active');
-      if(Number(rod.type)!==14||Number(bait.type)!==8)throw new Error('Fishing requires a rod and bait');
-      if((state.inventory[rodId]??0)<1||(state.inventory[baitId]??0)<1)throw new Error('Fishing gear is not in inventory');
+      if(!state.voyage||state.combat||state.dungeon)throw new Error('钓鱼需要处于空闲的进行中航海。');
+      if(state.fishing)throw new Error('钓鱼已在进行中。');
+      if(Number(rod.type)!==14||Number(bait.type)!==8)throw new Error('钓鱼需要鱼竿和鱼饵。');
+      if((state.inventory[rodId]??0)<1||(state.inventory[baitId]??0)<1)throw new Error('钓鱼装备不在背包中。');
       state.fishing={rod_canonical_id:rodId,bait_canonical_id:baitId,from_city_canonical_id:state.voyage.from_city_canonical_id,
         to_city_canonical_id:state.voyage.to_city_canonical_id,phase:'ready',wait_count:0,reel_count:0,let_out_count:0,success_factor:1,started_at:this.clock()};
       return {applied:true,action:'fishing_started',fishing:{...state.fishing}};
@@ -239,8 +239,8 @@ class FishingRuntime {
   }
   cast(playerId,eventId) {
     return transactEvent(this.storage,playerId,eventId,'fishing_cast',{},this.clock,(state)=>{
-      if(!state.voyage||!state.fishing||state.fishing.phase!=='ready')throw new Error('Fishing cast requires a ready active fishing session');
-      const baitId=state.fishing.bait_canonical_id;if((state.inventory[baitId]??0)<1)throw new Error('Fishing bait is exhausted');
+      if(!state.voyage||!state.fishing||state.fishing.phase!=='ready')throw new Error('抛竿需要处于待抛的钓鱼会话。');
+      const baitId=state.fishing.bait_canonical_id;if((state.inventory[baitId]??0)<1)throw new Error('鱼饵已用完。');
       setInventory(state,baitId,state.inventory[baitId]-1);state.fishing.phase='waiting';state.fishing.wait_count=0;state.fishing.reel_count=0;
       state.fishing.let_out_count=0;state.fishing.success_factor=1;
       return {applied:true,action:'fishing_cast',bait_canonical_id:baitId,remaining_bait:state.inventory[baitId]??0};

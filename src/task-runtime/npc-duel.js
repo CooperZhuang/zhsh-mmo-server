@@ -12,12 +12,12 @@ class NpcDuelRuntime{
   }
   start(playerId,npcCanonicalId,eventId){
     const result=transact(this.storage,playerId,eventId,'npc_duel_start',{npc_canonical_id:npcCanonicalId},this.clock,(state)=>{
-      if(state.combat||state.npc_duel)throw new Error('Another combat or NPC duel is already active');
-      const node=this.taskCatalog.getMapNode(state.player.current_map_node_canonical_id);if(!node?.location_canonical_id)throw new Error('NPC duel requires a formal location');
+      if(state.combat||state.npc_duel)throw new Error('另一场战斗或 NPC 决斗正在进行中。');
+      const node=this.taskCatalog.getMapNode(state.player.current_map_node_canonical_id);if(!node?.location_canonical_id)throw new Error('NPC 决斗需要处于正式地点。');
       const placement=this.taskCatalog.listNpcsAtNode(node.map_node_canonical_id).find((entry)=>entry.npc_canonical_id===npcCanonicalId);
-      if(!placement)throw new Error('NPC duel target is not at the current formal location');
+      if(!placement)throw new Error('NPC 决斗目标不在当前正式地点。');
       const match=findActiveDuelTask(state,this.taskCatalog,npcCanonicalId,node.location_canonical_id);
-      if(!match)throw new Error('NPC duel requires an active matching task');
+      if(!match)throw new Error('NPC 决斗需要匹配的进行中任务。');
       const npc=this.taskCatalog.content?.npcs?.find((entry)=>entry.canonical_id===npcCanonicalId)??{canonical_id:npcCanonicalId,level:1};
       const stats=npcDuelStats(npc,match.task,match.target);
       state.npc_duel={canonical_id:`npc-duel.${eventId}`,task_canonical_id:match.task.canonical_id,target_canonical_id:match.target.canonical_id,
@@ -29,7 +29,7 @@ class NpcDuelRuntime{
   attack(playerId,eventId,{rounds=1}={}){
     rounds=positive(rounds);
     const result=transact(this.storage,playerId,eventId,'npc_duel_attack',{rounds},this.clock,(state)=>{
-      if(!state.npc_duel)throw new Error('No active NPC duel');
+      if(!state.npc_duel)throw new Error('当前没有进行中的 NPC 决斗。');
       let response;const appliedStaminaItems=[];
       for(let index=0;index<rounds;index+=1){
         const duel=state.npc_duel;const player=effectiveStats(state,this.gameplayCatalog);duel.round+=1;
@@ -58,7 +58,7 @@ class NpcDuelRuntime{
   }
   retreat(playerId,eventId){
     return transact(this.storage,playerId,eventId,'npc_duel_retreat',{},this.clock,(state)=>{
-      if(!state.npc_duel)throw new Error('No active NPC duel');const canonicalId=state.npc_duel.canonical_id;state.npc_duel=null;
+      if(!state.npc_duel)throw new Error('当前没有进行中的 NPC 决斗。');const canonicalId=state.npc_duel.canonical_id;state.npc_duel=null;
       return {applied:true,action:'npc_duel_retreated',duel_canonical_id:canonicalId,fee:0,retry_available:true};
     });
   }
