@@ -793,6 +793,15 @@ function renderAdminPage() {
       <p><button class="text-link danger-link" data-admin-action="reroll">重新初始化进度</button>　
         <button class="text-link danger-link" data-admin-action="wipe">清空存档</button></p>
     </details>
+    <details><summary>世界动态测试（手工触发，观察世界演变）</summary>
+      <p>世界 tick：<span id="admin-world-tick">—</span></p>
+      <p>活跃事件：<span id="admin-world-events">—</span></p>
+      <p>触发事件：<input id="admin-event-name" type="text" placeholder="事件名(如:风暴降临)" value="风暴降临">
+        区域：<input id="admin-event-region" type="text" placeholder="region.mediterranean" value="">
+        <button class="text-link" data-admin-action="trigger-event">触发</button></p>
+      <p><button class="text-link" data-admin-action="refresh-world">刷新世界状态</button>　
+        触发事件后 AI 会涌现一条因果相关的世界支线（/api/game/world_quests 可查）。</p>
+    </details>
     <p><button class="text-link" data-page="location">返回</button></p>${renderPrimaryNav()}</section>`;
   bindAdminActions();
 }
@@ -896,50 +905,44 @@ function bindFormalPageActions() {
 function bindAdminActions() {
   const readInt=(id,fallback)=>Number(document.querySelector(`#${id}`)?.value ?? fallback) || 0;
   const readQty=(id)=>Math.max(0,Number(document.querySelector(`#${id}`)?.value ?? 0) || 0);
-  const applyMutation=(mutator,message)=>{
-    try { storage.transact(PLAYER_ID,mutator); storage.flush(); feedback.succeed(message); saveStatus.textContent='超管操作已保存'; renderAdminPage(); }
+  const applyMutation=async(pathname,payload,message)=>{
+    try { await gameApi.admin(pathname,payload); feedback.succeed(message); saveStatus.textContent='超管操作已保存'; renderAdminPage(); }
     catch (error) { feedback.fail(`超管操作失败：${error.message}`); renderAdminPage(); }
   };
-  document.querySelector('[data-admin-action="set-level"]')?.addEventListener('click',()=>applyMutation((state)=>{
-    const target=Math.max(1,Math.min(readInt('admin-level',1),LEVEL_THRESHOLDS.length-1));
-    state.player.experience=LEVEL_THRESHOLDS[target-1];
-    applyExperienceProgression(state);
-  },`等级已设为 ${LEVEL_THRESHOLDS.length?readInt('admin-level',1):1}。`));
-  document.querySelector('[data-admin-action="set-exp"]')?.addEventListener('click',()=>applyMutation((state)=>{
-    state.player.experience=readInt('admin-exp',0);
-    applyExperienceProgression(state);
-  },'经验已更新。'));
-  document.querySelector('[data-admin-action="set-money"]')?.addEventListener('click',()=>applyMutation((state)=>{
-    state.player.money=readInt('admin-money',0);
-  },'铜贝已更新。'));
-  document.querySelector('[data-admin-action="set-health"]')?.addEventListener('click',()=>applyMutation((state)=>{
-    const max=Number(state.player.max_health)||1;
-    state.player.current_health=Math.max(0,Math.min(readInt('admin-health',0),max));
-  },'体力已更新。'));
-  document.querySelector('[data-admin-action="add-item"]')?.addEventListener('click',()=>applyMutation((state)=>{
-    const id=document.querySelector('#admin-item')?.value; if(!id)return;
-    state.inventory[id]=(state.inventory[id]??0)+readQty('admin-qty');
-  },'物品已增加。'));
-  document.querySelector('[data-admin-action="remove-item"]')?.addEventListener('click',()=>applyMutation((state)=>{
-    const id=document.querySelector('#admin-item')?.value; if(!id)return;
-    state.inventory[id]=Math.max(0,(state.inventory[id]??0)-readQty('admin-qty'));
-    if(!state.inventory[id])delete state.inventory[id];
-  },'物品已移除。'));
-  document.querySelector('[data-admin-action="unlock-tasks"]')?.addEventListener('click',()=>applyMutation((state)=>{
-    for(const [id,task] of Object.entries(state.tasks??{})){ if(task.block_reasons?.length)continue;
-      task.status='available';task.reward_status='not_granted';task.current_step=0; }
-  },'任务已全部解锁为可接取。'));
-  document.querySelector('[data-admin-action="complete-tasks"]')?.addEventListener('click',()=>applyMutation((state)=>{
-    for(const task of Object.values(state.tasks??{})){ task.status='completed';task.reward_status='granted';task.current_step=task.current_step??0; }
-  },'任务已全部标记为已完成。'));
+  const triggerEvent=async()=>{
+    const name=document.querySelector('#admin-event-name')?.value||'风暴降临';
+    const region=document.querySelector('#admin-event-region')?.value||'';
+    try {
+      const r=await gameApi.admin('trigger_world_event',{name,region});
+      feedback.succeed(`已触发世界事件「${r.event?.name}」（${r.event?.region}），AI 已涌现对应支线。`);
+      renderAdminPage();
+    } catch (error) { feedback.fail(`触发失败：${error.message}`); renderAdminPage(); }
+  };
+  const refreshWorld=async()=>{
+    try {
+      const w=await gameApi.getCurrentWorld();
+      document.querySelector('#admin-world-tick').textContent=w.tick;
+      document.querySelector('#admin-world-events').textContent=(w.activeEvents||[]).map(e=>`${e.name}(${e.region}，剩余${e.remaining}回合)`).join('；')||'无活跃事件';
+    } catch (error) { document.querySelector('#admin-world-events').textContent=`读取失败：${error.message}`; }
+  };
+  document.querySelector('[data-admin-action="set-level"]')?.addEventListener('click',()=>applyMutation('set_level',{level:readInt('admin-level',1)},`等级已设为 ${readInt('admin-level',1)}。`));
+  document.querySelector('[data-admin-action="set-exp"]')?.addEventListener('click',()=>applyMutation('set_exp',{exp:readInt('admin-exp',0)},'经验已更新。'));
+  document.querySelector('[data-admin-action="set-money"]')?.addEventListener('click',()=>applyMutation('set_money',{money:readInt('admin-money',0)},'铜贝已更新。'));
+  document.querySelector('[data-admin-action="set-health"]')?.addEventListener('click',()=>applyMutation('set_health',{health:readInt('admin-health',0)},'体力已更新。'));
+  document.querySelector('[data-admin-action="add-item"]')?.addEventListener('click',()=>applyMutation('add_item',{item_canonical_id:document.querySelector('#admin-item')?.value,quantity:readQty('admin-qty')},'物品已增加。'));
+  document.querySelector('[data-admin-action="remove-item"]')?.addEventListener('click',()=>applyMutation('remove_item',{item_canonical_id:document.querySelector('#admin-item')?.value,quantity:readQty('admin-qty')},'物品已移除。'));
+  document.querySelector('[data-admin-action="unlock-tasks"]')?.addEventListener('click',()=>applyMutation('unlock_tasks',{},'任务已全部解锁为可接取。'));
+  document.querySelector('[data-admin-action="complete-tasks"]')?.addEventListener('click',()=>applyMutation('complete_tasks',{},'任务已全部标记为已完成。'));
+  document.querySelector('[data-admin-action="trigger-event"]')?.addEventListener('click',()=>triggerEvent());
+  document.querySelector('[data-admin-action="refresh-world"]')?.addEventListener('click',()=>refreshWorld());
   document.querySelector('[data-admin-action="reroll"]')?.addEventListener('click',async()=>{
-    if(!confirm('重新初始化进度将覆盖当前浏览器存档，是否继续？'))return;
-    try { engine.createPlayer(PLAYER_ID,{reset:true}); await storage.flush(); feedback.succeed('进度已重新初始化。'); saveStatus.textContent='进度已重置'; renderAdminPage(); }
+    if(!confirm('重新初始化进度将覆盖当前角色进度，是否继续？'))return;
+    try { await gameApi.admin('reset_player',{}); feedback.succeed('进度已重新初始化。'); saveStatus.textContent='进度已重置'; renderAdminPage(); }
     catch (error) { feedback.fail(`重置失败：${error.message}`); renderAdminPage(); }
   });
   document.querySelector('[data-admin-action="wipe"]')?.addEventListener('click',async()=>{
-    if(!confirm('清空存档将永久删除当前浏览器存档，是否继续？'))return;
-    try { await storage.deletePlayer(PLAYER_ID); await storage.flush(); gameEntered=false; feedback.succeed('存档已清空。'); showPage('start'); }
+    if(!confirm('清空角色进度将重新开始，是否继续？（服务器版无法物理删号）'))return;
+    try { await gameApi.admin('reset_player',{}); gameEntered=false; feedback.succeed('角色已重置。'); renderAdminPage(); }
     catch (error) { feedback.fail(`清空失败：${error.message}`); renderAdminPage(); }
   });
 }

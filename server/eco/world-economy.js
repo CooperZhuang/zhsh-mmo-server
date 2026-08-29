@@ -201,6 +201,28 @@ class WorldEconomy {
     return { ...base, region, duration, remaining: duration, strength: (base.strength ?? 0.15) * (0.7 + this.random() * 0.6) };
   }
 
+  /** 手动触发一个事件（超管测试用）：立即注册进 activeEvents/eventLog 并走 onEvent。
+   *  event: { name, region, effect_kind?, target_field?, strength?, duration?, tip? }（region 缺省随机） */
+  async spawnEvent(event) {
+    if (!event || !event.name) throw new Error('spawnEvent requires name');
+    const eco = this.economy;
+    const region = (event.region && this.regions.includes(event.region)) ? event.region : this.regions[Math.floor(this.random() * this.regions.length)];
+    const duration = Math.max(1, Math.min(12, Number(event.duration ?? 5)));
+    const spawned = {
+      id: event.id ?? `admin_event_${Date.now()}`, name: String(event.name).slice(0, 20),
+      tag: event.tag ?? '事件', category: event.category ?? 'economy', region,
+      effect_kind: event.effect_kind ?? 'supply', target_field: event.target_field ?? 'food',
+      strength: Math.max(-0.3, Math.min(0.35, Number(event.strength ?? 0.15))),
+      duration, remaining: duration, tip: String(event.tip ?? '').slice(0, 120), ai_generated: false, admin_spawned: true,
+    };
+    eco.activeEvents.push(spawned);
+    eco.eventLog.push({ ...spawned, occurred_at: new Date().toISOString() });
+    this.applyEvents(eco);
+    this.persist();
+    if (this.onEvent) this.onEvent(spawned);
+    return spawned;
+  }
+
   applyEvents(eco) {
     for (const e of eco.activeEvents) {
       if (e.effect_kind === 'weather') {

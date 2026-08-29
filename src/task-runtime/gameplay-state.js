@@ -48,6 +48,13 @@ function createGameplayState(player = {}) {
     guild: null,
     city_influence: {},
     occupied_cities: [],
+    // 世界记忆层：玩家个人事迹（AI 场景注入上下文）与 NPC 好感度
+    player_memory: [],
+    npc_affinity: {},
+    // 动态任务（AI 世界支线）：运行时态用独立 JSON 容器（无 sqlite FK 约束），与
+    // 静态任务的 state.tasks/state.progress（sqlite 持久化）区分，保证动态任务完整可玩。
+    runtime_tasks: {},
+    runtime_progress: {},
   };
 }
 
@@ -69,6 +76,10 @@ function upgradeGameplayState(state) {
   if (upgraded.player.skill_points === undefined) upgraded.player.skill_points = 0;
   if (upgraded.player.reputation === undefined) upgraded.player.reputation = 0;
   if (!upgraded.player.title) upgraded.player.title = '水手';
+  if (!Array.isArray(upgraded.player_memory)) upgraded.player_memory = [];
+  if (!upgraded.npc_affinity || typeof upgraded.npc_affinity !== 'object' || Array.isArray(upgraded.npc_affinity)) upgraded.npc_affinity = {};
+  if (!upgraded.runtime_tasks || typeof upgraded.runtime_tasks !== 'object' || Array.isArray(upgraded.runtime_tasks)) upgraded.runtime_tasks = {};
+  if (!upgraded.runtime_progress || typeof upgraded.runtime_progress !== 'object' || Array.isArray(upgraded.runtime_progress)) upgraded.runtime_progress = {};
   const {ensureTaskItemLedger}=require('./task-item-ledger');ensureTaskItemLedger(upgraded);
   if(upgraded.npc_duel===undefined)upgraded.npc_duel=null;
   applyExperienceProgression(upgraded);

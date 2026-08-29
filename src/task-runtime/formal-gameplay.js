@@ -1,4 +1,5 @@
 'use strict';
+const { recordPlayerMemory } = require('../../server/ai/ai-memory');
 
 const { applyExperienceProgression } = require('./gameplay-state');
 const { activeStaminaItem,useActiveStaminaItem } = require('./stamina-item');
@@ -879,6 +880,7 @@ class CombatRuntime {
           state.player.experience+=experience;state.player.money+=money;const progression=applyExperienceProgression(state);state.combat=null;
           if(activePet){activePet.experience=(activePet.experience??0)+Math.floor(experience*0.5);}
           if(monster.repeatable===false)state.encounter_defeats[combat.encounter_defeat_key??combat.placement_canonical_id]={defeated_at:this.clock(),monster_canonical_id:monster.canonical_id,task_context_canonical_id:combat.task_context_canonical_id??null};
+          recordPlayerMemory(state,{type:'combat',text:`击败了${monster.display_name??monster.canonical_id}${monster.repeatable===false?'（强敌）':''}`,importance:monster.repeatable===false?3:1});
           return { applied:true,action:'combat_won',combat_canonical_id:combatId,monster_canonical_id:monster.canonical_id,
             location_canonical_id:combat.location_canonical_id,player_damage:playerDamage,pet_damage:petDamage,experience,money,progression,
             stamina_item:appliedStaminaItems.at(-1)??null,stamina_items:[...appliedStaminaItems],batched_rounds:batchRound+1 };

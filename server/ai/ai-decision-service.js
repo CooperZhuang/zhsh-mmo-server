@@ -15,6 +15,26 @@ const http = require('node:http');
 
 const OLLAMA_URL = process.env.ZHSH_OLLAMA_URL || 'http://127.0.0.1:11434';
 
+/** ---- 全局 AI 并发信号量 ----
+ *  本地 ollama 单进程的并发承载有限（取决于 GPU），多个 AI 场景（banter/事件/叙述/
+ *  AI玩家决策/世界支线）可能同时打 ollama。用一个简单信号量限制同时进行的
+ *  generate 请求数（默认 2，可用 ZHSH_AI_CONCURRENCY 调），超出排队等前一个完成。
+ *  这是让 AI 深度介入不压垮本地模型的关键基础设施（与语言无关，任何后端都需要）。 */
+const AI_CONCURRENCY = Math.max(1, Number(process.env.ZHSH_AI_CONCURRENCY || 2));
+let activeGenerate = 0;
+const waitQueue = [];
+function acquireGenerate() {
+  return new Promise((resolve) => {
+    if (activeGenerate < AI_CONCURRENCY) { activeGenerate += 1; return resolve(); }
+    waitQueue.push(resolve);
+  });
+}
+function releaseGenerate() {
+  const next = waitQueue.shift();
+  if (next) { /* 保持 activeGenerate 不变，直接移交许可 */ next(); }
+  else activeGenerate -= 1;
+}
+
 /** 当前默认模型（环境变量可覆盖）。分层：MODEL_LIGHT=内容生成主力(4b，质量速度均衡)，
  *  MODEL_FAST=极高频短任务(2b)。实测 4b 在台词/播报/叙述质量更佳且全程≤0.63s。 */
 const MODEL = process.env.ZHSH_AI_MODEL || 'qwen3.5:9b';
@@ -25,7 +45,8 @@ const MODEL_FAST = process.env.ZHSH_AI_MODEL_FAST || 'qwen3.8-2b-distill:latest'
  *  注意：qwen 系列思考开关必须放请求体顶层 `think: false`（否则模型输出完整推理链，
  *  拖慢且污染结果）；options.think 无效。可按调用传入 model 选择分层模型。
  *  keepAlive=-1 让模型常驻内存，消除每次请求的加载/卸载开销（预热的真实推理速度）。 */
-function ollamaGenerate(prompt, { format = null, temperature = 0.8, maxTokens = 300, system = null, model = null, think = true, keepAlive = -1, numCtx = 4096 } = {}) {
+async function ollamaGenerate(prompt, { format = null, temperature = 0.8, maxTokens = 300, system = null, model = null, think = true, keepAlive = -1, numCtx = 4096 } = {}) {
+  await acquireGenerate();
   const body = {
     model: model || MODEL,
     prompt,
@@ -36,19 +57,23 @@ function ollamaGenerate(prompt, { format = null, temperature = 0.8, maxTokens = 
   };
   if (system) body.system = system;
   if (format) body.format = format;
-  return new Promise((resolve, reject) => {
-    const req = http.request(new URL('/api/generate', OLLAMA_URL), {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(JSON.stringify(body)) },
-    }, (res) => {
-      let data = '';
-      res.on('data', (c) => { data += c; });
-      res.on('end', () => { try { resolve(JSON.parse(data).response ?? ''); } catch (err) { reject(new Error(`ollama parse: ${err.message}`)); } });
+  try {
+    return await new Promise((resolve, reject) => {
+      const req = http.request(new URL('/api/generate', OLLAMA_URL), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(JSON.stringify(body)) },
+      }, (res) => {
+        let data = '';
+        res.on('data', (c) => { data += c; });
+        res.on('end', () => { try { resolve(JSON.parse(data).response ?? ''); } catch (err) { reject(new Error(`ollama parse: ${err.message}`)); } });
+      });
+      req.on('error', reject);
+      req.write(JSON.stringify(body));
+      req.end();
     });
-    req.on('error', reject);
-    req.write(JSON.stringify(body));
-    req.end();
-  });
+  } finally {
+    releaseGenerate();
+  }
 }
 
 /** 唤起 ollama 并解析 JSON 对象（剥离 markdown 代码块） */

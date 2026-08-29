@@ -27,7 +27,8 @@ const { aiEventNarrative } = require('./ai/ai-narrative');
 const { aiNpcBanter } = require('./ai/ai-npc-banter');
 const { aiCombatNarrative } = require('./ai/ai-combat-narrative');
 const { aiDiscoveryDescription } = require('./ai/ai-discovery-description');
-const { aiTaskNarrative } = require('./ai/ai-task-narrative');
+const { memoryDigest, buildWorldContext } = require('./ai/ai-memory');
+const { aiGenerateWorldSidequest } = require('./ai/ai-quest-gen');
 
 const ROOT = path.resolve(__dirname, '..');
 const DIST = process.env.ZHSH_DIST || path.join(ROOT, 'dist');
@@ -130,6 +131,13 @@ async function performAction(playerId, action, args, evId) {
     case 'select_series': {
       return engine.selectSeries(playerId, a.series_canonical_id, evId);
     }
+    // ---- 世界支线（动态任务）入口 ----
+    case 'accept_world_quest': {
+      return engine.acceptWorldQuest(playerId, a.task_canonical_id, evId);
+    }
+    case 'submit_world_quest': {
+      return engine.submitWorldQuest(playerId, a.task_canonical_id, evId);
+    }
     default: {
       return { applied: false, reason: `unsupported_action:${action}` };
     }
@@ -230,6 +238,8 @@ function getEconomy() {
           registry.broadcast({ type: 'world', kind: 'world_event_narrative', narrative: narr });
         });
         console.log(`[ECO] 事件触发：${event.name}（${event.region} ${event.effect_kind}+${Number(event.strength).toFixed(2)}，${event.duration} tick）`);
+        // 世界驱动支线：事件触发出现在世界的变化，由此涌现一条因果相关的动态支线
+        spawnWorldSidequest(event);
       },
     });
   }
@@ -241,6 +251,61 @@ function startEconomy() {
   const eco = getEconomy();
   eco.start();
   console.log('[ZHSH] 世界经济引擎已启动（动态价格/天气/随机事件，AI 决策）');
+  // 定期清理已消退事件对应的世界驱动支线（生命周期随世界发展）
+  setInterval(() => pruneWorldSidequests(), Math.max(30000, eco.tickMs * 2)).unref?.();
+}
+
+// ---- 世界驱动支线：事件 → 因果支线（随事件涌现、随事件消退清理） ----
+const worldSidequestBindings = new Map(); // `${eventKey}` -> taskCanonicalId（用于避免重复生成与清理）
+const spawnedEventKeys = new Set(); // 已生成过绑定支线的事件 key（每事件仅一次）
+
+/** 依据触发的事件，生成一条因果绑定的动态支线并注册进任务链（async，AI 失败静默）。 */
+async function spawnWorldSidequest(event) {
+  if (!event?.name) return null;
+  const regionSlug = event.region || 'region.mediterranean';
+  const eventKey = `${event.name}|${regionSlug}`;
+  if (spawnedEventKeys.has(eventKey)) return null; // 每个事件只衍生一条支线
+  spawnedEventKeys.add(eventKey);
+  try {
+    const content = loadContent();
+    const region = (content.world_regions?.regions ?? {})[regionSlug]?.name ?? event.region ?? '未知海域';
+    const npcs = (Array.isArray(content.characters) ? content.characters : Object.values(content.characters ?? {}))
+      .filter((c) => c.region === regionSlug).map((c) => c.name);
+    // 世界近期大事（事件日志）作为 AI 上下文
+    const worldLog = getEconomy().snapshot().activeEvents?.slice(0, 3).map((e) => `${e.name}(${e.region})`).join('、') || event.name;
+    const task = await aiGenerateWorldSidequest(event, {
+      region, regionId: regionSlug, npcs, memorySummary: `世界近期：${worldLog}`,
+    });
+    if (!task || !task.canonical_id) return null;
+    // 回填 issuer/completion NPC 与地点（绑定到事件区域）
+    task.issuer_npc_canonical_id = task.issuer_npc_canonical_id ?? null;
+    task.completion_npc_canonical_id = task.completion_npc_canonical_id ?? null;
+    task.receive_location_canonical_id = task.receive_location_canonical_id ?? null;
+    task.submit_location_canonical_id = task.submit_location_canonical_id ?? null;
+    task.target_location_canonical_id = task.receive_location_canonical_id;
+    task.display_name ??= task.name ?? task.source_label ?? '世界支线';
+    const registered = engine.registerDynamicTask(task);
+    if (registered) worldSidequestBindings.set(eventKey, task.canonical_id);
+    console.log(`[ZHSH] 世界支线涌现：${task.display_name}（${region}，事件「${event.name}」）${registered ? '' : '（已在册或无法注册）'}`);
+    return task;
+  } catch (err) {
+    console.log(`[ZHSH] 世界支线生成失败（${event.name}）：${err.message}`);
+    return null;
+  }
+}
+
+/** 清理：从经济引擎 snapshot 判断哪些事件已消退，移除对应未接取支线。 */
+function pruneWorldSidequests() {
+  try {
+    const snap = getEconomy().snapshot();
+    const aliveKeys = new Set((snap.activeEvents ?? []).map((e) => `${e.name}|${e.region}`));
+    for (const [eventKey, taskId] of worldSidequestBindings) {
+      if (aliveKeys.has(eventKey)) continue;
+      // 事件已消退：移除对应动态支线（若玩家未接取）。接取过的保留（task-engine 含生效状态）。
+      if (engine?.unregisterDynamicTask) engine.unregisterDynamicTask(taskId);
+      worldSidequestBindings.delete(eventKey);
+    }
+  } catch {}
 }
 
 // ---- 静态托管 ----
@@ -295,6 +360,77 @@ const server = http.createServer(async (req, res) => {
 
     // 鉴权后
     const auth = authenticate(req);
+    // ---- 超管测试控制台（本地开发/测试：改玩家 state + 手工触发世界动态） ----
+    if (pathname.startsWith('/api/admin')) {
+      if (!auth) return sendJson(res, 401, { error: '未登录或登录已过期' });
+      const pid = auth.playerCanonicalId;
+      const mut = async (mutator) => {
+        if (!engine.storage?.transact) throw new Error('admin storage unavailable');
+        return engine.storage.transact(pid, (state) => { const r = mutator(state); state.player.updated_at = new Date().toISOString(); return r; });
+      };
+      if (pathname === '/api/admin/set_level' && req.method === 'POST') {
+        const { level } = JSON.parse(await readBody(req) || '{}');
+        const thresholds = require(path.join(ROOT, 'data', 'runtime', 'level-experience.json')).thresholds;
+        const target = Math.max(1, Math.min(Number(level) || 1, thresholds.length - 1));
+        await mut((state) => { state.player.experience = Number(thresholds[target - 1]); });
+        return sendJson(res, 200, { applied: true, level: target });
+      }
+      if (pathname === '/api/admin/set_exp' && req.method === 'POST') {
+        const { exp } = JSON.parse(await readBody(req) || '{}');
+        await mut((state) => { state.player.experience = Math.max(0, Number(exp) || 0); });
+        return sendJson(res, 200, { applied: true });
+      }
+      if (pathname === '/api/admin/set_money' && req.method === 'POST') {
+        const { money } = JSON.parse(await readBody(req) || '{}');
+        await mut((state) => { state.player.money = Math.max(0, Number(money) || 0); });
+        return sendJson(res, 200, { applied: true });
+      }
+      if (pathname === '/api/admin/set_health' && req.method === 'POST') {
+        const { health } = JSON.parse(await readBody(req) || '{}');
+        await mut((state) => { state.player.current_health = Math.max(0, Math.min(Number(health) || 0, Number(state.player.max_health) || 1)); });
+        return sendJson(res, 200, { applied: true });
+      }
+      if (pathname === '/api/admin/add_item' && req.method === 'POST') {
+        const { item_canonical_id, quantity } = JSON.parse(await readBody(req) || '{}');
+        if (!item_canonical_id) return sendJson(res, 400, { error: 'item required' });
+        await mut((state) => { state.inventory[item_canonical_id] = (state.inventory[item_canonical_id] ?? 0) + Math.max(1, Number(quantity) || 1); });
+        return sendJson(res, 200, { applied: true });
+      }
+      if (pathname === '/api/admin/remove_item' && req.method === 'POST') {
+        const { item_canonical_id, quantity } = JSON.parse(await readBody(req) || '{}');
+        await mut((state) => { state.inventory[item_canonical_id] = Math.max(0, (state.inventory[item_canonical_id] ?? 0) - Math.max(1, Number(quantity) || 1)); if (!state.inventory[item_canonical_id]) delete state.inventory[item_canonical_id]; });
+        return sendJson(res, 200, { applied: true });
+      }
+      if (pathname === '/api/admin/unlock_tasks' && req.method === 'POST') {
+        await mut((state) => { for (const [id, task] of Object.entries(state.tasks ?? {})) { if (task.block_reasons?.length) continue; task.status = 'available'; task.reward_status = 'not_granted'; task.current_step = 0; } });
+        return sendJson(res, 200, { applied: true });
+      }
+      if (pathname === '/api/admin/complete_tasks' && req.method === 'POST') {
+        await mut((state) => { for (const task of Object.values(state.tasks ?? {})) { task.status = 'completed'; task.reward_status = 'granted'; task.current_step = task.current_step ?? 0; } });
+        return sendJson(res, 200, { applied: true });
+      }
+      if (pathname === '/api/admin/reset_player' && req.method === 'POST') {
+        // 重置当前玩家角色进度（服务器权威：createPlayer reset 重建 state）
+        const created = engine.createPlayer(pid, { reset: true });
+        return sendJson(res, 200, { applied: true, player: created.player?.canonical_id || pid });
+      }
+      if (pathname === '/api/admin/trigger_world_event' && req.method === 'POST') {
+        // 手工触发世界经济事件 → 走 onEvent → 涌现世界驱动支线（超管测试）
+        const body = JSON.parse(await readBody(req) || '{}');
+        const event = await getEconomy().spawnEvent({ name: body.name || '风暴降临', region: body.region, effect_kind: body.effect_kind || 'supply', target_field: body.target_field || 'food', strength: Number(body.strength ?? 0.15), duration: Number(body.duration ?? 6), tip: body.tip || '' });
+        return sendJson(res, 200, { applied: true, event: { name: event.name, region: event.region, effect_kind: event.effect_kind, duration: event.duration } });
+      }
+      if (pathname === '/api/admin/current_world' && req.method === 'GET') {
+        const snap = getEconomy().snapshot();
+        return sendJson(res, 200, {
+          tick: snap.tick_count,
+          activeEvents: (snap.activeEvents ?? []).map((e) => ({ name: e.name, region: e.region, remaining: e.remaining, duration: e.duration })),
+          weather: snap.weather ?? {},
+          regionSupply: snap.regionSupply ?? {},
+        });
+      }
+      return sendJson(res, 404, { error: `no admin endpoint ${pathname}` });
+    }
     if (pathname.startsWith('/api/game')) {
       if (!auth) return sendJson(res, 401, { error: '未登录或登录已过期' });
       if (pathname === '/api/game/state' && req.method === 'GET') {
@@ -373,6 +509,19 @@ const server = http.createServer(async (req, res) => {
           tips,
         });
       }
+      if (pathname === '/api/game/world_quests' && req.method === 'GET') {
+        // 只读：当前世界驱动生成的活跃支线（随世界事件涌现，事件消退后清理）
+        const tasks = Array.isArray(engine.listTasks()) ? engine.listTasks().filter((t) => t.ai_generated) : [];
+        const state = engine.loadPlayer(auth.playerCanonicalId);
+        return sendJson(res, 200, {
+          quests: tasks.map((t) => ({
+            canonical_id: t.canonical_id, display_name: t.display_name,
+            description: t.description, bound_event: t.bound_event, bound_region: t.bound_region,
+            targets: (t.targets ?? []).map((tg) => ({ target_kind: tg.target_kind, required_quantity: tg.required_quantity ?? 1 })),
+            runtime: engine.getTaskRuntime(state, t.canonical_id) ?? null,
+          })),
+        });
+      }
       if (pathname === '/api/game/npc_banter' && req.method === 'POST') {
         // AI 情境台词：由 NPC 身份/玩家任务/世界天气事件生成一句贴合语境台词（短时缓存复用）
         const { npc_name: npcName } = JSON.parse(await readBody(req) || '{}');
@@ -382,13 +531,20 @@ const server = http.createServer(async (req, res) => {
         try {
           const view = engine.getPlayerView(auth.playerCanonicalId);
           const weatherSnapshot = getEconomy().snapshot();
+          const state = engine.loadPlayer(auth.playerCanonicalId);
+          const charInfo = (Array.isArray(loadContent().characters) ? loadContent().characters : Object.values(loadContent().characters || {})).find((c) => c.name === name);
           const banter = await aiNpcBanter({
             npcName: name,
+            npcRole: charInfo?.role,
+            personality: charInfo?.personality,
+            dialogueHook: charInfo?.dialogue_hook,
             taskHint: view.task_chain?.find((t) => ['accepted','in_progress','completable'].includes(t.runtime?.status))?.definition?.display_name ?? null,
             playerTitle: view.player?.title,
             playerLevel: view.player?.level,
             weather: (Object.values(weatherSnapshot.weather ?? {}))[0] ?? null,
             activeEvents: (weatherSnapshot.activeEvents ?? []).map((e) => e.name),
+            memorySummary: memoryDigest(state, { npcId: name, query: name }),
+            worldContext: buildWorldContext(weatherSnapshot),
           });
           banterCache.set(name, { line: banter.line, at: Date.now(), source: banter.source });
           return sendJson(res, 200, banter);

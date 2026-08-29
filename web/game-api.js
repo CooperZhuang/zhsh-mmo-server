@@ -80,6 +80,15 @@ export function createGameApi({ base = '' } = {}) {
     return request('/api/game/intel');
   }
 
+  // ---- 超管测试控制台（本地开发/测试：改 state + 手工触发世界动态）----
+  async function admin(pathname, payload = {}) {
+    return request(`/api/admin/${pathname}`, { method: 'POST', body: payload });
+  }
+
+  async function getCurrentWorld() {
+    return request('/api/admin/current_world');
+  }
+
   async function npcBanter(npcName) {
     return request('/api/game/npc_banter', { method: 'POST', body: { npc_name: npcName } });
   }
@@ -106,6 +115,7 @@ export function createGameApi({ base = '' } = {}) {
   return {
     request, register, login, setToken, setPlayer,
     getState, action, runtime, getWorld, getPlayers, getIntel, npcBanter, combatNarrative, marketAdvice, discoveryDescription, taskNarrative,
+    admin, getCurrentWorld,
     getToken, getPlayerId,
   };
 }
