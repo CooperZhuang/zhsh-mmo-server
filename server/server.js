@@ -36,6 +36,10 @@ const ROOT = path.resolve(__dirname, '..');
 const DIST = process.env.ZHSH_DIST || path.join(ROOT, 'dist');
 const PORT = Number(process.env.PORT || 4173);
 const HOST = process.env.HOST || '0.0.0.0';
+/** 商品类别中文标签（天下情报套利提示用） */
+function catLabel(cat) {
+  return ({ food: '粮', specialty: '特产', material: '物资', luxury: '奢侈品' })[cat] ?? cat;
+}
 const MIME = {
   '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8',
   '.css': 'text/css; charset=utf-8', '.json': 'application/json; charset=utf-8',
