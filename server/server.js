@@ -22,6 +22,7 @@ const { AiPlayerSimulator } = require('./ai/ai-players');
 const { WorldEconomy } = require('./eco/world-economy');
 const { decideEvent } = require('./eco/ai-decision');
 const { aiMarketReport } = require('./eco/ai-market-report');
+const { aiMarketAdvice } = require('./eco/ai-market-advice');
 const { aiEventNarrative } = require('./ai/ai-narrative');
 const { aiNpcBanter } = require('./ai/ai-npc-banter');
 const { aiCombatNarrative } = require('./ai/ai-combat-narrative');
@@ -404,6 +405,29 @@ const server = http.createServer(async (req, res) => {
           return sendJson(res, 200, narr);
         } catch (err) {
           return sendJson(res, 200, { line: '一番恶战，尘埃落定。', outcome, source: 'fallback' });
+        }
+      }
+      if (pathname === '/api/game/market_advice' && req.method === 'POST') {
+        // AI 市场顾问：结合玩家所在区域供需/天气/事件/资金货舱，给出即时买卖建议
+        try {
+          const view = engine.getPlayerView(auth.playerCanonicalId);
+          const snap = getEconomy().snapshot();
+          const cityId = view.player?.current_city_canonical_id;
+          const node = (loadContent()?.map_nodes ?? []).find((n) => n.map_node_canonical_id === view.player?.current_map_node_canonical_id);
+          const regionSlug = (loadContent()?.market_region?.city_region ?? {})[cityId ?? node?.city_canonical_id];
+          const regionName = (loadContent()?.world_regions?.regions ?? {})[regionSlug]?.name;
+          const advice = await aiMarketAdvice({
+            regionName: regionName ?? '当前区域',
+            weather: snap.weather?.[regionName] ?? '晴天',
+            supply: snap.regionSupply?.[regionName] ?? {},
+            activeEvents: snap.activeEvents?.map((e) => e.name),
+            money: view.player?.money,
+            holds: Object.values(view.inventory ?? {}).reduce((s, n) => s + n, 0),
+            capacity: view.inventory_capacity,
+          });
+          return sendJson(res, 200, advice);
+        } catch (err) {
+          return sendJson(res, 200, { advice: '行情瞬息万变，稳妥起见先观望。', region: '当前区域', source: 'fallback' });
         }
       }
     }

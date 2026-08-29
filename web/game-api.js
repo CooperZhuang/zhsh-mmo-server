@@ -88,12 +88,16 @@ export function createGameApi({ base = '' } = {}) {
     return request('/api/game/combat_narrative', { method: 'POST', body: payload });
   }
 
+  async function marketAdvice() {
+    return request('/api/game/market_advice', { method: 'POST', body: {} });
+  }
+
   function getToken() { return token; }
   function getPlayerId() { return currentPlayerId; }
 
   return {
     request, register, login, setToken, setPlayer,
-    getState, action, runtime, getWorld, getPlayers, getIntel, npcBanter, combatNarrative,
+    getState, action, runtime, getWorld, getPlayers, getIntel, npcBanter, combatNarrative, marketAdvice,
     getToken, getPlayerId,
   };
 }

@@ -309,6 +309,8 @@ function renderMarketPage() {
     ${renderPrimaryNav()}
   </section>`;
   bindPageActions();
+  // 注入 AI 市场顾问按钮（避开模板省略号冲突）
+  (()=>{ const adviceBox=document.createElement('div'); adviceBox.id='market-advice'; adviceBox.innerHTML='<button class="text-link" data-market-advice>💡 问行商该买卖什么</button>'; const h=document.querySelector('#market-holds'); if(h&&h.parentNode)h.parentNode.insertBefore(adviceBox,h.nextSibling); })();
   // 异步拉取市场行情
   market.getMarketView(PLAYER_ID,eventId('market-view')).then((mv)=>{
     const holds=document.querySelector('#market-holds');
@@ -329,6 +331,12 @@ function bindMarketActions() {
     ()=>market.buy(PLAYER_ID,b.dataset.marketBuy,1,eventId('market-buy')),`已购入${b.dataset.name}。`,'market')));
   document.querySelectorAll('[data-market-sell]').forEach((b)=>b.addEventListener('click',()=>perform(
     ()=>market.sell(PLAYER_ID,b.dataset.marketSell,1,eventId('market-sell')),`已售出${b.dataset.name}。`,'market')));
+  document.querySelectorAll('[data-market-advice]').forEach((b)=>b.addEventListener('click',()=>{
+    const box=document.querySelector('#market-advice'); if(box)box.innerHTML='<p class="message">行商正在打探行情</p>';
+    gameApi.marketAdvice().then((a)=>{
+      const box2=document.querySelector('#market-advice'); if(box2)box2.innerHTML=`<p class="message">${escapeHtml(a.advice||'')}</p>`;
+    }).catch((e)=>{ const box3=document.querySelector('#market-advice'); if(box3)box3.innerHTML=`<p class="error">${escapeHtml(e.message)}</p>`; });
+  }));
 }
 
 function renderPetsPage() {
