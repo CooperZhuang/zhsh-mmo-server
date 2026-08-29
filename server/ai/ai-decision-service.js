@@ -21,14 +21,16 @@ const MODEL_LIGHT = process.env.ZHSH_AI_MODEL_LIGHT || 'qwen3.8-2b-distill:lates
 
 /** 唤起 ollama 生成，返回原始响应文本。
  *  注意：qwen 系列思考开关必须放请求体顶层 `think: false`（否则模型输出完整推理链，
- *  拖慢且污染结果）；options.think 无效。可按调用传入 model 选择分层模型。 */
-function ollamaGenerate(prompt, { format = null, temperature = 0.8, maxTokens = 300, system = null, model = null, think = true } = {}) {
+ *  拖慢且污染结果）；options.think 无效。可按调用传入 model 选择分层模型。
+ *  keepAlive=-1 让模型常驻内存，消除每次请求的加载/卸载开销（预热的真实推理速度）。 */
+function ollamaGenerate(prompt, { format = null, temperature = 0.8, maxTokens = 300, system = null, model = null, think = true, keepAlive = -1, numCtx = 4096 } = {}) {
   const body = {
     model: model || MODEL,
     prompt,
     stream: false,
     think,
-    options: { temperature, max_tokens: maxTokens },
+    keep_alive: keepAlive, // 负值=常驻；0=立即卸载；正值=驻留秒数
+    options: { temperature, max_tokens: maxTokens, num_ctx: numCtx },
   };
   if (system) body.system = system;
   if (format) body.format = format;
