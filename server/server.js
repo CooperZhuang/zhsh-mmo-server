@@ -28,6 +28,7 @@ const { aiNpcBanter } = require('./ai/ai-npc-banter');
 const { aiCombatNarrative } = require('./ai/ai-combat-narrative');
 const { aiDiscoveryDescription } = require('./ai/ai-discovery-description');
 const { memoryDigest, buildWorldContext } = require('./ai/ai-memory');
+const { decideChainEvent } = require('./eco/ai-event-chain');
 const { aiGenerateWorldSidequest } = require('./ai/ai-quest-gen');
 const { aiCrewLine } = require('./ai/ai-crew');
 
@@ -232,6 +233,7 @@ function getEconomy() {
       aiEnabled: process.env.ZHSH_ECO_AI !== '0',
       aiDecide: decideEvent,
       aiReport: aiMarketReport,
+      aiChain: decideChainEvent,
       onEvent: (event) => {
         // 先广播事件本体，再异步生成 AI 叙述播报补充（不阻塞事件触发）
         registry.broadcast({ type: 'world', kind: 'world_event', event });
@@ -430,7 +432,7 @@ const server = http.createServer(async (req, res) => {
           regionSupply: snap.regionSupply ?? {},
           tradeCount: snap.tradeCount ?? 0,
           tradeLog: snap.tradeLog ?? [],
-          diag: { marketEconomy: typeof getRuntime().market?.economy, economy: typeof getEconomy() },
+          diag: { marketEconomy: typeof getRuntime().market?.economy, economy: typeof getEconomy(), aiChain: typeof getEconomy().aiChain },
         });
       }
       return sendJson(res, 404, { error: `no admin endpoint ${pathname}` });

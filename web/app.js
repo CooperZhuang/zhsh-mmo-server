@@ -748,7 +748,7 @@ function renderCompendiumPage() {
 }
 
 function renderAdminPage() {
-  if(!adminEnabled||!serverView != null){showPage('location');return;}
+  if(!adminEnabled || serverView == null){ showPage('location'); return; }
   document.body.dataset.page='admin';
   const view=serverView;
   const player=view.player;
@@ -766,7 +766,7 @@ function renderAdminPage() {
       <p>背包 ${inventory.reduce((s,[,q])=>s+q,0)}/${view.inventory_capacity}　任务 ${taskStates.length}</p>
     </details>
     <details open><summary>等级 / 经验</summary>
-      <p>设定等级：<input id="admin-level" type="number" min="1" max="${LEVEL_THRESHOLDS.length-1}" value="${player.level}">　
+      <p>设定等级：<input id="admin-level" type="number" min="1" max="60" value="${player.level}">　
         <button class="text-link" data-admin-action="set-level">应用</button></p>
       <p>设定经验：<input id="admin-exp" type="number" min="0" value="${player.experience}">　
         <button class="text-link" data-admin-action="set-exp">应用</button></p>

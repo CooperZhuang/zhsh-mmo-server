@@ -55,10 +55,12 @@ class WorldEconomy {
    * @param {object} options.content  服务器内容（goods / market_region / world_regions）
    * @param {string} options.statePath 经济状态落盘文件（json）
    * @param {number} options.tickMs  经济刷新间隔
-   * @param {(event:object)=>void} options.onEvent  事件触发回调（广播/日志）
-   */
-  constructor({ content, statePath, tickMs = 60000, onEvent = null, aiEnabled = true, aiDecide = null, aiReport = null, random = Math.random }) {
+    *   @param {(event:object)=>void} options.onEvent  事件触发回调（广播/日志）
+ *   @param {async (parentEvent, state)=>object|null} options.aiChain  连环事件生成（因果链）
+ */
+  constructor({ content, statePath, tickMs = 60000, onEvent = null, aiEnabled = true, aiDecide = null, aiReport = null, aiChain = null, random = Math.random }) {
     this.content = content;
+    this.aiChain = aiChain;
     this.statePath = statePath || path.join(__dirname, '..', 'data', 'economy.json');
     this.tickMs = tickMs;
     this.onEvent = onEvent;
@@ -136,7 +138,23 @@ class WorldEconomy {
       this.transitionWeather(eco);
       // 4) 概率触发事件（AI 决策优先，规则保底）
       const event = await this.rollEvent(eco);
-      if (event) { eco.activeEvents.push(event); eco.eventLog.push({ ...event, occurred_at: new Date().toISOString() }); if (this.onEvent) this.onEvent(event); }
+      if (event) {
+        eco.activeEvents.push(event); eco.eventLog.push({ ...event, occurred_at: new Date().toISOString() });
+        if (this.onEvent) this.onEvent(event);
+        // 连环世界事件：AI 依当前事件生成因果关联的后续事件（有概率、不泛滥）
+        if (this.aiChain && this.aiEnabled && this.random() < 0.4) {
+          try {
+            const chainEvent = await this.aiChain(event, this.snapshot());
+            if (chainEvent && chainEvent.name && !eco.activeEvents.some((e) => e.name === chainEvent.name)) {
+              chainEvent.parent_event = event.id || event.name;
+              chainEvent.chain_id = (event.chain_id || event.id || event.name) + '>' + (chainEvent.id || chainEvent.name);
+              eco.activeEvents.push(chainEvent);
+              eco.eventLog.push({ ...chainEvent, occurred_at: new Date().toISOString() });
+              if (this.onEvent) this.onEvent(chainEvent);
+            }
+          } catch {}
+        }
+      }
       // 5) 应用事件影响（价格/天气/遭遇）
       this.applyEvents(eco);
       // 6) AI 生成市场/天气综述（玩家查看的"情报"；AI 失败用规则摘要保底）
@@ -294,9 +312,12 @@ class WorldEconomy {
 
   /** 世界状态快照（供 /api/game/world 与前端展示） */
   snapshot() {
+    // regionNames：slug→中文（供 AI 连环事件把 AI 输出的中文区域名映射回 slug）
+    const regionNames = Object.fromEntries(Object.entries(this.content?.world_regions?.regions ?? {}).map(([slug, r]) => [slug, r.name]));
     return { weather: this.economy.weather, activeEvents: this.economy.activeEvents, eventLog: this.economy.eventLog.slice(-20),
       tick_count: this.economy.tick_count, updated_at: this.economy.updated_at, marketReport: this.economy.marketReport ?? null,
-      regionSupply: this.economy.regionSupply, tradeCount: this.economy.tradeCount ?? 0, tradeLog: (this.economy.tradeLog ?? []).slice(-10) };
+      regionSupply: this.economy.regionSupply, tradeCount: this.economy.tradeCount ?? 0, tradeLog: (this.economy.tradeLog ?? []).slice(-10),
+      regions: this.regions, regionNames };
   }
 }
 
