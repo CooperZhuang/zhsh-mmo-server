@@ -106,9 +106,10 @@ class SqliteRuntimeStorage {
       WHERE player_canonical_id=? ORDER BY map_node_canonical_id
     `).all(playerCanonicalId).map((row) => row.map_node_canonical_id);
     const gameplay = this.db.prepare(`SELECT state_json FROM player_gameplay_state WHERE player_canonical_id=?`).get(playerCanonicalId);
+    const gameplayJson = gameplay ? JSON.parse(gameplay.state_json) : {};
     return normalizeStateNumbers(upgradeGameplayState({
-      ...(gameplay ? JSON.parse(gameplay.state_json) : {}),
-      player,
+      ...gameplayJson,
+      player: { ...(gameplayJson.player ?? {}), ...player, canonical_id: player.canonical_id },
       unlocked_map_nodes: unlocked,
       tasks,
       progress,
@@ -201,10 +202,14 @@ function gameplayProjection(state) {
       level:state.player.level,max_health:state.player.max_health,current_health:state.player.current_health,
       base_attack:state.player.base_attack,base_max_attack:state.player.base_max_attack,
       base_defense:state.player.base_defense,base_agility:state.player.base_agility,morale:state.player.morale,
+      reputation:state.player.reputation,title:state.player.title,
+      pets:state.player.pets,crew:state.player.crew,skills:state.player.skills,skill_points:state.player.skill_points,
     },
     inventory_capacity:state.inventory_capacity,owned_ships:state.owned_ships,current_ship_canonical_id:state.current_ship_canonical_id,
     voyage:state.voyage,combat:state.combat,equipment:state.equipment,shop_transactions:state.shop_transactions,
     drop_settlements:state.drop_settlements,gameplay_events:state.gameplay_events,
+    equipment_instances:state.equipment_instances,
+    guild:state.guild,city_influence:state.city_influence,occupied_cities:state.occupied_cities,
   };
 }
 

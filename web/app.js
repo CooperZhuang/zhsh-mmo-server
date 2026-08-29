@@ -506,7 +506,7 @@ function renderTaskDetailPage() {
     <p>目标地点：${escapeHtml(locationDisplayName(task.target_location_canonical_id) || '未单独指定')}${renderFastTravelForLocation(task.target_location_canonical_id,view)}</p>
     <p>提交地点：${escapeHtml(locationDisplayName(task.submit_location_canonical_id))}${renderFastTravelForLocation(task.submit_location_canonical_id,view)}</p>
     <p>任务状态：${statusLabel(entry.runtime.status)}</p>
-    <p><button class="text-link" data-page="tasks">返回</button></p>
+    <p><button class="text-link" data-page="tasks">返回</button>　<button class="text-link" data-page="location">返回当前位置</button></p>
     ${renderPrimaryNav()}
   </section>`;
   bindPageActions();
@@ -627,7 +627,7 @@ function renderStatusPage() {
     <p><strong>${renderUiIcon('角色状态')}状态</strong></p>
     ${renderFeedback()}
     <p>当前位置：${escapeHtml(cityDisplayName(view.current_location?.city_canonical_id))} - ${escapeHtml(view.current_location?.display_name ?? '未知地点')}</p>
-    <p>铜贝：${view.player.money}</p>
+    <p>铜贝：${view.player.money}　声望：${view.player.reputation??0}（${escapeHtml(view.player.title||'水手')}）</p>
     <p>经验：${view.player.experience}</p>
     <p>等级：${view.player.level}</p>
     <p>体力：${view.player.current_health}/${stats.max_health}</p>
@@ -1068,9 +1068,11 @@ function resultMessage(result) {
   if (result.action === 'completed') {
     const task = catalog.getTask(result.task_canonical_id);
     const lines = task.dialogues.filter((line) => result.dialogue_canonical_ids?.includes(line.canonical_id)).map((line) => line.original_text);
-    const rewards = task.rewards.map((reward) => reward.reward_kind === 'item' && reward.resolution_status === 'source_label_only'
-      ? `${reward.reward_name}+${reward.quantity}（原始奖励记录，运行语义待核实）`
-      : `${reward.reward_name}+${reward.quantity}`);
+    // 基于服务器实际发放结果（effect_status）渲染：已入账的奖励直接显示，未入账才标注
+    const grants = result.rewards ?? task.rewards.map((r) => ({ reward_name: r.reward_name, reward_kind: r.reward_kind, quantity: r.quantity, effect_status: r.resolution_status === 'source_label_only' ? 'recorded_source_label_only' : 'applied' }));
+    const rewards = grants.map((g) => g.effect_status === 'recorded_source_label_only'
+      ? `${g.reward_name}+${g.quantity}（原始奖励记录，运行语义待核实）`
+      : `${g.reward_name}+${g.quantity}`);
     return [...lines,...rewards].join('\n');
   }
   if (result.action === 'accepted') {

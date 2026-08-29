@@ -445,7 +445,13 @@ class TaskRuntimeEngine {
     for (const reward of task.rewards) {
       if (state.reward_grants[reward.canonical_id]) continue;
       let effectStatus = 'applied';
-      if (reward.reward_kind === 'experience') state.player.experience += reward.quantity;
+      const reputationValue = reward.reward_name === '声望' || /\b声望\b/.test(reward.raw_value_json ?? '');
+      if (reputationValue) {
+        // 声望奖励：计入玩家声誉并晋升爵位
+        state.player.reputation = (state.player.reputation ?? 0) + Number(reward.quantity ?? 0);
+        state.player.title = applyReputationTitle(state.player.reputation);
+        effectStatus = 'applied';
+      } else if (reward.reward_kind === 'experience') state.player.experience += reward.quantity;
       else if (reward.reward_kind === 'money') state.player.money += reward.quantity;
       else if (reward.content_entity_canonical_id && reward.resolution_status === 'resolved') {
         grantInventoryItem(state,{itemCanonicalId:reward.content_entity_canonical_id,quantity:reward.quantity,grantId:`reward:${reward.canonical_id}`,
@@ -469,8 +475,6 @@ class TaskRuntimeEngine {
     runtime.reward_status = sourceLabelOnly ? 'granted_with_source_label_records' : 'granted';
     const progression = applyExperienceProgression(state);
     // 声望填实：完成任一任务 +5 声望，晋升爵位（水手/船长/提督/总督/公爵）
-    state.player.reputation=(state.player.reputation??0)+5;
-    state.player.title=applyReputationTitle(state.player.reputation);
     const levelUnlocked = this.refreshLevelAvailabilityState(state);
     state.flags[`task.completed.${task.canonical_id}`] = true;
     reconcileTaskItemReservations(state,this.activeTasks(state));
@@ -492,6 +496,11 @@ class TaskRuntimeEngine {
       unlocked_task_canonical_ids: unlocked,
       dialogue_canonical_ids: task.dialogues.filter((line) => line.phase === 'submit').map((line) => line.canonical_id),
       reward_status: runtime.reward_status,
+      rewards: task.rewards.map((r) => ({
+        reward_name: r.reward_name, reward_kind: r.reward_kind, quantity: r.quantity,
+        effect_status: state.reward_grants[r.canonical_id]?.effect_status ?? 'applied',
+      })),
+      reputation: state.player.reputation,
       progression,
       level_unlocked_task_canonical_ids:levelUnlocked,
     };
