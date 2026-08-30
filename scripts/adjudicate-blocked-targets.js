@@ -566,7 +566,7 @@ function runAdjudicate({ dbPath = DB_PATH, dryRun = false } = {}) {
       if (itemEntity[name]) resolveTargetReference(db, refCid, itemEntity[name].entityId, 'item', stats);
     }
     resolveOrphanRefs(db, stats);
-    // 掉落实体以库内 drop_relations 为权威（select-runnable-tasks 的 evaluateAllTasks
+    // 掉落实体以库内 drop_relations 为准（select-runnable-tasks 的 evaluateAllTasks
     // 从库推 formal source；选择文件只是导出快照）。市场采购条目仍由选择文件 market 类
     // resolution 提供（导出层 runtime.market_entry.*，无库内双写）。
     for (const [itemName, hosts] of Object.entries(DROP_HOSTS)) for (const host of hosts) ensureDrop(db, host, itemName, stats);
