@@ -10,9 +10,9 @@ const importInput = document.querySelector('#save-import');
 const debugEnabled = new URLSearchParams(location.search).get('dev') === '1';
 const adminEnabled = new URLSearchParams(location.search).get('admin') !== '0';
 let content,visuals,gameApi,catalog,gameplayCatalog;
-// 角色指针在服务器权威下由账号 JWT 决定，本地不再维护 active 指针
+// 角色指针在服务端同步下由账号 JWT 决定，本地不再维护 active 指针
 let remoteRegistry = { setActive: async () => {}, getActive: async () => null };
-let serverView = null; // 服务器权威 state（getPlayerView 等价 view）
+let serverView = null; // 服务端 state（getPlayerView 等价 view）
 let serverAdjacent = []; // 当前位置可移动节点（服务器 list_adjacent 结果）
 let serverNpcs = []; // 当前位置 NPC（服务器 list_current_npcs 结果）
 let serverWorld = null; // 服务器世界静态数据（12区/发现物/商品/宠物/主线/角色/支线）
@@ -22,7 +22,7 @@ const feedback = { _snapshot:{error:null,message:null}, succeed(msg){ this._snap
 let gameEntered = false;
 let page = { name:'start' };
 
-// ==== 服务器权威数据层：renderer/绑定保持原调用签名，底层转发到 gameApi ====
+// ==== 服务端数据层：renderer/绑定保持原调用签名，底层转发到 gameApi ====
 // renderer 同步读取 serverView（由 render() 预取）；动作经 runtimeProxy/engineProxy 转发服务器。
 
 function bindRuntimeTargets() {
@@ -80,7 +80,7 @@ function bindGameplayProxies() {
     flush: async () => {},
     ready: async () => {},
     exportPlayer: async () => { await ensurePlayerView(); return serverView; },
-    importPlayer: async () => { feedback.succeed('存档由服务器权威管理，导入已跳过。'); },
+    importPlayer: async () => { feedback.succeed('存档由服务端托管，导入已跳过。'); },
   };
 }
 function createBrowserLogger(){
@@ -130,13 +130,13 @@ async function bootstrap() {
   gameApi = createGameApi();
   // 引擎/存储/运行时在 bootstrap 中绑定为服务器转发代理
   bindGameplayProxies();
-  // 内容/视觉由客户端静态拉取（用于渲染视觉资产）；状态/引擎由服务器权威
+  // 内容/视觉由客户端静态拉取（用于渲染视觉资产）；状态/引擎由服务端同步
   content = await fetch('./generated/task1-content.json',{ cache:'no-store' }).then((response) => {
     if (!response.ok) throw new Error(`内容包读取失败：${response.status}`);
     return response.json();
   });
   visuals = await fetch('./generated/authoritative-assets.json',{ cache:'no-store' }).then((response) => {
-    if (!response.ok) throw new Error(`权威美术索引读取失败：${response.status}`);
+    if (!response.ok) throw new Error(`美术索引读取失败：${response.status}`);
     return response.json();
   });
   browserLog.info('bootstrap','content loaded',{series:content.series.length,locations:content.locations.length});
@@ -160,7 +160,7 @@ async function bootstrap() {
   if (debugEnabled) exposeDebugSurface();
 }
 
-/** 从服务器拉取权威玩家视图并缓存到 serverView */
+/** 从服务器拉取最新玩家视图并缓存到 serverView */
 async function ensurePlayerView() {
   serverView = await gameApi.getState();
   // 并行拉取当前位置的相邻节点与 NPC（供 renderer 同步读取）
@@ -171,7 +171,7 @@ async function ensurePlayerView() {
 
 async function render() {
   if (!gameEntered || page.name === 'start') { renderStart();return; }
-  // 每次渲染都从服务器拉取权威视图，保证状态一致
+  // 每次渲染都从服务器拉取最新视图，保证状态一致
   try { await ensurePlayerView(); } catch (error) { showFatal(error); return; }
   const renderers = {
     location:renderLocationPage,map:renderMapPage,world:renderWorldPage,npc:renderNpcPage,tasks:renderTaskListPage,task:renderTaskDetailPage,
@@ -472,20 +472,23 @@ function renderQuestlinePage() {
   document.body.dataset.page='questline';
   const view=serverView;
   const chapters=serverWorld?.questline?.chapters??[];
-  const completed=(view.flags??{});
+  const seriesProgress=new Map((view.task_series??[]).map((s)=>[s.canonical_id,s]));
+  const chapterNo=(c)=>{ const m=String(c.chapter??'').match(/\d+/); return m?m[0]:c.chapter; };
+  const renderChain=(row)=>{ if(!row.length) return ''; return `<p class="line-item">${row.map((it)=>`<span>${escapeHtml(it)}</span>`).join(' · ')}</p>`; };
+  const keyItems=(c)=>((c.key_items??[]).length?`<p class="key-item">关键剧情物：${c.key_items.map((k)=>`<span>${escapeHtml(k)}`).join("、")}</p>`:'');
+  const renderExpansions=(c)=>{ const ex=c.expansions; if(!ex) return ''; const disc=(ex.discoveries??[]); const parts=[]; if(disc.length) parts.push(`<span>可探索发现物 ${disc.length} 处</span>`); if(ex.world_events) parts.push(`<span>${ex.world_events}</span>`); return (parts.length?`<p class="line-item expansion">扩充：${parts.join(' · ')}</p>`:''); };
   app.innerHTML=`<section class="wap-page">
-    <p><strong>主线 · 四海称雄</strong>（声望 ${view.player.reputation??0}　爵位：${escapeHtml(view.player.title||'水手')}）</p>
+    <p><strong>主线 · 原版任务线</strong>（声望 ${view.player.reputation??0}　爵位：${escapeHtml(view.player.title||'水手')}）</p>
     ${renderFeedback()}
+    <p class="sub">依原版任务顺序展开，从威尼斯新手到寻裔之路终局。点击章节可进入对应任务日志。</p>
     <div class="line-list">${chapters.map((c)=>{
-      const chainDone=c.chain.map((t)=>`${t.type==='对话'?'会话':t.type==='打怪'?'讨伐':t.type==='收集'?'收集':'运送'} ${t.name}×${t.quantity}`).join('、');
-      return `<p><strong>第${c.chapter.replace('ch','')}章 ${escapeHtml(c.name)}</strong>（${escapeHtml(c.region)}）<br>目标：${escapeHtml(c.main_goal)}<br>${escapeHtml(chainDone)}<br>BOSS：${escapeHtml(c.boss)}　奖励声望+${c.reward?.reputation??0}</p>`;
+      return `<p class="questline-chapter"><strong>第${chapterNo(c)}章 ${escapeHtml(c.name)}</strong>（${escapeHtml(c.region)}　等级 ${escapeHtml(c.level_range??'--')}）<br>目标：${escapeHtml(c.main_goal)}<br>${questCount(c)}${keyItems(c)}${renderExpansions(c)}${renderChain((c.city_flow??'').split('→').filter(Boolean))}<button class="text-link" data-page="tasks" data-series-select="${attr(c.series)}">进入任务日志</button></p>`;
     }).join('')}</div>
     <p><button class="text-link" data-page="location">返回</button></p>
     ${renderPrimaryNav()}
   </section>`;
   bindPageActions();
 }
-
 function renderNpcPage() {
   document.body.dataset.page = 'npc';
   const view = serverView;
@@ -863,7 +866,13 @@ function bindPageActions() {
     ()=>recovery.recover(PLAYER_ID,button.dataset.recovery,eventId('recovery')),'体力已经恢复。','location')));
   document.querySelectorAll('[data-fast-travel]').forEach((button)=>button.addEventListener('click',()=>perform(
     ()=>engine.fastTravelToLocation(PLAYER_ID,button.dataset.fastTravel,eventId('fast-travel')),'已抵达目的地。','location')));
-  document.querySelector('[data-action="refresh"]')?.addEventListener('click',() => { feedback.succeed('页面已刷新。');renderLocationPage(); });
+  document.querySelectorAll('[data-series-select]').forEach((button) => button.addEventListener('click',() => ensureSeriesSelected(button.dataset.seriesSelect)));
+}
+
+function ensureSeriesSelected(seriesId) {
+  if (!seriesId) return;
+  const eventId = `series-${seriesId}-${Date.now()}`;
+  perform(() => engine.selectSeries(PLAYER_ID, seriesId, eventId), '已切换任务系列。', 'tasks', { seriesId });
 }
 
 function bindFormalPageActions() {

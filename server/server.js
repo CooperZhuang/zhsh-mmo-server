@@ -1,6 +1,6 @@
 'use strict';
 /**
- * 纵横四海 · 网游服务器（权威）
+ * 纵横四海 · 网游服务器（引擎裁决）
  *
  * 客户端只发送指令，服务器引擎裁决一切并持久化到 sqlite。
  * 端点：
@@ -417,7 +417,7 @@ const server = http.createServer(async (req, res) => {
         return sendJson(res, 200, { applied: true });
       }
       if (pathname === '/api/admin/reset_player' && req.method === 'POST') {
-        // 重置当前玩家角色进度（服务器权威：createPlayer reset 重建 state）
+        // 重置当前玩家角色进度（服务端同步：createPlayer reset 重建 state）
         const created = engine.createPlayer(pid, { reset: true });
         return sendJson(res, 200, { applied: true, player: created.player?.canonical_id || pid });
       }
@@ -742,7 +742,7 @@ function handleWsMessage(conn, msg) {
 }
 
 server.listen(PORT, HOST, () => {
-  console.log(`[ZHSH] 权威服务器运行于 http://${HOST}:${PORT}`);
+  console.log(`[ZHSH] 服务器运行于 http://${HOST}:${PORT}`);
   startEconomy();
   startAiSimulator();
 });

@@ -4,7 +4,7 @@
  *
  * 零依赖：基于 node:http upgrade + 手写 WebSocket 协议（握手 + 文本帧）。
  * 支持 JSON 消息：{type:'auth',token}/{type:'move',...}/{type:'chat',...}/{type:'ping'}。
- * 与 HTTP API 共用同一个权威引擎与内存 registry。
+ * 与 HTTP API 共用同一个裁决引擎与内存 registry。
  */
 const crypto = require('node:crypto');
 const { URL } = require('node:url');

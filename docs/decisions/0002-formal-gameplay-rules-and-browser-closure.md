@@ -25,7 +25,7 @@
 | 商店出售 | 只能在对应正式商店出售该商店经营的物品，回收价为售价的 20%，最低 1 铜 | 源码明确 | `zhsh/src/npc.js` |
 | 船只与航行 | 购买、持有、选择当前船只；航程按已配置船速推进并可持久化恢复 | 源码明确 + 技术修复 | `zhsh/config/ship.json`、`zhsh/config/lngLat.json`、`zhsh/src/npc.js`、`zhsh/src/sailing.js` |
 
-除怪物经验外，上述规则均有直接参考证据。怪物经验采用隔离兼容规则是因为现存 `level × 2` 源码与升级曲线和可复核体验直接冲突，并非把兼容值宣称为原版事实；发现权威奖励表或可验证原始公式后必须整体替换。仍未确认的航海随机事件和市场动态价格没有进入正式闭包；跨城闭包只采用已有城市坐标、正式港口、船只和确定性航程。
+除怪物经验外，上述规则均有直接参考证据。怪物经验采用隔离兼容规则是因为现存 `level × 2` 源码与升级曲线和可复核体验直接冲突，并非把兼容值宣称为原版事实；发现可信奖励表或可验证原始公式后必须整体替换。仍未确认的航海随机事件和市场动态价格没有进入正式闭包；跨城闭包只采用已有城市坐标、正式港口、船只和确定性航程。
 
 ## 浏览器任务闭包
 
@@ -56,7 +56,7 @@
 ## 2026-07-18 裁决补充
 
 - 怪物经验规则的证据分区固定为：`source_confidence=CONFLICT`、`runtime_adjudication_status=COMPATIBILITY_PLAYABLE_RETAINED`、`has_active_conflict=true`。
-- `round(level × 40 × encounter multiplier)` 不是原作公式，只允许维持已经接受的可玩基线；更高等级任务扩展等待权威奖励表或新的明确复原裁决。
+- `round(level × 40 × encounter multiplier)` 不是原作公式，只允许维持已经接受的可玩基线；更高等级任务扩展等待可信奖励表或新的明确复原裁决。
 - 装备取得模块从 71 条起点自然新增 `task.series.02.012`，形成 72 条、13 个系列；该任务只要求 6 级，没有扩大经验兼容规则的等级边界。
 - `task.series.05.036`、`task.series.10.057`、`task.series.11.065` 的八槽装备来源均已闭包，但正式战斗仍失败，继续作为真实阻塞，不通过修改怪物、装备、任务等级或掉落概率强行解锁。
 - 完整证据和替换边界见 [`docs/development/equipment-combat-stage-validation-report.md`](../development/equipment-combat-stage-validation-report.md)。
