@@ -111,7 +111,7 @@
   "capability_status": "global_runtime_content",
   "runnable_task_selection": {
     "selector_version": "global-runtime-directory/1.0.0",
-    "selection_hash": "01f80ccf9be8cc9be13c727c7a2f236a29efeaa35cde567e16abbb9693bf1e64",
+    "selection_hash": "6a852a34f9a0b7150f3e877bdff00fe0f71f6e0b011542a5d2fb06f32800d6e9",
     "selected_task_count": 651,
     "selected_series_count": 15,
     "formal_stage_start_selected_task_count": 78,
@@ -249774,6 +249774,17 @@
       "monster_display_name": "白骨骷髅"
     },
     {
+      "canonical_id": "entity.drop.1c16735be4451108",
+      "source_canonical_id": "entity.drop.1c16735be4451108",
+      "source_kind": "drop",
+      "probability": null,
+      "quantity": null,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.34153aca13917498",
+      "monster_canonical_id": "derived.monster_definition.49a908a39491570f",
+      "monster_display_name": "火山岩虫"
+    },
+    {
       "canonical_id": "entity.drop.1d576c016ccb3133",
       "source_canonical_id": "derived.monster_definition.92644584fc23590f",
       "source_kind": "drop",
@@ -249818,6 +249829,17 @@
       "monster_display_name": "偷矿者"
     },
     {
+      "canonical_id": "entity.drop.228b53bd00b85015",
+      "source_canonical_id": "entity.drop.228b53bd00b85015",
+      "source_kind": "drop",
+      "probability": null,
+      "quantity": null,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.6e1ec2b8b4a1f49a",
+      "monster_canonical_id": "derived.monster_definition.39f9a83a573c7d74",
+      "monster_display_name": "龙虾"
+    },
+    {
       "canonical_id": "entity.drop.23dd1c0deebbe2b6",
       "source_canonical_id": "derived.monster_definition.dc328802c98f07b2",
       "source_kind": "drop",
@@ -249840,6 +249862,28 @@
       "monster_display_name": "干佛草"
     },
     {
+      "canonical_id": "entity.drop.28f929132c91085e",
+      "source_canonical_id": "entity.drop.28f929132c91085e",
+      "source_kind": "drop",
+      "probability": null,
+      "quantity": null,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.3b3f53cf5c43cf4f",
+      "monster_canonical_id": "derived.monster_definition.4eed72695717b2cf",
+      "monster_display_name": "走私者"
+    },
+    {
+      "canonical_id": "entity.drop.2c7d76ca1fd7bbf3",
+      "source_canonical_id": "entity.drop.2c7d76ca1fd7bbf3",
+      "source_kind": "drop",
+      "probability": null,
+      "quantity": null,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.64da644d11c3f769",
+      "monster_canonical_id": "derived.monster_definition.c7e7ed9c074c112f",
+      "monster_display_name": "清水之精"
+    },
+    {
       "canonical_id": "entity.drop.2ecb49dffe1e022b",
       "source_canonical_id": "entity.drop.2ecb49dffe1e022b",
       "source_kind": "drop",
@@ -249849,6 +249893,50 @@
       "content_entity_canonical_id": "entity.equipment.0e601dc4bfaf5bc3",
       "monster_canonical_id": "derived.monster_definition.f2935078d55cf90d",
       "monster_display_name": "棕熊"
+    },
+    {
+      "canonical_id": "entity.drop.2ed97fd9b6c5de6f",
+      "source_canonical_id": "entity.drop.2ed97fd9b6c5de6f",
+      "source_kind": "drop",
+      "probability": null,
+      "quantity": null,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.a0fedb28c6ae448f",
+      "monster_canonical_id": "derived.monster_definition.ac9ba8bdfecc01c2",
+      "monster_display_name": "火山岩虫头领"
+    },
+    {
+      "canonical_id": "entity.drop.2fbace1b671f2ef7",
+      "source_canonical_id": "entity.drop.2fbace1b671f2ef7",
+      "source_kind": "drop",
+      "probability": null,
+      "quantity": null,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.task_chain.item.cd2182704d029476",
+      "monster_canonical_id": "derived.monster_definition.e7939a80d14edfcf",
+      "monster_display_name": "白骨骷髅"
+    },
+    {
+      "canonical_id": "entity.drop.2fe275895bc6fc41",
+      "source_canonical_id": "entity.drop.2fe275895bc6fc41",
+      "source_kind": "drop",
+      "probability": null,
+      "quantity": null,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.88e15e58f8f276af",
+      "monster_canonical_id": "derived.monster_definition.dc328802c98f07b2",
+      "monster_display_name": "野狼王"
+    },
+    {
+      "canonical_id": "entity.drop.31c5f2506dc78de2",
+      "source_canonical_id": "entity.drop.31c5f2506dc78de2",
+      "source_kind": "drop",
+      "probability": null,
+      "quantity": null,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.d5608bd1d822988d",
+      "monster_canonical_id": "derived.monster_definition.e17792f4234017f0",
+      "monster_display_name": "双头蛇"
     },
     {
       "canonical_id": "entity.drop.37c6120ecaa57d7a",
@@ -249873,6 +249961,17 @@
       "monster_display_name": "养人毒蝎"
     },
     {
+      "canonical_id": "entity.drop.3aac6366ae12cd10",
+      "source_canonical_id": "entity.drop.3aac6366ae12cd10",
+      "source_kind": "drop",
+      "probability": null,
+      "quantity": null,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.task_chain.item.ff1cc9899dfa1f5f",
+      "monster_canonical_id": "derived.monster_definition.b8e76bfec2006ba1",
+      "monster_display_name": "妖龙"
+    },
+    {
       "canonical_id": "entity.drop.3ed92f43d5537a18",
       "source_canonical_id": "entity.drop.3ed92f43d5537a18",
       "source_kind": "drop",
@@ -249893,6 +249992,17 @@
       "content_entity_canonical_id": "runtime.item.637bd2c0d786d5e9",
       "monster_canonical_id": "derived.monster_definition.5fc0ca1538bb8085",
       "monster_display_name": "强悍劫匪"
+    },
+    {
+      "canonical_id": "entity.drop.43c290ce127d5792",
+      "source_canonical_id": "entity.drop.43c290ce127d5792",
+      "source_kind": "drop",
+      "probability": null,
+      "quantity": null,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.349eb023b28e6370",
+      "monster_canonical_id": "derived.monster_definition.8351cdbe28814f0d",
+      "monster_display_name": "鳄鱼"
     },
     {
       "canonical_id": "entity.drop.43d65a40b0122e83",
@@ -250027,6 +250137,28 @@
       "monster_display_name": "清水之精"
     },
     {
+      "canonical_id": "entity.drop.57ab031819255d2e",
+      "source_canonical_id": "entity.drop.57ab031819255d2e",
+      "source_kind": "drop",
+      "probability": null,
+      "quantity": null,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.5d6c46dc0490cfe0",
+      "monster_canonical_id": "derived.monster_definition.e799e5c05fc23e1e",
+      "monster_display_name": "乌龟"
+    },
+    {
+      "canonical_id": "entity.drop.58e1a647a31e49b1",
+      "source_canonical_id": "entity.drop.58e1a647a31e49b1",
+      "source_kind": "drop",
+      "probability": null,
+      "quantity": null,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.4f18710005203f85",
+      "monster_canonical_id": "derived.monster_definition.e039d0adae03a885",
+      "monster_display_name": "白虎"
+    },
+    {
       "canonical_id": "entity.drop.5aac802950bdf406",
       "source_canonical_id": "derived.monster_definition.39f9a83a573c7d74",
       "source_kind": "drop",
@@ -250043,7 +250175,7 @@
       "source_kind": "drop",
       "probability": null,
       "quantity": null,
-      "runtime_capability": "blocked",
+      "runtime_capability": "queryable",
       "content_entity_canonical_id": "runtime.item.879939da40170b1b",
       "monster_canonical_id": "derived.monster_definition.64009a62dc424b2d",
       "monster_display_name": "熟透的葡萄"
@@ -250060,12 +250192,34 @@
       "monster_display_name": "发疯的野猪"
     },
     {
+      "canonical_id": "entity.drop.6391a16a72109af5",
+      "source_canonical_id": "entity.drop.6391a16a72109af5",
+      "source_kind": "drop",
+      "probability": null,
+      "quantity": null,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.fde0e6fbfe4b8da9",
+      "monster_canonical_id": "derived.monster_definition.b6c33ddc0a318a25",
+      "monster_display_name": "僵尸"
+    },
+    {
+      "canonical_id": "entity.drop.63e5f54ada83b205",
+      "source_canonical_id": "entity.drop.63e5f54ada83b205",
+      "source_kind": "drop",
+      "probability": null,
+      "quantity": null,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.4d6e50c4e4f5a591",
+      "monster_canonical_id": "derived.monster_definition.2caa7ecbcf7d8fce",
+      "monster_display_name": "玳瑁"
+    },
+    {
       "canonical_id": "entity.drop.652bbdc2915dc17f",
       "source_canonical_id": "entity.drop.652bbdc2915dc17f",
       "source_kind": "drop",
       "probability": null,
       "quantity": null,
-      "runtime_capability": "blocked",
+      "runtime_capability": "queryable",
       "content_entity_canonical_id": "runtime.item.f16e99136fd8942f",
       "monster_canonical_id": "derived.monster_definition.afaded244fe9efc7",
       "monster_display_name": "黑铁矿"
@@ -250115,6 +250269,17 @@
       "monster_display_name": "拉帕斯"
     },
     {
+      "canonical_id": "entity.drop.6e6e0bbc33e0c64d",
+      "source_canonical_id": "entity.drop.6e6e0bbc33e0c64d",
+      "source_kind": "drop",
+      "probability": null,
+      "quantity": null,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.adfe2add7ce81ec0",
+      "monster_canonical_id": "derived.monster_definition.5101d1549563c036",
+      "monster_display_name": "野猪"
+    },
+    {
       "canonical_id": "entity.drop.70698a0a5461886c",
       "source_canonical_id": "derived.monster_definition.1e234cbd770ce19f",
       "source_kind": "drop",
@@ -250153,10 +250318,21 @@
       "source_kind": "drop",
       "probability": null,
       "quantity": null,
-      "runtime_capability": "blocked",
+      "runtime_capability": "queryable",
       "content_entity_canonical_id": "runtime.item.57a8625cbce8bf0f",
       "monster_canonical_id": "derived.monster_definition.91e67387eeb8d589",
       "monster_display_name": "奶牛"
+    },
+    {
+      "canonical_id": "entity.drop.761dd4e3f8e913b6",
+      "source_canonical_id": "entity.drop.761dd4e3f8e913b6",
+      "source_kind": "drop",
+      "probability": null,
+      "quantity": null,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.783cdb522262f002",
+      "monster_canonical_id": "derived.monster_definition.87b78622ebb2d6fb",
+      "monster_display_name": "鲨鱼"
     },
     {
       "canonical_id": "entity.drop.773e59e7c3387bb0",
@@ -250280,6 +250456,17 @@
       "monster_display_name": "金丝猴"
     },
     {
+      "canonical_id": "entity.drop.8cb52613a2a51290",
+      "source_canonical_id": "entity.drop.8cb52613a2a51290",
+      "source_kind": "drop",
+      "probability": null,
+      "quantity": null,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.6b78ddc7df6aa3ed",
+      "monster_canonical_id": "derived.monster_definition.22c04b2273400b89",
+      "monster_display_name": "巨红蜈蚣"
+    },
+    {
       "canonical_id": "entity.drop.8e04f38159c5e64a",
       "source_canonical_id": "derived.monster_definition.b6deb5a1556ed060",
       "source_kind": "drop",
@@ -250302,6 +250489,39 @@
       "monster_display_name": "白云之精"
     },
     {
+      "canonical_id": "entity.drop.90100d486a4610dd",
+      "source_canonical_id": "entity.drop.90100d486a4610dd",
+      "source_kind": "drop",
+      "probability": null,
+      "quantity": null,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.bf8e99401d2d0f49",
+      "monster_canonical_id": "derived.monster_definition.dc00352e947e0793",
+      "monster_display_name": "雪精灵"
+    },
+    {
+      "canonical_id": "entity.drop.952a6dabfac4f623",
+      "source_canonical_id": "entity.drop.952a6dabfac4f623",
+      "source_kind": "drop",
+      "probability": null,
+      "quantity": null,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.336fa533d246e009",
+      "monster_canonical_id": "derived.monster_definition.e437c616ce4aef80",
+      "monster_display_name": "白云之精"
+    },
+    {
+      "canonical_id": "entity.drop.96cd3dd0cd9c483a",
+      "source_canonical_id": "entity.drop.96cd3dd0cd9c483a",
+      "source_kind": "drop",
+      "probability": null,
+      "quantity": null,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.9d567ada42ae6c19",
+      "monster_canonical_id": "derived.monster_definition.74ca2d9691d8f8f5",
+      "monster_display_name": "血僵尸"
+    },
+    {
       "canonical_id": "entity.drop.96f207e14af98d0b",
       "source_canonical_id": "derived.monster_definition.c5d9bd950593f414",
       "source_kind": "drop",
@@ -250318,7 +250538,7 @@
       "source_kind": "drop",
       "probability": null,
       "quantity": null,
-      "runtime_capability": "blocked",
+      "runtime_capability": "queryable",
       "content_entity_canonical_id": "runtime.item.3ee24deb8eab96fb",
       "monster_canonical_id": "derived.monster_definition.e5dfd5ffe0efa6c4",
       "monster_display_name": "蛇牙草"
@@ -250344,6 +250564,17 @@
       "content_entity_canonical_id": "runtime.task_chain.item.0564672479c8f2d0",
       "monster_canonical_id": "derived.monster_definition.ea809ac6a2d77833",
       "monster_display_name": "黑蚌"
+    },
+    {
+      "canonical_id": "entity.drop.9a65ac659f006c6c",
+      "source_canonical_id": "entity.drop.9a65ac659f006c6c",
+      "source_kind": "drop",
+      "probability": null,
+      "quantity": null,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.afae2dffe7986a5d",
+      "monster_canonical_id": "derived.monster_definition.c5d9bd950593f414",
+      "monster_display_name": "巨红蜈蚣王"
     },
     {
       "canonical_id": "entity.drop.9a6d419341a291b2",
@@ -250401,6 +250632,17 @@
       "monster_display_name": "白云之精"
     },
     {
+      "canonical_id": "entity.drop.a862a1029469c696",
+      "source_canonical_id": "entity.drop.a862a1029469c696",
+      "source_kind": "drop",
+      "probability": null,
+      "quantity": null,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.task_chain.item.d753d54fa91fa2ae",
+      "monster_canonical_id": "derived.monster_definition.1e234cbd770ce19f",
+      "monster_display_name": "沼泽鼠"
+    },
+    {
       "canonical_id": "entity.drop.aa7683bd0dd15ec7",
       "source_canonical_id": "derived.monster_definition.2caa7ecbcf7d8fce",
       "source_kind": "drop",
@@ -250410,6 +250652,17 @@
       "content_entity_canonical_id": "runtime.item.4d6e50c4e4f5a591",
       "monster_canonical_id": "derived.monster_definition.2caa7ecbcf7d8fce",
       "monster_display_name": "玳瑁"
+    },
+    {
+      "canonical_id": "entity.drop.aa8efdf5b300487a",
+      "source_canonical_id": "entity.drop.aa8efdf5b300487a",
+      "source_kind": "drop",
+      "probability": null,
+      "quantity": null,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.43c36c115a3fd8ba",
+      "monster_canonical_id": "derived.monster_definition.0e3b863d357f5045",
+      "monster_display_name": "凤凰"
     },
     {
       "canonical_id": "entity.drop.ac3bba7270c81a83",
@@ -250428,7 +250681,7 @@
       "source_kind": "drop",
       "probability": null,
       "quantity": null,
-      "runtime_capability": "blocked",
+      "runtime_capability": "queryable",
       "content_entity_canonical_id": "runtime.item.2b73463f2fabf312",
       "monster_canonical_id": "derived.monster_definition.1040c2646e5bc90c",
       "monster_display_name": "棕树木"
@@ -250443,6 +250696,39 @@
       "content_entity_canonical_id": "entity.equipment.bbf86e68572b0ff9",
       "monster_canonical_id": "derived.monster_definition.95416c0e6fdf008f",
       "monster_display_name": "索隆亚监狱长"
+    },
+    {
+      "canonical_id": "entity.drop.b2d1222ee11cb10f",
+      "source_canonical_id": "entity.drop.b2d1222ee11cb10f",
+      "source_kind": "drop",
+      "probability": null,
+      "quantity": null,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.task_chain.item.0564672479c8f2d0",
+      "monster_canonical_id": "derived.monster_definition.ea809ac6a2d77833",
+      "monster_display_name": "黑蚌"
+    },
+    {
+      "canonical_id": "entity.drop.b4ec7d04e91e0bf1",
+      "source_canonical_id": "entity.drop.b4ec7d04e91e0bf1",
+      "source_kind": "drop",
+      "probability": null,
+      "quantity": null,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.4ea62b01710f7caa",
+      "monster_canonical_id": "derived.monster_definition.92644584fc23590f",
+      "monster_display_name": "火岩结晶"
+    },
+    {
+      "canonical_id": "entity.drop.b50804bf7c8b484a",
+      "source_canonical_id": "entity.drop.b50804bf7c8b484a",
+      "source_kind": "drop",
+      "probability": null,
+      "quantity": null,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.587731d8287b195f",
+      "monster_canonical_id": "derived.monster_definition.30eef01267318ec2",
+      "monster_display_name": "红牛头怪"
     },
     {
       "canonical_id": "entity.drop.b57a1fd4bd174ee2",
@@ -250498,6 +250784,17 @@
       "content_entity_canonical_id": "runtime.item.5e1ff2777a238dde",
       "monster_canonical_id": "derived.monster_definition.49508755ce923738",
       "monster_display_name": "地火结晶"
+    },
+    {
+      "canonical_id": "entity.drop.c289434e3425b4d6",
+      "source_canonical_id": "entity.drop.c289434e3425b4d6",
+      "source_kind": "drop",
+      "probability": null,
+      "quantity": null,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.637bd2c0d786d5e9",
+      "monster_canonical_id": "derived.monster_definition.5fc0ca1538bb8085",
+      "monster_display_name": "强悍劫匪"
     },
     {
       "canonical_id": "entity.drop.c2b7401299792303",
@@ -250566,6 +250863,17 @@
       "monster_display_name": "红牛头怪"
     },
     {
+      "canonical_id": "entity.drop.cf4df4631c233bd5",
+      "source_canonical_id": "entity.drop.cf4df4631c233bd5",
+      "source_kind": "drop",
+      "probability": null,
+      "quantity": null,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.21594155151b00e7",
+      "monster_canonical_id": "derived.monster_definition.a5262ecfbcef2a18",
+      "monster_display_name": "枯木树妖"
+    },
+    {
       "canonical_id": "entity.drop.d31c97fd4fed08b0",
       "source_canonical_id": "entity.drop.d31c97fd4fed08b0",
       "source_kind": "drop",
@@ -250593,7 +250901,7 @@
       "source_kind": "drop",
       "probability": null,
       "quantity": null,
-      "runtime_capability": "blocked",
+      "runtime_capability": "queryable",
       "content_entity_canonical_id": "runtime.item.d8f4daffae9b9b72",
       "monster_canonical_id": "derived.monster_definition.0a567fa97330cfa6",
       "monster_display_name": "地蜘蛛"
@@ -250610,6 +250918,17 @@
       "monster_display_name": "奶牛"
     },
     {
+      "canonical_id": "entity.drop.d8a1e8cb819d904c",
+      "source_canonical_id": "entity.drop.d8a1e8cb819d904c",
+      "source_kind": "drop",
+      "probability": null,
+      "quantity": null,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.031e0ed6fb653d58",
+      "monster_canonical_id": "derived.monster_definition.e437c616ce4aef80",
+      "monster_display_name": "白云之精"
+    },
+    {
       "canonical_id": "entity.drop.d95610bb0dc56823",
       "source_canonical_id": "derived.monster_definition.4eaa3d4fdf6055e5",
       "source_kind": "drop",
@@ -250621,6 +250940,28 @@
       "monster_display_name": "沼泽玄龟"
     },
     {
+      "canonical_id": "entity.drop.d9c1cc53c90f8012",
+      "source_canonical_id": "entity.drop.d9c1cc53c90f8012",
+      "source_kind": "drop",
+      "probability": null,
+      "quantity": null,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.57e744db1884c498",
+      "monster_canonical_id": "derived.monster_definition.9cdb92b5619a712d",
+      "monster_display_name": "巨熊"
+    },
+    {
+      "canonical_id": "entity.drop.dad333b5df1795f9",
+      "source_canonical_id": "entity.drop.dad333b5df1795f9",
+      "source_kind": "drop",
+      "probability": null,
+      "quantity": null,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.4d5b4502853fa908",
+      "monster_canonical_id": "derived.monster_definition.1f417de35451e3fb",
+      "monster_display_name": "茶虫"
+    },
+    {
       "canonical_id": "entity.drop.de3328c99140a449",
       "source_canonical_id": "derived.monster_definition.ac9ba8bdfecc01c2",
       "source_kind": "drop",
@@ -250630,6 +250971,17 @@
       "content_entity_canonical_id": "runtime.item.a0fedb28c6ae448f",
       "monster_canonical_id": "derived.monster_definition.ac9ba8bdfecc01c2",
       "monster_display_name": "火山岩虫头领"
+    },
+    {
+      "canonical_id": "entity.drop.e05ea8bd133110b5",
+      "source_canonical_id": "entity.drop.e05ea8bd133110b5",
+      "source_kind": "drop",
+      "probability": null,
+      "quantity": null,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.5e1ff2777a238dde",
+      "monster_canonical_id": "derived.monster_definition.49508755ce923738",
+      "monster_display_name": "地火结晶"
     },
     {
       "canonical_id": "entity.drop.e0748acdcd2d0602",
@@ -250654,6 +251006,17 @@
       "monster_display_name": "棕树木"
     },
     {
+      "canonical_id": "entity.drop.e2bf1e0813c5255f",
+      "source_canonical_id": "entity.drop.e2bf1e0813c5255f",
+      "source_kind": "drop",
+      "probability": null,
+      "quantity": null,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.186026db0c45bd9f",
+      "monster_canonical_id": "derived.monster_definition.fa436ccecd6e58a6",
+      "monster_display_name": "火蝙蝠"
+    },
+    {
       "canonical_id": "entity.drop.e4a0f89cc3f49178",
       "source_canonical_id": "entity.drop.e4a0f89cc3f49178",
       "source_kind": "drop",
@@ -250674,6 +251037,28 @@
       "content_entity_canonical_id": "entity.equipment.d70f4bb3dc3e234b",
       "monster_canonical_id": "derived.monster_definition.a6d3ea75679a47e3",
       "monster_display_name": "偷猎者"
+    },
+    {
+      "canonical_id": "entity.drop.e707812547903875",
+      "source_canonical_id": "entity.drop.e707812547903875",
+      "source_kind": "drop",
+      "probability": null,
+      "quantity": null,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.3a32e667b159386e",
+      "monster_canonical_id": "derived.monster_definition.4eaa3d4fdf6055e5",
+      "monster_display_name": "沼泽玄龟"
+    },
+    {
+      "canonical_id": "entity.drop.e75651ca194a4ff4",
+      "source_canonical_id": "entity.drop.e75651ca194a4ff4",
+      "source_kind": "drop",
+      "probability": null,
+      "quantity": null,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.ead34659a24d689e",
+      "monster_canonical_id": "derived.monster_definition.ebc9853e7197601c",
+      "monster_display_name": "山猪"
     },
     {
       "canonical_id": "entity.drop.e896d27520b7f8d4",
@@ -250703,10 +251088,21 @@
       "source_kind": "drop",
       "probability": null,
       "quantity": null,
-      "runtime_capability": "blocked",
+      "runtime_capability": "queryable",
       "content_entity_canonical_id": "runtime.item.90e4e58d454b4a78",
       "monster_canonical_id": "derived.monster_definition.6f1ea960b39e2d92",
       "monster_display_name": "茯苓"
+    },
+    {
+      "canonical_id": "entity.drop.f1ade6b47c9b8fe3",
+      "source_canonical_id": "entity.drop.f1ade6b47c9b8fe3",
+      "source_kind": "drop",
+      "probability": null,
+      "quantity": null,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.ead34659a24d689e",
+      "monster_canonical_id": "derived.monster_definition.3e32526511f76c8b",
+      "monster_display_name": "疯狂的山猪"
     },
     {
       "canonical_id": "entity.drop.f2f90a01b0967a71",
@@ -250714,7 +251110,7 @@
       "source_kind": "drop",
       "probability": null,
       "quantity": null,
-      "runtime_capability": "blocked",
+      "runtime_capability": "queryable",
       "content_entity_canonical_id": "runtime.item.acf383cef37613dc",
       "monster_canonical_id": "derived.monster_definition.a5185152d411b3f2",
       "monster_display_name": "红薯"
@@ -250729,6 +251125,28 @@
       "content_entity_canonical_id": "entity.equipment.e09f78c6a21fb5e4",
       "monster_canonical_id": "derived.monster_definition.44e5397e16759928",
       "monster_display_name": "养人毒蝎"
+    },
+    {
+      "canonical_id": "entity.drop.f4c122250e4ed55a",
+      "source_canonical_id": "entity.drop.f4c122250e4ed55a",
+      "source_kind": "drop",
+      "probability": null,
+      "quantity": null,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.56fc2105efa54ab7",
+      "monster_canonical_id": "derived.monster_definition.473207fec4b88c6f",
+      "monster_display_name": "野兔"
+    },
+    {
+      "canonical_id": "entity.drop.f63fa9496f562e88",
+      "source_canonical_id": "entity.drop.f63fa9496f562e88",
+      "source_kind": "drop",
+      "probability": null,
+      "quantity": null,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.97ec88b8cc4e7664",
+      "monster_canonical_id": "derived.monster_definition.dd347a3cd9de356b",
+      "monster_display_name": "金丝猴"
     },
     {
       "canonical_id": "entity.drop.f72abb2ff2c20de6",
@@ -250747,7 +251165,7 @@
       "source_kind": "drop",
       "probability": null,
       "quantity": null,
-      "runtime_capability": "blocked",
+      "runtime_capability": "queryable",
       "content_entity_canonical_id": "runtime.item.ac59252eb64cde19",
       "monster_canonical_id": "derived.monster_definition.854432156ab03a51",
       "monster_display_name": "玫瑰花"
@@ -272558,6 +272976,16 @@
       "raw_data_json": "\"古藤耳环\""
     },
     {
+      "canonical_id": "entity.drop.3aac6366ae12cd10",
+      "source_canonical_id": "entity.drop.3aac6366ae12cd10",
+      "monster_canonical_id": "derived.monster_definition.b8e76bfec2006ba1",
+      "content_entity_canonical_id": "runtime.task_chain.item.ff1cc9899dfa1f5f",
+      "drop_kind": "item",
+      "probability": null,
+      "quantity": null,
+      "raw_data_json": "\"龙鳞\""
+    },
+    {
       "canonical_id": "entity.drop.3b065a3039fb250f",
       "source_canonical_id": "entity.drop.3b065a3039fb250f",
       "monster_canonical_id": "derived.monster_definition.4bc2b52ffc8291fe",
@@ -274356,6 +274784,16 @@
       "probability": null,
       "quantity": null,
       "raw_data_json": "\"冥想匕首\""
+    },
+    {
+      "canonical_id": "entity.drop.6e6e0bbc33e0c64d",
+      "source_canonical_id": "entity.drop.6e6e0bbc33e0c64d",
+      "monster_canonical_id": "derived.monster_definition.5101d1549563c036",
+      "content_entity_canonical_id": "runtime.item.adfe2add7ce81ec0",
+      "drop_kind": "item",
+      "probability": null,
+      "quantity": null,
+      "raw_data_json": "\"野猪火腿\""
     },
     {
       "canonical_id": "entity.drop.6f167e35d4186a82",
@@ -278846,6 +279284,16 @@
       "raw_data_json": "\"刀锋外套\""
     },
     {
+      "canonical_id": "entity.drop.f1ade6b47c9b8fe3",
+      "source_canonical_id": "entity.drop.f1ade6b47c9b8fe3",
+      "monster_canonical_id": "derived.monster_definition.3e32526511f76c8b",
+      "content_entity_canonical_id": "runtime.item.ead34659a24d689e",
+      "drop_kind": "item",
+      "probability": null,
+      "quantity": null,
+      "raw_data_json": "\"山猪肉\""
+    },
+    {
       "canonical_id": "entity.drop.f29f43ef3b70f398",
       "source_canonical_id": "entity.drop.f29f43ef3b70f398",
       "monster_canonical_id": "derived.monster_definition.46213fcfd9484664",
@@ -281610,7 +282058,7 @@
     "preview_routes_supported": false,
     "normal_runtime_reads_this_section": false
   },
-  "content_sha256": "a9ca5fedf4caafd651f3ee53c436607b50cac77142965ba9016e08963b91bbeb",
+  "content_sha256": "0e222cdd070ed8fad0a2d88c948ea1cc24b5fc5a52bb4d39432f63737f569994",
   "entity_counts": {
     "tasks": 651,
     "cities": 28,
@@ -281622,12 +282070,12 @@
     "monsters": 259,
     "monster_placements": 273,
     "content_entities": 182,
-    "item_sources": 108,
+    "item_sources": 146,
     "ships": 14,
     "voyage_routes": 702,
     "shops": 44,
     "shop_entries": 105,
     "equipment": 366,
-    "drop_relations": 931
+    "drop_relations": 934
   }
 }

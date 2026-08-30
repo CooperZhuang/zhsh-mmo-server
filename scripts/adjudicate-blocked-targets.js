@@ -6,6 +6,8 @@
  * 目的：把原版任务文本引用的物品实体、掉落/购买/任务链传递闭环、以及类型裁决
  *       固化进 data/zhsh-content.sqlite，使 dependency_references 可解析，
  *       engine 不再把对应任务标记为 blocked（60 条 blocked_missing + 15 条 cross_type）。
+ *       另含原版掉落行补齐：46 对裁决物品的原版（baseline）掉落行解析到裁决实体，
+ *       不再停在 source_label_only（见 completeAdjudicationBaselineDrops）。
  *
  * 幂等：全部用 database.js 的 upsertCanonical / 显式 UPDATE；canonical_id 沿用
  *       signatureCanonical = `${prefix}.${hash(value,16)}` 惯例。
@@ -343,7 +345,8 @@ function resolveOrphanRefs(db, stats) {
   if (resolved) { stats.updated += 1; stats.resolved_orphan_refs = resolved; }
   // 仅处置明确失配的孤儿源：drop_source 引用错标为 NPC 名（原版记录 阿巴斯→黑铁矿）。
   // 注意：原版大量 source_label_only 的掉落行源引用未解析属既有状态（导出时 join 跳过），
-  // 不做批量删除，避免破坏原版 data 行。
+  // 不做批量删除，避免破坏原版 data 行；其中 46 对裁决对应的行由
+  // completeAdjudicationBaselineDrops 补齐（源/目标引用解析到裁决实体）。
   const orphanDrops = db.prepare(`
     SELECT d.id FROM drop_relations d
     JOIN dependency_references s ON s.id=d.source_reference_id
@@ -352,6 +355,104 @@ function resolveOrphanRefs(db, stats) {
     for (const row of orphanDrops) db.prepare('DELETE FROM drop_relations WHERE id=?').run(Number(row.id));
     stats.cleaned_orphan_drop_rows = orphanDrops.length;
   }
+}
+
+/**
+ * 补齐原版掉落行（46 对裁决的物品）：其原版（baseline，config/monsterDrops.json /
+ * monsterItems.json 直录）掉落行在裁决落库时未重解析，仍停留在 source_label_only /
+ * blocked（导出 join 跳过，仅作为原版资料保留）。本段把目标引用解析到裁决物品实体
+ * （与 .overlay 行同实体），源引用按运行时权威（web/generated/task1-content.json 的
+ * (怪物|物品) resolution，即选择文件 monster_drop 的落库镜像）解析到怪物定义；
+ * 运行时无 resolution 的歧义源按裁决指定（如 妖龙→龙鳞 = Lv117）。
+ * 源本身无实体的行（如 邪恶花精，仅出现在 monsterItems.json、无任何安置/定义）不虚构
+ * 实体：目标侧照常补齐，源侧保持 label_only 原样保留。
+ * 幂等：已解析/已 queryable 的行跳过。
+ */
+function completeAdjudicationBaselineDrops(db, itemEntity, stats) {
+  const authority = loadRuntimeDropAuthority();
+  const adjudicatedNames = new Set(Object.keys(ITEMS));
+  const rows = db.prepare(`
+    SELECT d.id drop_id,
+           s.id src_id, s.raw_name src_name, s.resolution_status src_status, s.resolved_monster_definition_id src_mid,
+           t.id tgt_id, t.raw_name tgt_name, t.resolution_status tgt_status, t.resolved_content_entity_id tgt_eid
+    FROM drop_relations d
+    JOIN restoration_records rec ON rec.id=d.source_record_id
+    JOIN dependency_references s ON s.id=d.source_reference_id
+    JOIN dependency_references t ON t.id=d.target_reference_id
+    WHERE rec.record_origin='baseline' AND d.runtime_capability='blocked'`).all();
+  let targetFixed = 0, sourceFixed = 0, capFixed = 0, unresolvable = 0;
+  for (const row of rows) {
+    if (!adjudicatedNames.has(row.tgt_name)) continue;
+    const item = itemEntity[row.tgt_name];
+    if (!item) { stats.failures += 1; continue; }
+    // 目标引用：解析到裁决物品实体（与 overlay 掉落行同实体）
+    let targetReady = row.tgt_status === 'resolved' && Number(row.tgt_eid) === Number(item.entityId);
+    if (!targetReady) {
+      db.prepare("UPDATE dependency_references SET resolution_status='resolved',resolved_content_entity_id=?,runtime_capability='queryable' WHERE id=?")
+        .run(Number(item.entityId), Number(row.tgt_id));
+      targetFixed += 1;
+      targetReady = true;
+    }
+    // 源引用：已解析→保留；歧义/未解析→运行时权威（JSON (怪物|物品) resolution）；
+    // 权威缺失且命中裁决指定→按指定；仍无实体→保持 label_only 原样保留。
+    let sourceReady = row.src_status === 'resolved';
+    if (!sourceReady) {
+      const authorityCid = authority.pairMonster.get(`${row.src_name}\u0000${row.tgt_name}`);
+      let def = authorityCid ? db.prepare('SELECT id FROM monster_definitions WHERE canonical_id=?').get(authorityCid) : null;
+      if (!def && row.src_name === '妖龙' && row.tgt_name === '龙鳞') {
+        def = db.prepare('SELECT id FROM monster_definitions WHERE display_name=? AND level=?').get('妖龙', 117); // 15.470 裁决：Lv117 杭州/西湖湖底
+      }
+      if (def && Number(def.id) !== Number(row.src_mid)) {
+        db.prepare("UPDATE dependency_references SET resolution_status='resolved',resolved_monster_definition_id=?,runtime_capability='queryable' WHERE id=?")
+          .run(Number(def.id), Number(row.src_id));
+        sourceFixed += 1;
+        sourceReady = true;
+      } else if (def) {
+        sourceReady = true;
+      } else {
+        unresolvable += 1;
+      }
+    }
+    if (!targetReady || !sourceReady) continue;
+    const cap = db.prepare('SELECT runtime_capability FROM drop_relations WHERE id=?').get(row.drop_id).runtime_capability;
+    if (cap !== 'queryable') {
+      db.prepare("UPDATE drop_relations SET runtime_capability='queryable' WHERE id=?").run(Number(row.drop_id));
+      capFixed += 1;
+    }
+  }
+  if (targetFixed || sourceFixed || capFixed) {
+    stats.updated += 1;
+    stats.baseline_drop_targets_resolved = targetFixed;
+    stats.baseline_drop_sources_resolved = sourceFixed;
+    stats.baseline_drop_caps_fixed = capFixed;
+  }
+  if (unresolvable) stats.baseline_drops_source_unresolvable = unresolvable;
+}
+
+/**
+ * 运行时掉落权威：web/generated/task1-content.json（选择文件 monster_drop resolution
+ * 的导出镜像）中 (怪物名|物品名) → 怪物定义 canonical_id。与 loadRuntimeItemIds 同源，
+ * 作为歧义源引用的裁决依据（与导出层 dedupe 同口径）。
+ */
+function loadRuntimeDropAuthority() {
+  const entityName = new Map();
+  const monsterName = new Map();
+  const pairMonster = new Map();
+  if (!fs.existsSync(RUNTIME_CONTENT_PATH)) return { pairMonster };
+  const content = JSON.parse(fs.readFileSync(RUNTIME_CONTENT_PATH, 'utf8'));
+  for (const e of content.content_entities ?? []) entityName.set(e.canonical_id, e.display_name);
+  for (const e of content.equipment ?? []) entityName.set(e.canonical_id, e.display_name);
+  for (const m of content.monsters ?? []) monsterName.set(m.canonical_id, m.display_name);
+  for (const d of content.drop_relations ?? []) {
+    const itemName = d.content_entity_canonical_id ? entityName.get(d.content_entity_canonical_id) : null;
+    const monsterNm = d.monster_canonical_id ? monsterName.get(d.monster_canonical_id) : null;
+    if (!itemName || !monsterNm) continue;
+    const key = `${monsterNm}\u0000${itemName}`;
+    // 同名多级（如 僵尸 Lv104/113）：任务场景 resolution（guaranteed_for_active_task）
+    // 优先 —— 与裁决指定的宿主（15.415 矿洞僵尸 Lv113）同口径。
+    if (!pairMonster.has(key) || d.guaranteed_for_active_task) pairMonster.set(key, d.monster_canonical_id);
+  }
+  return { pairMonster };
 }
 
 /**
@@ -570,6 +671,8 @@ function runAdjudicate({ dbPath = DB_PATH, dryRun = false } = {}) {
     // 从库推 formal source；选择文件只是导出快照）。市场采购条目仍由选择文件 market 类
     // resolution 提供（导出层 runtime.market_entry.*，无库内双写）。
     for (const [itemName, hosts] of Object.entries(DROP_HOSTS)) for (const host of hosts) ensureDrop(db, host, itemName, stats);
+    // 46 对裁决的物品：原版（baseline）掉落行本段补齐（目标/源引用 → 裁决实体）
+    completeAdjudicationBaselineDrops(db, itemEntity, stats);
     for (const [monsterName, p] of Object.entries(NEW_PLACEMENTS)) {
       const monsterId = findMonsterId(db, monsterName);
       const cityId = findCityId(db, p.city);

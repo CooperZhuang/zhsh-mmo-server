@@ -70804,7 +70804,7 @@
         "target_resolutions": [
           {
             "target_canonical_id": "task.series.15.269.target.01",
-            "source_entity_canonical_id": "entity.item.57e744db1884c498",
+            "source_entity_canonical_id": "runtime.item.57e744db1884c498",
             "runtime_entity_canonical_id": "runtime.item.57e744db1884c498",
             "resolution_rule": "source_explicit_task_described_encounter_drop",
             "formal_source": {
@@ -101258,8 +101258,7 @@
           }
         ],
         "implemented_shared_systems": [
-          "task_chain_item_ledger",
-          "task_acceptance_handoff"
+          "task_chain_item_ledger"
         ],
         "task_location_override": null,
         "evidence_exception_resolution": null
@@ -170682,8 +170681,8 @@
   ],
   "runtime_landing": {
     "stage_start_head": "2cbae183aa369fe0ac60176f3a1396914d786440",
-    "source_head": "0b16f7e09dbd83d7dcdca0359709c59422001623",
-    "generated_from_head": "0b16f7e09dbd83d7dcdca0359709c59422001623",
+    "source_head": "40842bbb6b6a4cb23b14e6d7168a0c547da3ed12",
+    "generated_from_head": "40842bbb6b6a4cb23b14e6d7168a0c547da3ed12",
     "reference_commits": {
       "zhsh": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
       "astrbot": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de",
