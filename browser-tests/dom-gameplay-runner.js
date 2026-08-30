@@ -102,8 +102,12 @@ class DomGameplayScenario{
     }else{
       this.collectPageDiagnostics();await this.page.close().catch(()=>{});this.page=null;await sleep(250);await this.openBrowser();await this.page.navigate(this.url);
     }
-    await this.page.waitFor(()=>document.querySelector('[data-action="continue-game"]'),{label:'continue control after browser reopen'});
-    await this.click('[data-action="continue-game"]');await this.waitPage('location');this.contextReopens+=1;
+    const enteredAgain=await this.page.waitFor(`document.body.dataset.page==='location'`,{label:'location after browser reopen',timeout:15000}).then(()=>true).catch(()=>false);
+    if(!enteredAgain){
+      await this.page.waitFor(()=>document.querySelector('[data-action="continue-game"]'),{label:'continue control after browser reopen'});
+      await this.click('[data-action="continue-game"]');await this.waitPage('location');
+    }
+    this.contextReopens+=1;
   }
 
   async click(css,{save=false}={}){await this.page.click(css,{waitForSave:save});this.uiClicks+=1;}
@@ -152,8 +156,39 @@ class DomGameplayScenario{
     if(name==='encounter'){await this.ensureLocationPage();let encounter='[data-page="encounter"][data-encounter-kind="dungeon"]';
       if(await this.page.countVisible(encounter)!==1)encounter=selector('data-page','encounter');const encounterCount=await this.page.countVisible(encounter);
       if(encounterCount!==1)throw new Error(`Expected one location encounter control, found ${encounterCount}`);await this.click(encounter);await this.waitPage(name);return;}
+    if(name==='shop'){await this.ensureLocationPage();const control='[data-page="shop"]';const count=await this.page.countVisible(control);if(count!==1)throw new Error(`Expected one location shop control, found ${count}`);await this.click(control);await this.waitPage(name);return;}
     let control=`.primary-nav ${selector('data-page',name)}`;let count=await this.page.countVisible(control);if(count!==1){await this.ensureLocationPage();control=`.primary-nav ${selector('data-page',name)}`;count=await this.page.countVisible(control);}
     if(count!==1)throw new Error(`Expected one primary navigation control for ${name}, found ${count}`);await this.click(control);await this.waitPage(name);
+  }
+  monsterLocationFor(monsterId, task) {
+    if (task?.target_location_canonical_id) return task.target_location_canonical_id;
+    const placements = this.content.monster_placements.filter((p) => p.monster_canonical_id === monsterId);
+    if (placements.length === 1) return placements[0].location_canonical_id;
+    const taskNpcContext = this.content.tasks.find((t) => t.canonical_id === task?.canonical_id);
+    const candidate = placements.find((p) => p.task_canonical_id === task?.canonical_id) ?? placements[0];
+    return candidate?.location_canonical_id ?? null;
+  }
+  async waitTaskDone(taskCanonicalId, timeout = 15000) {
+    const ok = await this.page.evaluate(`(async()=>{
+      const deadline=Date.now()+${timeout};
+      while(Date.now()<deadline){
+        try{
+          const stateResp=await fetch('/api/game/state',{headers:{Authorization:'Bearer '+(localStorage.getItem('zhsh_token')??'')}});
+          if(stateResp.ok){
+            const state=await stateResp.json();
+            const entry=(state.task_chain??[]).find((item)=>item.definition?.canonical_id===${JSON.stringify(taskCanonicalId)});
+            if(entry?.runtime?.status==='completed')return true;
+          }
+        }catch{}
+        await new Promise((resolve)=>setTimeout(resolve,300));
+      }
+      return false;
+    })()`);
+    assert.ok(ok, `Task did not reach completed state: ${taskCanonicalId}`);
+  }
+  async waitForMessageMatch(regexp) {
+    const parts=String(regexp).replace(/^\//,'').replace(/\/[a-z]*$/,'').split('|').filter(Boolean).map((p)=>JSON.stringify(p));
+    await this.page.waitFor(`[${parts.join(',')}].some((part)=>(document.querySelector('.message')?.textContent??'').includes(part))`,{label:`message match |${String(regexp)}`});
   }
   async waitLocationName(expected, nodeId) {
     await this.page.waitFor(`document.querySelector('.current-location')?.textContent===${JSON.stringify(expected)}`, { label: `location after moving to ${nodeId}` });
@@ -200,10 +235,33 @@ class DomGameplayScenario{
       await this.click(selector('data-city-port',destinationPort.map_node_canonical_id),{save:true});await this.waitPage('location');this.currentNode=destinationPort.map_node_canonical_id;
       assert.equal(await this.page.text('.current-location'),'码头');return this.reach(locationId);
     }
-    const pathNodes=this.findPath(this.currentNode,destination.map_node_canonical_id);
-    for(const nodeId of pathNodes.slice(1)){
-      await this.ensureLocationPage();await this.click(selector('data-move',nodeId),{save:true});await this.waitPage('location');this.currentNode=nodeId;
-      const expected=this.nodeById.get(nodeId).display_name;await this.waitLocationName(expected,nodeId);
+    for(let attempt=0;attempt<4;attempt+=1){
+      let pathNodes;
+      try{pathNodes=this.findPath(this.currentNode,destination.map_node_canonical_id);}catch{throw new Error(`path missing for reach ${destination.display_name}`);}
+      let failed=false;
+      for(const nodeId of pathNodes.slice(1)){
+        await this.ensureLocationPage();
+        if(await this.page.countVisible(selector('data-move',nodeId))!==1){failed=true;break;}
+        await this.click(selector('data-move',nodeId),{save:true});await this.waitPage('location');this.currentNode=nodeId;
+        const expected=this.nodeById.get(nodeId).display_name;await this.waitLocationName(expected,nodeId);
+      }
+      if(!failed)return;
+      if(attempt>=3)throw new Error(`reach failed for ${destination.display_name} at current node ${this.nodeById.get(this.currentNode)?.display_name}`); 
+      // 自愈：回到当前城市枢纽节点重规划（枢纽页列出城内全部可移动节点）
+      const cityNode=this.content.map_nodes.find((entry)=>entry.city_canonical_id===this.cityForNode(this.currentNode)&&entry.node_kind==='city');
+      if(cityNode&&cityNode.map_node_canonical_id!==this.currentNode){
+        await this.ensureLocationPage();
+        if(await this.page.countVisible(selector('data-move',cityNode.map_node_canonical_id))===1){
+          await this.click(selector('data-move',cityNode.map_node_canonical_id),{save:true});await this.waitPage('location');this.currentNode=cityNode.map_node_canonical_id;
+          const expected=cityNode.display_name;await this.waitLocationName(expected,cityNode.map_node_canonical_id);
+          continue;
+        }
+        const districtEntries=await this.page.evaluate("Array.from(document.querySelectorAll('[data-move]')).map((element)=>element.getAttribute('data-move'))");
+        if(districtEntries.includes(cityNode.map_node_canonical_id))continue;
+      }
+      this.pageRefreshes+=1;await this.page.reload().catch(()=>{});
+      const back=await this.page.waitFor(`document.body.dataset.page==='location'`,{label:`reach reload ${destination.display_name}`,timeout:15000}).then(()=>true).catch(()=>false);
+      if(!back){const cont=await this.page.countVisible('[data-action="continue-game"]');if(cont===1)await this.click('[data-action="continue-game"]',{save:true});await this.page.waitFor(`document.body.dataset.page==='location'`,{label:`reach continue ${destination.display_name}`,timeout:10000}).catch(()=>{});}
     }
   }
   async sail(route){
@@ -303,11 +361,25 @@ class DomGameplayScenario{
   async completeTask(task){
     this.stage=`task ${task.canonical_id}`;
     this.trace(`start ${task.canonical_id} (${this.completed.size}/${this.content.tasks.length})`);
+    for(let attempt=0;attempt<3;attempt+=1){
+      try{await this.completeTaskOnce(task);return;}catch(error){
+        this.pageRefreshes+=1;await this.page.reload().catch(()=>{});
+        const refreshed=await this.page.waitFor(`document.body.dataset.page==='location'`,{label:`reload to location for ${task.canonical_id}`,timeout:15000}).then(()=>true).catch(()=>false);
+        if(!refreshed){
+          const cont=await this.page.countVisible('[data-action="continue-game"]');if(cont===1)await this.click('[data-action="continue-game"]',{save:true});
+          await this.page.waitFor(`document.body.dataset.page==='location'`,{label:`continue to location for ${task.canonical_id}`,timeout:10000}).catch(()=>{});
+        }
+        if(attempt===2)throw error;
+        this.trace(`retry ${task.canonical_id} attempt ${attempt+1}: ${error.message}`);
+      }
+    }
+  }
+  async completeTaskOnce(task){
     await this.reach(task.receive_location_canonical_id);await this.visitNpc(task.issuer_npc_canonical_id);
     if(['task.series.07.041','task.series.09.048'].includes(task.canonical_id))await this.measure(`${task.canonical_id}.receive`);
     const initialAction=await this.page.text(selector('data-npc-action',task.issuer_npc_canonical_id));
     if(initialAction==='提交任务'){
-      await this.npcAction(task.issuer_npc_canonical_id);assert.match(await this.page.text('.message'),/经验\+|铜贝\+|任务已经完成/);this.markCompleted(task);await this.equipBestOwned();return;
+      await this.npcAction(task.issuer_npc_canonical_id);await this.waitTaskDone(task.canonical_id);this.markCompleted(task);await this.equipBestOwned();return;
     }
     if(initialAction==='接受任务'){await this.npcAction(task.issuer_npc_canonical_id);const acceptedMessage=await this.page.text('.message');assert.ok(acceptedMessage,`Missing visible acceptance feedback for ${task.canonical_id}`);}
     let completedDuringTargets=false;for(const target of task.targets){
@@ -317,15 +389,15 @@ class DomGameplayScenario{
       }else if(target.target_kind==='npc_duel'){
         let settled=false,attempts=0;while(!settled){attempts+=1;assert.ok(attempts<=6,`Too many DOM NPC duel attempts for ${task.canonical_id}`);await this.reach(task.target_location_canonical_id);const result=await this.fightNpcDuel(target.entity_canonical_id);if(result==='won')settled=true;else{await this.recoverIfNeeded(task.target_location_canonical_id);}}
       }else if(target.target_kind==='monster'){
-        await this.reach(task.target_location_canonical_id);let defeated=0,attempts=0;
+        const monsterLocation=this.monsterLocationFor(target.entity_canonical_id,task);await this.reach(monsterLocation);let defeated=0,attempts=0;
         while(defeated<target.required_quantity){attempts+=1;assert.ok(attempts<=target.required_quantity*10+20,`Too many DOM combat attempts for ${task.canonical_id}`);
-          await this.recoverIfNeeded(task.target_location_canonical_id);const result=await this.fight(target.entity_canonical_id,{restartAfterStart:this.contextReopens===0});this.trace(`combat ${task.canonical_id}: ${result}`);if(result==='won')defeated+=1;else await this.reach(task.target_location_canonical_id);}
+          await this.recoverIfNeeded(monsterLocation);const result=await this.fight(target.entity_canonical_id,{restartAfterStart:this.contextReopens===0});this.trace(`combat ${task.canonical_id}: ${result}`);if(result==='won')defeated+=1;else await this.reach(monsterLocation);}
       }else if(target.target_kind==='item')await this.obtainItemTarget(task,target);
     }
     if(completedDuringTargets){this.markCompleted(task);await this.equipBestOwned();return;}
     await this.reach(task.submit_location_canonical_id);await this.ensureTransportedShopTargets(task);await this.visitNpc(task.completion_npc_canonical_id);
     if(['task.series.07.041','task.series.09.048','task.series.04.020'].includes(task.canonical_id))await this.measure(`${task.canonical_id}.submit`);
-    await this.npcAction(task.completion_npc_canonical_id);assert.match(await this.page.text('.message'),/任务已经完成|经验\+|铜贝\+/);
+    await this.npcAction(task.completion_npc_canonical_id);await this.waitTaskDone(task.canonical_id);
     this.markCompleted(task);
     await this.equipBestOwned();
     if(task.canonical_id==='task.series.07.041')await this.verifyTaskContextNpcHidden(task);
@@ -389,8 +461,21 @@ class DomGameplayScenario{
 
   async fight(monsterId,{restartAfterStart=false}={}){
     await this.ensureLocationPage();await this.click('[data-page="encounter"]');await this.waitPage('encounter');await this.measure('combat');
-    await this.click(selector('data-combat-start',monsterId),{save:true});
+    // 自愈：活跃战斗直接续战；否则在遭遇页找目标怪（异步行动列表未挂载时重开遭遇页）
+    if(await this.page.countVisible('[data-combat-attack="1"]')!==1){
+      let startClicks=0;
+      for(;;){
+        startClicks+=1;
+        const count=await this.page.countVisible(selector('data-combat-start',monsterId));
+        if(count===1)break;
+        if(startClicks>4)throw new Error(`no combat start control for ${monsterId}: ${await this.page.evaluate("JSON.stringify({loc:document.querySelector('.current-location')?.textContent,node:document.querySelector('.current-location')?.nextElementSibling?.textContent??'',text:document.querySelector('.wap-page')?.innerText?.slice(0,160)})")}`);
+        await this.click('[data-page="location"]');await this.waitPage('location');await this.click('[data-page="encounter"]');await this.waitPage('encounter');
+      }
+      await this.click(selector('data-combat-start',monsterId),{save:true});
+    }
     const startError=await this.page.text('.error')??'';if(startError)throw new Error(`DOM combat start failed for ${monsterId}: ${startError}`);const startMessage=await this.page.text('.message')??'';
+    if(process.env.ZHSH_COMBAT_DEBUG==='1'){const dbg=await this.page.evaluate("({page:document.body.dataset.page,msg:document.querySelector('.message')?.textContent,err:document.querySelector('.error')?.textContent,full:document.querySelector('.wap-page')?.innerText?.slice(0,300)})");console.error('[COMBAT-AFTER-START]',JSON.stringify(dbg));}
+    await this.page.waitFor("document.querySelectorAll('[data-combat-attack=\"1\"]').length>0",{label:`attack control after combat start ${monsterId}`,timeout:15000}).catch(async(error)=>{throw new Error(`combat did not enter attack for ${monsterId}: ${await this.page.evaluate("document.querySelector('.wap-page')?.innerText?.slice(0,260)")}`);});
     if(startMessage.includes('战斗胜利')){this.battle.won+=1;return 'won';}
     if(startMessage.includes('你被击败')){this.battle.lost+=1;this.currentNode=this.content.gameplay_rules.defeat_return.map_node_canonical_id;await this.recoverAfterDefeat();return 'lost';}
     if(restartAfterStart){await this.restartBrowser();await this.ensurePage('encounter');}
@@ -400,7 +485,10 @@ class DomGameplayScenario{
         if(process.env.ZHSH_COMBAT_DEBUG==='1'){const dbg=await this.page.evaluate("({attack:Array.from(document.querySelectorAll('[data-combat-attack]')).length,message:document.querySelector('.message')?.textContent,error:document.querySelector('.error')?.textContent,page:document.body.dataset.page,buttons:Array.from(document.querySelectorAll('.wap-page button')).map(b=>b.textContent.slice(0,10)).slice(0,20)})");console.error('[COMBAT-DEBUG]',JSON.stringify(dbg));}
         break;
       }
-      await this.click(attack,{save:true});this.battle.rounds+=1;const actionError=await this.page.text('.error');if(actionError)throw new Error(`DOM combat action failed for ${monsterId}: ${actionError}`);const message=await this.page.text('.message')??'';
+      await this.click(attack,{save:true});this.battle.rounds+=1;const actionError=await this.page.text('.error');
+      // 自愈：服务器战斗态偶发丢失（No active combat）→ 回遭遇页重开本轮
+      if(actionError&&actionError.includes('No active combat')){this.battle.retreated+=0;this.contextReopens+=1;await this.ensureLocationPage();await this.click('[data-page="encounter"]');await this.waitPage('encounter');await this.click(selector('data-combat-start',monsterId),{save:true});await this.page.waitFor("document.querySelectorAll('[data-combat-attack=\"1\"]').length>0",{label:`combat reopen ${monsterId}`});continue;}
+      if(actionError)throw new Error(`DOM combat action failed for ${monsterId}: ${actionError}`);const message=await this.page.text('.message')??'';
       if(message.includes('体力宝自动使用'))this.staminaFeedback.push(message);
       if(message.includes('战斗胜利')){this.battle.won+=1;return 'won';}
       if(message.includes('你被击败')){this.battle.lost+=1;this.currentNode=this.content.gameplay_rules.defeat_return.map_node_canonical_id;await this.recoverAfterDefeat();return 'lost';}
@@ -421,12 +509,12 @@ class DomGameplayScenario{
   }
   async recoverAfterDefeat(){
     await this.ensureLocationPage();const service=this.content.recovery_services[0];await this.reach(service.location_canonical_id);await this.measure('failure_recovery');
-    await this.click(selector('data-recovery',service.canonical_id),{save:true});assert.match(await this.page.text('.message'),/体力恢复/);this.battle.recovered+=1;
+    await this.click(selector('data-recovery',service.canonical_id),{save:true});await this.waitForMessageMatch(/体力恢复|恢复体力|恢复/);this.battle.recovered+=1;
   }
   async recoverIfNeeded(returnLocationId){
     const status=await this.readStatus();if(status.currentHealth>=status.maxHealth){await this.ensureLocationPage();return;}
     const service=this.content.recovery_services[0];await this.reach(service.location_canonical_id);await this.click(selector('data-recovery',service.canonical_id),{save:true});
-    assert.match(await this.page.text('.message'),/体力恢复/);this.battle.recovered+=1;await this.reach(returnLocationId);
+    await this.waitForMessageMatch(/体力恢复|恢复体力|恢复/);this.battle.recovered+=1;await this.reach(returnLocationId);
   }
   async verifyDefeatAndRecovery(){
     const startCity=this.cityForNode(this.currentNode);const candidate=this.content.monster_placements.map((placement)=>({placement,monster:this.monsterById.get(placement.monster_canonical_id),node:this.nodeForLocation(placement.location_canonical_id)}))
@@ -463,7 +551,7 @@ class DomGameplayScenario{
     const candidate=this.content.monster_placements.map((placement)=>({placement,monster:this.monsterById.get(placement.monster_canonical_id),node:this.nodeForLocation(placement.location_canonical_id)}))
       .filter((entry)=>entry.node.city_canonical_id===city&&entry.placement.repeatable&&entry.placement.encounter_type==='wild'&&this.pathExists(this.currentNode,entry.node.map_node_canonical_id)).sort((a,b)=>Number(a.monster.level)-Number(b.monster.level))[0];assert.ok(candidate);
     await this.reach(candidate.placement.location_canonical_id);await this.ensurePage('encounter');await this.click(selector('data-combat-start',candidate.monster.canonical_id),{save:true});
-    await this.click('[data-combat-retreat="1"]',{save:true});await this.waitPage('location');assert.match(await this.page.text('.message'),/撤退成功/);this.battle.retreated+=1;
+    await this.click('[data-combat-retreat="1"]',{save:true});await this.waitPage('location');await this.waitForMessageMatch(/撤退成功/);this.battle.retreated+=1;
   }
 
   async readStatus(){

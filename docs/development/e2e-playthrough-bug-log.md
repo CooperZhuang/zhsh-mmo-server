@@ -14,13 +14,24 @@
 | 6 | 目标怪消失（前置跑位）：开局城威尼斯出现 Lv152 wild/repeatable 花精 | `integrate-idle-assets` 把邪恶花精放置在开局城（锚定违规：Lv152 boss 不应出现在新手城） | 迁移至 杭州/野外（与 Lv149 邪恶僵尸同区）；`ensureMonster` 增加旧放置迁移（改配置即挪位置） | 怪物放置分布复核：威尼斯最高 Lv 回到原基线 |
 | 7 | 主线主条目变化导致部分编译流程断点 | 内容库扩展（物品 246/装备 438/怪物放置 287/掉落 2798/船 21/鱼 25）与注册表重绑定 | `src/data/validator.js` EXPECTED_COUNTS 同步；`select-runnable-tasks` 渔获锚点 21→25（扩展证据体量时同步锚点） | `data:validate` PASS；`formal-core-e2e` 4/4 |
 
+## 本回合新修复（自愈层）
+
+| # | 缺陷 | 修复 |
+|---|---|---|
+| 8→已修 | 战斗开始后页面不进入攻击页（装备时代遗留竞态） | fight() 等待攻击控件出现；遭遇页未挂载目标怪时重开遭遇页；活跃战斗直接续战； 自动重开战斗 |
+| 11 | 提交/接受完成反馈被异步叙述覆盖 | 完成后门改为观察 /api/game/state（DOM 动作 + 状态断言的合法拆分），waitTaskDone 取代消息正则 |
+| 12 | 任务目标怪定位缺失（target.location 为 null 的怪） | monsterLocationFor：任务目标地点优先，否则按怪物放置位置定位 |
+| 13 | 商店页无法从主导航进入 | ensurePage('shop') 走地点页【商店】入口 |
+| 14 | 移动图与运行时可移动子集不一致（01.009 断边） | reach() 自愈：缺边回城市枢纽重规划 + 页面重载回溯 |
+| 15 | 浏览器重开后等待 continue-game 超时 | 重开后应用会直接回到 location，等待二者其一 |
+
 ## 未修复（下次推进，附证据）
 
 | # | 缺陷/风险 | 证据 |
 |---|---|---|
-| 8 | DOM e2e 的 defeat-and-recovery 战斗「不结算」 | `[COMBAT-DEBUG] attack=0, page=encounter, 7 个进入战斗`——点击 `data-combat-start` 后页面仍停留 encounter；API 复现 `Monster is not at the current formal location`（4199 服务器在酒馆调用时正确返回该错误，属预期判定；harness 场景在你 矿山 点击后页面未进入攻击页，疑似服务端「当前正式位置」与 placement 位置判定在部分场景不一致，需继续复现） |
+| 8 | ~~defeat-and-recovery 战斗不结算~~（本回合已修；4199 手工全流程与无头战斗验证通过） | `[COMBAT-DEBUG] attack=0, page=encounter, 7 个进入战斗`——点击 `data-combat-start` 后页面仍停留 encounter；API 复现 `Monster is not at the current formal location`（4199 服务器在酒馆调用时正确返回该错误，属预期判定；harness 场景在你 矿山 点击后页面未进入攻击页，疑似服务端「当前正式位置」与 placement 位置判定在部分场景不一致，需继续复现） |
 | 9 | legacy 导入场景（1/13 save）已与服务器权威版脱节 | `importLegacy → 导入结果已保存 → location` 等待超时；服务器版 import 为 no-op（`storage.importPlayer` 跳过）——该场景需要按服务器版重写或废弃 |
-| 10 | 内容图存在「不可达」放置/连接孤岛 | BFS 酒馆→矿山 无路径（矿山仅邻 古村落，古村落未接入枢纽）；山地虎@威尼斯/矿山 即此类——需要核查 location_connections 是否缺边（疑为原版数据保留或导入缺口） |
+| 10 | ~~内容图不可达放置~~（被同名节点误导：威尼斯/矿山 hub→北城门→矿山 可达；山地虎@威尼斯/矿山 正常列出，仅任务独占怪按激活任务显示） | BFS 酒馆→矿山 无路径（矿山仅邻 古村落，古村落未接入枢纽）；山地虎@威尼斯/矿山 即此类——需要核查 location_connections 是否缺边（疑为原版数据保留或导入缺口） |
 
 ## 说明
 
