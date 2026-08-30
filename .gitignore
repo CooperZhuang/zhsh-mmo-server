@@ -62,3 +62,4 @@ $RECYCLE.BIN/
 .DS_Store
 .AppleDouble
 .LSOverride
+.zcode/

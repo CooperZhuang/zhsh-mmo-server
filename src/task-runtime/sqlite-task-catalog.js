@@ -6,7 +6,32 @@ class SqliteTaskCatalog {
   constructor(db) {
     this.db = db;
     this.contextualNpcDefinitions = new Map();
-    this.contextualNpcPlacements = new Set();
+    // key: `${npc}|${location}`；value: null（无任务上下文）或 { npc_canonical_id, location_canonical_id, task_contexts }
+    this.contextualNpcPlacements = new Map();
+  }
+
+  /**
+   * 注册任务上下文 NPC 放置（内存态）。
+   * 浏览器导出层由选择文件的 evidence.contextual_npc_placements 生成 runtime.npc_placement.*，
+   * 服务端引擎通过装配时灌入同一批数据，保证 SQLite 引擎校验（listNpcsAtNode / isNpcAtLocation）
+   * 与导出内容语义一致：这些 NPC 仅在其任务上下文（appearance_statuses 匹配任务状态）时出现在该位置。
+   */
+  addContextualNpcPlacement(npcCanonicalId, locationCanonicalId, taskContext) {
+    if (!npcCanonicalId || !locationCanonicalId) return;
+    if (taskContext && taskContext.task_canonical_id) {
+      const key = `${npcCanonicalId}|${locationCanonicalId}`;
+      const existing = this.contextualNpcPlacements.get(key);
+      this.contextualNpcPlacements.set(key, {
+        npc_canonical_id: npcCanonicalId, location_canonical_id: locationCanonicalId,
+        task_contexts: existing ? existing.task_contexts : [],
+      });
+      const contexts = this.contextualNpcPlacements.get(key).task_contexts;
+      if (!contexts.some((c) => c.task_canonical_id === taskContext.task_canonical_id)) {
+        contexts.push({ task_canonical_id: taskContext.task_canonical_id, appearance_statuses: taskContext.appearance_statuses ?? [] });
+      }
+    } else {
+      this.contextualNpcPlacements.set(`${npcCanonicalId}|${locationCanonicalId}`, null);
+    }
   }
 
   listSeriesTasks(seriesCanonicalId) {
@@ -243,7 +268,7 @@ class SqliteTaskCatalog {
     const existing = this.contextualNpcDefinitions.get(canonicalId);
     if (existing) existing.roles = [...new Set([...existing.roles,role])];
     else this.contextualNpcDefinitions.set(canonicalId,definition);
-    this.contextualNpcPlacements.add(`${canonicalId}|${locationCanonicalId}`);
+    this.contextualNpcPlacements.set(`${canonicalId}|${locationCanonicalId}`, null);
     return { canonical_id:canonicalId,definition:this.contextualNpcDefinitions.get(canonicalId),runtime_resolution:{ rule:definition.resolution_rule,evidence_status:definition.evidence_status } };
   }
 
@@ -297,7 +322,7 @@ class SqliteTaskCatalog {
   }
 
   listNpcsAtNode(nodeCanonicalId) {
-    return this.db.prepare(`
+    const rows = this.db.prepare(`
       SELECT p.canonical_id placement_canonical_id,n.canonical_id npc_canonical_id,n.display_name,
         l.canonical_id location_canonical_id
       FROM npc_placements p
@@ -307,6 +332,33 @@ class SqliteTaskCatalog {
       WHERE mn.canonical_id=? AND p.runtime_capability='queryable'
       ORDER BY p.canonical_id
     `).all(nodeCanonicalId);
+    if (!this.contextualNpcPlacements.size) return rows;
+    // 内存注册的任务上下文放置：仅当其任务状态命中 appearance_statuses 时由
+    // task-engine isNpcPlacementVisible 判断可见性（与浏览器 runtime.npc_placement.* 语义一致）
+    const node = this.getNodeForLocation ? this.nodeFor(nodeCanonicalId) : null;
+    const nodeLocationId = node?.location_canonical_id;
+    if (!nodeLocationId) return rows;
+    const names = this.db.prepare('SELECT canonical_id,display_name FROM npc_definitions').all();
+    const nameBy = new Map(names.map((n) => [n.canonical_id, n.display_name]));
+    for (const [key, entry] of this.contextualNpcPlacements) {
+      if (!entry || entry.location_canonical_id !== nodeLocationId) continue;
+      rows.push({
+        placement_canonical_id: `runtime.npc_placement.${crypto.createHash('sha256').update(key).digest('hex').slice(0, 16)}`,
+        npc_canonical_id: entry.npc_canonical_id,
+        display_name: nameBy.get(entry.npc_canonical_id) ?? null,
+        location_canonical_id: nodeLocationId,
+        placement_scope: 'task_context',
+        task_contexts: entry.task_contexts ?? [],
+      });
+    }
+    return rows;
+  }
+
+  nodeFor(nodeCanonicalId) {
+    return this.db.prepare(`
+      SELECT mn.canonical_id map_node_canonical_id,mn.node_kind,mn.display_name,l.canonical_id location_canonical_id
+      FROM map_nodes mn LEFT JOIN locations l ON l.id=mn.location_id WHERE mn.canonical_id=?
+    `).get(nodeCanonicalId) ?? null;
   }
 
   isNpcAtLocation(npcCanonicalId, locationCanonicalId) {

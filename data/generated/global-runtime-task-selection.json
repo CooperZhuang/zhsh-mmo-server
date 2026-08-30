@@ -1,8 +1,8 @@
 {
   "selector_version": "global-runtime-directory/1.0.0",
   "stage_start_head": "2cbae183aa369fe0ac60176f3a1396914d786440",
-  "source_head": "03d07c02d1dbe561d0d6333440dd9afaa65df45b",
-  "generated_from_head": "03d07c02d1dbe561d0d6333440dd9afaa65df45b",
+  "source_head": "0b16f7e09dbd83d7dcdca0359709c59422001623",
+  "generated_from_head": "0b16f7e09dbd83d7dcdca0359709c59422001623",
   "reference_commits": {
     "zhsh": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
     "astrbot": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de",
@@ -483,9 +483,9 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.01.007.target.01",
-          "source_entity_canonical_id": "entity.item.ce99a37bc16bb1ba",
+          "source_entity_canonical_id": "entity.item.d14f96158fc5c4ec",
           "runtime_entity_canonical_id": "entity.item.d14f96158fc5c4ec",
-          "resolution_rule": "candidate_with_formal_source",
+          "resolution_rule": "direct_formal_source",
           "formal_source": {
             "item": "entity.item.d14f96158fc5c4ec",
             "canonical_id": "entity.shop.7ae834f971f17c16.entry",
@@ -719,7 +719,7 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.02.012.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.item.ead34659a24d689e",
           "runtime_entity_canonical_id": "runtime.item.ead34659a24d689e",
           "resolution_rule": "source_explicit_monster_item",
           "formal_source": {
@@ -736,15 +736,15 @@
         },
         {
           "target_canonical_id": "task.series.02.012.target.02",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.item.6e1ec2b8b4a1f49a",
           "runtime_entity_canonical_id": "runtime.item.6e1ec2b8b4a1f49a",
           "resolution_rule": "source_explicit_monster_item",
           "formal_source": {
-            "canonical_id": "runtime.drop.bb85c57e0050cdb6",
+            "canonical_id": "runtime.drop.2ac7f178555a12e8",
             "source_canonical_id": "source.zhsh.config.monsterItems",
             "source_kind": "monster_drop",
             "monster_canonical_id": "derived.monster_definition.39f9a83a573c7d74",
-            "location_canonical_id": "entity.location.739c2e0db72acf09",
+            "location_canonical_id": "entity.location.f44e2884f4d529ce",
             "runtime_item_canonical_id": "runtime.item.6e1ec2b8b4a1f49a",
             "item_name": "龙虾肉",
             "monster_name": "龙虾",
@@ -1013,7 +1013,7 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.04.018.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.item.3b3f53cf5c43cf4f",
           "runtime_entity_canonical_id": "runtime.item.3b3f53cf5c43cf4f",
           "resolution_rule": "source_explicit_monster_item",
           "formal_source": {
@@ -1114,7 +1114,7 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.04.020.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.item.5d6c46dc0490cfe0",
           "runtime_entity_canonical_id": "runtime.item.5d6c46dc0490cfe0",
           "resolution_rule": "source_explicit_monster_item",
           "formal_source": {
@@ -1260,9 +1260,9 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.05.023.target.01",
-          "source_entity_canonical_id": "entity.item.3855a868ca7393f3",
+          "source_entity_canonical_id": "entity.item.7e58577435fee1fe",
           "runtime_entity_canonical_id": "entity.item.7e58577435fee1fe",
-          "resolution_rule": "candidate_with_formal_source",
+          "resolution_rule": "direct_formal_source",
           "formal_source": {
             "item": "entity.item.7e58577435fee1fe",
             "canonical_id": "entity.shop.dc70753834de8917.entry",
@@ -1824,7 +1824,7 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.05.035.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.item.783cdb522262f002",
           "runtime_entity_canonical_id": "runtime.item.783cdb522262f002",
           "resolution_rule": "source_explicit_monster_item",
           "formal_source": {
@@ -2018,37 +2018,16 @@
       "evidence": {
         "definition_complete": true,
         "required_locations": [
-          "entity.location.93da7d7ff06cd778",
           "entity.location.5be6ea0b60be0270"
         ],
         "npc_requirements": [
-          {
-            "npc_canonical_id": "derived.npc_definition.b665a8c17a61ab03",
-            "location_canonical_id": "entity.location.93da7d7ff06cd778",
-            "placement_scope": "task_context"
-          },
           {
             "npc_canonical_id": "derived.npc_definition.22ba5d6986eb91c4",
             "location_canonical_id": "entity.location.5be6ea0b60be0270",
             "placement_scope": "static"
           }
         ],
-        "contextual_npc_placements": [
-          {
-            "npc_canonical_id": "derived.npc_definition.b665a8c17a61ab03",
-            "location_canonical_id": "entity.location.93da7d7ff06cd778",
-            "placement_scope": "task_context",
-            "task_canonical_id": "task.series.05.039",
-            "appearance_statuses": [
-              "available",
-              "accepted",
-              "in_progress",
-              "completable"
-            ],
-            "source_canonical_id": "task.series.05.039",
-            "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION"
-          }
-        ],
+        "contextual_npc_placements": [],
         "monster_requirements": [],
         "required_cities": [
           "威尼斯"
@@ -2121,37 +2100,16 @@
       "evidence": {
         "definition_complete": true,
         "required_locations": [
-          "entity.location.30649b15d9e53b37",
           "entity.location.4a8af28f92e5aa61"
         ],
         "npc_requirements": [
-          {
-            "npc_canonical_id": "derived.npc_definition.3dea4b1eac3ad3f3",
-            "location_canonical_id": "entity.location.30649b15d9e53b37",
-            "placement_scope": "task_context"
-          },
           {
             "npc_canonical_id": "derived.npc_definition.a73122cf3fc3ea7d",
             "location_canonical_id": "entity.location.4a8af28f92e5aa61",
             "placement_scope": "static"
           }
         ],
-        "contextual_npc_placements": [
-          {
-            "npc_canonical_id": "derived.npc_definition.3dea4b1eac3ad3f3",
-            "location_canonical_id": "entity.location.30649b15d9e53b37",
-            "placement_scope": "task_context",
-            "task_canonical_id": "task.series.07.041",
-            "appearance_statuses": [
-              "available",
-              "accepted",
-              "in_progress",
-              "completable"
-            ],
-            "source_canonical_id": "task.series.07.041",
-            "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION"
-          }
-        ],
+        "contextual_npc_placements": [],
         "monster_requirements": [],
         "required_cities": [
           "威尼斯"
@@ -2205,7 +2163,7 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.07.042.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.item.56fc2105efa54ab7",
           "runtime_entity_canonical_id": "runtime.item.56fc2105efa54ab7",
           "resolution_rule": "source_explicit_monster_item",
           "formal_source": {
@@ -2453,7 +2411,7 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.08.047.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.item.349eb023b28e6370",
           "runtime_entity_canonical_id": "runtime.item.349eb023b28e6370",
           "resolution_rule": "source_explicit_monster_item",
           "formal_source": {
@@ -2510,7 +2468,7 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.09.048.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.item.4f18710005203f85",
           "runtime_entity_canonical_id": "runtime.item.4f18710005203f85",
           "resolution_rule": "source_explicit_monster_item",
           "formal_source": {
@@ -2567,9 +2525,9 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.09.049.target.01",
-          "source_entity_canonical_id": "entity.item.e16072a38f18e727",
+          "source_entity_canonical_id": "entity.item.097b440c291db16d",
           "runtime_entity_canonical_id": "entity.item.097b440c291db16d",
-          "resolution_rule": "candidate_with_formal_source",
+          "resolution_rule": "direct_formal_source",
           "formal_source": {
             "item": "entity.item.097b440c291db16d",
             "canonical_id": "entity.shop.ff7ef84e5c64be6b.entry",
@@ -2848,7 +2806,7 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.10.055.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.item.4d6e50c4e4f5a591",
           "runtime_entity_canonical_id": "runtime.item.4d6e50c4e4f5a591",
           "resolution_rule": "source_explicit_monster_item",
           "formal_source": {
@@ -2905,7 +2863,7 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.10.056.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.item.349eb023b28e6370",
           "runtime_entity_canonical_id": "runtime.item.349eb023b28e6370",
           "resolution_rule": "source_explicit_monster_item",
           "formal_source": {
@@ -2922,7 +2880,7 @@
         },
         {
           "target_canonical_id": "task.series.10.056.target.02",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.item.6e1ec2b8b4a1f49a",
           "runtime_entity_canonical_id": "runtime.item.6e1ec2b8b4a1f49a",
           "resolution_rule": "source_explicit_monster_item",
           "formal_source": {
@@ -2939,7 +2897,7 @@
         },
         {
           "target_canonical_id": "task.series.10.056.target.03",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.item.ead34659a24d689e",
           "runtime_entity_canonical_id": "runtime.item.ead34659a24d689e",
           "resolution_rule": "source_explicit_monster_item",
           "formal_source": {
@@ -3711,7 +3669,7 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.11.073.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.item.57a8625cbce8bf0f",
           "runtime_entity_canonical_id": "runtime.item.57a8625cbce8bf0f",
           "resolution_rule": "source_explicit_monster_item",
           "formal_source": {
@@ -4199,9 +4157,9 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.11.083.target.01",
-          "source_entity_canonical_id": "entity.item.e35e9fb1217e0f86",
+          "source_entity_canonical_id": "entity.item.e6393da032f3c186",
           "runtime_entity_canonical_id": "entity.item.e6393da032f3c186",
-          "resolution_rule": "candidate_with_formal_source",
+          "resolution_rule": "direct_formal_source",
           "formal_source": {
             "item": "entity.item.e6393da032f3c186",
             "canonical_id": "entity.shop.d8190169c7aac331.entry",
@@ -4305,7 +4263,7 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.11.085.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.item.d5608bd1d822988d",
           "runtime_entity_canonical_id": "runtime.item.d5608bd1d822988d",
           "resolution_rule": "source_explicit_monster_item",
           "formal_source": {
@@ -4615,24 +4573,10 @@
           {
             "npc_canonical_id": "derived.npc_definition.6b51943c56cebd0a",
             "location_canonical_id": "entity.location.97f578081181d571",
-            "placement_scope": "task_context"
+            "placement_scope": "static"
           }
         ],
-        "contextual_npc_placements": [
-          {
-            "npc_canonical_id": "derived.npc_definition.6b51943c56cebd0a",
-            "location_canonical_id": "entity.location.97f578081181d571",
-            "placement_scope": "task_context",
-            "task_canonical_id": "task.series.12.092",
-            "appearance_statuses": [
-              "accepted",
-              "in_progress",
-              "completable"
-            ],
-            "source_canonical_id": "task.series.12.092",
-            "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION"
-          }
-        ],
+        "contextual_npc_placements": [],
         "monster_requirements": [],
         "required_cities": [
           "泉州"
@@ -4668,7 +4612,7 @@
           {
             "npc_canonical_id": "derived.npc_definition.6b51943c56cebd0a",
             "location_canonical_id": "entity.location.97f578081181d571",
-            "placement_scope": "task_context"
+            "placement_scope": "static"
           },
           {
             "npc_canonical_id": "derived.npc_definition.50cb227bc8143b74",
@@ -4676,22 +4620,7 @@
             "placement_scope": "static"
           }
         ],
-        "contextual_npc_placements": [
-          {
-            "npc_canonical_id": "derived.npc_definition.6b51943c56cebd0a",
-            "location_canonical_id": "entity.location.97f578081181d571",
-            "placement_scope": "task_context",
-            "task_canonical_id": "task.series.12.093",
-            "appearance_statuses": [
-              "available",
-              "accepted",
-              "in_progress",
-              "completable"
-            ],
-            "source_canonical_id": "task.series.12.093",
-            "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION"
-          }
-        ],
+        "contextual_npc_placements": [],
         "monster_requirements": [],
         "required_cities": [
           "泉州"
@@ -4921,7 +4850,7 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.12.098.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.item.43c36c115a3fd8ba",
           "runtime_entity_canonical_id": "runtime.item.43c36c115a3fd8ba",
           "resolution_rule": "source_explicit_task_described_encounter_drop",
           "formal_source": {
@@ -5090,7 +5019,7 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.13.101.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.market_item.9e327076b4e1ef6c",
           "runtime_entity_canonical_id": "runtime.market_item.9e327076b4e1ef6c",
           "resolution_rule": "source_explicit_market_price",
           "formal_source": {
@@ -5159,7 +5088,7 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.13.102.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.market_item.2086cb1986fb9882",
           "runtime_entity_canonical_id": "runtime.market_item.2086cb1986fb9882",
           "resolution_rule": "source_explicit_market_price",
           "formal_source": {
@@ -5182,7 +5111,7 @@
         },
         {
           "target_canonical_id": "task.series.13.102.target.02",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.market_item.7e005ba311f86fa7",
           "runtime_entity_canonical_id": "runtime.market_item.7e005ba311f86fa7",
           "resolution_rule": "source_explicit_market_price",
           "formal_source": {
@@ -5253,7 +5182,7 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.13.103.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.market_item.9e327076b4e1ef6c",
           "runtime_entity_canonical_id": "runtime.market_item.9e327076b4e1ef6c",
           "resolution_rule": "source_explicit_market_price",
           "formal_source": {
@@ -5366,7 +5295,7 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.13.105.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.market_item.1aac8b956f808df5",
           "runtime_entity_canonical_id": "runtime.market_item.1aac8b956f808df5",
           "resolution_rule": "source_explicit_market_price",
           "formal_source": {
@@ -5437,7 +5366,7 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.13.106.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.market_item.30a9333b4fe5013b",
           "runtime_entity_canonical_id": "runtime.market_item.30a9333b4fe5013b",
           "resolution_rule": "source_explicit_market_price",
           "formal_source": {
@@ -5552,7 +5481,7 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.13.108.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.market_item.8b34c8535334f805",
           "runtime_entity_canonical_id": "runtime.market_item.8b34c8535334f805",
           "resolution_rule": "source_explicit_market_price",
           "formal_source": {
@@ -5749,7 +5678,7 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.13.112.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.item.637bd2c0d786d5e9",
           "runtime_entity_canonical_id": "runtime.item.637bd2c0d786d5e9",
           "resolution_rule": "source_explicit_monster_item",
           "formal_source": {
@@ -5940,9 +5869,9 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.13.116.target.01",
-          "source_entity_canonical_id": "entity.item.3855a868ca7393f3",
+          "source_entity_canonical_id": "entity.item.7e58577435fee1fe",
           "runtime_entity_canonical_id": "entity.item.7e58577435fee1fe",
-          "resolution_rule": "candidate_with_formal_source",
+          "resolution_rule": "direct_formal_source",
           "formal_source": {
             "item": "entity.item.7e58577435fee1fe",
             "canonical_id": "entity.shop.dc70753834de8917.entry",
@@ -6139,7 +6068,7 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.13.120.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.market_item.9e327076b4e1ef6c",
           "runtime_entity_canonical_id": "runtime.market_item.9e327076b4e1ef6c",
           "resolution_rule": "source_explicit_market_price",
           "formal_source": {
@@ -6255,7 +6184,7 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.13.122.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.market_item.1e9f09eb44297af4",
           "runtime_entity_canonical_id": "runtime.market_item.1e9f09eb44297af4",
           "resolution_rule": "source_explicit_market_price",
           "formal_source": {
@@ -6393,24 +6322,10 @@
           {
             "npc_canonical_id": "derived.npc_definition.9b24322b8a4c3383",
             "location_canonical_id": "entity.location.177998e52a55ed9a",
-            "placement_scope": "task_context"
+            "placement_scope": "static"
           }
         ],
-        "contextual_npc_placements": [
-          {
-            "npc_canonical_id": "derived.npc_definition.9b24322b8a4c3383",
-            "location_canonical_id": "entity.location.177998e52a55ed9a",
-            "placement_scope": "task_context",
-            "task_canonical_id": "task.series.13.125",
-            "appearance_statuses": [
-              "accepted",
-              "in_progress",
-              "completable"
-            ],
-            "source_canonical_id": "task.series.13.125",
-            "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION"
-          }
-        ],
+        "contextual_npc_placements": [],
         "monster_requirements": [],
         "required_cities": [
           "亚丁"
@@ -6446,25 +6361,10 @@
           {
             "npc_canonical_id": "derived.npc_definition.9b24322b8a4c3383",
             "location_canonical_id": "entity.location.177998e52a55ed9a",
-            "placement_scope": "task_context"
+            "placement_scope": "static"
           }
         ],
-        "contextual_npc_placements": [
-          {
-            "npc_canonical_id": "derived.npc_definition.9b24322b8a4c3383",
-            "location_canonical_id": "entity.location.177998e52a55ed9a",
-            "placement_scope": "task_context",
-            "task_canonical_id": "task.series.13.126",
-            "appearance_statuses": [
-              "available",
-              "accepted",
-              "in_progress",
-              "completable"
-            ],
-            "source_canonical_id": "task.series.13.126",
-            "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION"
-          }
-        ],
+        "contextual_npc_placements": [],
         "monster_requirements": [
           {
             "monster_canonical_id": "derived.monster_definition.c6d9ebb1aeefaae8",
@@ -6509,25 +6409,10 @@
           {
             "npc_canonical_id": "derived.npc_definition.9b24322b8a4c3383",
             "location_canonical_id": "entity.location.177998e52a55ed9a",
-            "placement_scope": "task_context"
+            "placement_scope": "static"
           }
         ],
-        "contextual_npc_placements": [
-          {
-            "npc_canonical_id": "derived.npc_definition.9b24322b8a4c3383",
-            "location_canonical_id": "entity.location.177998e52a55ed9a",
-            "placement_scope": "task_context",
-            "task_canonical_id": "task.series.13.127",
-            "appearance_statuses": [
-              "available",
-              "accepted",
-              "in_progress",
-              "completable"
-            ],
-            "source_canonical_id": "task.series.13.127",
-            "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION"
-          }
-        ],
+        "contextual_npc_placements": [],
         "monster_requirements": [
           {
             "monster_canonical_id": "derived.monster_definition.cdec93d5660c408c",
@@ -6568,25 +6453,10 @@
           {
             "npc_canonical_id": "derived.npc_definition.9b24322b8a4c3383",
             "location_canonical_id": "entity.location.177998e52a55ed9a",
-            "placement_scope": "task_context"
+            "placement_scope": "static"
           }
         ],
-        "contextual_npc_placements": [
-          {
-            "npc_canonical_id": "derived.npc_definition.9b24322b8a4c3383",
-            "location_canonical_id": "entity.location.177998e52a55ed9a",
-            "placement_scope": "task_context",
-            "task_canonical_id": "task.series.13.128",
-            "appearance_statuses": [
-              "available",
-              "accepted",
-              "in_progress",
-              "completable"
-            ],
-            "source_canonical_id": "task.series.13.128",
-            "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION"
-          }
-        ],
+        "contextual_npc_placements": [],
         "monster_requirements": [],
         "required_cities": [
           "亚丁",
@@ -6602,7 +6472,7 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.13.128.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.market_item.30a9333b4fe5013b",
           "runtime_entity_canonical_id": "runtime.market_item.30a9333b4fe5013b",
           "resolution_rule": "source_explicit_market_price",
           "formal_source": {
@@ -6647,25 +6517,10 @@
           {
             "npc_canonical_id": "derived.npc_definition.9b24322b8a4c3383",
             "location_canonical_id": "entity.location.177998e52a55ed9a",
-            "placement_scope": "task_context"
+            "placement_scope": "static"
           }
         ],
-        "contextual_npc_placements": [
-          {
-            "npc_canonical_id": "derived.npc_definition.9b24322b8a4c3383",
-            "location_canonical_id": "entity.location.177998e52a55ed9a",
-            "placement_scope": "task_context",
-            "task_canonical_id": "task.series.13.129",
-            "appearance_statuses": [
-              "available",
-              "accepted",
-              "in_progress",
-              "completable"
-            ],
-            "source_canonical_id": "task.series.13.129",
-            "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION"
-          }
-        ],
+        "contextual_npc_placements": [],
         "monster_requirements": [],
         "required_cities": [
           "亚丁"
@@ -6680,7 +6535,7 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.13.129.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.item.f16e99136fd8942f",
           "runtime_entity_canonical_id": "runtime.item.f16e99136fd8942f",
           "resolution_rule": "source_explicit_task_described_encounter_drop",
           "formal_source": {
@@ -6726,7 +6581,7 @@
           {
             "npc_canonical_id": "derived.npc_definition.9b24322b8a4c3383",
             "location_canonical_id": "entity.location.177998e52a55ed9a",
-            "placement_scope": "task_context"
+            "placement_scope": "static"
           },
           {
             "npc_canonical_id": "derived.npc_definition.d04d842572ecfcd9",
@@ -6734,22 +6589,7 @@
             "placement_scope": "static"
           }
         ],
-        "contextual_npc_placements": [
-          {
-            "npc_canonical_id": "derived.npc_definition.9b24322b8a4c3383",
-            "location_canonical_id": "entity.location.177998e52a55ed9a",
-            "placement_scope": "task_context",
-            "task_canonical_id": "task.series.13.130",
-            "appearance_statuses": [
-              "available",
-              "accepted",
-              "in_progress",
-              "completable"
-            ],
-            "source_canonical_id": "task.series.13.130",
-            "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION"
-          }
-        ],
+        "contextual_npc_placements": [],
         "monster_requirements": [],
         "required_cities": [
           "亚丁",
@@ -6936,7 +6776,7 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.13.134.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.item.acf383cef37613dc",
           "runtime_entity_canonical_id": "runtime.item.acf383cef37613dc",
           "resolution_rule": "source_explicit_task_described_encounter_drop",
           "formal_source": {
@@ -7134,7 +6974,7 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.13.138.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.market_item.aa53ae895172ae2a",
           "runtime_entity_canonical_id": "runtime.market_item.aa53ae895172ae2a",
           "resolution_rule": "source_explicit_market_price",
           "formal_source": {
@@ -7273,24 +7113,10 @@
           {
             "npc_canonical_id": "derived.npc_definition.9b24322b8a4c3383",
             "location_canonical_id": "entity.location.177998e52a55ed9a",
-            "placement_scope": "task_context"
+            "placement_scope": "static"
           }
         ],
-        "contextual_npc_placements": [
-          {
-            "npc_canonical_id": "derived.npc_definition.9b24322b8a4c3383",
-            "location_canonical_id": "entity.location.177998e52a55ed9a",
-            "placement_scope": "task_context",
-            "task_canonical_id": "task.series.13.141",
-            "appearance_statuses": [
-              "accepted",
-              "in_progress",
-              "completable"
-            ],
-            "source_canonical_id": "task.series.13.141",
-            "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION"
-          }
-        ],
+        "contextual_npc_placements": [],
         "monster_requirements": [],
         "required_cities": [
           "泉州",
@@ -7327,25 +7153,10 @@
           {
             "npc_canonical_id": "derived.npc_definition.9b24322b8a4c3383",
             "location_canonical_id": "entity.location.177998e52a55ed9a",
-            "placement_scope": "task_context"
+            "placement_scope": "static"
           }
         ],
-        "contextual_npc_placements": [
-          {
-            "npc_canonical_id": "derived.npc_definition.9b24322b8a4c3383",
-            "location_canonical_id": "entity.location.177998e52a55ed9a",
-            "placement_scope": "task_context",
-            "task_canonical_id": "task.series.13.142",
-            "appearance_statuses": [
-              "available",
-              "accepted",
-              "in_progress",
-              "completable"
-            ],
-            "source_canonical_id": "task.series.13.142",
-            "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION"
-          }
-        ],
+        "contextual_npc_placements": [],
         "monster_requirements": [
           {
             "monster_canonical_id": "derived.monster_definition.2e6d709f8f6430d2",
@@ -7379,40 +7190,18 @@
       "evidence": {
         "definition_complete": true,
         "required_locations": [
-          "entity.location.177998e52a55ed9a",
           "entity.location.14af2737a7ce2013"
         ],
         "npc_requirements": [
-          {
-            "npc_canonical_id": "derived.npc_definition.9b24322b8a4c3383",
-            "location_canonical_id": "entity.location.177998e52a55ed9a",
-            "placement_scope": "task_context"
-          },
           {
             "npc_canonical_id": "derived.npc_definition.03030119c55991e5",
             "location_canonical_id": "entity.location.14af2737a7ce2013",
             "placement_scope": "static"
           }
         ],
-        "contextual_npc_placements": [
-          {
-            "npc_canonical_id": "derived.npc_definition.9b24322b8a4c3383",
-            "location_canonical_id": "entity.location.177998e52a55ed9a",
-            "placement_scope": "task_context",
-            "task_canonical_id": "task.series.13.143",
-            "appearance_statuses": [
-              "available",
-              "accepted",
-              "in_progress",
-              "completable"
-            ],
-            "source_canonical_id": "task.series.13.143",
-            "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION"
-          }
-        ],
+        "contextual_npc_placements": [],
         "monster_requirements": [],
         "required_cities": [
-          "亚丁",
           "荷姆兹"
         ],
         "route_waypoint_destinations": [],
@@ -7465,7 +7254,7 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.13.144.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.market_item.aa53ae895172ae2a",
           "runtime_entity_canonical_id": "runtime.market_item.aa53ae895172ae2a",
           "resolution_rule": "source_explicit_market_price",
           "formal_source": {
@@ -8274,7 +8063,7 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.13.159.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.item.6b78ddc7df6aa3ed",
           "runtime_entity_canonical_id": "runtime.item.6b78ddc7df6aa3ed",
           "resolution_rule": "source_explicit_task_described_encounter_drop",
           "formal_source": {
@@ -8338,24 +8127,24 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.13.160.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.item.afae2dffe7986a5d",
           "runtime_entity_canonical_id": "runtime.item.afae2dffe7986a5d",
           "resolution_rule": "source_explicit_task_described_encounter_drop",
           "formal_source": {
-            "canonical_id": "runtime.task-drop.57246a9a1744e2ad",
+            "canonical_id": "runtime.task-drop.231cbf5b7e3c18f3",
             "source_canonical_id": "task.series.13.160",
             "source_kind": "monster_drop",
-            "monster_canonical_id": "derived.monster_definition.22c04b2273400b89",
+            "monster_canonical_id": "derived.monster_definition.c5d9bd950593f414",
             "location_canonical_id": "entity.location.c2e54af621d548cd",
             "runtime_item_canonical_id": "runtime.item.afae2dffe7986a5d",
             "item_name": "亚特兰蒂斯航海图",
-            "monster_name": "巨红蜈蚣",
+            "monster_name": "巨红蜈蚣王",
             "probability": 1,
             "route_pairs": [],
             "evidence_status": "SOURCE_EXPLICIT_TASK_CONDITION",
             "evidence_locator": "task.series.13.160 description + target encounter placement",
             "probability_adjudication": "one required task item is settled per defeated or harvested source encounter because the task text gives an acquisition condition but no random drop rate",
-            "encounter_match": "task_description_names_promoted_variant",
+            "encounter_match": "task_description_names_encounter",
             "lexical_overlap": "",
             "has_active_conflict": true
           }
@@ -8429,25 +8218,10 @@
           {
             "npc_canonical_id": "derived.npc_definition.199c696318fc94a6",
             "location_canonical_id": "entity.location.699ec43c717b6d01",
-            "placement_scope": "task_context"
+            "placement_scope": "static"
           }
         ],
-        "contextual_npc_placements": [
-          {
-            "npc_canonical_id": "derived.npc_definition.199c696318fc94a6",
-            "location_canonical_id": "entity.location.699ec43c717b6d01",
-            "placement_scope": "task_context",
-            "task_canonical_id": "task.series.13.162",
-            "appearance_statuses": [
-              "available",
-              "accepted",
-              "in_progress",
-              "completable"
-            ],
-            "source_canonical_id": "task.series.13.162",
-            "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION"
-          }
-        ],
+        "contextual_npc_placements": [],
         "monster_requirements": [
           {
             "monster_canonical_id": "derived.monster_definition.d2a671064cf1e62d",
@@ -8481,29 +8255,27 @@
       "evidence": {
         "definition_complete": true,
         "required_locations": [
-          "entity.location.699ec43c717b6d01",
           "entity.location.d578c5c2a89afaed"
         ],
         "npc_requirements": [
           {
-            "npc_canonical_id": "derived.npc_definition.199c696318fc94a6",
-            "location_canonical_id": "entity.location.699ec43c717b6d01",
-            "placement_scope": "task_context"
+            "npc_canonical_id": "derived.npc_definition.6bfe677a55c86a02",
+            "location_canonical_id": "entity.location.d578c5c2a89afaed",
+            "placement_scope": "static"
           },
           {
             "npc_canonical_id": "derived.npc_definition.e50fa371481679d8",
-            "location_canonical_id": "entity.location.699ec43c717b6d01",
-            "placement_scope": "static"
+            "location_canonical_id": "entity.location.d578c5c2a89afaed",
+            "placement_scope": "task_context"
           }
         ],
         "contextual_npc_placements": [
           {
-            "npc_canonical_id": "derived.npc_definition.199c696318fc94a6",
-            "location_canonical_id": "entity.location.699ec43c717b6d01",
+            "npc_canonical_id": "derived.npc_definition.e50fa371481679d8",
+            "location_canonical_id": "entity.location.d578c5c2a89afaed",
             "placement_scope": "task_context",
             "task_canonical_id": "task.series.13.163",
             "appearance_statuses": [
-              "available",
               "accepted",
               "in_progress",
               "completable"
@@ -8565,7 +8337,7 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.13.164.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.item.34153aca13917498",
           "runtime_entity_canonical_id": "runtime.item.34153aca13917498",
           "resolution_rule": "source_explicit_task_described_encounter_drop",
           "formal_source": {
@@ -8629,7 +8401,7 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.13.165.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.item.4ea62b01710f7caa",
           "runtime_entity_canonical_id": "runtime.item.4ea62b01710f7caa",
           "resolution_rule": "source_explicit_task_described_encounter_drop",
           "formal_source": {
@@ -8679,25 +8451,11 @@
           },
           {
             "npc_canonical_id": "derived.npc_definition.c46edafba79e4223",
-            "location_canonical_id": "entity.location.d578c5c2a89afaed",
-            "placement_scope": "task_context"
+            "location_canonical_id": "entity.location.15ae6a8396268cff",
+            "placement_scope": "static"
           }
         ],
-        "contextual_npc_placements": [
-          {
-            "npc_canonical_id": "derived.npc_definition.c46edafba79e4223",
-            "location_canonical_id": "entity.location.d578c5c2a89afaed",
-            "placement_scope": "task_context",
-            "task_canonical_id": "task.series.13.166",
-            "appearance_statuses": [
-              "accepted",
-              "in_progress",
-              "completable"
-            ],
-            "source_canonical_id": "task.series.13.166",
-            "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION"
-          }
-        ],
+        "contextual_npc_placements": [],
         "monster_requirements": [],
         "required_cities": [
           "亚特兰蒂斯"
@@ -9152,7 +8910,7 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.14.175.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.item.adfe2add7ce81ec0",
           "runtime_entity_canonical_id": "runtime.item.adfe2add7ce81ec0",
           "resolution_rule": "source_explicit_task_described_encounter_drop",
           "formal_source": {
@@ -9247,8 +9005,8 @@
           },
           {
             "npc_canonical_id": "derived.npc_definition.877e5a747aa599eb",
-            "location_canonical_id": "entity.location.dfd93192aaca2271",
-            "placement_scope": "task_context"
+            "location_canonical_id": "entity.location.d671d0826cdb3016",
+            "placement_scope": "static"
           }
         ],
         "contextual_npc_placements": [
@@ -9259,19 +9017,6 @@
             "task_canonical_id": "task.series.14.177",
             "appearance_statuses": [
               "available",
-              "accepted",
-              "in_progress",
-              "completable"
-            ],
-            "source_canonical_id": "task.series.14.177",
-            "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION"
-          },
-          {
-            "npc_canonical_id": "derived.npc_definition.877e5a747aa599eb",
-            "location_canonical_id": "entity.location.dfd93192aaca2271",
-            "placement_scope": "task_context",
-            "task_canonical_id": "task.series.14.177",
-            "appearance_statuses": [
               "accepted",
               "in_progress",
               "completable"
@@ -9497,7 +9242,7 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.15.181.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.item.2b73463f2fabf312",
           "runtime_entity_canonical_id": "runtime.item.2b73463f2fabf312",
           "resolution_rule": "source_explicit_task_described_encounter_drop",
           "formal_source": {
@@ -9737,7 +9482,7 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.15.186.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.item.879939da40170b1b",
           "runtime_entity_canonical_id": "runtime.item.879939da40170b1b",
           "resolution_rule": "source_explicit_task_described_encounter_drop",
           "formal_source": {
@@ -9800,9 +9545,9 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.15.187.target.01",
-          "source_entity_canonical_id": "entity.item.b47d2dd709e68b18",
+          "source_entity_canonical_id": "entity.item.fd4174760618fabc",
           "runtime_entity_canonical_id": "entity.item.fd4174760618fabc",
-          "resolution_rule": "candidate_with_formal_source",
+          "resolution_rule": "direct_formal_source",
           "formal_source": {
             "item": "entity.item.fd4174760618fabc",
             "canonical_id": "entity.shop.703a35a6a9f4da76.entry",
@@ -10038,7 +9783,7 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.15.192.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.item.783cdb522262f002",
           "runtime_entity_canonical_id": "runtime.item.783cdb522262f002",
           "resolution_rule": "source_explicit_monster_item",
           "formal_source": {
@@ -11503,7 +11248,7 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.15.224.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.item.88e15e58f8f276af",
           "runtime_entity_canonical_id": "runtime.item.88e15e58f8f276af",
           "resolution_rule": "source_explicit_task_described_encounter_drop",
           "formal_source": {
@@ -11908,24 +11653,10 @@
           {
             "npc_canonical_id": "derived.npc_definition.1a591b9cfe3b0695",
             "location_canonical_id": "entity.location.346d35acaee84b41",
-            "placement_scope": "task_context"
+            "placement_scope": "static"
           }
         ],
-        "contextual_npc_placements": [
-          {
-            "npc_canonical_id": "derived.npc_definition.1a591b9cfe3b0695",
-            "location_canonical_id": "entity.location.346d35acaee84b41",
-            "placement_scope": "task_context",
-            "task_canonical_id": "task.series.15.233",
-            "appearance_statuses": [
-              "accepted",
-              "in_progress",
-              "completable"
-            ],
-            "source_canonical_id": "task.series.15.233",
-            "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION"
-          }
-        ],
+        "contextual_npc_placements": [],
         "monster_requirements": [],
         "required_cities": [
           "泉州"
@@ -12519,7 +12250,7 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.15.245.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.item.d8f4daffae9b9b72",
           "runtime_entity_canonical_id": "runtime.item.d8f4daffae9b9b72",
           "resolution_rule": "source_explicit_task_described_encounter_drop",
           "formal_source": {
@@ -12543,7 +12274,7 @@
         },
         {
           "target_canonical_id": "task.series.15.245.target.02",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.item.90e4e58d454b4a78",
           "runtime_entity_canonical_id": "runtime.item.90e4e58d454b4a78",
           "resolution_rule": "source_explicit_task_described_encounter_drop",
           "formal_source": {
@@ -12986,7 +12717,7 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.15.254.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.item.587731d8287b195f",
           "runtime_entity_canonical_id": "runtime.item.587731d8287b195f",
           "resolution_rule": "source_explicit_task_described_encounter_drop",
           "formal_source": {
@@ -13425,7 +13156,8 @@
         "definition_complete": true,
         "required_locations": [
           "entity.location.401bc85e468d5c64",
-          "entity.location.a01ab7a20349e6b3"
+          "entity.location.a01ab7a20349e6b3",
+          "entity.location.cfbacab4f4db489a"
         ],
         "npc_requirements": [
           {
@@ -13444,7 +13176,7 @@
           "item"
         ],
         "level_requirement": 1,
-        "formal_runtime_path": null
+        "formal_runtime_path": "npc_talk + local_move/voyage + formal combat/shop + npc_submit"
       },
       "runtime_item_resolutions": [
         {
@@ -13653,7 +13385,7 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.15.268.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.item.fde0e6fbfe4b8da9",
           "runtime_entity_canonical_id": "runtime.item.fde0e6fbfe4b8da9",
           "resolution_rule": "source_explicit_task_described_encounter_drop",
           "formal_source": {
@@ -13687,27 +13419,8 @@
       "canonical_id": "task.series.15.269",
       "series_canonical_id": "task.series.15",
       "sequence_position": 89,
-      "directory_status": "data_conflict",
-      "blocking_reasons": [
-        {
-          "code": "unresolved_dependency",
-          "details": [
-            {
-              "type": "unresolved_target",
-              "target_canonical_id": "task.series.15.269.target.01",
-              "dependency_canonical_id": "task.series.15.269.target.01.reference",
-              "resolution_status": "blocked_missing_definition",
-              "candidate_canonical_ids": []
-            }
-          ]
-        },
-        {
-          "code": "item_without_formal_source",
-          "target_canonical_id": "task.series.15.269.target.01",
-          "source_entity_canonical_id": null,
-          "candidate_canonical_ids": []
-        }
-      ],
+      "directory_status": "runnable_pending_validation",
+      "blocking_reasons": [],
       "evidence": {
         "definition_complete": true,
         "required_locations": [
@@ -13731,18 +13444,43 @@
           "item"
         ],
         "level_requirement": 1,
-        "formal_runtime_path": null
+        "formal_runtime_path": "npc_talk + local_move/voyage + formal combat/shop + npc_submit"
       },
-      "runtime_item_resolutions": [],
+      "runtime_item_resolutions": [
+        {
+          "target_canonical_id": "task.series.15.269.target.01",
+          "source_entity_canonical_id": "entity.item.57e744db1884c498",
+          "runtime_entity_canonical_id": "runtime.item.57e744db1884c498",
+          "resolution_rule": "source_explicit_task_described_encounter_drop",
+          "formal_source": {
+            "canonical_id": "runtime.task-drop.6775a8f5952e17bc",
+            "source_canonical_id": "task.series.15.269",
+            "source_kind": "monster_drop",
+            "monster_canonical_id": "derived.monster_definition.9cdb92b5619a712d",
+            "location_canonical_id": "entity.location.c0a4560ce36c2c80",
+            "runtime_item_canonical_id": "runtime.item.57e744db1884c498",
+            "item_name": "熊皮",
+            "monster_name": "巨熊",
+            "probability": 1,
+            "route_pairs": [],
+            "evidence_status": "SOURCE_EXPLICIT_TASK_CONDITION",
+            "evidence_locator": "task.series.15.269 description + target encounter placement",
+            "probability_adjudication": "one required task item is settled per defeated or harvested source encounter because the task text gives an acquisition condition but no random drop rate",
+            "encounter_match": "task_description_names_encounter",
+            "lexical_overlap": "熊",
+            "has_active_conflict": true
+          }
+        }
+      ],
       "runtime_target_resolutions": [],
       "runtime_reward_resolutions": [],
       "task_location_override": null,
       "evidence_exception_resolution": {
-        "decision": "retain_evidence_hold",
-        "conclusion": "“巨熊→熊皮”掉落关系存在，但唯一巨熊位于长安凤凰山（Lv111），任务要求威尼斯枯树林，且该处只有魅精。跨城市、跨等级段冲突无法由别名解释；保留data_conflict，不生成威尼斯巨熊。",
-        "resulting_status": "data_conflict"
+        "decision": "release_evidence_hold_after_data_fix",
+        "conclusion": "裁决已实施：为巨熊补建\"威尼斯/枯树林\"安置（与任务文本一致），巨熊→熊皮掉落关系落库（0.4/guaranteed 由运行时层提供），跨城市冲突消除；本任务 blocking 归零，转 runnable_pending_validation。",
+        "resulting_status": "runnable_pending_validation"
       },
-      "operational_fit": false,
+      "operational_fit": true,
       "implemented_shared_systems": []
     },
     {
@@ -13779,7 +13517,7 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.15.270.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.item.3a32e667b159386e",
           "runtime_entity_canonical_id": "runtime.item.3a32e667b159386e",
           "resolution_rule": "source_explicit_task_described_encounter_drop",
           "formal_source": {
@@ -14246,7 +13984,7 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.15.280.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.item.ac59252eb64cde19",
           "runtime_entity_canonical_id": "runtime.item.ac59252eb64cde19",
           "resolution_rule": "source_explicit_task_described_encounter_drop",
           "formal_source": {
@@ -14561,24 +14299,10 @@
           {
             "npc_canonical_id": "derived.npc_definition.b48d09bfb7238066",
             "location_canonical_id": "entity.location.4c0ac5d598afa5d3",
-            "placement_scope": "task_context"
+            "placement_scope": "static"
           }
         ],
-        "contextual_npc_placements": [
-          {
-            "npc_canonical_id": "derived.npc_definition.b48d09bfb7238066",
-            "location_canonical_id": "entity.location.4c0ac5d598afa5d3",
-            "placement_scope": "task_context",
-            "task_canonical_id": "task.series.15.287",
-            "appearance_statuses": [
-              "accepted",
-              "in_progress",
-              "completable"
-            ],
-            "source_canonical_id": "task.series.15.287",
-            "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION"
-          }
-        ],
+        "contextual_npc_placements": [],
         "monster_requirements": [],
         "required_cities": [
           "威尼斯"
@@ -14614,7 +14338,7 @@
           {
             "npc_canonical_id": "derived.npc_definition.b48d09bfb7238066",
             "location_canonical_id": "entity.location.4c0ac5d598afa5d3",
-            "placement_scope": "task_context"
+            "placement_scope": "static"
           },
           {
             "npc_canonical_id": "derived.npc_definition.44d8b643f24483ba",
@@ -14622,22 +14346,7 @@
             "placement_scope": "static"
           }
         ],
-        "contextual_npc_placements": [
-          {
-            "npc_canonical_id": "derived.npc_definition.b48d09bfb7238066",
-            "location_canonical_id": "entity.location.4c0ac5d598afa5d3",
-            "placement_scope": "task_context",
-            "task_canonical_id": "task.series.15.288",
-            "appearance_statuses": [
-              "available",
-              "accepted",
-              "in_progress",
-              "completable"
-            ],
-            "source_canonical_id": "task.series.15.288",
-            "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION"
-          }
-        ],
+        "contextual_npc_placements": [],
         "monster_requirements": [],
         "required_cities": [
           "威尼斯"
@@ -14735,7 +14444,7 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.15.290.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.item.97ec88b8cc4e7664",
           "runtime_entity_canonical_id": "runtime.item.97ec88b8cc4e7664",
           "resolution_rule": "source_explicit_task_described_encounter_drop",
           "formal_source": {
@@ -14781,7 +14490,7 @@
           {
             "npc_canonical_id": "derived.npc_definition.4559aa62e59f03ff",
             "location_canonical_id": "entity.location.f094e442ef1d40ea",
-            "placement_scope": "task_context"
+            "placement_scope": "static"
           },
           {
             "npc_canonical_id": "derived.npc_definition.3aabefa66327d2eb",
@@ -14789,22 +14498,7 @@
             "placement_scope": "static"
           }
         ],
-        "contextual_npc_placements": [
-          {
-            "npc_canonical_id": "derived.npc_definition.4559aa62e59f03ff",
-            "location_canonical_id": "entity.location.f094e442ef1d40ea",
-            "placement_scope": "task_context",
-            "task_canonical_id": "task.series.15.291",
-            "appearance_statuses": [
-              "available",
-              "accepted",
-              "in_progress",
-              "completable"
-            ],
-            "source_canonical_id": "task.series.15.291",
-            "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION"
-          }
-        ],
+        "contextual_npc_placements": [],
         "monster_requirements": [],
         "required_cities": [
           "威尼斯"
@@ -15095,24 +14789,10 @@
           {
             "npc_canonical_id": "derived.npc_definition.9b6822ddc148d273",
             "location_canonical_id": "entity.location.1bdc3bb6fb4d78ea",
-            "placement_scope": "task_context"
+            "placement_scope": "static"
           }
         ],
-        "contextual_npc_placements": [
-          {
-            "npc_canonical_id": "derived.npc_definition.9b6822ddc148d273",
-            "location_canonical_id": "entity.location.1bdc3bb6fb4d78ea",
-            "placement_scope": "task_context",
-            "task_canonical_id": "task.series.15.297",
-            "appearance_statuses": [
-              "accepted",
-              "in_progress",
-              "completable"
-            ],
-            "source_canonical_id": "task.series.15.297",
-            "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION"
-          }
-        ],
+        "contextual_npc_placements": [],
         "monster_requirements": [],
         "required_cities": [
           "威尼斯"
@@ -15349,6 +15029,7 @@
         "definition_complete": true,
         "required_locations": [
           "entity.location.4a97d4ef45bccaa5",
+          "entity.location.e28ff0fd9c85bf7d",
           "entity.location.4c28fa602cb1ba53"
         ],
         "npc_requirements": [
@@ -15359,25 +15040,11 @@
           },
           {
             "npc_canonical_id": "derived.npc_definition.c2766fee3e0dc2d1",
-            "location_canonical_id": "entity.location.4a97d4ef45bccaa5",
-            "placement_scope": "task_context"
+            "location_canonical_id": "entity.location.e28ff0fd9c85bf7d",
+            "placement_scope": "static"
           }
         ],
-        "contextual_npc_placements": [
-          {
-            "npc_canonical_id": "derived.npc_definition.c2766fee3e0dc2d1",
-            "location_canonical_id": "entity.location.4a97d4ef45bccaa5",
-            "placement_scope": "task_context",
-            "task_canonical_id": "task.series.15.302",
-            "appearance_statuses": [
-              "accepted",
-              "in_progress",
-              "completable"
-            ],
-            "source_canonical_id": "task.series.15.302",
-            "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION"
-          }
-        ],
+        "contextual_npc_placements": [],
         "monster_requirements": [],
         "required_cities": [
           "大阪"
@@ -16450,7 +16117,7 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.15.411.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.item.4d5b4502853fa908",
           "runtime_entity_canonical_id": "runtime.item.4d5b4502853fa908",
           "resolution_rule": "source_explicit_task_described_encounter_drop",
           "formal_source": {
@@ -16635,7 +16302,7 @@
         "contextual_npc_placements": [],
         "monster_requirements": [
           {
-            "monster_canonical_id": null,
+            "monster_canonical_id": "derived.monster_definition.b6c33ddc0a318a25",
             "location_canonical_id": "entity.location.6b994d2ecbcc7076"
           },
           {
@@ -16719,7 +16386,7 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.15.416.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.item.9d567ada42ae6c19",
           "runtime_entity_canonical_id": "runtime.item.9d567ada42ae6c19",
           "resolution_rule": "source_explicit_task_described_encounter_drop",
           "formal_source": {
@@ -17701,25 +17368,10 @@
           {
             "npc_canonical_id": "derived.npc_definition.112c41537d305d9c",
             "location_canonical_id": "entity.location.c25370f986a8ff54",
-            "placement_scope": "task_context"
+            "placement_scope": "static"
           }
         ],
-        "contextual_npc_placements": [
-          {
-            "npc_canonical_id": "derived.npc_definition.112c41537d305d9c",
-            "location_canonical_id": "entity.location.c25370f986a8ff54",
-            "placement_scope": "task_context",
-            "task_canonical_id": "task.series.15.438",
-            "appearance_statuses": [
-              "available",
-              "accepted",
-              "in_progress",
-              "completable"
-            ],
-            "source_canonical_id": "task.series.15.438",
-            "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION"
-          }
-        ],
+        "contextual_npc_placements": [],
         "monster_requirements": [
           {
             "monster_canonical_id": "derived.monster_definition.e41f52d22ce87081",
@@ -17760,25 +17412,10 @@
           {
             "npc_canonical_id": "derived.npc_definition.112c41537d305d9c",
             "location_canonical_id": "entity.location.c25370f986a8ff54",
-            "placement_scope": "task_context"
+            "placement_scope": "static"
           }
         ],
-        "contextual_npc_placements": [
-          {
-            "npc_canonical_id": "derived.npc_definition.112c41537d305d9c",
-            "location_canonical_id": "entity.location.c25370f986a8ff54",
-            "placement_scope": "task_context",
-            "task_canonical_id": "task.series.15.439",
-            "appearance_statuses": [
-              "available",
-              "accepted",
-              "in_progress",
-              "completable"
-            ],
-            "source_canonical_id": "task.series.15.439",
-            "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION"
-          }
-        ],
+        "contextual_npc_placements": [],
         "monster_requirements": [],
         "required_cities": [
           "孟买"
@@ -17793,7 +17430,7 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.15.439.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.item.3ee24deb8eab96fb",
           "runtime_entity_canonical_id": "runtime.item.3ee24deb8eab96fb",
           "resolution_rule": "source_explicit_task_described_encounter_drop",
           "formal_source": {
@@ -17832,14 +17469,14 @@
       "evidence": {
         "definition_complete": true,
         "required_locations": [
-          "entity.location.7c835ecb95b2131f",
-          "entity.location.ef9343fa9b5c9210"
+          "entity.location.ef9343fa9b5c9210",
+          "entity.location.7c835ecb95b2131f"
         ],
         "npc_requirements": [
           {
-            "npc_canonical_id": "derived.npc_definition.112c41537d305d9c",
-            "location_canonical_id": "entity.location.7c835ecb95b2131f",
-            "placement_scope": "task_context"
+            "npc_canonical_id": "derived.npc_definition.1162e05bf414051a",
+            "location_canonical_id": "entity.location.ef9343fa9b5c9210",
+            "placement_scope": "static"
           },
           {
             "npc_canonical_id": "derived.npc_definition.35205e09ebf17cfd",
@@ -17847,22 +17484,7 @@
             "placement_scope": "static"
           }
         ],
-        "contextual_npc_placements": [
-          {
-            "npc_canonical_id": "derived.npc_definition.112c41537d305d9c",
-            "location_canonical_id": "entity.location.7c835ecb95b2131f",
-            "placement_scope": "task_context",
-            "task_canonical_id": "task.series.15.440",
-            "appearance_statuses": [
-              "available",
-              "accepted",
-              "in_progress",
-              "completable"
-            ],
-            "source_canonical_id": "task.series.15.440",
-            "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION"
-          }
-        ],
+        "contextual_npc_placements": [],
         "monster_requirements": [],
         "required_cities": [
           "突尼斯"
@@ -18564,7 +18186,7 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.15.453.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.item.21594155151b00e7",
           "runtime_entity_canonical_id": "runtime.item.21594155151b00e7",
           "resolution_rule": "source_explicit_task_described_encounter_drop",
           "formal_source": {
@@ -18659,24 +18281,10 @@
           {
             "npc_canonical_id": "derived.npc_definition.2130dba0818dff6d",
             "location_canonical_id": "entity.location.7573a519417de413",
-            "placement_scope": "task_context"
+            "placement_scope": "static"
           }
         ],
-        "contextual_npc_placements": [
-          {
-            "npc_canonical_id": "derived.npc_definition.2130dba0818dff6d",
-            "location_canonical_id": "entity.location.7573a519417de413",
-            "placement_scope": "task_context",
-            "task_canonical_id": "task.series.15.455",
-            "appearance_statuses": [
-              "accepted",
-              "in_progress",
-              "completable"
-            ],
-            "source_canonical_id": "task.series.15.455",
-            "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION"
-          }
-        ],
+        "contextual_npc_placements": [],
         "monster_requirements": [],
         "required_cities": [
           "阿尔及尔"
@@ -18712,25 +18320,10 @@
           {
             "npc_canonical_id": "derived.npc_definition.2130dba0818dff6d",
             "location_canonical_id": "entity.location.7573a519417de413",
-            "placement_scope": "task_context"
+            "placement_scope": "static"
           }
         ],
-        "contextual_npc_placements": [
-          {
-            "npc_canonical_id": "derived.npc_definition.2130dba0818dff6d",
-            "location_canonical_id": "entity.location.7573a519417de413",
-            "placement_scope": "task_context",
-            "task_canonical_id": "task.series.15.456",
-            "appearance_statuses": [
-              "available",
-              "accepted",
-              "in_progress",
-              "completable"
-            ],
-            "source_canonical_id": "task.series.15.456",
-            "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION"
-          }
-        ],
+        "contextual_npc_placements": [],
         "monster_requirements": [
           {
             "monster_canonical_id": "derived.monster_definition.ec9a7e933b3e45fc",
@@ -18780,7 +18373,7 @@
           {
             "npc_canonical_id": "derived.npc_definition.2130dba0818dff6d",
             "location_canonical_id": "entity.location.7573a519417de413",
-            "placement_scope": "task_context"
+            "placement_scope": "static"
           },
           {
             "npc_canonical_id": "derived.npc_definition.f68a35045a44f003",
@@ -18788,22 +18381,7 @@
             "placement_scope": "static"
           }
         ],
-        "contextual_npc_placements": [
-          {
-            "npc_canonical_id": "derived.npc_definition.2130dba0818dff6d",
-            "location_canonical_id": "entity.location.7573a519417de413",
-            "placement_scope": "task_context",
-            "task_canonical_id": "task.series.15.457",
-            "appearance_statuses": [
-              "available",
-              "accepted",
-              "in_progress",
-              "completable"
-            ],
-            "source_canonical_id": "task.series.15.457",
-            "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION"
-          }
-        ],
+        "contextual_npc_placements": [],
         "monster_requirements": [],
         "required_cities": [
           "阿尔及尔"
@@ -18813,7 +18391,7 @@
           "item"
         ],
         "level_requirement": 1,
-        "formal_runtime_path": null
+        "formal_runtime_path": "npc_talk + local_move/voyage + formal combat/shop + npc_submit"
       },
       "runtime_item_resolutions": [
         {
@@ -18887,7 +18465,7 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.15.458.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.item.21594155151b00e7",
           "runtime_entity_canonical_id": "runtime.item.21594155151b00e7",
           "resolution_rule": "source_explicit_task_described_encounter_drop",
           "formal_source": {
@@ -19153,7 +18731,7 @@
           "item"
         ],
         "level_requirement": 1,
-        "formal_runtime_path": null
+        "formal_runtime_path": "npc_talk + local_move/voyage + formal combat/shop + npc_submit"
       },
       "runtime_item_resolutions": [
         {
@@ -19314,26 +18892,19 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.15.466.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.item.186026db0c45bd9f",
           "runtime_entity_canonical_id": "runtime.item.186026db0c45bd9f",
-          "resolution_rule": "source_explicit_task_described_encounter_drop",
+          "resolution_rule": "direct_formal_source",
           "formal_source": {
-            "canonical_id": "runtime.task-drop.6042ad47b53b607e",
-            "source_canonical_id": "task.series.15.466",
-            "source_kind": "monster_drop",
+            "item": "runtime.item.186026db0c45bd9f",
+            "canonical_id": "entity.drop.0d545059dd1628d2",
+            "source_canonical_id": "derived.monster_definition.fa436ccecd6e58a6",
+            "source_kind": "drop",
+            "probability": 0.4,
+            "quantity": 1,
+            "runtime_capability": "queryable",
             "monster_canonical_id": "derived.monster_definition.fa436ccecd6e58a6",
-            "location_canonical_id": "entity.location.e85dd25d1632f004",
-            "runtime_item_canonical_id": "runtime.item.186026db0c45bd9f",
-            "item_name": "火蝙蝠血液",
-            "monster_name": "火蝙蝠",
-            "probability": 1,
-            "route_pairs": [],
-            "evidence_status": "SOURCE_EXPLICIT_TASK_CONDITION",
-            "evidence_locator": "task.series.15.466 description + target encounter placement",
-            "probability_adjudication": "one required task item is settled per defeated or harvested source encounter because the task text gives an acquisition condition but no random drop rate",
-            "encounter_match": "task_description_names_encounter",
-            "lexical_overlap": "火蝙蝠",
-            "has_active_conflict": true
+            "location_canonical_id": "entity.location.e85dd25d1632f004"
           }
         }
       ],
@@ -19384,7 +18955,7 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.15.467.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.item.186026db0c45bd9f",
           "runtime_entity_canonical_id": "runtime.item.186026db0c45bd9f",
           "resolution_rule": "source_explicit_task_described_encounter_drop",
           "formal_source": {
@@ -19592,7 +19163,7 @@
           "item"
         ],
         "level_requirement": 1,
-        "formal_runtime_path": null
+        "formal_runtime_path": "npc_talk + local_move/voyage + formal combat/shop + npc_submit"
       },
       "runtime_item_resolutions": [
         {
@@ -20875,25 +20446,11 @@
           },
           {
             "npc_canonical_id": "derived.npc_definition.095f81aa96871f58",
-            "location_canonical_id": "entity.location.9ff2bd72ca76c669",
-            "placement_scope": "task_context"
+            "location_canonical_id": "entity.location.8594952d4c68cbde",
+            "placement_scope": "static"
           }
         ],
-        "contextual_npc_placements": [
-          {
-            "npc_canonical_id": "derived.npc_definition.095f81aa96871f58",
-            "location_canonical_id": "entity.location.9ff2bd72ca76c669",
-            "placement_scope": "task_context",
-            "task_canonical_id": "task.series.15.497",
-            "appearance_statuses": [
-              "accepted",
-              "in_progress",
-              "completable"
-            ],
-            "source_canonical_id": "task.series.15.497",
-            "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION"
-          }
-        ],
+        "contextual_npc_placements": [],
         "monster_requirements": [],
         "required_cities": [
           "威尼斯"
@@ -20922,36 +20479,16 @@
       "evidence": {
         "definition_complete": true,
         "required_locations": [
-          "entity.location.8594952d4c68cbde",
-          "entity.location.9ff2bd72ca76c669"
+          "entity.location.8594952d4c68cbde"
         ],
         "npc_requirements": [
           {
             "npc_canonical_id": "derived.npc_definition.095f81aa96871f58",
             "location_canonical_id": "entity.location.8594952d4c68cbde",
             "placement_scope": "static"
-          },
-          {
-            "npc_canonical_id": "derived.npc_definition.095f81aa96871f58",
-            "location_canonical_id": "entity.location.9ff2bd72ca76c669",
-            "placement_scope": "task_context"
           }
         ],
-        "contextual_npc_placements": [
-          {
-            "npc_canonical_id": "derived.npc_definition.095f81aa96871f58",
-            "location_canonical_id": "entity.location.9ff2bd72ca76c669",
-            "placement_scope": "task_context",
-            "task_canonical_id": "task.series.15.498",
-            "appearance_statuses": [
-              "accepted",
-              "in_progress",
-              "completable"
-            ],
-            "source_canonical_id": "task.series.15.498",
-            "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION"
-          }
-        ],
+        "contextual_npc_placements": [],
         "monster_requirements": [
           {
             "monster_canonical_id": "derived.monster_definition.6b72df59c502c2fc",
@@ -21734,7 +21271,7 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.15.514.target.01",
-          "source_entity_canonical_id": "entity.item.ffe14c6dca4f57eb",
+          "source_entity_canonical_id": "runtime.market_item.97e7141015fbe129",
           "runtime_entity_canonical_id": "runtime.market_item.97e7141015fbe129",
           "resolution_rule": "source_explicit_market_price",
           "formal_source": {
@@ -22006,36 +21543,17 @@
       "evidence": {
         "definition_complete": true,
         "required_locations": [
-          "entity.location.2186e2bef5ae3159",
-          "entity.location.5ac449a61f94e309"
+          "entity.location.5ac449a61f94e309",
+          "entity.location.2186e2bef5ae3159"
         ],
         "npc_requirements": [
           {
-            "npc_canonical_id": "derived.npc_definition.7f3262541b9c8107",
-            "location_canonical_id": "entity.location.2186e2bef5ae3159",
+            "npc_canonical_id": "derived.npc_definition.a3bb0b619be3f60f",
+            "location_canonical_id": "entity.location.5ac449a61f94e309",
             "placement_scope": "static"
-          },
-          {
-            "npc_canonical_id": "derived.npc_definition.7f3262541b9c8107",
-            "location_canonical_id": "entity.location.5ac449a61f94e309",
-            "placement_scope": "task_context"
           }
         ],
-        "contextual_npc_placements": [
-          {
-            "npc_canonical_id": "derived.npc_definition.7f3262541b9c8107",
-            "location_canonical_id": "entity.location.5ac449a61f94e309",
-            "placement_scope": "task_context",
-            "task_canonical_id": "task.series.15.520",
-            "appearance_statuses": [
-              "accepted",
-              "in_progress",
-              "completable"
-            ],
-            "source_canonical_id": "task.series.15.520",
-            "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION"
-          }
-        ],
+        "contextual_npc_placements": [],
         "monster_requirements": [
           {
             "monster_canonical_id": "derived.monster_definition.cb1a923c7f6e5f41",
@@ -22043,8 +21561,8 @@
           }
         ],
         "required_cities": [
-          "泉州",
-          "长安"
+          "长安",
+          "泉州"
         ],
         "route_waypoint_destinations": [],
         "target_kinds": [
@@ -22070,15 +21588,9 @@
       "evidence": {
         "definition_complete": true,
         "required_locations": [
-          "entity.location.2186e2bef5ae3159",
           "entity.location.5ac449a61f94e309"
         ],
         "npc_requirements": [
-          {
-            "npc_canonical_id": "derived.npc_definition.7f3262541b9c8107",
-            "location_canonical_id": "entity.location.2186e2bef5ae3159",
-            "placement_scope": "static"
-          },
           {
             "npc_canonical_id": "derived.npc_definition.a3bb0b619be3f60f",
             "location_canonical_id": "entity.location.5ac449a61f94e309",
@@ -22088,7 +21600,6 @@
         "contextual_npc_placements": [],
         "monster_requirements": [],
         "required_cities": [
-          "泉州",
           "长安"
         ],
         "route_waypoint_destinations": [],
@@ -23938,7 +23449,7 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.15.560.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.item.336fa533d246e009",
           "runtime_entity_canonical_id": "runtime.item.336fa533d246e009",
           "resolution_rule": "source_explicit_task_described_encounter_drop",
           "formal_source": {
@@ -24002,7 +23513,7 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.15.561.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.item.64da644d11c3f769",
           "runtime_entity_canonical_id": "runtime.item.64da644d11c3f769",
           "resolution_rule": "source_explicit_task_described_encounter_drop",
           "formal_source": {
@@ -25027,7 +24538,7 @@
           "item"
         ],
         "level_requirement": 1,
-        "formal_runtime_path": null
+        "formal_runtime_path": "npc_talk + local_move/voyage + formal combat/shop + npc_submit"
       },
       "runtime_item_resolutions": [
         {
@@ -25105,7 +24616,7 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.15.584.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.item.031e0ed6fb653d58",
           "runtime_entity_canonical_id": "runtime.item.031e0ed6fb653d58",
           "resolution_rule": "source_explicit_task_described_encounter_drop",
           "formal_source": {
@@ -25169,7 +24680,7 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.15.585.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.item.64da644d11c3f769",
           "runtime_entity_canonical_id": "runtime.item.64da644d11c3f769",
           "resolution_rule": "source_explicit_task_described_encounter_drop",
           "formal_source": {
@@ -25875,32 +25386,14 @@
       "canonical_id": "task.series.15.601",
       "series_canonical_id": "task.series.15",
       "sequence_position": 334,
-      "directory_status": "data_conflict",
-      "blocking_reasons": [
-        {
-          "code": "unresolved_dependency",
-          "details": [
-            {
-              "type": "unresolved_target",
-              "target_canonical_id": "task.series.15.601.target.01",
-              "dependency_canonical_id": "task.series.15.601.target.01.reference",
-              "resolution_status": "blocked_missing_definition",
-              "candidate_canonical_ids": []
-            }
-          ]
-        },
-        {
-          "code": "item_without_formal_source",
-          "target_canonical_id": "task.series.15.601.target.01",
-          "source_entity_canonical_id": null,
-          "candidate_canonical_ids": []
-        }
-      ],
+      "directory_status": "runnable_pending_validation",
+      "blocking_reasons": [],
       "evidence": {
         "definition_complete": true,
         "required_locations": [
           "entity.location.753e87b1dfcff938",
-          "entity.location.ce7f9ccb21e29595"
+          "entity.location.ce7f9ccb21e29595",
+          "entity.location.7586de436906a22e"
         ],
         "npc_requirements": [
           {
@@ -25919,18 +25412,36 @@
           "item"
         ],
         "level_requirement": 1,
-        "formal_runtime_path": null
+        "formal_runtime_path": "npc_talk + local_move/voyage + formal combat/shop + npc_submit"
       },
-      "runtime_item_resolutions": [],
+      "runtime_item_resolutions": [
+        {
+          "target_canonical_id": "task.series.15.601.target.01",
+          "source_entity_canonical_id": "entity.item.7ba771bd31f63445",
+          "runtime_entity_canonical_id": "entity.item.7ba771bd31f63445",
+          "resolution_rule": "direct_formal_source",
+          "formal_source": {
+            "item": "entity.item.7ba771bd31f63445",
+            "canonical_id": "entity.drop.c2b7401299792303",
+            "source_canonical_id": "derived.monster_definition.e16c8d9969cd766c",
+            "source_kind": "drop",
+            "probability": 0.4,
+            "quantity": 1,
+            "runtime_capability": "queryable",
+            "monster_canonical_id": "derived.monster_definition.e16c8d9969cd766c",
+            "location_canonical_id": "entity.location.7586de436906a22e"
+          }
+        }
+      ],
       "runtime_target_resolutions": [],
       "runtime_reward_resolutions": [],
       "task_location_override": null,
       "evidence_exception_resolution": {
-        "decision": "retain_evidence_hold",
-        "conclusion": "monsterItems存在“邪恶花精→小良的毛笔”，但全局怪物定义与任何场景中都没有邪恶花精；杭州乌镇现有怪物是邪恶僵尸。缺少战斗属性与合法遭遇位置，不能仅凭掉落键凭空造怪，保留data_conflict。",
-        "resulting_status": "data_conflict"
+        "decision": "release_evidence_hold_after_data_fix",
+        "conclusion": "裁决已实施：邪恶花精按\"原版文本找同名妖物不成立\"原则归入同场景邪恶僵尸（杭州/乌镇，Lv154），小良的毛笔掉落关系落库；任务 blocking 归零，转 runnable_pending_validation。",
+        "resulting_status": "runnable_pending_validation"
       },
-      "operational_fit": false,
+      "operational_fit": true,
       "implemented_shared_systems": []
     },
     {
@@ -26529,25 +26040,11 @@
           },
           {
             "npc_canonical_id": "derived.npc_definition.2f8f4bfbe5be0673",
-            "location_canonical_id": "entity.location.f071e9a031b72750",
-            "placement_scope": "task_context"
+            "location_canonical_id": "entity.location.eaf3b23904bb6425",
+            "placement_scope": "static"
           }
         ],
-        "contextual_npc_placements": [
-          {
-            "npc_canonical_id": "derived.npc_definition.2f8f4bfbe5be0673",
-            "location_canonical_id": "entity.location.f071e9a031b72750",
-            "placement_scope": "task_context",
-            "task_canonical_id": "task.series.15.615",
-            "appearance_statuses": [
-              "accepted",
-              "in_progress",
-              "completable"
-            ],
-            "source_canonical_id": "task.series.15.615",
-            "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION"
-          }
-        ],
+        "contextual_npc_placements": [],
         "monster_requirements": [],
         "required_cities": [
           "威尼斯"
@@ -27362,11 +26859,9 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.15.631.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.task_chain.item.cd2182704d029476",
           "runtime_entity_canonical_id": "runtime.item.cd2182704d029476",
-          "resolution_rule": "normalize_migrated_collection_target_to_item",
-          "original_target_kind": "monster",
-          "target_kind_override": "item",
+          "resolution_rule": "source_explicit_task_described_encounter_drop",
           "formal_source": {
             "canonical_id": "runtime.task-drop.10538d79018f30d5",
             "source_canonical_id": "task.series.15.631",
@@ -27378,13 +26873,12 @@
             "monster_name": "白骨骷髅",
             "probability": 1,
             "route_pairs": [],
-            "evidence_status": "SOURCE_EXPLICIT_TASK_CONDITION_AND_PLACEMENT",
+            "evidence_status": "SOURCE_EXPLICIT_TASK_CONDITION",
             "evidence_locator": "task.series.15.631 description + target encounter placement",
             "probability_adjudication": "one required task item is settled per defeated or harvested source encounter because the task text gives an acquisition condition but no random drop rate",
             "encounter_match": "task_description_names_encounter",
             "lexical_overlap": "",
-            "has_active_conflict": true,
-            "target_kind_adjudication": "migration_damage_repaired_at_runtime"
+            "has_active_conflict": true
           }
         }
       ],
@@ -27495,6 +26989,7 @@
         "definition_complete": true,
         "required_locations": [
           "entity.location.e4cedb33df711574",
+          "entity.location.891e95eceda9850a",
           "entity.location.c69d2d6faf623f56"
         ],
         "npc_requirements": [
@@ -27505,28 +27000,15 @@
           },
           {
             "npc_canonical_id": "derived.npc_definition.b79d60378ce9a307",
-            "location_canonical_id": "entity.location.e4cedb33df711574",
-            "placement_scope": "task_context"
+            "location_canonical_id": "entity.location.891e95eceda9850a",
+            "placement_scope": "static"
           }
         ],
-        "contextual_npc_placements": [
-          {
-            "npc_canonical_id": "derived.npc_definition.b79d60378ce9a307",
-            "location_canonical_id": "entity.location.e4cedb33df711574",
-            "placement_scope": "task_context",
-            "task_canonical_id": "task.series.15.634",
-            "appearance_statuses": [
-              "accepted",
-              "in_progress",
-              "completable"
-            ],
-            "source_canonical_id": "task.series.15.634",
-            "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION"
-          }
-        ],
+        "contextual_npc_placements": [],
         "monster_requirements": [],
         "required_cities": [
           "长安",
+          "泉州",
           "蓬莱仙岛"
         ],
         "route_waypoint_destinations": [
@@ -27581,32 +27063,17 @@
       "evidence": {
         "definition_complete": true,
         "required_locations": [
-          "entity.location.c69d2d6faf623f56",
+          "entity.location.891e95eceda9850a",
           "entity.location.258c6e4199be18ab"
         ],
         "npc_requirements": [
           {
             "npc_canonical_id": "derived.npc_definition.b79d60378ce9a307",
-            "location_canonical_id": "entity.location.c69d2d6faf623f56",
-            "placement_scope": "task_context"
+            "location_canonical_id": "entity.location.891e95eceda9850a",
+            "placement_scope": "static"
           }
         ],
-        "contextual_npc_placements": [
-          {
-            "npc_canonical_id": "derived.npc_definition.b79d60378ce9a307",
-            "location_canonical_id": "entity.location.c69d2d6faf623f56",
-            "placement_scope": "task_context",
-            "task_canonical_id": "task.series.15.635",
-            "appearance_statuses": [
-              "available",
-              "accepted",
-              "in_progress",
-              "completable"
-            ],
-            "source_canonical_id": "task.series.15.635",
-            "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION"
-          }
-        ],
+        "contextual_npc_placements": [],
         "monster_requirements": [
           {
             "monster_canonical_id": "derived.monster_definition.6c2492deb82a4e83",
@@ -27614,6 +27081,7 @@
           }
         ],
         "required_cities": [
+          "泉州",
           "蓬莱仙岛"
         ],
         "route_waypoint_destinations": [
@@ -27668,14 +27136,15 @@
       "evidence": {
         "definition_complete": true,
         "required_locations": [
+          "entity.location.891e95eceda9850a",
           "entity.location.c69d2d6faf623f56",
           "entity.location.bce259c580369c83"
         ],
         "npc_requirements": [
           {
             "npc_canonical_id": "derived.npc_definition.b79d60378ce9a307",
-            "location_canonical_id": "entity.location.c69d2d6faf623f56",
-            "placement_scope": "task_context"
+            "location_canonical_id": "entity.location.891e95eceda9850a",
+            "placement_scope": "static"
           },
           {
             "npc_canonical_id": "derived.npc_definition.decdec0cca961d99",
@@ -27683,24 +27152,10 @@
             "placement_scope": "static"
           }
         ],
-        "contextual_npc_placements": [
-          {
-            "npc_canonical_id": "derived.npc_definition.b79d60378ce9a307",
-            "location_canonical_id": "entity.location.c69d2d6faf623f56",
-            "placement_scope": "task_context",
-            "task_canonical_id": "task.series.15.636",
-            "appearance_statuses": [
-              "available",
-              "accepted",
-              "in_progress",
-              "completable"
-            ],
-            "source_canonical_id": "task.series.15.636",
-            "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION"
-          }
-        ],
+        "contextual_npc_placements": [],
         "monster_requirements": [],
         "required_cities": [
+          "泉州",
           "蓬莱仙岛"
         ],
         "route_waypoint_destinations": [
@@ -28535,6 +27990,7 @@
         "definition_complete": true,
         "required_locations": [
           "entity.location.c69d2d6faf623f56",
+          "entity.location.891e95eceda9850a",
           "entity.location.22ad41687af6eed5"
         ],
         "npc_requirements": [
@@ -28545,28 +28001,15 @@
           },
           {
             "npc_canonical_id": "derived.npc_definition.b79d60378ce9a307",
-            "location_canonical_id": "entity.location.c69d2d6faf623f56",
-            "placement_scope": "task_context"
+            "location_canonical_id": "entity.location.891e95eceda9850a",
+            "placement_scope": "static"
           }
         ],
-        "contextual_npc_placements": [
-          {
-            "npc_canonical_id": "derived.npc_definition.b79d60378ce9a307",
-            "location_canonical_id": "entity.location.c69d2d6faf623f56",
-            "placement_scope": "task_context",
-            "task_canonical_id": "task.series.15.647",
-            "appearance_statuses": [
-              "accepted",
-              "in_progress",
-              "completable"
-            ],
-            "source_canonical_id": "task.series.15.647",
-            "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION"
-          }
-        ],
+        "contextual_npc_placements": [],
         "monster_requirements": [],
         "required_cities": [
-          "蓬莱仙岛"
+          "蓬莱仙岛",
+          "泉州"
         ],
         "route_waypoint_destinations": [
           {
@@ -28620,14 +28063,14 @@
       "evidence": {
         "definition_complete": true,
         "required_locations": [
-          "entity.location.c69d2d6faf623f56",
+          "entity.location.891e95eceda9850a",
           "entity.location.e4cedb33df711574"
         ],
         "npc_requirements": [
           {
             "npc_canonical_id": "derived.npc_definition.b79d60378ce9a307",
-            "location_canonical_id": "entity.location.c69d2d6faf623f56",
-            "placement_scope": "task_context"
+            "location_canonical_id": "entity.location.891e95eceda9850a",
+            "placement_scope": "static"
           },
           {
             "npc_canonical_id": "derived.npc_definition.bd212cddd716a56b",
@@ -28635,56 +28078,13 @@
             "placement_scope": "static"
           }
         ],
-        "contextual_npc_placements": [
-          {
-            "npc_canonical_id": "derived.npc_definition.b79d60378ce9a307",
-            "location_canonical_id": "entity.location.c69d2d6faf623f56",
-            "placement_scope": "task_context",
-            "task_canonical_id": "task.series.15.649",
-            "appearance_statuses": [
-              "available",
-              "accepted",
-              "in_progress",
-              "completable"
-            ],
-            "source_canonical_id": "task.series.15.649",
-            "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION"
-          }
-        ],
+        "contextual_npc_placements": [],
         "monster_requirements": [],
         "required_cities": [
-          "蓬莱仙岛",
+          "泉州",
           "长安"
         ],
-        "route_waypoint_destinations": [
-          {
-            "city_display_name": "蓬莱仙岛",
-            "encounters": [
-              {
-                "route": [
-                  "泉州",
-                  "大阪"
-                ],
-                "probability": 0.03,
-                "location": "蓬莱仙岛",
-                "position": "码头",
-                "evidence_status": "SOURCE_EXPLICIT",
-                "runtime_system": "MaritimeRuntime.route_location"
-              },
-              {
-                "route": [
-                  "大阪",
-                  "泉州"
-                ],
-                "probability": 0.03,
-                "location": "蓬莱仙岛",
-                "position": "码头",
-                "evidence_status": "SOURCE_EXPLICIT",
-                "runtime_system": "MaritimeRuntime.route_location"
-              }
-            ]
-          }
-        ],
+        "route_waypoint_destinations": [],
         "target_kinds": [
           "npc"
         ],
@@ -28823,11 +28223,9 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.15.652.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.item.336fa533d246e009",
           "runtime_entity_canonical_id": "runtime.item.336fa533d246e009",
-          "resolution_rule": "normalize_migrated_collection_target_to_item",
-          "original_target_kind": "monster",
-          "target_kind_override": "item",
+          "resolution_rule": "source_explicit_task_described_encounter_drop",
           "formal_source": {
             "canonical_id": "runtime.task-drop.d7b28e4806d30b34",
             "source_canonical_id": "task.series.15.652",
@@ -28839,13 +28237,12 @@
             "monster_name": "白云之精",
             "probability": 1,
             "route_pairs": [],
-            "evidence_status": "SOURCE_EXPLICIT_TASK_CONDITION_AND_PLACEMENT",
+            "evidence_status": "SOURCE_EXPLICIT_TASK_CONDITION",
             "evidence_locator": "task.series.15.652 description + target encounter placement",
             "probability_adjudication": "one required task item is settled per defeated or harvested source encounter because the task text gives an acquisition condition but no random drop rate",
             "encounter_match": "task_description_names_encounter",
             "lexical_overlap": "白云",
-            "has_active_conflict": true,
-            "target_kind_adjudication": "migration_damage_repaired_at_runtime"
+            "has_active_conflict": true
           }
         }
       ],
@@ -28980,7 +28377,7 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.15.655.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.item.90e4e58d454b4a78",
           "runtime_entity_canonical_id": "runtime.item.90e4e58d454b4a78",
           "resolution_rule": "source_explicit_task_described_encounter_drop",
           "formal_source": {
@@ -29044,7 +28441,7 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.15.656.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.item.d8f4daffae9b9b72",
           "runtime_entity_canonical_id": "runtime.item.d8f4daffae9b9b72",
           "resolution_rule": "source_explicit_task_described_encounter_drop",
           "formal_source": {
@@ -29687,7 +29084,7 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.15.670.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.item.a0fedb28c6ae448f",
           "runtime_entity_canonical_id": "runtime.item.a0fedb28c6ae448f",
           "resolution_rule": "source_explicit_task_described_encounter_drop",
           "formal_source": {
@@ -30463,6 +29860,7 @@
         "definition_complete": true,
         "required_locations": [
           "entity.location.bfeb8a45e51b4ab0",
+          "entity.location.891e95eceda9850a",
           "entity.location.c69d2d6faf623f56"
         ],
         "npc_requirements": [
@@ -30473,25 +29871,11 @@
           },
           {
             "npc_canonical_id": "derived.npc_definition.b79d60378ce9a307",
-            "location_canonical_id": "entity.location.c69d2d6faf623f56",
-            "placement_scope": "task_context"
+            "location_canonical_id": "entity.location.891e95eceda9850a",
+            "placement_scope": "static"
           }
         ],
-        "contextual_npc_placements": [
-          {
-            "npc_canonical_id": "derived.npc_definition.b79d60378ce9a307",
-            "location_canonical_id": "entity.location.c69d2d6faf623f56",
-            "placement_scope": "task_context",
-            "task_canonical_id": "task.series.15.688",
-            "appearance_statuses": [
-              "accepted",
-              "in_progress",
-              "completable"
-            ],
-            "source_canonical_id": "task.series.15.688",
-            "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION"
-          }
-        ],
+        "contextual_npc_placements": [],
         "monster_requirements": [],
         "required_cities": [
           "泉州",
@@ -30549,14 +29933,14 @@
       "evidence": {
         "definition_complete": true,
         "required_locations": [
-          "entity.location.c69d2d6faf623f56",
+          "entity.location.891e95eceda9850a",
           "entity.location.424d2befc0c4a8dc"
         ],
         "npc_requirements": [
           {
             "npc_canonical_id": "derived.npc_definition.b79d60378ce9a307",
-            "location_canonical_id": "entity.location.c69d2d6faf623f56",
-            "placement_scope": "task_context"
+            "location_canonical_id": "entity.location.891e95eceda9850a",
+            "placement_scope": "static"
           },
           {
             "npc_canonical_id": "derived.npc_definition.3f992e0fb8f2b0dc",
@@ -30564,24 +29948,10 @@
             "placement_scope": "static"
           }
         ],
-        "contextual_npc_placements": [
-          {
-            "npc_canonical_id": "derived.npc_definition.b79d60378ce9a307",
-            "location_canonical_id": "entity.location.c69d2d6faf623f56",
-            "placement_scope": "task_context",
-            "task_canonical_id": "task.series.15.689",
-            "appearance_statuses": [
-              "available",
-              "accepted",
-              "in_progress",
-              "completable"
-            ],
-            "source_canonical_id": "task.series.15.689",
-            "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION"
-          }
-        ],
+        "contextual_npc_placements": [],
         "monster_requirements": [],
         "required_cities": [
+          "泉州",
           "蓬莱仙岛"
         ],
         "route_waypoint_destinations": [
@@ -31222,12 +30592,7 @@
           }
         ],
         "contextual_npc_placements": [],
-        "monster_requirements": [
-          {
-            "monster_canonical_id": null,
-            "location_canonical_id": "entity.location.7cba04807f603958"
-          }
-        ],
+        "monster_requirements": [],
         "required_cities": [
           "蓬莱仙岛"
         ],
@@ -31261,7 +30626,7 @@
           }
         ],
         "target_kinds": [
-          "monster"
+          "npc_duel"
         ],
         "level_requirement": 107,
         "formal_runtime_path": null
@@ -32574,7 +31939,7 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.15.726.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.item.bf8e99401d2d0f49",
           "runtime_entity_canonical_id": "runtime.item.bf8e99401d2d0f49",
           "resolution_rule": "source_explicit_task_described_encounter_drop",
           "formal_source": {
@@ -32639,7 +32004,7 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.15.727.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.item.5e1ff2777a238dde",
           "runtime_entity_canonical_id": "runtime.item.5e1ff2777a238dde",
           "resolution_rule": "source_explicit_task_described_encounter_drop",
           "formal_source": {
@@ -32699,7 +32064,7 @@
           "item"
         ],
         "level_requirement": 1,
-        "formal_runtime_path": null
+        "formal_runtime_path": "npc_talk + local_move/voyage + formal combat/shop + npc_submit"
       },
       "runtime_item_resolutions": [
         {
@@ -33202,11 +32567,10 @@
     }
   ],
   "status_counts": {
-    "data_conflict": 2,
-    "runnable_pending_validation": 1,
+    "runnable_pending_validation": 3,
     "validated": 648
   },
-  "runtime_runnable_task_count": 649,
+  "runtime_runnable_task_count": 651,
   "implemented_shared_systems": [
     "task_acceptance_handoff",
     "task_chain_item_ledger",
@@ -33218,11 +32582,11 @@
   },
   "exception_reassessment": {
     "reviewed_task_count": 8,
-    "resolved_task_count": 6,
-    "remaining_hold_count": 2
+    "resolved_task_count": 8,
+    "remaining_hold_count": 0
   },
   "formal_stage_start": {
     "selected_task_count": 78
   },
-  "selection_hash": "e45690479e97f3ac3b49f8b6e2bdb9598923ab18c76992943d8b0b97bad5cb71"
+  "selection_hash": "01f80ccf9be8cc9be13c727c7a2f236a29efeaa35cde567e16abbb9693bf1e64"
 }

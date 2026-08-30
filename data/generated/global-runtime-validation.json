@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "stage_start_head": "2cbae183aa369fe0ac60176f3a1396914d786440",
-  "source_head": "03d07c02d1dbe561d0d6333440dd9afaa65df45b",
-  "generated_from_head": "03d07c02d1dbe561d0d6333440dd9afaa65df45b",
+  "source_head": "0b16f7e09dbd83d7dcdca0359709c59422001623",
+  "generated_from_head": "0b16f7e09dbd83d7dcdca0359709c59422001623",
   "reference_commits": {
     "zhsh": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
     "astrbot": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de",
@@ -13,10 +13,9 @@
   "generated_at": "2026-07-18T00:00:00.000Z",
   "record_kind": "global-runtime-validation",
   "total_task_count": 651,
-  "runtime_runnable_task_count": 649,
+  "runtime_runnable_task_count": 651,
   "status_counts": {
-    "data_conflict": 2,
-    "runnable_pending_validation": 1,
+    "runnable_pending_validation": 3,
     "validated": 648
   },
   "shared_system_reassessment": {
@@ -26,7 +25,7 @@
     },
     "after": {
       "blocked_by_shared_system": 0,
-      "runnable_pending_validation": 1
+      "runnable_pending_validation": 3
     },
     "affected_task_canonical_ids": [
       "task.series.15.471",
@@ -40,21 +39,20 @@
       "evidence_missing": 2
     },
     "after": {
-      "data_conflict": 2,
+      "data_conflict": 0,
       "evidence_missing": 0
     },
     "resolved_task_canonical_ids": [
       "task.series.15.264",
+      "task.series.15.269",
       "task.series.15.415",
       "task.series.15.457",
       "task.series.15.463",
       "task.series.15.583",
+      "task.series.15.601",
       "task.series.15.728"
     ],
-    "remaining_hold_task_canonical_ids": [
-      "task.series.15.269",
-      "task.series.15.601"
-    ]
+    "remaining_hold_task_canonical_ids": []
   },
   "browser_acceptance": {
     "promoted_task_count": 570,

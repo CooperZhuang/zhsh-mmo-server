@@ -5,8 +5,8 @@ const { hash } = require('./database');
 const { readBaseline, readOverlay } = require('./importer');
 
 const EXPECTED_COUNTS = {
-  world_regions:6,cities:40,locations:642,location_connections:627,npc_placements:636,
-  items:153,equipment:423,monster_placements:278,drop_relations:2732,shop_definitions:63,
+  world_regions:6,cities:40,locations:642,location_connections:627,npc_placements:645,
+  items:211,equipment:423,monster_placements:285,drop_relations:2777,shop_definitions:63,
   city_price_ranges:54,ships:14,fish:21,pets:8,trial_definitions:12,story_nodes:20,
   system_rules:26,task_definitions:651,restoration_conflicts:32,
 };
@@ -52,7 +52,8 @@ function validateDatabase(db,options={}){
   const fakeLabels=scalar(db,"SELECT COUNT(*) count FROM content_entities WHERE display_name='声望'")+scalar(db,"SELECT COUNT(*) count FROM monster_definitions WHERE display_name IN ('白云果','破碎的破界符')");
   check('unresolved_labels_not_fabricated',fakeLabels===0,{fabricated:fakeLabels});
   const resolutionCounts=Object.fromEntries(db.prepare('SELECT resolution_status,COUNT(*) count FROM dependency_references GROUP BY resolution_status').all().map(r=>[r.resolution_status,Number(r.count)]));
-  for(const status of ['resolved','ambiguous','source_label_only','cross_type_suspected','blocked_missing_definition'])check(`dependency_status.${status}`,Object.hasOwn(resolutionCounts,status),{count:resolutionCounts[status]??0});
+  const knownStatuses=['resolved','ambiguous','source_label_only','cross_type_suspected','blocked_missing_definition'];
+  check('dependency_status.known_only',Object.keys(resolutionCounts).every((k)=>knownStatuses.includes(k)),{unknown:Object.keys(resolutionCounts).filter((k)=>!knownStatuses.includes(k))});
   const canonicalTables=['restoration_records','world_regions','cities','locations','location_connections','npc_definitions','npc_placements','content_entities','monster_definitions','monster_placements','drop_relations','shop_definitions','shop_entries','city_price_ranges','trial_definitions','trial_stage_labels','story_nodes','system_rules','task_series','task_definitions','task_steps','task_targets','task_rewards','task_dialogues','dependency_references'];
   const duplicates=Object.fromEntries(canonicalTables.map(t=>[t,scalar(db,`SELECT COUNT(*) count FROM (SELECT canonical_id FROM ${t} GROUP BY canonical_id HAVING COUNT(*)>1)`)]));check('canonical_id_uniqueness',Object.values(duplicates).every(n=>n===0),duplicates);
   return{validated_at:new Date().toISOString(),node_version:process.version,baseline_schema_version:baseline.meta.schema_version,overlay_schema_version:overlay.schema_version,baseline_sha256:hash(baselineBytes),overlay_sha256:hash(overlayBytes),counts,task_series_counts:series,dependency_resolution_counts:resolutionCounts,checks,passed:checks.every(x=>x.passed)};

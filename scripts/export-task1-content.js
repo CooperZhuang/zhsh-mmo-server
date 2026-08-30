@@ -250,7 +250,17 @@ function collectFormalGameplay(db,{ requiredMonsterIds,tasks,selection,cityIds,r
       raw_data_json:JSON.stringify({source:entry.resolution_rule==='source_explicit_task_described_encounter_drop'?'taskDescription':'monsterItems',
         item:entry.formal_source.item_name,encounter_match:entry.formal_source.encounter_match??null,
         probability_adjudication:entry.formal_source.probability_adjudication??null})}));
-  const dropRelations=dedupeByCanonical([...databaseDropRelations,...runtimeDropRelations]);
+  // 掉落以 (monster, 物品实体) 组合键去重；selection 的 runtime.drop.* 行带
+  // guaranteed_for_active_task 语义，优先于库内 drop_relations 行（两者同源不同表达）。
+  const dropRelations = dedupeDropRelations([...databaseDropRelations, ...runtimeDropRelations]);
+  function dedupeDropRelations(values) {
+    const byKey = new Map();
+    for (const entry of values) {
+      const key = `${entry.monster_canonical_id}|${entry.content_entity_canonical_id}|${entry.drop_kind ?? 'item'}`;
+      byKey.set(key, entry); // 后出现者覆盖：selection 行置后，保留 guaranteed 语义
+    }
+    return [...byKey.values()].sort(byCanonical('canonical_id'));
+  }
   const equipmentIds=unique(dropRelations.filter((entry)=>entry.drop_kind==='equipment').map((entry)=>entry.content_entity_canonical_id));
   const equipment=selectIn(db,`
     SELECT ce.canonical_id,ce.source_canonical_id,ce.display_name,ce.normalized_data_json,e.level required_level,e.equipment_type

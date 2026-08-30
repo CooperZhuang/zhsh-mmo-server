@@ -111,17 +111,16 @@
   "capability_status": "global_runtime_content",
   "runnable_task_selection": {
     "selector_version": "global-runtime-directory/1.0.0",
-    "selection_hash": "e45690479e97f3ac3b49f8b6e2bdb9598923ab18c76992943d8b0b97bad5cb71",
+    "selection_hash": "01f80ccf9be8cc9be13c727c7a2f236a29efeaa35cde567e16abbb9693bf1e64",
     "selected_task_count": 651,
     "selected_series_count": 15,
     "formal_stage_start_selected_task_count": 78,
     "combat_survival_chosen_allocation": null,
     "status_counts": {
-      "data_conflict": 2,
-      "runnable_pending_validation": 1,
+      "runnable_pending_validation": 3,
       "validated": 648
     },
-    "runtime_runnable_task_count": 649,
+    "runtime_runnable_task_count": 651,
     "implemented_shared_systems": [
       "task_acceptance_handoff",
       "task_chain_item_ledger",
@@ -3005,14 +3004,14 @@
             "entity.item.d14f96158fc5c4ec"
           ],
           "runtime_resolution": {
-            "rule": "candidate_with_formal_source",
+            "rule": "direct_formal_source",
             "formal_source_canonical_id": "entity.shop.7ae834f971f17c16.entry",
             "source_kind": "shop"
           },
           "source_canonical_id": "task.series.01.007",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": "entity.item.ce99a37bc16bb1ba",
-          "source_entity_canonical_id": "entity.item.ce99a37bc16bb1ba",
+          "source_content_entity_canonical_id": "entity.item.d14f96158fc5c4ec",
+          "source_entity_canonical_id": "entity.item.d14f96158fc5c4ec",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -4685,8 +4684,8 @@
           },
           "source_canonical_id": "task.series.02.012",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.item.ead34659a24d689e",
+          "source_entity_canonical_id": "runtime.item.ead34659a24d689e",
           "task_item_policy": null,
           "npc_duel": null
         },
@@ -4712,13 +4711,13 @@
           "candidate_canonical_ids": [],
           "runtime_resolution": {
             "rule": "source_explicit_monster_item",
-            "formal_source_canonical_id": "runtime.drop.bb85c57e0050cdb6",
+            "formal_source_canonical_id": "runtime.drop.2ac7f178555a12e8",
             "source_kind": "monster_drop"
           },
           "source_canonical_id": "task.series.02.012",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.item.6e1ec2b8b4a1f49a",
+          "source_entity_canonical_id": "runtime.item.6e1ec2b8b4a1f49a",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -6696,8 +6695,8 @@
           },
           "source_canonical_id": "task.series.04.018",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.item.3b3f53cf5c43cf4f",
+          "source_entity_canonical_id": "runtime.item.3b3f53cf5c43cf4f",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -7354,8 +7353,8 @@
           },
           "source_canonical_id": "task.series.04.020",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.item.5d6c46dc0490cfe0",
+          "source_entity_canonical_id": "runtime.item.5d6c46dc0490cfe0",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -8337,14 +8336,14 @@
             "entity.item.7e58577435fee1fe"
           ],
           "runtime_resolution": {
-            "rule": "candidate_with_formal_source",
+            "rule": "direct_formal_source",
             "formal_source_canonical_id": "entity.shop.dc70753834de8917.entry",
             "source_kind": "shop"
           },
           "source_canonical_id": "task.series.05.023",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": "entity.item.3855a868ca7393f3",
-          "source_entity_canonical_id": "entity.item.3855a868ca7393f3",
+          "source_content_entity_canonical_id": "entity.item.7e58577435fee1fe",
+          "source_entity_canonical_id": "entity.item.7e58577435fee1fe",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -12353,8 +12352,8 @@
           },
           "source_canonical_id": "task.series.05.035",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.item.783cdb522262f002",
+          "source_entity_canonical_id": "runtime.item.783cdb522262f002",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -13470,9 +13469,9 @@
       "normalized_value_json": "{\"actual_code_progression\":\"同一 taskN.json 数组相邻项为真实前置；src/task.js getPrevTaskInSeries 不使用 index+1。跨文件无强制前置。\",\"chapter_or_stage\":\"神秘铁箱—徽章—詹姆斯线\",\"completion_condition\":\"接取时生成目标物品，提交时检查；代码尝试移除，但名称/ID签名错位使实际消耗失效\",\"completion_npc\":\"罗西\",\"configuration_page_consistency\":{\"completion_location_enforced_by_task_core\":false,\"index_plus_one_continuation_break\":false,\"note\":\"未发现本条独有的数组/index 断裂；地点由 NPC 页面间接约束。\",\"quantity_arity_mismatch\":false},\"conflict_refs\":[],\"description\":\"拿着好酒去威尼斯居民区找罗西\",\"dialogue\":{\"receive\":[\"詹姆斯：公主托我为你调制了一瓶好酒，你拿回去给罗西吧。\",\"你：太好了，罗西一定会很高兴的。\"],\"submit\":[\"罗西：你回来了！酒拿到了吗？\",\"你：当然，这是詹姆斯专门为你们调制的好酒。\"]},\"failure_or_interruption\":\"未声明失败条件或时限；状态随用户存档保存。完成后 completedTasks 阻止再次接取。\",\"issue_refs\":[],\"issuer_npc\":\"詹姆斯\",\"kill_targets\":[],\"level_requirement\":null,\"originality_status\":\"UNVERIFIED_AS_ORIGINAL\",\"predecessor_task\":\"task.series.05.038\",\"raw_level\":null,\"raw_quantity\":\"1\",\"raw_source_record\":{\"content\":\"拿着好酒去威尼斯居民区找罗西\",\"index\":39,\"name\":\"罗西的美酒3\",\"prize\":{\"声望\":2,\"经验\":10000,\"铜贝\":1000},\"quantity\":\"1\",\"receiveDialog\":[\"詹姆斯：公主托我为你调制了一瓶好酒，你拿回去给罗西吧。\",\"你：太好了，罗西一定会很高兴的。\"],\"receiveLocation\":\"威尼斯王宫\",\"receiveNpc\":\"詹姆斯\",\"submitDialog\":[\"罗西：你回来了！酒拿到了吗？\",\"你：当然，这是詹姆斯专门为你们调制的好酒。\"],\"submitLocation\":\"威尼斯居民区\",\"submitNpc\":\"罗西\",\"targetAddress\":\"威尼斯居民区\",\"targetName\":\"好酒\",\"taskType\":\"送物品\"},\"raw_target_address\":\"威尼斯居民区\",\"raw_target_name\":\"好酒\",\"raw_task_type\":\"送物品\",\"receive_location\":\"威尼斯王宫\",\"repeatability_note\":\"NPC 页面会过滤 completedTasks；但直接再次调用 submitTask 时 isTaskAccepted 对已完成任务返回 true，存在重复发奖的防护缺口。\",\"repeatable\":false,\"required_items\":[{\"name\":\"好酒\",\"quantity\":1}],\"required_quantities\":[1],\"required_quantities_raw\":\"1\",\"rewards\":{\"experience\":10000,\"items\":{\"声望\":2},\"money\":{\"铜贝\":1000},\"raw\":{\"声望\":2,\"经验\":10000,\"铜贝\":1000}},\"source_array_position\":18,\"source_identifier\":\"task5.json#index=39\",\"source_series\":5,\"state_changes\":{\"item_consumption\":\"收集/送物/运货会检查数量，但当前 Task.removeItem→Backpack.removeItem 名称/ID错位，通常不实际扣物品\",\"kill_progress\":\"killCounts by exact monster name\",\"on_accept\":\"acceptedTasks[index]=true\",\"on_complete\":\"completedTasks[index]=true and acceptedTasks entry removed\"},\"submit_location\":\"威尼斯居民区\",\"successor_task\":null,\"target_location\":\"威尼斯居民区\",\"target_objects\":[\"好酒\"],\"targets\":[\"好酒\"],\"task_name\":\"罗西的美酒3\",\"task_type\":\"送物品\",\"trigger_condition\":{\"location\":\"威尼斯王宫\",\"npc\":\"詹姆斯\"}}",
       "unresolved_fields_json": "[]",
       "runtime_capability": "definition_queryable_gameplay_not_implemented",
-      "issuer_npc_canonical_id": "derived.npc_definition.b665a8c17a61ab03",
+      "issuer_npc_canonical_id": "derived.npc_definition.22ba5d6986eb91c4",
       "completion_npc_canonical_id": "derived.npc_definition.22ba5d6986eb91c4",
-      "receive_location_canonical_id": "entity.location.93da7d7ff06cd778",
+      "receive_location_canonical_id": "entity.location.5be6ea0b60be0270",
       "submit_location_canonical_id": "entity.location.5be6ea0b60be0270",
       "target_location_canonical_id": "entity.location.5be6ea0b60be0270",
       "restoration_status": "SINGLE_SOURCE",
@@ -14154,9 +14153,9 @@
       "normalized_value_json": "{\"actual_code_progression\":\"同一 taskN.json 数组相邻项为真实前置；src/task.js getPrevTaskInSeries 不使用 index+1。跨文件无强制前置。\",\"chapter_or_stage\":\"北海及各地区任务\",\"completion_condition\":\"接取时生成目标物品，提交时检查；代码尝试移除，但名称/ID签名错位使实际消耗失效\",\"completion_npc\":\"露丝\",\"configuration_page_consistency\":{\"completion_location_enforced_by_task_core\":false,\"index_plus_one_continuation_break\":false,\"note\":\"未发现本条独有的数组/index 断裂；地点由 NPC 页面间接约束。\",\"quantity_arity_mismatch\":false},\"conflict_refs\":[],\"description\":\"拿到露丝的发卡，去威尼斯酒馆找露丝。\",\"dialogue\":{\"receive\":[\"威尼斯公主：露丝的发卡在珠宝店，你去拿回来给她送去吧。\",\"你：没问题，这对我来说是小菜一碟。\"],\"submit\":[\"露丝：你拿到我的发卡了吗？\",\"你：当然，公主让我专门送来给你。\"]},\"failure_or_interruption\":\"未声明失败条件或时限；状态随用户存档保存。完成后 completedTasks 阻止再次接取。\",\"issue_refs\":[],\"issuer_npc\":\"威尼斯公主\",\"kill_targets\":[],\"level_requirement\":8,\"originality_status\":\"UNVERIFIED_AS_ORIGINAL\",\"predecessor_task\":null,\"raw_level\":8,\"raw_quantity\":\"1\",\"raw_source_record\":{\"content\":\"拿到露丝的发卡，去威尼斯酒馆找露丝。\",\"index\":41,\"level\":8,\"name\":\"露丝的发卡\",\"prize\":{\"声望\":2,\"经验\":10000,\"铜贝\":1000},\"quantity\":\"1\",\"receiveDialog\":[\"威尼斯公主：露丝的发卡在珠宝店，你去拿回来给她送去吧。\",\"你：没问题，这对我来说是小菜一碟。\"],\"receiveLocation\":\"威尼斯珠宝店\",\"receiveNpc\":\"威尼斯公主\",\"submitDialog\":[\"露丝：你拿到我的发卡了吗？\",\"你：当然，公主让我专门送来给你。\"],\"submitLocation\":\"威尼斯酒馆\",\"submitNpc\":\"露丝\",\"targetAddress\":\"\",\"targetName\":\"发卡\",\"taskType\":\"送物品\"},\"raw_target_address\":\"\",\"raw_target_name\":\"发卡\",\"raw_task_type\":\"送物品\",\"receive_location\":\"威尼斯珠宝店\",\"repeatability_note\":\"NPC 页面会过滤 completedTasks；但直接再次调用 submitTask 时 isTaskAccepted 对已完成任务返回 true，存在重复发奖的防护缺口。\",\"repeatable\":false,\"required_items\":[{\"name\":\"发卡\",\"quantity\":1}],\"required_quantities\":[1],\"required_quantities_raw\":\"1\",\"rewards\":{\"experience\":10000,\"items\":{\"声望\":2},\"money\":{\"铜贝\":1000},\"raw\":{\"声望\":2,\"经验\":10000,\"铜贝\":1000}},\"source_array_position\":0,\"source_identifier\":\"task7.json#index=41\",\"source_series\":7,\"state_changes\":{\"item_consumption\":\"收集/送物/运货会检查数量，但当前 Task.removeItem→Backpack.removeItem 名称/ID错位，通常不实际扣物品\",\"kill_progress\":\"killCounts by exact monster name\",\"on_accept\":\"acceptedTasks[index]=true\",\"on_complete\":\"completedTasks[index]=true and acceptedTasks entry removed\"},\"submit_location\":\"威尼斯酒馆\",\"successor_task\":\"task.series.07.042\",\"target_location\":\"\",\"target_objects\":[\"发卡\"],\"targets\":[\"发卡\"],\"task_name\":\"露丝的发卡\",\"task_type\":\"送物品\",\"trigger_condition\":{\"location\":\"威尼斯珠宝店\",\"npc\":\"威尼斯公主\"}}",
       "unresolved_fields_json": "[]",
       "runtime_capability": "definition_queryable_gameplay_not_implemented",
-      "issuer_npc_canonical_id": "derived.npc_definition.3dea4b1eac3ad3f3",
+      "issuer_npc_canonical_id": "derived.npc_definition.a73122cf3fc3ea7d",
       "completion_npc_canonical_id": "derived.npc_definition.a73122cf3fc3ea7d",
-      "receive_location_canonical_id": "entity.location.30649b15d9e53b37",
+      "receive_location_canonical_id": "entity.location.4a8af28f92e5aa61",
       "submit_location_canonical_id": "entity.location.4a8af28f92e5aa61",
       "target_location_canonical_id": null,
       "restoration_status": "SINGLE_SOURCE",
@@ -14704,8 +14703,8 @@
           },
           "source_canonical_id": "task.series.07.042",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.item.56fc2105efa54ab7",
+          "source_entity_canonical_id": "runtime.item.56fc2105efa54ab7",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -16361,8 +16360,8 @@
           },
           "source_canonical_id": "task.series.08.047",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.item.349eb023b28e6370",
+          "source_entity_canonical_id": "runtime.item.349eb023b28e6370",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -16701,8 +16700,8 @@
           },
           "source_canonical_id": "task.series.09.048",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.item.4f18710005203f85",
+          "source_entity_canonical_id": "runtime.item.4f18710005203f85",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -17036,14 +17035,14 @@
             "entity.item.097b440c291db16d"
           ],
           "runtime_resolution": {
-            "rule": "candidate_with_formal_source",
+            "rule": "direct_formal_source",
             "formal_source_canonical_id": "entity.shop.ff7ef84e5c64be6b.entry",
             "source_kind": "shop"
           },
           "source_canonical_id": "task.series.09.049",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": "entity.item.e16072a38f18e727",
-          "source_entity_canonical_id": "entity.item.e16072a38f18e727",
+          "source_content_entity_canonical_id": "entity.item.097b440c291db16d",
+          "source_entity_canonical_id": "entity.item.097b440c291db16d",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -19016,8 +19015,8 @@
           },
           "source_canonical_id": "task.series.10.055",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.item.4d6e50c4e4f5a591",
+          "source_entity_canonical_id": "runtime.item.4d6e50c4e4f5a591",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -19372,8 +19371,8 @@
           },
           "source_canonical_id": "task.series.10.056",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.item.349eb023b28e6370",
+          "source_entity_canonical_id": "runtime.item.349eb023b28e6370",
           "task_item_policy": null,
           "npc_duel": null
         },
@@ -19404,8 +19403,8 @@
           },
           "source_canonical_id": "task.series.10.056",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.item.6e1ec2b8b4a1f49a",
+          "source_entity_canonical_id": "runtime.item.6e1ec2b8b4a1f49a",
           "task_item_policy": null,
           "npc_duel": null
         },
@@ -19436,8 +19435,8 @@
           },
           "source_canonical_id": "task.series.10.056",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.item.ead34659a24d689e",
+          "source_entity_canonical_id": "runtime.item.ead34659a24d689e",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -25083,8 +25082,8 @@
           },
           "source_canonical_id": "task.series.11.073",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.item.57a8625cbce8bf0f",
+          "source_entity_canonical_id": "runtime.item.57a8625cbce8bf0f",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -28398,14 +28397,14 @@
             "entity.item.e6393da032f3c186"
           ],
           "runtime_resolution": {
-            "rule": "candidate_with_formal_source",
+            "rule": "direct_formal_source",
             "formal_source_canonical_id": "entity.shop.d8190169c7aac331.entry",
             "source_kind": "shop"
           },
           "source_canonical_id": "task.series.11.083",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": "entity.item.e35e9fb1217e0f86",
-          "source_entity_canonical_id": "entity.item.e35e9fb1217e0f86",
+          "source_content_entity_canonical_id": "entity.item.e6393da032f3c186",
+          "source_entity_canonical_id": "entity.item.e6393da032f3c186",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -29083,8 +29082,8 @@
           },
           "source_canonical_id": "task.series.11.085",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.item.d5608bd1d822988d",
+          "source_entity_canonical_id": "runtime.item.d5608bd1d822988d",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -32942,8 +32941,8 @@
           },
           "source_canonical_id": "task.series.12.098",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.item.43c36c115a3fd8ba",
+          "source_entity_canonical_id": "runtime.item.43c36c115a3fd8ba",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -33277,18 +33276,15 @@
           "normalized_quantity": 1,
           "raw_value_json": "{\"游侠腰带\":1}",
           "dependency_canonical_id": "task.series.12.099.reward.02.reference",
-          "resolution_status": "single_candidate_runtime_mapping",
-          "runtime_capability": "blocked",
+          "resolution_status": "resolved",
+          "runtime_capability": "queryable",
           "candidate_canonical_ids_json": "[\"entity.equipment.4e3cd3b8f7fc3002\"]",
           "content_entity_canonical_id": "entity.equipment.4e3cd3b8f7fc3002",
           "quantity": 1,
           "candidate_canonical_ids": [
             "entity.equipment.4e3cd3b8f7fc3002"
           ],
-          "runtime_resolution": {
-            "rule": "single_candidate_dependency_mapping",
-            "evidence_status": "SOURCE_CANDIDATE_UNAMBIGUOUS"
-          },
+          "runtime_resolution": null,
           "source_canonical_id": "task.series.12.099"
         }
       ],
@@ -33912,8 +33908,8 @@
           },
           "source_canonical_id": "task.series.13.101",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.market_item.9e327076b4e1ef6c",
+          "source_entity_canonical_id": "runtime.market_item.9e327076b4e1ef6c",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -34259,8 +34255,8 @@
           },
           "source_canonical_id": "task.series.13.102",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.market_item.2086cb1986fb9882",
+          "source_entity_canonical_id": "runtime.market_item.2086cb1986fb9882",
           "task_item_policy": null,
           "npc_duel": null
         },
@@ -34291,8 +34287,8 @@
           },
           "source_canonical_id": "task.series.13.102",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.market_item.7e005ba311f86fa7",
+          "source_entity_canonical_id": "runtime.market_item.7e005ba311f86fa7",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -34633,8 +34629,8 @@
           },
           "source_canonical_id": "task.series.13.103",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.market_item.9e327076b4e1ef6c",
+          "source_entity_canonical_id": "runtime.market_item.9e327076b4e1ef6c",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -35312,8 +35308,8 @@
           },
           "source_canonical_id": "task.series.13.105",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.market_item.1aac8b956f808df5",
+          "source_entity_canonical_id": "runtime.market_item.1aac8b956f808df5",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -35654,8 +35650,8 @@
           },
           "source_canonical_id": "task.series.13.106",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.market_item.30a9333b4fe5013b",
+          "source_entity_canonical_id": "runtime.market_item.30a9333b4fe5013b",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -36320,8 +36316,8 @@
           },
           "source_canonical_id": "task.series.13.108",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.market_item.8b34c8535334f805",
+          "source_entity_canonical_id": "runtime.market_item.8b34c8535334f805",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -37634,8 +37630,8 @@
           },
           "source_canonical_id": "task.series.13.112",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.item.637bd2c0d786d5e9",
+          "source_entity_canonical_id": "runtime.item.637bd2c0d786d5e9",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -38951,14 +38947,14 @@
             "entity.item.7e58577435fee1fe"
           ],
           "runtime_resolution": {
-            "rule": "candidate_with_formal_source",
+            "rule": "direct_formal_source",
             "formal_source_canonical_id": "entity.shop.dc70753834de8917.entry",
             "source_kind": "shop"
           },
           "source_canonical_id": "task.series.13.116",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": "entity.item.3855a868ca7393f3",
-          "source_entity_canonical_id": "entity.item.3855a868ca7393f3",
+          "source_content_entity_canonical_id": "entity.item.7e58577435fee1fe",
+          "source_entity_canonical_id": "entity.item.7e58577435fee1fe",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -40289,8 +40285,8 @@
           },
           "source_canonical_id": "task.series.13.120",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.market_item.9e327076b4e1ef6c",
+          "source_entity_canonical_id": "runtime.market_item.9e327076b4e1ef6c",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -40966,8 +40962,8 @@
           },
           "source_canonical_id": "task.series.13.122",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.market_item.1e9f09eb44297af4",
+          "source_entity_canonical_id": "runtime.market_item.1e9f09eb44297af4",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -42986,8 +42982,8 @@
           },
           "source_canonical_id": "task.series.13.128",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.market_item.30a9333b4fe5013b",
+          "source_entity_canonical_id": "runtime.market_item.30a9333b4fe5013b",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -43330,8 +43326,8 @@
           },
           "source_canonical_id": "task.series.13.129",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.item.f16e99136fd8942f",
+          "source_entity_canonical_id": "runtime.item.f16e99136fd8942f",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -44904,8 +44900,8 @@
           },
           "source_canonical_id": "task.series.13.134",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.item.acf383cef37613dc",
+          "source_entity_canonical_id": "runtime.item.acf383cef37613dc",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -46116,8 +46112,8 @@
           },
           "source_canonical_id": "task.series.13.138",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.market_item.aa53ae895172ae2a",
+          "source_entity_canonical_id": "runtime.market_item.aa53ae895172ae2a",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -47353,9 +47349,9 @@
       "normalized_value_json": "{\"actual_code_progression\":\"同一 taskN.json 数组相邻项为真实前置；src/task.js getPrevTaskInSeries 不使用 index+1。跨文件无强制前置。\",\"chapter_or_stage\":\"通商—圣火令—亚丁—龙珠候选链\",\"completion_condition\":\"acceptedTasks 中存在；到 submitNpc 交互即可提交\",\"completion_npc\":\"侯赛因\",\"configuration_page_consistency\":{\"completion_location_enforced_by_task_core\":false,\"index_plus_one_continuation_break\":false,\"note\":\"未发现本条独有的数组/index 断裂；地点由 NPC 页面间接约束。\",\"quantity_arity_mismatch\":false},\"conflict_refs\":[],\"description\":\"去荷姆兹商店找侯赛因\",\"dialogue\":{\"receive\":[\"阿巴斯：你去荷姆兹商店找侯赛因，他有亚丁的权杖。\",\"你：好的，我这就去荷姆兹商店。\"],\"submit\":[\"侯赛因：阿巴斯让你来的？有什么事吗？\",\"你：他说你有亚丁的权杖。\"]},\"failure_or_interruption\":\"未声明失败条件或时限；状态随用户存档保存。完成后 completedTasks 阻止再次接取。\",\"issue_refs\":[],\"issuer_npc\":\"阿巴斯\",\"kill_targets\":[],\"level_requirement\":null,\"originality_status\":\"UNVERIFIED_AS_ORIGINAL\",\"predecessor_task\":\"task.series.13.142\",\"raw_level\":null,\"raw_quantity\":\"\",\"raw_source_record\":{\"content\":\"去荷姆兹商店找侯赛因\",\"index\":143,\"name\":\"亚丁的权杖\",\"prize\":{\"经验\":10000},\"quantity\":\"\",\"receiveDialog\":[\"阿巴斯：你去荷姆兹商店找侯赛因，他有亚丁的权杖。\",\"你：好的，我这就去荷姆兹商店。\"],\"receiveLocation\":\"亚丁古村落\",\"receiveNpc\":\"阿巴斯\",\"submitDialog\":[\"侯赛因：阿巴斯让你来的？有什么事吗？\",\"你：他说你有亚丁的权杖。\"],\"submitLocation\":\"荷姆兹商店\",\"submitNpc\":\"侯赛因\",\"targetAddress\":\"荷姆兹商店\",\"targetName\":\"\",\"taskType\":\"对话\"},\"raw_target_address\":\"荷姆兹商店\",\"raw_target_name\":\"\",\"raw_task_type\":\"对话\",\"receive_location\":\"亚丁古村落\",\"repeatability_note\":\"NPC 页面会过滤 completedTasks；但直接再次调用 submitTask 时 isTaskAccepted 对已完成任务返回 true，存在重复发奖的防护缺口。\",\"repeatable\":false,\"required_items\":[],\"required_quantities\":[],\"required_quantities_raw\":\"\",\"rewards\":{\"experience\":10000,\"items\":{},\"money\":{},\"raw\":{\"经验\":10000}},\"source_array_position\":42,\"source_identifier\":\"task13.json#index=143\",\"source_series\":13,\"state_changes\":{\"item_consumption\":\"收集/送物/运货会检查数量，但当前 Task.removeItem→Backpack.removeItem 名称/ID错位，通常不实际扣物品\",\"kill_progress\":\"killCounts by exact monster name\",\"on_accept\":\"acceptedTasks[index]=true\",\"on_complete\":\"completedTasks[index]=true and acceptedTasks entry removed\"},\"submit_location\":\"荷姆兹商店\",\"successor_task\":\"task.series.13.144\",\"target_location\":\"荷姆兹商店\",\"target_objects\":[],\"targets\":[],\"task_name\":\"亚丁的权杖\",\"task_type\":\"对话\",\"trigger_condition\":{\"location\":\"亚丁古村落\",\"npc\":\"阿巴斯\"}}",
       "unresolved_fields_json": "[]",
       "runtime_capability": "definition_queryable_gameplay_not_implemented",
-      "issuer_npc_canonical_id": "derived.npc_definition.9b24322b8a4c3383",
+      "issuer_npc_canonical_id": "derived.npc_definition.03030119c55991e5",
       "completion_npc_canonical_id": "derived.npc_definition.03030119c55991e5",
-      "receive_location_canonical_id": "entity.location.177998e52a55ed9a",
+      "receive_location_canonical_id": "entity.location.14af2737a7ce2013",
       "submit_location_canonical_id": "entity.location.14af2737a7ce2013",
       "target_location_canonical_id": "entity.location.14af2737a7ce2013",
       "restoration_status": "SINGLE_SOURCE",
@@ -47838,8 +47834,8 @@
           },
           "source_canonical_id": "task.series.13.144",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.market_item.aa53ae895172ae2a",
+          "source_entity_canonical_id": "runtime.market_item.aa53ae895172ae2a",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -52496,8 +52492,8 @@
           },
           "source_canonical_id": "task.series.13.159",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.item.6b78ddc7df6aa3ed",
+          "source_entity_canonical_id": "runtime.item.6b78ddc7df6aa3ed",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -52837,13 +52833,13 @@
           "candidate_canonical_ids": [],
           "runtime_resolution": {
             "rule": "source_explicit_task_described_encounter_drop",
-            "formal_source_canonical_id": "runtime.task-drop.57246a9a1744e2ad",
+            "formal_source_canonical_id": "runtime.task-drop.231cbf5b7e3c18f3",
             "source_kind": "monster_drop"
           },
           "source_canonical_id": "task.series.13.160",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.item.afae2dffe7986a5d",
+          "source_entity_canonical_id": "runtime.item.afae2dffe7986a5d",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -53648,10 +53644,10 @@
       "normalized_value_json": "{\"actual_code_progression\":\"同一 taskN.json 数组相邻项为真实前置；src/task.js getPrevTaskInSeries 不使用 index+1。跨文件无强制前置。\",\"chapter_or_stage\":\"通商—圣火令—亚丁—龙珠候选链\",\"completion_condition\":\"acceptedTasks 中存在；到 submitNpc 交互即可提交\",\"completion_npc\":\"马尔巴克\",\"configuration_page_consistency\":{\"completion_location_enforced_by_task_core\":false,\"index_plus_one_continuation_break\":false,\"note\":\"未发现本条独有的数组/index 断裂；地点由 NPC 页面间接约束。\",\"quantity_arity_mismatch\":false},\"conflict_refs\":[],\"description\":\"马尔巴克到亚特兰蒂斯村庄找马尔巴克聊聊。\",\"dialogue\":{\"receive\":[\"卡拉迪：现在你可以去找马尔巴克了，他是我们村的智者，知道很多古老的秘密。\",\"你：太好了，我正想多了解一些关于龙珠的传说呢！\"],\"submit\":[\"马尔巴克：卡拉迪让你来的？是想了解龙珠的事情吧？\",\"你：没错，我听说您知道很多关于龙珠的秘密。\"]},\"failure_or_interruption\":\"未声明失败条件或时限；状态随用户存档保存。完成后 completedTasks 阻止再次接取。\",\"issue_refs\":[],\"issuer_npc\":\"卡拉迪\",\"kill_targets\":[],\"level_requirement\":null,\"originality_status\":\"UNVERIFIED_AS_ORIGINAL\",\"predecessor_task\":\"task.series.13.162\",\"raw_level\":null,\"raw_quantity\":\"\",\"raw_source_record\":{\"content\":\"马尔巴克到亚特兰蒂斯村庄找马尔巴克聊聊。\",\"index\":163,\"name\":\"马尔巴克到亚特兰蒂斯村庄找马尔巴克聊聊。\",\"prize\":{\"声望\":1,\"经验\":10000,\"铜贝\":3000},\"quantity\":\"\",\"receiveDialog\":[\"卡拉迪：现在你可以去找马尔巴克了，他是我们村的智者，知道很多古老的秘密。\",\"你：太好了，我正想多了解一些关于龙珠的传说呢！\"],\"receiveLocation\":\"亚特兰蒂斯码头\",\"receiveNpc\":\"卡拉迪\",\"submitDialog\":[\"马尔巴克：卡拉迪让你来的？是想了解龙珠的事情吧？\",\"你：没错，我听说您知道很多关于龙珠的秘密。\"],\"submitLocation\":\"亚特兰蒂斯码头\",\"submitNpc\":\"马尔巴克\",\"targetAddress\":\"亚特兰蒂斯村庄\",\"targetName\":\"\",\"taskType\":\"对话\"},\"raw_target_address\":\"亚特兰蒂斯村庄\",\"raw_target_name\":\"\",\"raw_task_type\":\"对话\",\"receive_location\":\"亚特兰蒂斯码头\",\"repeatability_note\":\"NPC 页面会过滤 completedTasks；但直接再次调用 submitTask 时 isTaskAccepted 对已完成任务返回 true，存在重复发奖的防护缺口。\",\"repeatable\":false,\"required_items\":[],\"required_quantities\":[],\"required_quantities_raw\":\"\",\"rewards\":{\"experience\":10000,\"items\":{\"声望\":1},\"money\":{\"铜贝\":3000},\"raw\":{\"声望\":1,\"经验\":10000,\"铜贝\":3000}},\"source_array_position\":62,\"source_identifier\":\"task13.json#index=163\",\"source_series\":13,\"state_changes\":{\"item_consumption\":\"收集/送物/运货会检查数量，但当前 Task.removeItem→Backpack.removeItem 名称/ID错位，通常不实际扣物品\",\"kill_progress\":\"killCounts by exact monster name\",\"on_accept\":\"acceptedTasks[index]=true\",\"on_complete\":\"completedTasks[index]=true and acceptedTasks entry removed\"},\"submit_location\":\"亚特兰蒂斯码头\",\"successor_task\":\"task.series.13.164\",\"target_location\":\"亚特兰蒂斯村庄\",\"target_objects\":[],\"targets\":[],\"task_name\":\"马尔巴克到亚特兰蒂斯村庄找马尔巴克聊聊。\",\"task_type\":\"对话\",\"trigger_condition\":{\"location\":\"亚特兰蒂斯码头\",\"npc\":\"卡拉迪\"}}",
       "unresolved_fields_json": "[]",
       "runtime_capability": "definition_queryable_gameplay_not_implemented",
-      "issuer_npc_canonical_id": "derived.npc_definition.199c696318fc94a6",
-      "completion_npc_canonical_id": "derived.npc_definition.e50fa371481679d8",
-      "receive_location_canonical_id": "entity.location.699ec43c717b6d01",
-      "submit_location_canonical_id": "entity.location.699ec43c717b6d01",
+      "issuer_npc_canonical_id": "derived.npc_definition.6bfe677a55c86a02",
+      "completion_npc_canonical_id": "derived.npc_definition.6bfe677a55c86a02",
+      "receive_location_canonical_id": "entity.location.d578c5c2a89afaed",
+      "submit_location_canonical_id": "entity.location.d578c5c2a89afaed",
       "target_location_canonical_id": "entity.location.d578c5c2a89afaed",
       "restoration_status": "SINGLE_SOURCE",
       "confidence": "medium",
@@ -54189,8 +54185,8 @@
           },
           "source_canonical_id": "task.series.13.164",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.item.34153aca13917498",
+          "source_entity_canonical_id": "runtime.item.34153aca13917498",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -54535,8 +54531,8 @@
           },
           "source_canonical_id": "task.series.13.165",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.item.4ea62b01710f7caa",
+          "source_entity_canonical_id": "runtime.item.4ea62b01710f7caa",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -54681,7 +54677,7 @@
       "issuer_npc_canonical_id": "derived.npc_definition.6bfe677a55c86a02",
       "completion_npc_canonical_id": "derived.npc_definition.c46edafba79e4223",
       "receive_location_canonical_id": "entity.location.d578c5c2a89afaed",
-      "submit_location_canonical_id": "entity.location.d578c5c2a89afaed",
+      "submit_location_canonical_id": "entity.location.15ae6a8396268cff",
       "target_location_canonical_id": "entity.location.15ae6a8396268cff",
       "restoration_status": "SINGLE_SOURCE",
       "confidence": "medium",
@@ -57921,8 +57917,8 @@
           },
           "source_canonical_id": "task.series.14.175",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.item.adfe2add7ce81ec0",
+          "source_entity_canonical_id": "runtime.item.adfe2add7ce81ec0",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -58363,7 +58359,7 @@
       "issuer_npc_canonical_id": "runtime.contextual-npc.c830a9932586a763",
       "completion_npc_canonical_id": "derived.npc_definition.877e5a747aa599eb",
       "receive_location_canonical_id": "entity.location.dfd93192aaca2271",
-      "submit_location_canonical_id": "entity.location.dfd93192aaca2271",
+      "submit_location_canonical_id": "entity.location.d671d0826cdb3016",
       "target_location_canonical_id": "entity.location.d671d0826cdb3016",
       "restoration_status": "SINGLE_SOURCE",
       "confidence": "medium",
@@ -59980,8 +59976,8 @@
           },
           "source_canonical_id": "task.series.15.181",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.item.2b73463f2fabf312",
+          "source_entity_canonical_id": "runtime.item.2b73463f2fabf312",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -61644,8 +61640,8 @@
           },
           "source_canonical_id": "task.series.15.186",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.item.879939da40170b1b",
+          "source_entity_canonical_id": "runtime.item.879939da40170b1b",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -61987,14 +61983,14 @@
             "entity.item.fd4174760618fabc"
           ],
           "runtime_resolution": {
-            "rule": "candidate_with_formal_source",
+            "rule": "direct_formal_source",
             "formal_source_canonical_id": "entity.shop.703a35a6a9f4da76.entry",
             "source_kind": "shop"
           },
           "source_canonical_id": "task.series.15.187",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": "entity.item.b47d2dd709e68b18",
-          "source_entity_canonical_id": "entity.item.b47d2dd709e68b18",
+          "source_content_entity_canonical_id": "entity.item.fd4174760618fabc",
+          "source_entity_canonical_id": "entity.item.fd4174760618fabc",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -63724,8 +63720,8 @@
           },
           "source_canonical_id": "task.series.15.192",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.item.783cdb522262f002",
+          "source_entity_canonical_id": "runtime.item.783cdb522262f002",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -74408,8 +74404,8 @@
           },
           "source_canonical_id": "task.series.15.224",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.item.88e15e58f8f276af",
+          "source_entity_canonical_id": "runtime.item.88e15e58f8f276af",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -81496,8 +81492,8 @@
           },
           "source_canonical_id": "task.series.15.245",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.item.d8f4daffae9b9b72",
+          "source_entity_canonical_id": "runtime.item.d8f4daffae9b9b72",
           "task_item_policy": null,
           "npc_duel": null
         },
@@ -81530,8 +81526,8 @@
           },
           "source_canonical_id": "task.series.15.245",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.item.90e4e58d454b4a78",
+          "source_entity_canonical_id": "runtime.item.90e4e58d454b4a78",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -84554,8 +84550,8 @@
           },
           "source_canonical_id": "task.series.15.254",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.item.587731d8287b195f",
+          "source_entity_canonical_id": "runtime.item.587731d8287b195f",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -87890,8 +87886,8 @@
           },
           "source_canonical_id": "task.series.15.264",
           "original_target_kind": "item",
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.task_chain.item.d753d54fa91fa2ae",
+          "source_entity_canonical_id": "runtime.task_chain.item.d753d54fa91fa2ae",
           "task_item_policy": {
             "acquisition_mode": "monster_drop",
             "reservation": "required_until_submit",
@@ -89227,8 +89223,8 @@
           },
           "source_canonical_id": "task.series.15.268",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.item.fde0e6fbfe4b8da9",
+          "source_entity_canonical_id": "runtime.item.fde0e6fbfe4b8da9",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -89551,19 +89547,28 @@
           "normalized_quantity": 5,
           "raw_value_json": "{\"desired\":\"content:item\",\"kind\":\"item\",\"name\":\"熊皮\",\"quantity\":5}",
           "dependency_canonical_id": "task.series.15.269.target.01.reference",
-          "resolution_status": "blocked_missing_definition",
-          "runtime_capability": "blocked",
+          "resolution_status": "resolved",
+          "runtime_capability": "queryable",
           "raw_category": "item",
           "candidate_canonical_ids_json": "[]",
-          "content_entity_canonical_id": null,
+          "content_entity_canonical_id": "runtime.item.57e744db1884c498",
           "monster_canonical_id": null,
           "npc_canonical_id": null,
           "location_canonical_id": null,
           "required_quantity": 5,
-          "entity_canonical_id": null,
+          "entity_canonical_id": "runtime.item.57e744db1884c498",
           "candidate_canonical_ids": [],
-          "runtime_resolution": null,
-          "source_canonical_id": "task.series.15.269"
+          "runtime_resolution": {
+            "rule": "source_explicit_task_described_encounter_drop",
+            "formal_source_canonical_id": "runtime.task-drop.6775a8f5952e17bc",
+            "source_kind": "monster_drop"
+          },
+          "source_canonical_id": "task.series.15.269",
+          "original_target_kind": null,
+          "source_content_entity_canonical_id": "runtime.item.57e744db1884c498",
+          "source_entity_canonical_id": "runtime.item.57e744db1884c498",
+          "task_item_policy": null,
+          "npc_duel": null
         }
       ],
       "rewards": [
@@ -89657,28 +89662,9 @@
         }
       ],
       "contextual_npc_definitions": [],
-      "blocking_reasons": [
-        {
-          "code": "unresolved_dependency",
-          "details": [
-            {
-              "type": "unresolved_target",
-              "target_canonical_id": "task.series.15.269.target.01",
-              "dependency_canonical_id": "task.series.15.269.target.01.reference",
-              "resolution_status": "blocked_missing_definition",
-              "candidate_canonical_ids": []
-            }
-          ]
-        },
-        {
-          "code": "item_without_formal_source",
-          "target_canonical_id": "task.series.15.269.target.01",
-          "source_entity_canonical_id": null,
-          "candidate_canonical_ids": []
-        }
-      ],
+      "blocking_reasons": [],
       "series_canonical_id": "task.series.15",
-      "directory_status": "data_conflict",
+      "directory_status": "runnable_pending_validation",
       "source_prerequisites": [
         "task.series.15.268"
       ],
@@ -89921,8 +89907,8 @@
           },
           "source_canonical_id": "task.series.15.270",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.item.3a32e667b159386e",
+          "source_entity_canonical_id": "runtime.item.3a32e667b159386e",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -93282,8 +93268,8 @@
           },
           "source_canonical_id": "task.series.15.280",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.item.ac59252eb64cde19",
+          "source_entity_canonical_id": "runtime.item.ac59252eb64cde19",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -96587,8 +96573,8 @@
           },
           "source_canonical_id": "task.series.15.290",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.item.97ec88b8cc4e7664",
+          "source_entity_canonical_id": "runtime.item.97ec88b8cc4e7664",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -100409,7 +100395,7 @@
       "issuer_npc_canonical_id": "derived.npc_definition.9f7cdbc4632641d7",
       "completion_npc_canonical_id": "derived.npc_definition.c2766fee3e0dc2d1",
       "receive_location_canonical_id": "entity.location.4a97d4ef45bccaa5",
-      "submit_location_canonical_id": "entity.location.4a97d4ef45bccaa5",
+      "submit_location_canonical_id": "entity.location.e28ff0fd9c85bf7d",
       "target_location_canonical_id": "entity.location.4c28fa602cb1ba53",
       "restoration_status": "SINGLE_SOURCE",
       "confidence": "medium",
@@ -107973,8 +107959,8 @@
           },
           "source_canonical_id": "task.series.15.411",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.item.4d5b4502853fa908",
+          "source_entity_canonical_id": "runtime.item.4d5b4502853fa908",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -109301,7 +109287,7 @@
           "source_canonical_id": "task.series.15.415",
           "original_target_kind": "monster",
           "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "derived.monster_definition.b6c33ddc0a318a25",
           "task_item_policy": null,
           "npc_duel": null
         },
@@ -109667,8 +109653,8 @@
           },
           "source_canonical_id": "task.series.15.416",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.item.9d567ada42ae6c19",
+          "source_entity_canonical_id": "runtime.item.9d567ada42ae6c19",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -117305,8 +117291,8 @@
           },
           "source_canonical_id": "task.series.15.439",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.item.3ee24deb8eab96fb",
+          "source_entity_canonical_id": "runtime.item.3ee24deb8eab96fb",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -117412,9 +117398,9 @@
       "normalized_value_json": "{\"actual_code_progression\":\"同一 taskN.json 数组相邻项为真实前置；src/task.js getPrevTaskInSeries 不使用 index+1。跨文件无强制前置。\",\"chapter_or_stage\":\"妖气长安前中段\",\"completion_condition\":\"acceptedTasks 中存在；到 submitNpc 交互即可提交\",\"completion_npc\":\"兰特斯\",\"configuration_page_consistency\":{\"completion_location_enforced_by_task_core\":false,\"index_plus_one_continuation_break\":false,\"note\":\"未发现本条独有的数组/index 断裂；地点由 NPC 页面间接约束。\",\"quantity_arity_mismatch\":false},\"conflict_refs\":[],\"description\":\"你已经捉住了采花贼回警察局向兰特斯报道吧。\",\"dialogue\":{\"receive\":[\"养蜂人：采花贼已经捉住了？快去突尼斯警察局向兰特斯报告吧。\",\"你：好，我这就去报告。\"],\"submit\":[\"兰特斯：干得不错！这个采花贼害得不少人寝食难安。\",\"你：为民除害是我应该做的。\"]},\"failure_or_interruption\":\"未声明失败条件或时限；状态随用户存档保存。完成后 completedTasks 阻止再次接取。\",\"issue_refs\":[],\"issuer_npc\":\"养蜂人\",\"kill_targets\":[],\"level_requirement\":null,\"originality_status\":\"UNVERIFIED_AS_ORIGINAL\",\"predecessor_task\":\"task.series.15.439\",\"raw_level\":null,\"raw_quantity\":\"\",\"raw_source_record\":{\"content\":\"你已经捉住了采花贼回警察局向兰特斯报道吧。\",\"index\":440,\"name\":\"妖气长安51\",\"prize\":{\"声望\":5,\"经验\":15000,\"铜贝\":2500},\"quantity\":\"\",\"receiveDialog\":[\"养蜂人：采花贼已经捉住了？快去突尼斯警察局向兰特斯报告吧。\",\"你：好，我这就去报告。\"],\"receiveLocation\":\"突尼斯酒馆\",\"receiveNpc\":\"养蜂人\",\"submitDialog\":[\"兰特斯：干得不错！这个采花贼害得不少人寝食难安。\",\"你：为民除害是我应该做的。\"],\"submitLocation\":\"突尼斯酒馆\",\"submitNpc\":\"兰特斯\",\"targetAddress\":\"突尼斯警察局\",\"targetName\":\"\",\"taskType\":\"对话\"},\"raw_target_address\":\"突尼斯警察局\",\"raw_target_name\":\"\",\"raw_task_type\":\"对话\",\"receive_location\":\"突尼斯酒馆\",\"repeatability_note\":\"NPC 页面会过滤 completedTasks；但直接再次调用 submitTask 时 isTaskAccepted 对已完成任务返回 true，存在重复发奖的防护缺口。\",\"repeatable\":false,\"required_items\":[],\"required_quantities\":[],\"required_quantities_raw\":\"\",\"rewards\":{\"experience\":15000,\"items\":{\"声望\":5},\"money\":{\"铜贝\":2500},\"raw\":{\"声望\":5,\"经验\":15000,\"铜贝\":2500}},\"source_array_position\":173,\"source_identifier\":\"task15.json#index=440\",\"source_series\":15,\"state_changes\":{\"item_consumption\":\"收集/送物/运货会检查数量，但当前 Task.removeItem→Backpack.removeItem 名称/ID错位，通常不实际扣物品\",\"kill_progress\":\"killCounts by exact monster name\",\"on_accept\":\"acceptedTasks[index]=true\",\"on_complete\":\"completedTasks[index]=true and acceptedTasks entry removed\"},\"submit_location\":\"突尼斯酒馆\",\"successor_task\":\"task.series.15.441\",\"target_location\":\"突尼斯警察局\",\"target_objects\":[],\"targets\":[],\"task_name\":\"妖气长安51\",\"task_type\":\"对话\",\"trigger_condition\":{\"location\":\"突尼斯酒馆\",\"npc\":\"养蜂人\"}}",
       "unresolved_fields_json": "[]",
       "runtime_capability": "definition_queryable_gameplay_not_implemented",
-      "issuer_npc_canonical_id": "derived.npc_definition.112c41537d305d9c",
+      "issuer_npc_canonical_id": "derived.npc_definition.1162e05bf414051a",
       "completion_npc_canonical_id": "derived.npc_definition.35205e09ebf17cfd",
-      "receive_location_canonical_id": "entity.location.7c835ecb95b2131f",
+      "receive_location_canonical_id": "entity.location.ef9343fa9b5c9210",
       "submit_location_canonical_id": "entity.location.7c835ecb95b2131f",
       "target_location_canonical_id": "entity.location.ef9343fa9b5c9210",
       "restoration_status": "SINGLE_SOURCE",
@@ -121970,8 +121956,8 @@
           },
           "source_canonical_id": "task.series.15.453",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.item.21594155151b00e7",
+          "source_entity_canonical_id": "runtime.item.21594155151b00e7",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -122971,25 +122957,25 @@
           "source_canonical_id": "task.series.15.456"
         },
         {
-          "canonical_id": "task.series.15.456.reward.runtime.04",
-          "source_canonical_id": "task.series.15.456",
+          "canonical_id": "entity.task_reward.dc1ca3e1b7f875fe",
           "reward_order": 4,
-          "raw_quantity": "1",
-          "raw_value_json": "{\"黑珍珠\":1}",
-          "dependency_canonical_id": null,
-          "candidate_canonical_ids": [],
-          "candidate_canonical_ids_json": "[]",
           "reward_kind": "item",
           "reward_name": "黑珍珠",
-          "quantity": 1,
+          "raw_quantity": "1",
           "normalized_quantity": 1,
-          "content_entity_canonical_id": "runtime.task_chain.item.8b4fe6ffc18a39c1",
+          "raw_value_json": "{\"item\":\"黑珍珠\",\"quantity\":1}",
+          "dependency_canonical_id": "entity.task_reward.dc1ca3e1b7f875fe",
           "resolution_status": "resolved",
           "runtime_capability": "queryable",
+          "candidate_canonical_ids_json": "[]",
+          "content_entity_canonical_id": "runtime.task_chain.item.8b4fe6ffc18a39c1",
+          "quantity": 1,
+          "candidate_canonical_ids": [],
           "runtime_resolution": {
             "rule": "explicit_previous_submit_dialogue_reward",
             "source_task_canonical_id": "task.series.15.456"
-          }
+          },
+          "source_canonical_id": "task.series.15.456"
         }
       ],
       "dialogues": [
@@ -123272,8 +123258,8 @@
           },
           "source_canonical_id": "task.series.15.457",
           "original_target_kind": "item",
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.task_chain.item.8b4fe6ffc18a39c1",
+          "source_entity_canonical_id": "runtime.task_chain.item.8b4fe6ffc18a39c1",
           "task_item_policy": {
             "acquisition_mode": "prerequisite_reward",
             "reservation": "required_until_submit",
@@ -123620,8 +123606,8 @@
           },
           "source_canonical_id": "task.series.15.458",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.item.21594155151b00e7",
+          "source_entity_canonical_id": "runtime.item.21594155151b00e7",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -125014,6 +125000,24 @@
           "candidate_canonical_ids": [],
           "runtime_resolution": null,
           "source_canonical_id": "task.series.15.462"
+        },
+        {
+          "canonical_id": "entity.task_reward.02a032c2cda857b4",
+          "reward_order": 4,
+          "reward_kind": "item",
+          "reward_name": "渔网",
+          "raw_quantity": "1",
+          "normalized_quantity": 1,
+          "raw_value_json": "{\"item\":\"渔网\",\"quantity\":1}",
+          "dependency_canonical_id": "entity.task_reward.02a032c2cda857b4",
+          "resolution_status": "resolved",
+          "runtime_capability": "queryable",
+          "candidate_canonical_ids_json": "[]",
+          "content_entity_canonical_id": "runtime.task_acceptance.item.b3f305a6689e2e25",
+          "quantity": 1,
+          "candidate_canonical_ids": [],
+          "runtime_resolution": null,
+          "source_canonical_id": "task.series.15.462"
         }
       ],
       "dialogues": [
@@ -125296,8 +125300,8 @@
           },
           "source_canonical_id": "task.series.15.463",
           "original_target_kind": "item",
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.task_acceptance.item.b3f305a6689e2e25",
+          "source_entity_canonical_id": "runtime.task_acceptance.item.b3f305a6689e2e25",
           "task_item_policy": {
             "acquisition_mode": "grant_on_accept",
             "reservation": "required_until_submit",
@@ -126302,14 +126306,14 @@
           "entity_canonical_id": "runtime.item.186026db0c45bd9f",
           "candidate_canonical_ids": [],
           "runtime_resolution": {
-            "rule": "source_explicit_task_described_encounter_drop",
-            "formal_source_canonical_id": "runtime.task-drop.6042ad47b53b607e",
-            "source_kind": "monster_drop"
+            "rule": "direct_formal_source",
+            "formal_source_canonical_id": "entity.drop.0d545059dd1628d2",
+            "source_kind": "drop"
           },
           "source_canonical_id": "task.series.15.466",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.item.186026db0c45bd9f",
+          "source_entity_canonical_id": "runtime.item.186026db0c45bd9f",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -126668,8 +126672,8 @@
           },
           "source_canonical_id": "task.series.15.467",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.item.186026db0c45bd9f",
+          "source_entity_canonical_id": "runtime.item.186026db0c45bd9f",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -127715,25 +127719,25 @@
           "source_canonical_id": "task.series.15.470"
         },
         {
-          "canonical_id": "task.series.15.470.reward.runtime.04",
-          "source_canonical_id": "task.series.15.470",
+          "canonical_id": "entity.task_reward.0f78062ff0b7f7bc",
           "reward_order": 4,
-          "raw_quantity": "1",
-          "raw_value_json": "{\"龙鳞\":1}",
-          "dependency_canonical_id": null,
-          "candidate_canonical_ids": [],
-          "candidate_canonical_ids_json": "[]",
           "reward_kind": "item",
           "reward_name": "龙鳞",
-          "quantity": 1,
+          "raw_quantity": "1",
           "normalized_quantity": 1,
-          "content_entity_canonical_id": "runtime.task_chain.item.ff1cc9899dfa1f5f",
+          "raw_value_json": "{\"item\":\"龙鳞\",\"quantity\":1}",
+          "dependency_canonical_id": "entity.task_reward.0f78062ff0b7f7bc",
           "resolution_status": "resolved",
           "runtime_capability": "queryable",
+          "candidate_canonical_ids_json": "[]",
+          "content_entity_canonical_id": "runtime.task_chain.item.ff1cc9899dfa1f5f",
+          "quantity": 1,
+          "candidate_canonical_ids": [],
           "runtime_resolution": {
             "rule": "task_chain_reward_ledger",
             "source_task_canonical_id": "task.series.15.470"
-          }
+          },
+          "source_canonical_id": "task.series.15.470"
         }
       ],
       "dialogues": [
@@ -128020,8 +128024,8 @@
           },
           "source_canonical_id": "task.series.15.471",
           "original_target_kind": "item",
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.task_chain.item.ff1cc9899dfa1f5f",
+          "source_entity_canonical_id": "runtime.task_chain.item.ff1cc9899dfa1f5f",
           "task_item_policy": {
             "acquisition_mode": "prerequisite_reward",
             "reservation": "required_until_submit",
@@ -128393,8 +128397,8 @@
           },
           "source_canonical_id": "task.series.15.472",
           "original_target_kind": "item",
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.task_chain.item.8b4fe6ffc18a39c1",
+          "source_entity_canonical_id": "runtime.task_chain.item.8b4fe6ffc18a39c1",
           "task_item_policy": {
             "acquisition_mode": "prerequisite_reward",
             "reservation": "required_until_submit",
@@ -135864,7 +135868,7 @@
       "issuer_npc_canonical_id": "derived.npc_definition.d8681c1bc5b9eb89",
       "completion_npc_canonical_id": "derived.npc_definition.095f81aa96871f58",
       "receive_location_canonical_id": "entity.location.9ff2bd72ca76c669",
-      "submit_location_canonical_id": "entity.location.9ff2bd72ca76c669",
+      "submit_location_canonical_id": "entity.location.8594952d4c68cbde",
       "target_location_canonical_id": "entity.location.8594952d4c68cbde",
       "restoration_status": "SINGLE_SOURCE",
       "confidence": "medium",
@@ -136188,7 +136192,7 @@
       "issuer_npc_canonical_id": "derived.npc_definition.095f81aa96871f58",
       "completion_npc_canonical_id": "derived.npc_definition.095f81aa96871f58",
       "receive_location_canonical_id": "entity.location.8594952d4c68cbde",
-      "submit_location_canonical_id": "entity.location.9ff2bd72ca76c669",
+      "submit_location_canonical_id": "entity.location.8594952d4c68cbde",
       "target_location_canonical_id": "entity.location.8594952d4c68cbde",
       "restoration_status": "SINGLE_SOURCE",
       "confidence": "medium",
@@ -141839,8 +141843,8 @@
           },
           "source_canonical_id": "task.series.15.514",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": "entity.item.ffe14c6dca4f57eb",
-          "source_entity_canonical_id": "entity.item.ffe14c6dca4f57eb",
+          "source_content_entity_canonical_id": "runtime.market_item.97e7141015fbe129",
+          "source_entity_canonical_id": "runtime.market_item.97e7141015fbe129",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -143302,7 +143306,7 @@
       "unresolved_fields_json": "[]",
       "runtime_capability": "definition_queryable_gameplay_not_implemented",
       "issuer_npc_canonical_id": "derived.npc_definition.a3bb0b619be3f60f",
-      "completion_npc_canonical_id": "derived.npc_definition.7f3262541b9c8107",
+      "completion_npc_canonical_id": "derived.npc_definition.a3bb0b619be3f60f",
       "receive_location_canonical_id": "entity.location.5ac449a61f94e309",
       "submit_location_canonical_id": "entity.location.5ac449a61f94e309",
       "target_location_canonical_id": "entity.location.5ac449a61f94e309",
@@ -143625,9 +143629,9 @@
       "normalized_value_json": "{\"actual_code_progression\":\"同一 taskN.json 数组相邻项为真实前置；src/task.js getPrevTaskInSeries 不使用 index+1。跨文件无强制前置。\",\"chapter_or_stage\":\"妖气长安前中段\",\"completion_condition\":\"acceptedTasks 中存在，逐目标 killCounts 达到 parseInt(quantity)，并向 submitNpc 提交\",\"completion_npc\":\"千年巨蟒\",\"configuration_page_consistency\":{\"completion_location_enforced_by_task_core\":false,\"index_plus_one_continuation_break\":false,\"note\":\"未发现本条独有的数组/index 断裂；地点由 NPC 页面间接约束。\",\"quantity_arity_mismatch\":false},\"conflict_refs\":[],\"description\":\"杀死千年巨蟒取得火灵珠。（千年巨蟒就在泉州南城门外最南边的青龙潭里，带上足够药物它可不是一般的妖怪。）\",\"dialogue\":{\"receive\":[\"千年巨蟒：既然你来找我麻烦，那就别怪我不客气了！\",\"你：我也不想这样，但你危害百姓，我必须除掉你。\"],\"submit\":[\"千年巨蟒：咳咳...我败了...你确实很强。\",\"你：现在可以说说你知道的情况了吧？\"]},\"failure_or_interruption\":\"未声明失败条件或时限；状态随用户存档保存。完成后 completedTasks 阻止再次接取。\",\"issue_refs\":[],\"issuer_npc\":\"千年巨蟒\",\"kill_targets\":[{\"name\":\"千年巨蟒\",\"quantity\":1}],\"level_requirement\":106,\"originality_status\":\"UNVERIFIED_AS_ORIGINAL\",\"predecessor_task\":\"task.series.15.519\",\"raw_level\":106,\"raw_quantity\":\"1\",\"raw_source_record\":{\"content\":\"杀死千年巨蟒取得火灵珠。（千年巨蟒就在泉州南城门外最南边的青龙潭里，带上足够药物它可不是一般的妖怪。）\",\"index\":520,\"level\":106,\"name\":\"杀千年巨蟒\",\"prize\":{\"声望\":5,\"火灵珠\":1,\"经验\":15000,\"铜贝\":1000},\"quantity\":\"1\",\"receiveDialog\":[\"千年巨蟒：既然你来找我麻烦，那就别怪我不客气了！\",\"你：我也不想这样，但你危害百姓，我必须除掉你。\"],\"receiveLocation\":\"泉州青龙潭\",\"receiveNpc\":\"千年巨蟒\",\"submitDialog\":[\"千年巨蟒：咳咳...我败了...你确实很强。\",\"你：现在可以说说你知道的情况了吧？\"],\"submitLocation\":\"长安三清观\",\"submitNpc\":\"千年巨蟒\",\"targetAddress\":\"泉州青龙潭\",\"targetName\":\"千年巨蟒\",\"taskType\":\"打怪\"},\"raw_target_address\":\"泉州青龙潭\",\"raw_target_name\":\"千年巨蟒\",\"raw_task_type\":\"打怪\",\"receive_location\":\"泉州青龙潭\",\"repeatability_note\":\"NPC 页面会过滤 completedTasks；但直接再次调用 submitTask 时 isTaskAccepted 对已完成任务返回 true，存在重复发奖的防护缺口。\",\"repeatable\":false,\"required_items\":[],\"required_quantities\":[1],\"required_quantities_raw\":\"1\",\"rewards\":{\"experience\":15000,\"items\":{\"声望\":5,\"火灵珠\":1},\"money\":{\"铜贝\":1000},\"raw\":{\"声望\":5,\"火灵珠\":1,\"经验\":15000,\"铜贝\":1000}},\"source_array_position\":253,\"source_identifier\":\"task15.json#index=520\",\"source_series\":15,\"state_changes\":{\"item_consumption\":\"收集/送物/运货会检查数量，但当前 Task.removeItem→Backpack.removeItem 名称/ID错位，通常不实际扣物品\",\"kill_progress\":\"killCounts by exact monster name\",\"on_accept\":\"acceptedTasks[index]=true\",\"on_complete\":\"completedTasks[index]=true and acceptedTasks entry removed\"},\"submit_location\":\"长安三清观\",\"successor_task\":\"task.series.15.521\",\"target_location\":\"泉州青龙潭\",\"target_objects\":[\"千年巨蟒\"],\"targets\":[\"千年巨蟒\"],\"task_name\":\"杀千年巨蟒\",\"task_type\":\"打怪\",\"trigger_condition\":{\"location\":\"泉州青龙潭\",\"npc\":\"千年巨蟒\"}}",
       "unresolved_fields_json": "[]",
       "runtime_capability": "definition_queryable_gameplay_not_implemented",
-      "issuer_npc_canonical_id": "derived.npc_definition.7f3262541b9c8107",
-      "completion_npc_canonical_id": "derived.npc_definition.7f3262541b9c8107",
-      "receive_location_canonical_id": "entity.location.2186e2bef5ae3159",
+      "issuer_npc_canonical_id": "derived.npc_definition.a3bb0b619be3f60f",
+      "completion_npc_canonical_id": "derived.npc_definition.a3bb0b619be3f60f",
+      "receive_location_canonical_id": "entity.location.5ac449a61f94e309",
       "submit_location_canonical_id": "entity.location.5ac449a61f94e309",
       "target_location_canonical_id": "entity.location.2186e2bef5ae3159",
       "restoration_status": "SINGLE_SOURCE",
@@ -143986,9 +143990,9 @@
       "normalized_value_json": "{\"actual_code_progression\":\"同一 taskN.json 数组相邻项为真实前置；src/task.js getPrevTaskInSeries 不使用 index+1。跨文件无强制前置。\",\"chapter_or_stage\":\"妖气长安前中段\",\"completion_condition\":\"接取时生成目标物品，提交时检查；代码尝试移除，但名称/ID签名错位使实际消耗失效\",\"completion_npc\":\"张真人\",\"configuration_page_consistency\":{\"completion_location_enforced_by_task_core\":false,\"index_plus_one_continuation_break\":false,\"note\":\"未发现本条独有的数组/index 断裂；地点由 NPC 页面间接约束。\",\"quantity_arity_mismatch\":false},\"conflict_refs\":[],\"description\":\"你已经取得火灵珠快回长安三清观找张真人吧。\",\"dialogue\":{\"receive\":[\"千年巨蟒：你把火灵珠带给张真人吧，他正需要这东西。\",\"你：好的，我这就送去给张真人。\"],\"submit\":[\"张真人：火灵珠送来了？太好了，这下可以炼制更强的丹药了！\",\"你：能帮到您就好。\"]},\"failure_or_interruption\":\"未声明失败条件或时限；状态随用户存档保存。完成后 completedTasks 阻止再次接取。\",\"issue_refs\":[],\"issuer_npc\":\"千年巨蟒\",\"kill_targets\":[],\"level_requirement\":null,\"originality_status\":\"UNVERIFIED_AS_ORIGINAL\",\"predecessor_task\":\"task.series.15.520\",\"raw_level\":null,\"raw_quantity\":\"1\",\"raw_source_record\":{\"content\":\"你已经取得火灵珠快回长安三清观找张真人吧。\",\"index\":521,\"name\":\"交付火灵珠\",\"prize\":{\"声望\":5,\"经验\":15000,\"铜贝\":1500},\"quantity\":\"1\",\"receiveDialog\":[\"千年巨蟒：你把火灵珠带给张真人吧，他正需要这东西。\",\"你：好的，我这就送去给张真人。\"],\"receiveLocation\":\"泉州青龙潭\",\"receiveNpc\":\"千年巨蟒\",\"submitDialog\":[\"张真人：火灵珠送来了？太好了，这下可以炼制更强的丹药了！\",\"你：能帮到您就好。\"],\"submitLocation\":\"长安三清观\",\"submitNpc\":\"张真人\",\"targetAddress\":\"长安三清观\",\"targetName\":\"火灵珠\",\"taskType\":\"送物品\"},\"raw_target_address\":\"长安三清观\",\"raw_target_name\":\"火灵珠\",\"raw_task_type\":\"送物品\",\"receive_location\":\"泉州青龙潭\",\"repeatability_note\":\"NPC 页面会过滤 completedTasks；但直接再次调用 submitTask 时 isTaskAccepted 对已完成任务返回 true，存在重复发奖的防护缺口。\",\"repeatable\":false,\"required_items\":[{\"name\":\"火灵珠\",\"quantity\":1}],\"required_quantities\":[1],\"required_quantities_raw\":\"1\",\"rewards\":{\"experience\":15000,\"items\":{\"声望\":5},\"money\":{\"铜贝\":1500},\"raw\":{\"声望\":5,\"经验\":15000,\"铜贝\":1500}},\"source_array_position\":254,\"source_identifier\":\"task15.json#index=521\",\"source_series\":15,\"state_changes\":{\"item_consumption\":\"收集/送物/运货会检查数量，但当前 Task.removeItem→Backpack.removeItem 名称/ID错位，通常不实际扣物品\",\"kill_progress\":\"killCounts by exact monster name\",\"on_accept\":\"acceptedTasks[index]=true\",\"on_complete\":\"completedTasks[index]=true and acceptedTasks entry removed\"},\"submit_location\":\"长安三清观\",\"successor_task\":\"task.series.15.522\",\"target_location\":\"长安三清观\",\"target_objects\":[\"火灵珠\"],\"targets\":[\"火灵珠\"],\"task_name\":\"交付火灵珠\",\"task_type\":\"送物品\",\"trigger_condition\":{\"location\":\"泉州青龙潭\",\"npc\":\"千年巨蟒\"}}",
       "unresolved_fields_json": "[]",
       "runtime_capability": "definition_queryable_gameplay_not_implemented",
-      "issuer_npc_canonical_id": "derived.npc_definition.7f3262541b9c8107",
+      "issuer_npc_canonical_id": "derived.npc_definition.a3bb0b619be3f60f",
       "completion_npc_canonical_id": "derived.npc_definition.a3bb0b619be3f60f",
-      "receive_location_canonical_id": "entity.location.2186e2bef5ae3159",
+      "receive_location_canonical_id": "entity.location.5ac449a61f94e309",
       "submit_location_canonical_id": "entity.location.5ac449a61f94e309",
       "target_location_canonical_id": "entity.location.5ac449a61f94e309",
       "restoration_status": "SINGLE_SOURCE",
@@ -157306,8 +157310,8 @@
           },
           "source_canonical_id": "task.series.15.560",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.item.336fa533d246e009",
+          "source_entity_canonical_id": "runtime.item.336fa533d246e009",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -157654,8 +157658,8 @@
           },
           "source_canonical_id": "task.series.15.561",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.item.64da644d11c3f769",
+          "source_entity_canonical_id": "runtime.item.64da644d11c3f769",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -165048,8 +165052,8 @@
           },
           "source_canonical_id": "task.series.15.583",
           "original_target_kind": "item",
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.task_chain.item.cd2182704d029476",
+          "source_entity_canonical_id": "runtime.task_chain.item.cd2182704d029476",
           "task_item_policy": {
             "acquisition_mode": "monster_drop",
             "reservation": "required_until_submit",
@@ -165395,8 +165399,8 @@
           },
           "source_canonical_id": "task.series.15.584",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.item.031e0ed6fb653d58",
+          "source_entity_canonical_id": "runtime.item.031e0ed6fb653d58",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -165739,8 +165743,8 @@
           },
           "source_canonical_id": "task.series.15.585",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.item.64da644d11c3f769",
+          "source_entity_canonical_id": "runtime.item.64da644d11c3f769",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -171000,19 +171004,28 @@
           "normalized_quantity": 1,
           "raw_value_json": "{\"desired\":\"content:item\",\"kind\":\"item\",\"name\":\"小良的毛笔\",\"quantity\":1}",
           "dependency_canonical_id": "task.series.15.601.target.01.reference",
-          "resolution_status": "blocked_missing_definition",
-          "runtime_capability": "blocked",
+          "resolution_status": "resolved",
+          "runtime_capability": "queryable",
           "raw_category": "item",
           "candidate_canonical_ids_json": "[]",
-          "content_entity_canonical_id": null,
+          "content_entity_canonical_id": "entity.item.7ba771bd31f63445",
           "monster_canonical_id": null,
           "npc_canonical_id": null,
           "location_canonical_id": null,
           "required_quantity": 1,
-          "entity_canonical_id": null,
+          "entity_canonical_id": "entity.item.7ba771bd31f63445",
           "candidate_canonical_ids": [],
-          "runtime_resolution": null,
-          "source_canonical_id": "task.series.15.601"
+          "runtime_resolution": {
+            "rule": "direct_formal_source",
+            "formal_source_canonical_id": "entity.drop.c2b7401299792303",
+            "source_kind": "drop"
+          },
+          "source_canonical_id": "task.series.15.601",
+          "original_target_kind": null,
+          "source_content_entity_canonical_id": "entity.item.7ba771bd31f63445",
+          "source_entity_canonical_id": "entity.item.7ba771bd31f63445",
+          "task_item_policy": null,
+          "npc_duel": null
         }
       ],
       "rewards": [
@@ -171106,28 +171119,9 @@
         }
       ],
       "contextual_npc_definitions": [],
-      "blocking_reasons": [
-        {
-          "code": "unresolved_dependency",
-          "details": [
-            {
-              "type": "unresolved_target",
-              "target_canonical_id": "task.series.15.601.target.01",
-              "dependency_canonical_id": "task.series.15.601.target.01.reference",
-              "resolution_status": "blocked_missing_definition",
-              "candidate_canonical_ids": []
-            }
-          ]
-        },
-        {
-          "code": "item_without_formal_source",
-          "target_canonical_id": "task.series.15.601.target.01",
-          "source_entity_canonical_id": null,
-          "candidate_canonical_ids": []
-        }
-      ],
+      "blocking_reasons": [],
       "series_canonical_id": "task.series.15",
-      "directory_status": "data_conflict",
+      "directory_status": "runnable_pending_validation",
       "source_prerequisites": [
         "task.series.15.600"
       ],
@@ -175429,7 +175423,7 @@
       "issuer_npc_canonical_id": "derived.npc_definition.50ee626afcb4a5f6",
       "completion_npc_canonical_id": "derived.npc_definition.2f8f4bfbe5be0673",
       "receive_location_canonical_id": "entity.location.f071e9a031b72750",
-      "submit_location_canonical_id": "entity.location.f071e9a031b72750",
+      "submit_location_canonical_id": "entity.location.eaf3b23904bb6425",
       "target_location_canonical_id": "entity.location.eaf3b23904bb6425",
       "restoration_status": "SINGLE_SOURCE",
       "confidence": "medium",
@@ -180940,14 +180934,14 @@
           "entity_canonical_id": "runtime.item.cd2182704d029476",
           "candidate_canonical_ids": [],
           "runtime_resolution": {
-            "rule": "normalize_migrated_collection_target_to_item",
+            "rule": "source_explicit_task_described_encounter_drop",
             "formal_source_canonical_id": "runtime.task-drop.10538d79018f30d5",
             "source_kind": "monster_drop"
           },
           "source_canonical_id": "task.series.15.631",
-          "original_target_kind": "monster",
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "original_target_kind": null,
+          "source_content_entity_canonical_id": "runtime.task_chain.item.cd2182704d029476",
+          "source_entity_canonical_id": "runtime.task_chain.item.cd2182704d029476",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -181768,7 +181762,7 @@
       "issuer_npc_canonical_id": "derived.npc_definition.bd212cddd716a56b",
       "completion_npc_canonical_id": "derived.npc_definition.b79d60378ce9a307",
       "receive_location_canonical_id": "entity.location.e4cedb33df711574",
-      "submit_location_canonical_id": "entity.location.e4cedb33df711574",
+      "submit_location_canonical_id": "entity.location.891e95eceda9850a",
       "target_location_canonical_id": "entity.location.c69d2d6faf623f56",
       "restoration_status": "SINGLE_SOURCE",
       "confidence": "medium",
@@ -182091,8 +182085,8 @@
       "runtime_capability": "definition_queryable_gameplay_not_implemented",
       "issuer_npc_canonical_id": "derived.npc_definition.b79d60378ce9a307",
       "completion_npc_canonical_id": "derived.npc_definition.b79d60378ce9a307",
-      "receive_location_canonical_id": "entity.location.c69d2d6faf623f56",
-      "submit_location_canonical_id": "entity.location.c69d2d6faf623f56",
+      "receive_location_canonical_id": "entity.location.891e95eceda9850a",
+      "submit_location_canonical_id": "entity.location.891e95eceda9850a",
       "target_location_canonical_id": "entity.location.258c6e4199be18ab",
       "restoration_status": "SINGLE_SOURCE",
       "confidence": "medium",
@@ -182426,7 +182420,7 @@
       "runtime_capability": "definition_queryable_gameplay_not_implemented",
       "issuer_npc_canonical_id": "derived.npc_definition.b79d60378ce9a307",
       "completion_npc_canonical_id": "derived.npc_definition.decdec0cca961d99",
-      "receive_location_canonical_id": "entity.location.c69d2d6faf623f56",
+      "receive_location_canonical_id": "entity.location.891e95eceda9850a",
       "submit_location_canonical_id": "entity.location.c69d2d6faf623f56",
       "target_location_canonical_id": "entity.location.bce259c580369c83",
       "restoration_status": "SINGLE_SOURCE",
@@ -186195,7 +186189,7 @@
       "issuer_npc_canonical_id": "derived.npc_definition.b66683368b8c30f5",
       "completion_npc_canonical_id": "derived.npc_definition.b79d60378ce9a307",
       "receive_location_canonical_id": "entity.location.c69d2d6faf623f56",
-      "submit_location_canonical_id": "entity.location.c69d2d6faf623f56",
+      "submit_location_canonical_id": "entity.location.891e95eceda9850a",
       "target_location_canonical_id": "entity.location.22ad41687af6eed5",
       "restoration_status": "SINGLE_SOURCE",
       "confidence": "medium",
@@ -186540,7 +186534,7 @@
       "runtime_capability": "definition_queryable_gameplay_not_implemented",
       "issuer_npc_canonical_id": "derived.npc_definition.b79d60378ce9a307",
       "completion_npc_canonical_id": "derived.npc_definition.bd212cddd716a56b",
-      "receive_location_canonical_id": "entity.location.c69d2d6faf623f56",
+      "receive_location_canonical_id": "entity.location.891e95eceda9850a",
       "submit_location_canonical_id": "entity.location.e4cedb33df711574",
       "target_location_canonical_id": "entity.location.e4cedb33df711574",
       "restoration_status": "SINGLE_SOURCE",
@@ -187710,14 +187704,14 @@
           "entity_canonical_id": "runtime.item.336fa533d246e009",
           "candidate_canonical_ids": [],
           "runtime_resolution": {
-            "rule": "normalize_migrated_collection_target_to_item",
+            "rule": "source_explicit_task_described_encounter_drop",
             "formal_source_canonical_id": "runtime.task-drop.d7b28e4806d30b34",
             "source_kind": "monster_drop"
           },
           "source_canonical_id": "task.series.15.652",
-          "original_target_kind": "monster",
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "original_target_kind": null,
+          "source_content_entity_canonical_id": "runtime.item.336fa533d246e009",
+          "source_entity_canonical_id": "runtime.item.336fa533d246e009",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -188719,8 +188713,8 @@
           },
           "source_canonical_id": "task.series.15.655",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.item.90e4e58d454b4a78",
+          "source_entity_canonical_id": "runtime.item.90e4e58d454b4a78",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -189063,8 +189057,8 @@
           },
           "source_canonical_id": "task.series.15.656",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.item.d8f4daffae9b9b72",
+          "source_entity_canonical_id": "runtime.item.d8f4daffae9b9b72",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -193665,8 +193659,8 @@
           },
           "source_canonical_id": "task.series.15.670",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.item.a0fedb28c6ae448f",
+          "source_entity_canonical_id": "runtime.item.a0fedb28c6ae448f",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -199059,7 +199053,7 @@
       "issuer_npc_canonical_id": "derived.npc_definition.8ad6687042990ba2",
       "completion_npc_canonical_id": "derived.npc_definition.b79d60378ce9a307",
       "receive_location_canonical_id": "entity.location.bfeb8a45e51b4ab0",
-      "submit_location_canonical_id": "entity.location.c69d2d6faf623f56",
+      "submit_location_canonical_id": "entity.location.891e95eceda9850a",
       "target_location_canonical_id": "entity.location.c69d2d6faf623f56",
       "restoration_status": "SINGLE_SOURCE",
       "confidence": "medium",
@@ -199382,7 +199376,7 @@
       "runtime_capability": "definition_queryable_gameplay_not_implemented",
       "issuer_npc_canonical_id": "derived.npc_definition.b79d60378ce9a307",
       "completion_npc_canonical_id": "derived.npc_definition.3f992e0fb8f2b0dc",
-      "receive_location_canonical_id": "entity.location.c69d2d6faf623f56",
+      "receive_location_canonical_id": "entity.location.891e95eceda9850a",
       "submit_location_canonical_id": "entity.location.424d2befc0c4a8dc",
       "target_location_canonical_id": "entity.location.424d2befc0c4a8dc",
       "restoration_status": "SINGLE_SOURCE",
@@ -202583,7 +202577,7 @@
           "source_canonical_id": "task.series.15.698",
           "original_target_kind": "monster",
           "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "derived.npc_definition.9a40c3b4b13a16b1",
           "task_item_policy": null,
           "npc_duel": {
             "npc_canonical_id": "derived.npc_definition.9a40c3b4b13a16b1",
@@ -211782,8 +211776,8 @@
           },
           "source_canonical_id": "task.series.15.726",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.item.bf8e99401d2d0f49",
+          "source_entity_canonical_id": "runtime.item.bf8e99401d2d0f49",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -212124,8 +212118,8 @@
           },
           "source_canonical_id": "task.series.15.727",
           "original_target_kind": null,
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.item.5e1ff2777a238dde",
+          "source_entity_canonical_id": "runtime.item.5e1ff2777a238dde",
           "task_item_policy": null,
           "npc_duel": null
         }
@@ -212466,8 +212460,8 @@
           },
           "source_canonical_id": "task.series.15.728",
           "original_target_kind": "item",
-          "source_content_entity_canonical_id": null,
-          "source_entity_canonical_id": null,
+          "source_content_entity_canonical_id": "runtime.task_chain.item.0564672479c8f2d0",
+          "source_entity_canonical_id": "runtime.task_chain.item.0564672479c8f2d0",
           "task_item_policy": {
             "acquisition_mode": "monster_drop",
             "reservation": "required_until_submit",
@@ -230414,6 +230408,16 @@
       "runtime_capability": "queryable"
     },
     {
+      "canonical_id": "runtime.location_connection.18401517b120216c",
+      "source_canonical_id": "runtime.global-task-location-entrance",
+      "from_map_node_canonical_id": "derived.map_node.city.941bc91ac5af0097",
+      "to_map_node_canonical_id": "derived.map_node.location.58ca6902befb1bf8",
+      "relation_type": "contains",
+      "directed": 0,
+      "runtime_capability": "queryable",
+      "resolution_rule": "minimal_city_entrance_for_source_task_location"
+    },
+    {
       "canonical_id": "runtime.location_connection.6b444f7f61deca2e",
       "source_canonical_id": "runtime.global-task-location-entrance",
       "from_map_node_canonical_id": "derived.map_node.city.9ff5b029614f01df",
@@ -232504,6 +232508,13 @@
       "runtime_capability": "queryable"
     },
     {
+      "canonical_id": "entity.npc_placement.0b60af5fb79c18d6",
+      "source_canonical_id": "entity.npc_placement.0b60af5fb79c18d6",
+      "npc_canonical_id": "derived.npc_definition.2130dba0818dff6d",
+      "location_canonical_id": "entity.location.7573a519417de413",
+      "runtime_capability": "queryable"
+    },
+    {
       "canonical_id": "entity.npc_placement.0bb5d9cdcca126f4",
       "source_canonical_id": "entity.npc_placement.0bb5d9cdcca126f4",
       "npc_canonical_id": "derived.npc_definition.7757901170ea43ab",
@@ -232637,6 +232648,13 @@
       "runtime_capability": "queryable"
     },
     {
+      "canonical_id": "entity.npc_placement.1acd54d0f68a8405",
+      "source_canonical_id": "entity.npc_placement.1acd54d0f68a8405",
+      "npc_canonical_id": "derived.npc_definition.4559aa62e59f03ff",
+      "location_canonical_id": "entity.location.f094e442ef1d40ea",
+      "runtime_capability": "queryable"
+    },
+    {
       "canonical_id": "entity.npc_placement.1b350287cd013b41",
       "source_canonical_id": "entity.npc_placement.1b350287cd013b41",
       "npc_canonical_id": "derived.npc_definition.4b149068167dc9c8",
@@ -232697,6 +232715,13 @@
       "source_canonical_id": "entity.npc_placement.21ab38a24e0f50c7",
       "npc_canonical_id": "derived.npc_definition.8b37d6b7162830e9",
       "location_canonical_id": "entity.location.49dc51be0614c062",
+      "runtime_capability": "queryable"
+    },
+    {
+      "canonical_id": "entity.npc_placement.22d840fb7d7ecdc3",
+      "source_canonical_id": "entity.npc_placement.22d840fb7d7ecdc3",
+      "npc_canonical_id": "derived.npc_definition.b79d60378ce9a307",
+      "location_canonical_id": "entity.location.891e95eceda9850a",
       "runtime_capability": "queryable"
     },
     {
@@ -232833,6 +232858,13 @@
       "runtime_capability": "queryable"
     },
     {
+      "canonical_id": "entity.npc_placement.313666466a041157",
+      "source_canonical_id": "entity.npc_placement.313666466a041157",
+      "npc_canonical_id": "derived.npc_definition.9b6822ddc148d273",
+      "location_canonical_id": "entity.location.1bdc3bb6fb4d78ea",
+      "runtime_capability": "queryable"
+    },
+    {
       "canonical_id": "entity.npc_placement.31e6d73e1c575c7c",
       "source_canonical_id": "entity.npc_placement.31e6d73e1c575c7c",
       "npc_canonical_id": "derived.npc_definition.c6bec255fd40d25c",
@@ -232900,6 +232932,13 @@
       "source_canonical_id": "entity.npc_placement.39577a6d4a79c1bf",
       "npc_canonical_id": "derived.npc_definition.45e4bf1565c8a841",
       "location_canonical_id": "entity.location.e4d4b6aed922f137",
+      "runtime_capability": "queryable"
+    },
+    {
+      "canonical_id": "entity.npc_placement.397a9ca8dba2ec3e",
+      "source_canonical_id": "entity.npc_placement.397a9ca8dba2ec3e",
+      "npc_canonical_id": "derived.npc_definition.1a591b9cfe3b0695",
+      "location_canonical_id": "entity.location.346d35acaee84b41",
       "runtime_capability": "queryable"
     },
     {
@@ -233236,6 +233275,13 @@
       "source_canonical_id": "entity.npc_placement.612bc664a94f6b57",
       "npc_canonical_id": "derived.npc_definition.6c070f2dc09b7118",
       "location_canonical_id": "entity.location.5ac449a61f94e309",
+      "runtime_capability": "queryable"
+    },
+    {
+      "canonical_id": "entity.npc_placement.618e566a65ab681d",
+      "source_canonical_id": "entity.npc_placement.618e566a65ab681d",
+      "npc_canonical_id": "derived.npc_definition.112c41537d305d9c",
+      "location_canonical_id": "entity.location.c25370f986a8ff54",
       "runtime_capability": "queryable"
     },
     {
@@ -233596,6 +233642,13 @@
       "runtime_capability": "queryable"
     },
     {
+      "canonical_id": "entity.npc_placement.8356cc96682fa8ba",
+      "source_canonical_id": "entity.npc_placement.8356cc96682fa8ba",
+      "npc_canonical_id": "derived.npc_definition.199c696318fc94a6",
+      "location_canonical_id": "entity.location.699ec43c717b6d01",
+      "runtime_capability": "queryable"
+    },
+    {
       "canonical_id": "entity.npc_placement.86197d77b1c238fd",
       "source_canonical_id": "entity.npc_placement.86197d77b1c238fd",
       "npc_canonical_id": "derived.npc_definition.4c59cfdefd644bbf",
@@ -233953,6 +234006,13 @@
       "runtime_capability": "queryable"
     },
     {
+      "canonical_id": "entity.npc_placement.afb4df27b999f89c",
+      "source_canonical_id": "entity.npc_placement.afb4df27b999f89c",
+      "npc_canonical_id": "derived.npc_definition.6b51943c56cebd0a",
+      "location_canonical_id": "entity.location.97f578081181d571",
+      "runtime_capability": "queryable"
+    },
+    {
       "canonical_id": "entity.npc_placement.b0fe739046be5d15",
       "source_canonical_id": "entity.npc_placement.b0fe739046be5d15",
       "npc_canonical_id": "derived.npc_definition.9b6822ddc148d273",
@@ -234174,6 +234234,13 @@
       "source_canonical_id": "entity.npc_placement.cba9327132b86e24",
       "npc_canonical_id": "derived.npc_definition.d520ae36a2925ca7",
       "location_canonical_id": "entity.location.7186bc6a261e1bf8",
+      "runtime_capability": "queryable"
+    },
+    {
+      "canonical_id": "entity.npc_placement.cc4180f6b1dcc24c",
+      "source_canonical_id": "entity.npc_placement.cc4180f6b1dcc24c",
+      "npc_canonical_id": "derived.npc_definition.b48d09bfb7238066",
+      "location_canonical_id": "entity.location.4c0ac5d598afa5d3",
       "runtime_capability": "queryable"
     },
     {
@@ -234534,6 +234601,13 @@
       "runtime_capability": "queryable"
     },
     {
+      "canonical_id": "entity.npc_placement.eee9a46ce1a02d09",
+      "source_canonical_id": "entity.npc_placement.eee9a46ce1a02d09",
+      "npc_canonical_id": "derived.npc_definition.9b24322b8a4c3383",
+      "location_canonical_id": "entity.location.177998e52a55ed9a",
+      "runtime_capability": "queryable"
+    },
+    {
       "canonical_id": "entity.npc_placement.efd3bcce5a09fdfb",
       "source_canonical_id": "entity.npc_placement.efd3bcce5a09fdfb",
       "npc_canonical_id": "derived.npc_definition.36558a5643bea50d",
@@ -234688,34 +234762,6 @@
       "runtime_capability": "queryable"
     },
     {
-      "canonical_id": "runtime.npc_placement.0058d55d9120f214",
-      "npc_canonical_id": "derived.npc_definition.2f8f4bfbe5be0673",
-      "location_canonical_id": "entity.location.f071e9a031b72750",
-      "placement_scope": "task_context",
-      "task_canonical_id": "task.series.15.615",
-      "appearance_statuses": [
-        "accepted",
-        "in_progress",
-        "completable"
-      ],
-      "source_canonical_id": "task.series.15.615",
-      "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION",
-      "source_canonical_ids": [
-        "task.series.15.615"
-      ],
-      "task_contexts": [
-        {
-          "task_canonical_id": "task.series.15.615",
-          "appearance_statuses": [
-            "accepted",
-            "in_progress",
-            "completable"
-          ]
-        }
-      ],
-      "runtime_capability": "queryable"
-    },
-    {
       "canonical_id": "runtime.npc_placement.05149576518d91f4",
       "npc_canonical_id": "runtime.contextual-npc.28c2bd4ae279c74f",
       "location_canonical_id": "entity.location.f094e442ef1d40ea",
@@ -234747,177 +234793,6 @@
           "task_canonical_id": "task.series.15.293",
           "appearance_statuses": [
             "available",
-            "accepted",
-            "in_progress",
-            "completable"
-          ]
-        }
-      ],
-      "runtime_capability": "queryable"
-    },
-    {
-      "canonical_id": "runtime.npc_placement.0b0b77809b4b5b12",
-      "npc_canonical_id": "derived.npc_definition.877e5a747aa599eb",
-      "location_canonical_id": "entity.location.dfd93192aaca2271",
-      "placement_scope": "task_context",
-      "task_canonical_id": "task.series.14.177",
-      "appearance_statuses": [
-        "accepted",
-        "in_progress",
-        "completable"
-      ],
-      "source_canonical_id": "task.series.14.177",
-      "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION",
-      "source_canonical_ids": [
-        "task.series.14.177"
-      ],
-      "task_contexts": [
-        {
-          "task_canonical_id": "task.series.14.177",
-          "appearance_statuses": [
-            "accepted",
-            "in_progress",
-            "completable"
-          ]
-        }
-      ],
-      "runtime_capability": "queryable"
-    },
-    {
-      "canonical_id": "runtime.npc_placement.0b60af5fb79c18d6",
-      "npc_canonical_id": "derived.npc_definition.2130dba0818dff6d",
-      "location_canonical_id": "entity.location.7573a519417de413",
-      "placement_scope": "task_context",
-      "task_canonical_id": "task.series.15.455",
-      "appearance_statuses": [
-        "accepted",
-        "in_progress",
-        "completable"
-      ],
-      "source_canonical_id": "task.series.15.455",
-      "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION",
-      "source_canonical_ids": [
-        "task.series.15.455",
-        "task.series.15.456",
-        "task.series.15.457"
-      ],
-      "task_contexts": [
-        {
-          "task_canonical_id": "task.series.15.455",
-          "appearance_statuses": [
-            "accepted",
-            "in_progress",
-            "completable"
-          ]
-        },
-        {
-          "task_canonical_id": "task.series.15.456",
-          "appearance_statuses": [
-            "available",
-            "accepted",
-            "in_progress",
-            "completable"
-          ]
-        },
-        {
-          "task_canonical_id": "task.series.15.457",
-          "appearance_statuses": [
-            "available",
-            "accepted",
-            "in_progress",
-            "completable"
-          ]
-        }
-      ],
-      "runtime_capability": "queryable"
-    },
-    {
-      "canonical_id": "runtime.npc_placement.1acd54d0f68a8405",
-      "npc_canonical_id": "derived.npc_definition.4559aa62e59f03ff",
-      "location_canonical_id": "entity.location.f094e442ef1d40ea",
-      "placement_scope": "task_context",
-      "task_canonical_id": "task.series.15.291",
-      "appearance_statuses": [
-        "available",
-        "accepted",
-        "in_progress",
-        "completable"
-      ],
-      "source_canonical_id": "task.series.15.291",
-      "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION",
-      "source_canonical_ids": [
-        "task.series.15.291"
-      ],
-      "task_contexts": [
-        {
-          "task_canonical_id": "task.series.15.291",
-          "appearance_statuses": [
-            "available",
-            "accepted",
-            "in_progress",
-            "completable"
-          ]
-        }
-      ],
-      "runtime_capability": "queryable"
-    },
-    {
-      "canonical_id": "runtime.npc_placement.271ad947de9dfa24",
-      "npc_canonical_id": "derived.npc_definition.095f81aa96871f58",
-      "location_canonical_id": "entity.location.9ff2bd72ca76c669",
-      "placement_scope": "task_context",
-      "task_canonical_id": "task.series.15.497",
-      "appearance_statuses": [
-        "accepted",
-        "in_progress",
-        "completable"
-      ],
-      "source_canonical_id": "task.series.15.497",
-      "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION",
-      "source_canonical_ids": [
-        "task.series.15.497",
-        "task.series.15.498"
-      ],
-      "task_contexts": [
-        {
-          "task_canonical_id": "task.series.15.497",
-          "appearance_statuses": [
-            "accepted",
-            "in_progress",
-            "completable"
-          ]
-        },
-        {
-          "task_canonical_id": "task.series.15.498",
-          "appearance_statuses": [
-            "accepted",
-            "in_progress",
-            "completable"
-          ]
-        }
-      ],
-      "runtime_capability": "queryable"
-    },
-    {
-      "canonical_id": "runtime.npc_placement.313666466a041157",
-      "npc_canonical_id": "derived.npc_definition.9b6822ddc148d273",
-      "location_canonical_id": "entity.location.1bdc3bb6fb4d78ea",
-      "placement_scope": "task_context",
-      "task_canonical_id": "task.series.15.297",
-      "appearance_statuses": [
-        "accepted",
-        "in_progress",
-        "completable"
-      ],
-      "source_canonical_id": "task.series.15.297",
-      "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION",
-      "source_canonical_ids": [
-        "task.series.15.297"
-      ],
-      "task_contexts": [
-        {
-          "task_canonical_id": "task.series.15.297",
-          "appearance_statuses": [
             "accepted",
             "in_progress",
             "completable"
@@ -234968,109 +234843,12 @@
       "source_canonical_id": "task.series.15.519",
       "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION",
       "source_canonical_ids": [
-        "task.series.15.519",
-        "task.series.15.520"
+        "task.series.15.519"
       ],
       "task_contexts": [
         {
           "task_canonical_id": "task.series.15.519",
           "appearance_statuses": [
-            "accepted",
-            "in_progress",
-            "completable"
-          ]
-        },
-        {
-          "task_canonical_id": "task.series.15.520",
-          "appearance_statuses": [
-            "accepted",
-            "in_progress",
-            "completable"
-          ]
-        }
-      ],
-      "runtime_capability": "queryable"
-    },
-    {
-      "canonical_id": "runtime.npc_placement.397a9ca8dba2ec3e",
-      "npc_canonical_id": "derived.npc_definition.1a591b9cfe3b0695",
-      "location_canonical_id": "entity.location.346d35acaee84b41",
-      "placement_scope": "task_context",
-      "task_canonical_id": "task.series.15.233",
-      "appearance_statuses": [
-        "accepted",
-        "in_progress",
-        "completable"
-      ],
-      "source_canonical_id": "task.series.15.233",
-      "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION",
-      "source_canonical_ids": [
-        "task.series.15.233"
-      ],
-      "task_contexts": [
-        {
-          "task_canonical_id": "task.series.15.233",
-          "appearance_statuses": [
-            "accepted",
-            "in_progress",
-            "completable"
-          ]
-        }
-      ],
-      "runtime_capability": "queryable"
-    },
-    {
-      "canonical_id": "runtime.npc_placement.39e86d093d6e6de1",
-      "npc_canonical_id": "derived.npc_definition.b665a8c17a61ab03",
-      "location_canonical_id": "entity.location.93da7d7ff06cd778",
-      "placement_scope": "task_context",
-      "task_canonical_id": "task.series.05.039",
-      "appearance_statuses": [
-        "available",
-        "accepted",
-        "in_progress",
-        "completable"
-      ],
-      "source_canonical_id": "task.series.05.039",
-      "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION",
-      "source_canonical_ids": [
-        "task.series.05.039"
-      ],
-      "task_contexts": [
-        {
-          "task_canonical_id": "task.series.05.039",
-          "appearance_statuses": [
-            "available",
-            "accepted",
-            "in_progress",
-            "completable"
-          ]
-        }
-      ],
-      "runtime_capability": "queryable"
-    },
-    {
-      "canonical_id": "runtime.npc_placement.4a2513fd05e7c155",
-      "npc_canonical_id": "derived.npc_definition.3dea4b1eac3ad3f3",
-      "location_canonical_id": "entity.location.30649b15d9e53b37",
-      "placement_scope": "task_context",
-      "task_canonical_id": "task.series.07.041",
-      "appearance_statuses": [
-        "available",
-        "accepted",
-        "in_progress",
-        "completable"
-      ],
-      "source_canonical_id": "task.series.07.041",
-      "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION",
-      "source_canonical_ids": [
-        "task.series.07.041"
-      ],
-      "task_contexts": [
-        {
-          "task_canonical_id": "task.series.07.041",
-          "appearance_statuses": [
-            "available",
             "accepted",
             "in_progress",
             "completable"
@@ -235214,46 +234992,6 @@
         },
         {
           "task_canonical_id": "task.series.15.620",
-          "appearance_statuses": [
-            "available",
-            "accepted",
-            "in_progress",
-            "completable"
-          ]
-        }
-      ],
-      "runtime_capability": "queryable"
-    },
-    {
-      "canonical_id": "runtime.npc_placement.618e566a65ab681d",
-      "npc_canonical_id": "derived.npc_definition.112c41537d305d9c",
-      "location_canonical_id": "entity.location.c25370f986a8ff54",
-      "placement_scope": "task_context",
-      "task_canonical_id": "task.series.15.438",
-      "appearance_statuses": [
-        "available",
-        "accepted",
-        "in_progress",
-        "completable"
-      ],
-      "source_canonical_id": "task.series.15.438",
-      "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION",
-      "source_canonical_ids": [
-        "task.series.15.438",
-        "task.series.15.439"
-      ],
-      "task_contexts": [
-        {
-          "task_canonical_id": "task.series.15.438",
-          "appearance_statuses": [
-            "available",
-            "accepted",
-            "in_progress",
-            "completable"
-          ]
-        },
-        {
-          "task_canonical_id": "task.series.15.439",
           "appearance_statuses": [
             "available",
             "accepted",
@@ -235432,36 +235170,6 @@
       "runtime_capability": "queryable"
     },
     {
-      "canonical_id": "runtime.npc_placement.77fce9d2b1ddd30e",
-      "npc_canonical_id": "derived.npc_definition.112c41537d305d9c",
-      "location_canonical_id": "entity.location.7c835ecb95b2131f",
-      "placement_scope": "task_context",
-      "task_canonical_id": "task.series.15.440",
-      "appearance_statuses": [
-        "available",
-        "accepted",
-        "in_progress",
-        "completable"
-      ],
-      "source_canonical_id": "task.series.15.440",
-      "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION",
-      "source_canonical_ids": [
-        "task.series.15.440"
-      ],
-      "task_contexts": [
-        {
-          "task_canonical_id": "task.series.15.440",
-          "appearance_statuses": [
-            "available",
-            "accepted",
-            "in_progress",
-            "completable"
-          ]
-        }
-      ],
-      "runtime_capability": "queryable"
-    },
-    {
       "canonical_id": "runtime.npc_placement.791ab4f5feecd85e",
       "npc_canonical_id": "runtime.contextual-npc.763c5e464275b249",
       "location_canonical_id": "entity.location.7cba04807f603958",
@@ -235509,46 +235217,6 @@
         },
         {
           "task_canonical_id": "task.series.15.642",
-          "appearance_statuses": [
-            "available",
-            "accepted",
-            "in_progress",
-            "completable"
-          ]
-        }
-      ],
-      "runtime_capability": "queryable"
-    },
-    {
-      "canonical_id": "runtime.npc_placement.8356cc96682fa8ba",
-      "npc_canonical_id": "derived.npc_definition.199c696318fc94a6",
-      "location_canonical_id": "entity.location.699ec43c717b6d01",
-      "placement_scope": "task_context",
-      "task_canonical_id": "task.series.13.162",
-      "appearance_statuses": [
-        "available",
-        "accepted",
-        "in_progress",
-        "completable"
-      ],
-      "source_canonical_id": "task.series.13.162",
-      "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION",
-      "source_canonical_ids": [
-        "task.series.13.162",
-        "task.series.13.163"
-      ],
-      "task_contexts": [
-        {
-          "task_canonical_id": "task.series.13.162",
-          "appearance_statuses": [
-            "available",
-            "accepted",
-            "in_progress",
-            "completable"
-          ]
-        },
-        {
-          "task_canonical_id": "task.series.13.163",
           "appearance_statuses": [
             "available",
             "accepted",
@@ -235618,112 +235286,6 @@
       "runtime_capability": "queryable"
     },
     {
-      "canonical_id": "runtime.npc_placement.99a2e5d7b9212d36",
-      "npc_canonical_id": "derived.npc_definition.b79d60378ce9a307",
-      "location_canonical_id": "entity.location.c69d2d6faf623f56",
-      "placement_scope": "task_context",
-      "task_canonical_id": "task.series.15.635",
-      "appearance_statuses": [
-        "available",
-        "accepted",
-        "in_progress",
-        "completable"
-      ],
-      "source_canonical_id": "task.series.15.635",
-      "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION",
-      "source_canonical_ids": [
-        "task.series.15.635",
-        "task.series.15.636",
-        "task.series.15.647",
-        "task.series.15.649",
-        "task.series.15.688",
-        "task.series.15.689"
-      ],
-      "task_contexts": [
-        {
-          "task_canonical_id": "task.series.15.635",
-          "appearance_statuses": [
-            "available",
-            "accepted",
-            "in_progress",
-            "completable"
-          ]
-        },
-        {
-          "task_canonical_id": "task.series.15.636",
-          "appearance_statuses": [
-            "available",
-            "accepted",
-            "in_progress",
-            "completable"
-          ]
-        },
-        {
-          "task_canonical_id": "task.series.15.647",
-          "appearance_statuses": [
-            "accepted",
-            "in_progress",
-            "completable"
-          ]
-        },
-        {
-          "task_canonical_id": "task.series.15.649",
-          "appearance_statuses": [
-            "available",
-            "accepted",
-            "in_progress",
-            "completable"
-          ]
-        },
-        {
-          "task_canonical_id": "task.series.15.688",
-          "appearance_statuses": [
-            "accepted",
-            "in_progress",
-            "completable"
-          ]
-        },
-        {
-          "task_canonical_id": "task.series.15.689",
-          "appearance_statuses": [
-            "available",
-            "accepted",
-            "in_progress",
-            "completable"
-          ]
-        }
-      ],
-      "runtime_capability": "queryable"
-    },
-    {
-      "canonical_id": "runtime.npc_placement.9a6b13ada43f08e2",
-      "npc_canonical_id": "derived.npc_definition.c2766fee3e0dc2d1",
-      "location_canonical_id": "entity.location.4a97d4ef45bccaa5",
-      "placement_scope": "task_context",
-      "task_canonical_id": "task.series.15.302",
-      "appearance_statuses": [
-        "accepted",
-        "in_progress",
-        "completable"
-      ],
-      "source_canonical_id": "task.series.15.302",
-      "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION",
-      "source_canonical_ids": [
-        "task.series.15.302"
-      ],
-      "task_contexts": [
-        {
-          "task_canonical_id": "task.series.15.302",
-          "appearance_statuses": [
-            "accepted",
-            "in_progress",
-            "completable"
-          ]
-        }
-      ],
-      "runtime_capability": "queryable"
-    },
-    {
       "canonical_id": "runtime.npc_placement.a1c9f1f8e107e0c3",
       "npc_canonical_id": "runtime.contextual-npc.cfd0a3da4581a779",
       "location_canonical_id": "entity.location.ef9343fa9b5c9210",
@@ -235762,6 +235324,34 @@
       "runtime_capability": "queryable"
     },
     {
+      "canonical_id": "runtime.npc_placement.a4a7a4a8d7c4c8d3",
+      "npc_canonical_id": "derived.npc_definition.e50fa371481679d8",
+      "location_canonical_id": "entity.location.d578c5c2a89afaed",
+      "placement_scope": "task_context",
+      "task_canonical_id": "task.series.13.163",
+      "appearance_statuses": [
+        "accepted",
+        "in_progress",
+        "completable"
+      ],
+      "source_canonical_id": "task.series.13.163",
+      "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION",
+      "source_canonical_ids": [
+        "task.series.13.163"
+      ],
+      "task_contexts": [
+        {
+          "task_canonical_id": "task.series.13.163",
+          "appearance_statuses": [
+            "accepted",
+            "in_progress",
+            "completable"
+          ]
+        }
+      ],
+      "runtime_capability": "queryable"
+    },
+    {
       "canonical_id": "runtime.npc_placement.adc23861b81cebd0",
       "npc_canonical_id": "runtime.contextual-npc.99e7bef333ac4d53",
       "location_canonical_id": "entity.location.bfeb8a45e51b4ab0",
@@ -235781,44 +235371,6 @@
       "task_contexts": [
         {
           "task_canonical_id": "task.series.12.100",
-          "appearance_statuses": [
-            "available",
-            "accepted",
-            "in_progress",
-            "completable"
-          ]
-        }
-      ],
-      "runtime_capability": "queryable"
-    },
-    {
-      "canonical_id": "runtime.npc_placement.afb4df27b999f89c",
-      "npc_canonical_id": "derived.npc_definition.6b51943c56cebd0a",
-      "location_canonical_id": "entity.location.97f578081181d571",
-      "placement_scope": "task_context",
-      "task_canonical_id": "task.series.12.092",
-      "appearance_statuses": [
-        "accepted",
-        "in_progress",
-        "completable"
-      ],
-      "source_canonical_id": "task.series.12.092",
-      "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION",
-      "source_canonical_ids": [
-        "task.series.12.092",
-        "task.series.12.093"
-      ],
-      "task_contexts": [
-        {
-          "task_canonical_id": "task.series.12.092",
-          "appearance_statuses": [
-            "accepted",
-            "in_progress",
-            "completable"
-          ]
-        },
-        {
-          "task_canonical_id": "task.series.12.093",
           "appearance_statuses": [
             "available",
             "accepted",
@@ -235859,34 +235411,6 @@
           "task_canonical_id": "task.series.15.301",
           "appearance_statuses": [
             "available",
-            "accepted",
-            "in_progress",
-            "completable"
-          ]
-        }
-      ],
-      "runtime_capability": "queryable"
-    },
-    {
-      "canonical_id": "runtime.npc_placement.b5120a505a1c799d",
-      "npc_canonical_id": "derived.npc_definition.c46edafba79e4223",
-      "location_canonical_id": "entity.location.d578c5c2a89afaed",
-      "placement_scope": "task_context",
-      "task_canonical_id": "task.series.13.166",
-      "appearance_statuses": [
-        "accepted",
-        "in_progress",
-        "completable"
-      ],
-      "source_canonical_id": "task.series.13.166",
-      "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION",
-      "source_canonical_ids": [
-        "task.series.13.166"
-      ],
-      "task_contexts": [
-        {
-          "task_canonical_id": "task.series.13.166",
-          "appearance_statuses": [
             "accepted",
             "in_progress",
             "completable"
@@ -236008,44 +235532,6 @@
       "runtime_capability": "queryable"
     },
     {
-      "canonical_id": "runtime.npc_placement.cc4180f6b1dcc24c",
-      "npc_canonical_id": "derived.npc_definition.b48d09bfb7238066",
-      "location_canonical_id": "entity.location.4c0ac5d598afa5d3",
-      "placement_scope": "task_context",
-      "task_canonical_id": "task.series.15.287",
-      "appearance_statuses": [
-        "accepted",
-        "in_progress",
-        "completable"
-      ],
-      "source_canonical_id": "task.series.15.287",
-      "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION",
-      "source_canonical_ids": [
-        "task.series.15.287",
-        "task.series.15.288"
-      ],
-      "task_contexts": [
-        {
-          "task_canonical_id": "task.series.15.287",
-          "appearance_statuses": [
-            "accepted",
-            "in_progress",
-            "completable"
-          ]
-        },
-        {
-          "task_canonical_id": "task.series.15.288",
-          "appearance_statuses": [
-            "available",
-            "accepted",
-            "in_progress",
-            "completable"
-          ]
-        }
-      ],
-      "runtime_capability": "queryable"
-    },
-    {
       "canonical_id": "runtime.npc_placement.dc769b7bd0da08c0",
       "npc_canonical_id": "runtime.contextual-npc.3354d081d0f52fab",
       "location_canonical_id": "entity.location.b72606169a53c248",
@@ -236073,141 +235559,6 @@
         },
         {
           "task_canonical_id": "task.series.15.236",
-          "appearance_statuses": [
-            "available",
-            "accepted",
-            "in_progress",
-            "completable"
-          ]
-        }
-      ],
-      "runtime_capability": "queryable"
-    },
-    {
-      "canonical_id": "runtime.npc_placement.dd0171c8c67aa98c",
-      "npc_canonical_id": "derived.npc_definition.b79d60378ce9a307",
-      "location_canonical_id": "entity.location.e4cedb33df711574",
-      "placement_scope": "task_context",
-      "task_canonical_id": "task.series.15.634",
-      "appearance_statuses": [
-        "accepted",
-        "in_progress",
-        "completable"
-      ],
-      "source_canonical_id": "task.series.15.634",
-      "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION",
-      "source_canonical_ids": [
-        "task.series.15.634"
-      ],
-      "task_contexts": [
-        {
-          "task_canonical_id": "task.series.15.634",
-          "appearance_statuses": [
-            "accepted",
-            "in_progress",
-            "completable"
-          ]
-        }
-      ],
-      "runtime_capability": "queryable"
-    },
-    {
-      "canonical_id": "runtime.npc_placement.eee9a46ce1a02d09",
-      "npc_canonical_id": "derived.npc_definition.9b24322b8a4c3383",
-      "location_canonical_id": "entity.location.177998e52a55ed9a",
-      "placement_scope": "task_context",
-      "task_canonical_id": "task.series.13.125",
-      "appearance_statuses": [
-        "accepted",
-        "in_progress",
-        "completable"
-      ],
-      "source_canonical_id": "task.series.13.125",
-      "evidence_status": "SOURCE_EXPLICIT_TASK_LOCATION",
-      "source_canonical_ids": [
-        "task.series.13.125",
-        "task.series.13.126",
-        "task.series.13.127",
-        "task.series.13.128",
-        "task.series.13.129",
-        "task.series.13.130",
-        "task.series.13.141",
-        "task.series.13.142",
-        "task.series.13.143"
-      ],
-      "task_contexts": [
-        {
-          "task_canonical_id": "task.series.13.125",
-          "appearance_statuses": [
-            "accepted",
-            "in_progress",
-            "completable"
-          ]
-        },
-        {
-          "task_canonical_id": "task.series.13.126",
-          "appearance_statuses": [
-            "available",
-            "accepted",
-            "in_progress",
-            "completable"
-          ]
-        },
-        {
-          "task_canonical_id": "task.series.13.127",
-          "appearance_statuses": [
-            "available",
-            "accepted",
-            "in_progress",
-            "completable"
-          ]
-        },
-        {
-          "task_canonical_id": "task.series.13.128",
-          "appearance_statuses": [
-            "available",
-            "accepted",
-            "in_progress",
-            "completable"
-          ]
-        },
-        {
-          "task_canonical_id": "task.series.13.129",
-          "appearance_statuses": [
-            "available",
-            "accepted",
-            "in_progress",
-            "completable"
-          ]
-        },
-        {
-          "task_canonical_id": "task.series.13.130",
-          "appearance_statuses": [
-            "available",
-            "accepted",
-            "in_progress",
-            "completable"
-          ]
-        },
-        {
-          "task_canonical_id": "task.series.13.141",
-          "appearance_statuses": [
-            "accepted",
-            "in_progress",
-            "completable"
-          ]
-        },
-        {
-          "task_canonical_id": "task.series.13.142",
-          "appearance_statuses": [
-            "available",
-            "accepted",
-            "in_progress",
-            "completable"
-          ]
-        },
-        {
-          "task_canonical_id": "task.series.13.143",
           "appearance_statuses": [
             "available",
             "accepted",
@@ -242466,6 +241817,125 @@
     }
   ],
   "monster_placements": [
+    {
+      "canonical_id": "entity.monster_placement.23b58d0f57aa6f40",
+      "source_canonical_id": "entity.monster_placement.23b58d0f57aa6f40",
+      "monster_canonical_id": "derived.monster_definition.ea809ac6a2d77833",
+      "location_canonical_id": "entity.location.106efea8da420a7e",
+      "location_resolution_status": "resolved",
+      "runtime_capability": "queryable",
+      "normalized_data": {
+        "city": "大阪",
+        "location": "深海",
+        "monster": "黑蚌"
+      },
+      "encounter_type": "wild",
+      "repeatable": true,
+      "respawn_rule": "source_location_cache_refresh_5_minutes",
+      "evidence_status": "SOURCE_EXPLICIT"
+    },
+    {
+      "canonical_id": "entity.monster_placement.46d6432acd567798",
+      "source_canonical_id": "entity.monster_placement.46d6432acd567798",
+      "monster_canonical_id": "derived.monster_definition.c5d9bd950593f414",
+      "location_canonical_id": "entity.location.c2e54af621d548cd",
+      "location_resolution_status": "resolved",
+      "runtime_capability": "queryable",
+      "normalized_data": {
+        "city": "威尼斯",
+        "location": "甘风峡谷",
+        "monster": "巨红蜈蚣王"
+      },
+      "encounter_type": "wild",
+      "repeatable": true,
+      "respawn_rule": "source_location_cache_refresh_5_minutes",
+      "evidence_status": "SOURCE_EXPLICIT"
+    },
+    {
+      "canonical_id": "entity.monster_placement.4b6e4b5de3871399",
+      "source_canonical_id": "entity.monster_placement.4b6e4b5de3871399",
+      "monster_canonical_id": "derived.monster_definition.fa436ccecd6e58a6",
+      "location_canonical_id": "entity.location.e85dd25d1632f004",
+      "location_resolution_status": "resolved",
+      "runtime_capability": "queryable",
+      "normalized_data": {
+        "city": "莫桑比克",
+        "location": "幽暗谷",
+        "monster": "火蝙蝠"
+      },
+      "encounter_type": "wild",
+      "repeatable": true,
+      "respawn_rule": "source_location_cache_refresh_5_minutes",
+      "evidence_status": "SOURCE_EXPLICIT"
+    },
+    {
+      "canonical_id": "entity.monster_placement.5a90be8b5b25ed65",
+      "source_canonical_id": "entity.monster_placement.5a90be8b5b25ed65",
+      "monster_canonical_id": "derived.monster_definition.39f9a83a573c7d74",
+      "location_canonical_id": "entity.location.f44e2884f4d529ce",
+      "location_resolution_status": "resolved",
+      "runtime_capability": "queryable",
+      "normalized_data": {
+        "city": "威尼斯",
+        "location": "浅海",
+        "monster": "龙虾"
+      },
+      "encounter_type": "wild",
+      "repeatable": true,
+      "respawn_rule": "source_location_cache_refresh_5_minutes",
+      "evidence_status": "SOURCE_EXPLICIT"
+    },
+    {
+      "canonical_id": "entity.monster_placement.5f143456d2f021c2",
+      "source_canonical_id": "entity.monster_placement.5f143456d2f021c2",
+      "monster_canonical_id": "derived.monster_definition.98cce59824527e3b",
+      "location_canonical_id": "entity.location.6b994d2ecbcc7076",
+      "location_resolution_status": "resolved",
+      "runtime_capability": "queryable",
+      "normalized_data": {
+        "city": "威尼斯",
+        "location": "矿山",
+        "monster": "僵尸"
+      },
+      "encounter_type": "wild",
+      "repeatable": true,
+      "respawn_rule": "source_location_cache_refresh_5_minutes",
+      "evidence_status": "SOURCE_EXPLICIT"
+    },
+    {
+      "canonical_id": "entity.monster_placement.bc24e877c1ab6d40",
+      "source_canonical_id": "entity.monster_placement.bc24e877c1ab6d40",
+      "monster_canonical_id": "derived.monster_definition.9cdb92b5619a712d",
+      "location_canonical_id": "entity.location.c0a4560ce36c2c80",
+      "location_resolution_status": "resolved",
+      "runtime_capability": "queryable",
+      "normalized_data": {
+        "city": "威尼斯",
+        "location": "枯树林",
+        "monster": "巨熊"
+      },
+      "encounter_type": "wild",
+      "repeatable": true,
+      "respawn_rule": "source_location_cache_refresh_5_minutes",
+      "evidence_status": "SOURCE_EXPLICIT"
+    },
+    {
+      "canonical_id": "entity.monster_placement.d6f2f77e44302025",
+      "source_canonical_id": "entity.monster_placement.d6f2f77e44302025",
+      "monster_canonical_id": "derived.monster_definition.e7939a80d14edfcf",
+      "location_canonical_id": "entity.location.078d559d2ea8a5d6",
+      "location_resolution_status": "resolved",
+      "runtime_capability": "queryable",
+      "normalized_data": {
+        "city": "长安",
+        "location": "望马坡",
+        "monster": "白骨骷髅"
+      },
+      "encounter_type": "wild",
+      "repeatable": true,
+      "respawn_rule": "source_location_cache_refresh_5_minutes",
+      "evidence_status": "SOURCE_EXPLICIT"
+    },
     {
       "canonical_id": "entity.monster.016efeb9b44360e6",
       "source_canonical_id": "entity.monster.016efeb9b44360e6",
@@ -248750,6 +248220,17 @@
       }
     },
     {
+      "canonical_id": "entity.item.7ba771bd31f63445",
+      "source_canonical_id": "entity.item.7ba771bd31f63445",
+      "entity_category": "item",
+      "display_name": "小良的毛笔",
+      "normalized_data": {
+        "catalog": "taskItems",
+        "name": "小良的毛笔",
+        "price": null
+      }
+    },
+    {
       "canonical_id": "entity.item.7e58577435fee1fe",
       "source_canonical_id": "entity.item.7e58577435fee1fe",
       "entity_category": "item",
@@ -249372,13 +248853,13 @@
       "entity_category": "item",
       "display_name": "白云果",
       "normalized_data": {
-        "catalog": "monsterItems",
+        "catalog": "taskConditionItems",
         "monster_name": "白云之精",
         "probability": 1,
         "encounter_match": "task_description_names_encounter",
         "probability_adjudication": "one required task item is settled per defeated or harvested source encounter because the task text gives an acquisition condition but no random drop rate"
       },
-      "provenance_status": "SOURCE_EXPLICIT_TASK_CONDITION_AND_PLACEMENT",
+      "provenance_status": "SOURCE_EXPLICIT_TASK_CONDITION",
       "evidence_locator": "task.series.15.652 description + target encounter placement"
     },
     {
@@ -249575,6 +249056,21 @@
       },
       "provenance_status": "SOURCE_EXPLICIT",
       "evidence_locator": "zhsh/config/monsterItems.json"
+    },
+    {
+      "canonical_id": "runtime.item.57e744db1884c498",
+      "source_canonical_id": "task.series.15.269",
+      "entity_category": "item",
+      "display_name": "熊皮",
+      "normalized_data": {
+        "catalog": "taskConditionItems",
+        "monster_name": "巨熊",
+        "probability": 1,
+        "encounter_match": "task_description_names_encounter",
+        "probability_adjudication": "one required task item is settled per defeated or harvested source encounter because the task text gives an acquisition condition but no random drop rate"
+      },
+      "provenance_status": "SOURCE_EXPLICIT_TASK_CONDITION",
+      "evidence_locator": "task.series.15.269 description + target encounter placement"
     },
     {
       "canonical_id": "runtime.item.587731d8287b195f",
@@ -249838,9 +249334,9 @@
       "display_name": "亚特兰蒂斯航海图",
       "normalized_data": {
         "catalog": "taskConditionItems",
-        "monster_name": "巨红蜈蚣",
+        "monster_name": "巨红蜈蚣王",
         "probability": 1,
-        "encounter_match": "task_description_names_promoted_variant",
+        "encounter_match": "task_description_names_encounter",
         "probability_adjudication": "one required task item is settled per defeated or harvested source encounter because the task text gives an acquisition condition but no random drop rate"
       },
       "provenance_status": "SOURCE_EXPLICIT_TASK_CONDITION",
@@ -249867,13 +249363,13 @@
       "entity_category": "item",
       "display_name": "破碎的破界符",
       "normalized_data": {
-        "catalog": "monsterItems",
+        "catalog": "taskConditionItems",
         "monster_name": "白骨骷髅",
         "probability": 1,
         "encounter_match": "task_description_names_encounter",
         "probability_adjudication": "one required task item is settled per defeated or harvested source encounter because the task text gives an acquisition condition but no random drop rate"
       },
-      "provenance_status": "SOURCE_EXPLICIT_TASK_CONDITION_AND_PLACEMENT",
+      "provenance_status": "SOURCE_EXPLICIT_TASK_CONDITION",
       "evidence_locator": "task.series.15.631 description + target encounter placement"
     },
     {
@@ -250179,6 +249675,17 @@
   ],
   "item_sources": [
     {
+      "canonical_id": "entity.drop.022c71989b5e841f",
+      "source_canonical_id": "derived.monster_definition.64009a62dc424b2d",
+      "source_kind": "drop",
+      "probability": 0.4,
+      "quantity": 1,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.879939da40170b1b",
+      "monster_canonical_id": "derived.monster_definition.64009a62dc424b2d",
+      "monster_display_name": "熟透的葡萄"
+    },
+    {
       "canonical_id": "entity.drop.067e0b48017d1186",
       "source_canonical_id": "entity.drop.067e0b48017d1186",
       "source_kind": "drop",
@@ -250201,6 +249708,28 @@
       "monster_display_name": "强化邪恶山精"
     },
     {
+      "canonical_id": "entity.drop.07f82226b3dade12",
+      "source_canonical_id": "derived.monster_definition.e17792f4234017f0",
+      "source_kind": "drop",
+      "probability": 0.4,
+      "quantity": 1,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.d5608bd1d822988d",
+      "monster_canonical_id": "derived.monster_definition.e17792f4234017f0",
+      "monster_display_name": "双头蛇"
+    },
+    {
+      "canonical_id": "entity.drop.09a5c61d5ee67d95",
+      "source_canonical_id": "derived.monster_definition.afaded244fe9efc7",
+      "source_kind": "drop",
+      "probability": 0.4,
+      "quantity": 1,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.f16e99136fd8942f",
+      "monster_canonical_id": "derived.monster_definition.afaded244fe9efc7",
+      "monster_display_name": "黑铁矿"
+    },
+    {
       "canonical_id": "entity.drop.0d0011eb212749bb",
       "source_canonical_id": "entity.drop.0d0011eb212749bb",
       "source_kind": "drop",
@@ -250212,6 +249741,17 @@
       "monster_display_name": "干佛草"
     },
     {
+      "canonical_id": "entity.drop.0d545059dd1628d2",
+      "source_canonical_id": "derived.monster_definition.fa436ccecd6e58a6",
+      "source_kind": "drop",
+      "probability": 0.4,
+      "quantity": 1,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.186026db0c45bd9f",
+      "monster_canonical_id": "derived.monster_definition.fa436ccecd6e58a6",
+      "monster_display_name": "火蝙蝠"
+    },
+    {
       "canonical_id": "entity.drop.0d77954f32da6fb8",
       "source_canonical_id": "entity.drop.0d77954f32da6fb8",
       "source_kind": "drop",
@@ -250221,6 +249761,28 @@
       "content_entity_canonical_id": "entity.equipment.cc641774f4b28d41",
       "monster_canonical_id": "derived.monster_definition.fd2f53b5b214b343",
       "monster_display_name": "一团黑气"
+    },
+    {
+      "canonical_id": "entity.drop.142cbc034b8bf587",
+      "source_canonical_id": "derived.monster_definition.e7939a80d14edfcf",
+      "source_kind": "drop",
+      "probability": 0.4,
+      "quantity": 1,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.task_chain.item.cd2182704d029476",
+      "monster_canonical_id": "derived.monster_definition.e7939a80d14edfcf",
+      "monster_display_name": "白骨骷髅"
+    },
+    {
+      "canonical_id": "entity.drop.1d576c016ccb3133",
+      "source_canonical_id": "derived.monster_definition.92644584fc23590f",
+      "source_kind": "drop",
+      "probability": 0.4,
+      "quantity": 1,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.4ea62b01710f7caa",
+      "monster_canonical_id": "derived.monster_definition.92644584fc23590f",
+      "monster_display_name": "火岩结晶"
     },
     {
       "canonical_id": "entity.drop.1d6a4be04365e1d7",
@@ -250256,6 +249818,17 @@
       "monster_display_name": "偷矿者"
     },
     {
+      "canonical_id": "entity.drop.23dd1c0deebbe2b6",
+      "source_canonical_id": "derived.monster_definition.dc328802c98f07b2",
+      "source_kind": "drop",
+      "probability": 0.4,
+      "quantity": 1,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.88e15e58f8f276af",
+      "monster_canonical_id": "derived.monster_definition.dc328802c98f07b2",
+      "monster_display_name": "野狼王"
+    },
+    {
       "canonical_id": "entity.drop.28eefb432bbcefc2",
       "source_canonical_id": "entity.drop.28eefb432bbcefc2",
       "source_kind": "drop",
@@ -250276,6 +249849,17 @@
       "content_entity_canonical_id": "entity.equipment.0e601dc4bfaf5bc3",
       "monster_canonical_id": "derived.monster_definition.f2935078d55cf90d",
       "monster_display_name": "棕熊"
+    },
+    {
+      "canonical_id": "entity.drop.37c6120ecaa57d7a",
+      "source_canonical_id": "derived.monster_definition.dc00352e947e0793",
+      "source_kind": "drop",
+      "probability": 0.4,
+      "quantity": 1,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.bf8e99401d2d0f49",
+      "monster_canonical_id": "derived.monster_definition.dc00352e947e0793",
+      "monster_display_name": "雪精灵"
     },
     {
       "canonical_id": "entity.drop.37d773f078109c55",
@@ -250300,6 +249884,50 @@
       "monster_display_name": "鲤鱼精"
     },
     {
+      "canonical_id": "entity.drop.3fdfc01998cc3629",
+      "source_canonical_id": "derived.monster_definition.5fc0ca1538bb8085",
+      "source_kind": "drop",
+      "probability": 0.4,
+      "quantity": 1,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.637bd2c0d786d5e9",
+      "monster_canonical_id": "derived.monster_definition.5fc0ca1538bb8085",
+      "monster_display_name": "强悍劫匪"
+    },
+    {
+      "canonical_id": "entity.drop.43d65a40b0122e83",
+      "source_canonical_id": "derived.monster_definition.49a908a39491570f",
+      "source_kind": "drop",
+      "probability": 0.4,
+      "quantity": 1,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.34153aca13917498",
+      "monster_canonical_id": "derived.monster_definition.49a908a39491570f",
+      "monster_display_name": "火山岩虫"
+    },
+    {
+      "canonical_id": "entity.drop.467538648c1b2f2e",
+      "source_canonical_id": "derived.monster_definition.ebc9853e7197601c",
+      "source_kind": "drop",
+      "probability": 0.4,
+      "quantity": 1,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.ead34659a24d689e",
+      "monster_canonical_id": "derived.monster_definition.ebc9853e7197601c",
+      "monster_display_name": "山猪"
+    },
+    {
+      "canonical_id": "entity.drop.4751ab3414d6c69b",
+      "source_canonical_id": "derived.monster_definition.e799e5c05fc23e1e",
+      "source_kind": "drop",
+      "probability": 0.4,
+      "quantity": 1,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.5d6c46dc0490cfe0",
+      "monster_canonical_id": "derived.monster_definition.e799e5c05fc23e1e",
+      "monster_display_name": "乌龟"
+    },
+    {
       "canonical_id": "entity.drop.48d6bcd6d34145b1",
       "source_canonical_id": "entity.drop.48d6bcd6d34145b1",
       "source_kind": "drop",
@@ -250309,6 +249937,17 @@
       "content_entity_canonical_id": "entity.equipment.bc04674fbb3e0877",
       "monster_canonical_id": "derived.monster_definition.23e2eb21bfe75749",
       "monster_display_name": "华南虎"
+    },
+    {
+      "canonical_id": "entity.drop.4ac995540b49714e",
+      "source_canonical_id": "derived.monster_definition.0a567fa97330cfa6",
+      "source_kind": "drop",
+      "probability": 0.4,
+      "quantity": 1,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.d8f4daffae9b9b72",
+      "monster_canonical_id": "derived.monster_definition.0a567fa97330cfa6",
+      "monster_display_name": "地蜘蛛"
     },
     {
       "canonical_id": "entity.drop.4ae3f4ced997e39b",
@@ -250322,6 +249961,39 @@
       "monster_display_name": "罗思"
     },
     {
+      "canonical_id": "entity.drop.4bfb4794c64c932b",
+      "source_canonical_id": "derived.monster_definition.22c04b2273400b89",
+      "source_kind": "drop",
+      "probability": 0.4,
+      "quantity": 1,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.6b78ddc7df6aa3ed",
+      "monster_canonical_id": "derived.monster_definition.22c04b2273400b89",
+      "monster_display_name": "巨红蜈蚣"
+    },
+    {
+      "canonical_id": "entity.drop.4d79aa09648d34d1",
+      "source_canonical_id": "derived.monster_definition.e039d0adae03a885",
+      "source_kind": "drop",
+      "probability": 0.4,
+      "quantity": 1,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.4f18710005203f85",
+      "monster_canonical_id": "derived.monster_definition.e039d0adae03a885",
+      "monster_display_name": "白虎"
+    },
+    {
+      "canonical_id": "entity.drop.4f01455bb31714a2",
+      "source_canonical_id": "derived.monster_definition.1f417de35451e3fb",
+      "source_kind": "drop",
+      "probability": 0.4,
+      "quantity": 1,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.4d5b4502853fa908",
+      "monster_canonical_id": "derived.monster_definition.1f417de35451e3fb",
+      "monster_display_name": "茶虫"
+    },
+    {
       "canonical_id": "entity.drop.4f9c638060dae918",
       "source_canonical_id": "entity.drop.4f9c638060dae918",
       "source_kind": "drop",
@@ -250331,6 +250003,50 @@
       "content_entity_canonical_id": "entity.equipment.bc04674fbb3e0877",
       "monster_canonical_id": "derived.monster_definition.0e3b863d357f5045",
       "monster_display_name": "凤凰"
+    },
+    {
+      "canonical_id": "entity.drop.51d04e251fc96b20",
+      "source_canonical_id": "derived.monster_definition.6f1ea960b39e2d92",
+      "source_kind": "drop",
+      "probability": 0.4,
+      "quantity": 1,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.90e4e58d454b4a78",
+      "monster_canonical_id": "derived.monster_definition.6f1ea960b39e2d92",
+      "monster_display_name": "茯苓"
+    },
+    {
+      "canonical_id": "entity.drop.5507da285691bff5",
+      "source_canonical_id": "derived.monster_definition.c7e7ed9c074c112f",
+      "source_kind": "drop",
+      "probability": 0.4,
+      "quantity": 1,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.64da644d11c3f769",
+      "monster_canonical_id": "derived.monster_definition.c7e7ed9c074c112f",
+      "monster_display_name": "清水之精"
+    },
+    {
+      "canonical_id": "entity.drop.5aac802950bdf406",
+      "source_canonical_id": "derived.monster_definition.39f9a83a573c7d74",
+      "source_kind": "drop",
+      "probability": 0.4,
+      "quantity": 1,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.6e1ec2b8b4a1f49a",
+      "monster_canonical_id": "derived.monster_definition.39f9a83a573c7d74",
+      "monster_display_name": "龙虾"
+    },
+    {
+      "canonical_id": "entity.drop.5f99ae241df140c2",
+      "source_canonical_id": "entity.drop.5f99ae241df140c2",
+      "source_kind": "drop",
+      "probability": null,
+      "quantity": null,
+      "runtime_capability": "blocked",
+      "content_entity_canonical_id": "runtime.item.879939da40170b1b",
+      "monster_canonical_id": "derived.monster_definition.64009a62dc424b2d",
+      "monster_display_name": "熟透的葡萄"
     },
     {
       "canonical_id": "entity.drop.5faad69d074e1280",
@@ -250344,6 +250060,17 @@
       "monster_display_name": "发疯的野猪"
     },
     {
+      "canonical_id": "entity.drop.652bbdc2915dc17f",
+      "source_canonical_id": "entity.drop.652bbdc2915dc17f",
+      "source_kind": "drop",
+      "probability": null,
+      "quantity": null,
+      "runtime_capability": "blocked",
+      "content_entity_canonical_id": "runtime.item.f16e99136fd8942f",
+      "monster_canonical_id": "derived.monster_definition.afaded244fe9efc7",
+      "monster_display_name": "黑铁矿"
+    },
+    {
       "canonical_id": "entity.drop.6a0aed10d60906ca",
       "source_canonical_id": "entity.drop.6a0aed10d60906ca",
       "source_kind": "drop",
@@ -250353,6 +250080,17 @@
       "content_entity_canonical_id": "entity.equipment.56238783b0d26c25",
       "monster_canonical_id": "derived.monster_definition.12e7676845ca0b96",
       "monster_display_name": "黑龙忍者"
+    },
+    {
+      "canonical_id": "entity.drop.6afb246e458152ed",
+      "source_canonical_id": "derived.monster_definition.e437c616ce4aef80",
+      "source_kind": "drop",
+      "probability": 0.4,
+      "quantity": 1,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.031e0ed6fb653d58",
+      "monster_canonical_id": "derived.monster_definition.e437c616ce4aef80",
+      "monster_display_name": "白云之精"
     },
     {
       "canonical_id": "entity.drop.6c6060cd92773a67",
@@ -250377,6 +250115,50 @@
       "monster_display_name": "拉帕斯"
     },
     {
+      "canonical_id": "entity.drop.70698a0a5461886c",
+      "source_canonical_id": "derived.monster_definition.1e234cbd770ce19f",
+      "source_kind": "drop",
+      "probability": 0.4,
+      "quantity": 1,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.task_chain.item.d753d54fa91fa2ae",
+      "monster_canonical_id": "derived.monster_definition.1e234cbd770ce19f",
+      "monster_display_name": "沼泽鼠"
+    },
+    {
+      "canonical_id": "entity.drop.725a41500278d715",
+      "source_canonical_id": "derived.monster_definition.e5dfd5ffe0efa6c4",
+      "source_kind": "drop",
+      "probability": 0.4,
+      "quantity": 1,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.3ee24deb8eab96fb",
+      "monster_canonical_id": "derived.monster_definition.e5dfd5ffe0efa6c4",
+      "monster_display_name": "蛇牙草"
+    },
+    {
+      "canonical_id": "entity.drop.72cc1c8b29b60f68",
+      "source_canonical_id": "derived.monster_definition.473207fec4b88c6f",
+      "source_kind": "drop",
+      "probability": 0.4,
+      "quantity": 1,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.56fc2105efa54ab7",
+      "monster_canonical_id": "derived.monster_definition.473207fec4b88c6f",
+      "monster_display_name": "野兔"
+    },
+    {
+      "canonical_id": "entity.drop.73338ae9a318df09",
+      "source_canonical_id": "entity.drop.73338ae9a318df09",
+      "source_kind": "drop",
+      "probability": null,
+      "quantity": null,
+      "runtime_capability": "blocked",
+      "content_entity_canonical_id": "runtime.item.57a8625cbce8bf0f",
+      "monster_canonical_id": "derived.monster_definition.91e67387eeb8d589",
+      "monster_display_name": "奶牛"
+    },
+    {
       "canonical_id": "entity.drop.773e59e7c3387bb0",
       "source_canonical_id": "entity.drop.773e59e7c3387bb0",
       "source_kind": "drop",
@@ -250397,6 +250179,17 @@
       "content_entity_canonical_id": "entity.equipment.e09f78c6a21fb5e4",
       "monster_canonical_id": "derived.monster_definition.48c38953a44cc8ef",
       "monster_display_name": "疯野猪"
+    },
+    {
+      "canonical_id": "entity.drop.7e10b560c25a70dc",
+      "source_canonical_id": "derived.monster_definition.a5185152d411b3f2",
+      "source_kind": "drop",
+      "probability": 0.4,
+      "quantity": 1,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.acf383cef37613dc",
+      "monster_canonical_id": "derived.monster_definition.a5185152d411b3f2",
+      "monster_display_name": "红薯"
     },
     {
       "canonical_id": "entity.drop.7ef0ffce9d0f21cc",
@@ -250432,6 +250225,17 @@
       "monster_display_name": "野猪"
     },
     {
+      "canonical_id": "entity.drop.85df15d8438e8675",
+      "source_canonical_id": "derived.monster_definition.4eed72695717b2cf",
+      "source_kind": "drop",
+      "probability": 0.4,
+      "quantity": 1,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.3b3f53cf5c43cf4f",
+      "monster_canonical_id": "derived.monster_definition.4eed72695717b2cf",
+      "monster_display_name": "走私者"
+    },
+    {
       "canonical_id": "entity.drop.8a06f2cb7cb33c66",
       "source_canonical_id": "entity.drop.8a06f2cb7cb33c66",
       "source_kind": "drop",
@@ -250465,6 +250269,28 @@
       "monster_display_name": "铜雕像"
     },
     {
+      "canonical_id": "entity.drop.8c589fb558933d2a",
+      "source_canonical_id": "derived.monster_definition.dd347a3cd9de356b",
+      "source_kind": "drop",
+      "probability": 0.4,
+      "quantity": 1,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.97ec88b8cc4e7664",
+      "monster_canonical_id": "derived.monster_definition.dd347a3cd9de356b",
+      "monster_display_name": "金丝猴"
+    },
+    {
+      "canonical_id": "entity.drop.8e04f38159c5e64a",
+      "source_canonical_id": "derived.monster_definition.b6deb5a1556ed060",
+      "source_kind": "drop",
+      "probability": 0.4,
+      "quantity": 1,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.783cdb522262f002",
+      "monster_canonical_id": "derived.monster_definition.b6deb5a1556ed060",
+      "monster_display_name": "鲨鱼"
+    },
+    {
       "canonical_id": "entity.drop.8f0ef0f353d8704f",
       "source_canonical_id": "entity.drop.8f0ef0f353d8704f",
       "source_kind": "drop",
@@ -250476,6 +250302,28 @@
       "monster_display_name": "白云之精"
     },
     {
+      "canonical_id": "entity.drop.96f207e14af98d0b",
+      "source_canonical_id": "derived.monster_definition.c5d9bd950593f414",
+      "source_kind": "drop",
+      "probability": 0.4,
+      "quantity": 1,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.afae2dffe7986a5d",
+      "monster_canonical_id": "derived.monster_definition.c5d9bd950593f414",
+      "monster_display_name": "巨红蜈蚣王"
+    },
+    {
+      "canonical_id": "entity.drop.97cf7a0295ac00eb",
+      "source_canonical_id": "entity.drop.97cf7a0295ac00eb",
+      "source_kind": "drop",
+      "probability": null,
+      "quantity": null,
+      "runtime_capability": "blocked",
+      "content_entity_canonical_id": "runtime.item.3ee24deb8eab96fb",
+      "monster_canonical_id": "derived.monster_definition.e5dfd5ffe0efa6c4",
+      "monster_display_name": "蛇牙草"
+    },
+    {
       "canonical_id": "entity.drop.9844fa66c9cc43e5",
       "source_canonical_id": "entity.drop.9844fa66c9cc43e5",
       "source_kind": "drop",
@@ -250485,6 +250333,28 @@
       "content_entity_canonical_id": "entity.equipment.5d72029d41441209",
       "monster_canonical_id": "derived.monster_definition.f405b903f2a72c65",
       "monster_display_name": "神秘人"
+    },
+    {
+      "canonical_id": "entity.drop.987bcbc5bfd438ac",
+      "source_canonical_id": "derived.monster_definition.ea809ac6a2d77833",
+      "source_kind": "drop",
+      "probability": 0.4,
+      "quantity": 1,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.task_chain.item.0564672479c8f2d0",
+      "monster_canonical_id": "derived.monster_definition.ea809ac6a2d77833",
+      "monster_display_name": "黑蚌"
+    },
+    {
+      "canonical_id": "entity.drop.9a6d419341a291b2",
+      "source_canonical_id": "derived.monster_definition.9cdb92b5619a712d",
+      "source_kind": "drop",
+      "probability": 0.4,
+      "quantity": 1,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.57e744db1884c498",
+      "monster_canonical_id": "derived.monster_definition.9cdb92b5619a712d",
+      "monster_display_name": "巨熊"
     },
     {
       "canonical_id": "entity.drop.a0a5ab4ae5e4aafc",
@@ -250509,6 +250379,39 @@
       "monster_display_name": "领主魂"
     },
     {
+      "canonical_id": "entity.drop.a515426ca8b44fbe",
+      "source_canonical_id": "derived.monster_definition.454bdfedcce70cd7",
+      "source_kind": "drop",
+      "probability": 0.4,
+      "quantity": 1,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.349eb023b28e6370",
+      "monster_canonical_id": "derived.monster_definition.454bdfedcce70cd7",
+      "monster_display_name": "鳄鱼"
+    },
+    {
+      "canonical_id": "entity.drop.a834bf8421c43161",
+      "source_canonical_id": "derived.monster_definition.e437c616ce4aef80",
+      "source_kind": "drop",
+      "probability": 0.4,
+      "quantity": 1,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.336fa533d246e009",
+      "monster_canonical_id": "derived.monster_definition.e437c616ce4aef80",
+      "monster_display_name": "白云之精"
+    },
+    {
+      "canonical_id": "entity.drop.aa7683bd0dd15ec7",
+      "source_canonical_id": "derived.monster_definition.2caa7ecbcf7d8fce",
+      "source_kind": "drop",
+      "probability": 0.4,
+      "quantity": 1,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.4d6e50c4e4f5a591",
+      "monster_canonical_id": "derived.monster_definition.2caa7ecbcf7d8fce",
+      "monster_display_name": "玳瑁"
+    },
+    {
       "canonical_id": "entity.drop.ac3bba7270c81a83",
       "source_canonical_id": "entity.drop.ac3bba7270c81a83",
       "source_kind": "drop",
@@ -250518,6 +250421,17 @@
       "content_entity_canonical_id": "entity.equipment.3fe2d9674da444ab",
       "monster_canonical_id": "derived.monster_definition.53e8e341a048bf06",
       "monster_display_name": "千年桐妖"
+    },
+    {
+      "canonical_id": "entity.drop.af5a31d407e5925f",
+      "source_canonical_id": "entity.drop.af5a31d407e5925f",
+      "source_kind": "drop",
+      "probability": null,
+      "quantity": null,
+      "runtime_capability": "blocked",
+      "content_entity_canonical_id": "runtime.item.2b73463f2fabf312",
+      "monster_canonical_id": "derived.monster_definition.1040c2646e5bc90c",
+      "monster_display_name": "棕树木"
     },
     {
       "canonical_id": "entity.drop.b1f093b81a0ebf27",
@@ -250531,6 +250445,28 @@
       "monster_display_name": "索隆亚监狱长"
     },
     {
+      "canonical_id": "entity.drop.b57a1fd4bd174ee2",
+      "source_canonical_id": "derived.monster_definition.74ca2d9691d8f8f5",
+      "source_kind": "drop",
+      "probability": 0.4,
+      "quantity": 1,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.9d567ada42ae6c19",
+      "monster_canonical_id": "derived.monster_definition.74ca2d9691d8f8f5",
+      "monster_display_name": "血僵尸"
+    },
+    {
+      "canonical_id": "entity.drop.bbcaf79a2bb02190",
+      "source_canonical_id": "derived.monster_definition.03869b893c7a17e0",
+      "source_kind": "drop",
+      "probability": 0.4,
+      "quantity": 1,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.adfe2add7ce81ec0",
+      "monster_canonical_id": "derived.monster_definition.03869b893c7a17e0",
+      "monster_display_name": "红野猪"
+    },
+    {
       "canonical_id": "entity.drop.bcf6562b8185d0b6",
       "source_canonical_id": "entity.drop.bcf6562b8185d0b6",
       "source_kind": "drop",
@@ -250540,6 +250476,39 @@
       "content_entity_canonical_id": "entity.equipment.439d7ea2d21175eb",
       "monster_canonical_id": "derived.monster_definition.de65529c9377ae70",
       "monster_display_name": "雄虎"
+    },
+    {
+      "canonical_id": "entity.drop.bd38a572a1385f4c",
+      "source_canonical_id": "derived.monster_definition.98cce59824527e3b",
+      "source_kind": "drop",
+      "probability": 0.4,
+      "quantity": 1,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.fde0e6fbfe4b8da9",
+      "monster_canonical_id": "derived.monster_definition.98cce59824527e3b",
+      "monster_display_name": "僵尸"
+    },
+    {
+      "canonical_id": "entity.drop.be03a05911913c9c",
+      "source_canonical_id": "derived.monster_definition.49508755ce923738",
+      "source_kind": "drop",
+      "probability": 0.4,
+      "quantity": 1,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.5e1ff2777a238dde",
+      "monster_canonical_id": "derived.monster_definition.49508755ce923738",
+      "monster_display_name": "地火结晶"
+    },
+    {
+      "canonical_id": "entity.drop.c2b7401299792303",
+      "source_canonical_id": "derived.monster_definition.e16c8d9969cd766c",
+      "source_kind": "drop",
+      "probability": 0.4,
+      "quantity": 1,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "entity.item.7ba771bd31f63445",
+      "monster_canonical_id": "derived.monster_definition.e16c8d9969cd766c",
+      "monster_display_name": "邪恶僵尸"
     },
     {
       "canonical_id": "entity.drop.c7a7183737a8c3a6",
@@ -250586,6 +250555,17 @@
       "monster_display_name": "巨熊"
     },
     {
+      "canonical_id": "entity.drop.cbf3b0430f5f9a90",
+      "source_canonical_id": "derived.monster_definition.30eef01267318ec2",
+      "source_kind": "drop",
+      "probability": 0.4,
+      "quantity": 1,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.587731d8287b195f",
+      "monster_canonical_id": "derived.monster_definition.30eef01267318ec2",
+      "monster_display_name": "红牛头怪"
+    },
+    {
       "canonical_id": "entity.drop.d31c97fd4fed08b0",
       "source_canonical_id": "entity.drop.d31c97fd4fed08b0",
       "source_kind": "drop",
@@ -250608,6 +250588,50 @@
       "monster_display_name": "伐木工"
     },
     {
+      "canonical_id": "entity.drop.d718c7e939c1b4be",
+      "source_canonical_id": "entity.drop.d718c7e939c1b4be",
+      "source_kind": "drop",
+      "probability": null,
+      "quantity": null,
+      "runtime_capability": "blocked",
+      "content_entity_canonical_id": "runtime.item.d8f4daffae9b9b72",
+      "monster_canonical_id": "derived.monster_definition.0a567fa97330cfa6",
+      "monster_display_name": "地蜘蛛"
+    },
+    {
+      "canonical_id": "entity.drop.d874e1199cdedc19",
+      "source_canonical_id": "derived.monster_definition.91e67387eeb8d589",
+      "source_kind": "drop",
+      "probability": 0.4,
+      "quantity": 1,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.57a8625cbce8bf0f",
+      "monster_canonical_id": "derived.monster_definition.91e67387eeb8d589",
+      "monster_display_name": "奶牛"
+    },
+    {
+      "canonical_id": "entity.drop.d95610bb0dc56823",
+      "source_canonical_id": "derived.monster_definition.4eaa3d4fdf6055e5",
+      "source_kind": "drop",
+      "probability": 0.4,
+      "quantity": 1,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.3a32e667b159386e",
+      "monster_canonical_id": "derived.monster_definition.4eaa3d4fdf6055e5",
+      "monster_display_name": "沼泽玄龟"
+    },
+    {
+      "canonical_id": "entity.drop.de3328c99140a449",
+      "source_canonical_id": "derived.monster_definition.ac9ba8bdfecc01c2",
+      "source_kind": "drop",
+      "probability": 0.4,
+      "quantity": 1,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.a0fedb28c6ae448f",
+      "monster_canonical_id": "derived.monster_definition.ac9ba8bdfecc01c2",
+      "monster_display_name": "火山岩虫头领"
+    },
+    {
       "canonical_id": "entity.drop.e0748acdcd2d0602",
       "source_canonical_id": "entity.drop.e0748acdcd2d0602",
       "source_kind": "drop",
@@ -250617,6 +250641,17 @@
       "content_entity_canonical_id": "entity.equipment.e09f78c6a21fb5e4",
       "monster_canonical_id": "derived.monster_definition.dc328802c98f07b2",
       "monster_display_name": "野狼王"
+    },
+    {
+      "canonical_id": "entity.drop.e0ab90ca86d5e194",
+      "source_canonical_id": "derived.monster_definition.1040c2646e5bc90c",
+      "source_kind": "drop",
+      "probability": 0.4,
+      "quantity": 1,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.2b73463f2fabf312",
+      "monster_canonical_id": "derived.monster_definition.1040c2646e5bc90c",
+      "monster_display_name": "棕树木"
     },
     {
       "canonical_id": "entity.drop.e4a0f89cc3f49178",
@@ -250663,6 +250698,28 @@
       "monster_display_name": "巨型仙人掌"
     },
     {
+      "canonical_id": "entity.drop.ea74306493191d89",
+      "source_canonical_id": "entity.drop.ea74306493191d89",
+      "source_kind": "drop",
+      "probability": null,
+      "quantity": null,
+      "runtime_capability": "blocked",
+      "content_entity_canonical_id": "runtime.item.90e4e58d454b4a78",
+      "monster_canonical_id": "derived.monster_definition.6f1ea960b39e2d92",
+      "monster_display_name": "茯苓"
+    },
+    {
+      "canonical_id": "entity.drop.f2f90a01b0967a71",
+      "source_canonical_id": "entity.drop.f2f90a01b0967a71",
+      "source_kind": "drop",
+      "probability": null,
+      "quantity": null,
+      "runtime_capability": "blocked",
+      "content_entity_canonical_id": "runtime.item.acf383cef37613dc",
+      "monster_canonical_id": "derived.monster_definition.a5185152d411b3f2",
+      "monster_display_name": "红薯"
+    },
+    {
       "canonical_id": "entity.drop.f4175afd4201f590",
       "source_canonical_id": "entity.drop.f4175afd4201f590",
       "source_kind": "drop",
@@ -250674,6 +250731,39 @@
       "monster_display_name": "养人毒蝎"
     },
     {
+      "canonical_id": "entity.drop.f72abb2ff2c20de6",
+      "source_canonical_id": "derived.monster_definition.854432156ab03a51",
+      "source_kind": "drop",
+      "probability": 0.4,
+      "quantity": 1,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.ac59252eb64cde19",
+      "monster_canonical_id": "derived.monster_definition.854432156ab03a51",
+      "monster_display_name": "玫瑰花"
+    },
+    {
+      "canonical_id": "entity.drop.f9f014fc72d0694b",
+      "source_canonical_id": "entity.drop.f9f014fc72d0694b",
+      "source_kind": "drop",
+      "probability": null,
+      "quantity": null,
+      "runtime_capability": "blocked",
+      "content_entity_canonical_id": "runtime.item.ac59252eb64cde19",
+      "monster_canonical_id": "derived.monster_definition.854432156ab03a51",
+      "monster_display_name": "玫瑰花"
+    },
+    {
+      "canonical_id": "entity.drop.fcd0940c97ac949a",
+      "source_canonical_id": "derived.monster_definition.0e3b863d357f5045",
+      "source_kind": "drop",
+      "probability": 0.4,
+      "quantity": 1,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.43c36c115a3fd8ba",
+      "monster_canonical_id": "derived.monster_definition.0e3b863d357f5045",
+      "monster_display_name": "凤凰"
+    },
+    {
       "canonical_id": "entity.drop.fd78e2a78ae94179",
       "source_canonical_id": "entity.drop.fd78e2a78ae94179",
       "source_kind": "drop",
@@ -250683,6 +250773,17 @@
       "content_entity_canonical_id": "entity.equipment.439d7ea2d21175eb",
       "monster_canonical_id": "derived.monster_definition.473207fec4b88c6f",
       "monster_display_name": "野兔"
+    },
+    {
+      "canonical_id": "entity.drop.ff14e63d851dd4b9",
+      "source_canonical_id": "derived.monster_definition.a5262ecfbcef2a18",
+      "source_kind": "drop",
+      "probability": 0.4,
+      "quantity": 1,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.21594155151b00e7",
+      "monster_canonical_id": "derived.monster_definition.a5262ecfbcef2a18",
+      "monster_display_name": "枯木树妖"
     },
     {
       "canonical_id": "entity.shop.703a35a6a9f4da76.entry",
@@ -260324,6 +260425,14 @@
       "map_node_canonical_id": "derived.map_node.location.dfe71f5d6bbc8751"
     },
     {
+      "canonical_id": "runtime.fishing.vendor.e062aa543bf5ea50",
+      "source_canonical_id": "source.zhsh.npc.type1-shop",
+      "display_name": "阿尔及尔杂货",
+      "region_label": "阿尔及尔",
+      "location_canonical_id": "entity.location.7573a519417de413",
+      "map_node_canonical_id": "derived.map_node.location.e062aa543bf5ea50"
+    },
+    {
       "canonical_id": "runtime.fishing.vendor.eace55509da4d290",
       "source_canonical_id": "source.zhsh.npc.type1-shop",
       "display_name": "亚丁杂货",
@@ -260526,6 +260635,19 @@
       "task_canonical_id": "task.series.09.049",
       "task_target_canonical_id": "task.series.09.049.target.01",
       "task_item_canonical_id": "entity.item.097b440c291db16d"
+    },
+    {
+      "canonical_id": "runtime.fishing.vendor_entry.01a1d8b98b9c853d",
+      "source_canonical_id": "entity.item.999c0b345fa58a1a",
+      "price": 4000,
+      "content_entity_canonical_id": "entity.item.999c0b345fa58a1a",
+      "display_name": "鱼饵",
+      "shop_canonical_id": "runtime.fishing.vendor.e062aa543bf5ea50",
+      "shop_source_canonical_id": "source.zhsh.npc.type1-shop",
+      "shop_display_name": "阿尔及尔杂货",
+      "region_label": "阿尔及尔",
+      "location_canonical_id": "entity.location.7573a519417de413",
+      "map_node_canonical_id": "derived.map_node.location.e062aa543bf5ea50"
     },
     {
       "canonical_id": "runtime.fishing.vendor_entry.0d97127f1802ed97",
@@ -260734,6 +260856,19 @@
       "region_label": "亚丁",
       "location_canonical_id": "entity.location.d59ba64fbf7f8181",
       "map_node_canonical_id": "derived.map_node.location.eace55509da4d290"
+    },
+    {
+      "canonical_id": "runtime.fishing.vendor_entry.2daa309d1edc9bdd",
+      "source_canonical_id": "entity.item.97b63080d98ffb1b",
+      "price": 10000,
+      "content_entity_canonical_id": "entity.item.97b63080d98ffb1b",
+      "display_name": "优质鱼饵",
+      "shop_canonical_id": "runtime.fishing.vendor.e062aa543bf5ea50",
+      "shop_source_canonical_id": "source.zhsh.npc.type1-shop",
+      "shop_display_name": "阿尔及尔杂货",
+      "region_label": "阿尔及尔",
+      "location_canonical_id": "entity.location.7573a519417de413",
+      "map_node_canonical_id": "derived.map_node.location.e062aa543bf5ea50"
     },
     {
       "canonical_id": "runtime.fishing.vendor_entry.2e31ce096f0409d3",
@@ -261410,6 +261545,19 @@
       "region_label": "荷姆兹",
       "location_canonical_id": "entity.location.c0022ad78f57db28",
       "map_node_canonical_id": "derived.map_node.location.fbded4b3ce8aff01"
+    },
+    {
+      "canonical_id": "runtime.fishing.vendor_entry.e6c49214113d1230",
+      "source_canonical_id": "entity.item.263f4ab05bb8f167",
+      "price": 4000,
+      "content_entity_canonical_id": "entity.item.263f4ab05bb8f167",
+      "display_name": "鱼竿",
+      "shop_canonical_id": "runtime.fishing.vendor.e062aa543bf5ea50",
+      "shop_source_canonical_id": "source.zhsh.npc.type1-shop",
+      "shop_display_name": "阿尔及尔杂货",
+      "region_label": "阿尔及尔",
+      "location_canonical_id": "entity.location.7573a519417de413",
+      "map_node_canonical_id": "derived.map_node.location.e062aa543bf5ea50"
     },
     {
       "canonical_id": "runtime.fishing.vendor_entry.e919228ff0b8e59a",
@@ -276918,6 +277066,16 @@
       "raw_data_json": "\"联结项圈\""
     },
     {
+      "canonical_id": "entity.drop.bbcaf79a2bb02190",
+      "source_canonical_id": "derived.monster_definition.03869b893c7a17e0",
+      "monster_canonical_id": "derived.monster_definition.03869b893c7a17e0",
+      "content_entity_canonical_id": "runtime.item.adfe2add7ce81ec0",
+      "drop_kind": "item",
+      "probability": 0.4,
+      "quantity": 1,
+      "raw_data_json": "{\"item\":\"野猪火腿\",\"source\":\"monsterItems\"}"
+    },
+    {
       "canonical_id": "entity.drop.bbfcbc0a0f9ab8ee",
       "source_canonical_id": "entity.drop.bbfcbc0a0f9ab8ee",
       "monster_canonical_id": "derived.monster_definition.49508755ce923738",
@@ -276966,6 +277124,16 @@
       "probability": null,
       "quantity": null,
       "raw_data_json": "\"无尽野心\""
+    },
+    {
+      "canonical_id": "entity.drop.bd38a572a1385f4c",
+      "source_canonical_id": "derived.monster_definition.98cce59824527e3b",
+      "monster_canonical_id": "derived.monster_definition.98cce59824527e3b",
+      "content_entity_canonical_id": "runtime.item.fde0e6fbfe4b8da9",
+      "drop_kind": "item",
+      "probability": 0.4,
+      "quantity": 1,
+      "raw_data_json": "{\"item\":\"水晶矿\",\"source\":\"monsterItems\"}"
     },
     {
       "canonical_id": "entity.drop.bd50361ad235454f",
@@ -277146,6 +277314,16 @@
       "probability": null,
       "quantity": null,
       "raw_data_json": "\"狮鹫皮靴\""
+    },
+    {
+      "canonical_id": "entity.drop.c2b7401299792303",
+      "source_canonical_id": "derived.monster_definition.e16c8d9969cd766c",
+      "monster_canonical_id": "derived.monster_definition.e16c8d9969cd766c",
+      "content_entity_canonical_id": "entity.item.7ba771bd31f63445",
+      "drop_kind": "item",
+      "probability": 0.4,
+      "quantity": 1,
+      "raw_data_json": "{\"item\":\"小良的毛笔\",\"source\":\"monsterItems\"}"
     },
     {
       "canonical_id": "entity.drop.c2be6d46da40e2f7",
@@ -279461,9 +279639,9 @@
       "probability": 1,
       "quantity": 1,
       "guaranteed_for_active_task": true,
-      "evidence_status": "SOURCE_EXPLICIT_TASK_CONDITION_AND_PLACEMENT",
+      "evidence_status": "SOURCE_EXPLICIT_TASK_CONDITION",
       "evidence_locator": "task.series.15.631 description + target encounter placement",
-      "raw_data_json": "{\"source\":\"monsterItems\",\"item\":\"破碎的破界符\",\"encounter_match\":\"task_description_names_encounter\",\"probability_adjudication\":\"one required task item is settled per defeated or harvested source encounter because the task text gives an acquisition condition but no random drop rate\"}"
+      "raw_data_json": "{\"source\":\"taskDescription\",\"item\":\"破碎的破界符\",\"encounter_match\":\"task_description_names_encounter\",\"probability_adjudication\":\"one required task item is settled per defeated or harvested source encounter because the task text gives an acquisition condition but no random drop rate\"}"
     },
     {
       "canonical_id": "runtime.task-drop.1734822cedb404cb",
@@ -279494,18 +279672,18 @@
       "raw_data_json": "{\"source\":\"taskDescription\",\"item\":\"水晶矿\",\"encounter_match\":\"task_description_names_encounter\",\"probability_adjudication\":\"one required task item is settled per defeated or harvested source encounter because the task text gives an acquisition condition but no random drop rate\"}"
     },
     {
-      "canonical_id": "runtime.task-drop.273b5e2f1c316cc0",
-      "source_canonical_id": "task.series.15.560",
-      "monster_canonical_id": "derived.monster_definition.e437c616ce4aef80",
-      "content_entity_canonical_id": "runtime.item.336fa533d246e009",
-      "location_canonical_id": "entity.location.b9242d9d7020de1f",
+      "canonical_id": "runtime.task-drop.231cbf5b7e3c18f3",
+      "source_canonical_id": "task.series.13.160",
+      "monster_canonical_id": "derived.monster_definition.c5d9bd950593f414",
+      "content_entity_canonical_id": "runtime.item.afae2dffe7986a5d",
+      "location_canonical_id": "entity.location.c2e54af621d548cd",
       "drop_kind": "item",
       "probability": 1,
       "quantity": 1,
       "guaranteed_for_active_task": true,
       "evidence_status": "SOURCE_EXPLICIT_TASK_CONDITION",
-      "evidence_locator": "task.series.15.560 description + target encounter placement",
-      "raw_data_json": "{\"source\":\"taskDescription\",\"item\":\"白云果\",\"encounter_match\":\"task_description_names_encounter\",\"probability_adjudication\":\"one required task item is settled per defeated or harvested source encounter because the task text gives an acquisition condition but no random drop rate\"}"
+      "evidence_locator": "task.series.13.160 description + target encounter placement",
+      "raw_data_json": "{\"source\":\"taskDescription\",\"item\":\"亚特兰蒂斯航海图\",\"encounter_match\":\"task_description_names_encounter\",\"probability_adjudication\":\"one required task item is settled per defeated or harvested source encounter because the task text gives an acquisition condition but no random drop rate\"}"
     },
     {
       "canonical_id": "runtime.task-drop.3078e75d0b55dafc",
@@ -279519,20 +279697,6 @@
       "guaranteed_for_active_task": true,
       "evidence_status": "SOURCE_EXPLICIT_TASK_CONDITION",
       "evidence_locator": "task.series.15.458 description + target encounter placement",
-      "raw_data_json": "{\"source\":\"taskDescription\",\"item\":\"枯木枝\",\"encounter_match\":\"task_description_names_encounter\",\"probability_adjudication\":\"one required task item is settled per defeated or harvested source encounter because the task text gives an acquisition condition but no random drop rate\"}"
-    },
-    {
-      "canonical_id": "runtime.task-drop.3803516ca8d0ddb5",
-      "source_canonical_id": "task.series.15.453",
-      "monster_canonical_id": "derived.monster_definition.a5262ecfbcef2a18",
-      "content_entity_canonical_id": "runtime.item.21594155151b00e7",
-      "location_canonical_id": "entity.location.cf752275c63eb480",
-      "drop_kind": "item",
-      "probability": 1,
-      "quantity": 1,
-      "guaranteed_for_active_task": true,
-      "evidence_status": "SOURCE_EXPLICIT_TASK_CONDITION",
-      "evidence_locator": "task.series.15.453 description + target encounter placement",
       "raw_data_json": "{\"source\":\"taskDescription\",\"item\":\"枯木枝\",\"encounter_match\":\"task_description_names_encounter\",\"probability_adjudication\":\"one required task item is settled per defeated or harvested source encounter because the task text gives an acquisition condition but no random drop rate\"}"
     },
     {
@@ -279620,20 +279784,6 @@
       "raw_data_json": "{\"source\":\"taskDescription\",\"item\":\"水之精\",\"encounter_match\":\"target_name_equals_encounter\",\"probability_adjudication\":\"one required task item is settled per defeated or harvested source encounter because the task text gives an acquisition condition but no random drop rate\"}"
     },
     {
-      "canonical_id": "runtime.task-drop.57246a9a1744e2ad",
-      "source_canonical_id": "task.series.13.160",
-      "monster_canonical_id": "derived.monster_definition.22c04b2273400b89",
-      "content_entity_canonical_id": "runtime.item.afae2dffe7986a5d",
-      "location_canonical_id": "entity.location.c2e54af621d548cd",
-      "drop_kind": "item",
-      "probability": 1,
-      "quantity": 1,
-      "guaranteed_for_active_task": true,
-      "evidence_status": "SOURCE_EXPLICIT_TASK_CONDITION",
-      "evidence_locator": "task.series.13.160 description + target encounter placement",
-      "raw_data_json": "{\"source\":\"taskDescription\",\"item\":\"亚特兰蒂斯航海图\",\"encounter_match\":\"task_description_names_promoted_variant\",\"probability_adjudication\":\"one required task item is settled per defeated or harvested source encounter because the task text gives an acquisition condition but no random drop rate\"}"
-    },
-    {
       "canonical_id": "runtime.task-drop.57a5f800e9aed626",
       "source_canonical_id": "task.series.15.584",
       "monster_canonical_id": "derived.monster_definition.e437c616ce4aef80",
@@ -279676,18 +279826,18 @@
       "raw_data_json": "{\"source\":\"taskDescription\",\"item\":\"蛇牙草\",\"encounter_match\":\"target_name_equals_encounter\",\"probability_adjudication\":\"one required task item is settled per defeated or harvested source encounter because the task text gives an acquisition condition but no random drop rate\"}"
     },
     {
-      "canonical_id": "runtime.task-drop.6042ad47b53b607e",
-      "source_canonical_id": "task.series.15.466",
-      "monster_canonical_id": "derived.monster_definition.fa436ccecd6e58a6",
-      "content_entity_canonical_id": "runtime.item.186026db0c45bd9f",
-      "location_canonical_id": "entity.location.e85dd25d1632f004",
+      "canonical_id": "runtime.task-drop.6775a8f5952e17bc",
+      "source_canonical_id": "task.series.15.269",
+      "monster_canonical_id": "derived.monster_definition.9cdb92b5619a712d",
+      "content_entity_canonical_id": "runtime.item.57e744db1884c498",
+      "location_canonical_id": "entity.location.c0a4560ce36c2c80",
       "drop_kind": "item",
       "probability": 1,
       "quantity": 1,
       "guaranteed_for_active_task": true,
       "evidence_status": "SOURCE_EXPLICIT_TASK_CONDITION",
-      "evidence_locator": "task.series.15.466 description + target encounter placement",
-      "raw_data_json": "{\"source\":\"taskDescription\",\"item\":\"火蝙蝠血液\",\"encounter_match\":\"task_description_names_encounter\",\"probability_adjudication\":\"one required task item is settled per defeated or harvested source encounter because the task text gives an acquisition condition but no random drop rate\"}"
+      "evidence_locator": "task.series.15.269 description + target encounter placement",
+      "raw_data_json": "{\"source\":\"taskDescription\",\"item\":\"熊皮\",\"encounter_match\":\"task_description_names_encounter\",\"probability_adjudication\":\"one required task item is settled per defeated or harvested source encounter because the task text gives an acquisition condition but no random drop rate\"}"
     },
     {
       "canonical_id": "runtime.task-drop.68d9997f8bfbae52",
@@ -279718,20 +279868,6 @@
       "raw_data_json": "{\"source\":\"taskDescription\",\"item\":\"犯人档案\",\"encounter_match\":\"task_description_names_encounter\",\"probability_adjudication\":\"one required task item is settled per defeated or harvested source encounter because the task text gives an acquisition condition but no random drop rate\"}"
     },
     {
-      "canonical_id": "runtime.task-drop.770b3dbfb367fad3",
-      "source_canonical_id": "task.series.15.245",
-      "monster_canonical_id": "derived.monster_definition.6f1ea960b39e2d92",
-      "content_entity_canonical_id": "runtime.item.90e4e58d454b4a78",
-      "location_canonical_id": "entity.location.301071aafd0a056e",
-      "drop_kind": "item",
-      "probability": 1,
-      "quantity": 1,
-      "guaranteed_for_active_task": true,
-      "evidence_status": "SOURCE_EXPLICIT_TASK_CONDITION",
-      "evidence_locator": "task.series.15.245 description + target encounter placement",
-      "raw_data_json": "{\"source\":\"taskDescription\",\"item\":\"茯苓\",\"encounter_match\":\"target_name_equals_encounter\",\"probability_adjudication\":\"one required task item is settled per defeated or harvested source encounter because the task text gives an acquisition condition but no random drop rate\"}"
-    },
-    {
       "canonical_id": "runtime.task-drop.8ac180d0a2bef732",
       "source_canonical_id": "task.series.15.655",
       "monster_canonical_id": "derived.monster_definition.6f1ea960b39e2d92",
@@ -279758,20 +279894,6 @@
       "evidence_status": "SOURCE_EXPLICIT_TASK_CONDITION",
       "evidence_locator": "task.series.15.467 description + target encounter placement",
       "raw_data_json": "{\"source\":\"taskDescription\",\"item\":\"火蝙蝠血液\",\"encounter_match\":\"task_description_names_encounter\",\"probability_adjudication\":\"one required task item is settled per defeated or harvested source encounter because the task text gives an acquisition condition but no random drop rate\"}"
-    },
-    {
-      "canonical_id": "runtime.task-drop.98c39030d981e327",
-      "source_canonical_id": "task.series.15.245",
-      "monster_canonical_id": "derived.monster_definition.0a567fa97330cfa6",
-      "content_entity_canonical_id": "runtime.item.d8f4daffae9b9b72",
-      "location_canonical_id": "entity.location.301071aafd0a056e",
-      "drop_kind": "item",
-      "probability": 1,
-      "quantity": 1,
-      "guaranteed_for_active_task": true,
-      "evidence_status": "SOURCE_EXPLICIT_TASK_CONDITION",
-      "evidence_locator": "task.series.15.245 description + target encounter placement",
-      "raw_data_json": "{\"source\":\"taskDescription\",\"item\":\"地蜘蛛\",\"encounter_match\":\"target_name_equals_encounter\",\"probability_adjudication\":\"one required task item is settled per defeated or harvested source encounter because the task text gives an acquisition condition but no random drop rate\"}"
     },
     {
       "canonical_id": "runtime.task-drop.a194fb6977611ccc",
@@ -279881,9 +280003,9 @@
       "probability": 1,
       "quantity": 1,
       "guaranteed_for_active_task": true,
-      "evidence_status": "SOURCE_EXPLICIT_TASK_CONDITION_AND_PLACEMENT",
+      "evidence_status": "SOURCE_EXPLICIT_TASK_CONDITION",
       "evidence_locator": "task.series.15.652 description + target encounter placement",
-      "raw_data_json": "{\"source\":\"monsterItems\",\"item\":\"白云果\",\"encounter_match\":\"task_description_names_encounter\",\"probability_adjudication\":\"one required task item is settled per defeated or harvested source encounter because the task text gives an acquisition condition but no random drop rate\"}"
+      "raw_data_json": "{\"source\":\"taskDescription\",\"item\":\"白云果\",\"encounter_match\":\"task_description_names_encounter\",\"probability_adjudication\":\"one required task item is settled per defeated or harvested source encounter because the task text gives an acquisition condition but no random drop rate\"}"
     },
     {
       "canonical_id": "runtime.task-drop.e79ef8ee943d70c3",
@@ -281488,24 +281610,24 @@
     "preview_routes_supported": false,
     "normal_runtime_reads_this_section": false
   },
-  "content_sha256": "37e3f248c65ac850d6d153fe70d05d0a18851466d9dbf056ca74868dd2b38df8",
+  "content_sha256": "a9ca5fedf4caafd651f3ee53c436607b50cac77142965ba9016e08963b91bbeb",
   "entity_counts": {
     "tasks": 651,
     "cities": 28,
     "locations": 528,
     "map_nodes": 556,
-    "location_connections": 514,
+    "location_connections": 515,
     "npcs": 277,
-    "npc_placements": 367,
+    "npc_placements": 359,
     "monsters": 259,
-    "monster_placements": 266,
-    "content_entities": 180,
-    "item_sources": 53,
+    "monster_placements": 273,
+    "content_entities": 182,
+    "item_sources": 108,
     "ships": 14,
     "voyage_routes": 702,
-    "shops": 43,
-    "shop_entries": 102,
+    "shops": 44,
+    "shop_entries": 105,
     "equipment": 366,
-    "drop_relations": 932
+    "drop_relations": 931
   }
 }
