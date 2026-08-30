@@ -7,7 +7,7 @@
  * 宠物捕获 → 船员招募+发言 → 发现物 → NPC/AI 场景 → 天下情报 →
  * 超管触发世界事件/世界状态 → 记忆层落盘。
  *
- * 前置：在线版运行于 http://127.0.0.1:4173（node server/server.js）。
+ * 前置：游戏服务器运行于 http://127.0.0.1:4173（node server/server.js）。
  * 运行：node scripts/e2e-gameplay-test.js
  *       （可选 ZHSH_TEST_BASE=http://... 指定地址）
  * 退出码：0=全过，1=有失败。

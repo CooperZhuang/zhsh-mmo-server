@@ -973,7 +973,7 @@ function bindAdminActions() {
     catch (error) { feedback.fail(`重置失败：${error.message}`); renderAdminPage(); }
   });
   document.querySelector('[data-admin-action="wipe"]')?.addEventListener('click',async()=>{
-    if(!confirm('清空角色进度将重新开始，是否继续？（服务器版无法物理删号）'))return;
+    if(!confirm('清空角色进度将重新开始，是否继续？（角色数据在服务器上，无法直接删号）'))return;
     try { await gameApi.admin('reset_player',{}); gameEntered=false; feedback.succeed('角色已重置。'); renderAdminPage(); }
     catch (error) { feedback.fail(`清空失败：${error.message}`); renderAdminPage(); }
   });
