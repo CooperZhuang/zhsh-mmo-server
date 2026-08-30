@@ -1389,8 +1389,9 @@ importInput.addEventListener('change',async () => {
   } finally { importInput.value=''; }
 });
 
-function exportSave() {
-  const blob = new Blob([storage.exportPlayer(PLAYER_ID)],{ type:'application/json' });
+async function exportSave() {
+  const payload = await storage.exportPlayer(PLAYER_ID);
+  const blob = new Blob([typeof payload==='string'?payload:JSON.stringify(payload)],{ type:'application/json' });
   const link = document.createElement('a');
   link.href=URL.createObjectURL(blob);link.download='zhsh-task1-save.json';link.click();URL.revokeObjectURL(link.href);
   saveStatus.textContent='存档 JSON 已导出';

@@ -132,7 +132,8 @@ class DomGameplayScenario{
   }
   async importLegacy(){
     await this.page.chooseFile('[data-action="import-save"]',path.join(this.root,'tests','fixtures','browser-save-v1-real-1-of-13.json'));this.uiClicks+=1;
-    await this.waitPage('location');await this.page.waitFor(()=>document.querySelector('#save-status')?.textContent==='导入结果已保存',{label:'legacy import completion'});
+    const imported=await this.page.waitFor(()=>document.querySelector('#save-status')?.textContent==='导入结果已保存',{label:'legacy import completion',timeout:20000}).then(()=>true).catch(async(error)=>{const diag=await this.page.evaluate("JSON.stringify({status:document.querySelector('#save-status')?.textContent,error:document.querySelector('.error')?.textContent,page:document.body.dataset.page,view:!!window.serverView})").catch(()=>'{}');throw new Error('legacy import failed: '+diag+' | '+error.message);});
+    if(imported)await this.waitPage('location');
     this.currentNode=this.legacyFixture.state.player.current_map_node_canonical_id;
     const initial=await this.exportSave('legacy-migrated-initial');assert.equal(initial.state.player.current_map_node_canonical_id,this.currentNode);
     for(const [id,value] of Object.entries(this.initialLegacyRewards))assert.deepEqual(initial.state.reward_grants[id],value,`legacy reward changed during import: ${id}`);
@@ -409,6 +410,7 @@ class DomGameplayScenario{
       }else if(target.target_kind==='monster'){
         const monsterLocation=this.monsterLocationFor(target.entity_canonical_id,task);await this.reach(monsterLocation);let defeated=0,attempts=0;
         while(defeated<target.required_quantity){attempts+=1;assert.ok(attempts<=target.required_quantity*10+20,`Too many DOM combat attempts for ${task.canonical_id}`);
+          if(await this.taskProgressComplete(task.canonical_id,target.canonical_id))break;
           await this.recoverIfNeeded(monsterLocation);const result=await this.fight(target.entity_canonical_id,{restartAfterStart:this.contextReopens===0});this.trace(`combat ${task.canonical_id}: ${result}`);if(result==='won')defeated+=1;else await this.reach(monsterLocation);}
       }else if(target.target_kind==='item')await this.obtainItemTarget(task,target);
     }
@@ -516,10 +518,23 @@ class DomGameplayScenario{
         if(lateMessage.includes('战斗胜利')){this.battle.won+=1;return 'won';}
         if(lateMessage.includes('你被击败')){this.battle.lost+=1;this.currentNode=this.content.gameplay_rules.defeat_return.map_node_canonical_id;await this.recoverAfterDefeat();return 'lost';}
         if(process.env.ZHSH_COMBAT_DEBUG==='1'){const dbg=await this.page.evaluate("({attack:Array.from(document.querySelectorAll('[data-combat-attack]')).length,message:document.querySelector('.message')?.textContent,error:document.querySelector('.error')?.textContent,page:document.body.dataset.page,buttons:Array.from(document.querySelectorAll('.wap-page button')).map(b=>b.textContent.slice(0,10)).slice(0,20)})");console.error('[COMBAT-DEBUG]',JSON.stringify(dbg));}
-        // 自愈：攻击控件消失且无结算消息 → 回地点页重开遭遇页再续战（有限次）
+        // 自愈：攻击控件消失且无结算消息（异步叙述覆盖/渲染竞态）→ 读权威状态判定结算：
+        // combat 已空 = 战斗结束。玩家血量是否回满不可判定时，按当前节点是否为败退点区分胜负。
+        const settled=await this.page.evaluate(`(async()=>{
+          const resp=await fetch('/api/game/state',{headers:{Authorization:'Bearer '+(localStorage.getItem('zhsh_token')??'')}});
+          if(!resp.ok)return null;
+          const state=await resp.json();
+          return {combat:state.combat??null,node:state.player?.current_map_node_canonical_id??null,
+            health:state.player?.current_health??state.currentHealth??null};
+        })()`);
+        if(settled&&settled.combat==null){
+          const defeatNode=this.content.gameplay_rules.defeat_return.map_node_canonical_id;
+          if(settled.node===defeatNode){this.battle.lost+=1;this.currentNode=defeatNode;await this.recoverAfterDefeat();return 'lost';}
+          this.battle.won+=1;return 'won';
+        }
         if(!this.combatReopens)this.combatReopens=0;this.combatReopens+=1;
-        if(this.combatReopens<=6){this.contextReopens+=1;await this.ensureLocationPage();const opened=await this.tryClickVisible('[data-page="encounter"]');if(!opened&&await this.page.countVisible('[data-action="refresh"]')===1){await this.click('[data-action="refresh"]',{save:true});await this.waitPage('location');await this.tryClickVisible('[data-page="encounter"]');}await this.waitPage('encounter').catch(()=>{});await this.tryClickVisible(selector('data-combat-start',monsterId));await this.page.waitFor("document.querySelectorAll('[data-combat-attack=\"1\"]').length>0",{label:`combat reopen ${monsterId}`}).catch(()=>{});continue;}
-        break;
+        if(this.combatReopens>6)break;
+        this.contextReopens+=1;await this.ensureLocationPage();const opened=await this.tryClickVisible('[data-page="encounter"]');if(!opened&&await this.page.countVisible('[data-action="refresh"]')===1){await this.click('[data-action="refresh"]',{save:true});await this.waitPage('location');await this.tryClickVisible('[data-page="encounter"]');}await this.waitPage('encounter').catch(()=>{});await this.tryClickVisible(selector('data-combat-start',monsterId));await this.page.waitFor("document.querySelectorAll('[data-combat-attack=\"1\"]').length>0",{label:`combat reopen ${monsterId}`}).catch(()=>{});continue;
       }
       await this.click(attack,{save:true});this.battle.rounds+=1;const actionError=await this.page.text('.error');
       // 自愈：服务器战斗态偶发丢失（No active combat）→ 回遭遇页重开本轮
