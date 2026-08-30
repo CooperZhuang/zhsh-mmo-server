@@ -1150,7 +1150,11 @@ async function perform(operation,fallbackMessage,nextPage,nextParams = {}) {
     render();
   } catch (error) {
     feedback.fail(error?.message ?? String(error));
-    browserLog.error('action','failed',{playerId:PLAYER_ID,reason:error?.message,stack:error?.stack});
+    // 业务规则拒绝（服务端 400 校验类，如 重复对话/无战斗态）降级为 warn；
+    // 仅系统性异常（5xx/网络/代码缺陷）保留 error 级别。
+    const businessRejection = error?.statusCode === 400 || /任务|战斗|体力|不在|无法|已经|尚未|需要|不能|不存在|没有/.test(error?.message ?? '');
+    if (businessRejection) browserLog.warn('action', 'rejected', { playerId: PLAYER_ID, reason: error?.message });
+    else browserLog.error('action', 'failed', { playerId: PLAYER_ID, reason: error?.message, stack: error?.stack });
     saveStatus.textContent = '操作失败';
     render();
   }

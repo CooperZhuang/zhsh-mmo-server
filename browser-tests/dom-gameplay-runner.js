@@ -240,6 +240,8 @@ class DomGameplayScenario{
       assert.equal(await this.page.text('.current-location'),'码头');return this.reach(locationId);
     }
     for(let attempt=0;attempt<4;attempt+=1){
+      // 自愈：以服务器权威状态校正本地节点（sail/传送后可能漂移）
+      if(attempt===0){const serverNode=await this.page.evaluate("(async()=>{const r=await fetch('/api/game/state',{headers:{Authorization:'Bearer '+(localStorage.getItem('zhsh_token')??'')}});if(!r.ok)return null;const s=await r.json();return s.player?.current_map_node_canonical_id??null;})()");if(serverNode&&this.nodeById.has(serverNode))this.currentNode=serverNode;}
       let pathNodes;
       try{pathNodes=this.findPath(this.currentNode,destination.map_node_canonical_id);}catch{throw new Error(`path missing for reach ${destination.display_name}`);}
       let failed=false;
@@ -250,7 +252,7 @@ class DomGameplayScenario{
         const expected=this.nodeById.get(nodeId).display_name;await this.waitLocationName(expected,nodeId);
       }
       if(!failed)return;
-      if(attempt>=3)throw new Error(`reach failed for ${destination.display_name} at current node ${this.nodeById.get(this.currentNode)?.display_name}`); 
+      if(attempt>=3)throw new Error(`reach failed for ${destination.display_name} at current node ${this.nodeById.get(this.currentNode)?.display_name}; visibleMoves=${JSON.stringify(await this.page.evaluate("Array.from(document.querySelectorAll('\[data-move\]')).map((element)=>element.getAttribute(\'data-move\'))"))} page=${await this.page.pageName()}`); 
       // 自愈：回到当前城市枢纽节点重规划（枢纽页列出城内全部可移动节点）
       const cityNode=this.content.map_nodes.find((entry)=>entry.city_canonical_id===this.cityForNode(this.currentNode)&&entry.node_kind==='city');
       if(cityNode&&cityNode.map_node_canonical_id!==this.currentNode){
@@ -300,9 +302,13 @@ class DomGameplayScenario{
     const advance='[data-voyage-advance="1"]';const count=await this.page.countVisible(advance);
     if(count===0&&await this.page.countVisible('[data-voyage-start]')>0){await this.click('[data-page="location"]');await this.waitPage('location');return;}
     assert.equal(count,1,`Voyage must expose a visible advance action; page=${await this.page.pageName()} text=${await this.page.text('.wap-page')}`);
-    await this.click(advance,{save:true});
+    try{await this.click(advance,{save:true});}
+    catch(error){
+      // 已靠岸后残留的 advance 按钮（渲染竞态）→ 服务器 400「已经靠岸」属正常终态
+      if(/已经靠岸|No active voyage|不在航行/.test(error.message)){await this.click('[data-page="location"]',{save:true}).catch(()=>{});return;}
+      throw error;
+    }
   }
-
   async selectSeries(seriesId){
     await this.ensurePage('tasks');await this.measure('task_series_selector');await this.click(selector('data-series-select',seriesId),{save:true});this.seriesEntered.add(seriesId);
     const active=this.content.series.find((entry)=>entry.canonical_id===seriesId);assert.match(await this.page.text('.wap-page'),new RegExp(`当前系列：${escapeRegExp(active.display_name)}`));
@@ -536,9 +542,20 @@ class DomGameplayScenario{
         if(this.combatReopens>6)break;
         this.contextReopens+=1;await this.ensureLocationPage();const opened=await this.tryClickVisible('[data-page="encounter"]');if(!opened&&await this.page.countVisible('[data-action="refresh"]')===1){await this.click('[data-action="refresh"]',{save:true});await this.waitPage('location');await this.tryClickVisible('[data-page="encounter"]');}await this.waitPage('encounter').catch(()=>{});await this.tryClickVisible(selector('data-combat-start',monsterId));await this.page.waitFor("document.querySelectorAll('[data-combat-attack=\"1\"]').length>0",{label:`combat reopen ${monsterId}`}).catch(()=>{});continue;
       }
+      // 先以权威状态确认战斗仍活跃，避免点击已被服务器结算的陈旧攻击按钮（400 噪声源）
+      const live=await this.page.evaluate(`(async()=>{
+        const resp=await fetch('/api/game/state',{headers:{Authorization:'Bearer '+(localStorage.getItem('zhsh_token')??'')}});
+        if(!resp.ok)return null;
+        const state=await resp.json();
+        return {combat:state.combat??null,node:state.player?.current_map_node_canonical_id??null};
+      })()`);
+      if(live&&live.combat==null){
+        const defeatNode=this.content.gameplay_rules.defeat_return.map_node_canonical_id;
+        if(live.node===defeatNode){this.battle.lost+=1;this.currentNode=defeatNode;await this.recoverAfterDefeat();return 'lost';}
+        this.battle.won+=1;return 'won';
+      }
       await this.click(attack,{save:true});this.battle.rounds+=1;const actionError=await this.page.text('.error');
-      // 自愈：服务器战斗态偶发丢失（No active combat）→ 回遭遇页重开本轮
-      if(actionError&&actionError.includes('No active combat')){this.battle.retreated+=0;this.contextReopens+=1;await this.ensureLocationPage();let okC=await this.tryClickVisible('[data-page="encounter"]');if(!okC&&await this.page.countVisible('[data-action="refresh"]')===1){await this.click('[data-action="refresh"]',{save:true});await this.waitPage('location');okC=await this.tryClickVisible('[data-page="encounter"]');}await this.waitPage('encounter').catch(()=>{});await this.tryClickVisible(selector('data-combat-start',monsterId));await this.page.waitFor("document.querySelectorAll('[data-combat-attack=\"1\"]').length>0",{label:`combat reopen ${monsterId}`}).catch(()=>{});continue;}
+      if(actionError&&actionError.includes('No active combat')){this.contextReopens+=1;await this.ensureLocationPage();let okC=await this.tryClickVisible('[data-page="encounter"]');if(!okC&&await this.page.countVisible('[data-action="refresh"]')===1){await this.click('[data-action="refresh"]',{save:true});await this.waitPage('location');okC=await this.tryClickVisible('[data-page="encounter"]');}await this.waitPage('encounter').catch(()=>{});await this.tryClickVisible(selector('data-combat-start',monsterId));await this.page.waitFor("document.querySelectorAll('[data-combat-attack=\"1\"]').length>0",{label:`combat reopen ${monsterId}`}).catch(()=>{});continue;}
       if(actionError)throw new Error(`DOM combat action failed for ${monsterId}: ${actionError}`);const message=await this.page.text('.message')??'';
       if(message.includes('体力宝自动使用'))this.staminaFeedback.push(message);
       if(message.includes('战斗胜利')){this.battle.won+=1;return 'won';}

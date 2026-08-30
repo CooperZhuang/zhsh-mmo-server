@@ -19,7 +19,9 @@ export function createGameApi({ base = '' } = {}) {
     });
     const data = await response.json().catch(() => ({}));
     if (!response.ok) {
-      throw new Error(data.error || `请求失败：${response.status}`);
+      const failure = new Error(data.error || `请求失败：${response.status}`);
+    failure.statusCode = response.status;
+    throw failure;
     }
     return data;
   }

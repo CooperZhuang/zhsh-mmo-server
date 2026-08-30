@@ -114,7 +114,7 @@ async function waitForFile(file,{timeout=30000}={}){const deadline=Date.now()+ti
 class EdgePage{
   constructor({client,sessionId,targetId,profileDirectory,process:browserProcess,stderr,browserVersion,downloadRoot,inlineRoot=null}){
     this.client=client;this.sessionId=sessionId;this.targetId=targetId;this.profileDirectory=profileDirectory;this.process=browserProcess;
-    this.stderr=stderr;this.browserVersion=browserVersion;this.downloadRoot=downloadRoot;this.inlineRoot=inlineRoot;this.console=[];this.networkErrors=[];this.newDocumentScripts=[];this.inlineScriptsInitialized=false;this.applicationLoadMode='http';this.navigationFallbacks=[];
+    this.stderr=stderr;this.browserVersion=browserVersion;this.downloadRoot=downloadRoot;this.inlineRoot=inlineRoot;this.console=[];this.networkErrors=[];this.requestBodies=new Map();this.newDocumentScripts=[];this.inlineScriptsInitialized=false;this.applicationLoadMode='http';this.navigationFallbacks=[];
   }
   async initialize(){
     const send=(method,params={})=>this.client.send(method,params,this.sessionId);
@@ -122,9 +122,16 @@ class EdgePage{
     await send('Emulation.setDeviceMetricsOverride',{width:390,height:844,deviceScaleFactor:1,mobile:false});
     this.client.on('Runtime.consoleAPICalled',(event)=>{if(['warning','warn','error','assert'].includes(event.type))this.console.push({source:'console',level:event.type,message:event.args.map((entry)=>entry.value??entry.description??entry.type).join(' ')});},{sessionId:this.sessionId});
     this.client.on('Runtime.exceptionThrown',(event)=>this.console.push({source:'exception',level:'error',message:event.exceptionDetails?.text??'Uncaught exception'}),{sessionId:this.sessionId});
-    this.client.on('Log.entryAdded',(event)=>{if(['warning','error'].includes(event.entry?.level))this.console.push({source:event.entry.source,level:event.entry.level,message:event.entry.text});},{sessionId:this.sessionId});
+    this.client.on('Log.entryAdded',(event)=>{
+      if(!['warning','error'].includes(event.entry?.level))return;
+      // 浏览器对任意 4xx 响应都会记一条 'network' error —— 业务规则拒绝（服务端 400 校验）
+      // 已由应用层降级为 warn 记录，这里过滤掉该类网络噪声，保留真实系统错误。
+      if(event.entry.source==='network'&&/Failed to load resource.*status of 4\d\d/.test(event.entry.text??''))return;
+      this.console.push({source:event.entry.source,level:event.entry.level,message:event.entry.text});
+    },{sessionId:this.sessionId});
     this.client.on('Network.loadingFailed',(event)=>this.networkErrors.push({type:'loadingFailed',url:event.url,error:event.errorText,canceled:Boolean(event.canceled)}),{sessionId:this.sessionId});
-    this.client.on('Network.responseReceived',(event)=>{if(Number(event.response?.status)>=400)this.networkErrors.push({type:'http',url:event.response.url,status:event.response.status});},{sessionId:this.sessionId});
+    this.client.on('Network.requestWillBeSent',(event)=>{if(event.request?.postData)this.requestBodies.set(event.requestId,{url:event.request.url,body:event.request.postData});},{sessionId:this.sessionId});
+    this.client.on('Network.responseReceived',(event)=>{if(Number(event.response?.status)>=400){const sent=this.requestBodies.get(event.requestId);this.networkErrors.push({type:'http',url:event.response.url,status:event.response.status,postData:sent?.body?.slice(0,200)??null});}this.requestBodies.delete(event.requestId);},{sessionId:this.sessionId});
   }
   send(method,params={}){if(method==='Page.addScriptToEvaluateOnNewDocument'&&params.source)this.newDocumentScripts.push(params.source);return this.client.send(method,params,this.sessionId);}
   async navigate(url){
