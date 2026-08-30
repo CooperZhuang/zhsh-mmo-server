@@ -1,9 +1,9 @@
 'use strict';
 /**
- * 纵横四海 · 前端 API 层（纯客户端 → 服务器权威）
+ * 纵横四海 · 前端 API 层（纯客户端 → 服务端同步）
  *
  * 封装对 /api/auth/*、/api/game/* 的全部 HTTP 调用。
- * 服务器权威：state 只来自服务器；所有动作经 /api/game/action 或 /api/game/runtime。
+ * 服务端同步：state 只来自服务器；所有动作经 /api/game/action 或 /api/game/runtime。
  */
 export function createGameApi({ base = '' } = {}) {
   let token = typeof localStorage !== 'undefined' ? localStorage.getItem('zhsh_token') : null;

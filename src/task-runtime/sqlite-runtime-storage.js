@@ -198,6 +198,7 @@ function normalizeStateNumbers(state) {
 function gameplayProjection(state) {
   return {
     schema_version:state.schema_version,
+    active_series_canonical_id:state.active_series_canonical_id ?? null,
     player:{
       level:state.player.level,max_health:state.player.max_health,current_health:state.player.current_health,
       base_attack:state.player.base_attack,base_max_attack:state.player.base_max_attack,
@@ -216,5 +217,4 @@ function gameplayProjection(state) {
     cargo:state.cargo,cargo_capacity:state.cargo_capacity,
   };
 }
-
 module.exports = { MIGRATION_PATH,MIGRATION_PATHS,SqliteRuntimeStorage };

@@ -39,7 +39,7 @@ check(Object.values(content.goods.regions).reduce((n,r)=>n+r.specialty.length,0)
 check(content.pets.pets.length===30,'pets=30');
 check(content.game_items.items.length>=45,'items≥45');
 check(content.discoveries.discoveries.length>=36,'discoveries≥36');
-check(content.questline.chapters.length===12,'questline=12章');
+check(content.questline.chapters.length===15,'questline=15章(原版主线)');
 check(content.characters.characters.length>=80,'characters≥80');
 check(content.sidequests.sidequests.length>=40,'sidequests≥40');
 check(content.crew.crew.length>=30,'crew≥30');
