@@ -80,7 +80,12 @@ function bindGameplayProxies() {
     flush: async () => {},
     ready: async () => {},
     exportPlayer: async () => { await ensurePlayerView(); return serverView; },
-    importPlayer: async () => { feedback.succeed('存档由服务端托管，导入已跳过。'); },
+    importPlayer: async (raw, { expectedPlayerCanonicalId } = {}) => {
+      // 服务器权威导入：上传存档，服务器负责模式升级与状态整体替换
+      const payload = typeof raw === 'string' ? JSON.parse(raw) : raw;
+      await gameApi.importSave(payload, { expectedPlayerCanonicalId });
+      await ensurePlayerView();
+    },
   };
 }
 function createBrowserLogger(){

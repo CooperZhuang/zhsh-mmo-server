@@ -67,6 +67,11 @@ export function createGameApi({ base = '' } = {}) {
     return request('/api/game/runtime', { method: 'POST', body: { gadget, method, args, event_id: eventId } });
   }
 
+  // ---- 服务器权威存档导入（整体替换当前角色运行时状态）----
+  async function importSave(state, { expectedPlayerCanonicalId } = {}) {
+    return request('/api/game/import', { method: 'POST', body: { state, expectedPlayerCanonicalId } });
+  }
+
   // ---- 世界 / 在线 ----
   async function getWorld() {
     return request('/api/game/world');
@@ -114,7 +119,7 @@ export function createGameApi({ base = '' } = {}) {
 
   return {
     request, register, login, setToken, setPlayer,
-    getState, action, runtime, getWorld, getPlayers, getIntel, npcBanter, combatNarrative, marketAdvice, discoveryDescription, taskNarrative,
+    getState, action, runtime, importSave, getWorld, getPlayers, getIntel, npcBanter, combatNarrative, marketAdvice, discoveryDescription, taskNarrative,
     admin, getCurrentWorld,
     getToken, getPlayerId,
   };

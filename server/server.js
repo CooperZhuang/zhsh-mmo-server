@@ -456,6 +456,20 @@ const server = http.createServer(async (req, res) => {
         const view = engine.getPlayerView(auth.playerCanonicalId);
         return sendJson(res, 200, view);
       }
+      if (pathname === '/api/game/import' && req.method === 'POST') {
+        // 服务器权威导入：接收浏览器存档 JSON，模式升级到当前版本后整体替换该玩家运行时状态。
+        const body = JSON.parse(await readBody(req) || '{}');
+        const rawState = body?.state ?? body;
+        if (!rawState || typeof rawState !== 'object' || !rawState.player) return sendJson(res, 400, { error: '存档格式无效' });
+        const { upgradeGameplayState } = require('../src/task-runtime/gameplay-state');
+        const migrated = upgradeGameplayState(rawState);
+        // 存档与账号绑定：导入状态一律归入当前登录角色（旧档角色 id 重映射）
+        migrated.player.canonical_id = auth.playerCanonicalId;
+        engine.storage.resetPlayer(auth.playerCanonicalId, migrated);
+        engine.synchronizeDefinitions(auth.playerCanonicalId);
+        const view = engine.getPlayerView(auth.playerCanonicalId);
+        return sendJson(res, 200, { imported: true, view });
+      }
       if (pathname === '/api/game/action' && req.method === 'POST') {
         const { action, args, event_id } = JSON.parse(await readBody(req) || '{}');
         const evId = event_id || eventId(action);

@@ -478,7 +478,7 @@ class DomGameplayScenario{
   }
 
   async fight(monsterId,{restartAfterStart=false}={}){
-    await this.ensureLocationPage();
+    this.combatReopens=0;await this.ensureLocationPage();
     // 自愈：地点页「此处行动」偶发未挂载（服务端事件列表异步）→ 刷新视图重试
     for(let openAttempt=0;openAttempt<5;openAttempt+=1){
       const clicked=await this.tryClickVisible('[data-page="encounter"]');
@@ -516,6 +516,9 @@ class DomGameplayScenario{
         if(lateMessage.includes('战斗胜利')){this.battle.won+=1;return 'won';}
         if(lateMessage.includes('你被击败')){this.battle.lost+=1;this.currentNode=this.content.gameplay_rules.defeat_return.map_node_canonical_id;await this.recoverAfterDefeat();return 'lost';}
         if(process.env.ZHSH_COMBAT_DEBUG==='1'){const dbg=await this.page.evaluate("({attack:Array.from(document.querySelectorAll('[data-combat-attack]')).length,message:document.querySelector('.message')?.textContent,error:document.querySelector('.error')?.textContent,page:document.body.dataset.page,buttons:Array.from(document.querySelectorAll('.wap-page button')).map(b=>b.textContent.slice(0,10)).slice(0,20)})");console.error('[COMBAT-DEBUG]',JSON.stringify(dbg));}
+        // 自愈：攻击控件消失且无结算消息 → 回地点页重开遭遇页再续战（有限次）
+        if(!this.combatReopens)this.combatReopens=0;this.combatReopens+=1;
+        if(this.combatReopens<=6){this.contextReopens+=1;await this.ensureLocationPage();const opened=await this.tryClickVisible('[data-page="encounter"]');if(!opened&&await this.page.countVisible('[data-action="refresh"]')===1){await this.click('[data-action="refresh"]',{save:true});await this.waitPage('location');await this.tryClickVisible('[data-page="encounter"]');}await this.waitPage('encounter').catch(()=>{});await this.tryClickVisible(selector('data-combat-start',monsterId));await this.page.waitFor("document.querySelectorAll('[data-combat-attack=\"1\"]').length>0",{label:`combat reopen ${monsterId}`}).catch(()=>{});continue;}
         break;
       }
       await this.click(attack,{save:true});this.battle.rounds+=1;const actionError=await this.page.text('.error');
