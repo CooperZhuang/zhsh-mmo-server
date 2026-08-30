@@ -18,6 +18,7 @@ module.exports = { BrowserRuntimeStorage,BrowserTaskCatalog,CombatRuntime,Diving
 },
 "src/task-runtime/task-engine.js": function(module,exports,require){
 'use strict';
+const { recordPlayerMemory, adjustNpcAffinity } = require("server/ai/ai-memory.js");
 
 const EVENT_TYPES = Object.freeze([
   'talk_to_npc',
@@ -53,14 +54,19 @@ class TaskRuntimeEngine {
   }
 
   buildInitialState(playerCanonicalId) {
+    // 静态任务（sqlite task_definitions）进入持久化 state.tasks/state.progress；
+    // 动态任务（AI 世界支线）为运行时态，经统一访问方法写入 state.runtime_tasks /
+    // state.runtime_progress（JSON 落盘、无 FK 约束），保证完整可玩且不破坏外键。
     const tasks = this.listTasks();
     if (!tasks.length) throw new Error(`Task series is empty: ${this.seriesCanonicalIds.join(',')}`);
-    const firstLocation = tasks[0].receive_location_canonical_id;
+    const staticTasks = tasks.filter((task) => !this.isDynamicTask(task.canonical_id));
+    const firstLocation = staticTasks[0]?.receive_location_canonical_id;
     const firstNode = this.catalog.getNodeForLocation(firstLocation);
     if (!firstNode) throw new Error(`Initial task location has no map node: ${firstLocation}`);
     const taskStates = {};
     const progress = {};
     for (const task of tasks) {
+      if (this.isDynamicTask(task.canonical_id)) continue; // 动态任务在下方单独初始化 runtime_tasks
       const blocked = task.blocking_reasons.length > 0;
       taskStates[task.canonical_id] = {
         status: blocked ? 'blocked' : this.effectivePrerequisiteIds(task).length || Number(task.level_requirement ?? 1) > 1 ? 'locked' : 'available',
@@ -91,12 +97,116 @@ class TaskRuntimeEngine {
       processed_events: {},
       active_series_canonical_id:this.seriesCanonicalId,
     };
+    // 动态任务（AI 世界支线）运行时态落 state.runtime_tasks / state.runtime_progress
+    const runtimeTasks = {};
+    const runtimeProgress = {};
+    for (const task of tasks) {
+      if (!this.isDynamicTask(task.canonical_id)) continue;
+      const blocked = task.blocking_reasons.length > 0;
+      runtimeTasks[task.canonical_id] = { status: blocked ? 'blocked' : Number(task.level_requirement ?? 1) > 1 ? 'locked' : 'available',
+        current_step: 0, reward_status: 'not_granted', block_reasons: task.blocking_reasons };
+      for (const target of task.targets) runtimeProgress[progressKey(task.canonical_id,target.canonical_id)] = 0;
+    }
+    state.runtime_tasks = runtimeTasks;
+    state.runtime_progress = runtimeProgress;
     ensureTaskItemLedger(state);
     return state;
   }
 
   listTasks() {
-    return this.seriesCanonicalIds.flatMap((seriesId) => this.catalog.listSeriesTasks(seriesId));
+    const base = this.seriesCanonicalIds.flatMap((seriesId) => this.catalog.listSeriesTasks(seriesId));
+    if (!this.runtimeTasks || this.runtimeTasks.size === 0) return base;
+    return [...base, ...this.runtimeTasks.values()].filter((task) => task && task.canonical_id);
+  }
+
+  /** 注册一条运行时动态支线（由 AI 生成，符合 getTask 返回形状）。
+   *  返回是否注册成功（重复 canonical_id 忽略）。 */
+  registerDynamicTask(task) {
+    if (!task || !task.canonical_id) return false;
+    if (!this.runtimeTasks) this.runtimeTasks = new Map();
+    if (this.runtimeTasks.has(task.canonical_id)) return false;
+    this.runtimeTasks.set(task.canonical_id, task);
+    return true;
+  }
+
+  /** 移除一条运行时动态支线（事件消退时清理未接取支线）。返回是否成功移除。 */
+  unregisterDynamicTask(taskCanonicalId) {
+    if (!this.runtimeTasks) return false;
+    return this.runtimeTasks.delete(taskCanonicalId);
+  }
+
+  // ---- 统一任务运行时状态访问 ----
+  // 静态任务（sqlite task_definitions）运行时态存 state.tasks/state.progress（外键约束）；
+  // 动态任务（AI 世界支线）为运行时态、无 sqlite 定义，存 state.runtime_tasks/runtime_progress
+  // （JSON 落盘、无 FK）。所有任务逻辑统一走本组方法，动态任务因此完整可接取/推进/完成/持久化。
+  isDynamicTask(taskCanonicalId) { return Boolean(this.runtimeTasks?.has(taskCanonicalId)); }
+  getTaskRuntime(state, taskCanonicalId) {
+    return this.isDynamicTask(taskCanonicalId) ? state.runtime_tasks?.[taskCanonicalId] : state.tasks?.[taskCanonicalId];
+  }
+  setTaskRuntime(state, taskCanonicalId, value) {
+    if (this.isDynamicTask(taskCanonicalId)) { if (!state.runtime_tasks) state.runtime_tasks = {}; state.runtime_tasks[taskCanonicalId] = value; }
+    else state.tasks[taskCanonicalId] = value;
+  }
+  getTaskProgress(state, taskCanonicalId, targetCanonicalId) {
+    const key = progressKey(taskCanonicalId, targetCanonicalId);
+    return this.isDynamicTask(taskCanonicalId) ? (state.runtime_progress?.[key] ?? 0) : (state.progress?.[key] ?? 0);
+  }
+  setTaskProgress(state, taskCanonicalId, targetCanonicalId, quantity) {
+    const key = progressKey(taskCanonicalId, targetCanonicalId);
+    if (this.isDynamicTask(taskCanonicalId)) { if (!state.runtime_progress) state.runtime_progress = {}; state.runtime_progress[key] = quantity; }
+    else state.progress[key] = quantity;
+  }
+
+  /** 接受一条世界支线（动态任务）：面板入口。返回是否成功接受。 */
+  acceptWorldQuest(playerCanonicalId, taskCanonicalId) {
+    return this.storage.transact(playerCanonicalId, (state) => {
+      const task = this.runtimeTasks?.get(taskCanonicalId);
+      if (!task) throw new Error(`Unknown world quest: ${taskCanonicalId}`);
+      // 动态任务可能在玩家建档后涌现，接受时懒初始化 runtime 态（保证可接取/推进/持久化）
+      let runtime = this.getTaskRuntime(state, taskCanonicalId);
+      if (!runtime || !runtime.status) {
+        runtime = { status: 'available', current_step: 0, reward_status: 'not_granted', block_reasons: task.blocking_reasons ?? [] };
+        this.setTaskRuntime(state, taskCanonicalId, runtime);
+        if (!state.runtime_progress) state.runtime_progress = {};
+      }
+      if (runtime.status !== 'available') return { applied: false, reason: `not_available_${runtime.status}`, task_canonical_id: taskCanonicalId };
+      runtime.status = 'accepted';
+      runtime.current_step = 1;
+      runtime.reward_status = 'not_granted';
+      this.setTaskRuntime(state, taskCanonicalId, runtime);
+      for (const target of task.targets ?? []) if (target.canonical_id && this.getTaskProgress(state, taskCanonicalId, target.canonical_id) === 0) this.setTaskProgress(state, taskCanonicalId, target.canonical_id, 0);
+      return { applied: true, action: 'world_quest_accepted', task_canonical_id: taskCanonicalId };
+    });
+  }
+
+  /** 提交一条已完成的世界支线（动态任务）：面板入口。返回是否成功提交。 */
+  submitWorldQuest(playerCanonicalId, taskCanonicalId) {
+    return this.storage.transact(playerCanonicalId, (state) => {
+      const task = this.runtimeTasks?.get(taskCanonicalId);
+      if (!task) throw new Error(`Unknown world quest: ${taskCanonicalId}`);
+      const runtime = this.getTaskRuntime(state, taskCanonicalId);
+      if (!runtime) { throw new Error(`World quest not initialized: ${taskCanonicalId}`); }
+      if (runtime.status !== 'completable' && runtime.status !== 'accepted' && runtime.status !== 'in_progress') {
+        return { applied: false, reason: `not_completable_${runtime.status}`, task_canonical_id: taskCanonicalId };
+      }
+      if (runtime.status !== 'completable') {
+        const done = task.targets.every((target) => this.getTaskProgress(state, taskCanonicalId, target.canonical_id) >= (target.required_quantity ?? 1));
+        if (!done) return { applied: false, reason: 'targets_not_done', task_canonical_id: taskCanonicalId };
+      }
+      // 奖励发放：动态任务不写 state.reward_grants（其 reward 无 sqlite task_rewards 行，避免外键崩）
+      for (const reward of task.rewards ?? []) {
+        const qty = Number(reward.quantity ?? 0);
+        if (reward.reward_kind === 'experience') state.player.experience += qty;
+        else if (reward.reward_kind === 'money') state.player.money += qty;
+      }
+      applyExperienceProgression(state);
+      runtime.status = 'completed';
+      runtime.current_step = 3;
+      runtime.reward_status = 'granted';
+      this.setTaskRuntime(state, taskCanonicalId, runtime);
+      recordPlayerMemory(state, { type: 'worldquest', text: `完成了世界支线「${task.display_name ?? taskCanonicalId}」`, importance: 2 });
+      return { applied: true, action: 'world_quest_submitted', task_canonical_id: taskCanonicalId, rewards: task.rewards?.map((r) => r.reward_name ?? r.reward_kind) };
+    });
   }
 
   synchronizeDefinitions(playerCanonicalId) {
@@ -105,6 +215,16 @@ class TaskRuntimeEngine {
       const defeatReturn=this.catalog.content?.gameplay_rules?.defeat_return;
       if(!state.player.defeat_return_map_node_canonical_id&&defeatReturn?.map_node_canonical_id)state.player.defeat_return_map_node_canonical_id=defeatReturn.map_node_canonical_id;
       for (const task of this.listTasks()) {
+        if (this.isDynamicTask(task.canonical_id)) {
+          // 动态任务：运行时态写 state.runtime_tasks / runtime_progress（JSON，无 FK）
+          if (!this.getTaskRuntime(state, task.canonical_id)) {
+            const blocked=task.blocking_reasons.length>0;
+            this.setTaskRuntime(state, task.canonical_id, { status:blocked?'blocked':Number(task.level_requirement??1)>Number(state.player.level)?'locked':'available',
+              current_step:0,reward_status:'not_granted',block_reasons:task.blocking_reasons });
+          }
+          for (const target of task.targets) if (!Object.hasOwn(state.runtime_progress??{}, progressKey(task.canonical_id,target.canonical_id))) this.setTaskProgress(state, task.canonical_id, target.canonical_id, 0);
+          continue;
+        }
         if (!state.tasks[task.canonical_id]) {
           const blocked=task.blocking_reasons.length>0;
           state.tasks[task.canonical_id]={ status:blocked?'blocked':this.effectivePrerequisiteIds(task).length||Number(task.level_requirement??1)>Number(state.player.level)?'locked':'available',
@@ -137,18 +257,18 @@ class TaskRuntimeEngine {
     const activeSeries=seriesCanonicalId ?? state.active_series_canonical_id ?? this.seriesCanonicalId;
     const project=(task) => ({
       definition: task,
-      runtime: state.tasks[task.canonical_id],
+      runtime: this.getTaskRuntime(state, task.canonical_id),
       progress: task.targets.map((target) => ({
         target_canonical_id: target.canonical_id,
-        current_quantity: state.progress[progressKey(task.canonical_id,target.canonical_id)] ?? 0,
+        current_quantity: this.getTaskProgress(state, task.canonical_id, target.canonical_id),
         required_quantity: target.required_quantity,
       })),
     });
-    const allTasks=this.listTasks().map(project);
+    const allTasks=this.listTasks().filter((task)=>!this.isDynamicTask(task.canonical_id)).map(project);
     const tasks=allTasks.filter((entry)=>seriesOf(entry.definition)===activeSeries);
     return { ...state,current_location:node,active_series_canonical_id:activeSeries,
       task_series:this.seriesCanonicalIds.map((id)=>({ canonical_id:id,total:this.catalog.listSeriesTasks(id).length,
-        completed:this.catalog.listSeriesTasks(id).filter((task)=>state.tasks[task.canonical_id]?.status==='completed').length })),
+        completed:this.catalog.listSeriesTasks(id).filter((task)=>this.getTaskRuntime(state,task.canonical_id)?.status==='completed').length })),
       all_task_chain:allTasks,task_chain:tasks };
   }
 
@@ -164,12 +284,42 @@ class TaskRuntimeEngine {
 
   listCurrentNpcs(playerCanonicalId) {
     const state = this.loadPlayer(playerCanonicalId);
-    return this.catalog.listNpcsAtNode(state.player.current_map_node_canonical_id).filter((placement)=>this.isNpcPlacementVisible(state,placement));
+    return this.catalog.listNpcsAtNode(state.player.current_map_node_canonical_id).filter((placement)=>this.isNpcPlacementVisible(state,placement))
+      .map((placement)=>({ ...placement,npc_dialogue:this.renderNpcDialogue(state,placement.npc_canonical_id,placement.display_name) }));
+  }
+
+  /** 注入 npc_dialogs 内容（来自 server/content/npc-dialogs.json） */
+  attachNpcDialogs(npcDialogs = {}) { this.npcDialogs = npcDialogs; return this; }
+
+  /**
+   * 判定该 NPC 的对话触发档：quest_ready > quest_active > all_done > idle。
+   * 依据：NPC 作为任务的 issuer/completion，关联任务状态。
+   */
+  renderNpcDialogue(state,npcCanonicalId,npcName = null) {
+    const dialogs = this.npcDialogs?.dialogs ?? {};
+    const entry = dialogs[npcName] ?? dialogs[`npc.${npcCanonicalId.split('.').at(-1)}`] ?? dialogs[npcCanonicalId] ?? null;
+    if (!entry) return null;
+    const tasks = this.listTasks();
+    let hasActive = false, hasReady = false, hasAny = false;
+    for (const task of tasks) {
+      const issuer = task.issuer_npc_canonical_id, completion = task.completion_npc_canonical_id;
+      const roleNpc = issuer === npcCanonicalId || completion === npcCanonicalId;
+      if (!roleNpc && !task.issuer_npc_canonical_id?.endsWith(npcCanonicalId.split('.').at(-1))) continue;
+      const status = this.getTaskRuntime(state, task.canonical_id)?.status;
+      if (['accepted','in_progress'].includes(status)) hasActive = true;
+      if (status === 'completable') hasReady = true;
+      if (['accepted','in_progress','completable','completed'].includes(status)) hasAny = true;
+      if (issuer === npcCanonicalId && status === 'completed') hasAny = true;
+    }
+    if (hasReady) return { trigger_type:'quest_ready',text:entry.quest_ready };
+    if (hasActive) return { trigger_type:'quest_active',text:entry.quest_active };
+    if (hasAny) return { trigger_type:'all_done',text:entry.all_done };
+    return { trigger_type:'idle',text:entry.idle };
   }
 
   isNpcPlacementVisible(state,placement) {
     if(placement.placement_scope!=='task_context')return true;
-    return (placement.task_contexts??[]).some((context)=>context.appearance_statuses.includes(state.tasks[context.task_canonical_id]?.status));
+    return (placement.task_contexts??[]).some((context)=>context.appearance_statuses.includes(this.getTaskRuntime(state,context.task_canonical_id)?.status));
   }
 
   isNpcAvailableAtLocation(state,npcCanonicalId,locationCanonicalId) {
@@ -313,16 +463,22 @@ class TaskRuntimeEngine {
     const active = this.activeTasks(state);
     for (const task of active) {
       const target = task.targets.find((entry) => entry.target_kind === 'npc' && entry.entity_canonical_id === event.npc_canonical_id);
-      if (target) return this.advanceTarget(state,task,target,1,'talk_to_npc');
+      if (target) {
+        adjustNpcAffinity(state, event.npc_canonical_id, 1, `与任务NPC交谈`);
+        return this.advanceTarget(state,task,target,1,'talk_to_npc');
+      }
     }
     const available = this.listTasks().sort((a,b)=>Number(seriesOf(b)===state.active_series_canonical_id)-Number(seriesOf(a)===state.active_series_canonical_id)).find((task) => {
-      const runtime = state.tasks[task.canonical_id];
+      const runtime = this.getTaskRuntime(state, task.canonical_id);
       return runtime?.status === 'available' && task.issuer_npc_canonical_id === event.npc_canonical_id
         && task.receive_location_canonical_id === locationId;
     });
     if (!available) return { applied: false, reason: 'no_task_action_for_npc', npc_canonical_id: event.npc_canonical_id };
-    state.tasks[available.canonical_id].status = 'accepted';
-    state.tasks[available.canonical_id].current_step = 1;
+    const acceptRuntime = this.getTaskRuntime(state, available.canonical_id);
+    acceptRuntime.status = 'accepted';
+    acceptRuntime.current_step = 1;
+    this.setTaskRuntime(state, available.canonical_id, acceptRuntime);
+    adjustNpcAffinity(state, event.npc_canonical_id, 2, `接受了任务「${available.display_name??available.canonical_id}」`);
     const generatedItems = [];
     for (const target of available.targets.filter((entry) => entry.target_kind === 'item')) {
       const policy=target.task_item_policy??defaultPolicy(available);
@@ -403,7 +559,7 @@ class TaskRuntimeEngine {
       throw new Error(`Submission NPC is not at the current formal location: ${event.npc_canonical_id}`);
     }
     const task = this.listTasks().sort((a,b)=>Number(seriesOf(b)===state.active_series_canonical_id)-Number(seriesOf(a)===state.active_series_canonical_id)).find((entry) => {
-      const runtime = state.tasks[entry.canonical_id];
+      const runtime = this.getTaskRuntime(state, entry.canonical_id);
       return runtime?.status === 'completable' && entry.completion_npc_canonical_id === event.npc_canonical_id
         && entry.submit_location_canonical_id === locationId;
     });
@@ -411,11 +567,19 @@ class TaskRuntimeEngine {
     reconcileTaskItemReservations(state,this.activeTasks(state));
     const taskItemConsumption=consumeTaskItems(state,task,`submit:${event.event_id}:${task.canonical_id}`);
     this.injectFault('after_task_item_consumption',{ state,event,task,taskItemConsumption });
+    const isDynamic = this.isDynamicTask(task.canonical_id);
     let sourceLabelOnly = false;
     for (const reward of task.rewards) {
-      if (state.reward_grants[reward.canonical_id]) continue;
+      // 动态任务奖励不写 state.reward_grants（其 reward 无 sqlite task_rewards 行，写库会外键崩）
+      if (!isDynamic && state.reward_grants[reward.canonical_id]) continue;
       let effectStatus = 'applied';
-      if (reward.reward_kind === 'experience') state.player.experience += reward.quantity;
+      const reputationValue = reward.reward_name === '声望' || /\b声望\b/.test(reward.raw_value_json ?? '');
+      if (reputationValue) {
+        // 声望奖励：计入玩家声誉并晋升爵位
+        state.player.reputation = (state.player.reputation ?? 0) + Number(reward.quantity ?? 0);
+        state.player.title = applyReputationTitle(state.player.reputation);
+        effectStatus = 'applied';
+      } else if (reward.reward_kind === 'experience') state.player.experience += reward.quantity;
       else if (reward.reward_kind === 'money') state.player.money += reward.quantity;
       else if (reward.content_entity_canonical_id && reward.resolution_status === 'resolved') {
         grantInventoryItem(state,{itemCanonicalId:reward.content_entity_canonical_id,quantity:reward.quantity,grantId:`reward:${reward.canonical_id}`,
@@ -426,29 +590,36 @@ class TaskRuntimeEngine {
       } else {
         throw new Error(`Unresolved reward cannot be granted: ${reward.canonical_id} (${reward.resolution_status})`);
       }
-      state.reward_grants[reward.canonical_id] = {
-        task_canonical_id: task.canonical_id,
-        quantity: reward.quantity,
-        effect_status: effectStatus,
-      };
+      if (!isDynamic) {
+        state.reward_grants[reward.canonical_id] = {
+          task_canonical_id: task.canonical_id,
+          quantity: reward.quantity,
+          effect_status: effectStatus,
+        };
+      }
     }
     this.injectFault('after_reward_grants',{ state,event,task });
-    const runtime = state.tasks[task.canonical_id];
+    const runtime = this.getTaskRuntime(state, task.canonical_id);
     runtime.status = 'completed';
     runtime.current_step = 3;
     runtime.reward_status = sourceLabelOnly ? 'granted_with_source_label_records' : 'granted';
+    this.setTaskRuntime(state, task.canonical_id, runtime);
     const progression = applyExperienceProgression(state);
+    // 声望填实：完成任一任务 +5 声望，晋升爵位（水手/船长/提督/总督/公爵）
     const levelUnlocked = this.refreshLevelAvailabilityState(state);
     state.flags[`task.completed.${task.canonical_id}`] = true;
+    recordPlayerMemory(state,{type:'task',text:`完成了「${task.display_name??task.canonical_id}」`,importance:2});
+    if (this.catalog.getTask(task.canonical_id)?.is_mainline) recordPlayerMemory(state,{type:'mainline',text:`推进主线：${task.display_name??task.canonical_id}`,importance:3});
     reconcileTaskItemReservations(state,this.activeTasks(state));
     const unlocked = [];
     for (const successorId of task.successors) {
       const successor = this.catalog.getTask(successorId);
-      const successorRuntime = state.tasks[successorId];
+      const successorRuntime = this.getTaskRuntime(state, successorId);
       if (!successorRuntime || successorRuntime.status === 'blocked') continue;
       if (Number(state.player.level) < Number(successor.level_requirement ?? 1)) continue;
       if (this.prerequisitesSatisfied(state,successor)) {
         successorRuntime.status = 'available';
+        this.setTaskRuntime(state, successorId, successorRuntime);
         unlocked.push(successorId);
       }
     }
@@ -459,19 +630,25 @@ class TaskRuntimeEngine {
       unlocked_task_canonical_ids: unlocked,
       dialogue_canonical_ids: task.dialogues.filter((line) => line.phase === 'submit').map((line) => line.canonical_id),
       reward_status: runtime.reward_status,
+      rewards: task.rewards.map((r) => ({
+        reward_name: r.reward_name, reward_kind: r.reward_kind, quantity: r.quantity,
+        effect_status: state.reward_grants[r.canonical_id]?.effect_status ?? 'applied',
+      })),
+      reputation: state.player.reputation,
       progression,
       level_unlocked_task_canonical_ids:levelUnlocked,
     };
   }
 
   handleAbandon(state,event,outcome) {
-    const task=this.catalog.getTask(event.task_canonical_id);const runtime=state.tasks[event.task_canonical_id];
+    const task=this.catalog.getTask(event.task_canonical_id);const runtime=this.getTaskRuntime(state,event.task_canonical_id);
     if(!task||!runtime)throw new Error(`Unknown task: ${event.task_canonical_id}`);
     if(!ACTIVE_STATUSES.has(runtime.status))return {applied:false,reason:'task_not_active',task_canonical_id:task.canonical_id,status:runtime.status};
     const itemResult=abandonTaskItems(state,task,`${outcome}:${event.event_id}:${task.canonical_id}`);
-    for(const target of task.targets)state.progress[progressKey(task.canonical_id,target.canonical_id)]=0;
+    for(const target of task.targets)this.setTaskProgress(state,task.canonical_id,target.canonical_id,0);
     runtime.status=this.prerequisitesSatisfied(state,task)&&Number(state.player.level)>=Number(task.level_requirement??1)?'available':'locked';
     runtime.current_step=0;runtime.reward_status='not_granted';
+    this.setTaskRuntime(state,task.canonical_id,runtime);
     reconcileTaskItemReservations(state,this.activeTasks(state));
     return {applied:true,action:`task_${outcome}`,task_canonical_id:task.canonical_id,item_ledger:itemResult,next_status:runtime.status};
   }
@@ -490,10 +667,9 @@ class TaskRuntimeEngine {
   }
 
   advanceTarget(state,task,target,quantity,eventType) {
-    const key = progressKey(task.canonical_id,target.canonical_id);
-    const before = state.progress[key] ?? 0;
+    const before = this.getTaskProgress(state,task.canonical_id,target.canonical_id);
     const after = Math.min(target.required_quantity,before + quantity);
-    state.progress[key] = after;
+    this.setTaskProgress(state,task.canonical_id,target.canonical_id,after);
     this.refreshTaskProgressState(state,task);
     return {
       applied: after !== before,
@@ -503,18 +679,27 @@ class TaskRuntimeEngine {
       before,
       after,
       required: target.required_quantity,
-      status: state.tasks[task.canonical_id].status,
+      status: this.getTaskRuntime(state,task.canonical_id)?.status,
     };
+  }
+
+  /** 统计任务物品目标在背包中的数量。同一实物可能被内容库解析为多个实体副本
+   *  (candidate_canonical_ids 与 entity_canonical_id 不同)，进度应累计候选集总量，
+   *  否则玩家买到正确的物品(任一候选实体)却因 id 不同而永不达标。 */
+  itemTargetQuantity(state, target) {
+    const candidates = new Set([target.entity_canonical_id, ...(target.candidate_canonical_ids ?? [])].filter(Boolean));
+    let total = 0;
+    for (const id of candidates) total += Number(state.inventory?.[id] ?? 0);
+    return total;
   }
 
   syncItemTargets(state,task,onlyItemId = null) {
     const changes = [];
     for (const target of task.targets.filter((entry) => entry.target_kind === 'item'
-      && (!onlyItemId || entry.entity_canonical_id === onlyItemId))) {
-      const key = progressKey(task.canonical_id,target.canonical_id);
-      const before = state.progress[key] ?? 0;
-      const after = Math.min(target.required_quantity,state.inventory[target.entity_canonical_id] ?? 0);
-      state.progress[key] = after;
+      && (!onlyItemId || entry.entity_canonical_id === onlyItemId || (target.candidate_canonical_ids ?? []).includes(onlyItemId)))) {
+      const before = this.getTaskProgress(state,task.canonical_id,target.canonical_id);
+      const after = Math.min(target.required_quantity,this.itemTargetQuantity(state,target));
+      this.setTaskProgress(state,task.canonical_id,target.canonical_id,after);
       if (after !== before) changes.push({ task_canonical_id: task.canonical_id,target_canonical_id: target.canonical_id,before,after,required: target.required_quantity });
     }
     this.refreshTaskProgressState(state,task);
@@ -522,15 +707,16 @@ class TaskRuntimeEngine {
   }
 
   refreshTaskProgressState(state,task) {
-    const runtime = state.tasks[task.canonical_id];
-    if (!ACTIVE_STATUSES.has(runtime.status)) return;
-    const complete = task.targets.every((target) => (state.progress[progressKey(task.canonical_id,target.canonical_id)] ?? 0) >= target.required_quantity);
+    const runtime = this.getTaskRuntime(state,task.canonical_id);
+    if (!runtime || !ACTIVE_STATUSES.has(runtime.status)) return;
+    const complete = task.targets.every((target) => this.getTaskProgress(state,task.canonical_id,target.canonical_id) >= target.required_quantity);
     runtime.status = complete ? 'completable' : 'in_progress';
     runtime.current_step = complete ? 3 : 2;
+    this.setTaskRuntime(state,task.canonical_id,runtime);
   }
 
   activeTasks(state) {
-    return this.listTasks().filter((task) => ACTIVE_STATUSES.has(state.tasks[task.canonical_id]?.status));
+    return this.listTasks().filter((task) => ACTIVE_STATUSES.has(this.getTaskRuntime(state,task.canonical_id)?.status));
   }
 
   effectivePrerequisiteIds(task,seen=new Set()) {
@@ -547,12 +733,13 @@ class TaskRuntimeEngine {
   }
 
   prerequisitesSatisfied(state,task) {
-    return this.effectivePrerequisiteIds(task).every((id)=>state.tasks[id]?.status==='completed');
+    return this.effectivePrerequisiteIds(task).every((id)=>this.getTaskRuntime(state,id)?.status==='completed');
   }
 
   refreshLevelAvailabilityState(state) {
     const unlocked=[];
     for (const task of this.listTasks()) {
+      if (this.isDynamicTask(task.canonical_id)) continue; // 动态任务无等级槽位，不应因升级刷新
       const runtime=state.tasks[task.canonical_id];
       if (runtime?.status!=='locked' || Number(state.player.level)<Number(task.level_requirement ?? 1)) continue;
       if (!this.prerequisitesSatisfied(state,task)) continue;
@@ -603,6 +790,14 @@ function positiveInteger(value,field) {
   return number;
 }
 
+function applyReputationTitle(reputation) {
+  const rep=Number(reputation??0);
+  if (rep>=50000) return '公爵';
+  if (rep>=20000) return '总督';
+  if (rep>=5000) return '提督';
+  if (rep>=1000) return '船长';
+  return '水手';
+}
 function progressKey(taskId,targetId) {
   return `${taskId}|${targetId}`;
 }
@@ -643,50 +838,137 @@ function stableJson(value) {
 module.exports = { EVENT_TYPES, TaskRuntimeEngine, validateEvent };
 
 },
-"src/task-runtime/ports.js": function(module,exports,require){
+"server/ai/ai-memory.js": function(module,exports,require){
 'use strict';
+/**
+ * 纵横四海 · 世界记忆层
+ *
+ * 让 AI 从"无状态单点生成"升级为"有记忆生成"。提供三类记忆：
+ *   - player_memory：玩家的关键事迹（击败的BOSS、帮助的NPC、达成的重要事件）
+ *   - npc_affinity：玩家对 NPC 的好感度（驱动 NPC 台词/态度的变化）
+ *   - world_event_log：世界事件日志（经济引擎已有 eventLog，供世界上下文注入）
+ *
+ * 所有记忆写入都是"记录"（去重、封顶），供各 AI 场景在生成时注入。
+ * AI 失败不影响游戏（记忆仅增强上下文，不承担正确性）。
+ */
+const { upgradeGameplayState } = require("src/task-runtime/gameplay-state.js");
 
-const TASK_CATALOG_METHODS = Object.freeze([
-  'listSeriesTasks',
-  'getTask',
-  'getMapNode',
-  'getNodeForLocation',
-  'listAdjacentNodes',
-  'listNpcsAtNode',
-  'isNpcAtLocation',
-  'isMonsterAtLocation',
-  'hasContentEntity',
-]);
-const RUNTIME_STORAGE_METHODS = Object.freeze([
-  'hasPlayer',
-  'createPlayer',
-  'loadPlayer',
-  'resetPlayer',
-  'transact',
-]);
+const MEMORY_CAP = 40; // 玩家事迹封顶，超出滚动丢弃最旧
+const AFFINITY_MIN = -50;
+const AFFINITY_MAX = 50;
 
-function assertPort(adapter,name,methods) {
-  if (!adapter) throw new Error(`${name} adapter is required`);
-  const missing = methods.filter((method) => typeof adapter[method] !== 'function');
-  if (missing.length) throw new Error(`${name} adapter is missing methods: ${missing.join(', ')}`);
-  return adapter;
+/** 规范化记忆项（若记忆数组是旧结构/被破坏则不 panic） */
+function _normMemory(memory) {
+  if (!Array.isArray(memory)) return [];
+  return memory.filter((m) => m && typeof m.text === 'string' && m.text.length > 0);
 }
 
-function assertTaskCatalog(adapter) {
-  return assertPort(adapter,'TaskCatalog',TASK_CATALOG_METHODS);
+/**
+ * 记录一条玩家事迹。gameplay state 由调用方传入（含 player_memory），
+ * 返回规范化后的记忆数组（调用方负责回写 state.player_memory）。
+ * 去重：若已有相同 type+text 则仅刷新时间戳，不重复追加。
+ */
+function recordPlayerMemory(state, { type, text, importance = 1 }) {
+  if (!state || !text) return state;
+  if (!Array.isArray(state.player_memory)) state.player_memory = [];
+  const normalized = _normMemory(state.player_memory);
+  const existing = normalized.find((m) => m.type === type && m.text === text);
+  if (existing) {
+    existing.timestamp = Date.now();
+    existing.importance = Math.max(existing.importance ?? 1, importance);
+    state.player_memory = normalized;
+    return state;
+  }
+  normalized.push({ id: `${type}:${Date.now().toString(36)}`, type, text, importance, timestamp: Date.now() });
+  if (normalized.length > MEMORY_CAP) normalized.splice(0, normalized.length - MEMORY_CAP);
+  state.player_memory = normalized;
+  return state;
 }
 
-function assertRuntimeStorage(adapter) {
-  return assertPort(adapter,'RuntimeStorage',RUNTIME_STORAGE_METHODS);
+/**
+ * 调整对某 NPC 的好感度。npc_affinity = { [npcId]: { value, memo, updated_at } }。
+ * 返回新的 npc_affinity 对象。
+ */
+function adjustNpcAffinity(state, npcId, delta, memo) {
+  if (!state || !npcId) return state;
+  if (!state.npc_affinity || typeof state.npc_affinity !== 'object' || Array.isArray(state.npc_affinity)) state.npc_affinity = {};
+  const cur = state.npc_affinity[npcId] ?? { value: 0, memo: '', updated_at: Date.now() };
+  cur.value = Math.max(AFFINITY_MIN, Math.min(AFFINITY_MAX, (cur.value ?? 0) + delta));
+  cur.updated_at = Date.now();
+  if (memo) cur.memo = memo;
+  state.npc_affinity[npcId] = cur;
+  return state;
 }
 
-module.exports = { RUNTIME_STORAGE_METHODS,TASK_CATALOG_METHODS,assertRuntimeStorage,assertTaskCatalog };
+/**
+ * 从玩家记忆中"回忆"与 query 最相关的片段（供 AI 注入）。
+ * 简单优先级：文本含 query 关键词优先，其次按 importance 取最近。返回字符串数组。
+ */
+function recallPlayerMemory(state, { query = '', limit = 4 } = {}) {
+  const memory = _normMemory(state?.player_memory);
+  if (memory.length === 0) return [];
+  const tokens = (query || '').split(/[\s,，、]+/).filter(Boolean);
+  const scored = memory.map((m) => {
+    let score = (m.importance ?? 1);
+    if (tokens.length) {
+      const matched = tokens.filter((t) => m.text.includes(t)).length;
+      if (matched) score += matched * 5;
+    }
+    return { m, score };
+  });
+  return scored
+    .sort((a, b) => b.score - a.score || (b.m.timestamp ?? 0) - (a.m.timestamp ?? 0))
+    .slice(0, limit)
+    .map(({ m }) => m.text);
+}
+
+/** 从记忆里取对新 NPC 的好感度（无记录返回 0） */
+function getNpcAffinity(state, npcId) {
+  if (!state?.npc_affinity) return 0;
+  return state.npc_affinity[npcId]?.value ?? 0;
+}
+
+/**
+ * 组装世界上下文对象（供 AI 场景注入）。从经济引擎 snapshot 提取事件 + 天气。
+ * 返回一个可 JSON 序列化、紧凑的上下文片段。
+ */
+function buildWorldContext(snapshot) {
+  if (!snapshot) return { 事件: '无', 天气: '未知' };
+  const events = (snapshot.activeEvents ?? []).slice(0, 3)
+    .map((e) => `${e.name}（${e.region ?? '全域'}）`)
+    .join('、') || '无';
+  const weather = Object.entries(snapshot.weather ?? {}).slice(0, 3)
+    .map(([r, w]) => `${r}:${w}`)
+    .join('、') || '未知';
+  return { 事件: events, 天气: weather, 经济_tick: snapshot.tick_count ?? 0 };
+}
+
+/**
+ * 将记忆注入到 AI 生成上下文。返回一个紧凑中文记忆摘要字符串，
+ * 供调用方拼进 prompt（若无记忆返回''，不打扰生成）。
+ */
+function memoryDigest(state, { npcId = null, query = '' } = {}) {
+  const parts = [];
+  const memories = recallPlayerMemory(state, { query, limit: 3 });
+  if (memories.length) parts.push(`玩家过往事迹：${memories.join('；')}`);
+  if (npcId) {
+    const aff = getNpcAffinity(state, npcId);
+    if (aff !== 0) parts.push(`与${npcId}的好感度：${aff > 0 ? '+爱戴' : '-疏远'}(${aff})`);
+  }
+  return parts.join('。');
+}
+
+module.exports = {
+  MEMORY_CAP, AFFINITY_MIN, AFFINITY_MAX,
+  recordPlayerMemory, adjustNpcAffinity, recallPlayerMemory,
+  getNpcAffinity, buildWorldContext, memoryDigest,
+};
 
 },
 "src/task-runtime/gameplay-state.js": function(module,exports,require){
 'use strict';
 
-const GAMEPLAY_SCHEMA_VERSION = 5;
+const GAMEPLAY_SCHEMA_VERSION = 6;
 const INVENTORY_CAPACITY = 200;
 
 const LEVEL_THRESHOLDS = Object.freeze(require("data/runtime/level-experience.json").thresholds);
@@ -704,6 +986,12 @@ function createGameplayState(player = {}) {
       base_agility: 3,
       morale: 50,
       luck: 60,
+      pets: [],
+      crew: [],
+      skills: {},
+      skill_points: 0,
+      reputation: 0,
+      title: '水手',
       ...player,
     },
     inventory_capacity: INVENTORY_CAPACITY,
@@ -718,12 +1006,28 @@ function createGameplayState(player = {}) {
       weapon: null,offhand: null,headgear: null,clothes: null,belt: null,shoes: null,
       accessories: [null,null,null],
     },
+    equipment_instances: {},
     shop_transactions: {},
     drop_settlements: {},
     encounter_defeats: {},
     gameplay_events: {},
     task_item_ledger: { schema_version:1,reservations:{},grants:{},consumptions:{},abandonments:{} },
     npc_duel: null,
+    guild: null,
+    city_influence: {},
+    occupied_cities: [],
+    // 世界记忆层：玩家个人事迹（AI 场景注入上下文）与 NPC 好感度
+    player_memory: [],
+    npc_affinity: {},
+    // 动态任务（AI 世界支线）：运行时态用独立 JSON 容器（无 sqlite FK 约束），与
+    // 静态任务的 state.tasks/state.progress（sqlite 持久化）区分，保证动态任务完整可玩。
+    runtime_tasks: {},
+    runtime_progress: {},
+    // 市场货物栏（cargo）：goods 商品（货物）与 player_inventory 的随身物品/装备
+    // (FK content_entities) 语义不同，用独立 JSON 容器持久化，避免外键阻断且贴合
+    // 航海贸易『货舱』语义。
+    cargo: {},
+    cargo_capacity: 100,
   };
 }
 
@@ -734,9 +1038,23 @@ function upgradeGameplayState(state) {
   upgraded.equipment = { ...defaults.equipment,...state.equipment };
   upgraded.equipment.accessories = [...(state.equipment?.accessories ?? defaults.equipment.accessories)].slice(0,3);
   while (upgraded.equipment.accessories.length < 3) upgraded.equipment.accessories.push(null);
-  for (const key of ['owned_ships','shop_transactions','drop_settlements','encounter_defeats','gameplay_events']) {
+  for (const key of ['owned_ships','shop_transactions','drop_settlements','encounter_defeats','gameplay_events','equipment_instances','city_influence']) {
     if (!upgraded[key] || typeof upgraded[key] !== 'object' || Array.isArray(upgraded[key])) upgraded[key] = {};
   }
+  if (upgraded.guild === undefined) upgraded.guild = null;
+  if (!Array.isArray(upgraded.occupied_cities)) upgraded.occupied_cities = [];
+  if (!Array.isArray(upgraded.player.pets)) upgraded.player.pets = [];
+  if (!Array.isArray(upgraded.player.crew)) upgraded.player.crew = [];
+  if (!upgraded.player.skills || typeof upgraded.player.skills !== 'object') upgraded.player.skills = {};
+  if (upgraded.player.skill_points === undefined) upgraded.player.skill_points = 0;
+  if (upgraded.player.reputation === undefined) upgraded.player.reputation = 0;
+  if (!upgraded.player.title) upgraded.player.title = '水手';
+  if (!Array.isArray(upgraded.player_memory)) upgraded.player_memory = [];
+  if (!upgraded.npc_affinity || typeof upgraded.npc_affinity !== 'object' || Array.isArray(upgraded.npc_affinity)) upgraded.npc_affinity = {};
+  if (!upgraded.runtime_tasks || typeof upgraded.runtime_tasks !== 'object' || Array.isArray(upgraded.runtime_tasks)) upgraded.runtime_tasks = {};
+  if (!upgraded.runtime_progress || typeof upgraded.runtime_progress !== 'object' || Array.isArray(upgraded.runtime_progress)) upgraded.runtime_progress = {};
+  if (!upgraded.cargo || typeof upgraded.cargo !== 'object' || Array.isArray(upgraded.cargo)) upgraded.cargo = {};
+  if (upgraded.cargo_capacity === undefined) upgraded.cargo_capacity = 100;
   const {ensureTaskItemLedger}=require("src/task-runtime/task-item-ledger.js");ensureTaskItemLedger(upgraded);
   if(upgraded.npc_duel===undefined)upgraded.npc_duel=null;
   applyExperienceProgression(upgraded);
@@ -757,6 +1075,7 @@ function applyExperienceProgression(state) {
     player.base_defense += 1 + Math.floor(next / 15);
     player.base_agility += 1;
     player.morale += 5;
+    player.skill_points = (player.skill_points ?? 0) + 1;
   }
   player.level = level;
   return { before,after:level,levels_gained:level-before };
@@ -916,6 +1235,46 @@ function positive(value){const number=Number(value);if(!Number.isInteger(number)
 
 module.exports={LEDGER_SCHEMA_VERSION,abandonTaskItems,assertInventoryRemovalAllowed,consumeTaskItems,defaultPolicy,ensureTaskItemLedger,
   grantInventoryItem,reconcileTaskItemReservations,reservedQuantity};
+
+},
+"src/task-runtime/ports.js": function(module,exports,require){
+'use strict';
+
+const TASK_CATALOG_METHODS = Object.freeze([
+  'listSeriesTasks',
+  'getTask',
+  'getMapNode',
+  'getNodeForLocation',
+  'listAdjacentNodes',
+  'listNpcsAtNode',
+  'isNpcAtLocation',
+  'isMonsterAtLocation',
+  'hasContentEntity',
+]);
+const RUNTIME_STORAGE_METHODS = Object.freeze([
+  'hasPlayer',
+  'createPlayer',
+  'loadPlayer',
+  'resetPlayer',
+  'transact',
+]);
+
+function assertPort(adapter,name,methods) {
+  if (!adapter) throw new Error(`${name} adapter is required`);
+  const missing = methods.filter((method) => typeof adapter[method] !== 'function');
+  if (missing.length) throw new Error(`${name} adapter is missing methods: ${missing.join(', ')}`);
+  return adapter;
+}
+
+function assertTaskCatalog(adapter) {
+  return assertPort(adapter,'TaskCatalog',TASK_CATALOG_METHODS);
+}
+
+function assertRuntimeStorage(adapter) {
+  return assertPort(adapter,'RuntimeStorage',RUNTIME_STORAGE_METHODS);
+}
+
+module.exports = { RUNTIME_STORAGE_METHODS,TASK_CATALOG_METHODS,assertRuntimeStorage,assertTaskCatalog };
 
 },
 "src/task-runtime/browser-task-catalog.js": function(module,exports,require){
@@ -1441,12 +1800,12 @@ class NpcDuelRuntime{
   }
   start(playerId,npcCanonicalId,eventId){
     const result=transact(this.storage,playerId,eventId,'npc_duel_start',{npc_canonical_id:npcCanonicalId},this.clock,(state)=>{
-      if(state.combat||state.npc_duel)throw new Error('Another combat or NPC duel is already active');
-      const node=this.taskCatalog.getMapNode(state.player.current_map_node_canonical_id);if(!node?.location_canonical_id)throw new Error('NPC duel requires a formal location');
+      if(state.combat||state.npc_duel)throw new Error('另一场战斗或 NPC 决斗正在进行中。');
+      const node=this.taskCatalog.getMapNode(state.player.current_map_node_canonical_id);if(!node?.location_canonical_id)throw new Error('NPC 决斗需要处于正式地点。');
       const placement=this.taskCatalog.listNpcsAtNode(node.map_node_canonical_id).find((entry)=>entry.npc_canonical_id===npcCanonicalId);
-      if(!placement)throw new Error('NPC duel target is not at the current formal location');
+      if(!placement)throw new Error('NPC 决斗目标不在当前正式地点。');
       const match=findActiveDuelTask(state,this.taskCatalog,npcCanonicalId,node.location_canonical_id);
-      if(!match)throw new Error('NPC duel requires an active matching task');
+      if(!match)throw new Error('NPC 决斗需要匹配的进行中任务。');
       const npc=this.taskCatalog.content?.npcs?.find((entry)=>entry.canonical_id===npcCanonicalId)??{canonical_id:npcCanonicalId,level:1};
       const stats=npcDuelStats(npc,match.task,match.target);
       state.npc_duel={canonical_id:`npc-duel.${eventId}`,task_canonical_id:match.task.canonical_id,target_canonical_id:match.target.canonical_id,
@@ -1458,7 +1817,7 @@ class NpcDuelRuntime{
   attack(playerId,eventId,{rounds=1}={}){
     rounds=positive(rounds);
     const result=transact(this.storage,playerId,eventId,'npc_duel_attack',{rounds},this.clock,(state)=>{
-      if(!state.npc_duel)throw new Error('No active NPC duel');
+      if(!state.npc_duel)throw new Error('当前没有进行中的 NPC 决斗。');
       let response;const appliedStaminaItems=[];
       for(let index=0;index<rounds;index+=1){
         const duel=state.npc_duel;const player=effectiveStats(state,this.gameplayCatalog);duel.round+=1;
@@ -1487,7 +1846,7 @@ class NpcDuelRuntime{
   }
   retreat(playerId,eventId){
     return transact(this.storage,playerId,eventId,'npc_duel_retreat',{},this.clock,(state)=>{
-      if(!state.npc_duel)throw new Error('No active NPC duel');const canonicalId=state.npc_duel.canonical_id;state.npc_duel=null;
+      if(!state.npc_duel)throw new Error('当前没有进行中的 NPC 决斗。');const canonicalId=state.npc_duel.canonical_id;state.npc_duel=null;
       return {applied:true,action:'npc_duel_retreated',duel_canonical_id:canonicalId,fee:0,retry_available:true};
     });
   }
@@ -1523,6 +1882,7 @@ module.exports={NpcDuelRuntime,findActiveDuelTask,npcDuelStats};
 },
 "src/task-runtime/formal-gameplay.js": function(module,exports,require){
 'use strict';
+const { recordPlayerMemory } = require("server/ai/ai-memory.js");
 
 const { applyExperienceProgression } = require("src/task-runtime/gameplay-state.js");
 const { activeStaminaItem,useActiveStaminaItem } = require("src/task-runtime/stamina-item.js");
@@ -1593,10 +1953,10 @@ class ShipRuntime {
     const ship = this.catalog.getShip(shipId);
     return transactEvent(this.storage,playerId,eventId,'ship_purchase',{ ship_canonical_id:shipId },this.clock,(state) => {
       if (state.owned_ships[shipId]) return { applied:false,reason:'already_owned',ship_canonical_id:shipId };
-      if (!atPort(state,ship.city_canonical_id,ship.port_map_node_canonical_id)) throw new Error('Ship purchase requires its formal port location');
+      if (!atPort(state,ship.city_canonical_id,ship.port_map_node_canonical_id)) throw new Error('购买船只需在对应港口码头。');
       const limit = Math.min(6,Math.floor(state.player.level / 10) + 1);
-      if (Object.keys(state.owned_ships).length >= limit) throw new Error('Owned ship limit reached');
-      if (state.player.money < ship.price) throw new Error('Insufficient money for ship');
+      if (Object.keys(state.owned_ships).length >= limit) throw new Error('船只数量已达上限。');
+      if (state.player.money < ship.price) throw new Error('金币不足，无法购买此船。');
       state.player.money -= ship.price;
       state.owned_ships[shipId] = { purchased_at:this.clock(),source_canonical_id:ship.source_canonical_id ?? null };
       state.current_ship_canonical_id = shipId;
@@ -1605,7 +1965,7 @@ class ShipRuntime {
   }
   select(playerId,shipId,eventId) {
     return transactEvent(this.storage,playerId,eventId,'ship_select',{ ship_canonical_id:shipId },this.clock,(state) => {
-      if (!state.owned_ships[shipId]) throw new Error('Ship is not owned');
+      if (!state.owned_ships[shipId]) throw new Error('未持有此船。');
       state.current_ship_canonical_id = shipId;
       return { applied:true,action:'ship_selected',ship_canonical_id:shipId };
     });
@@ -1619,13 +1979,13 @@ class VoyageRuntime {
   start(playerId,routeId,eventId) {
     const route = this.catalog.getRoute(routeId);
     return transactEvent(this.storage,playerId,eventId,'voyage_start',{ route_canonical_id:routeId },this.clock,(state) => {
-      if (state.voyage) throw new Error('A voyage is already active');
-      if (!state.current_ship_canonical_id || !state.owned_ships[state.current_ship_canonical_id]) throw new Error('Voyage requires an owned current ship');
-      if (!atPort(state,route.from_city_canonical_id,route.from_port_map_node_canonical_id)) throw new Error('Voyage must start at the formal departure port');
+      if (state.voyage) throw new Error('航海已在进行中。');
+      if (!state.current_ship_canonical_id || !state.owned_ships[state.current_ship_canonical_id]) throw new Error('航海需要一艘已持有的当前船只。');
+      if (!atPort(state,route.from_city_canonical_id,route.from_port_map_node_canonical_id)) throw new Error('航海须在正式出发港码头开始。');
       if (route.required_task_canonical_id && !route.allowed_task_statuses.includes(state.tasks[route.required_task_canonical_id]?.status)) {
-        throw new Error('Voyage task condition is not satisfied');
+        throw new Error('尚未满足此航线的任务条件。');
       }
-      if (state.player.money < Number(route.fee ?? 0)) throw new Error('Insufficient money for voyage fee');
+      if (state.player.money < Number(route.fee ?? 0)) throw new Error('金币不足，无法支付航海费用。');
       state.player.money -= Number(route.fee ?? 0);
       const ship = this.catalog.getShip(state.current_ship_canonical_id);
       state.voyage = {
@@ -1640,8 +2000,8 @@ class VoyageRuntime {
   advance(playerId,eventId,{ ticks=1 }={}) {
     ticks=positive(ticks);
     const result=transactEvent(this.storage,playerId,eventId,'voyage_advance',{ ticks },this.clock,(state) => {
-      if (!state.voyage) throw new Error('No active voyage');
-      if (state.fishing || state.dungeon || state.maritime_encounter) throw new Error('Resolve the active maritime activity before advancing');
+      if (!state.voyage) throw new Error('当前没有进行中的航海。');
+      if (state.fishing || state.dungeon || state.maritime_encounter) throw new Error('请先处理当前的航海活动再继续前进。');
       const maritimeResult=this.maritimeRuntime?.step(state);
       if(maritimeResult)return {applied:true,...maritimeResult};
       if (state.voyage.last_advance_event_id) delete state.gameplay_events[state.voyage.last_advance_event_id];
@@ -1696,8 +2056,8 @@ class MaritimeRuntime {
   enterRouteLocation(playerId,eventId) {
     return transactEvent(this.storage,playerId,eventId,'maritime_route_location_enter',{},this.clock,(state)=>{
       const encounter=state.maritime_encounter;
-      if(!state.voyage||encounter?.kind!=='route_location')throw new Error('No route location encounter is active');
-      if(!encounter.map_node_canonical_id||!encounter.location_canonical_id)throw new Error('Route location encounter lacks a formal map destination');
+      if(!state.voyage||encounter?.kind!=='route_location')throw new Error('当前没有进行中的航线地点遭遇。');
+      if(!encounter.map_node_canonical_id||!encounter.location_canonical_id)throw new Error('航线地点遭遇缺少正式地图目的地。');
       state.player.current_map_node_canonical_id=encounter.map_node_canonical_id;
       if(!state.unlocked_map_nodes.includes(encounter.map_node_canonical_id))state.unlocked_map_nodes.push(encounter.map_node_canonical_id);
       state.voyage.route_location_context={city_canonical_id:encounter.city_canonical_id,location_canonical_id:encounter.location_canonical_id,
@@ -1751,10 +2111,10 @@ class FishingRuntime {
   start(playerId,rodId,baitId,eventId) {
     const rod=this.catalog.getFishingGear(rodId);const bait=this.catalog.getFishingGear(baitId);
     return transactEvent(this.storage,playerId,eventId,'fishing_start',{rod_canonical_id:rodId,bait_canonical_id:baitId},this.clock,(state)=>{
-      if(!state.voyage||state.combat||state.dungeon)throw new Error('Fishing requires an active idle voyage');
-      if(state.fishing)throw new Error('Fishing is already active');
-      if(Number(rod.type)!==14||Number(bait.type)!==8)throw new Error('Fishing requires a rod and bait');
-      if((state.inventory[rodId]??0)<1||(state.inventory[baitId]??0)<1)throw new Error('Fishing gear is not in inventory');
+      if(!state.voyage||state.combat||state.dungeon)throw new Error('钓鱼需要处于空闲的进行中航海。');
+      if(state.fishing)throw new Error('钓鱼已在进行中。');
+      if(Number(rod.type)!==14||Number(bait.type)!==8)throw new Error('钓鱼需要鱼竿和鱼饵。');
+      if((state.inventory[rodId]??0)<1||(state.inventory[baitId]??0)<1)throw new Error('钓鱼装备不在背包中。');
       state.fishing={rod_canonical_id:rodId,bait_canonical_id:baitId,from_city_canonical_id:state.voyage.from_city_canonical_id,
         to_city_canonical_id:state.voyage.to_city_canonical_id,phase:'ready',wait_count:0,reel_count:0,let_out_count:0,success_factor:1,started_at:this.clock()};
       return {applied:true,action:'fishing_started',fishing:{...state.fishing}};
@@ -1762,8 +2122,8 @@ class FishingRuntime {
   }
   cast(playerId,eventId) {
     return transactEvent(this.storage,playerId,eventId,'fishing_cast',{},this.clock,(state)=>{
-      if(!state.voyage||!state.fishing||state.fishing.phase!=='ready')throw new Error('Fishing cast requires a ready active fishing session');
-      const baitId=state.fishing.bait_canonical_id;if((state.inventory[baitId]??0)<1)throw new Error('Fishing bait is exhausted');
+      if(!state.voyage||!state.fishing||state.fishing.phase!=='ready')throw new Error('抛竿需要处于待抛的钓鱼会话。');
+      const baitId=state.fishing.bait_canonical_id;if((state.inventory[baitId]??0)<1)throw new Error('鱼饵已用完。');
       setInventory(state,baitId,state.inventory[baitId]-1);state.fishing.phase='waiting';state.fishing.wait_count=0;state.fishing.reel_count=0;
       state.fishing.let_out_count=0;state.fishing.success_factor=1;
       return {applied:true,action:'fishing_cast',bait_canonical_id:baitId,remaining_bait:state.inventory[baitId]??0};
@@ -1963,6 +2323,395 @@ class EquipmentRuntime {
   }
 }
 
+class MarketRuntime {
+  /**
+   * 区域特产套利市场。当前城市所在区域特产价 = base_price × 0.75（产区便宜），
+   * 非产区商品 = base_price × 1.25（异区贵）。以 market_region.city_region 映射判定玩家所在区域。
+   * 若注入了 WorldEconomy（server/eco），则价格进一步叠加 动态供需 + 天气 + 随机波动 影响。
+   */
+  constructor({ storage,catalog,clock = isoNow,economy = null }) { this.storage=storage;this.catalog=catalog;this.clock=clock;this.economy=economy; }
+  marketRegionForCity(state) {
+    const marketRegion=this.catalog.content?.market_region?.city_region ?? {};
+    let cityId=state.player.current_city_canonical_id;
+    // 若玩家未显式记录城市，则从当前 map_node 的城市 canonical_id 派生（地图节点自带城市）
+    if (!cityId) {
+      const nodeId=state.player.current_map_node_canonical_id;
+      const node=(this.catalog.content?.map_nodes??[]).find((n)=>n.map_node_canonical_id===nodeId);
+      cityId=node?.city_canonical_id;
+    }
+    return cityId ? marketRegion[cityId] ?? null : null;
+  }
+  /** 区域 slug（region.mediterranean）→ 区域中文名（地中海），供世界经济引擎 */
+  regionNameForSlug(slug) {
+    if (!slug) return null;
+    return this.catalog.content?.world_regions?.regions?.[slug]?.name ?? null;
+  }
+  priceFor(state,good) {
+    const cityRegion=this.marketRegionForCity(state);
+    const regionFactor=(cityRegion && good.region===cityRegion)?0.75:1.25;
+    if (this.economy) {
+      // 动态经济：区域基准系数 + 供需/天气/抖动的小幅扰动
+      const regionName=this.regionNameForSlug(cityRegion);
+      if (regionName) return this.economy.getPrice(good,regionName,regionFactor);
+    }
+    // 静态回退
+    return Math.max(1,Math.round(Number(good.base_price)*regionFactor));
+  }
+  getMarketView(playerId,eventId) {
+    return transactEvent(this.storage,playerId,eventId||`market.view.${Date.now()}`,'market_view',{},this.clock,(state) => {
+      const cityRegion=this.marketRegionForCity(state);
+      const regions=this.catalog.content?.goods?.regions ?? {};
+      const allGoods=Object.values(regions).flatMap((entry)=>entry.specialty??[]);
+      const offers=allGoods.map((good)=>({ ...good,region_name:regions[good.region]?.name??good.region,
+        local_price:this.priceFor(state,good),is_local:cityRegion!=null&&good.region===cityRegion }));
+      return { applied:true,action:'market_view_loaded',city_canonical_id:state.player.current_city_canonical_id,
+        city_region:cityRegion,city_region_name:this.regionNameForSlug(cityRegion),money:state.player.money,holds:formalInventoryUsed(state,this.catalog),capacity:state.inventory_capacity,cargo_holds:cargoUsed(state),cargo_capacity:cargoCapacity(state),offers };
+    });
+  }
+  buy(playerId,goodId,quantity,eventId) {
+    const good=this.findGood(goodId);
+    quantity=positive(quantity);
+    return transactEvent(this.storage,playerId,eventId,'market_buy',{ good_canonical_id:goodId,quantity },this.clock,(state) => {
+      if (!this.marketRegionForCity(state)) throw new Error('Market requires being in a city');
+      const price=this.priceFor(state,good);
+      const total=price*quantity;
+      if (state.player.money<total) throw new Error('Insufficient money');
+      // 货物入 cargo 栏（goods 与随身物品不同，独立持久化避开 player_inventory 外键）
+      if (cargoUsed(state)+quantity>cargoCapacity(state)) throw new Error('Cargo capacity exceeded');
+      state.player.money-=total;
+      state.cargo[goodId]=(state.cargo[goodId]??0)+quantity;
+      // 交易反馈到世界经济（买走商品 → 该区供给收紧 → 价格抬升），AI 商人博弈核心
+      if (this.economy) {
+        const regionName = this.regionNameForSlug(this.marketRegionForCity(state));
+        if (regionName) this.economy.applyTrade(regionName, good.category ?? 'specialty', -Math.min(0.05, quantity * 0.001));
+      }
+      return { applied:true,action:'market_bought',good_canonical_id:goodId,quantity,unit_price:price,total,money:state.player.money,cargo:cargoUsed(state) };
+    });
+  }
+  sell(playerId,goodId,quantity,eventId) {
+    const good=this.findGood(goodId);
+    quantity=positive(quantity);
+    return transactEvent(this.storage,playerId,eventId,'market_sell',{ good_canonical_id:goodId,quantity },this.clock,(state) => {
+      if (!this.marketRegionForCity(state)) throw new Error('Market requires being in a city');
+      if ((state.cargo[goodId]??0)<quantity) throw new Error('Insufficient cargo quantity');
+      const price=this.priceFor(state,good);
+      const unit=Math.max(1,Math.floor(price*0.9));
+      const total=unit*quantity;
+      state.cargo[goodId]-=quantity;
+      if (state.cargo[goodId]<=0) delete state.cargo[goodId];
+      state.player.money+=total;
+      // 交易反馈到世界经济（抛售 → 该区供给增 → 价格走低）
+      if (this.economy) {
+        const regionName = this.regionNameForSlug(this.marketRegionForCity(state));
+        if (regionName) this.economy.applyTrade(regionName, good.category ?? 'specialty', Math.min(0.05, quantity * 0.001));
+      }
+      return { applied:true,action:'market_sold',good_canonical_id:goodId,quantity,unit_price:unit,total,money:state.player.money,cargo:cargoUsed(state) };
+    });
+  }
+  findGood(goodId) {
+    const regions=this.catalog.content?.goods?.regions ?? {};
+    for (const entry of Object.values(regions)) {
+      const good=(entry.specialty??[]).find((x)=>x.canonical_id===goodId||x.name===goodId);
+      if (good) return good;
+    }
+    throw new Error(`Unknown market good: ${goodId}`);
+  }
+}
+
+class EquipmentEnhanceRuntime {
+  /** 装备强化（原版15级失败不降级）。规则在 content.enhance_rules。 */
+  constructor({ storage,catalog,clock = isoNow }) { this.storage=storage;this.catalog=catalog;this.clock=clock; }
+  enhance(playerId,equipmentSlot,eventId) {
+    const rules=this.catalog.content?.enhance_rules ?? {};
+    return transactEvent(this.storage,playerId,eventId,'equipment_enhance',{ equipment_slot:equipmentSlot },this.clock,(state) => {
+      const itemId=state.equipment?.[equipmentSlot];
+      if (!itemId) throw new Error('Equipment slot is empty');
+      const instance=state.equipment_instances?.[itemId] ?? {};
+      const level=Number(instance.level??0);
+      if (level>=Number(rules.max_level??15)) throw new Error('Equipment already at max enhancement level');
+      const cost=Number(rules.cost_base??200)+level*Number(rules.cost_growth??150);
+      const materialId=rules.material?.canonical_id;
+      const materialQty=Number(rules.material?.per_level??1);
+      if (state.player.money<cost) throw new Error('Insufficient money for enhancement');
+      if (materialId&&(state.inventory[materialId]??0)<materialQty) throw new Error('Insufficient enhancement material');
+      const success=Math.random()<(Number(rules.success_rate??0.8));
+      state.player.money-=cost;
+      if (materialId) state.inventory[materialId]=Math.max(0,(state.inventory[materialId]??0)-materialQty);
+      const previousLevel=level;
+      if (success) {
+        instance.level=level+1;
+        state.equipment_instances[itemId]=instance;
+      }
+      const stats=effectiveStats(state,this.catalog);
+      return { applied:true,action:'equipment_enhanced',equipment_canonical_id:itemId,slot:equipmentSlot,
+        previous_level:previousLevel,current_level:instance.level,succeeded:success,cost,stats };
+    });
+  }
+}
+
+class PetRuntime {
+  /** 宠物（上限3），capture/feed/setActive/release/rename。 */
+  constructor({ storage,catalog,clock = isoNow }) { this.storage=storage;this.catalog=catalog;this.clock=clock; }
+  capture(playerId,petId,eventId) {
+    const pet=this.findPet(petId);
+    return transactEvent(this.storage,playerId,eventId,'pet_capture',{ pet_canonical_id:petId },this.clock,(state) => {
+      const max=Number(this.catalog.content?.pets?.max_pets??3);
+      const list=state.player.pets??[];
+      if (list.length>=max) throw new Error('Pet limit reached');
+      if (list.some((p)=>p.pet_canonical_id===pet.canonical_id)) throw new Error('Pet already owned');
+      const entry={ instance_id:`pet.${pet.canonical_id}.${eventId}`,pet_canonical_id:pet.canonical_id,name:pet.name,level:1,experience:0,
+        current_health:pet.max_health,max_health:pet.max_health,satiety:80,active:list.length===0,captured_at:this.clock() };
+      state.player.pets=[...list,entry];
+      return { applied:true,action:'pet_captured',pet:entry,owned:state.player.pets.length };
+    });
+  }
+  feed(playerId,petInstanceId,eventId) {
+    return transactEvent(this.storage,playerId,eventId,'pet_feed',{ pet_instance_id:petInstanceId },this.clock,(state) => {
+      const pet=(state.player.pets??[]).find((p)=>p.instance_id===petInstanceId);
+      if (!pet) throw new Error('Pet not found');
+      if ((state.inventory['item.口粮']??0)<1) throw new Error('口粮不足，无法喂食（需先获取宠物口粮）。');
+      state.inventory['item.口粮']-=1;
+      pet.satiety=Math.min(100,Number(pet.satiety??0)+40);
+      pet.current_health=Math.min(pet.max_health,Number(pet.current_health??0)+Math.floor(Number(pet.max_health)*0.2));
+      return { applied:true,action:'pet_fed',pet:pet,satiety:pet.satiety };
+    });
+  }
+  setActive(playerId,petInstanceId,eventId) {
+    return transactEvent(this.storage,playerId,eventId,'pet_set_active',{ pet_instance_id:petInstanceId },this.clock,(state) => {
+      const list=state.player.pets??[];
+      const pet=list.find((p)=>p.instance_id===petInstanceId);
+      if (!pet) throw new Error('Pet not found');
+      for (const p of list) p.active=false;
+      pet.active=true;
+      return { applied:true,action:'pet_active',pet_instance_id:petInstanceId };
+    });
+  }
+  release(playerId,petInstanceId,eventId) {
+    return transactEvent(this.storage,playerId,eventId,'pet_release',{ pet_instance_id:petInstanceId },this.clock,(state) => {
+      const list=state.player.pets??[];
+      const pet=list.find((p)=>p.instance_id===petInstanceId);
+      if (!pet) throw new Error('Pet not found');
+      const next=list.filter((p)=>p.instance_id!==petInstanceId);
+      state.player.pets=next;
+      return { applied:true,action:'pet_released',pet_instance_id:petInstanceId,owned:next.length };
+    });
+  }
+  rename(playerId,petInstanceId,newName,eventId) {
+    return transactEvent(this.storage,playerId,eventId,'pet_rename',{ pet_instance_id:petInstanceId,new_name:newName },this.clock,(state) => {
+      const pet=(state.player.pets??[]).find((p)=>p.instance_id===petInstanceId);
+      if (!pet) throw new Error('Pet not found');
+      if (!newName||!String(newName).trim()) throw new Error('Pet name cannot be empty');
+      pet.name=String(newName).trim().slice(0,12);
+      return { applied:true,action:'pet_renamed',pet:pet };
+    });
+  }
+  findPet(petId) {
+    const pets=this.catalog.content?.pets?.pets??[];
+    const pet=pets.find((p)=>p.canonical_id===petId||p.name===petId);
+    if (!pet) throw new Error(`Unknown pet: ${petId}`);
+    return pet;
+  }
+}
+
+class DiscoverRuntime {
+  /** 大航海·探索发现：玩家到达发现物所在地点即触发，奖励金钱/经验/声望。 */
+  constructor({ storage,catalog,clock = isoNow }) { this.storage=storage;this.catalog=catalog;this.clock=clock; }
+  visit(playerId,discoveryId,eventId) {
+    const discovery=this.findDiscovery(discoveryId);
+    return transactEvent(this.storage,playerId,eventId,'discovery_visit',{ discovery_canonical_id:discovery.canonical_id },this.clock,(state) => {
+      const found=state.discoveries_found??{};
+      if (found[discovery.canonical_id]) return { applied:false,reason:'discovery_already_found',discovery_canonical_id:discovery.canonical_id };
+      const node=this.catalog.getNodeForLocation?.(discovery.location_canonical_id);
+      if (node && state.player.current_map_node_canonical_id!==node.map_node_canonical_id) throw new Error('Discovery is not at the current location');
+      found[discovery.canonical_id]={ found_at:this.clock(),name:discovery.name,reward:discovery.reward };
+      state.discoveries_found=found;
+      const reward=discovery.reward??{};
+      if (reward.money) state.player.money+=Number(reward.money);
+      if (reward.experience) { state.player.experience+=Number(reward.experience); applyExperienceProgression(state); }
+      if (reward.reputation) state.player.reputation=Number(state.player.reputation??0)+Number(reward.reputation);
+      state.player.title=applyTitle(state.player.reputation??0);
+      return { applied:true,action:'discovery_found',discovery_canonical_id:discovery.canonical_id,name:discovery.name,
+        reward:reward,reputation:state.player.reputation,title:state.player.title,money:state.player.money,experience:state.player.experience };
+    });
+  }
+  listFound(playerId) {
+    const state=this.storage.loadPlayer(playerId);
+    return { applied:true,action:'discoveries_listed',found:state.discoveries_found??{} };
+  }
+  findDiscovery(discoveryId) {
+    const list=this.catalog.content?.discoveries?.discoveries??[];
+    const d=list.find((x)=>x.canonical_id===discoveryId||x.name===discoveryId);
+    if (!d) throw new Error(`Unknown discovery: ${discoveryId}`);
+    return d;
+  }
+}
+
+class RecruitRuntime {
+  /** 大航海·船员随从：招募上限 max_crew(5)，对玩家属性加成（attack/defense/agility/max_health）。 */
+  constructor({ storage,catalog,clock = isoNow }) { this.storage=storage;this.catalog=catalog;this.clock=clock; }
+  recruit(playerId,crewId,eventId) {
+    const crew=this.findCrew(crewId);
+    return transactEvent(this.storage,playerId,eventId,'crew_recruit',{ crew_canonical_id:crew.canonical_id },this.clock,(state) => {
+      const max=Number(this.catalog.content?.crew?.max_crew??5);
+      const list=state.player.crew??[];
+      if (list.length>=max) throw new Error('Crew limit reached');
+      if (list.some((c)=>c.crew_canonical_id===crew.canonical_id)) throw new Error('Crew member already recruited');
+      if (state.player.money<Number(crew.recruit_cost??0)) throw new Error('Insufficient money to recruit');
+      state.player.money-=Number(crew.recruit_cost??0);
+      list.push({ instance_id:`crew.${crew.canonical_id}.${eventId}`,crew_canonical_id:crew.canonical_id,name:crew.name,role:crew.role,
+        personality:crew.personality ?? '忠诚的船员',loyalty:60,recruited_at:this.clock() });
+      state.player.crew=list;
+      return { applied:true,action:'crew_recruited',crew:crew.canonical_id,money:state.player.money,crew_count:list.length };
+    });
+  }
+  dismiss(playerId,crewInstanceId,eventId) {
+    return transactEvent(this.storage,playerId,eventId,'crew_dismiss',{ crew_instance_id:crewInstanceId },this.clock,(state) => {
+      const list=state.player.crew??[];
+      const crew=list.find((c)=>c.instance_id===crewInstanceId);
+      if (!crew) throw new Error('Crew member not found');
+      state.player.crew=list.filter((c)=>c.instance_id!==crewInstanceId);
+      return { applied:true,action:'crew_dismissed',crew_count:state.player.crew.length };
+    });
+  }
+  crewBonuses(state) {
+    const { loyaltyFactor } = require("server/ai/ai-crew.js");
+    const bonuses={ attack:0,defense:0,agility:0,max_health:0 };
+    for (const c of state.player.crew??[]) {
+      const def=this.catalog.content?.crew?.crew?.find((x)=>x.canonical_id===c.crew_canonical_id);
+      if (!def) continue;
+      const factor = loyaltyFactor(c.loyalty ?? 60); // 忠诚度折算加成
+      bonuses.attack+=Math.round(Number(def.attack_bonus??0)*factor);
+      bonuses.defense+=Math.round(Number(def.defense_bonus??0)*factor);
+      bonuses.agility+=Math.round(Number(def.agility_bonus??0)*factor);
+      bonuses.max_health+=Math.round(Number(def.health_bonus??0)*factor);
+    }
+    return bonuses;
+  }
+  findCrew(crewId) {
+    const list=this.catalog.content?.crew?.crew??[];
+    const c=list.find((x)=>x.canonical_id===crewId||x.name===crewId);
+    if (!c) throw new Error(`Unknown crew: ${crewId}`);
+    return c;
+  }
+}
+
+class SkillRuntime {
+  /** 大航海·技能职业：skill_points 学习技能树，被动/主动加成战斗/航海/贸易/探索。 */
+  constructor({ storage,catalog,clock = isoNow }) { this.storage=storage;this.catalog=catalog;this.clock=clock; }
+  learn(playerId,skillId,eventId) {
+    const skill=this.findSkill(skillId);
+    return transactEvent(this.storage,playerId,eventId,'skill_learn',{ skill_canonical_id:skill.canonical_id },this.clock,(state) => {
+      const learned=state.player.skills??{};
+      const level=Number(learned[skill.canonical_id]?.level??0);
+      if (level>=Number(skill.max_level??5)) throw new Error('Skill already at max level');
+      const points=Number(state.player.skill_points??0);
+      const cost=Number(skill.points_per_level??1);
+      if (points<cost) throw new Error('Insufficient skill points');
+      state.player.skill_points=points-cost;
+      learned[skill.canonical_id]={ level:level+1,learned_at:this.clock() };
+      state.player.skills=learned;
+      return { applied:true,action:'skill_learned',skill:skill.canonical_id,level:learned[skill.canonical_id].level,skill_points:state.player.skill_points };
+    });
+  }
+  listLearned(playerId) {
+    const state=this.storage.loadPlayer(playerId);
+    const learned=state.player.skills??{};
+    return { applied:true,action:'skills_listed',skill_points:state.player.skill_points,learned };
+  }
+  findSkill(skillId) {
+    const list=this.catalog.content?.skills?.skills??[];
+    const s=list.find((x)=>x.canonical_id===skillId||x.name===skillId);
+    if (!s) throw new Error(`Unknown skill: ${skillId}`);
+    return s;
+  }
+}
+
+class GuildRuntime {
+  /** 大航海·商会：成立商会/置办产业（占用资金），商会城市信息存 state.guild。 */
+  constructor({ storage,catalog,clock = isoNow }) { this.storage=storage;this.catalog=catalog;this.clock=clock; }
+  establish(playerId,name,eventId) {
+    return transactEvent(this.storage,playerId,eventId,'guild_establish',{ name },this.clock,(state) => {
+      if (state.guild) throw new Error('A guild already exists');
+      const finalName=String(name||'').trim();
+      if (!finalName) throw new Error('Guild name cannot be empty');
+      const cost=Number(this.catalog.content?.cities?.guild_found_cost??10000);
+      if (state.player.money<cost) throw new Error('Insufficient money to found a guild');
+      state.player.money-=cost;
+      state.guild={ name:finalName,founded_at:this.clock(),city_canonical_id:state.player.current_city_canonical_id,treasury:0 };
+      return { applied:true,action:'guild_established',guild:state.guild,money:state.player.money };
+    });
+  }
+  deposit(playerId,amount,eventId) {
+    amount=positive(amount);
+    return transactEvent(this.storage,playerId,eventId,'guild_deposit',{ amount },this.clock,(state) => {
+      if (!state.guild) throw new Error('No guild exists');
+      if (state.player.money<amount) throw new Error('Insufficient money');
+      state.player.money-=amount;
+      state.guild.treasury=Number(state.guild.treasury??0)+amount;
+      return { applied:true,action:'guild_deposited',treasury:state.guild.treasury,money:state.player.money };
+    });
+  }
+  listState(playerId) {
+    const state=this.storage.loadPlayer(playerId);
+    return { applied:true,action:'guild_listed',guild:state.guild??null,city_influence:state.city_influence??{},occupied_cities:state.occupied_cities??[] };
+  }
+}
+
+class CityRuntime {
+  /** 大航海·城市占领/税收：invest 增影响力，占领高影响力城市（占领区免税+收日税）。 */
+  constructor({ storage,catalog,clock = isoNow }) { this.storage=storage;this.catalog=catalog;this.clock=clock; }
+  invest(playerId,cityId,eventId) {
+    return transactEvent(this.storage,playerId,eventId,'city_invest',{ city_canonical_id:cityId },this.clock,(state) => {
+      const city=this.findCity(cityId);
+      if (!state.guild) throw new Error('A guild is required to invest in cities');
+      const influence=state.city_influence??{};
+      const cost=Number(city.influence_cost??500);
+      if (state.player.money<cost) throw new Error('Insufficient money to invest');
+      state.player.money-=cost;
+      influence[cityId]=(Number(influence[cityId]??0)+1);
+      state.city_influence=influence;
+      return { applied:true,action:'city_invested',city:cityId,influence:influence[cityId],money:state.player.money };
+    });
+  }
+  declareOccupy(playerId,cityId,eventId) {
+    return transactEvent(this.storage,playerId,eventId,'city_occupy',{ city_canonical_id:cityId },this.clock,(state) => {
+      const city=this.findCity(cityId);
+      const influence=state.city_influence??{};
+      const threshold=Number(city.occupy_level??1)*10;
+      if (Number(influence[cityId]??0)<threshold) throw new Error('City influence is below the occupation threshold');
+      const occupied=state.occupied_cities??[];
+      if (occupied.includes(cityId)) throw new Error('City is already occupied');
+      occupied.push(cityId);
+      state.occupied_cities=occupied;
+      return { applied:true,action:'city_occupied',city:cityId,influence:influence[cityId],occupied_cities:occupied };
+    });
+  }
+  collectDailyTax(playerId,eventId) {
+    return transactEvent(this.storage,playerId,eventId,'city_tax_collect',{},this.clock,(state) => {
+      const occupied=state.occupied_cities??[];
+      if (!occupied.length) return { applied:false,reason:'no_occupied_cities' };
+      let total=0;
+      for (const cityId of occupied) {
+        const city=this.findCity(cityId);
+        total+=Number(city.daily_tax??0);
+      }
+      state.player.money+=total;
+      state.last_tax_collected_at=this.clock();
+      return { applied:true,action:'city_tax_collected',tax_total:total,cities:occupied.length,money:state.player.money };
+    });
+  }
+  listState(playerId) {
+    const state=this.storage.loadPlayer(playerId);
+    return { applied:true,action:'city_state',city_influence:state.city_influence??{},occupied_cities:state.occupied_cities??[] };
+  }
+  findCity(cityId) {
+    const list=this.catalog.content?.game_cities?.cities??this.catalog.content?.cities?.cities??[];
+    const c=list.find((x)=>x.canonical_id===cityId||x.name===cityId);
+    if (!c) throw new Error(`Unknown city: ${cityId}`);
+    return c;
+  }
+}
+
 class DropRuntime {
   constructor({ storage,catalog,taskEngine = null,random = Math.random,clock = isoNow }) { this.storage=storage;this.catalog=catalog;this.taskEngine=taskEngine;this.random=random;this.clock=clock; }
   settle(playerId,monsterId,combatId,eventId) {
@@ -2018,15 +2767,20 @@ class CombatRuntime {
         const stats=effectiveStats(state,this.catalog);const combat=state.combat;
         combat.round+=1;
         const playerDamage=damage(stats.attack,stats.max_attack,combat.monster_stats.defense,stats.agility,combat.monster_stats.agility,this.random);
-        combat.monster_current_health=Math.max(0,combat.monster_current_health-playerDamage);
+        const activePet=(state.player.pets??[]).find((p)=>p.active);
+        const petDamage=activePet?damage(activePet.attack??0,(activePet.attack??0)+Math.floor((activePet.attack??0)*0.6),combat.monster_stats.defense,activePet.speed??0,combat.monster_stats.agility,this.random):0;
+        combat.monster_current_health=Math.max(0,combat.monster_current_health-playerDamage-petDamage);
         if (combat.monster_current_health===0) {
           const monster=this.catalog.getMonster(combat.monster_canonical_id);const combatId=combat.canonical_id;
           const experience=Number(monster.rewards?.experience);const money=Number(monster.rewards?.copper);
           if(!Number.isFinite(experience)||!Number.isFinite(money))throw new Error(`Monster reward rule missing: ${monster.canonical_id}`);
           state.player.experience+=experience;state.player.money+=money;const progression=applyExperienceProgression(state);state.combat=null;
+          if(activePet){activePet.experience=(activePet.experience??0)+Math.floor(experience*0.5);}
           if(monster.repeatable===false)state.encounter_defeats[combat.encounter_defeat_key??combat.placement_canonical_id]={defeated_at:this.clock(),monster_canonical_id:monster.canonical_id,task_context_canonical_id:combat.task_context_canonical_id??null};
+          recordPlayerMemory(state,{type:'combat',text:`击败了${monster.display_name??monster.canonical_id}${monster.repeatable===false?'（强敌）':''}`,importance:monster.repeatable===false?3:1});
+          adjustCrewLoyalty(state, +2); // 并肩取胜 → 船员忠诚提升
           return { applied:true,action:'combat_won',combat_canonical_id:combatId,monster_canonical_id:monster.canonical_id,
-            location_canonical_id:combat.location_canonical_id,player_damage:playerDamage,experience,money,progression,
+            location_canonical_id:combat.location_canonical_id,player_damage:playerDamage,pet_damage:petDamage,experience,money,progression,
             stamina_item:appliedStaminaItems.at(-1)??null,stamina_items:[...appliedStaminaItems],batched_rounds:batchRound+1 };
         }
         const monsterDamage=damage(combat.monster_stats.attack,combat.monster_stats.max_attack,stats.defense,combat.monster_stats.agility,stats.agility,this.random);
@@ -2039,11 +2793,12 @@ class CombatRuntime {
           state.player.current_map_node_canonical_id=state.player.defeat_return_map_node_canonical_id ?? state.player.current_map_node_canonical_id;
           if (!state.unlocked_map_nodes.includes(state.player.current_map_node_canonical_id)) state.unlocked_map_nodes.push(state.player.current_map_node_canonical_id);
           state.combat=null;state.dungeon=null;state.voyage=null;state.fishing=null;state.maritime_encounter=null;
+          adjustCrewLoyalty(state, -5); // 落败 → 船员忠诚受挫
           return { applied:true,action:'combat_lost',player_damage:playerDamage,monster_damage:monsterDamage,
             stamina_item:appliedStaminaItems.at(-1)??staminaItem,stamina_items:[...appliedStaminaItems],
             defeated_at_map_node_canonical_id:defeatedAt,return_map_node_canonical_id:state.player.current_map_node_canonical_id,current_health:1,batched_rounds:batchRound+1 };
         }
-        result={ applied:true,action:'combat_round',player_damage:playerDamage,monster_damage:monsterDamage,
+        result={ applied:true,action:'combat_round',player_damage:playerDamage,monster_damage:monsterDamage,pet_damage:petDamage,
           stamina_item:appliedStaminaItems.at(-1)??staminaItem,stamina_items:[...appliedStaminaItems],combat:{ ...combat },player_health:state.player.current_health,batched_rounds:batchRound+1 };
       }
       return result;
@@ -2072,7 +2827,8 @@ class DungeonRuntime {
     return transactEvent(this.storage,playerId,eventId,'dungeon_enter',{dungeon_canonical_id:dungeonId},this.clock,(state)=>{
       if(state.dungeon||state.combat||state.voyage)throw new Error('Dungeon entry requires an idle world state');
       if(state.player.current_map_node_canonical_id!==dungeon.map_node_canonical_id)throw new Error('Dungeon entrance is not at the current formal location');
-      if(state.player.level<dungeon.minimum_level||state.player.level>dungeon.maximum_level)throw new Error('Dungeon level requirement is not met');
+      if(state.player.level<dungeon.minimum_level||state.player.level>dungeon.maximum_level)
+        throw new Error(`等级不足，无法进入此探险（需 ${dungeon.minimum_level}-${dungeon.maximum_level} 级）。`);
       state.dungeon={canonical_id:dungeonId,stage_canonical_id:dungeon.entry_stage_canonical_id,entered_at:this.clock(),completion_rewards_enabled:false};
       return {applied:true,action:'dungeon_entered',dungeon:{...state.dungeon}};
     });
@@ -2232,11 +2988,35 @@ function activeItemTargetIds(state,taskCatalog) {
 }
 function atPort(state,cityId,mapNodeId) { return state.player.current_city_canonical_id ? state.player.current_city_canonical_id===cityId && state.player.current_map_node_canonical_id===mapNodeId : state.player.current_map_node_canonical_id===mapNodeId; }
 function setInventory(state,id,quantity) { if(quantity<=0)delete state.inventory[id];else state.inventory[id]=quantity; }
+function cargoUsed(state) {
+  return Object.values(state.cargo??{}).reduce((sum,q)=>sum+Number(q),0);
+}
+function adjustCrewLoyalty(state, delta) {
+  const crew = state.player?.crew ?? [];
+  let changed = false;
+  for (const c of crew) {
+    const cur = Number(c.loyalty ?? 60);
+    const next = Math.max(0, Math.min(100, cur + delta));
+    if (next !== cur) { c.loyalty = next; changed = true; }
+  }
+  return changed;
+}
+function cargoCapacity(state) {
+  return Number(state.cargo_capacity ?? 0) || 100;
+}
 function formalInventoryUsed(state,catalog) {
   return Object.entries(state.inventory??{}).reduce((sum,[id,quantity])=>{
     const item=catalog?.getItem(id);const exempt=item?.inventory_weight_exempt||item?.normalized_data?.inventory_weight_exempt;
     return sum+(exempt?0:Number(quantity));
   },0);
+}
+function applyTitle(reputation) {
+  const rep=Number(reputation??0);
+  if (rep>=50000) return '公爵';
+  if (rep>=20000) return '总督';
+  if (rep>=5000) return '提督';
+  if (rep>=1000) return '船长';
+  return '水手';
 }
 function positive(value) { const n=Number(value);if(!Number.isInteger(n)||n<=0)throw new Error('Quantity must be a positive integer');return n; }
 function index(values=[]) { return new Map(values.map((entry)=>[entry.canonical_id,entry])); }
@@ -2245,7 +3025,7 @@ function required(map,id,label) { const value=map.get(id);if(!value)throw new Er
 function stableJson(value) { if(value===null||typeof value!=='object')return JSON.stringify(value);if(Array.isArray(value))return`[${value.map(stableJson).join(',')}]`;return`{${Object.keys(value).sort().map((key)=>`${JSON.stringify(key)}:${stableJson(value[key])}`).join(',')}}`; }
 function isoNow() { return new Date().toISOString(); }
 
-module.exports = { CombatRuntime,DivingRuntime,DropRuntime,DungeonRuntime,EconomyRuntime,EquipmentRuntime,FishingRuntime,FormalGameplayCatalog,ItemRuntime,MaritimeRuntime,RecoveryRuntime,ShipRuntime,VoyageRuntime,EQUIPMENT_SLOT_BY_TYPE,chooseFishingWaitOutcome,damage,effectiveStats,fishingRarityWeights,monsterStats };
+module.exports = { CombatRuntime,DiscoverRuntime,DivingRuntime,DropRuntime,DungeonRuntime,EconomyRuntime,EquipmentRuntime,EquipmentEnhanceRuntime,FishingRuntime,FormalGameplayCatalog,GuildRuntime,CityRuntime,ItemRuntime,MarketRuntime,MaritimeRuntime,PetRuntime,RecoveryRuntime,RecruitRuntime,SkillRuntime,ShipRuntime,VoyageRuntime,EQUIPMENT_SLOT_BY_TYPE,applyTitle,chooseFishingWaitOutcome,damage,effectiveStats,fishingRarityWeights,monsterStats };
 
 },
 "src/task-runtime/stamina-item.js": function(module,exports,require){
@@ -2293,6 +3073,163 @@ function baseMaximumHealth(state,catalog){
 function setInventory(state,itemId,quantity){if(quantity>0)state.inventory[itemId]=quantity;else delete state.inventory[itemId];}
 
 module.exports={activeStaminaItem,baseMaximumHealth,staminaItemSemantics,useActiveStaminaItem};
+
+},
+"server/ai/ai-crew.js": function(module,exports,require){
+'use strict';
+/**
+ * 纵横四海 · AI 船员（同伴人格 + 忠诚）
+ *
+ * 船员随从不只是数值加成：他们有自己的性格，会说话、记得与玩家的共事，
+ * 忠诚度随并肩作战涨跌。为战斗/事件生成一句贴合人格/忠诚度的发言。
+ *
+ * 依赖：server/ai/ai-decision-service.js。
+ */
+const { ollamaGenerate, MODEL_LIGHT } = require("server/ai/ai-decision-service.js");
+
+/** 生成某船员在战斗/事件后的一句发言（贴合性格与忠诚度，async，规则保底）。 */
+async function aiCrewLine({ crewName, personality, loyalty, mood, worldContext }) {
+  const loyaltyTone = Number(loyalty ?? 60) >= 70 ? '极其信任你'
+    : Number(loyalty ?? 60) >= 45 ? '愿意追随你'
+    : Number(loyalty ?? 60) >= 30 ? '有些动摇'
+    : '心生离意';
+  const prompt = `你是《纵横四海》的船员（${crewName}，性格${personality}）。当前忠诚：${loyaltyTone}，${mood ?? '正在出海'}。
+说一句 30 字内的中文台词，贴合你的性格与对船长的态度${worldContext ? `，可提及世界动态：${worldContext}` : ''}。只输出台词本身，不要前缀。`;
+  try {
+    const raw = await ollamaGenerate(prompt, { system: '你是文字网游里性格鲜明的船员，说一句贴合人格的中文台词。', temperature: 0.9, maxTokens: 50, model: MODEL_LIGHT, think: false });
+    const line = String(raw || '').trim().split('\n')[0].slice(0, 40);
+    if (line) return { line, crew: crewName, source: 'ai' };
+  } catch {}
+  // 保底台词（贴合忠诚度）
+  const fallback = loyaltyTone === '极其信任你' ? '船长，我这条命就交给你了。'
+    : loyaltyTone === '愿意追随你' ? '船长，风浪再大我也跟着你。'
+    : loyaltyTone === '有些动摇' ? '船长，这趟买卖……当真值得吗？'
+    : '船长，我得为自己想想了。';
+  return { line: `${crewName}：${fallback}`, crew: crewName, source: 'fallback' };
+}
+
+/** 根据忠诚度折算船员对玩家属性加成的乘数（高忠诚加成放大，低忠诚削弱/离队）。 */
+function loyaltyFactor(loyalty) {
+  const l = Number(loyalty ?? 60);
+  if (l >= 80) return 1.2;
+  if (l >= 60) return 1.0;
+  if (l >= 40) return 0.8;
+  if (l >= 25) return 0.5;
+  return 0; // 极低忠诚：不再提供加成
+}
+
+module.exports = { aiCrewLine, loyaltyFactor };
+
+},
+"server/ai/ai-decision-service.js": function(module,exports,require){
+'use strict';
+/**
+ * 纵横四海 · 统一 AI 决策服务
+ *
+ * 封装本地 ollama（qwen3.5:9b）的调用，供各系统决策层复用，把 AI 注入整个游戏：
+ *   - 世界经济事件生成（ai-decision）
+ *   - AI 玩家行为决策（ai-players）
+ *   - 世界情报/市场分析摘要（经济系统向玩家提供的信息）
+ *   - 战斗 NPC/世界播报叙述生成
+ *
+ * 核心约定：所有 aiDecide 均接受"当前状态上下文"，输出结构化对象；
+ * 解析失败或超界由各调用方规则层保底（决不让 AI 失败导致系统不可用）。
+ */
+const http = require('node:http');
+
+const OLLAMA_URL = process.env.ZHSH_OLLAMA_URL || 'http://127.0.0.1:11434';
+
+/** ---- 全局 AI 并发信号量 ----
+ *  本地 ollama 单进程的并发承载有限（取决于 GPU），多个 AI 场景（banter/事件/叙述/
+ *  AI玩家决策/世界支线）可能同时打 ollama。用一个简单信号量限制同时进行的
+ *  generate 请求数（默认 2，可用 ZHSH_AI_CONCURRENCY 调），超出排队等前一个完成。
+ *  这是让 AI 深度介入不压垮本地模型的关键基础设施（与语言无关，任何后端都需要）。 */
+const AI_CONCURRENCY = Math.max(1, Number(process.env.ZHSH_AI_CONCURRENCY || 2));
+let activeGenerate = 0;
+const waitQueue = [];
+function acquireGenerate() {
+  return new Promise((resolve) => {
+    if (activeGenerate < AI_CONCURRENCY) { activeGenerate += 1; return resolve(); }
+    waitQueue.push(resolve);
+  });
+}
+function releaseGenerate() {
+  const next = waitQueue.shift();
+  if (next) { /* 保持 activeGenerate 不变，直接移交许可 */ next(); }
+  else activeGenerate -= 1;
+}
+
+/** 当前默认模型（环境变量可覆盖）。分层：MODEL_LIGHT=内容生成主力(4b，质量速度均衡)，
+ *  MODEL_FAST=极高频短任务(2b)。实测 4b 在台词/播报/叙述质量更佳且全程≤0.63s。 */
+const MODEL = process.env.ZHSH_AI_MODEL || 'qwen3.5:9b';
+const MODEL_LIGHT = process.env.ZHSH_AI_MODEL_LIGHT || 'qwen3.8-4b-distill:latest';
+const MODEL_FAST = process.env.ZHSH_AI_MODEL_FAST || 'qwen3.8-2b-distill:latest';
+
+/** 唤起 ollama 生成，返回原始响应文本。
+ *  注意：qwen 系列思考开关必须放请求体顶层 `think: false`（否则模型输出完整推理链，
+ *  拖慢且污染结果）；options.think 无效。可按调用传入 model 选择分层模型。
+ *  keepAlive=-1 让模型常驻内存，消除每次请求的加载/卸载开销（预热的真实推理速度）。 */
+async function ollamaGenerate(prompt, { format = null, temperature = 0.8, maxTokens = 300, system = null, model = null, think = true, keepAlive = -1, numCtx = 4096 } = {}) {
+  await acquireGenerate();
+  const body = {
+    model: model || MODEL,
+    prompt,
+    stream: false,
+    think,
+    keep_alive: keepAlive, // 负值=常驻；0=立即卸载；正值=驻留秒数
+    options: { temperature, max_tokens: maxTokens, num_ctx: numCtx },
+  };
+  if (system) body.system = system;
+  if (format) body.format = format;
+  try {
+    return await new Promise((resolve, reject) => {
+      const req = http.request(new URL('/api/generate', OLLAMA_URL), {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Content-Length': Buffer.byteLength(JSON.stringify(body)) },
+      }, (res) => {
+        let data = '';
+        res.on('data', (c) => { data += c; });
+        res.on('end', () => { try { resolve(JSON.parse(data).response ?? ''); } catch (err) { reject(new Error(`ollama parse: ${err.message}`)); } });
+      });
+      req.on('error', reject);
+      req.write(JSON.stringify(body));
+      req.end();
+    });
+  } finally {
+    releaseGenerate();
+  }
+}
+
+/** 唤起 ollama 并解析 JSON 对象（剥离 markdown 代码块） */
+async function ollamaJson(prompt, opts = {}) {
+  const raw = await ollamaGenerate(prompt, { ...opts, format: 'json' });
+  const m = raw.match(/\{[\s\S]*\}/);
+  if (!m) throw new Error('ollama did not return a JSON object');
+  return JSON.parse(m[0]);
+}
+
+/** 当前模型是否可用 */
+function ping() {
+  return new Promise((resolve) => {
+    const req = http.request(new URL('/api/tags', OLLAMA_URL), { method: 'GET' }, (res) => {
+      let d = ''; res.on('data', (c) => { d += c; }); res.on('end', () => { try { resolve(JSON.parse(d).models?.some((m) => m.name === MODEL)); } catch { resolve(false); } });
+    });
+    req.on('error', () => resolve(false));
+    req.end();
+  });
+}
+
+/**
+ * 安全的 JSON 决策：调用 aiDecide（async 函数）并规范化；任何失败返回 fallback。
+ * 供各系统保底使用，保证 AI 错误不破坏游戏。
+ */
+async function safeJsonDecide(aiDecide, context, fallback) {
+  if (typeof aiDecide !== 'function') return fallback;
+  try { const result = await aiDecide(context); return (result && typeof result === 'object') ? result : fallback; }
+  catch { return fallback; }
+}
+
+module.exports = { ollamaGenerate, ollamaJson, safeJsonDecide, ping, MODEL, MODEL_LIGHT, MODEL_FAST, OLLAMA_URL };
 
 }
 };

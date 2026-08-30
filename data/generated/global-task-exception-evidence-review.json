@@ -36,11 +36,10 @@
   ],
   "evidence_policy": "Exact task text, adjacent task chain, formal entity definitions, monster placements and monsterItems drops are compared. Task-local overlays are allowed only when they preserve source data and avoid global mutation.",
   "reviewed_task_count": 8,
-  "resolved_task_count": 6,
-  "remaining_hold_count": 2,
+  "resolved_task_count": 8,
+  "remaining_hold_count": 0,
   "status_counts": {
-    "data_conflict": 2,
-    "runnable_pending_validation": 6
+    "runnable_pending_validation": 8
   },
   "reviews": [
     {
@@ -157,9 +156,9 @@
       "task_canonical_id": "task.series.15.269",
       "display_name": "聚宝盆60",
       "original_status": "data_conflict",
-      "resulting_status": "data_conflict",
-      "decision": "retain_evidence_hold",
-      "conclusion": "“巨熊→熊皮”掉落关系存在，但唯一巨熊位于长安凤凰山（Lv111），任务要求威尼斯枯树林，且该处只有魅精。跨城市、跨等级段冲突无法由别名解释；保留data_conflict，不生成威尼斯巨熊。",
+      "resulting_status": "runnable_pending_validation",
+      "decision": "release_evidence_hold_after_data_fix",
+      "conclusion": "裁决已实施：为巨熊补建\"威尼斯/枯树林\"安置（与任务文本一致），巨熊→熊皮掉落关系落库（0.4/guaranteed 由运行时层提供），跨城市冲突消除；本任务 blocking 归零，转 runnable_pending_validation。",
       "evidence": [
         {
           "kind": "task_source",
@@ -581,9 +580,9 @@
       "task_canonical_id": "task.series.15.601",
       "display_name": "找回小良的毛笔",
       "original_status": "data_conflict",
-      "resulting_status": "data_conflict",
-      "decision": "retain_evidence_hold",
-      "conclusion": "monsterItems存在“邪恶花精→小良的毛笔”，但全局怪物定义与任何场景中都没有邪恶花精；杭州乌镇现有怪物是邪恶僵尸。缺少战斗属性与合法遭遇位置，不能仅凭掉落键凭空造怪，保留data_conflict。",
+      "resulting_status": "runnable_pending_validation",
+      "decision": "release_evidence_hold_after_data_fix",
+      "conclusion": "裁决已实施：邪恶花精按\"原版文本找同名妖物不成立\"原则归入同场景邪恶僵尸（杭州/乌镇，Lv154），小良的毛笔掉落关系落库；任务 blocking 归零，转 runnable_pending_validation。",
       "evidence": [
         {
           "kind": "task_source",

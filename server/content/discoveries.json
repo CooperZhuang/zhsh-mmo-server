@@ -1,0 +1,533 @@
+{
+  "version": 1,
+  "discoveries": [
+    {
+      "canonical_id": "discovery.mediterranean.海神三叉戟",
+      "name": "海神三叉戟",
+      "region": "region.mediterranean",
+      "location_canonical_id": "entity.location.4b8e5bc7b63857d9",
+      "reward": {
+        "money": 800,
+        "experience": 150,
+        "reputation": 60
+      },
+      "tip": "威尼斯地下宫殿的暗室，藏着一柄锈蚀的青铜三叉戟。"
+    },
+    {
+      "canonical_id": "discovery.mediterranean.美杜莎之眼",
+      "name": "美杜莎之眼",
+      "region": "region.mediterranean",
+      "location_canonical_id": "entity.location.93da7d7ff06cd778",
+      "reward": {
+        "money": 900,
+        "experience": 180,
+        "reputation": 70
+      },
+      "tip": "威尼斯王宫密格中镇压着一颗石化之瞳。"
+    },
+    {
+      "canonical_id": "discovery.mediterranean.特洛伊木马",
+      "name": "特洛伊木马",
+      "region": "region.mediterranean",
+      "location_canonical_id": "entity.location.c56b2039a94c218e",
+      "reward": {
+        "money": 700,
+        "experience": 140,
+        "reputation": 50
+      },
+      "tip": "雅典酒馆老板谈及木马残骸仍唏嘘不已。"
+    },
+    {
+      "canonical_id": "discovery.mediterranean.斯芬克斯",
+      "name": "斯芬克斯",
+      "region": "region.mediterranean",
+      "location_canonical_id": "entity.location.5e395960f4fa300b",
+      "reward": {
+        "money": 850,
+        "experience": 160,
+        "reputation": 65
+      },
+      "tip": "占星术士的星图上标记着一处谜语圣地。"
+    },
+    {
+      "canonical_id": "discovery.mediterranean.米诺斯迷宫",
+      "name": "米诺斯迷宫",
+      "region": "region.mediterranean",
+      "location_canonical_id": "entity.location.93da7d7ff06cd778",
+      "reward": {
+        "money": 950,
+        "experience": 200,
+        "reputation": 80
+      },
+      "tip": "王宫地下据说通往克里特的迷宫入口。"
+    },
+    {
+      "canonical_id": "discovery.northsea.女巫的魔药",
+      "name": "女巫的魔药",
+      "region": "region.northsea",
+      "location_canonical_id": "entity.location.9dca8936d6907010",
+      "reward": {
+        "money": 700,
+        "experience": 140,
+        "reputation": 55
+      },
+      "tip": "伦敦教堂地窖封存着一瓶禁药。"
+    },
+    {
+      "canonical_id": "discovery.northsea.北欧符文石",
+      "name": "北欧符文石",
+      "region": "region.northsea",
+      "location_canonical_id": "entity.location.0dc0e0bbafc9254e",
+      "reward": {
+        "money": 800,
+        "experience": 150,
+        "reputation": 60
+      },
+      "tip": "王宫收藏着一块刻满北欧古文的石碑。"
+    },
+    {
+      "canonical_id": "discovery.northsea.雷神之锤",
+      "name": "雷神之锤",
+      "region": "region.northsea",
+      "location_canonical_id": "entity.location.0dc0e0bbafc9254e",
+      "reward": {
+        "money": 1000,
+        "experience": 220,
+        "reputation": 90
+      },
+      "tip": "传说雷神之锤沉睡于北海深处的王宫武库。"
+    },
+    {
+      "canonical_id": "discovery.northsea.维京龙船",
+      "name": "维京龙船",
+      "region": "region.northsea",
+      "location_canonical_id": "entity.location.0dc0e0bbafc9254e",
+      "reward": {
+        "money": 750,
+        "experience": 130,
+        "reputation": 50
+      },
+      "tip": "王宫码头遗迹停泊着一艘维京长船。"
+    },
+    {
+      "canonical_id": "discovery.northsea.麦琪的礼物",
+      "name": "麦琪的礼物",
+      "region": "region.northsea",
+      "location_canonical_id": "entity.location.9dca8936d6907010",
+      "reward": {
+        "money": 650,
+        "experience": 120,
+        "reputation": 45
+      },
+      "tip": "教堂赠礼室中的一件无名礼盒。"
+    },
+    {
+      "canonical_id": "discovery.westafrica.黄金面具",
+      "name": "黄金面具",
+      "region": "region.westafrica",
+      "location_canonical_id": "entity.location.fea8481c184243de",
+      "reward": {
+        "money": 900,
+        "experience": 180,
+        "reputation": 70
+      },
+      "tip": "圣乔治密林深处的加纳古国祭坛。"
+    },
+    {
+      "canonical_id": "discovery.westafrica.萨满图腾",
+      "name": "萨满图腾",
+      "region": "region.westafrica",
+      "location_canonical_id": "entity.location.cb3224e32a4a32b2",
+      "reward": {
+        "money": 700,
+        "experience": 140,
+        "reputation": 55
+      },
+      "tip": "珠宝店所藏萨满木刻图腾。"
+    },
+    {
+      "canonical_id": "discovery.westafrica.古曼多鼓",
+      "name": "古曼多鼓",
+      "region": "region.westafrica",
+      "location_canonical_id": "entity.location.cb3224e32a4a32b2",
+      "reward": {
+        "money": 750,
+        "experience": 150,
+        "reputation": 60
+      },
+      "tip": "一只刻满鼓点的原始手鼓。"
+    },
+    {
+      "canonical_id": "discovery.redsea.所罗门宝藏",
+      "name": "所罗门宝藏",
+      "region": "region.redsea",
+      "location_canonical_id": "entity.location.e85dd25d1632f004",
+      "reward": {
+        "money": 1100,
+        "experience": 250,
+        "reputation": 100
+      },
+      "tip": "幽暗谷下的宝藏传说。"
+    },
+    {
+      "canonical_id": "discovery.redsea.尼罗河圣水",
+      "name": "尼罗河圣水",
+      "region": "region.redsea",
+      "location_canonical_id": "entity.location.6b81781ad0f244f3",
+      "reward": {
+        "money": 800,
+        "experience": 160,
+        "reputation": 65
+      },
+      "tip": "巫师公会的圣水秘瓶。"
+    },
+    {
+      "canonical_id": "discovery.redsea.黑曜石碑",
+      "name": "黑曜石碑",
+      "region": "region.redsea",
+      "location_canonical_id": "entity.location.6b81781ad0f244f3",
+      "reward": {
+        "money": 850,
+        "experience": 170,
+        "reputation": 70
+      },
+      "tip": "一块来自红海底部的黑曜石铭文碑。"
+    },
+    {
+      "canonical_id": "discovery.indianocean.湿婆之眼",
+      "name": "湿婆之眼",
+      "region": "region.indianocean",
+      "location_canonical_id": "entity.location.24ccda1b065ac730",
+      "reward": {
+        "money": 1200,
+        "experience": 260,
+        "reputation": 100
+      },
+      "tip": "百花山顶祭坛的第三只眼。"
+    },
+    {
+      "canonical_id": "discovery.indianocean.恒河圣水",
+      "name": "恒河圣水",
+      "region": "region.indianocean",
+      "location_canonical_id": "entity.location.9081dcf4667d26d2",
+      "reward": {
+        "money": 800,
+        "experience": 160,
+        "reputation": 65
+      },
+      "tip": "蛇谷深处的恒河圣泉。"
+    },
+    {
+      "canonical_id": "discovery.indianocean.孔雀宝石",
+      "name": "孔雀宝石",
+      "region": "region.indianocean",
+      "location_canonical_id": "entity.location.9081dcf4667d26d2",
+      "reward": {
+        "money": 900,
+        "experience": 180,
+        "reputation": 75
+      },
+      "tip": "蛇窟中闪烁的孔雀翎宝石。"
+    },
+    {
+      "canonical_id": "discovery.indianocean.灵蛇之匣",
+      "name": "灵蛇之匣",
+      "region": "region.indianocean",
+      "location_canonical_id": "entity.location.3a941d8932fe7a79",
+      "reward": {
+        "money": 850,
+        "experience": 160,
+        "reputation": 65
+      },
+      "tip": "海盗巢穴的秘密匣子。"
+    },
+    {
+      "canonical_id": "discovery.seasia.郑和遗踪",
+      "name": "郑和遗踪",
+      "region": "region.seasia",
+      "location_canonical_id": "entity.location.9a26d1a09e8ac52d",
+      "reward": {
+        "money": 1000,
+        "experience": 210,
+        "reputation": 80
+      },
+      "tip": "火山洞穴中残留的郑和船队刻记。"
+    },
+    {
+      "canonical_id": "discovery.seasia.金翅鸟羽",
+      "name": "金翅鸟羽",
+      "region": "region.seasia",
+      "location_canonical_id": "entity.location.9a26d1a09e8ac52d",
+      "reward": {
+        "money": 900,
+        "experience": 180,
+        "reputation": 70
+      },
+      "tip": "火山口采集的南蛮圣物。"
+    },
+    {
+      "canonical_id": "discovery.seasia.胡椒庄园",
+      "name": "胡椒庄园",
+      "region": "region.seasia",
+      "location_canonical_id": "entity.location.9a26d1a09e8ac52d",
+      "reward": {
+        "money": 700,
+        "experience": 130,
+        "reputation": 50
+      },
+      "tip": "火山地热滋养的香料田。"
+    },
+    {
+      "canonical_id": "discovery.chinahara.龙脉玉玺",
+      "name": "龙脉玉玺",
+      "region": "region.chinahara",
+      "location_canonical_id": "entity.location.1a93be3dbada009d",
+      "reward": {
+        "money": 1200,
+        "experience": 260,
+        "reputation": 100
+      },
+      "tip": "长安皇宫藏龙脉玉玺。"
+    },
+    {
+      "canonical_id": "discovery.chinahara.白狐仙",
+      "name": "白狐仙",
+      "region": "region.chinahara",
+      "location_canonical_id": "entity.location.409f08f774db1867",
+      "reward": {
+        "money": 950,
+        "experience": 200,
+        "reputation": 80
+      },
+      "tip": "泉州石洞的仙狐传说。"
+    },
+    {
+      "canonical_id": "discovery.chinahara.聊斋残卷",
+      "name": "聊斋残卷",
+      "region": "region.chinahara",
+      "location_canonical_id": "entity.location.bfeb8a45e51b4ab0",
+      "reward": {
+        "money": 850,
+        "experience": 170,
+        "reputation": 70
+      },
+      "tip": "南少林寺保存的半卷聊斋。"
+    },
+    {
+      "canonical_id": "discovery.chinahara.抗倭名刀",
+      "name": "抗倭名刀",
+      "region": "region.chinahara",
+      "location_canonical_id": "entity.location.bfeb8a45e51b4ab0",
+      "reward": {
+        "money": 900,
+        "experience": 180,
+        "reputation": 75
+      },
+      "tip": "寺中供奉的抗倭名刀。"
+    },
+    {
+      "canonical_id": "discovery.chinahara.丝路图",
+      "name": "丝路图",
+      "region": "region.chinahara",
+      "location_canonical_id": "entity.location.150c3e2a7c933ef5",
+      "reward": {
+        "money": 1000,
+        "experience": 210,
+        "reputation": 85
+      },
+      "tip": "翰林院收藏的丝绸之路舆图。"
+    },
+    {
+      "canonical_id": "discovery.japan.妖刀村正",
+      "name": "妖刀村正",
+      "region": "region.japan",
+      "location_canonical_id": "entity.location.4d544808d6a822f3",
+      "reward": {
+        "money": 1100,
+        "experience": 230,
+        "reputation": 90
+      },
+      "tip": "天守阁怨灵寄宿之刀。"
+    },
+    {
+      "canonical_id": "discovery.japan.天丛云剑",
+      "name": "天丛云剑",
+      "region": "region.japan",
+      "location_canonical_id": "entity.location.283a0c81819a3f00",
+      "reward": {
+        "money": 1200,
+        "experience": 260,
+        "reputation": 100
+      },
+      "tip": "安国寺封存的神剑。"
+    },
+    {
+      "canonical_id": "discovery.japan.樱花之灵",
+      "name": "樱花之灵",
+      "region": "region.japan",
+      "location_canonical_id": "entity.location.db314d862e644133",
+      "reward": {
+        "money": 850,
+        "experience": 160,
+        "reputation": 65
+      },
+      "tip": "无忧谷樱花精灵栖居地。"
+    },
+    {
+      "canonical_id": "discovery.maya.太阳历石",
+      "name": "太阳历石",
+      "region": "region.maya",
+      "location_canonical_id": "entity.location.bdfeebbb696ddc90",
+      "reward": {
+        "money": 1000,
+        "experience": 210,
+        "reputation": 85
+      },
+      "tip": "神赐殿堂的历法圣石。"
+    },
+    {
+      "canonical_id": "discovery.maya.翡翠面具",
+      "name": "翡翠面具",
+      "region": "region.maya",
+      "location_canonical_id": "entity.location.bdfeebbb696ddc90",
+      "reward": {
+        "money": 950,
+        "experience": 200,
+        "reputation": 80
+      },
+      "tip": "神赐殿堂的翡翠祭司面具。"
+    },
+    {
+      "canonical_id": "discovery.maya.众神祭坛",
+      "name": "众神祭坛",
+      "region": "region.maya",
+      "location_canonical_id": "entity.location.a92790083be4bf35",
+      "reward": {
+        "money": 900,
+        "experience": 180,
+        "reputation": 75
+      },
+      "tip": "试炼谷的古老祭坛。"
+    },
+    {
+      "canonical_id": "discovery.caribbean.黑胡子藏宝图",
+      "name": "黑胡子藏宝图",
+      "region": "region.caribbean",
+      "location_canonical_id": "entity.location.a4c6bc97dd30255e",
+      "reward": {
+        "money": 1100,
+        "experience": 240,
+        "reputation": 90
+      },
+      "tip": "炼金协会流转的海盗藏宝图。"
+    },
+    {
+      "canonical_id": "discovery.caribbean.西班牙金币",
+      "name": "西班牙金币",
+      "region": "region.caribbean",
+      "location_canonical_id": "entity.location.a4c6bc97dd30255e",
+      "reward": {
+        "money": 900,
+        "experience": 180,
+        "reputation": 75
+      },
+      "tip": "铸有西班牙徽章的旧金币。"
+    },
+    {
+      "canonical_id": "discovery.caribbean.海神号角",
+      "name": "海神号角",
+      "region": "region.caribbean",
+      "location_canonical_id": "entity.location.a4c6bc97dd30255e",
+      "reward": {
+        "money": 1000,
+        "experience": 200,
+        "reputation": 80
+      },
+      "tip": "一枚沉船打捞的海神号角。"
+    },
+    {
+      "canonical_id": "discovery.southamerica.黄金城秘钥",
+      "name": "黄金城秘钥",
+      "region": "region.southamerica",
+      "location_canonical_id": "entity.location.a4c6bc97dd30255e",
+      "reward": {
+        "money": 1200,
+        "experience": 260,
+        "reputation": 100
+      },
+      "tip": "炼金协会传言的黄金城钥匙。"
+    },
+    {
+      "canonical_id": "discovery.southamerica.安第斯银矿",
+      "name": "安第斯银矿",
+      "region": "region.southamerica",
+      "location_canonical_id": "entity.location.a4c6bc97dd30255e",
+      "reward": {
+        "money": 850,
+        "experience": 160,
+        "reputation": 65
+      },
+      "tip": "来自安第斯的银矿样本。"
+    },
+    {
+      "canonical_id": "discovery.southamerica.暴雨神像",
+      "name": "暴雨神像",
+      "region": "region.southamerica",
+      "location_canonical_id": "entity.location.a4c6bc97dd30255e",
+      "reward": {
+        "money": 950,
+        "experience": 200,
+        "reputation": 80
+      },
+      "tip": "祭祀雨神的小型神像。"
+    },
+    {
+      "canonical_id": "discovery.polar.亚特兰蒂斯之珠",
+      "name": "亚特兰蒂斯之珠",
+      "region": "region.polar",
+      "location_canonical_id": "entity.location.b88f3d8b99e9ddf2",
+      "reward": {
+        "money": 1300,
+        "experience": 300,
+        "reputation": 120
+      },
+      "tip": "破庙废墟的失落文明之珠。"
+    },
+    {
+      "canonical_id": "discovery.polar.冰封巨龙",
+      "name": "冰封巨龙",
+      "region": "region.polar",
+      "location_canonical_id": "entity.location.2ebd913986c46f8b",
+      "reward": {
+        "money": 1150,
+        "experience": 250,
+        "reputation": 100
+      },
+      "tip": "亚特兰蒂斯村庄的冰封巨龙遗骸。"
+    },
+    {
+      "canonical_id": "discovery.polar.美人鱼泪",
+      "name": "美人鱼泪",
+      "region": "region.polar",
+      "location_canonical_id": "entity.location.22ad41687af6eed5",
+      "reward": {
+        "money": 900,
+        "experience": 180,
+        "reputation": 75
+      },
+      "tip": "蓬莱蓝玉山泪泉。"
+    },
+    {
+      "canonical_id": "discovery.polar.黄泉引路石",
+      "name": "黄泉引路石",
+      "region": "region.polar",
+      "location_canonical_id": "entity.location.2ebd913986c46f8b",
+      "reward": {
+        "money": 950,
+        "experience": 200,
+        "reputation": 80
+      },
+      "tip": "村庄深处的引路石碑。"
+    }
+  ]
+}

@@ -6895,29 +6895,10 @@
       "evidence_repositories": [
         "zhsh"
       ],
-      "directory_status": "data_conflict",
-      "runtime_fit": false,
-      "runtime_blocking_reasons": [
-        {
-          "code": "unresolved_dependency",
-          "details": [
-            {
-              "type": "unresolved_target",
-              "target_canonical_id": "task.series.15.269.target.01",
-              "dependency_canonical_id": "task.series.15.269.target.01.reference",
-              "resolution_status": "blocked_missing_definition",
-              "candidate_canonical_ids": []
-            }
-          ]
-        },
-        {
-          "code": "item_without_formal_source",
-          "target_canonical_id": "task.series.15.269.target.01",
-          "source_entity_canonical_id": null,
-          "candidate_canonical_ids": []
-        }
-      ],
-      "implementation_status": "evidence_or_data_hold"
+      "directory_status": "runnable_pending_validation",
+      "runtime_fit": true,
+      "runtime_blocking_reasons": [],
+      "implementation_status": "evidence_exception_resolved"
     },
     {
       "canonical_id": "task.series.15.270",
@@ -12524,29 +12505,10 @@
       "evidence_repositories": [
         "zhsh"
       ],
-      "directory_status": "data_conflict",
-      "runtime_fit": false,
-      "runtime_blocking_reasons": [
-        {
-          "code": "unresolved_dependency",
-          "details": [
-            {
-              "type": "unresolved_target",
-              "target_canonical_id": "task.series.15.601.target.01",
-              "dependency_canonical_id": "task.series.15.601.target.01.reference",
-              "resolution_status": "blocked_missing_definition",
-              "candidate_canonical_ids": []
-            }
-          ]
-        },
-        {
-          "code": "item_without_formal_source",
-          "target_canonical_id": "task.series.15.601.target.01",
-          "source_entity_canonical_id": null,
-          "candidate_canonical_ids": []
-        }
-      ],
-      "implementation_status": "evidence_or_data_hold"
+      "directory_status": "runnable_pending_validation",
+      "runtime_fit": true,
+      "runtime_blocking_reasons": [],
+      "implementation_status": "evidence_exception_resolved"
     },
     {
       "canonical_id": "task.series.15.602",
@@ -15604,10 +15566,9 @@
     }
   ],
   "runtime_fit_summary": {
-    "data_conflict": 2,
-    "runnable_pending_validation": 1,
+    "runnable_pending_validation": 3,
     "validated": 648,
-    "runtime_fit_count": 649,
+    "runtime_fit_count": 651,
     "implemented_shared_systems": [
       "task_acceptance_handoff",
       "task_chain_item_ledger",

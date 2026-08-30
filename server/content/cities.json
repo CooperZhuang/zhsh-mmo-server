@@ -1,0 +1,325 @@
+{
+  "version": 1,
+  "cities": [
+    {
+      "canonical_id": "entity.city.e51457158a9475bb",
+      "name": "亚丁",
+      "region": "region.indianocean",
+      "influence_cost": 550,
+      "daily_tax": 90,
+      "occupy_level": 1
+    },
+    {
+      "canonical_id": "entity.city.4be04ecf72ab349f",
+      "name": "亚历山大",
+      "region": "region.mediterranean",
+      "influence_cost": 600,
+      "daily_tax": 100,
+      "occupy_level": 1
+    },
+    {
+      "canonical_id": "entity.city.e3ef537c106042c5",
+      "name": "亚特兰蒂斯",
+      "region": "region.polar",
+      "influence_cost": 650,
+      "daily_tax": 110,
+      "occupy_level": 1
+    },
+    {
+      "canonical_id": "entity.city.1bbd7c60de1fc377",
+      "name": "京都",
+      "region": "region.japan",
+      "influence_cost": 700,
+      "daily_tax": 120,
+      "occupy_level": 1
+    },
+    {
+      "canonical_id": "entity.city.89fe5ed076412e8e",
+      "name": "伊斯坦堡",
+      "region": "region.mediterranean",
+      "influence_cost": 750,
+      "daily_tax": 130,
+      "occupy_level": 1
+    },
+    {
+      "canonical_id": "entity.city.2cd3f6c669c39c29",
+      "name": "伊斯坦布尔",
+      "region": "region.mediterranean",
+      "influence_cost": 800,
+      "daily_tax": 140,
+      "occupy_level": 1
+    },
+    {
+      "canonical_id": "entity.city.5d8adf9a8553ebca",
+      "name": "伦敦",
+      "region": "region.northsea",
+      "influence_cost": 850,
+      "daily_tax": 150,
+      "occupy_level": 1
+    },
+    {
+      "canonical_id": "entity.city.dc91518a8e2a3c03",
+      "name": "南特",
+      "region": "region.northsea",
+      "influence_cost": 900,
+      "daily_tax": 160,
+      "occupy_level": 1
+    },
+    {
+      "canonical_id": "entity.city.768d3b313e7e0d19",
+      "name": "卢旺达",
+      "region": "region.westafrica",
+      "influence_cost": 950,
+      "daily_tax": 170,
+      "occupy_level": 1
+    },
+    {
+      "canonical_id": "entity.city.aa28cc8cb68679d0",
+      "name": "哥本哈根(PK)",
+      "region": "region.northsea",
+      "influence_cost": 1000,
+      "daily_tax": 180,
+      "occupy_level": 1
+    },
+    {
+      "canonical_id": "entity.city.cd1aa779f4c5ab65",
+      "name": "圣乔治",
+      "region": "region.westafrica",
+      "influence_cost": 1050,
+      "daily_tax": 190,
+      "occupy_level": 1
+    },
+    {
+      "canonical_id": "entity.city.12dbc1806d984e5a",
+      "name": "大阪",
+      "region": "region.japan",
+      "influence_cost": 1100,
+      "daily_tax": 200,
+      "occupy_level": 1
+    },
+    {
+      "canonical_id": "entity.city.b20fb065c56043ec",
+      "name": "奥斯陆",
+      "region": "region.northsea",
+      "influence_cost": 1150,
+      "daily_tax": 210,
+      "occupy_level": 1
+    },
+    {
+      "canonical_id": "entity.city.7ff6ada0319bc625",
+      "name": "威尼斯",
+      "region": "region.mediterranean",
+      "influence_cost": 1200,
+      "daily_tax": 220,
+      "occupy_level": 1
+    },
+    {
+      "canonical_id": "entity.city.b3e70c2f31e0fe58",
+      "name": "孟买",
+      "region": "region.indianocean",
+      "influence_cost": 1250,
+      "daily_tax": 230,
+      "occupy_level": 1
+    },
+    {
+      "canonical_id": "entity.city.2f6ddd7ef142e99c",
+      "name": "广州",
+      "region": "region.chinahara",
+      "influence_cost": 1300,
+      "daily_tax": 240,
+      "occupy_level": 1
+    },
+    {
+      "canonical_id": "entity.city.4d0bd89dbb3b1e2a",
+      "name": "开普敦",
+      "region": "region.redsea",
+      "influence_cost": 1350,
+      "daily_tax": 250,
+      "occupy_level": 1
+    },
+    {
+      "canonical_id": "entity.city.ad6d700532e69857",
+      "name": "扬州",
+      "region": "region.chinahara",
+      "influence_cost": 1400,
+      "daily_tax": 260,
+      "occupy_level": 1
+    },
+    {
+      "canonical_id": "entity.city.30822c49a681900d",
+      "name": "拉古扎",
+      "region": "region.mediterranean",
+      "influence_cost": 1450,
+      "daily_tax": 270,
+      "occupy_level": 1
+    },
+    {
+      "canonical_id": "entity.city.1e2bb8bf506477e1",
+      "name": "杭州",
+      "region": "region.chinahara",
+      "influence_cost": 1500,
+      "daily_tax": 280,
+      "occupy_level": 1
+    },
+    {
+      "canonical_id": "entity.city.a010634c03fc4600",
+      "name": "汉堡",
+      "region": "region.northsea",
+      "influence_cost": 1550,
+      "daily_tax": 290,
+      "occupy_level": 1
+    },
+    {
+      "canonical_id": "entity.city.3f395aab4eb9614b",
+      "name": "泉州",
+      "region": "region.chinahara",
+      "influence_cost": 1600,
+      "daily_tax": 300,
+      "occupy_level": 1
+    },
+    {
+      "canonical_id": "entity.city.2fdce2b1f535e6df",
+      "name": "爱丁堡",
+      "region": "region.northsea",
+      "influence_cost": 1650,
+      "daily_tax": 310,
+      "occupy_level": 1
+    },
+    {
+      "canonical_id": "entity.city.c507c1cf040924c5",
+      "name": "玛雅潘",
+      "region": "region.maya",
+      "influence_cost": 1700,
+      "daily_tax": 320,
+      "occupy_level": 1
+    },
+    {
+      "canonical_id": "entity.city.91a0b6d8c852c77c",
+      "name": "科潘",
+      "region": "region.maya",
+      "influence_cost": 1750,
+      "daily_tax": 330,
+      "occupy_level": 1
+    },
+    {
+      "canonical_id": "entity.city.74d85182a36af927",
+      "name": "突尼斯",
+      "region": "region.mediterranean",
+      "influence_cost": 1800,
+      "daily_tax": 340,
+      "occupy_level": 1
+    },
+    {
+      "canonical_id": "entity.city.23309cf1b6d70914",
+      "name": "荷姆兹",
+      "region": "region.indianocean",
+      "influence_cost": 1850,
+      "daily_tax": 350,
+      "occupy_level": 1
+    },
+    {
+      "canonical_id": "entity.city.e1f39f29db933bf8",
+      "name": "莫桑比克",
+      "region": "region.redsea",
+      "influence_cost": 1900,
+      "daily_tax": 360,
+      "occupy_level": 1
+    },
+    {
+      "canonical_id": "entity.city.23fb8e4e3ff17c78",
+      "name": "蒂卡尔",
+      "region": "region.maya",
+      "influence_cost": 1950,
+      "daily_tax": 370,
+      "occupy_level": 1
+    },
+    {
+      "canonical_id": "entity.city.4e787399665b40a0",
+      "name": "蓬莱仙岛",
+      "region": "region.polar",
+      "influence_cost": 2000,
+      "daily_tax": 380,
+      "occupy_level": 1
+    },
+    {
+      "canonical_id": "entity.city.70e3006fcbd737ef",
+      "name": "达喀尔",
+      "region": "region.westafrica",
+      "influence_cost": 2050,
+      "daily_tax": 390,
+      "occupy_level": 1
+    },
+    {
+      "canonical_id": "entity.city.511c0211c97166d9",
+      "name": "里斯本",
+      "region": "region.mediterranean",
+      "influence_cost": 2100,
+      "daily_tax": 400,
+      "occupy_level": 1
+    },
+    {
+      "canonical_id": "entity.city.cc3725a08bba1f2b",
+      "name": "锡兰",
+      "region": "region.indianocean",
+      "influence_cost": 2150,
+      "daily_tax": 410,
+      "occupy_level": 1
+    },
+    {
+      "canonical_id": "entity.city.0fb27847083d81ed",
+      "name": "长安",
+      "region": "region.chinahara",
+      "influence_cost": 2200,
+      "daily_tax": 420,
+      "occupy_level": 1
+    },
+    {
+      "canonical_id": "entity.city.b9142ac1b39e9a0b",
+      "name": "阿姆斯特丹",
+      "region": "region.northsea",
+      "influence_cost": 2250,
+      "daily_tax": 430,
+      "occupy_level": 1
+    },
+    {
+      "canonical_id": "entity.city.11e9890a687702ea",
+      "name": "阿尔及尔",
+      "region": "region.mediterranean",
+      "influence_cost": 2300,
+      "daily_tax": 440,
+      "occupy_level": 1
+    },
+    {
+      "canonical_id": "entity.city.87a20d666b80e436",
+      "name": "雅典",
+      "region": "region.mediterranean",
+      "influence_cost": 2350,
+      "daily_tax": 450,
+      "occupy_level": 1
+    },
+    {
+      "canonical_id": "entity.city.4f5799fbd242a852",
+      "name": "马六甲",
+      "region": "region.seasia",
+      "influence_cost": 2400,
+      "daily_tax": 460,
+      "occupy_level": 1
+    },
+    {
+      "canonical_id": "entity.city.43c4eac54a2bc976",
+      "name": "马赛",
+      "region": "region.mediterranean",
+      "influence_cost": 2450,
+      "daily_tax": 470,
+      "occupy_level": 1
+    },
+    {
+      "canonical_id": "entity.city.23b770feb5fe9dc5",
+      "name": "马达加斯加",
+      "region": "region.redsea",
+      "influence_cost": 2500,
+      "daily_tax": 480,
+      "occupy_level": 1
+    }
+  ]
+}

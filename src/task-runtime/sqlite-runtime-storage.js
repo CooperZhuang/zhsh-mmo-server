@@ -106,9 +106,10 @@ class SqliteRuntimeStorage {
       WHERE player_canonical_id=? ORDER BY map_node_canonical_id
     `).all(playerCanonicalId).map((row) => row.map_node_canonical_id);
     const gameplay = this.db.prepare(`SELECT state_json FROM player_gameplay_state WHERE player_canonical_id=?`).get(playerCanonicalId);
+    const gameplayJson = gameplay ? JSON.parse(gameplay.state_json) : {};
     return normalizeStateNumbers(upgradeGameplayState({
-      ...(gameplay ? JSON.parse(gameplay.state_json) : {}),
-      player,
+      ...gameplayJson,
+      player: { ...(gameplayJson.player ?? {}), ...player, canonical_id: player.canonical_id },
       unlocked_map_nodes: unlocked,
       tasks,
       progress,
@@ -197,15 +198,23 @@ function normalizeStateNumbers(state) {
 function gameplayProjection(state) {
   return {
     schema_version:state.schema_version,
+    active_series_canonical_id:state.active_series_canonical_id ?? null,
     player:{
       level:state.player.level,max_health:state.player.max_health,current_health:state.player.current_health,
       base_attack:state.player.base_attack,base_max_attack:state.player.base_max_attack,
       base_defense:state.player.base_defense,base_agility:state.player.base_agility,morale:state.player.morale,
+      defeat_return_map_node_canonical_id:state.player.defeat_return_map_node_canonical_id ?? null,
+      reputation:state.player.reputation,title:state.player.title,
+      pets:state.player.pets,crew:state.player.crew,skills:state.player.skills,skill_points:state.player.skill_points,
     },
     inventory_capacity:state.inventory_capacity,owned_ships:state.owned_ships,current_ship_canonical_id:state.current_ship_canonical_id,
     voyage:state.voyage,combat:state.combat,equipment:state.equipment,shop_transactions:state.shop_transactions,
     drop_settlements:state.drop_settlements,gameplay_events:state.gameplay_events,
+    equipment_instances:state.equipment_instances,
+    guild:state.guild,city_influence:state.city_influence,occupied_cities:state.occupied_cities,
+    player_memory:state.player_memory,npc_affinity:state.npc_affinity,
+    runtime_tasks:state.runtime_tasks,runtime_progress:state.runtime_progress,
+    cargo:state.cargo,cargo_capacity:state.cargo_capacity,
   };
 }
-
 module.exports = { MIGRATION_PATH,MIGRATION_PATHS,SqliteRuntimeStorage };

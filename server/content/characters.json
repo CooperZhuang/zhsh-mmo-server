@@ -1,0 +1,725 @@
+{
+  "version": 1,
+  "characters": [
+    {
+      "canonical_id": "character.mediterranean.酒馆老板",
+      "name": "酒馆老板",
+      "region": "region.mediterranean",
+      "role": "entry_partner",
+      "npc_level": 5,
+      "personality": "热情",
+      "dialogue_hook": "讲述地中海轶事"
+    },
+    {
+      "canonical_id": "character.mediterranean.占星术士",
+      "name": "占星术士",
+      "region": "region.mediterranean",
+      "role": "entry_partner",
+      "npc_level": 8,
+      "personality": "神秘",
+      "dialogue_hook": "占卜航海凶吉"
+    },
+    {
+      "canonical_id": "character.mediterranean.威尼斯商会会长",
+      "name": "威尼斯商会会长",
+      "region": "region.mediterranean",
+      "role": "faction_head",
+      "npc_level": 25,
+      "personality": "精明",
+      "dialogue_hook": "发布商会任务"
+    },
+    {
+      "canonical_id": "character.mediterranean.海妖",
+      "name": "海妖",
+      "region": "region.mediterranean",
+      "role": "guardian",
+      "npc_level": 30,
+      "personality": "贪婪",
+      "dialogue_hook": "守护海底财宝"
+    },
+    {
+      "canonical_id": "character.mediterranean.杂货商人",
+      "name": "杂货商人",
+      "region": "region.mediterranean",
+      "role": "merchant",
+      "npc_level": 3,
+      "personality": "市侩",
+      "dialogue_hook": "出售补给"
+    },
+    {
+      "canonical_id": "character.mediterranean.铁匠",
+      "name": "铁匠",
+      "region": "region.mediterranean",
+      "role": "merchant",
+      "npc_level": 6,
+      "personality": "憨厚",
+      "dialogue_hook": "打造/强化装备"
+    },
+    {
+      "canonical_id": "character.mediterranean.希腊商人",
+      "name": "希腊商人",
+      "region": "region.mediterranean",
+      "role": "merchant",
+      "npc_level": 9,
+      "personality": "圆滑",
+      "dialogue_hook": "倒卖异域货"
+    },
+    {
+      "canonical_id": "character.mediterranean.占星学徒",
+      "name": "占星学徒",
+      "region": "region.mediterranean",
+      "role": "quest",
+      "npc_level": 4,
+      "personality": "好奇",
+      "dialogue_hook": "触发支线"
+    },
+    {
+      "canonical_id": "character.northsea.女巫",
+      "name": "女巫",
+      "region": "region.northsea",
+      "role": "entry_partner",
+      "npc_level": 10,
+      "personality": "善变",
+      "dialogue_hook": "引导解咒任务"
+    },
+    {
+      "canonical_id": "character.northsea.港口会长",
+      "name": "港口会长",
+      "region": "region.northsea",
+      "role": "faction_head",
+      "npc_level": 20,
+      "personality": "威严",
+      "dialogue_hook": "发布港口任务"
+    },
+    {
+      "canonical_id": "character.northsea.巨狼",
+      "name": "巨狼",
+      "region": "region.northsea",
+      "role": "guardian",
+      "npc_level": 28,
+      "personality": "凶暴",
+      "dialogue_hook": "守护北境"
+    },
+    {
+      "canonical_id": "character.northsea.铁匠",
+      "name": "铁匠",
+      "region": "region.northsea",
+      "role": "merchant",
+      "npc_level": 7,
+      "personality": "沉默",
+      "dialogue_hook": "打造寒铁装备"
+    },
+    {
+      "canonical_id": "character.northsea.酒馆老板",
+      "name": "酒馆老板",
+      "region": "region.northsea",
+      "role": "merchant",
+      "npc_level": 4,
+      "personality": "豪爽",
+      "dialogue_hook": "闲聊北欧传说"
+    },
+    {
+      "canonical_id": "character.northsea.守塔人",
+      "name": "守塔人",
+      "region": "region.northsea",
+      "role": "quest",
+      "npc_level": 6,
+      "personality": "执拗",
+      "dialogue_hook": "触发灯塔支线"
+    },
+    {
+      "canonical_id": "character.northsea.商人",
+      "name": "商人",
+      "region": "region.northsea",
+      "role": "merchant",
+      "npc_level": 5,
+      "personality": "世故",
+      "dialogue_hook": "卖毛皮货"
+    },
+    {
+      "canonical_id": "character.westafrica.部落酋长",
+      "name": "部落酋长",
+      "region": "region.westafrica",
+      "role": "faction_head",
+      "npc_level": 22,
+      "personality": "豪迈",
+      "dialogue_hook": "统领部落"
+    },
+    {
+      "canonical_id": "character.westafrica.巫医",
+      "name": "巫医",
+      "region": "region.westafrica",
+      "role": "entry_partner",
+      "npc_level": 12,
+      "personality": "古怪",
+      "dialogue_hook": "解说图腾"
+    },
+    {
+      "canonical_id": "character.westafrica.沙蝎王",
+      "name": "沙蝎王",
+      "region": "region.westafrica",
+      "role": "guardian",
+      "npc_level": 32,
+      "personality": "凶残",
+      "dialogue_hook": "沙漠霸主"
+    },
+    {
+      "canonical_id": "character.westafrica.香料商人",
+      "name": "香料商人",
+      "region": "region.westafrica",
+      "role": "merchant",
+      "npc_level": 8,
+      "personality": "机敏",
+      "dialogue_hook": "贩售香料"
+    },
+    {
+      "canonical_id": "character.westafrica.猎人",
+      "name": "猎人",
+      "region": "region.westafrica",
+      "role": "quest",
+      "npc_level": 7,
+      "personality": "警觉",
+      "dialogue_hook": "触发狩猎支线"
+    },
+    {
+      "canonical_id": "character.westafrica.长老",
+      "name": "长老",
+      "region": "region.westafrica",
+      "role": "quest",
+      "npc_level": 9,
+      "personality": "慈祥",
+      "dialogue_hook": "讲古"
+    },
+    {
+      "canonical_id": "character.redsea.神庙祭司",
+      "name": "神庙祭司",
+      "region": "region.redsea",
+      "role": "faction_head",
+      "npc_level": 26,
+      "personality": "古板",
+      "dialogue_hook": "主持祭祀"
+    },
+    {
+      "canonical_id": "character.redsea.红海海盗",
+      "name": "红海海盗",
+      "region": "region.redsea",
+      "role": "entry_partner",
+      "npc_level": 15,
+      "personality": "狡诈",
+      "dialogue_hook": "亦敌亦友"
+    },
+    {
+      "canonical_id": "character.redsea.金字塔守卫",
+      "name": "金字塔守卫",
+      "region": "region.redsea",
+      "role": "guardian",
+      "npc_level": 30,
+      "personality": "僵硬",
+      "dialogue_hook": "守护圣物"
+    },
+    {
+      "canonical_id": "character.redsea.奴隶贩子",
+      "name": "奴隶贩子",
+      "region": "region.redsea",
+      "role": "merchant",
+      "npc_level": 10,
+      "personality": "阴险",
+      "dialogue_hook": "非法买卖"
+    },
+    {
+      "canonical_id": "character.redsea.商人",
+      "name": "商人",
+      "region": "region.redsea",
+      "role": "merchant",
+      "npc_level": 8,
+      "personality": "谨慎",
+      "dialogue_hook": "卖圣水"
+    },
+    {
+      "canonical_id": "character.redsea.考古学家",
+      "name": "考古学家",
+      "region": "region.redsea",
+      "role": "quest",
+      "npc_level": 9,
+      "personality": "狂热",
+      "dialogue_hook": "探险支线"
+    },
+    {
+      "canonical_id": "character.indianocean.香料大亨",
+      "name": "香料大亨",
+      "region": "region.indianocean",
+      "role": "faction_head",
+      "npc_level": 24,
+      "personality": "富可敌国",
+      "dialogue_hook": "垄断香料"
+    },
+    {
+      "canonical_id": "character.indianocean.僧侣",
+      "name": "僧侣",
+      "region": "region.indianocean",
+      "role": "entry_partner",
+      "npc_level": 14,
+      "personality": "慈悲",
+      "dialogue_hook": "开示佛理"
+    },
+    {
+      "canonical_id": "character.indianocean.多头蛇",
+      "name": "多头蛇",
+      "region": "region.indianocean",
+      "role": "guardian",
+      "npc_level": 33,
+      "personality": "狂暴",
+      "dialogue_hook": "守卫神殿"
+    },
+    {
+      "canonical_id": "character.indianocean.象牙商人",
+      "name": "象牙商人",
+      "region": "region.indianocean",
+      "role": "merchant",
+      "npc_level": 9,
+      "personality": "狡黠",
+      "dialogue_hook": "卖象牙"
+    },
+    {
+      "canonical_id": "character.indianocean.商人",
+      "name": "商人",
+      "region": "region.indianocean",
+      "role": "merchant",
+      "npc_level": 8,
+      "personality": "务实",
+      "dialogue_hook": "卖宝石"
+    },
+    {
+      "canonical_id": "character.indianocean.杂货商",
+      "name": "杂货商",
+      "region": "region.indianocean",
+      "role": "merchant",
+      "npc_level": 6,
+      "personality": "精明",
+      "dialogue_hook": "卖杂货"
+    },
+    {
+      "canonical_id": "character.indianocean.圣者",
+      "name": "圣者",
+      "region": "region.indianocean",
+      "role": "quest",
+      "npc_level": 12,
+      "personality": "睿智",
+      "dialogue_hook": "指路"
+    },
+    {
+      "canonical_id": "character.seasia.马来头领",
+      "name": "马来头领",
+      "region": "region.seasia",
+      "role": "faction_head",
+      "npc_level": 21,
+      "personality": "威武",
+      "dialogue_hook": "苏丹代言"
+    },
+    {
+      "canonical_id": "character.seasia.海商",
+      "name": "海商",
+      "region": "region.seasia",
+      "role": "entry_partner",
+      "npc_level": 13,
+      "personality": "豪爽",
+      "dialogue_hook": "走私商"
+    },
+    {
+      "canonical_id": "character.seasia.海贼王",
+      "name": "海贼王",
+      "region": "region.seasia",
+      "role": "guardian",
+      "npc_level": 34,
+      "personality": "霸王",
+      "dialogue_hook": "海上霸主"
+    },
+    {
+      "canonical_id": "character.seasia.炼金师",
+      "name": "炼金师",
+      "region": "region.seasia",
+      "role": "merchant",
+      "npc_level": 11,
+      "personality": "痴迷",
+      "dialogue_hook": "炼金交易"
+    },
+    {
+      "canonical_id": "character.seasia.杂货商人",
+      "name": "杂货商人",
+      "region": "region.seasia",
+      "role": "merchant",
+      "npc_level": 6,
+      "personality": "圆滑",
+      "dialogue_hook": "卖南洋货"
+    },
+    {
+      "canonical_id": "character.seasia.渔夫",
+      "name": "渔夫",
+      "region": "region.seasia",
+      "role": "quest",
+      "npc_level": 5,
+      "personality": "淳朴",
+      "dialogue_hook": "海钓支线"
+    },
+    {
+      "canonical_id": "character.chinahara.长安官吏",
+      "name": "长安官吏",
+      "region": "region.chinahara",
+      "role": "faction_head",
+      "npc_level": 28,
+      "personality": "端正",
+      "dialogue_hook": "朝廷代言"
+    },
+    {
+      "canonical_id": "character.chinahara.说书人",
+      "name": "说书人",
+      "region": "region.chinahara",
+      "role": "entry_partner",
+      "npc_level": 6,
+      "personality": "健谈",
+      "dialogue_hook": "说三国故事"
+    },
+    {
+      "canonical_id": "character.chinahara.镖头",
+      "name": "镖头",
+      "region": "region.chinahara",
+      "role": "entry_partner",
+      "npc_level": 16,
+      "personality": "豪气",
+      "dialogue_hook": "护送商会"
+    },
+    {
+      "canonical_id": "character.chinahara.倭寇头目",
+      "name": "倭寇头目",
+      "region": "region.chinahara",
+      "role": "guardian",
+      "npc_level": 35,
+      "personality": "残暴",
+      "dialogue_hook": "边患"
+    },
+    {
+      "canonical_id": "character.chinahara.商人",
+      "name": "商人",
+      "region": "region.chinahara",
+      "role": "merchant",
+      "npc_level": 9,
+      "personality": "精算",
+      "dialogue_hook": "卖丝绸"
+    },
+    {
+      "canonical_id": "character.chinahara.茶商",
+      "name": "茶商",
+      "region": "region.chinahara",
+      "role": "merchant",
+      "npc_level": 8,
+      "personality": "文雅",
+      "dialogue_hook": "卖茶叶"
+    },
+    {
+      "canonical_id": "character.chinahara.药铺掌柜",
+      "name": "药铺掌柜",
+      "region": "region.chinahara",
+      "role": "merchant",
+      "npc_level": 9,
+      "personality": "医者",
+      "dialogue_hook": "卖药材"
+    },
+    {
+      "canonical_id": "character.chinahara.剑客",
+      "name": "剑客",
+      "region": "region.chinahara",
+      "role": "quest",
+      "npc_level": 13,
+      "personality": "孤傲",
+      "dialogue_hook": "侠客支线"
+    },
+    {
+      "canonical_id": "character.japan.大名",
+      "name": "大名",
+      "region": "region.japan",
+      "role": "faction_head",
+      "npc_level": 27,
+      "personality": "威严",
+      "dialogue_hook": "幕府之主"
+    },
+    {
+      "canonical_id": "character.japan.忍者",
+      "name": "忍者",
+      "region": "region.japan",
+      "role": "entry_partner",
+      "npc_level": 18,
+      "personality": "机警",
+      "dialogue_hook": "暗中相助"
+    },
+    {
+      "canonical_id": "character.japan.妖刀持有者",
+      "name": "妖刀持有者",
+      "region": "region.japan",
+      "role": "guardian",
+      "npc_level": 34,
+      "personality": "邪祟",
+      "dialogue_hook": "怨灵附体"
+    },
+    {
+      "canonical_id": "character.japan.茶道大师",
+      "name": "茶道大师",
+      "region": "region.japan",
+      "role": "merchant",
+      "npc_level": 10,
+      "personality": "淡泊",
+      "dialogue_hook": "茶道交流"
+    },
+    {
+      "canonical_id": "character.japan.铁匠",
+      "name": "铁匠",
+      "region": "region.japan",
+      "role": "merchant",
+      "npc_level": 8,
+      "personality": "匠心",
+      "dialogue_hook": "打造武士刀"
+    },
+    {
+      "canonical_id": "character.japan.艺伎",
+      "name": "艺伎",
+      "region": "region.japan",
+      "role": "quest",
+      "npc_level": 7,
+      "personality": "温婉",
+      "dialogue_hook": "歌舞伎支线"
+    },
+    {
+      "canonical_id": "character.maya.玛雅祭司",
+      "name": "玛雅祭司",
+      "region": "region.maya",
+      "role": "faction_head",
+      "npc_level": 29,
+      "personality": "肃穆",
+      "dialogue_hook": "主持仪式"
+    },
+    {
+      "canonical_id": "character.maya.探索队长",
+      "name": "探索队长",
+      "region": "region.maya",
+      "role": "entry_partner",
+      "npc_level": 14,
+      "personality": "果敢",
+      "dialogue_hook": "探索古庙"
+    },
+    {
+      "canonical_id": "character.maya.羽蛇神分身",
+      "name": "羽蛇神分身",
+      "region": "region.maya",
+      "role": "guardian",
+      "npc_level": 36,
+      "personality": "神威",
+      "dialogue_hook": "守卫神殿"
+    },
+    {
+      "canonical_id": "character.maya.宝石匠",
+      "name": "宝石匠",
+      "region": "region.maya",
+      "role": "merchant",
+      "npc_level": 10,
+      "personality": "专注",
+      "dialogue_hook": "打磨翡翠"
+    },
+    {
+      "canonical_id": "character.maya.商人",
+      "name": "商人",
+      "region": "region.maya",
+      "role": "merchant",
+      "npc_level": 7,
+      "personality": "热忱",
+      "dialogue_hook": "卖可可"
+    },
+    {
+      "canonical_id": "character.maya.星象师",
+      "name": "星象师",
+      "region": "region.maya",
+      "role": "quest",
+      "npc_level": 11,
+      "personality": "玄妙",
+      "dialogue_hook": "夜观星空"
+    },
+    {
+      "canonical_id": "character.caribbean.海盗王",
+      "name": "海盗王",
+      "region": "region.caribbean",
+      "role": "faction_head",
+      "npc_level": 30,
+      "personality": "狂放",
+      "dialogue_hook": "海盗联盟之首"
+    },
+    {
+      "canonical_id": "character.caribbean.女海盗",
+      "name": "女海盗",
+      "region": "region.caribbean",
+      "role": "entry_partner",
+      "npc_level": 17,
+      "personality": "飒爽",
+      "dialogue_hook": "传奇女船长"
+    },
+    {
+      "canonical_id": "character.caribbean.黑胡子",
+      "name": "黑胡子",
+      "region": "region.caribbean",
+      "role": "guardian",
+      "npc_level": 38,
+      "personality": "凶悍",
+      "dialogue_hook": "终极海盗"
+    },
+    {
+      "canonical_id": "character.caribbean.赌场主",
+      "name": "赌场主",
+      "region": "region.caribbean",
+      "role": "merchant",
+      "npc_level": 11,
+      "personality": "油滑",
+      "dialogue_hook": "赌场交易"
+    },
+    {
+      "canonical_id": "character.caribbean.朗姆酒商",
+      "name": "朗姆酒商",
+      "region": "region.caribbean",
+      "role": "merchant",
+      "npc_level": 8,
+      "personality": "豪迈",
+      "dialogue_hook": "卖朗姆酒"
+    },
+    {
+      "canonical_id": "character.caribbean.走私贩",
+      "name": "走私贩",
+      "region": "region.caribbean",
+      "role": "quest",
+      "npc_level": 9,
+      "personality": "鬼祟",
+      "dialogue_hook": "走私支线"
+    },
+    {
+      "canonical_id": "character.southamerica.殖民地总督",
+      "name": "殖民地总督",
+      "region": "region.southamerica",
+      "role": "faction_head",
+      "npc_level": 26,
+      "personality": "傲慢",
+      "dialogue_hook": "皇权代表"
+    },
+    {
+      "canonical_id": "character.southamerica.猎人",
+      "name": "猎人",
+      "region": "region.southamerica",
+      "role": "entry_partner",
+      "npc_level": 15,
+      "personality": "沉静",
+      "dialogue_hook": "印加猎人"
+    },
+    {
+      "canonical_id": "character.southamerica.巨龙",
+      "name": "巨龙",
+      "region": "region.southamerica",
+      "role": "guardian",
+      "npc_level": 40,
+      "personality": "暴戾",
+      "dialogue_hook": "黄金城守护"
+    },
+    {
+      "canonical_id": "character.southamerica.商人",
+      "name": "商人",
+      "region": "region.southamerica",
+      "role": "merchant",
+      "npc_level": 9,
+      "personality": "精明",
+      "dialogue_hook": "卖银器"
+    },
+    {
+      "canonical_id": "character.southamerica.探险家",
+      "name": "探险家",
+      "region": "region.southamerica",
+      "role": "quest",
+      "npc_level": 13,
+      "personality": "狂热",
+      "dialogue_hook": "寻宝支线"
+    },
+    {
+      "canonical_id": "character.southamerica.牧师",
+      "name": "牧师",
+      "region": "region.southamerica",
+      "role": "quest",
+      "npc_level": 10,
+      "personality": "虔诚",
+      "dialogue_hook": "传教支线"
+    },
+    {
+      "canonical_id": "character.polar.神秘老人",
+      "name": "神秘老人",
+      "region": "region.polar",
+      "role": "entry_partner",
+      "npc_level": 20,
+      "personality": "深邃",
+      "dialogue_hook": "揭示龙珠真相"
+    },
+    {
+      "canonical_id": "character.polar.深渊之主",
+      "name": "深渊之主",
+      "region": "region.polar",
+      "role": "guardian",
+      "npc_level": 45,
+      "personality": "无名",
+      "dialogue_hook": "最终BOSS"
+    },
+    {
+      "canonical_id": "character.polar.冰原向导",
+      "name": "冰原向导",
+      "region": "region.polar",
+      "role": "faction_head",
+      "npc_level": 23,
+      "personality": "沉稳",
+      "dialogue_hook": "极地引路人"
+    },
+    {
+      "canonical_id": "character.polar.海妖祭司",
+      "name": "海妖祭司",
+      "region": "region.polar",
+      "role": "merchant",
+      "npc_level": 12,
+      "personality": "幽暗",
+      "dialogue_hook": "卖极地圣物"
+    },
+    {
+      "canonical_id": "character.polar.美人鱼",
+      "name": "美人鱼",
+      "region": "region.polar",
+      "role": "quest",
+      "npc_level": 9,
+      "personality": "忧伤",
+      "dialogue_hook": "吟唱支线"
+    },
+    {
+      "canonical_id": "character.polar.渔夫",
+      "name": "渔夫",
+      "region": "region.polar",
+      "role": "quest",
+      "npc_level": 7,
+      "personality": "沉默",
+      "dialogue_hook": "冰钓支线"
+    },
+    {
+      "canonical_id": "character.seasia.香料商",
+      "name": "香料商",
+      "region": "region.seasia",
+      "role": "merchant",
+      "npc_level": 7,
+      "personality": "热情",
+      "dialogue_hook": "卖南洋香料"
+    },
+    {
+      "canonical_id": "character.polar.隐士",
+      "name": "隐士",
+      "region": "region.polar",
+      "role": "quest",
+      "npc_level": 11,
+      "personality": "清冷",
+      "dialogue_hook": "教极地生存"
+    }
+  ]
+}

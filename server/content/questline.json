@@ -1,0 +1,542 @@
+{
+  "version": 3,
+  "source": "原版任务线（task.series.01–15）+ 世界观扩充",
+  "description": "主线以原版任务序列为骨架：每章对应原版一个任务系列，名称与顺序按原版复原；并在此之上挂接世界观扩充（12 区域探索、发现物、世界事件支线、AI 叙述），形成「原版主线 + 扩充」的完整主线。",
+  "chapters": [
+    {
+      "chapter": "ch01",
+      "series": "task.series.01",
+      "series_name": "威尼斯新手成长",
+      "region": "地中海",
+      "level_range": "1–6",
+      "main_goal": "从酒馆老板的指引起步，拜访福利官、铁匠卡萨诺、里皮与小皮特，熟悉城内跑动、打怪与购物，最终为爱送信跨城到雅典。",
+      "entry_npc": "npc.boss",
+      "key_items": [],
+      "city_flow": "威尼斯酒馆 → 威尼斯福利院 → 威尼斯铁匠铺 → 威尼斯居民区 → 雅典居民区",
+      "boss": null,
+      "reward_scale": "新手教学奖励",
+      "expansions": {
+        "region_slugs": [
+          "region.mediterranean"
+        ],
+        "discoveries": [
+          "海神三叉戟",
+          "美杜莎之眼",
+          "特洛伊木马",
+          "斯芬克斯",
+          "米诺斯迷宫"
+        ],
+        "world_events": "海盗来袭 / 丰收 / 商集等动态世界事件会随机作用于地中海价格与天气，并涌现世界支线",
+        "ai_narrative": "任务接取/提交触发 NPC 情境叙述；发现物触发探索叙事"
+      },
+      "name": "初入威尼斯"
+    },
+    {
+      "chapter": "ch02",
+      "series": "task.series.02",
+      "series_name": "威尼斯早期地区任务",
+      "region": "地中海",
+      "level_range": "5–6",
+      "main_goal": "里皮夫人的家宴：为里皮夫人收集山猪肉与龙虾肉，初次接触多地采集。",
+      "entry_npc": "npc.welfare",
+      "key_items": [],
+      "city_flow": "威尼斯居民区 / 威尼斯农场 / 威尼斯浅海",
+      "boss": null,
+      "reward_scale": "早期支线奖励",
+      "expansions": {
+        "region_slugs": [
+          "region.mediterranean"
+        ],
+        "discoveries": [
+          "海神三叉戟",
+          "美杜莎之眼",
+          "特洛伊木马",
+          "斯芬克斯",
+          "米诺斯迷宫"
+        ],
+        "world_events": "地中海动态经济与天气影响物价与航行",
+        "ai_narrative": "任务接取/提交触发 NPC 情境叙述"
+      },
+      "name": "威尼斯日常委托·一"
+    },
+    {
+      "chapter": "ch03",
+      "series": "task.series.03",
+      "series_name": "威尼斯早期地区任务",
+      "region": "地中海",
+      "level_range": "5–6",
+      "main_goal": "马戏团的老虎：德罗西的马戏团老虎失控，替他清剿西城门外荒野的老虎。",
+      "entry_npc": "npc.casanova",
+      "key_items": [],
+      "city_flow": "威尼斯居民区 / 威尼斯荒野",
+      "boss": null,
+      "reward_scale": "早期支线奖励",
+      "expansions": {
+        "region_slugs": [
+          "region.mediterranean"
+        ],
+        "discoveries": [
+          "海神三叉戟",
+          "美杜莎之眼",
+          "特洛伊木马",
+          "斯芬克斯",
+          "米诺斯迷宫"
+        ],
+        "world_events": "地中海动态经济与天气影响物价与航行",
+        "ai_narrative": "任务接取/提交触发 NPC 情境叙述"
+      },
+      "name": "威尼斯日常委托·二"
+    },
+    {
+      "chapter": "ch04",
+      "series": "task.series.04",
+      "series_name": "威尼斯早期地区任务",
+      "region": "地中海",
+      "level_range": "2–6",
+      "main_goal": "怪博士失控的铁皮人引发连锁事件：疯牛病、走私酒与赌场赌具，市民生活陷入混乱。",
+      "entry_npc": "npc.boss",
+      "key_items": [],
+      "city_flow": "威尼斯酒馆 / 威尼斯实验室 / 威尼斯居民区 / 威尼斯赌场",
+      "boss": null,
+      "reward_scale": "地区剧情奖励",
+      "expansions": {
+        "region_slugs": [
+          "region.mediterranean"
+        ],
+        "discoveries": [
+          "海神三叉戟",
+          "美杜莎之眼",
+          "特洛伊木马",
+          "斯芬克斯",
+          "米诺斯迷宫"
+        ],
+        "world_events": "地中海动态经济与天气影响物价与航行",
+        "ai_narrative": "任务接取/提交触发 NPC 情境叙述"
+      },
+      "name": "怪博士的实验室"
+    },
+    {
+      "chapter": "ch05",
+      "series": "task.series.05",
+      "series_name": "海盗与港口事件",
+      "region": "地中海",
+      "level_range": "6–14",
+      "main_goal": "从罗西的美酒开始，经公主的条件、多纳多的海贼清剿、安德鲁的试炼，逐步揭开神秘铁箱、图纸、宝箱、徽章与詹姆斯线的伏笔。",
+      "entry_npc": "npc.casanova",
+      "key_items": [
+        "神秘铁箱",
+        "神秘图纸",
+        "海皇宝箱",
+        "神秘徽章"
+      ],
+      "city_flow": "威尼斯居民区 / 威尼斯酒馆 / 威尼斯王宫 / 威尼斯铁匠铺 / 伊斯坦堡铁匠铺",
+      "boss": "连续战斗试炼",
+      "reward_scale": "主线奖励快速爬升",
+      "expansions": {
+        "region_slugs": [
+          "region.mediterranean"
+        ],
+        "discoveries": [
+          "海神三叉戟",
+          "美杜莎之眼",
+          "特洛伊木马",
+          "斯芬克斯",
+          "米诺斯迷宫"
+        ],
+        "world_events": "海盗事件会封锁航线并抬升异区特产价格，为套利提供机会",
+        "ai_narrative": "战斗胜利/失败触发 AI 战斗叙述；任务接取/提交触发 NPC 情境叙述"
+      },
+      "name": "美酒、海盗与神秘铁箱"
+    },
+    {
+      "chapter": "ch06",
+      "series": "task.series.06",
+      "series_name": "北海及各地区任务",
+      "region": "北海",
+      "level_range": "2–2",
+      "main_goal": "宠物饲养员的委托：获得宠物蛋，初次接触宠物系统。",
+      "entry_npc": "npc.littlepete",
+      "key_items": [
+        "宠物蛋"
+      ],
+      "city_flow": "威尼斯广场",
+      "boss": null,
+      "reward_scale": "系统引导奖励",
+      "expansions": {
+        "region_slugs": [
+          "region.northsea"
+        ],
+        "discoveries": [
+          "女巫的魔药",
+          "北欧符文石",
+          "雷神之锤",
+          "维京龙船",
+          "麦琪的礼物"
+        ],
+        "world_events": "北海风暴与寒潮影响粮价与航行风险",
+        "ai_narrative": "任务接取/提交触发 NPC 情境叙述"
+      },
+      "name": "初登北海"
+    },
+    {
+      "chapter": "ch07",
+      "series": "task.series.07",
+      "series_name": "北海及各地区任务",
+      "region": "北海",
+      "level_range": "8–8",
+      "main_goal": "威尼斯公主的露丝发卡：为公主取回遗失的发卡，接触王宫与珠宝店。",
+      "entry_npc": "npc.inza",
+      "key_items": [
+        "露丝发卡"
+      ],
+      "city_flow": "威尼斯珠宝店 / 威尼斯酒馆",
+      "boss": null,
+      "reward_scale": "支线奖励",
+      "expansions": {
+        "region_slugs": [
+          "region.northsea"
+        ],
+        "discoveries": [
+          "女巫的魔药",
+          "北欧符文石",
+          "雷神之锤",
+          "维京龙船",
+          "麦琪的礼物"
+        ],
+        "world_events": "北海动态经济与天气影响物价与航行",
+        "ai_narrative": "任务接取/提交触发 NPC 情境叙述"
+      },
+      "name": "威尼斯公主的委托"
+    },
+    {
+      "chapter": "ch08",
+      "series": "task.series.08",
+      "series_name": "北海及各地区任务",
+      "region": "北海",
+      "level_range": "10–10",
+      "main_goal": "露丝的指引：循线拜访阿曼达与娜娜，逐步北上。",
+      "entry_npc": "npc.boss",
+      "key_items": [],
+      "city_flow": "威尼斯酒馆 / 威尼斯王宫 / 雅典居民区",
+      "boss": null,
+      "reward_scale": "支线奖励",
+      "expansions": {
+        "region_slugs": [
+          "region.northsea"
+        ],
+        "discoveries": [
+          "女巫的魔药",
+          "北欧符文石",
+          "雷神之锤",
+          "维京龙船",
+          "麦琪的礼物"
+        ],
+        "world_events": "北海动态经济与天气影响物价与航行",
+        "ai_narrative": "任务接取/提交触发 NPC 情境叙述"
+      },
+      "name": "露丝与阿曼达"
+    },
+    {
+      "chapter": "ch09",
+      "series": "task.series.09",
+      "series_name": "北海及各地区任务",
+      "region": "北海",
+      "level_range": "10–10",
+      "main_goal": "博内拉的虎皮大衣委托，深入威尼斯赌场。",
+      "entry_npc": "npc.boss",
+      "key_items": [],
+      "city_flow": "威尼斯赌场",
+      "boss": null,
+      "reward_scale": "支线奖励",
+      "expansions": {
+        "region_slugs": [
+          "region.northsea"
+        ],
+        "discoveries": [
+          "女巫的魔药",
+          "北欧符文石",
+          "雷神之锤",
+          "维京龙船",
+          "麦琪的礼物"
+        ],
+        "world_events": "北海动态经济与天气影响物价与航行",
+        "ai_narrative": "任务接取/提交触发 NPC 情境叙述"
+      },
+      "name": "赌场的委托"
+    },
+    {
+      "chapter": "ch10",
+      "series": "task.series.10",
+      "series_name": "北海及各地区任务",
+      "region": "北海",
+      "level_range": "9–24",
+      "main_goal": "以证明实力起，多纳多引导清剿海贼、复仇线与国王/卡鲁的故事。",
+      "entry_npc": "npc.casanova",
+      "key_items": [],
+      "city_flow": "威尼斯王宫 / 雅典市场 / 威尼斯酒馆",
+      "boss": "海贼头目",
+      "reward_scale": "地区剧情奖励",
+      "expansions": {
+        "region_slugs": [
+          "region.northsea"
+        ],
+        "discoveries": [
+          "女巫的魔药",
+          "北欧符文石",
+          "雷神之锤",
+          "维京龙船",
+          "麦琪的礼物"
+        ],
+        "world_events": "北海动态经济与天气影响物价与航行",
+        "ai_narrative": "战斗胜利/失败触发 AI 战斗叙述；任务接取/提交触发 NPC 情境叙述"
+      },
+      "name": "多纳多的复仇"
+    },
+    {
+      "chapter": "ch11",
+      "series": "task.series.11",
+      "series_name": "北海及各地区任务",
+      "region": "北海",
+      "level_range": "15–33",
+      "main_goal": "从商人米卢的 SOS 开始，深入伦敦、汉堡、阿姆斯特丹的警务、探长与市井故事，事件逐步升级。",
+      "entry_npc": "npc.inza",
+      "key_items": [],
+      "city_flow": "伦敦商店 / 伦敦警察局 / 伦敦居民区 / 汉堡居民区 / 阿姆斯特丹警察局",
+      "boss": null,
+      "reward_scale": "地区剧情奖励",
+      "expansions": {
+        "region_slugs": [
+          "region.northsea"
+        ],
+        "discoveries": [
+          "女巫的魔药",
+          "北欧符文石",
+          "雷神之锤",
+          "维京龙船",
+          "麦琪的礼物"
+        ],
+        "world_events": "大航海全玩法开放：市场套利、船员随从、技能职业、宠物、商会与城市占领",
+        "ai_narrative": "任务接取/提交触发 NPC 情境叙述"
+      },
+      "name": "伦敦的暗流"
+    },
+    {
+      "chapter": "ch12",
+      "series": "task.series.12",
+      "series_name": "东亚—印度洋地区任务",
+      "region": "东南亚 / 印度洋",
+      "level_range": "25–45",
+      "main_goal": "从商人李的夜梳头开始，经泉州长生观、丹霞山、古董店与南少林寺，陆续接触桃花妖、狐仙、千年桐妖、凤凰与小龙珠，龙珠线首次登场。",
+      "entry_npc": "npc.boss",
+      "key_items": [
+        "小龙珠"
+      ],
+      "city_flow": "泉州酒肆 / 泉州长生观 / 泉州民巷 / 泉州丹霞山 / 泉州古董店 / 泉州南少林寺",
+      "boss": null,
+      "reward_scale": "中段主线奖励",
+      "expansions": {
+        "region_slugs": [
+          "region.seasia",
+          "region.indianocean"
+        ],
+        "discoveries": [
+          "郑和遗踪",
+          "金翅鸟羽",
+          "胡椒庄园",
+          "湿婆之眼",
+          "恒河圣水",
+          "孔雀宝石",
+          "灵蛇之匣"
+        ],
+        "world_events": "东南亚与印度洋香料供需联动，特产套利空间大",
+        "ai_narrative": "任务接取/提交触发 NPC 情境叙述；发现物触发探索叙事"
+      },
+      "name": "泉州与龙珠线索"
+    },
+    {
+      "chapter": "ch13",
+      "series": "task.series.13",
+      "series_name": "通商—圣火令—亚丁—龙珠候选链",
+      "region": "东亚·中国 / 印度洋",
+      "level_range": "36–72",
+      "main_goal": "从大明皇帝的通商锡兰启程，沿锡兰、孟买、荷姆兹市场做生意，继而卷入圣火令、剑仙、亚特兰蒂斯航海图与龙珠碎片的漫长线路。",
+      "entry_npc": "npc.boss",
+      "key_items": [
+        "圣火令",
+        "玄铁重剑",
+        "亚丁权杖",
+        "亚特兰蒂斯航海图",
+        "龙珠碎片"
+      ],
+      "city_flow": "长安皇宫 / 锡兰市场 / 孟买市场 / 荷姆兹市场 / 长安三清观 / 泉州铁匠铺 / 杭州灵隐寺",
+      "boss": null,
+      "reward_scale": "主线奖励高位",
+      "expansions": {
+        "region_slugs": [
+          "region.chinahara",
+          "region.indianocean"
+        ],
+        "discoveries": [
+          "龙脉玉玺",
+          "白狐仙",
+          "聊斋残卷",
+          "抗倭名刀",
+          "丝路图",
+          "湿婆之眼",
+          "恒河圣水",
+          "孔雀宝石",
+          "灵蛇之匣"
+        ],
+        "world_events": "通商线横跨东亚与印度洋，长途航线货损与海盗事件频发",
+        "ai_narrative": "任务接取/提交触发 NPC 情境叙述"
+      },
+      "name": "皇命通商与龙珠之路"
+    },
+    {
+      "chapter": "ch14",
+      "series": "task.series.14",
+      "series_name": "亚丁与龙珠后续地区任务",
+      "region": "东南亚 / 印度洋",
+      "level_range": "20–52",
+      "main_goal": "从垂钓老人的美味委托开始，在长安码头、杭州灵隐寺、京都市场与泉州渔村之间为各地搜集食材，为寻裔之路铺垫。",
+      "entry_npc": "npc.livio",
+      "key_items": [],
+      "city_flow": "长安码头 / 杭州灵隐寺 / 京都市场 / 京都王家大宅 / 泉州渔村",
+      "boss": null,
+      "reward_scale": "支线奖励",
+      "expansions": {
+        "region_slugs": [
+          "region.seasia",
+          "region.chinahara"
+        ],
+        "discoveries": [
+          "郑和遗踪",
+          "金翅鸟羽",
+          "胡椒庄园",
+          "龙脉玉玺",
+          "白狐仙",
+          "聊斋残卷",
+          "抗倭名刀",
+          "丝路图"
+        ],
+        "world_events": "食材采集与全区域市场联动",
+        "ai_narrative": "任务接取/提交触发 NPC 情境叙述"
+      },
+      "name": "亚丁的美味之路"
+    },
+    {
+      "chapter": "ch15",
+      "series": "task.series.15",
+      "series_name": "寻裔之路",
+      "region": "全球",
+      "level_range": "50–200",
+      "main_goal": "从垂钓老人寻找沈万三后人开始，贯穿锡兰、孟买、马六甲、伦敦、汉堡、雅典、泉州与长安，救出沈茂、寻得聚宝盆、卷入龙珠、妖气长安与八仙蓬莱，最终直面地魔戈蒂拉。",
+      "entry_npc": "npc.inza",
+      "key_items": [
+        "龙珠碎片",
+        "聚宝盆",
+        "龙珠",
+        "火灵珠",
+        "瑶池镜",
+        "摄妖香",
+        "照妖镜",
+        "破界符"
+      ],
+      "city_flow": "长安码头 / 锡兰码头 / 锡兰酒馆 / 锡兰市场 / 孟买市场 / 锡兰警察局 / 马六甲警察局",
+      "boss": "地魔戈蒂拉",
+      "reward_scale": "全期最高（终局）",
+      "expansions": {
+        "region_slugs": [
+          "region.mediterranean",
+          "region.northsea",
+          "region.westafrica",
+          "region.redsea",
+          "region.indianocean",
+          "region.seasia",
+          "region.chinahara",
+          "region.japan",
+          "region.maya",
+          "region.caribbean",
+          "region.southamerica",
+          "region.polar"
+        ],
+        "discoveries": [
+          "海神三叉戟",
+          "美杜莎之眼",
+          "特洛伊木马",
+          "斯芬克斯",
+          "米诺斯迷宫",
+          "女巫的魔药",
+          "北欧符文石",
+          "雷神之锤",
+          "维京龙船",
+          "麦琪的礼物",
+          "黄金面具",
+          "萨满图腾",
+          "古曼多鼓",
+          "所罗门宝藏",
+          "尼罗河圣水",
+          "黑曜石碑",
+          "湿婆之眼",
+          "恒河圣水",
+          "孔雀宝石",
+          "灵蛇之匣",
+          "郑和遗踪",
+          "金翅鸟羽",
+          "胡椒庄园",
+          "龙脉玉玺",
+          "白狐仙",
+          "聊斋残卷",
+          "抗倭名刀",
+          "丝路图",
+          "妖刀村正",
+          "天丛云剑",
+          "樱花之灵",
+          "太阳历石",
+          "翡翠面具",
+          "众神祭坛",
+          "黑胡子藏宝图",
+          "西班牙金币",
+          "海神号角",
+          "黄金城秘钥",
+          "安第斯银矿",
+          "暴雨神像",
+          "亚特兰蒂斯之珠",
+          "冰封巨龙",
+          "美人鱼泪",
+          "黄泉引路石"
+        ],
+        "world_events": "终局全区域事件联动，海陆作战、潜水地牢与终局 Boss",
+        "ai_narrative": "任务接取/提交、战斗、发现物全链路 AI 叙述"
+      },
+      "name": "寻裔之路 · 聚宝盆 · 妖气长安"
+    }
+  ],
+  "region_to_series": {
+    "地中海": [
+      "task.series.01",
+      "task.series.02",
+      "task.series.03",
+      "task.series.04",
+      "task.series.05"
+    ],
+    "北海": [
+      "task.series.06",
+      "task.series.07",
+      "task.series.08",
+      "task.series.09",
+      "task.series.10",
+      "task.series.11"
+    ],
+    "东南亚": [
+      "task.series.12"
+    ],
+    "东亚·中国": [
+      "task.series.13",
+      "task.series.14"
+    ],
+    "全球": [
+      "task.series.15"
+    ]
+  }
+}
