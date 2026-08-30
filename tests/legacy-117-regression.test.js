@@ -15,8 +15,8 @@ const legacy=exportTask1Content({
 const production=require('../web/generated/task1-content.json');
 const productionById=new Map(production.tasks.map((entry)=>[entry.canonical_id,entry]));
 
-test('the fixed 117-task audit set retains identical runtime task semantics inside the 651-task production package',()=>{
-  assert.equal(legacy.tasks.length,117);
+test('the fixed 143-task audit set retains identical runtime task semantics inside the 651-task production package',()=>{
+  assert.equal(legacy.tasks.length,143);
   for(const legacyTask of legacy.tasks){
     const productionTask=productionById.get(legacyTask.canonical_id);
     assert.ok(productionTask,legacyTask.canonical_id);

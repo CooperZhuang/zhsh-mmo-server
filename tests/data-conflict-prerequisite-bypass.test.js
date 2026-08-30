@@ -36,7 +36,7 @@ test('data-conflict task stays blocked while its runnable successor uses the nea
 });
 
 
-test('global conflict nodes preserve their source relations while successors bypass only the blocked node at runtime',()=>{
+test('adjudication promoted former conflict nodes while their source relations stay intact',()=>{
   const globalContent=require('../web/generated/task1-content.json');
   const catalog=new BrowserTaskCatalog(globalContent),storage=new MemoryRuntimeStorage();
   const engine=new TaskRuntimeEngine({catalog,storage,seriesCanonicalIds:['task.series.15']});
@@ -44,10 +44,10 @@ test('global conflict nodes preserve their source relations while successors byp
   const bearSuccessor=catalog.getTask('task.series.15.270');
   const flowerConflict=catalog.getTask('task.series.15.601');
   const flowerSuccessor=catalog.getTask('task.series.15.602');
-  assert.equal(bearConflict.directory_status,'data_conflict');
-  assert.equal(flowerConflict.directory_status,'data_conflict');
+  assert.equal(bearConflict.directory_status,'runnable_pending_validation');
+  assert.equal(flowerConflict.directory_status,'runnable_pending_validation');
   assert.deepEqual(bearSuccessor.prerequisites,['task.series.15.269']);
   assert.deepEqual(flowerSuccessor.prerequisites,['task.series.15.601']);
-  assert.deepEqual(engine.effectivePrerequisiteIds(bearSuccessor),['task.series.15.268']);
-  assert.deepEqual(engine.effectivePrerequisiteIds(flowerSuccessor),['task.series.15.600']);
+  assert.deepEqual(engine.effectivePrerequisiteIds(bearSuccessor),['task.series.15.269']);
+  assert.deepEqual(engine.effectivePrerequisiteIds(flowerSuccessor),['task.series.15.601']);
 });

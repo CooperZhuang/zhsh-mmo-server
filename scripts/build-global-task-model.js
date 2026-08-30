@@ -143,7 +143,11 @@ function inferWrongTargetKind(task,db){for(const target of task.targets.filter((
   const encounters=encountersAt(db,task.target_location_canonical_id).filter((entry)=>task.description.includes(entry.display_name));
   if(encounters.length===1)return {target_canonical_id:target.canonical_id,from:'monster',to:'item',source_monster_canonical_id:encounters[0].canonical_id,evidence:'task acquisition verb + unique named encounter'};
 }return null;}
-function inferNpcDuel(task,db){for(const target of task.targets.filter((entry)=>entry.target_kind==='monster'&&!entry.entity_canonical_id)){
+function inferNpcDuel(task,db){for(const target of task.targets.filter((entry)=>entry.target_kind==='npc_duel'&&entry.entity_canonical_id)){
+  const duelCandidate=String(target.entity_canonical_id);
+  if(db.prepare('SELECT 1 ok FROM npc_definitions WHERE canonical_id=?').get(duelCandidate))return {target_canonical_id:target.canonical_id,npc_canonical_id:duelCandidate,evidence:'adjudicated npc duel target'};
+}
+for(const target of task.targets.filter((entry)=>entry.target_kind==='monster'&&!entry.entity_canonical_id)){
   if(!/(切磋|战胜|挑战|杀)/.test(task.description)||target.candidate_canonical_ids.length!==1)continue;
   const candidate=target.candidate_canonical_ids[0];if(db.prepare('SELECT 1 ok FROM npc_definitions WHERE canonical_id=?').get(candidate))return {target_canonical_id:target.canonical_id,npc_canonical_id:candidate,evidence:'combat verb + unique NPC candidate'};
 }return null;}

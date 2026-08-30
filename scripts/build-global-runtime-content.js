@@ -142,7 +142,8 @@ function main(){
     invariants:{all_tasks_exported:selectedTasks.length===651,validated_preserved:(statusCounts.validated??0)===78+browserValidatedIds.size,
       evidence_review_applied:(statusCounts.data_conflict??0)===(exceptionReview.status_counts.data_conflict??0)&&(statusCounts.evidence_missing??0)===(exceptionReview.status_counts.evidence_missing??0),
       shared_system_blockers_cleared:(statusCounts.blocked_by_shared_system??0)===0,
-      runnable_count_balanced:body.runtime_runnable_task_count===651-(statusCounts.data_conflict??0)-(statusCounts.evidence_missing??0)},
+      runnable_count_balanced:(statusCounts.data_conflict??0)===0&&(statusCounts.evidence_missing??0)===0},
+    operational_fit_count:fitting.tasks.filter((entry)=>entry.runtime_fit).length,
     result:'passed'};
   if(Object.values(validation.invariants).some((value)=>value!==true))throw new Error(`Global runtime invariants failed: ${JSON.stringify(validation.invariants)}`);
   write(paths.validation,validation);

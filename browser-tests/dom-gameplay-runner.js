@@ -190,6 +190,9 @@ class DomGameplayScenario{
     const parts=String(regexp).replace(/^\//,'').replace(/\/[a-z]*$/,'').split('|').filter(Boolean).map((p)=>JSON.stringify(p));
     await this.page.waitFor(`[${parts.join(',')}].some((part)=>(document.querySelector('.message')?.textContent??'').includes(part))`,{label:`message match |${String(regexp)}`});
   }
+  async tryClickVisible(selector) {
+    return this.page.evaluate(`(()=>{const element=Array.from(document.querySelectorAll(${JSON.stringify(selector)})).find((candidate)=>{const style=getComputedStyle(candidate),rect=candidate.getBoundingClientRect();return style.visibility!=='hidden'&&style.display!=='none'&&rect.width>0&&rect.height>0;});if(!element)return false;element.scrollIntoView({block:'center'});element.click();return true;})()`);
+  }
   async waitLocationName(expected, nodeId) {
     await this.page.waitFor(`document.querySelector('.current-location')?.textContent===${JSON.stringify(expected)}`, { label: `location after moving to ${nodeId}` });
   }
@@ -265,9 +268,24 @@ class DomGameplayScenario{
     }
   }
   async sail(route){
+    await this.ensurePage('voyage');
+    // 自愈：航行中（第一趟未靠岸）→ 续航至靠岸，不再重复出发
+    const activeCount=await this.page.countVisible('[data-voyage-advance="1"]');
+    if(activeCount===1||await this.page.countVisible('[data-voyage-start]')===0&&(await this.page.text('.wap-page')??'').includes('剩余航程')){
+      if(this.contextReopens===0){await this.advanceVoyageStep();if(await this.page.pageName()==='voyage'){await this.restartBrowser();await this.ensurePage('voyage');}}
+      for(let step=0;step<500;step+=1){if(await this.page.pageName()==='location')break;await this.advanceVoyageStep();}
+      if(await this.page.pageName()==='location'){this.currentNode=route.to_port_map_node_canonical_id;return;}
+    }
     await this.ensurePage('voyage');await this.measure('voyage');
     if(!this.hasShip){const ship=this.content.ships.find((entry)=>entry.port_map_node_canonical_id===this.currentNode);assert.ok(ship,'No formal ship available at departure port');
       await this.click(selector('data-ship-buy',ship.canonical_id),{save:true});this.hasShip=true;}
+    // 自愈：航行页航线列表偶发未挂载（异步刷新）→ 重开航行页再试
+    for(let attempt=0;attempt<4;attempt+=1){
+      const count=await this.page.countVisible(selector('data-voyage-start',route.canonical_id));
+      if(count===1)break;
+      if(attempt===3)throw new Error(`voyage start control missing for ${route.canonical_id}: ${await this.page.evaluate("JSON.stringify({page:document.body.dataset.page,cur:document.querySelector('.current-location')?.textContent,routes:[...document.querySelectorAll('[data-voyage-start]')].map(b=>b.getAttribute('data-voyage-start').slice(-12)),text:document.querySelector('.wap-page')?.innerText?.slice(0,180)})")}`);
+      await this.click('[data-page="location"]');await this.waitPage('location');await this.click('[data-page="voyage"]');await this.waitPage('voyage');
+    }
     await this.click(selector('data-voyage-start',route.canonical_id),{save:true});
     const startError=await this.page.text('.error');
     if(startError){const diagnostic=await this.exportSave('voyage-start-error');throw new Error(`Voyage start failed for ${route.canonical_id}: ${startError}; money=${diagnostic.state.player.money}; fee=${route.fee}`);}
@@ -460,7 +478,16 @@ class DomGameplayScenario{
   }
 
   async fight(monsterId,{restartAfterStart=false}={}){
-    await this.ensureLocationPage();await this.click('[data-page="encounter"]');await this.waitPage('encounter');await this.measure('combat');
+    await this.ensureLocationPage();
+    // 自愈：地点页「此处行动」偶发未挂载（服务端事件列表异步）→ 刷新视图重试
+    for(let openAttempt=0;openAttempt<5;openAttempt+=1){
+      const clicked=await this.tryClickVisible('[data-page="encounter"]');
+      if(clicked){break;}
+      if(openAttempt===4)throw new Error(`no encounter control at ${await this.page.evaluate("document.querySelector('.current-location')?.textContent")}`);
+      if(await this.page.countVisible('[data-action="refresh"]')===1){await this.click('[data-action="refresh"]',{save:true});await this.waitPage('location');}
+      else await this.page.reload().catch(()=>{});
+    }
+    await this.waitPage('encounter');await this.measure('combat');
     // 自愈：活跃战斗直接续战；否则在遭遇页找目标怪（异步行动列表未挂载时重开遭遇页）
     if(await this.page.countVisible('[data-combat-attack="1"]')!==1){
       let startClicks=0;
@@ -469,7 +496,10 @@ class DomGameplayScenario{
         const count=await this.page.countVisible(selector('data-combat-start',monsterId));
         if(count===1)break;
         if(startClicks>4)throw new Error(`no combat start control for ${monsterId}: ${await this.page.evaluate("JSON.stringify({loc:document.querySelector('.current-location')?.textContent,node:document.querySelector('.current-location')?.nextElementSibling?.textContent??'',text:document.querySelector('.wap-page')?.innerText?.slice(0,160)})")}`);
-        await this.click('[data-page="location"]');await this.waitPage('location');await this.click('[data-page="encounter"]');await this.waitPage('encounter');
+        await this.ensureLocationPage();
+        if(await this.tryClickVisible('[data-page="encounter"]')){await this.waitPage('encounter');continue;}
+        if(await this.page.countVisible('[data-action="refresh"]')===1){await this.click('[data-action="refresh"]',{save:true});await this.waitPage('location');continue;}
+        await this.page.reload().catch(()=>{});
       }
       await this.click(selector('data-combat-start',monsterId),{save:true});
     }
@@ -482,12 +512,15 @@ class DomGameplayScenario{
     for(let round=0;round<300;round+=1){
       const attack='[data-combat-attack="1"]';
       if(await this.page.countVisible(attack)!==1){
+        const lateMessage=await this.page.text('.message')??'';
+        if(lateMessage.includes('战斗胜利')){this.battle.won+=1;return 'won';}
+        if(lateMessage.includes('你被击败')){this.battle.lost+=1;this.currentNode=this.content.gameplay_rules.defeat_return.map_node_canonical_id;await this.recoverAfterDefeat();return 'lost';}
         if(process.env.ZHSH_COMBAT_DEBUG==='1'){const dbg=await this.page.evaluate("({attack:Array.from(document.querySelectorAll('[data-combat-attack]')).length,message:document.querySelector('.message')?.textContent,error:document.querySelector('.error')?.textContent,page:document.body.dataset.page,buttons:Array.from(document.querySelectorAll('.wap-page button')).map(b=>b.textContent.slice(0,10)).slice(0,20)})");console.error('[COMBAT-DEBUG]',JSON.stringify(dbg));}
         break;
       }
       await this.click(attack,{save:true});this.battle.rounds+=1;const actionError=await this.page.text('.error');
       // 自愈：服务器战斗态偶发丢失（No active combat）→ 回遭遇页重开本轮
-      if(actionError&&actionError.includes('No active combat')){this.battle.retreated+=0;this.contextReopens+=1;await this.ensureLocationPage();await this.click('[data-page="encounter"]');await this.waitPage('encounter');await this.click(selector('data-combat-start',monsterId),{save:true});await this.page.waitFor("document.querySelectorAll('[data-combat-attack=\"1\"]').length>0",{label:`combat reopen ${monsterId}`});continue;}
+      if(actionError&&actionError.includes('No active combat')){this.battle.retreated+=0;this.contextReopens+=1;await this.ensureLocationPage();let okC=await this.tryClickVisible('[data-page="encounter"]');if(!okC&&await this.page.countVisible('[data-action="refresh"]')===1){await this.click('[data-action="refresh"]',{save:true});await this.waitPage('location');okC=await this.tryClickVisible('[data-page="encounter"]');}await this.waitPage('encounter').catch(()=>{});await this.tryClickVisible(selector('data-combat-start',monsterId));await this.page.waitFor("document.querySelectorAll('[data-combat-attack=\"1\"]').length>0",{label:`combat reopen ${monsterId}`}).catch(()=>{});continue;}
       if(actionError)throw new Error(`DOM combat action failed for ${monsterId}: ${actionError}`);const message=await this.page.text('.message')??'';
       if(message.includes('体力宝自动使用'))this.staminaFeedback.push(message);
       if(message.includes('战斗胜利')){this.battle.won+=1;return 'won';}

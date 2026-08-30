@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "stage_start_head": "2cbae183aa369fe0ac60176f3a1396914d786440",
-  "source_head": "709720ebd4a65eaaba5781bb6700790e6a5cacd7",
-  "generated_from_head": "709720ebd4a65eaaba5781bb6700790e6a5cacd7",
+  "source_head": "4058b33947b07215ce893c4391b936aded485eec",
+  "generated_from_head": "4058b33947b07215ce893c4391b936aded485eec",
   "reference_commits": {
     "zhsh": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
     "astrbot": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de",
@@ -13,7 +13,7 @@
   "generated_at": "2026-07-18T00:00:00.000Z",
   "total_task_count": 651,
   "validated_baseline_count": 78,
-  "development_sample_count": 117,
+  "development_sample_count": 143,
   "record_kind": "unified-task-directory",
   "policy": "all 651 tasks exist; status is metadata and never an import gate",
   "allowed_statuses": [
@@ -2720,7 +2720,7 @@
       "series_canonical_id": "task.series.12",
       "sequence_position": 11,
       "status": "validated",
-      "fitting_class_id": 2,
+      "fitting_class_id": 1,
       "prerequisites": [
         "task.series.12.098"
       ],
@@ -2733,7 +2733,7 @@
       ],
       "blocking_reasons": [],
       "audit": {
-        "legacy_selector_selected": false,
+        "legacy_selector_selected": true,
         "validated": false,
         "source_confidence": "medium",
         "operational_fit": true,
@@ -2758,7 +2758,7 @@
       ],
       "blocking_reasons": [],
       "audit": {
-        "legacy_selector_selected": false,
+        "legacy_selector_selected": true,
         "validated": false,
         "source_confidence": "medium",
         "operational_fit": true,
@@ -3947,8 +3947,7 @@
       ],
       "runtime_executors": [
         "TaskRuntimeEngine",
-        "NpcInteractionExecutor",
-        "VoyageRuntime"
+        "NpcInteractionExecutor"
       ],
       "blocking_reasons": [],
       "audit": {
@@ -4692,7 +4691,7 @@
       ],
       "blocking_reasons": [],
       "audit": {
-        "legacy_selector_selected": false,
+        "legacy_selector_selected": true,
         "validated": false,
         "source_confidence": "medium",
         "operational_fit": true,
@@ -4719,7 +4718,7 @@
       ],
       "blocking_reasons": [],
       "audit": {
-        "legacy_selector_selected": false,
+        "legacy_selector_selected": true,
         "validated": false,
         "source_confidence": "medium",
         "operational_fit": true,
@@ -4747,7 +4746,7 @@
       ],
       "blocking_reasons": [],
       "audit": {
-        "legacy_selector_selected": false,
+        "legacy_selector_selected": true,
         "validated": false,
         "source_confidence": "medium",
         "operational_fit": true,
@@ -4775,7 +4774,7 @@
       ],
       "blocking_reasons": [],
       "audit": {
-        "legacy_selector_selected": false,
+        "legacy_selector_selected": true,
         "validated": false,
         "source_confidence": "medium",
         "operational_fit": true,
@@ -4802,7 +4801,7 @@
       ],
       "blocking_reasons": [],
       "audit": {
-        "legacy_selector_selected": false,
+        "legacy_selector_selected": true,
         "validated": false,
         "source_confidence": "medium",
         "operational_fit": true,
@@ -4964,7 +4963,7 @@
       ],
       "blocking_reasons": [],
       "audit": {
-        "legacy_selector_selected": false,
+        "legacy_selector_selected": true,
         "validated": false,
         "source_confidence": "medium",
         "operational_fit": true,
@@ -4991,7 +4990,7 @@
       ],
       "blocking_reasons": [],
       "audit": {
-        "legacy_selector_selected": false,
+        "legacy_selector_selected": true,
         "validated": false,
         "source_confidence": "medium",
         "operational_fit": true,
@@ -5018,7 +5017,7 @@
       ],
       "blocking_reasons": [],
       "audit": {
-        "legacy_selector_selected": false,
+        "legacy_selector_selected": true,
         "validated": false,
         "source_confidence": "medium",
         "operational_fit": true,
@@ -5045,7 +5044,7 @@
       ],
       "blocking_reasons": [],
       "audit": {
-        "legacy_selector_selected": false,
+        "legacy_selector_selected": true,
         "validated": false,
         "source_confidence": "medium",
         "operational_fit": true,
@@ -5072,7 +5071,7 @@
       ],
       "blocking_reasons": [],
       "audit": {
-        "legacy_selector_selected": false,
+        "legacy_selector_selected": true,
         "validated": false,
         "source_confidence": "medium",
         "operational_fit": true,
@@ -5099,7 +5098,7 @@
       ],
       "blocking_reasons": [],
       "audit": {
-        "legacy_selector_selected": false,
+        "legacy_selector_selected": true,
         "validated": false,
         "source_confidence": "medium",
         "operational_fit": true,
@@ -5126,7 +5125,7 @@
       ],
       "blocking_reasons": [],
       "audit": {
-        "legacy_selector_selected": false,
+        "legacy_selector_selected": true,
         "validated": false,
         "source_confidence": "medium",
         "operational_fit": true,
@@ -5154,7 +5153,7 @@
       ],
       "blocking_reasons": [],
       "audit": {
-        "legacy_selector_selected": false,
+        "legacy_selector_selected": true,
         "validated": false,
         "source_confidence": "medium",
         "operational_fit": true,
@@ -5181,7 +5180,7 @@
       ],
       "blocking_reasons": [],
       "audit": {
-        "legacy_selector_selected": false,
+        "legacy_selector_selected": true,
         "validated": false,
         "source_confidence": "medium",
         "operational_fit": true,
@@ -5208,7 +5207,7 @@
       ],
       "blocking_reasons": [],
       "audit": {
-        "legacy_selector_selected": false,
+        "legacy_selector_selected": true,
         "validated": false,
         "source_confidence": "medium",
         "operational_fit": true,
@@ -5236,7 +5235,7 @@
       ],
       "blocking_reasons": [],
       "audit": {
-        "legacy_selector_selected": false,
+        "legacy_selector_selected": true,
         "validated": false,
         "source_confidence": "medium",
         "operational_fit": true,
@@ -5263,7 +5262,7 @@
       ],
       "blocking_reasons": [],
       "audit": {
-        "legacy_selector_selected": false,
+        "legacy_selector_selected": true,
         "validated": false,
         "source_confidence": "medium",
         "operational_fit": true,
@@ -5290,7 +5289,7 @@
       ],
       "blocking_reasons": [],
       "audit": {
-        "legacy_selector_selected": false,
+        "legacy_selector_selected": true,
         "validated": false,
         "source_confidence": "medium",
         "operational_fit": true,
@@ -5318,7 +5317,7 @@
       ],
       "blocking_reasons": [],
       "audit": {
-        "legacy_selector_selected": false,
+        "legacy_selector_selected": true,
         "validated": false,
         "source_confidence": "medium",
         "operational_fit": true,
@@ -5345,7 +5344,7 @@
       ],
       "blocking_reasons": [],
       "audit": {
-        "legacy_selector_selected": false,
+        "legacy_selector_selected": true,
         "validated": false,
         "source_confidence": "medium",
         "operational_fit": true,
@@ -5372,7 +5371,7 @@
       ],
       "blocking_reasons": [],
       "audit": {
-        "legacy_selector_selected": false,
+        "legacy_selector_selected": true,
         "validated": false,
         "source_confidence": "medium",
         "operational_fit": true,
@@ -5399,7 +5398,7 @@
       ],
       "blocking_reasons": [],
       "audit": {
-        "legacy_selector_selected": false,
+        "legacy_selector_selected": true,
         "validated": false,
         "source_confidence": "medium",
         "operational_fit": true,
@@ -5427,7 +5426,7 @@
       ],
       "blocking_reasons": [],
       "audit": {
-        "legacy_selector_selected": false,
+        "legacy_selector_selected": true,
         "validated": false,
         "source_confidence": "medium",
         "operational_fit": true,
@@ -5454,7 +5453,7 @@
       ],
       "blocking_reasons": [],
       "audit": {
-        "legacy_selector_selected": false,
+        "legacy_selector_selected": true,
         "validated": false,
         "source_confidence": "medium",
         "operational_fit": true,
@@ -7253,7 +7252,7 @@
       "series_canonical_id": "task.series.15",
       "sequence_position": 84,
       "status": "validated",
-      "fitting_class_id": 7,
+      "fitting_class_id": 2,
       "prerequisites": [
         "task.series.15.263"
       ],
@@ -7392,7 +7391,7 @@
       "series_canonical_id": "task.series.15",
       "sequence_position": 89,
       "status": "runnable_pending_validation",
-      "fitting_class_id": 7,
+      "fitting_class_id": 2,
       "prerequisites": [
         "task.series.15.268"
       ],
@@ -10148,7 +10147,7 @@
       "series_canonical_id": "task.series.15",
       "sequence_position": 190,
       "status": "validated",
-      "fitting_class_id": 10,
+      "fitting_class_id": 1,
       "prerequisites": [
         "task.series.15.456"
       ],
@@ -10157,8 +10156,7 @@
       ],
       "runtime_executors": [
         "TaskRuntimeEngine",
-        "DeliveryExecutor",
-        "TaskItemLedger"
+        "DeliveryExecutor"
       ],
       "blocking_reasons": [],
       "audit": {
@@ -10166,9 +10164,7 @@
         "validated": false,
         "source_confidence": "medium",
         "operational_fit": true,
-        "implemented_shared_systems": [
-          "task_acceptance_handoff"
-        ],
+        "implemented_shared_systems": [],
         "evidence_exception_resolution": {
           "decision": "resolved_with_task_chain_ledger",
           "conclusion": "前一任务15.456提交对白明确把一枚黑珍珠交给玩家，15.457紧接着要求交付。结构化奖励字段漏记，但任务链文本闭合；由任务链物品账本补录奖励并在后续提交时消耗。",
@@ -10321,7 +10317,7 @@
       "series_canonical_id": "task.series.15",
       "sequence_position": 196,
       "status": "validated",
-      "fitting_class_id": 10,
+      "fitting_class_id": 1,
       "prerequisites": [
         "task.series.15.462"
       ],
@@ -10330,8 +10326,7 @@
       ],
       "runtime_executors": [
         "TaskRuntimeEngine",
-        "DeliveryExecutor",
-        "TaskItemLedger"
+        "DeliveryExecutor"
       ],
       "blocking_reasons": [],
       "audit": {
@@ -10339,9 +10334,7 @@
         "validated": false,
         "source_confidence": "medium",
         "operational_fit": true,
-        "implemented_shared_systems": [
-          "task_acceptance_handoff"
-        ],
+        "implemented_shared_systems": [],
         "evidence_exception_resolution": {
           "decision": "resolved_with_acceptance_item_grant",
           "conclusion": "接取对白明确由杂货商人把渔网交给玩家；缺失的是独立物品定义，不是来源证据。创建任务专用渔网实体，接取时入账、提交时消耗、放弃时回滚。",
@@ -10547,7 +10540,7 @@
       "series_canonical_id": "task.series.15",
       "sequence_position": 204,
       "status": "validated",
-      "fitting_class_id": 5,
+      "fitting_class_id": 2,
       "prerequisites": [
         "task.series.15.470"
       ],
@@ -10557,8 +10550,7 @@
       "runtime_executors": [
         "TaskRuntimeEngine",
         "DeliveryExecutor",
-        "VoyageRuntime",
-        "TaskItemLedger"
+        "VoyageRuntime"
       ],
       "blocking_reasons": [],
       "audit": {
@@ -10566,9 +10558,7 @@
         "validated": false,
         "source_confidence": "medium",
         "operational_fit": true,
-        "implemented_shared_systems": [
-          "task_chain_item_ledger"
-        ],
+        "implemented_shared_systems": [],
         "evidence_exception_resolution": null
       }
     },
@@ -10578,7 +10568,7 @@
       "series_canonical_id": "task.series.15",
       "sequence_position": 205,
       "status": "validated",
-      "fitting_class_id": 5,
+      "fitting_class_id": 7,
       "prerequisites": [
         "task.series.15.471"
       ],
@@ -10587,18 +10577,22 @@
       ],
       "runtime_executors": [
         "TaskRuntimeEngine",
-        "ItemAcquisitionExecutor",
-        "TaskItemLedger"
+        "ItemAcquisitionExecutor"
       ],
-      "blocking_reasons": [],
+      "blocking_reasons": [
+        {
+          "code": "item_without_formal_source",
+          "target_canonical_id": "task.series.15.472.target.01",
+          "source_entity_canonical_id": "runtime.task_chain.item.8b4fe6ffc18a39c1",
+          "candidate_canonical_ids": []
+        }
+      ],
       "audit": {
         "legacy_selector_selected": false,
         "validated": false,
         "source_confidence": "medium",
-        "operational_fit": true,
-        "implemented_shared_systems": [
-          "task_chain_item_ledger"
-        ],
+        "operational_fit": false,
+        "implemented_shared_systems": [],
         "evidence_exception_resolution": null
       }
     },
@@ -11940,8 +11934,7 @@
       ],
       "runtime_executors": [
         "TaskRuntimeEngine",
-        "DeliveryExecutor",
-        "VoyageRuntime"
+        "DeliveryExecutor"
       ],
       "blocking_reasons": [],
       "audit": {
@@ -13633,7 +13626,7 @@
       "series_canonical_id": "task.series.15",
       "sequence_position": 316,
       "status": "validated",
-      "fitting_class_id": 7,
+      "fitting_class_id": 2,
       "prerequisites": [
         "task.series.15.582"
       ],
@@ -14127,7 +14120,7 @@
       "series_canonical_id": "task.series.15",
       "sequence_position": 334,
       "status": "runnable_pending_validation",
-      "fitting_class_id": 7,
+      "fitting_class_id": 2,
       "prerequisites": [
         "task.series.15.600"
       ],
@@ -14962,7 +14955,7 @@
       ],
       "runtime_executors": [
         "TaskRuntimeEngine",
-        "CombatRuntime"
+        "ItemAcquisitionExecutor"
       ],
       "blocking_reasons": [],
       "audit": {
@@ -15073,7 +15066,8 @@
       ],
       "runtime_executors": [
         "TaskRuntimeEngine",
-        "CombatRuntime"
+        "CombatRuntime",
+        "VoyageRuntime"
       ],
       "blocking_reasons": [],
       "audit": {
@@ -15100,7 +15094,8 @@
       ],
       "runtime_executors": [
         "TaskRuntimeEngine",
-        "NpcInteractionExecutor"
+        "NpcInteractionExecutor",
+        "VoyageRuntime"
       ],
       "blocking_reasons": [],
       "audit": {
@@ -15397,7 +15392,8 @@
       ],
       "runtime_executors": [
         "TaskRuntimeEngine",
-        "NpcInteractionExecutor"
+        "NpcInteractionExecutor",
+        "VoyageRuntime"
       ],
       "blocking_reasons": [],
       "audit": {
@@ -15508,7 +15504,7 @@
       ],
       "runtime_executors": [
         "TaskRuntimeEngine",
-        "CombatRuntime"
+        "ItemAcquisitionExecutor"
       ],
       "blocking_reasons": [],
       "audit": {
@@ -16505,7 +16501,8 @@
       ],
       "runtime_executors": [
         "TaskRuntimeEngine",
-        "NpcInteractionExecutor"
+        "NpcInteractionExecutor",
+        "VoyageRuntime"
       ],
       "blocking_reasons": [],
       "audit": {
@@ -17566,7 +17563,7 @@
       "series_canonical_id": "task.series.15",
       "sequence_position": 459,
       "status": "validated",
-      "fitting_class_id": 7,
+      "fitting_class_id": 2,
       "prerequisites": [
         "task.series.15.727"
       ],
@@ -17866,8 +17863,8 @@
   ],
   "runtime_landing": {
     "stage_start_head": "2cbae183aa369fe0ac60176f3a1396914d786440",
-    "source_head": "4ca76fd02f24e0b07f36b25f9d13a153dc2753b7",
-    "generated_from_head": "4ca76fd02f24e0b07f36b25f9d13a153dc2753b7",
+    "source_head": "4058b33947b07215ce893c4391b936aded485eec",
+    "generated_from_head": "4058b33947b07215ce893c4391b936aded485eec",
     "reference_commits": {
       "zhsh": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
       "astrbot": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de",
@@ -17876,7 +17873,7 @@
     },
     "generator_version": "global-runtime-content/1.0.0",
     "generated_at": "2026-07-18T00:00:00.000Z",
-    "runtime_runnable_task_count": 651,
+    "runtime_runnable_task_count": 650,
     "selection_file": "data/generated/global-runtime-task-selection.json"
   }
 }

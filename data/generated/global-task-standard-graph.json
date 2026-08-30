@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "stage_start_head": "2cbae183aa369fe0ac60176f3a1396914d786440",
-  "source_head": "709720ebd4a65eaaba5781bb6700790e6a5cacd7",
-  "generated_from_head": "709720ebd4a65eaaba5781bb6700790e6a5cacd7",
+  "source_head": "4058b33947b07215ce893c4391b936aded485eec",
+  "generated_from_head": "4058b33947b07215ce893c4391b936aded485eec",
   "reference_commits": {
     "zhsh": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
     "astrbot": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de",
@@ -13,7 +13,7 @@
   "generated_at": "2026-07-18T00:00:00.000Z",
   "total_task_count": 651,
   "validated_baseline_count": 78,
-  "development_sample_count": 117,
+  "development_sample_count": 143,
   "record_kind": "global-task-standard-graph",
   "repository_roles": {
     "zhsh": {
@@ -130,7 +130,7 @@
     {
       "rule_id": "state.reward-carry",
       "domain": "state_inheritance",
-      "observed_task_count": 117,
+      "observed_task_count": 143,
       "sample_task_canonical_ids": [
         "task.series.01.neg001",
         "task.series.01.000",
@@ -142,7 +142,7 @@
     {
       "rule_id": "state.entry-projection",
       "domain": "state_inheritance",
-      "observed_task_count": 117,
+      "observed_task_count": 143,
       "sample_task_canonical_ids": [
         "task.series.01.neg001",
         "task.series.01.000",
@@ -154,7 +154,7 @@
     {
       "rule_id": "state.player-preparation",
       "domain": "state_inheritance",
-      "observed_task_count": 117,
+      "observed_task_count": 143,
       "sample_task_canonical_ids": [
         "task.series.01.neg001",
         "task.series.01.000",
@@ -166,7 +166,7 @@
     {
       "rule_id": "combat.encounter-match",
       "domain": "combat_equipment_items",
-      "observed_task_count": 141,
+      "observed_task_count": 138,
       "sample_task_canonical_ids": [
         "task.series.01.neg001",
         "task.series.01.000",
@@ -178,7 +178,7 @@
     {
       "rule_id": "combat.task-described-drop",
       "domain": "combat_equipment_items",
-      "observed_task_count": 141,
+      "observed_task_count": 138,
       "sample_task_canonical_ids": [
         "task.series.01.neg001",
         "task.series.01.000",
@@ -190,7 +190,7 @@
     {
       "rule_id": "combat.equipment-acquisition",
       "domain": "combat_equipment_items",
-      "observed_task_count": 141,
+      "observed_task_count": 138,
       "sample_task_canonical_ids": [
         "task.series.01.neg001",
         "task.series.01.000",
@@ -202,7 +202,7 @@
     {
       "rule_id": "combat.continuous-state",
       "domain": "combat_equipment_items",
-      "observed_task_count": 141,
+      "observed_task_count": 138,
       "sample_task_canonical_ids": [
         "task.series.01.neg001",
         "task.series.01.000",
@@ -2424,7 +2424,7 @@
             "kind": "item",
             "raw_name": "潜水镜",
             "quantity": 1,
-            "entity_canonical_id": "entity.item.ce99a37bc16bb1ba",
+            "entity_canonical_id": "entity.item.d14f96158fc5c4ec",
             "resolution_status": "resolved",
             "runtime_resolution": null
           }
@@ -2437,7 +2437,7 @@
           "kind": "item",
           "raw_name": "潜水镜",
           "quantity": 1,
-          "entity_canonical_id": "entity.item.ce99a37bc16bb1ba",
+          "entity_canonical_id": "entity.item.d14f96158fc5c4ec",
           "resolution_status": "resolved",
           "runtime_resolution": null
         }
@@ -2564,7 +2564,7 @@
           "automatic_runtime_mapping"
         ],
         "derivations": [
-          "candidate_with_formal_source"
+          "direct_formal_source"
         ]
       },
       "directory_status": "validated",
@@ -3723,8 +3723,8 @@
             "kind": "item",
             "raw_name": "山猪肉",
             "quantity": 5,
-            "entity_canonical_id": null,
-            "resolution_status": "blocked_missing_definition",
+            "entity_canonical_id": "runtime.item.ead34659a24d689e",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           },
           {
@@ -3732,8 +3732,8 @@
             "kind": "item",
             "raw_name": "龙虾肉",
             "quantity": 5,
-            "entity_canonical_id": null,
-            "resolution_status": "blocked_missing_definition",
+            "entity_canonical_id": "runtime.item.6e1ec2b8b4a1f49a",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -3745,8 +3745,8 @@
           "kind": "item",
           "raw_name": "山猪肉",
           "quantity": 5,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.item.ead34659a24d689e",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         },
         {
@@ -3754,8 +3754,8 @@
           "kind": "item",
           "raw_name": "龙虾肉",
           "quantity": 5,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.item.6e1ec2b8b4a1f49a",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -5278,8 +5278,8 @@
             "kind": "item",
             "raw_name": "走私酒",
             "quantity": 8,
-            "entity_canonical_id": null,
-            "resolution_status": "blocked_missing_definition",
+            "entity_canonical_id": "runtime.item.3b3f53cf5c43cf4f",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -5291,8 +5291,8 @@
           "kind": "item",
           "raw_name": "走私酒",
           "quantity": 8,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.item.3b3f53cf5c43cf4f",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -5795,8 +5795,8 @@
             "kind": "item",
             "raw_name": "乌龟壳",
             "quantity": 6,
-            "entity_canonical_id": null,
-            "resolution_status": "blocked_missing_definition",
+            "entity_canonical_id": "runtime.item.5d6c46dc0490cfe0",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -5808,8 +5808,8 @@
           "kind": "item",
           "raw_name": "乌龟壳",
           "quantity": 6,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.item.5d6c46dc0490cfe0",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -6592,7 +6592,7 @@
             "kind": "item",
             "raw_name": "狮子奶",
             "quantity": 1,
-            "entity_canonical_id": "entity.item.3855a868ca7393f3",
+            "entity_canonical_id": "entity.item.7e58577435fee1fe",
             "resolution_status": "resolved",
             "runtime_resolution": null
           }
@@ -6605,7 +6605,7 @@
           "kind": "item",
           "raw_name": "狮子奶",
           "quantity": 1,
-          "entity_canonical_id": "entity.item.3855a868ca7393f3",
+          "entity_canonical_id": "entity.item.7e58577435fee1fe",
           "resolution_status": "resolved",
           "runtime_resolution": null
         }
@@ -6726,7 +6726,7 @@
           "automatic_runtime_mapping"
         ],
         "derivations": [
-          "candidate_with_formal_source"
+          "direct_formal_source"
         ]
       },
       "directory_status": "validated",
@@ -8952,6 +8952,14 @@
           "quantity": 2,
           "content_entity_canonical_id": null,
           "resolution_status": "source_label_only"
+        },
+        {
+          "canonical_id": "entity.task_reward.0753397cc826b305",
+          "kind": "item",
+          "name": "太阳徽章",
+          "quantity": 1,
+          "content_entity_canonical_id": "runtime.item.083b844a413f2339",
+          "resolution_status": "resolved"
         }
       ],
       "source_evidence": [
@@ -9241,6 +9249,14 @@
           "quantity": 1,
           "content_entity_canonical_id": null,
           "resolution_status": "source_label_only"
+        },
+        {
+          "canonical_id": "entity.task_reward.0e76760fc320a35b",
+          "kind": "item",
+          "name": "太阳徽章",
+          "quantity": 1,
+          "content_entity_canonical_id": "runtime.item.083b844a413f2339",
+          "resolution_status": "resolved"
         }
       ],
       "source_evidence": [
@@ -9657,8 +9673,8 @@
             "kind": "item",
             "raw_name": "鲨鱼皮",
             "quantity": 10,
-            "entity_canonical_id": null,
-            "resolution_status": "blocked_missing_definition",
+            "entity_canonical_id": "runtime.item.783cdb522262f002",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -9670,8 +9686,8 @@
           "kind": "item",
           "raw_name": "鲨鱼皮",
           "quantity": 10,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.item.783cdb522262f002",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -10022,6 +10038,14 @@
           "quantity": 2,
           "content_entity_canonical_id": null,
           "resolution_status": "source_label_only"
+        },
+        {
+          "canonical_id": "entity.task_reward.54962f523d240100",
+          "kind": "item",
+          "name": "蓝纹宝箱",
+          "quantity": 1,
+          "content_entity_canonical_id": "runtime.item.9fa15c36e7e4ff6e",
+          "resolution_status": "resolved"
         }
       ],
       "source_evidence": [
@@ -10630,7 +10654,7 @@
       },
       "npcs": {
         "issuer": {
-          "canonical_id": "derived.npc_definition.b665a8c17a61ab03",
+          "canonical_id": "derived.npc_definition.22ba5d6986eb91c4",
           "raw_name": "詹姆斯"
         },
         "targets": [],
@@ -10643,12 +10667,12 @@
       "locations": {
         "receive": {
           "role": "receive",
-          "canonical_id": "entity.location.93da7d7ff06cd778",
-          "display_name": "王宫",
+          "canonical_id": "entity.location.5be6ea0b60be0270",
+          "display_name": "居民区",
           "city_canonical_id": "entity.city.7ff6ada0319bc625",
           "city_display_name": "威尼斯",
           "coordinate": "12.3155,45.4408",
-          "map_node_canonical_id": "derived.map_node.location.9a4ff14b776f2191",
+          "map_node_canonical_id": "derived.map_node.location.bbb1689b9b06e1fd",
           "node_kind": "location"
         },
         "target": {
@@ -11140,7 +11164,7 @@
       },
       "npcs": {
         "issuer": {
-          "canonical_id": "derived.npc_definition.3dea4b1eac3ad3f3",
+          "canonical_id": "derived.npc_definition.a73122cf3fc3ea7d",
           "raw_name": "威尼斯公主"
         },
         "targets": [],
@@ -11153,12 +11177,12 @@
       "locations": {
         "receive": {
           "role": "receive",
-          "canonical_id": "entity.location.30649b15d9e53b37",
-          "display_name": "珠宝店",
+          "canonical_id": "entity.location.4a8af28f92e5aa61",
+          "display_name": "酒馆",
           "city_canonical_id": "entity.city.7ff6ada0319bc625",
           "city_display_name": "威尼斯",
           "coordinate": "12.3155,45.4408",
-          "map_node_canonical_id": "derived.map_node.location.3c8a5a31a4fa5581",
+          "map_node_canonical_id": "derived.map_node.location.679f3820dc045fd3",
           "node_kind": "location"
         },
         "target": null,
@@ -11464,8 +11488,8 @@
             "kind": "item",
             "raw_name": "兔毛",
             "quantity": 6,
-            "entity_canonical_id": null,
-            "resolution_status": "blocked_missing_definition",
+            "entity_canonical_id": "runtime.item.56fc2105efa54ab7",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -11477,8 +11501,8 @@
           "kind": "item",
           "raw_name": "兔毛",
           "quantity": 6,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.item.56fc2105efa54ab7",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -12780,8 +12804,8 @@
             "kind": "item",
             "raw_name": "鳄鱼肉",
             "quantity": 5,
-            "entity_canonical_id": null,
-            "resolution_status": "blocked_missing_definition",
+            "entity_canonical_id": "runtime.item.349eb023b28e6370",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -12793,8 +12817,8 @@
           "kind": "item",
           "raw_name": "鳄鱼肉",
           "quantity": 5,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.item.349eb023b28e6370",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -13057,8 +13081,8 @@
             "kind": "item",
             "raw_name": "虎皮",
             "quantity": 8,
-            "entity_canonical_id": null,
-            "resolution_status": "blocked_missing_definition",
+            "entity_canonical_id": "runtime.item.4f18710005203f85",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -13070,8 +13094,8 @@
           "kind": "item",
           "raw_name": "虎皮",
           "quantity": 8,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.item.4f18710005203f85",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -13335,7 +13359,7 @@
             "kind": "item",
             "raw_name": "金瓶梅",
             "quantity": 1,
-            "entity_canonical_id": "entity.item.e16072a38f18e727",
+            "entity_canonical_id": "entity.item.097b440c291db16d",
             "resolution_status": "resolved",
             "runtime_resolution": null
           }
@@ -13348,7 +13372,7 @@
           "kind": "item",
           "raw_name": "金瓶梅",
           "quantity": 1,
-          "entity_canonical_id": "entity.item.e16072a38f18e727",
+          "entity_canonical_id": "entity.item.097b440c291db16d",
           "resolution_status": "resolved",
           "runtime_resolution": null
         }
@@ -13468,7 +13492,7 @@
           "automatic_runtime_mapping"
         ],
         "derivations": [
-          "candidate_with_formal_source"
+          "direct_formal_source"
         ]
       },
       "directory_status": "validated",
@@ -14857,8 +14881,8 @@
             "kind": "item",
             "raw_name": "玳瑁壳",
             "quantity": 7,
-            "entity_canonical_id": null,
-            "resolution_status": "blocked_missing_definition",
+            "entity_canonical_id": "runtime.item.4d6e50c4e4f5a591",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -14870,8 +14894,8 @@
           "kind": "item",
           "raw_name": "玳瑁壳",
           "quantity": 7,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.item.4d6e50c4e4f5a591",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -15137,8 +15161,8 @@
             "kind": "item",
             "raw_name": "鳄鱼肉",
             "quantity": 6,
-            "entity_canonical_id": null,
-            "resolution_status": "blocked_missing_definition",
+            "entity_canonical_id": "runtime.item.349eb023b28e6370",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           },
           {
@@ -15146,8 +15170,8 @@
             "kind": "item",
             "raw_name": "龙虾肉",
             "quantity": 6,
-            "entity_canonical_id": null,
-            "resolution_status": "blocked_missing_definition",
+            "entity_canonical_id": "runtime.item.6e1ec2b8b4a1f49a",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           },
           {
@@ -15155,8 +15179,8 @@
             "kind": "item",
             "raw_name": "山猪肉",
             "quantity": 6,
-            "entity_canonical_id": null,
-            "resolution_status": "blocked_missing_definition",
+            "entity_canonical_id": "runtime.item.ead34659a24d689e",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -15168,8 +15192,8 @@
           "kind": "item",
           "raw_name": "鳄鱼肉",
           "quantity": 6,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.item.349eb023b28e6370",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         },
         {
@@ -15177,8 +15201,8 @@
           "kind": "item",
           "raw_name": "龙虾肉",
           "quantity": 6,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.item.6e1ec2b8b4a1f49a",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         },
         {
@@ -15186,8 +15210,8 @@
           "kind": "item",
           "raw_name": "山猪肉",
           "quantity": 6,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.item.ead34659a24d689e",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -19483,8 +19507,8 @@
             "kind": "item",
             "raw_name": "奶牛",
             "quantity": 5,
-            "entity_canonical_id": null,
-            "resolution_status": "cross_type_suspected",
+            "entity_canonical_id": "runtime.item.57a8625cbce8bf0f",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -19496,8 +19520,8 @@
           "kind": "item",
           "raw_name": "奶牛",
           "quantity": 5,
-          "entity_canonical_id": null,
-          "resolution_status": "cross_type_suspected",
+          "entity_canonical_id": "runtime.item.57a8625cbce8bf0f",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -22070,7 +22094,7 @@
             "kind": "item",
             "raw_name": "香料",
             "quantity": 10,
-            "entity_canonical_id": "entity.item.e35e9fb1217e0f86",
+            "entity_canonical_id": "entity.item.e6393da032f3c186",
             "resolution_status": "resolved",
             "runtime_resolution": null
           }
@@ -22083,7 +22107,7 @@
           "kind": "item",
           "raw_name": "香料",
           "quantity": 10,
-          "entity_canonical_id": "entity.item.e35e9fb1217e0f86",
+          "entity_canonical_id": "entity.item.e6393da032f3c186",
           "resolution_status": "resolved",
           "runtime_resolution": null
         }
@@ -22203,7 +22227,7 @@
           "automatic_runtime_mapping"
         ],
         "derivations": [
-          "candidate_with_formal_source"
+          "direct_formal_source"
         ]
       },
       "directory_status": "validated",
@@ -22599,8 +22623,8 @@
             "kind": "item",
             "raw_name": "蛇胆",
             "quantity": 10,
-            "entity_canonical_id": null,
-            "resolution_status": "blocked_missing_definition",
+            "entity_canonical_id": "runtime.item.d5608bd1d822988d",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -22612,8 +22636,8 @@
           "kind": "item",
           "raw_name": "蛇胆",
           "quantity": 10,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.item.d5608bd1d822988d",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -25424,6 +25448,14 @@
           "quantity": 15000,
           "content_entity_canonical_id": null,
           "resolution_status": "source_label_only"
+        },
+        {
+          "canonical_id": "entity.task_reward.11d84df203242d31",
+          "kind": "item",
+          "name": "青龙玉佩",
+          "quantity": 1,
+          "content_entity_canonical_id": "runtime.item.586fec3896207a43",
+          "resolution_status": "resolved"
         }
       ],
       "source_evidence": [
@@ -25822,8 +25854,8 @@
             "kind": "item",
             "raw_name": "凤凰羽毛",
             "quantity": 1,
-            "entity_canonical_id": null,
-            "resolution_status": "blocked_missing_definition",
+            "entity_canonical_id": "runtime.item.43c36c115a3fd8ba",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -25835,8 +25867,8 @@
           "kind": "item",
           "raw_name": "凤凰羽毛",
           "quantity": 1,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.item.43c36c115a3fd8ba",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -26195,7 +26227,7 @@
           "name": "游侠腰带",
           "quantity": 1,
           "content_entity_canonical_id": "entity.equipment.4e3cd3b8f7fc3002",
-          "resolution_status": "single_candidate_runtime_mapping"
+          "resolution_status": "resolved"
         }
       ],
       "source_evidence": [
@@ -26218,19 +26250,17 @@
         "NpcInteractionExecutor"
       ],
       "fitting": {
-        "class_id": 2,
-        "class_name": "automatic_field_or_name_mapping",
+        "class_id": 1,
+        "class_name": "existing_rules_direct",
         "reason_codes": [
-          "automatic_runtime_mapping"
+          "development_sample_rule_match"
         ],
-        "derivations": [
-          "single_candidate_dependency_mapping"
-        ]
+        "derivations": []
       },
       "directory_status": "validated",
       "legacy_selector": {
-        "selected": false,
-        "selection_reason": null
+        "selected": true,
+        "selection_reason": "maximal_continuous_series_prefix"
       },
       "runtime_overlay": {
         "operational_fit": true,
@@ -26458,6 +26488,102 @@
           "quantity": 1,
           "content_entity_canonical_id": null,
           "resolution_status": "source_label_only"
+        },
+        {
+          "canonical_id": "entity.task_reward.70b51be75556816a",
+          "kind": "item",
+          "name": "龙珠碎片·赤",
+          "quantity": 1,
+          "content_entity_canonical_id": "runtime.item.9e7f9214ce7d878c",
+          "resolution_status": "resolved"
+        },
+        {
+          "canonical_id": "entity.task_reward.93d2fe3a02e60b59",
+          "kind": "item",
+          "name": "龙珠碎片·蓝",
+          "quantity": 1,
+          "content_entity_canonical_id": "runtime.item.fdeae4a1e1999008",
+          "resolution_status": "resolved"
+        },
+        {
+          "canonical_id": "entity.task_reward.504bb63e86f55cd5",
+          "kind": "item",
+          "name": "龙珠碎片·绿",
+          "quantity": 1,
+          "content_entity_canonical_id": "runtime.item.83a060a1778749f9",
+          "resolution_status": "resolved"
+        },
+        {
+          "canonical_id": "entity.task_reward.d4842b40a47024dc",
+          "kind": "item",
+          "name": "龙珠碎片·金",
+          "quantity": 1,
+          "content_entity_canonical_id": "runtime.item.e1d46972982fafa9",
+          "resolution_status": "resolved"
+        },
+        {
+          "canonical_id": "entity.task_reward.91c3dfe56a4e0b3b",
+          "kind": "item",
+          "name": "印蜡官印",
+          "quantity": 1,
+          "content_entity_canonical_id": "runtime.item.7ec5b65b1a6036f9",
+          "resolution_status": "resolved"
+        },
+        {
+          "canonical_id": "entity.task_reward.f827d88e744d0251",
+          "kind": "item",
+          "name": "圣杯",
+          "quantity": 1,
+          "content_entity_canonical_id": "runtime.item.ff3f779360a58ddb",
+          "resolution_status": "resolved"
+        },
+        {
+          "canonical_id": "entity.task_reward.ef54c6bcb41427c9",
+          "kind": "item",
+          "name": "玉筒",
+          "quantity": 1,
+          "content_entity_canonical_id": "runtime.item.43c7d7cefa4ae8b6",
+          "resolution_status": "resolved"
+        },
+        {
+          "canonical_id": "entity.task_reward.490b6ec3dd7909ec",
+          "kind": "item",
+          "name": "水晶头骨",
+          "quantity": 1,
+          "content_entity_canonical_id": "runtime.item.b40abb7dbcb5e4b7",
+          "resolution_status": "resolved"
+        },
+        {
+          "canonical_id": "entity.task_reward.d013905c5c5a8c00",
+          "kind": "item",
+          "name": "月影水晶球",
+          "quantity": 1,
+          "content_entity_canonical_id": "runtime.item.e035a3d7f7cc3b0e",
+          "resolution_status": "resolved"
+        },
+        {
+          "canonical_id": "entity.task_reward.d75f64574effa96b",
+          "kind": "item",
+          "name": "古护符",
+          "quantity": 1,
+          "content_entity_canonical_id": "runtime.item.07189b7db2ed38ac",
+          "resolution_status": "resolved"
+        },
+        {
+          "canonical_id": "entity.task_reward.66a8eec88bcda48e",
+          "kind": "item",
+          "name": "镇印石盒",
+          "quantity": 1,
+          "content_entity_canonical_id": "runtime.item.ff6fcb7c28ae1ded",
+          "resolution_status": "resolved"
+        },
+        {
+          "canonical_id": "entity.task_reward.4e4aa10af9918d47",
+          "kind": "item",
+          "name": "漩涡怀表",
+          "quantity": 1,
+          "content_entity_canonical_id": "runtime.item.5c27467ecfa61e61",
+          "resolution_status": "resolved"
         }
       ],
       "source_evidence": [
@@ -26491,8 +26617,8 @@
       },
       "directory_status": "validated",
       "legacy_selector": {
-        "selected": false,
-        "selection_reason": null
+        "selected": true,
+        "selection_reason": "maximal_continuous_series_prefix"
       },
       "runtime_overlay": {
         "operational_fit": true,
@@ -26596,8 +26722,8 @@
             "kind": "item",
             "raw_name": "陶瓷",
             "quantity": 200,
-            "entity_canonical_id": null,
-            "resolution_status": "blocked_missing_definition",
+            "entity_canonical_id": "runtime.market_item.9e327076b4e1ef6c",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -26609,8 +26735,8 @@
           "kind": "item",
           "raw_name": "陶瓷",
           "quantity": 200,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.market_item.9e327076b4e1ef6c",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -26700,6 +26826,118 @@
           "quantity": 2,
           "content_entity_canonical_id": null,
           "resolution_status": "source_label_only"
+        },
+        {
+          "canonical_id": "entity.task_reward.c25f0681324d48a0",
+          "kind": "item",
+          "name": "通商卷轴",
+          "quantity": 1,
+          "content_entity_canonical_id": "runtime.item.9216af6fd9009442",
+          "resolution_status": "resolved"
+        },
+        {
+          "canonical_id": "entity.task_reward.99b54deedcc982be",
+          "kind": "item",
+          "name": "通商文书",
+          "quantity": 1,
+          "content_entity_canonical_id": "runtime.item.4e87ebf02b34f737",
+          "resolution_status": "resolved"
+        },
+        {
+          "canonical_id": "entity.task_reward.3c584327b092fd3c",
+          "kind": "item",
+          "name": "圣火令",
+          "quantity": 1,
+          "content_entity_canonical_id": "runtime.item.2a16eba99d838ed0",
+          "resolution_status": "resolved"
+        },
+        {
+          "canonical_id": "entity.task_reward.c2b366c9e9e53303",
+          "kind": "item",
+          "name": "亚丁权杖",
+          "quantity": 1,
+          "content_entity_canonical_id": "runtime.item.3ad18738be2bb7d3",
+          "resolution_status": "resolved"
+        },
+        {
+          "canonical_id": "entity.task_reward.314ea53211a45565",
+          "kind": "item",
+          "name": "加封谕旨",
+          "quantity": 1,
+          "content_entity_canonical_id": "runtime.item.25fb8273a4b5eedc",
+          "resolution_status": "resolved"
+        },
+        {
+          "canonical_id": "entity.task_reward.3f4f031535f85aa6",
+          "kind": "item",
+          "name": "律法纹章",
+          "quantity": 1,
+          "content_entity_canonical_id": "runtime.item.b8db0ebdcf750fa5",
+          "resolution_status": "resolved"
+        },
+        {
+          "canonical_id": "entity.task_reward.4e8619e130a699bf",
+          "kind": "item",
+          "name": "印蜡官印",
+          "quantity": 1,
+          "content_entity_canonical_id": "runtime.item.7ec5b65b1a6036f9",
+          "resolution_status": "resolved"
+        },
+        {
+          "canonical_id": "entity.task_reward.b817f38b7ab5570c",
+          "kind": "item",
+          "name": "圣杯",
+          "quantity": 1,
+          "content_entity_canonical_id": "runtime.item.ff3f779360a58ddb",
+          "resolution_status": "resolved"
+        },
+        {
+          "canonical_id": "entity.task_reward.0582a8afc5b4ff2c",
+          "kind": "item",
+          "name": "玉筒",
+          "quantity": 1,
+          "content_entity_canonical_id": "runtime.item.43c7d7cefa4ae8b6",
+          "resolution_status": "resolved"
+        },
+        {
+          "canonical_id": "entity.task_reward.5f99583f84d02b2c",
+          "kind": "item",
+          "name": "水晶头骨",
+          "quantity": 1,
+          "content_entity_canonical_id": "runtime.item.b40abb7dbcb5e4b7",
+          "resolution_status": "resolved"
+        },
+        {
+          "canonical_id": "entity.task_reward.710da95a5a475263",
+          "kind": "item",
+          "name": "月影水晶球",
+          "quantity": 1,
+          "content_entity_canonical_id": "runtime.item.e035a3d7f7cc3b0e",
+          "resolution_status": "resolved"
+        },
+        {
+          "canonical_id": "entity.task_reward.4ddd3e972371bb3a",
+          "kind": "item",
+          "name": "古护符",
+          "quantity": 1,
+          "content_entity_canonical_id": "runtime.item.07189b7db2ed38ac",
+          "resolution_status": "resolved"
+        },
+        {
+          "canonical_id": "entity.task_reward.74e8dc69ea65c0f3",
+          "kind": "item",
+          "name": "镇印石盒",
+          "quantity": 1,
+          "content_entity_canonical_id": "runtime.item.ff6fcb7c28ae1ded",
+          "resolution_status": "resolved"
+        },
+        {
+          "canonical_id": "entity.task_reward.a52a28eae3da4722",
+          "kind": "item",
+          "name": "漩涡怀表",
+          "quantity": 1,
+          "content_entity_canonical_id": "runtime.item.5c27467ecfa61e61",
+          "resolution_status": "resolved"
         }
       ],
       "source_evidence": [
@@ -26866,8 +27104,8 @@
             "kind": "item",
             "raw_name": "香草",
             "quantity": 100,
-            "entity_canonical_id": null,
-            "resolution_status": "blocked_missing_definition",
+            "entity_canonical_id": "runtime.market_item.2086cb1986fb9882",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           },
           {
@@ -26875,8 +27113,8 @@
             "kind": "item",
             "raw_name": "茶",
             "quantity": 100,
-            "entity_canonical_id": null,
-            "resolution_status": "blocked_missing_definition",
+            "entity_canonical_id": "runtime.market_item.7e005ba311f86fa7",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -26888,8 +27126,8 @@
           "kind": "item",
           "raw_name": "香草",
           "quantity": 100,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.market_item.2086cb1986fb9882",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         },
         {
@@ -26897,8 +27135,8 @@
           "kind": "item",
           "raw_name": "茶",
           "quantity": 100,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.market_item.7e005ba311f86fa7",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -26988,6 +27226,54 @@
           "quantity": 2,
           "content_entity_canonical_id": null,
           "resolution_status": "source_label_only"
+        },
+        {
+          "canonical_id": "entity.task_reward.1433aae880388774",
+          "kind": "item",
+          "name": "通商卷轴",
+          "quantity": 1,
+          "content_entity_canonical_id": "runtime.item.9216af6fd9009442",
+          "resolution_status": "resolved"
+        },
+        {
+          "canonical_id": "entity.task_reward.fa52e711412bfd27",
+          "kind": "item",
+          "name": "通商文书",
+          "quantity": 1,
+          "content_entity_canonical_id": "runtime.item.4e87ebf02b34f737",
+          "resolution_status": "resolved"
+        },
+        {
+          "canonical_id": "entity.task_reward.66d9d0ff6d58d748",
+          "kind": "item",
+          "name": "圣火令",
+          "quantity": 1,
+          "content_entity_canonical_id": "runtime.item.2a16eba99d838ed0",
+          "resolution_status": "resolved"
+        },
+        {
+          "canonical_id": "entity.task_reward.b24e00e6f01330d0",
+          "kind": "item",
+          "name": "亚丁权杖",
+          "quantity": 1,
+          "content_entity_canonical_id": "runtime.item.3ad18738be2bb7d3",
+          "resolution_status": "resolved"
+        },
+        {
+          "canonical_id": "entity.task_reward.59e7f0858c59a1b6",
+          "kind": "item",
+          "name": "加封谕旨",
+          "quantity": 1,
+          "content_entity_canonical_id": "runtime.item.25fb8273a4b5eedc",
+          "resolution_status": "resolved"
+        },
+        {
+          "canonical_id": "entity.task_reward.95f8bc8af0c906ba",
+          "kind": "item",
+          "name": "律法纹章",
+          "quantity": 1,
+          "content_entity_canonical_id": "runtime.item.b8db0ebdcf750fa5",
+          "resolution_status": "resolved"
         }
       ],
       "source_evidence": [
@@ -27178,8 +27464,8 @@
             "kind": "item",
             "raw_name": "陶瓷",
             "quantity": 200,
-            "entity_canonical_id": null,
-            "resolution_status": "blocked_missing_definition",
+            "entity_canonical_id": "runtime.market_item.9e327076b4e1ef6c",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -27191,8 +27477,8 @@
           "kind": "item",
           "raw_name": "陶瓷",
           "quantity": 200,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.market_item.9e327076b4e1ef6c",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -27697,8 +27983,8 @@
             "kind": "item",
             "raw_name": "米",
             "quantity": 100,
-            "entity_canonical_id": null,
-            "resolution_status": "blocked_missing_definition",
+            "entity_canonical_id": "runtime.market_item.1aac8b956f808df5",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -27710,8 +27996,8 @@
           "kind": "item",
           "raw_name": "米",
           "quantity": 100,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.market_item.1aac8b956f808df5",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -27967,8 +28253,8 @@
             "kind": "item",
             "raw_name": "木材",
             "quantity": 200,
-            "entity_canonical_id": null,
-            "resolution_status": "blocked_missing_definition",
+            "entity_canonical_id": "runtime.market_item.30a9333b4fe5013b",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -27980,8 +28266,8 @@
           "kind": "item",
           "raw_name": "木材",
           "quantity": 200,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.market_item.30a9333b4fe5013b",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -28498,8 +28784,8 @@
             "kind": "item",
             "raw_name": "小麦",
             "quantity": 300,
-            "entity_canonical_id": null,
-            "resolution_status": "blocked_missing_definition",
+            "entity_canonical_id": "runtime.market_item.8b34c8535334f805",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -28511,8 +28797,8 @@
           "kind": "item",
           "raw_name": "小麦",
           "quantity": 300,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.market_item.8b34c8535334f805",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -29566,8 +29852,8 @@
             "kind": "item",
             "raw_name": "精铁矿",
             "quantity": 10,
-            "entity_canonical_id": null,
-            "resolution_status": "blocked_missing_definition",
+            "entity_canonical_id": "runtime.item.637bd2c0d786d5e9",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -29579,8 +29865,8 @@
           "kind": "item",
           "raw_name": "精铁矿",
           "quantity": 10,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.item.637bd2c0d786d5e9",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -30610,7 +30896,7 @@
             "kind": "item",
             "raw_name": "狮子奶",
             "quantity": 10,
-            "entity_canonical_id": "entity.item.3855a868ca7393f3",
+            "entity_canonical_id": "entity.item.7e58577435fee1fe",
             "resolution_status": "resolved",
             "runtime_resolution": null
           }
@@ -30623,7 +30909,7 @@
           "kind": "item",
           "raw_name": "狮子奶",
           "quantity": 10,
-          "entity_canonical_id": "entity.item.3855a868ca7393f3",
+          "entity_canonical_id": "entity.item.7e58577435fee1fe",
           "resolution_status": "resolved",
           "runtime_resolution": null
         }
@@ -30743,7 +31029,7 @@
           "automatic_runtime_mapping"
         ],
         "derivations": [
-          "candidate_with_formal_source"
+          "direct_formal_source"
         ]
       },
       "directory_status": "validated",
@@ -31673,8 +31959,8 @@
             "kind": "item",
             "raw_name": "陶瓷",
             "quantity": 300,
-            "entity_canonical_id": null,
-            "resolution_status": "blocked_missing_definition",
+            "entity_canonical_id": "runtime.market_item.9e327076b4e1ef6c",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -31686,8 +31972,8 @@
           "kind": "item",
           "raw_name": "陶瓷",
           "quantity": 300,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.market_item.9e327076b4e1ef6c",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -32223,8 +32509,8 @@
             "kind": "item",
             "raw_name": "丝织品",
             "quantity": 300,
-            "entity_canonical_id": null,
-            "resolution_status": "blocked_missing_definition",
+            "entity_canonical_id": "runtime.market_item.1e9f09eb44297af4",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -32236,8 +32522,8 @@
           "kind": "item",
           "raw_name": "丝织品",
           "quantity": 300,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.market_item.1e9f09eb44297af4",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -33777,8 +34063,8 @@
             "kind": "item",
             "raw_name": "木材",
             "quantity": 300,
-            "entity_canonical_id": null,
-            "resolution_status": "blocked_missing_definition",
+            "entity_canonical_id": "runtime.market_item.30a9333b4fe5013b",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -33790,8 +34076,8 @@
           "kind": "item",
           "raw_name": "木材",
           "quantity": 300,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.market_item.30a9333b4fe5013b",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -34064,8 +34350,8 @@
             "kind": "item",
             "raw_name": "黑铁矿",
             "quantity": 10,
-            "entity_canonical_id": null,
-            "resolution_status": "cross_type_suspected",
+            "entity_canonical_id": "runtime.item.f16e99136fd8942f",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -34077,8 +34363,8 @@
           "kind": "item",
           "raw_name": "黑铁矿",
           "quantity": 10,
-          "entity_canonical_id": null,
-          "resolution_status": "cross_type_suspected",
+          "entity_canonical_id": "runtime.item.f16e99136fd8942f",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -35336,8 +35622,8 @@
             "kind": "item",
             "raw_name": "红薯",
             "quantity": 20,
-            "entity_canonical_id": null,
-            "resolution_status": "cross_type_suspected",
+            "entity_canonical_id": "runtime.item.acf383cef37613dc",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -35349,8 +35635,8 @@
           "kind": "item",
           "raw_name": "红薯",
           "quantity": 20,
-          "entity_canonical_id": null,
-          "resolution_status": "cross_type_suspected",
+          "entity_canonical_id": "runtime.item.acf383cef37613dc",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -36352,8 +36638,8 @@
             "kind": "item",
             "raw_name": "人参",
             "quantity": 200,
-            "entity_canonical_id": null,
-            "resolution_status": "blocked_missing_definition",
+            "entity_canonical_id": "runtime.market_item.aa53ae895172ae2a",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -36365,8 +36651,8 @@
           "kind": "item",
           "raw_name": "人参",
           "quantity": 200,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.market_item.aa53ae895172ae2a",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -37506,15 +37792,14 @@
         "accept": "npc_interaction",
         "execute": [
           "TaskRuntimeEngine",
-          "NpcInteractionExecutor",
-          "VoyageRuntime"
+          "NpcInteractionExecutor"
         ],
         "complete": "objectives_satisfied",
         "submit": "completion_npc_interaction"
       },
       "npcs": {
         "issuer": {
-          "canonical_id": "derived.npc_definition.9b24322b8a4c3383",
+          "canonical_id": "derived.npc_definition.03030119c55991e5",
           "raw_name": "阿巴斯"
         },
         "targets": [
@@ -37537,12 +37822,12 @@
       "locations": {
         "receive": {
           "role": "receive",
-          "canonical_id": "entity.location.177998e52a55ed9a",
-          "display_name": "古村落",
-          "city_canonical_id": "entity.city.e51457158a9475bb",
-          "city_display_name": "亚丁",
-          "coordinate": "45.0187,12.7855",
-          "map_node_canonical_id": "derived.map_node.location.a0018d585f68f182",
+          "canonical_id": "entity.location.14af2737a7ce2013",
+          "display_name": "商店",
+          "city_canonical_id": "entity.city.23309cf1b6d70914",
+          "city_display_name": "荷姆兹",
+          "coordinate": "56.4619,26.5851",
+          "map_node_canonical_id": "derived.map_node.location.a17e3a88f4319134",
           "node_kind": "location"
         },
         "target": {
@@ -37705,8 +37990,7 @@
       "conflict_records": [],
       "runtime_executors": [
         "TaskRuntimeEngine",
-        "NpcInteractionExecutor",
-        "VoyageRuntime"
+        "NpcInteractionExecutor"
       ],
       "fitting": {
         "class_id": 1,
@@ -37825,8 +38109,8 @@
             "kind": "item",
             "raw_name": "人参",
             "quantity": 100,
-            "entity_canonical_id": null,
-            "resolution_status": "blocked_missing_definition",
+            "entity_canonical_id": "runtime.market_item.aa53ae895172ae2a",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -37838,8 +38122,8 @@
           "kind": "item",
           "raw_name": "人参",
           "quantity": 100,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.market_item.aa53ae895172ae2a",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -40502,6 +40786,14 @@
           "quantity": 10000,
           "content_entity_canonical_id": null,
           "resolution_status": "source_label_only"
+        },
+        {
+          "canonical_id": "entity.task_reward.ccd500ac63fbefa2",
+          "kind": "item",
+          "name": "密封信函",
+          "quantity": 1,
+          "content_entity_canonical_id": "runtime.item.80799273a1951294",
+          "resolution_status": "resolved"
         }
       ],
       "source_evidence": [
@@ -41011,6 +41303,14 @@
           "quantity": 1,
           "content_entity_canonical_id": null,
           "resolution_status": "source_label_only"
+        },
+        {
+          "canonical_id": "entity.task_reward.13d812ea97dd0144",
+          "kind": "item",
+          "name": "密封信函",
+          "quantity": 1,
+          "content_entity_canonical_id": "runtime.item.80799273a1951294",
+          "resolution_status": "resolved"
         }
       ],
       "source_evidence": [
@@ -41674,8 +41974,8 @@
             "kind": "item",
             "raw_name": "巨红蜈蚣触须",
             "quantity": 10,
-            "entity_canonical_id": null,
-            "resolution_status": "blocked_missing_definition",
+            "entity_canonical_id": "runtime.item.6b78ddc7df6aa3ed",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -41687,8 +41987,8 @@
           "kind": "item",
           "raw_name": "巨红蜈蚣触须",
           "quantity": 10,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.item.6b78ddc7df6aa3ed",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -41960,8 +42260,8 @@
             "kind": "item",
             "raw_name": "亚特兰蒂斯航海图",
             "quantity": 1,
-            "entity_canonical_id": null,
-            "resolution_status": "blocked_missing_definition",
+            "entity_canonical_id": "runtime.item.afae2dffe7986a5d",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -41973,8 +42273,8 @@
           "kind": "item",
           "raw_name": "亚特兰蒂斯航海图",
           "quantity": 1,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.item.afae2dffe7986a5d",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -42071,6 +42371,22 @@
           "name": "信件",
           "quantity": 1,
           "content_entity_canonical_id": "entity.item.a84c0fbea7054221",
+          "resolution_status": "resolved"
+        },
+        {
+          "canonical_id": "entity.task_reward.236fa01d86ccc18a",
+          "kind": "item",
+          "name": "古航海图",
+          "quantity": 1,
+          "content_entity_canonical_id": "runtime.item.042e15fef31f26be",
+          "resolution_status": "resolved"
+        },
+        {
+          "canonical_id": "entity.task_reward.495b2fe65bcb9e26",
+          "kind": "item",
+          "name": "航海罗盘",
+          "quantity": 1,
+          "content_entity_canonical_id": "runtime.item.8f79cc1311a40f9d",
           "resolution_status": "resolved"
         }
       ],
@@ -42359,6 +42675,22 @@
           "quantity": 2,
           "content_entity_canonical_id": null,
           "resolution_status": "source_label_only"
+        },
+        {
+          "canonical_id": "entity.task_reward.fcad5e673bda5b5c",
+          "kind": "item",
+          "name": "古航海图",
+          "quantity": 1,
+          "content_entity_canonical_id": "runtime.item.042e15fef31f26be",
+          "resolution_status": "resolved"
+        },
+        {
+          "canonical_id": "entity.task_reward.075e4db3a02b36f5",
+          "kind": "item",
+          "name": "航海罗盘",
+          "quantity": 1,
+          "content_entity_canonical_id": "runtime.item.8f79cc1311a40f9d",
+          "resolution_status": "resolved"
         }
       ],
       "source_evidence": [
@@ -42680,7 +43012,7 @@
       },
       "npcs": {
         "issuer": {
-          "canonical_id": "derived.npc_definition.199c696318fc94a6",
+          "canonical_id": "derived.npc_definition.6bfe677a55c86a02",
           "raw_name": "卡拉迪"
         },
         "targets": [
@@ -42695,7 +43027,7 @@
           }
         ],
         "completion": {
-          "canonical_id": "derived.npc_definition.e50fa371481679d8",
+          "canonical_id": "derived.npc_definition.6bfe677a55c86a02",
           "raw_name": "马尔巴克"
         },
         "contextual_definitions": []
@@ -42703,12 +43035,12 @@
       "locations": {
         "receive": {
           "role": "receive",
-          "canonical_id": "entity.location.699ec43c717b6d01",
-          "display_name": "码头",
+          "canonical_id": "entity.location.d578c5c2a89afaed",
+          "display_name": "村庄",
           "city_canonical_id": "entity.city.e3ef537c106042c5",
           "city_display_name": "亚特兰蒂斯",
           "coordinate": "-25.0,33.0",
-          "map_node_canonical_id": "derived.map_node.location.55aa1f9ce9bbf6a3",
+          "map_node_canonical_id": "derived.map_node.location.623993008cb1cfe9",
           "node_kind": "location"
         },
         "target": {
@@ -42723,12 +43055,12 @@
         },
         "submit": {
           "role": "submit",
-          "canonical_id": "entity.location.699ec43c717b6d01",
-          "display_name": "码头",
+          "canonical_id": "entity.location.d578c5c2a89afaed",
+          "display_name": "村庄",
           "city_canonical_id": "entity.city.e3ef537c106042c5",
           "city_display_name": "亚特兰蒂斯",
           "coordinate": "-25.0,33.0",
-          "map_node_canonical_id": "derived.map_node.location.55aa1f9ce9bbf6a3",
+          "map_node_canonical_id": "derived.map_node.location.623993008cb1cfe9",
           "node_kind": "location"
         },
         "entrances": [
@@ -43023,8 +43355,8 @@
             "kind": "item",
             "raw_name": "岩虫壳",
             "quantity": 1,
-            "entity_canonical_id": null,
-            "resolution_status": "blocked_missing_definition",
+            "entity_canonical_id": "runtime.item.34153aca13917498",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -43036,8 +43368,8 @@
           "kind": "item",
           "raw_name": "岩虫壳",
           "quantity": 1,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.item.34153aca13917498",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -43309,8 +43641,8 @@
             "kind": "item",
             "raw_name": "发光的岩石",
             "quantity": 1,
-            "entity_canonical_id": null,
-            "resolution_status": "blocked_missing_definition",
+            "entity_canonical_id": "runtime.item.4ea62b01710f7caa",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -43322,8 +43654,8 @@
           "kind": "item",
           "raw_name": "发光的岩石",
           "quantity": 1,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.item.4ea62b01710f7caa",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -43421,6 +43753,38 @@
           "quantity": 1,
           "content_entity_canonical_id": null,
           "resolution_status": "source_label_only"
+        },
+        {
+          "canonical_id": "entity.task_reward.ec1cac688cc73e55",
+          "kind": "item",
+          "name": "龙珠碎片·赤",
+          "quantity": 1,
+          "content_entity_canonical_id": "runtime.item.9e7f9214ce7d878c",
+          "resolution_status": "resolved"
+        },
+        {
+          "canonical_id": "entity.task_reward.59b77e1f20cc3394",
+          "kind": "item",
+          "name": "龙珠碎片·蓝",
+          "quantity": 1,
+          "content_entity_canonical_id": "runtime.item.fdeae4a1e1999008",
+          "resolution_status": "resolved"
+        },
+        {
+          "canonical_id": "entity.task_reward.e6c83d971e6a33f7",
+          "kind": "item",
+          "name": "龙珠碎片·绿",
+          "quantity": 1,
+          "content_entity_canonical_id": "runtime.item.83a060a1778749f9",
+          "resolution_status": "resolved"
+        },
+        {
+          "canonical_id": "entity.task_reward.f60c646d85a70475",
+          "kind": "item",
+          "name": "龙珠碎片·金",
+          "quantity": 1,
+          "content_entity_canonical_id": "runtime.item.e1d46972982fafa9",
+          "resolution_status": "resolved"
         }
       ],
       "source_evidence": [
@@ -43562,12 +43926,12 @@
         },
         "submit": {
           "role": "submit",
-          "canonical_id": "entity.location.d578c5c2a89afaed",
-          "display_name": "村庄",
+          "canonical_id": "entity.location.15ae6a8396268cff",
+          "display_name": "酒馆",
           "city_canonical_id": "entity.city.e3ef537c106042c5",
           "city_display_name": "亚特兰蒂斯",
           "coordinate": "-25.0,33.0",
-          "map_node_canonical_id": "derived.map_node.location.623993008cb1cfe9",
+          "map_node_canonical_id": "derived.map_node.location.966670f710cd55fd",
           "node_kind": "location"
         },
         "entrances": [
@@ -44788,8 +45152,8 @@
       },
       "directory_status": "validated",
       "legacy_selector": {
-        "selected": false,
-        "selection_reason": null
+        "selected": true,
+        "selection_reason": "maximal_continuous_series_prefix"
       },
       "runtime_overlay": {
         "operational_fit": true,
@@ -45039,14 +45403,14 @@
         "class_id": 1,
         "class_name": "existing_rules_direct",
         "reason_codes": [
-          "independent_rule_match"
+          "development_sample_rule_match"
         ],
         "derivations": []
       },
       "directory_status": "validated",
       "legacy_selector": {
-        "selected": false,
-        "selection_reason": null
+        "selected": true,
+        "selection_reason": "maximal_continuous_series_prefix"
       },
       "runtime_overlay": {
         "operational_fit": true,
@@ -45300,14 +45664,14 @@
         "class_id": 1,
         "class_name": "existing_rules_direct",
         "reason_codes": [
-          "independent_rule_match"
+          "development_sample_rule_match"
         ],
         "derivations": []
       },
       "directory_status": "validated",
       "legacy_selector": {
-        "selected": false,
-        "selection_reason": null
+        "selected": true,
+        "selection_reason": "maximal_continuous_series_prefix"
       },
       "runtime_overlay": {
         "operational_fit": true,
@@ -45584,8 +45948,8 @@
       },
       "directory_status": "validated",
       "legacy_selector": {
-        "selected": false,
-        "selection_reason": null
+        "selected": true,
+        "selection_reason": "maximal_continuous_series_prefix"
       },
       "runtime_overlay": {
         "operational_fit": true,
@@ -45837,14 +46201,14 @@
         "class_id": 1,
         "class_name": "existing_rules_direct",
         "reason_codes": [
-          "independent_rule_match"
+          "development_sample_rule_match"
         ],
         "derivations": []
       },
       "directory_status": "validated",
       "legacy_selector": {
-        "selected": false,
-        "selection_reason": null
+        "selected": true,
+        "selection_reason": "maximal_continuous_series_prefix"
       },
       "runtime_overlay": {
         "operational_fit": true,
@@ -45967,8 +46331,8 @@
             "kind": "item",
             "raw_name": "野猪火腿",
             "quantity": 1,
-            "entity_canonical_id": null,
-            "resolution_status": "blocked_missing_definition",
+            "entity_canonical_id": "runtime.item.adfe2add7ce81ec0",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -45980,8 +46344,8 @@
           "kind": "item",
           "raw_name": "野猪火腿",
           "quantity": 1,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.item.adfe2add7ce81ec0",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -46481,12 +46845,12 @@
         },
         "submit": {
           "role": "submit",
-          "canonical_id": "entity.location.dfd93192aaca2271",
-          "display_name": "码头",
-          "city_canonical_id": "entity.city.0fb27847083d81ed",
-          "city_display_name": "长安",
-          "coordinate": "108.9480,34.2632",
-          "map_node_canonical_id": "derived.map_node.location.7fcdb74635df6d30",
+          "canonical_id": "entity.location.d671d0826cdb3016",
+          "display_name": "渔村",
+          "city_canonical_id": "entity.city.3f395aab4eb9614b",
+          "city_display_name": "泉州",
+          "coordinate": "118.6757,24.8739",
+          "map_node_canonical_id": "derived.map_node.location.496e59a9b8eeb55f",
           "node_kind": "location"
         },
         "entrances": [
@@ -47483,8 +47847,8 @@
       },
       "directory_status": "validated",
       "legacy_selector": {
-        "selected": false,
-        "selection_reason": null
+        "selected": true,
+        "selection_reason": "maximal_continuous_series_prefix"
       },
       "runtime_overlay": {
         "operational_fit": true,
@@ -47607,8 +47971,8 @@
             "kind": "item",
             "raw_name": "棕树木",
             "quantity": 1,
-            "entity_canonical_id": null,
-            "resolution_status": "cross_type_suspected",
+            "entity_canonical_id": "runtime.item.2b73463f2fabf312",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -47620,8 +47984,8 @@
           "kind": "item",
           "raw_name": "棕树木",
           "quantity": 1,
-          "entity_canonical_id": null,
-          "resolution_status": "cross_type_suspected",
+          "entity_canonical_id": "runtime.item.2b73463f2fabf312",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -47744,8 +48108,8 @@
       },
       "directory_status": "validated",
       "legacy_selector": {
-        "selected": false,
-        "selection_reason": null
+        "selected": true,
+        "selection_reason": "maximal_continuous_series_prefix"
       },
       "runtime_overlay": {
         "operational_fit": true,
@@ -48012,14 +48376,14 @@
         "class_id": 1,
         "class_name": "existing_rules_direct",
         "reason_codes": [
-          "independent_rule_match"
+          "development_sample_rule_match"
         ],
         "derivations": []
       },
       "directory_status": "validated",
       "legacy_selector": {
-        "selected": false,
-        "selection_reason": null
+        "selected": true,
+        "selection_reason": "maximal_continuous_series_prefix"
       },
       "runtime_overlay": {
         "operational_fit": true,
@@ -48271,14 +48635,14 @@
         "class_id": 1,
         "class_name": "existing_rules_direct",
         "reason_codes": [
-          "independent_rule_match"
+          "development_sample_rule_match"
         ],
         "derivations": []
       },
       "directory_status": "validated",
       "legacy_selector": {
-        "selected": false,
-        "selection_reason": null
+        "selected": true,
+        "selection_reason": "maximal_continuous_series_prefix"
       },
       "runtime_overlay": {
         "operational_fit": true,
@@ -48530,14 +48894,14 @@
         "class_id": 1,
         "class_name": "existing_rules_direct",
         "reason_codes": [
-          "independent_rule_match"
+          "development_sample_rule_match"
         ],
         "derivations": []
       },
       "directory_status": "validated",
       "legacy_selector": {
-        "selected": false,
-        "selection_reason": null
+        "selected": true,
+        "selection_reason": "maximal_continuous_series_prefix"
       },
       "runtime_overlay": {
         "operational_fit": true,
@@ -48779,14 +49143,14 @@
         "class_id": 1,
         "class_name": "existing_rules_direct",
         "reason_codes": [
-          "independent_rule_match"
+          "development_sample_rule_match"
         ],
         "derivations": []
       },
       "directory_status": "validated",
       "legacy_selector": {
-        "selected": false,
-        "selection_reason": null
+        "selected": true,
+        "selection_reason": "maximal_continuous_series_prefix"
       },
       "runtime_overlay": {
         "operational_fit": true,
@@ -48909,8 +49273,8 @@
             "kind": "item",
             "raw_name": "熟透的葡萄",
             "quantity": 1,
-            "entity_canonical_id": null,
-            "resolution_status": "cross_type_suspected",
+            "entity_canonical_id": "runtime.item.879939da40170b1b",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -48922,8 +49286,8 @@
           "kind": "item",
           "raw_name": "熟透的葡萄",
           "quantity": 1,
-          "entity_canonical_id": null,
-          "resolution_status": "cross_type_suspected",
+          "entity_canonical_id": "runtime.item.879939da40170b1b",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -49046,8 +49410,8 @@
       },
       "directory_status": "validated",
       "legacy_selector": {
-        "selected": false,
-        "selection_reason": null
+        "selected": true,
+        "selection_reason": "maximal_continuous_series_prefix"
       },
       "runtime_overlay": {
         "operational_fit": true,
@@ -49177,7 +49541,7 @@
             "kind": "item",
             "raw_name": "泉水",
             "quantity": 1,
-            "entity_canonical_id": "entity.item.b47d2dd709e68b18",
+            "entity_canonical_id": "entity.item.fd4174760618fabc",
             "resolution_status": "resolved",
             "runtime_resolution": null
           }
@@ -49190,7 +49554,7 @@
           "kind": "item",
           "raw_name": "泉水",
           "quantity": 1,
-          "entity_canonical_id": "entity.item.b47d2dd709e68b18",
+          "entity_canonical_id": "entity.item.fd4174760618fabc",
           "resolution_status": "resolved",
           "runtime_resolution": null
         }
@@ -49318,13 +49682,13 @@
           "automatic_runtime_mapping"
         ],
         "derivations": [
-          "candidate_with_formal_source"
+          "direct_formal_source"
         ]
       },
       "directory_status": "validated",
       "legacy_selector": {
-        "selected": false,
-        "selection_reason": null
+        "selected": true,
+        "selection_reason": "maximal_continuous_series_prefix"
       },
       "runtime_overlay": {
         "operational_fit": true,
@@ -49594,14 +49958,14 @@
         "class_id": 1,
         "class_name": "existing_rules_direct",
         "reason_codes": [
-          "independent_rule_match"
+          "development_sample_rule_match"
         ],
         "derivations": []
       },
       "directory_status": "validated",
       "legacy_selector": {
-        "selected": false,
-        "selection_reason": null
+        "selected": true,
+        "selection_reason": "maximal_continuous_series_prefix"
       },
       "runtime_overlay": {
         "operational_fit": true,
@@ -49843,14 +50207,14 @@
         "class_id": 1,
         "class_name": "existing_rules_direct",
         "reason_codes": [
-          "independent_rule_match"
+          "development_sample_rule_match"
         ],
         "derivations": []
       },
       "directory_status": "validated",
       "legacy_selector": {
-        "selected": false,
-        "selection_reason": null
+        "selected": true,
+        "selection_reason": "maximal_continuous_series_prefix"
       },
       "runtime_overlay": {
         "operational_fit": true,
@@ -50104,14 +50468,14 @@
         "class_id": 1,
         "class_name": "existing_rules_direct",
         "reason_codes": [
-          "independent_rule_match"
+          "development_sample_rule_match"
         ],
         "derivations": []
       },
       "directory_status": "validated",
       "legacy_selector": {
-        "selected": false,
-        "selection_reason": null
+        "selected": true,
+        "selection_reason": "maximal_continuous_series_prefix"
       },
       "runtime_overlay": {
         "operational_fit": true,
@@ -50362,14 +50726,14 @@
         "class_id": 1,
         "class_name": "existing_rules_direct",
         "reason_codes": [
-          "independent_rule_match"
+          "development_sample_rule_match"
         ],
         "derivations": []
       },
       "directory_status": "validated",
       "legacy_selector": {
-        "selected": false,
-        "selection_reason": null
+        "selected": true,
+        "selection_reason": "maximal_continuous_series_prefix"
       },
       "runtime_overlay": {
         "operational_fit": true,
@@ -50492,8 +50856,8 @@
             "kind": "item",
             "raw_name": "鲨鱼皮",
             "quantity": 1,
-            "entity_canonical_id": null,
-            "resolution_status": "blocked_missing_definition",
+            "entity_canonical_id": "runtime.item.783cdb522262f002",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -50505,8 +50869,8 @@
           "kind": "item",
           "raw_name": "鲨鱼皮",
           "quantity": 1,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.item.783cdb522262f002",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -50637,8 +51001,8 @@
       },
       "directory_status": "validated",
       "legacy_selector": {
-        "selected": false,
-        "selection_reason": null
+        "selected": true,
+        "selection_reason": "maximal_continuous_series_prefix"
       },
       "runtime_overlay": {
         "operational_fit": true,
@@ -50910,14 +51274,14 @@
         "class_id": 1,
         "class_name": "existing_rules_direct",
         "reason_codes": [
-          "independent_rule_match"
+          "development_sample_rule_match"
         ],
         "derivations": []
       },
       "directory_status": "validated",
       "legacy_selector": {
-        "selected": false,
-        "selection_reason": null
+        "selected": true,
+        "selection_reason": "maximal_continuous_series_prefix"
       },
       "runtime_overlay": {
         "operational_fit": true,
@@ -51169,14 +51533,14 @@
         "class_id": 1,
         "class_name": "existing_rules_direct",
         "reason_codes": [
-          "independent_rule_match"
+          "development_sample_rule_match"
         ],
         "derivations": []
       },
       "directory_status": "validated",
       "legacy_selector": {
-        "selected": false,
-        "selection_reason": null
+        "selected": true,
+        "selection_reason": "maximal_continuous_series_prefix"
       },
       "runtime_overlay": {
         "operational_fit": true,
@@ -51418,14 +51782,14 @@
         "class_id": 1,
         "class_name": "existing_rules_direct",
         "reason_codes": [
-          "independent_rule_match"
+          "development_sample_rule_match"
         ],
         "derivations": []
       },
       "directory_status": "validated",
       "legacy_selector": {
-        "selected": false,
-        "selection_reason": null
+        "selected": true,
+        "selection_reason": "maximal_continuous_series_prefix"
       },
       "runtime_overlay": {
         "operational_fit": true,
@@ -51677,14 +52041,14 @@
         "class_id": 1,
         "class_name": "existing_rules_direct",
         "reason_codes": [
-          "independent_rule_match"
+          "development_sample_rule_match"
         ],
         "derivations": []
       },
       "directory_status": "validated",
       "legacy_selector": {
-        "selected": false,
-        "selection_reason": null
+        "selected": true,
+        "selection_reason": "maximal_continuous_series_prefix"
       },
       "runtime_overlay": {
         "operational_fit": true,
@@ -51938,14 +52302,14 @@
         "class_id": 1,
         "class_name": "existing_rules_direct",
         "reason_codes": [
-          "independent_rule_match"
+          "development_sample_rule_match"
         ],
         "derivations": []
       },
       "directory_status": "validated",
       "legacy_selector": {
-        "selected": false,
-        "selection_reason": null
+        "selected": true,
+        "selection_reason": "maximal_continuous_series_prefix"
       },
       "runtime_overlay": {
         "operational_fit": true,
@@ -52187,14 +52551,14 @@
         "class_id": 1,
         "class_name": "existing_rules_direct",
         "reason_codes": [
-          "independent_rule_match"
+          "development_sample_rule_match"
         ],
         "derivations": []
       },
       "directory_status": "validated",
       "legacy_selector": {
-        "selected": false,
-        "selection_reason": null
+        "selected": true,
+        "selection_reason": "maximal_continuous_series_prefix"
       },
       "runtime_overlay": {
         "operational_fit": true,
@@ -58821,8 +59185,8 @@
             "kind": "item",
             "raw_name": "野狼王的粪便",
             "quantity": 10,
-            "entity_canonical_id": null,
-            "resolution_status": "blocked_missing_definition",
+            "entity_canonical_id": "runtime.item.88e15e58f8f276af",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -58834,8 +59198,8 @@
           "kind": "item",
           "raw_name": "野狼王的粪便",
           "quantity": 10,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.item.88e15e58f8f276af",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -64316,8 +64680,8 @@
             "kind": "item",
             "raw_name": "地蜘蛛",
             "quantity": 3,
-            "entity_canonical_id": null,
-            "resolution_status": "cross_type_suspected",
+            "entity_canonical_id": "runtime.item.d8f4daffae9b9b72",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           },
           {
@@ -64325,8 +64689,8 @@
             "kind": "item",
             "raw_name": "茯苓",
             "quantity": 3,
-            "entity_canonical_id": null,
-            "resolution_status": "cross_type_suspected",
+            "entity_canonical_id": "runtime.item.90e4e58d454b4a78",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -64338,8 +64702,8 @@
           "kind": "item",
           "raw_name": "地蜘蛛",
           "quantity": 3,
-          "entity_canonical_id": null,
-          "resolution_status": "cross_type_suspected",
+          "entity_canonical_id": "runtime.item.d8f4daffae9b9b72",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         },
         {
@@ -64347,8 +64711,8 @@
           "kind": "item",
           "raw_name": "茯苓",
           "quantity": 3,
-          "entity_canonical_id": null,
-          "resolution_status": "cross_type_suspected",
+          "entity_canonical_id": "runtime.item.90e4e58d454b4a78",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -66696,8 +67060,8 @@
             "kind": "item",
             "raw_name": "红牛角",
             "quantity": 5,
-            "entity_canonical_id": null,
-            "resolution_status": "blocked_missing_definition",
+            "entity_canonical_id": "runtime.item.587731d8287b195f",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -66709,8 +67073,8 @@
           "kind": "item",
           "raw_name": "红牛角",
           "quantity": 5,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.item.587731d8287b195f",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -69297,8 +69661,8 @@
             "kind": "item",
             "raw_name": "锤子",
             "quantity": 1,
-            "entity_canonical_id": null,
-            "resolution_status": "blocked_missing_definition",
+            "entity_canonical_id": "runtime.task_chain.item.d753d54fa91fa2ae",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -69310,8 +69674,8 @@
           "kind": "item",
           "raw_name": "锤子",
           "quantity": 1,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.task_chain.item.d753d54fa91fa2ae",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -69431,12 +69795,14 @@
         "ItemAcquisitionExecutor"
       ],
       "fitting": {
-        "class_id": 7,
-        "class_name": "data_error_or_migration_damage",
+        "class_id": 2,
+        "class_name": "automatic_field_or_name_mapping",
         "reason_codes": [
-          "source_data_and_placement_disagree"
+          "automatic_runtime_mapping"
         ],
-        "derivations": []
+        "derivations": [
+          "direct_formal_source"
+        ]
       },
       "directory_status": "validated",
       "legacy_selector": {
@@ -70374,8 +70740,8 @@
             "kind": "item",
             "raw_name": "水晶矿",
             "quantity": 3,
-            "entity_canonical_id": null,
-            "resolution_status": "blocked_missing_definition",
+            "entity_canonical_id": "runtime.item.fde0e6fbfe4b8da9",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -70387,8 +70753,8 @@
           "kind": "item",
           "raw_name": "水晶矿",
           "quantity": 3,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.item.fde0e6fbfe4b8da9",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -70660,8 +71026,8 @@
             "kind": "item",
             "raw_name": "熊皮",
             "quantity": 5,
-            "entity_canonical_id": null,
-            "resolution_status": "blocked_missing_definition",
+            "entity_canonical_id": "runtime.item.57e744db1884c498",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -70673,8 +71039,8 @@
           "kind": "item",
           "raw_name": "熊皮",
           "quantity": 5,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.item.57e744db1884c498",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -70786,12 +71152,14 @@
         "ItemAcquisitionExecutor"
       ],
       "fitting": {
-        "class_id": 7,
-        "class_name": "data_error_or_migration_damage",
+        "class_id": 2,
+        "class_name": "automatic_field_or_name_mapping",
         "reason_codes": [
-          "source_data_and_placement_disagree"
+          "automatic_runtime_mapping"
         ],
-        "derivations": []
+        "derivations": [
+          "source_explicit_task_described_encounter_drop"
+        ]
       },
       "directory_status": "runnable_pending_validation",
       "legacy_selector": {
@@ -70948,8 +71316,8 @@
             "kind": "item",
             "raw_name": "玄龟壳",
             "quantity": 5,
-            "entity_canonical_id": null,
-            "resolution_status": "blocked_missing_definition",
+            "entity_canonical_id": "runtime.item.3a32e667b159386e",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -70961,8 +71329,8 @@
           "kind": "item",
           "raw_name": "玄龟壳",
           "quantity": 5,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.item.3a32e667b159386e",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -73544,8 +73912,8 @@
             "kind": "item",
             "raw_name": "玫瑰花",
             "quantity": 1,
-            "entity_canonical_id": null,
-            "resolution_status": "cross_type_suspected",
+            "entity_canonical_id": "runtime.item.ac59252eb64cde19",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -73557,8 +73925,8 @@
           "kind": "item",
           "raw_name": "玫瑰花",
           "quantity": 1,
-          "entity_canonical_id": null,
-          "resolution_status": "cross_type_suspected",
+          "entity_canonical_id": "runtime.item.ac59252eb64cde19",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -76169,8 +76537,8 @@
             "kind": "item",
             "raw_name": "犯人档案",
             "quantity": 1,
-            "entity_canonical_id": null,
-            "resolution_status": "blocked_missing_definition",
+            "entity_canonical_id": "runtime.item.97ec88b8cc4e7664",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -76182,8 +76550,8 @@
           "kind": "item",
           "raw_name": "犯人档案",
           "quantity": 1,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.item.97ec88b8cc4e7664",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -77617,6 +77985,46 @@
           "quantity": 1,
           "content_entity_canonical_id": null,
           "resolution_status": "source_label_only"
+        },
+        {
+          "canonical_id": "entity.task_reward.439717e110f002b3",
+          "kind": "item",
+          "name": "黑铁钥匙",
+          "quantity": 1,
+          "content_entity_canonical_id": "runtime.item.8b74a7b28060691a",
+          "resolution_status": "resolved"
+        },
+        {
+          "canonical_id": "entity.task_reward.94890c0211d9d61c",
+          "kind": "item",
+          "name": "铜钥匙",
+          "quantity": 1,
+          "content_entity_canonical_id": "runtime.item.ff6cef9d8a68451b",
+          "resolution_status": "resolved"
+        },
+        {
+          "canonical_id": "entity.task_reward.812a2d9346e9856f",
+          "kind": "item",
+          "name": "银钥匙",
+          "quantity": 1,
+          "content_entity_canonical_id": "runtime.item.372e7a0da738d7b6",
+          "resolution_status": "resolved"
+        },
+        {
+          "canonical_id": "entity.task_reward.82b441af24ab652c",
+          "kind": "item",
+          "name": "金钥匙",
+          "quantity": 1,
+          "content_entity_canonical_id": "runtime.item.abb9d800063cd3bc",
+          "resolution_status": "resolved"
+        },
+        {
+          "canonical_id": "entity.task_reward.4f7dc5ac864d7e89",
+          "kind": "item",
+          "name": "骷髅钥匙",
+          "quantity": 1,
+          "content_entity_canonical_id": "runtime.item.e9073c5038adbde4",
+          "resolution_status": "resolved"
         }
       ],
       "source_evidence": [
@@ -79321,12 +79729,12 @@
         },
         "submit": {
           "role": "submit",
-          "canonical_id": "entity.location.4a97d4ef45bccaa5",
-          "display_name": "码头",
+          "canonical_id": "entity.location.e28ff0fd9c85bf7d",
+          "display_name": "宅邸",
           "city_canonical_id": "entity.city.12dbc1806d984e5a",
           "city_display_name": "大阪",
           "coordinate": "135.5022,34.6937",
-          "map_node_canonical_id": "derived.map_node.location.f1a444779ec7c684",
+          "map_node_canonical_id": "derived.map_node.location.6a6c4f58b52f7630",
           "node_kind": "location"
         },
         "entrances": [
@@ -85140,8 +85548,8 @@
             "kind": "item",
             "raw_name": "新鲜茶叶",
             "quantity": 5,
-            "entity_canonical_id": null,
-            "resolution_status": "blocked_missing_definition",
+            "entity_canonical_id": "runtime.item.4d5b4502853fa908",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -85153,8 +85561,8 @@
           "kind": "item",
           "raw_name": "新鲜茶叶",
           "quantity": 5,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.item.4d5b4502853fa908",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -86208,8 +86616,8 @@
           "kind": "monster",
           "raw_name": "僵尸",
           "quantity": 8,
-          "entity_canonical_id": null,
-          "resolution_status": "ambiguous",
+          "entity_canonical_id": "derived.monster_definition.b6c33ddc0a318a25",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         },
         {
@@ -86333,17 +86741,9 @@
         "class_id": 7,
         "class_name": "data_error_or_migration_damage",
         "reason_codes": [
-          "target_kind_migration_mismatch"
+          "source_data_and_placement_disagree"
         ],
-        "derivations": [
-          {
-            "target_canonical_id": "task.series.15.415.target.01",
-            "from": "monster",
-            "to": "item",
-            "source_monster_canonical_id": "derived.monster_definition.faf1f5f9ac63a777",
-            "evidence": "task acquisition verb + unique named encounter"
-          }
-        ]
+        "derivations": []
       },
       "directory_status": "validated",
       "legacy_selector": {
@@ -86495,8 +86895,8 @@
             "kind": "item",
             "raw_name": "玄铁矿石",
             "quantity": 1,
-            "entity_canonical_id": null,
-            "resolution_status": "blocked_missing_definition",
+            "entity_canonical_id": "runtime.item.9d567ada42ae6c19",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -86508,8 +86908,8 @@
           "kind": "item",
           "raw_name": "玄铁矿石",
           "quantity": 1,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.item.9d567ada42ae6c19",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -92444,8 +92844,8 @@
             "kind": "item",
             "raw_name": "蛇牙草",
             "quantity": 5,
-            "entity_canonical_id": null,
-            "resolution_status": "cross_type_suspected",
+            "entity_canonical_id": "runtime.item.3ee24deb8eab96fb",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -92457,8 +92857,8 @@
           "kind": "item",
           "raw_name": "蛇牙草",
           "quantity": 5,
-          "entity_canonical_id": null,
-          "resolution_status": "cross_type_suspected",
+          "entity_canonical_id": "runtime.item.3ee24deb8eab96fb",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -92638,7 +93038,7 @@
       },
       "npcs": {
         "issuer": {
-          "canonical_id": "derived.npc_definition.112c41537d305d9c",
+          "canonical_id": "derived.npc_definition.1162e05bf414051a",
           "raw_name": "养蜂人"
         },
         "targets": [
@@ -92661,12 +93061,12 @@
       "locations": {
         "receive": {
           "role": "receive",
-          "canonical_id": "entity.location.7c835ecb95b2131f",
-          "display_name": "酒馆",
+          "canonical_id": "entity.location.ef9343fa9b5c9210",
+          "display_name": "警察局",
           "city_canonical_id": "entity.city.74d85182a36af927",
           "city_display_name": "突尼斯",
           "coordinate": "10.1815,36.8065",
-          "map_node_canonical_id": "derived.map_node.location.a57ca59ee29901c3",
+          "map_node_canonical_id": "derived.map_node.location.95e494de55518afc",
           "node_kind": "location"
         },
         "target": {
@@ -96239,8 +96639,8 @@
             "kind": "item",
             "raw_name": "枯木枝",
             "quantity": 6,
-            "entity_canonical_id": null,
-            "resolution_status": "blocked_missing_definition",
+            "entity_canonical_id": "runtime.item.21594155151b00e7",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -96252,8 +96652,8 @@
           "kind": "item",
           "raw_name": "枯木枝",
           "quantity": 6,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.item.21594155151b00e7",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -97121,6 +97521,14 @@
           "quantity": 5,
           "content_entity_canonical_id": null,
           "resolution_status": "source_label_only"
+        },
+        {
+          "canonical_id": "entity.task_reward.dc1ca3e1b7f875fe",
+          "kind": "item",
+          "name": "黑珍珠",
+          "quantity": 1,
+          "content_entity_canonical_id": "runtime.task_chain.item.8b4fe6ffc18a39c1",
+          "resolution_status": "resolved"
         }
       ],
       "source_evidence": [
@@ -97285,8 +97693,8 @@
             "kind": "item",
             "raw_name": "黑珍珠",
             "quantity": 1,
-            "entity_canonical_id": null,
-            "resolution_status": "blocked_missing_definition",
+            "entity_canonical_id": "runtime.task_chain.item.8b4fe6ffc18a39c1",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -97298,8 +97706,8 @@
           "kind": "item",
           "raw_name": "黑珍珠",
           "quantity": 1,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.task_chain.item.8b4fe6ffc18a39c1",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -97411,10 +97819,10 @@
         "DeliveryExecutor"
       ],
       "fitting": {
-        "class_id": 10,
-        "class_name": "insufficient_evidence_hold",
+        "class_id": 1,
+        "class_name": "existing_rules_direct",
         "reason_codes": [
-          "dependency_evidence_missing"
+          "independent_rule_match"
         ],
         "derivations": []
       },
@@ -97452,9 +97860,7 @@
           }
         ],
         "reward_resolutions": [],
-        "implemented_shared_systems": [
-          "task_acceptance_handoff"
-        ],
+        "implemented_shared_systems": [],
         "task_location_override": null,
         "evidence_exception_resolution": {
           "decision": "resolved_with_task_chain_ledger",
@@ -97574,8 +97980,8 @@
             "kind": "item",
             "raw_name": "枯木枝",
             "quantity": 5,
-            "entity_canonical_id": null,
-            "resolution_status": "blocked_missing_definition",
+            "entity_canonical_id": "runtime.item.21594155151b00e7",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -97587,8 +97993,8 @@
           "kind": "item",
           "raw_name": "枯木枝",
           "quantity": 5,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.item.21594155151b00e7",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -98758,6 +99164,14 @@
           "quantity": 5,
           "content_entity_canonical_id": null,
           "resolution_status": "source_label_only"
+        },
+        {
+          "canonical_id": "entity.task_reward.02a032c2cda857b4",
+          "kind": "item",
+          "name": "渔网",
+          "quantity": 1,
+          "content_entity_canonical_id": "runtime.task_acceptance.item.b3f305a6689e2e25",
+          "resolution_status": "resolved"
         }
       ],
       "source_evidence": [
@@ -98913,8 +99327,8 @@
             "kind": "item",
             "raw_name": "渔网",
             "quantity": 1,
-            "entity_canonical_id": null,
-            "resolution_status": "blocked_missing_definition",
+            "entity_canonical_id": "runtime.task_acceptance.item.b3f305a6689e2e25",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -98926,8 +99340,8 @@
           "kind": "item",
           "raw_name": "渔网",
           "quantity": 1,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.task_acceptance.item.b3f305a6689e2e25",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -99039,10 +99453,10 @@
         "DeliveryExecutor"
       ],
       "fitting": {
-        "class_id": 10,
-        "class_name": "insufficient_evidence_hold",
+        "class_id": 1,
+        "class_name": "existing_rules_direct",
         "reason_codes": [
-          "dependency_evidence_missing"
+          "independent_rule_match"
         ],
         "derivations": []
       },
@@ -99079,9 +99493,7 @@
           }
         ],
         "reward_resolutions": [],
-        "implemented_shared_systems": [
-          "task_acceptance_handoff"
-        ],
+        "implemented_shared_systems": [],
         "task_location_override": null,
         "evidence_exception_resolution": {
           "decision": "resolved_with_acceptance_item_grant",
@@ -99709,8 +100121,8 @@
             "kind": "item",
             "raw_name": "火蝙蝠血液",
             "quantity": 5,
-            "entity_canonical_id": null,
-            "resolution_status": "blocked_missing_definition",
+            "entity_canonical_id": "runtime.item.186026db0c45bd9f",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -99722,8 +100134,8 @@
           "kind": "item",
           "raw_name": "火蝙蝠血液",
           "quantity": 5,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.item.186026db0c45bd9f",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -99849,7 +100261,7 @@
           "automatic_runtime_mapping"
         ],
         "derivations": [
-          "source_explicit_task_described_encounter_drop"
+          "direct_formal_source"
         ]
       },
       "directory_status": "validated",
@@ -99997,8 +100409,8 @@
             "kind": "item",
             "raw_name": "火蝙蝠血液",
             "quantity": 5,
-            "entity_canonical_id": null,
-            "resolution_status": "blocked_missing_definition",
+            "entity_canonical_id": "runtime.item.186026db0c45bd9f",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -100010,8 +100422,8 @@
           "kind": "item",
           "raw_name": "火蝙蝠血液",
           "quantity": 5,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.item.186026db0c45bd9f",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -100899,6 +101311,14 @@
           "quantity": 5,
           "content_entity_canonical_id": null,
           "resolution_status": "source_label_only"
+        },
+        {
+          "canonical_id": "entity.task_reward.0f78062ff0b7f7bc",
+          "kind": "item",
+          "name": "龙鳞",
+          "quantity": 1,
+          "content_entity_canonical_id": "runtime.task_chain.item.ff1cc9899dfa1f5f",
+          "resolution_status": "resolved"
         }
       ],
       "source_evidence": [
@@ -100938,16 +101358,7 @@
         "operational_fit": true,
         "blocking_reasons": [],
         "target_resolutions": [],
-        "reward_resolutions": [
-          {
-            "source_task_canonical_id": "task.series.15.470",
-            "reward_name": "龙鳞",
-            "quantity": 1,
-            "runtime_entity_canonical_id": "runtime.task_chain.item.ff1cc9899dfa1f5f",
-            "resolution_rule": "task_chain_reward_ledger",
-            "source_target_canonical_id": "task.series.15.471.target.01"
-          }
-        ],
+        "reward_resolutions": [],
         "implemented_shared_systems": [],
         "task_location_override": null,
         "evidence_exception_resolution": null
@@ -101065,8 +101476,8 @@
             "kind": "item",
             "raw_name": "龙鳞",
             "quantity": 1,
-            "entity_canonical_id": null,
-            "resolution_status": "blocked_missing_definition",
+            "entity_canonical_id": "runtime.task_chain.item.ff1cc9899dfa1f5f",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -101078,8 +101489,8 @@
           "kind": "item",
           "raw_name": "龙鳞",
           "quantity": 1,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.task_chain.item.ff1cc9899dfa1f5f",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -101175,8 +101586,8 @@
           "kind": "item",
           "name": "黑珍珠",
           "quantity": 1,
-          "content_entity_canonical_id": null,
-          "resolution_status": "source_label_only"
+          "content_entity_canonical_id": "runtime.task_chain.item.8b4fe6ffc18a39c1",
+          "resolution_status": "resolved"
         }
       ],
       "source_evidence": [
@@ -101200,18 +101611,13 @@
         "VoyageRuntime"
       ],
       "fitting": {
-        "class_id": 5,
-        "class_name": "extend_existing_common_algorithm",
+        "class_id": 2,
+        "class_name": "automatic_field_or_name_mapping",
         "reason_codes": [
-          "task_chain_item_ledger"
+          "automatic_runtime_mapping"
         ],
         "derivations": [
-          {
-            "target_canonical_id": "task.series.15.471.target.01",
-            "item_name": "龙鳞",
-            "source_task_canonical_id": "task.series.15.470",
-            "evidence": "prerequisite reward or adjacent task text"
-          }
+          "direct_formal_source"
         ]
       },
       "directory_status": "validated",
@@ -101225,41 +101631,24 @@
         "target_resolutions": [
           {
             "target_canonical_id": "task.series.15.471.target.01",
+            "source_entity_canonical_id": "runtime.task_chain.item.ff1cc9899dfa1f5f",
             "runtime_entity_canonical_id": "runtime.task_chain.item.ff1cc9899dfa1f5f",
-            "resolution_rule": "task_chain_reward_ledger",
-            "target_kind_override": "item",
-            "original_target_kind": "item",
-            "task_item_policy": {
-              "acquisition_mode": "prerequisite_reward",
-              "reservation": "required_until_submit",
-              "source_task_canonical_id": "task.series.15.470",
-              "abandonment": "retain_source_reward",
-              "consumption": "submit_only"
-            },
+            "resolution_rule": "direct_formal_source",
             "formal_source": {
-              "canonical_id": "runtime.task_chain.source.0f78062ff0b7f7bc",
-              "source_canonical_id": "task.series.15.470",
-              "source_kind": "task_chain_reward",
-              "item_name": "龙鳞",
-              "source_task_canonical_id": "task.series.15.470",
-              "evidence_status": "SOURCE_TEXT_AND_ADJACENT_CHAIN",
-              "evidence_locator": "task.series.15.470 -> task.series.15.471"
+              "item": "runtime.task_chain.item.ff1cc9899dfa1f5f",
+              "canonical_id": "entity.drop.3aac6366ae12cd10",
+              "source_canonical_id": "entity.drop.3aac6366ae12cd10",
+              "source_kind": "drop",
+              "probability": null,
+              "quantity": null,
+              "runtime_capability": "queryable",
+              "monster_canonical_id": "derived.monster_definition.b8e76bfec2006ba1",
+              "location_canonical_id": "entity.location.69df8593c0ac1f9c"
             }
           }
         ],
-        "reward_resolutions": [
-          {
-            "source_task_canonical_id": "task.series.15.471",
-            "reward_name": "黑珍珠",
-            "quantity": 1,
-            "runtime_entity_canonical_id": "runtime.task_chain.item.8b4fe6ffc18a39c1",
-            "resolution_rule": "task_chain_reward_ledger",
-            "source_target_canonical_id": "task.series.15.472.target.01"
-          }
-        ],
-        "implemented_shared_systems": [
-          "task_chain_item_ledger"
-        ],
+        "reward_resolutions": [],
+        "implemented_shared_systems": [],
         "task_location_override": null,
         "evidence_exception_resolution": null
       }
@@ -101375,8 +101764,8 @@
             "kind": "item",
             "raw_name": "黑珍珠",
             "quantity": 1,
-            "entity_canonical_id": null,
-            "resolution_status": "blocked_missing_definition",
+            "entity_canonical_id": "runtime.task_chain.item.8b4fe6ffc18a39c1",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -101388,8 +101777,8 @@
           "kind": "item",
           "raw_name": "黑珍珠",
           "quantity": 1,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.task_chain.item.8b4fe6ffc18a39c1",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -101509,19 +101898,12 @@
         "ItemAcquisitionExecutor"
       ],
       "fitting": {
-        "class_id": 5,
-        "class_name": "extend_existing_common_algorithm",
+        "class_id": 7,
+        "class_name": "data_error_or_migration_damage",
         "reason_codes": [
-          "task_chain_item_ledger"
+          "source_data_and_placement_disagree"
         ],
-        "derivations": [
-          {
-            "target_canonical_id": "task.series.15.472.target.01",
-            "item_name": "黑珍珠",
-            "source_task_canonical_id": "task.series.15.471",
-            "evidence": "prerequisite reward or adjacent task text"
-          }
-        ]
+        "derivations": []
       },
       "directory_status": "validated",
       "legacy_selector": {
@@ -101529,37 +101911,18 @@
         "selection_reason": null
       },
       "runtime_overlay": {
-        "operational_fit": true,
-        "blocking_reasons": [],
-        "target_resolutions": [
+        "operational_fit": false,
+        "blocking_reasons": [
           {
+            "code": "item_without_formal_source",
             "target_canonical_id": "task.series.15.472.target.01",
-            "runtime_entity_canonical_id": "runtime.task_chain.item.8b4fe6ffc18a39c1",
-            "resolution_rule": "task_chain_reward_ledger",
-            "target_kind_override": "item",
-            "original_target_kind": "item",
-            "task_item_policy": {
-              "acquisition_mode": "prerequisite_reward",
-              "reservation": "required_until_submit",
-              "source_task_canonical_id": "task.series.15.471",
-              "abandonment": "retain_source_reward",
-              "consumption": "submit_only"
-            },
-            "formal_source": {
-              "canonical_id": "runtime.task_chain.source.1dc5ef19d696dc7e",
-              "source_canonical_id": "task.series.15.471",
-              "source_kind": "task_chain_reward",
-              "item_name": "黑珍珠",
-              "source_task_canonical_id": "task.series.15.471",
-              "evidence_status": "SOURCE_TEXT_AND_ADJACENT_CHAIN",
-              "evidence_locator": "task.series.15.471 -> task.series.15.472"
-            }
+            "source_entity_canonical_id": "runtime.task_chain.item.8b4fe6ffc18a39c1",
+            "candidate_canonical_ids": []
           }
         ],
+        "target_resolutions": [],
         "reward_resolutions": [],
-        "implemented_shared_systems": [
-          "task_chain_item_ledger"
-        ],
+        "implemented_shared_systems": [],
         "task_location_override": null,
         "evidence_exception_resolution": null
       }
@@ -107693,12 +108056,12 @@
         },
         "submit": {
           "role": "submit",
-          "canonical_id": "entity.location.9ff2bd72ca76c669",
-          "display_name": "实验室",
+          "canonical_id": "entity.location.8594952d4c68cbde",
+          "display_name": "荒野",
           "city_canonical_id": "entity.city.7ff6ada0319bc625",
           "city_display_name": "威尼斯",
           "coordinate": "12.3155,45.4408",
-          "map_node_canonical_id": "derived.map_node.location.844f97e6d552e781",
+          "map_node_canonical_id": "derived.map_node.location.3ff1091fd33eea93",
           "node_kind": "location"
         },
         "entrances": [
@@ -107942,12 +108305,12 @@
         },
         "submit": {
           "role": "submit",
-          "canonical_id": "entity.location.9ff2bd72ca76c669",
-          "display_name": "实验室",
+          "canonical_id": "entity.location.8594952d4c68cbde",
+          "display_name": "荒野",
           "city_canonical_id": "entity.city.7ff6ada0319bc625",
           "city_display_name": "威尼斯",
           "coordinate": "12.3155,45.4408",
-          "map_node_canonical_id": "derived.map_node.location.844f97e6d552e781",
+          "map_node_canonical_id": "derived.map_node.location.3ff1091fd33eea93",
           "node_kind": "location"
         },
         "entrances": [
@@ -112187,7 +112550,7 @@
             "kind": "item",
             "raw_name": "茶具",
             "quantity": 1,
-            "entity_canonical_id": "entity.item.ffe14c6dca4f57eb",
+            "entity_canonical_id": "runtime.market_item.97e7141015fbe129",
             "resolution_status": "resolved",
             "runtime_resolution": null
           }
@@ -112200,7 +112563,7 @@
           "kind": "item",
           "raw_name": "茶具",
           "quantity": 1,
-          "entity_canonical_id": "entity.item.ffe14c6dca4f57eb",
+          "entity_canonical_id": "runtime.market_item.97e7141015fbe129",
           "resolution_status": "resolved",
           "runtime_resolution": null
         }
@@ -113449,7 +113812,7 @@
           }
         ],
         "completion": {
-          "canonical_id": "derived.npc_definition.7f3262541b9c8107",
+          "canonical_id": "derived.npc_definition.a3bb0b619be3f60f",
           "raw_name": "千年巨蟒"
         },
         "contextual_definitions": []
@@ -113622,6 +113985,14 @@
           "quantity": 5,
           "content_entity_canonical_id": null,
           "resolution_status": "source_label_only"
+        },
+        {
+          "canonical_id": "entity.task_reward.42109c85e4b553ef",
+          "kind": "item",
+          "name": "青龙玉佩",
+          "quantity": 1,
+          "content_entity_canonical_id": "runtime.item.586fec3896207a43",
+          "resolution_status": "resolved"
         }
       ],
       "source_evidence": [
@@ -113694,12 +114065,12 @@
       },
       "npcs": {
         "issuer": {
-          "canonical_id": "derived.npc_definition.7f3262541b9c8107",
+          "canonical_id": "derived.npc_definition.a3bb0b619be3f60f",
           "raw_name": "千年巨蟒"
         },
         "targets": [],
         "completion": {
-          "canonical_id": "derived.npc_definition.7f3262541b9c8107",
+          "canonical_id": "derived.npc_definition.a3bb0b619be3f60f",
           "raw_name": "千年巨蟒"
         },
         "contextual_definitions": []
@@ -113707,12 +114078,12 @@
       "locations": {
         "receive": {
           "role": "receive",
-          "canonical_id": "entity.location.2186e2bef5ae3159",
-          "display_name": "青龙潭",
-          "city_canonical_id": "entity.city.3f395aab4eb9614b",
-          "city_display_name": "泉州",
-          "coordinate": "118.6757,24.8739",
-          "map_node_canonical_id": "derived.map_node.location.174933b273de4255",
+          "canonical_id": "entity.location.5ac449a61f94e309",
+          "display_name": "三清观",
+          "city_canonical_id": "entity.city.0fb27847083d81ed",
+          "city_display_name": "长安",
+          "coordinate": "108.9480,34.2632",
+          "map_node_canonical_id": "derived.map_node.location.8748cc9f6ffa5d7c",
           "node_kind": "location"
         },
         "target": {
@@ -113945,15 +114316,14 @@
         "accept": "npc_interaction",
         "execute": [
           "TaskRuntimeEngine",
-          "DeliveryExecutor",
-          "VoyageRuntime"
+          "DeliveryExecutor"
         ],
         "complete": "objectives_satisfied",
         "submit": "completion_npc_interaction"
       },
       "npcs": {
         "issuer": {
-          "canonical_id": "derived.npc_definition.7f3262541b9c8107",
+          "canonical_id": "derived.npc_definition.a3bb0b619be3f60f",
           "raw_name": "千年巨蟒"
         },
         "targets": [],
@@ -113966,12 +114336,12 @@
       "locations": {
         "receive": {
           "role": "receive",
-          "canonical_id": "entity.location.2186e2bef5ae3159",
-          "display_name": "青龙潭",
-          "city_canonical_id": "entity.city.3f395aab4eb9614b",
-          "city_display_name": "泉州",
-          "coordinate": "118.6757,24.8739",
-          "map_node_canonical_id": "derived.map_node.location.174933b273de4255",
+          "canonical_id": "entity.location.5ac449a61f94e309",
+          "display_name": "三清观",
+          "city_canonical_id": "entity.city.0fb27847083d81ed",
+          "city_display_name": "长安",
+          "coordinate": "108.9480,34.2632",
+          "map_node_canonical_id": "derived.map_node.location.8748cc9f6ffa5d7c",
           "node_kind": "location"
         },
         "target": {
@@ -114160,8 +114530,7 @@
       "conflict_records": [],
       "runtime_executors": [
         "TaskRuntimeEngine",
-        "DeliveryExecutor",
-        "VoyageRuntime"
+        "DeliveryExecutor"
       ],
       "fitting": {
         "class_id": 1,
@@ -124280,8 +124649,8 @@
             "kind": "item",
             "raw_name": "白云果",
             "quantity": 10,
-            "entity_canonical_id": null,
-            "resolution_status": "blocked_missing_definition",
+            "entity_canonical_id": "runtime.item.336fa533d246e009",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -124293,8 +124662,8 @@
           "kind": "item",
           "raw_name": "白云果",
           "quantity": 10,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.item.336fa533d246e009",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -124566,8 +124935,8 @@
             "kind": "item",
             "raw_name": "水之精",
             "quantity": 10,
-            "entity_canonical_id": null,
-            "resolution_status": "cross_type_suspected",
+            "entity_canonical_id": "runtime.item.64da644d11c3f769",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -124579,8 +124948,8 @@
           "kind": "item",
           "raw_name": "水之精",
           "quantity": 10,
-          "entity_canonical_id": null,
-          "resolution_status": "cross_type_suspected",
+          "entity_canonical_id": "runtime.item.64da644d11c3f769",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -130302,8 +130671,8 @@
             "kind": "item",
             "raw_name": "破碎的破界符",
             "quantity": 7,
-            "entity_canonical_id": null,
-            "resolution_status": "blocked_missing_definition",
+            "entity_canonical_id": "runtime.task_chain.item.cd2182704d029476",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -130315,8 +130684,8 @@
           "kind": "item",
           "raw_name": "破碎的破界符",
           "quantity": 7,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.task_chain.item.cd2182704d029476",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -130428,12 +130797,14 @@
         "ItemAcquisitionExecutor"
       ],
       "fitting": {
-        "class_id": 7,
-        "class_name": "data_error_or_migration_damage",
+        "class_id": 2,
+        "class_name": "automatic_field_or_name_mapping",
         "reason_codes": [
-          "source_data_and_placement_disagree"
+          "automatic_runtime_mapping"
         ],
-        "derivations": []
+        "derivations": [
+          "direct_formal_source"
+        ]
       },
       "directory_status": "validated",
       "legacy_selector": {
@@ -130595,8 +130966,8 @@
             "kind": "item",
             "raw_name": "云之果",
             "quantity": 7,
-            "entity_canonical_id": null,
-            "resolution_status": "blocked_missing_definition",
+            "entity_canonical_id": "runtime.item.031e0ed6fb653d58",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -130608,8 +130979,8 @@
           "kind": "item",
           "raw_name": "云之果",
           "quantity": 7,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.item.031e0ed6fb653d58",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -130882,8 +131253,8 @@
             "kind": "item",
             "raw_name": "水之精",
             "quantity": 7,
-            "entity_canonical_id": null,
-            "resolution_status": "cross_type_suspected",
+            "entity_canonical_id": "runtime.item.64da644d11c3f769",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -130895,8 +131266,8 @@
           "kind": "item",
           "raw_name": "水之精",
           "quantity": 7,
-          "entity_canonical_id": null,
-          "resolution_status": "cross_type_suspected",
+          "entity_canonical_id": "runtime.item.64da644d11c3f769",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -135038,8 +135409,8 @@
             "kind": "item",
             "raw_name": "小良的毛笔",
             "quantity": 1,
-            "entity_canonical_id": null,
-            "resolution_status": "blocked_missing_definition",
+            "entity_canonical_id": "entity.item.7ba771bd31f63445",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -135051,8 +135422,8 @@
           "kind": "item",
           "raw_name": "小良的毛笔",
           "quantity": 1,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "entity.item.7ba771bd31f63445",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -135164,12 +135535,14 @@
         "ItemAcquisitionExecutor"
       ],
       "fitting": {
-        "class_id": 7,
-        "class_name": "data_error_or_migration_damage",
+        "class_id": 2,
+        "class_name": "automatic_field_or_name_mapping",
         "reason_codes": [
-          "source_data_and_placement_disagree"
+          "automatic_runtime_mapping"
         ],
-        "derivations": []
+        "derivations": [
+          "direct_formal_source"
+        ]
       },
       "directory_status": "runnable_pending_validation",
       "legacy_selector": {
@@ -138631,12 +139004,12 @@
         },
         "submit": {
           "role": "submit",
-          "canonical_id": "entity.location.f071e9a031b72750",
-          "display_name": "警察局",
+          "canonical_id": "entity.location.eaf3b23904bb6425",
+          "display_name": "码头",
           "city_canonical_id": "entity.city.7ff6ada0319bc625",
           "city_display_name": "威尼斯",
           "coordinate": "12.3155,45.4408",
-          "map_node_canonical_id": "derived.map_node.location.c48c7bb7fb88ff9f",
+          "map_node_canonical_id": "derived.map_node.location.7e79b57e8c8622e9",
           "node_kind": "location"
         },
         "entrances": [
@@ -142845,7 +143218,7 @@
         "accept": "npc_interaction",
         "execute": [
           "TaskRuntimeEngine",
-          "CombatRuntime"
+          "ItemAcquisitionExecutor"
         ],
         "complete": "objectives_satisfied",
         "submit": "completion_npc_interaction"
@@ -142930,17 +143303,27 @@
         "level": 1,
         "profession": null,
         "equipment": null,
-        "items": [],
+        "items": [
+          {
+            "canonical_id": "task.series.15.631.target.01",
+            "kind": "item",
+            "raw_name": "破碎的破界符",
+            "quantity": 10,
+            "entity_canonical_id": "runtime.task_chain.item.cd2182704d029476",
+            "resolution_status": "resolved",
+            "runtime_resolution": null
+          }
+        ],
         "state_flags": null
       },
       "objectives": [
         {
           "canonical_id": "task.series.15.631.target.01",
-          "kind": "monster",
+          "kind": "item",
           "raw_name": "破碎的破界符",
           "quantity": 10,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.task_chain.item.cd2182704d029476",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -143057,7 +143440,7 @@
       "conflict_records": [],
       "runtime_executors": [
         "TaskRuntimeEngine",
-        "CombatRuntime"
+        "ItemAcquisitionExecutor"
       ],
       "fitting": {
         "class_id": 2,
@@ -143066,7 +143449,7 @@
           "automatic_runtime_mapping"
         ],
         "derivations": [
-          "normalize_migrated_collection_target_to_item"
+          "source_explicit_task_described_encounter_drop"
         ]
       },
       "directory_status": "validated",
@@ -143710,12 +144093,12 @@
         },
         "submit": {
           "role": "submit",
-          "canonical_id": "entity.location.e4cedb33df711574",
-          "display_name": "凤凰居",
-          "city_canonical_id": "entity.city.0fb27847083d81ed",
-          "city_display_name": "长安",
-          "coordinate": "108.9480,34.2632",
-          "map_node_canonical_id": "derived.map_node.location.1a97fce162103673",
+          "canonical_id": "entity.location.891e95eceda9850a",
+          "display_name": "蓬莱仙岛云霄阁",
+          "city_canonical_id": "entity.city.3f395aab4eb9614b",
+          "city_display_name": "泉州",
+          "coordinate": "118.6757,24.8739",
+          "map_node_canonical_id": "derived.map_node.location.58ca6902befb1bf8",
           "node_kind": "location"
         },
         "entrances": [
@@ -143920,7 +144303,8 @@
         "accept": "npc_interaction",
         "execute": [
           "TaskRuntimeEngine",
-          "CombatRuntime"
+          "CombatRuntime",
+          "VoyageRuntime"
         ],
         "complete": "objectives_satisfied",
         "submit": "completion_npc_interaction"
@@ -143940,12 +144324,12 @@
       "locations": {
         "receive": {
           "role": "receive",
-          "canonical_id": "entity.location.c69d2d6faf623f56",
-          "display_name": "云霄阁",
-          "city_canonical_id": "entity.city.4e787399665b40a0",
-          "city_display_name": "蓬莱仙岛",
-          "coordinate": null,
-          "map_node_canonical_id": "derived.map_node.location.eca900b2f5219be2",
+          "canonical_id": "entity.location.891e95eceda9850a",
+          "display_name": "蓬莱仙岛云霄阁",
+          "city_canonical_id": "entity.city.3f395aab4eb9614b",
+          "city_display_name": "泉州",
+          "coordinate": "118.6757,24.8739",
+          "map_node_canonical_id": "derived.map_node.location.58ca6902befb1bf8",
           "node_kind": "location"
         },
         "target": {
@@ -143960,12 +144344,12 @@
         },
         "submit": {
           "role": "submit",
-          "canonical_id": "entity.location.c69d2d6faf623f56",
-          "display_name": "云霄阁",
-          "city_canonical_id": "entity.city.4e787399665b40a0",
-          "city_display_name": "蓬莱仙岛",
-          "coordinate": null,
-          "map_node_canonical_id": "derived.map_node.location.eca900b2f5219be2",
+          "canonical_id": "entity.location.891e95eceda9850a",
+          "display_name": "蓬莱仙岛云霄阁",
+          "city_canonical_id": "entity.city.3f395aab4eb9614b",
+          "city_display_name": "泉州",
+          "coordinate": "118.6757,24.8739",
+          "map_node_canonical_id": "derived.map_node.location.58ca6902befb1bf8",
           "node_kind": "location"
         },
         "entrances": [
@@ -144124,7 +144508,8 @@
       "conflict_records": [],
       "runtime_executors": [
         "TaskRuntimeEngine",
-        "CombatRuntime"
+        "CombatRuntime",
+        "VoyageRuntime"
       ],
       "fitting": {
         "class_id": 1,
@@ -144169,7 +144554,8 @@
         "accept": "npc_interaction",
         "execute": [
           "TaskRuntimeEngine",
-          "NpcInteractionExecutor"
+          "NpcInteractionExecutor",
+          "VoyageRuntime"
         ],
         "complete": "objectives_satisfied",
         "submit": "completion_npc_interaction"
@@ -144199,12 +144585,12 @@
       "locations": {
         "receive": {
           "role": "receive",
-          "canonical_id": "entity.location.c69d2d6faf623f56",
-          "display_name": "云霄阁",
-          "city_canonical_id": "entity.city.4e787399665b40a0",
-          "city_display_name": "蓬莱仙岛",
-          "coordinate": null,
-          "map_node_canonical_id": "derived.map_node.location.eca900b2f5219be2",
+          "canonical_id": "entity.location.891e95eceda9850a",
+          "display_name": "蓬莱仙岛云霄阁",
+          "city_canonical_id": "entity.city.3f395aab4eb9614b",
+          "city_display_name": "泉州",
+          "coordinate": "118.6757,24.8739",
+          "map_node_canonical_id": "derived.map_node.location.58ca6902befb1bf8",
           "node_kind": "location"
         },
         "target": {
@@ -144383,7 +144769,8 @@
       "conflict_records": [],
       "runtime_executors": [
         "TaskRuntimeEngine",
-        "NpcInteractionExecutor"
+        "NpcInteractionExecutor",
+        "VoyageRuntime"
       ],
       "fitting": {
         "class_id": 1,
@@ -147088,7 +147475,8 @@
         "accept": "npc_interaction",
         "execute": [
           "TaskRuntimeEngine",
-          "NpcInteractionExecutor"
+          "NpcInteractionExecutor",
+          "VoyageRuntime"
         ],
         "complete": "objectives_satisfied",
         "submit": "completion_npc_interaction"
@@ -147138,12 +147526,12 @@
         },
         "submit": {
           "role": "submit",
-          "canonical_id": "entity.location.c69d2d6faf623f56",
-          "display_name": "云霄阁",
-          "city_canonical_id": "entity.city.4e787399665b40a0",
-          "city_display_name": "蓬莱仙岛",
-          "coordinate": null,
-          "map_node_canonical_id": "derived.map_node.location.eca900b2f5219be2",
+          "canonical_id": "entity.location.891e95eceda9850a",
+          "display_name": "蓬莱仙岛云霄阁",
+          "city_canonical_id": "entity.city.3f395aab4eb9614b",
+          "city_display_name": "泉州",
+          "coordinate": "118.6757,24.8739",
+          "map_node_canonical_id": "derived.map_node.location.58ca6902befb1bf8",
           "node_kind": "location"
         },
         "entrances": [
@@ -147310,7 +147698,8 @@
       "conflict_records": [],
       "runtime_executors": [
         "TaskRuntimeEngine",
-        "NpcInteractionExecutor"
+        "NpcInteractionExecutor",
+        "VoyageRuntime"
       ],
       "fitting": {
         "class_id": 1,
@@ -147386,12 +147775,12 @@
       "locations": {
         "receive": {
           "role": "receive",
-          "canonical_id": "entity.location.c69d2d6faf623f56",
-          "display_name": "云霄阁",
-          "city_canonical_id": "entity.city.4e787399665b40a0",
-          "city_display_name": "蓬莱仙岛",
-          "coordinate": null,
-          "map_node_canonical_id": "derived.map_node.location.eca900b2f5219be2",
+          "canonical_id": "entity.location.891e95eceda9850a",
+          "display_name": "蓬莱仙岛云霄阁",
+          "city_canonical_id": "entity.city.3f395aab4eb9614b",
+          "city_display_name": "泉州",
+          "coordinate": "118.6757,24.8739",
+          "map_node_canonical_id": "derived.map_node.location.58ca6902befb1bf8",
           "node_kind": "location"
         },
         "target": {
@@ -148130,7 +148519,7 @@
         "accept": "npc_interaction",
         "execute": [
           "TaskRuntimeEngine",
-          "CombatRuntime"
+          "ItemAcquisitionExecutor"
         ],
         "complete": "objectives_satisfied",
         "submit": "completion_npc_interaction"
@@ -148215,17 +148604,27 @@
         "level": 1,
         "profession": null,
         "equipment": null,
-        "items": [],
+        "items": [
+          {
+            "canonical_id": "task.series.15.652.target.01",
+            "kind": "item",
+            "raw_name": "白云果",
+            "quantity": 5,
+            "entity_canonical_id": "runtime.item.336fa533d246e009",
+            "resolution_status": "resolved",
+            "runtime_resolution": null
+          }
+        ],
         "state_flags": null
       },
       "objectives": [
         {
           "canonical_id": "task.series.15.652.target.01",
-          "kind": "monster",
+          "kind": "item",
           "raw_name": "白云果",
           "quantity": 5,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.item.336fa533d246e009",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -148334,7 +148733,7 @@
       "conflict_records": [],
       "runtime_executors": [
         "TaskRuntimeEngine",
-        "CombatRuntime"
+        "ItemAcquisitionExecutor"
       ],
       "fitting": {
         "class_id": 2,
@@ -148343,7 +148742,7 @@
           "automatic_runtime_mapping"
         ],
         "derivations": [
-          "normalize_migrated_collection_target_to_item"
+          "source_explicit_task_described_encounter_drop"
         ]
       },
       "directory_status": "validated",
@@ -149009,8 +149408,8 @@
             "kind": "item",
             "raw_name": "茯苓",
             "quantity": 5,
-            "entity_canonical_id": null,
-            "resolution_status": "cross_type_suspected",
+            "entity_canonical_id": "runtime.item.90e4e58d454b4a78",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -149022,8 +149421,8 @@
           "kind": "item",
           "raw_name": "茯苓",
           "quantity": 5,
-          "entity_canonical_id": null,
-          "resolution_status": "cross_type_suspected",
+          "entity_canonical_id": "runtime.item.90e4e58d454b4a78",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -149295,8 +149694,8 @@
             "kind": "item",
             "raw_name": "地蜘蛛",
             "quantity": 5,
-            "entity_canonical_id": null,
-            "resolution_status": "cross_type_suspected",
+            "entity_canonical_id": "runtime.item.d8f4daffae9b9b72",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -149308,8 +149707,8 @@
           "kind": "item",
           "raw_name": "地蜘蛛",
           "quantity": 5,
-          "entity_canonical_id": null,
-          "resolution_status": "cross_type_suspected",
+          "entity_canonical_id": "runtime.item.d8f4daffae9b9b72",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -152965,8 +153364,8 @@
             "kind": "item",
             "raw_name": "火灵芝",
             "quantity": 2,
-            "entity_canonical_id": null,
-            "resolution_status": "blocked_missing_definition",
+            "entity_canonical_id": "runtime.item.a0fedb28c6ae448f",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -152978,8 +153377,8 @@
           "kind": "item",
           "raw_name": "火灵芝",
           "quantity": 2,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.item.a0fedb28c6ae448f",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -157415,12 +157814,12 @@
         },
         "submit": {
           "role": "submit",
-          "canonical_id": "entity.location.c69d2d6faf623f56",
-          "display_name": "云霄阁",
-          "city_canonical_id": "entity.city.4e787399665b40a0",
-          "city_display_name": "蓬莱仙岛",
-          "coordinate": null,
-          "map_node_canonical_id": "derived.map_node.location.eca900b2f5219be2",
+          "canonical_id": "entity.location.891e95eceda9850a",
+          "display_name": "蓬莱仙岛云霄阁",
+          "city_canonical_id": "entity.city.3f395aab4eb9614b",
+          "city_display_name": "泉州",
+          "coordinate": "118.6757,24.8739",
+          "map_node_canonical_id": "derived.map_node.location.58ca6902befb1bf8",
           "node_kind": "location"
         },
         "entrances": [
@@ -157625,7 +158024,8 @@
         "accept": "npc_interaction",
         "execute": [
           "TaskRuntimeEngine",
-          "NpcInteractionExecutor"
+          "NpcInteractionExecutor",
+          "VoyageRuntime"
         ],
         "complete": "objectives_satisfied",
         "submit": "completion_npc_interaction"
@@ -157655,12 +158055,12 @@
       "locations": {
         "receive": {
           "role": "receive",
-          "canonical_id": "entity.location.c69d2d6faf623f56",
-          "display_name": "云霄阁",
-          "city_canonical_id": "entity.city.4e787399665b40a0",
-          "city_display_name": "蓬莱仙岛",
-          "coordinate": null,
-          "map_node_canonical_id": "derived.map_node.location.eca900b2f5219be2",
+          "canonical_id": "entity.location.891e95eceda9850a",
+          "display_name": "蓬莱仙岛云霄阁",
+          "city_canonical_id": "entity.city.3f395aab4eb9614b",
+          "city_display_name": "泉州",
+          "coordinate": "118.6757,24.8739",
+          "map_node_canonical_id": "derived.map_node.location.58ca6902befb1bf8",
           "node_kind": "location"
         },
         "target": {
@@ -157839,7 +158239,8 @@
       "conflict_records": [],
       "runtime_executors": [
         "TaskRuntimeEngine",
-        "NpcInteractionExecutor"
+        "NpcInteractionExecutor",
+        "VoyageRuntime"
       ],
       "fitting": {
         "class_id": 1,
@@ -159905,8 +160306,7 @@
         "publish": "npc_available",
         "accept": "npc_interaction",
         "execute": [
-          "TaskRuntimeEngine",
-          "CombatRuntime"
+          "TaskRuntimeEngine"
         ],
         "complete": "objectives_satisfied",
         "submit": "completion_npc_interaction"
@@ -159997,11 +160397,11 @@
       "objectives": [
         {
           "canonical_id": "task.series.15.698.target.01",
-          "kind": "monster",
+          "kind": "npc_duel",
           "raw_name": "吕洞宾",
           "quantity": 1,
-          "entity_canonical_id": null,
-          "resolution_status": "cross_type_suspected",
+          "entity_canonical_id": "derived.npc_definition.9a40c3b4b13a16b1",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -160109,8 +160509,7 @@
       "confidence": "medium",
       "conflict_records": [],
       "runtime_executors": [
-        "TaskRuntimeEngine",
-        "CombatRuntime"
+        "TaskRuntimeEngine"
       ],
       "fitting": {
         "class_id": 6,
@@ -160122,7 +160521,7 @@
           {
             "target_canonical_id": "task.series.15.698.target.01",
             "npc_canonical_id": "derived.npc_definition.9a40c3b4b13a16b1",
-            "evidence": "combat verb + unique NPC candidate"
+            "evidence": "adjudicated npc duel target"
           }
         ]
       },
@@ -167304,8 +167703,8 @@
             "kind": "item",
             "raw_name": "千年白雪",
             "quantity": 5,
-            "entity_canonical_id": null,
-            "resolution_status": "blocked_missing_definition",
+            "entity_canonical_id": "runtime.item.bf8e99401d2d0f49",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -167317,8 +167716,8 @@
           "kind": "item",
           "raw_name": "千年白雪",
           "quantity": 5,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.item.bf8e99401d2d0f49",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -167592,8 +167991,8 @@
             "kind": "item",
             "raw_name": "地火精华",
             "quantity": 5,
-            "entity_canonical_id": null,
-            "resolution_status": "blocked_missing_definition",
+            "entity_canonical_id": "runtime.item.5e1ff2777a238dde",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -167605,8 +168004,8 @@
           "kind": "item",
           "raw_name": "地火精华",
           "quantity": 5,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.item.5e1ff2777a238dde",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -167880,8 +168279,8 @@
             "kind": "item",
             "raw_name": "千年黑珍珠",
             "quantity": 5,
-            "entity_canonical_id": null,
-            "resolution_status": "blocked_missing_definition",
+            "entity_canonical_id": "runtime.task_chain.item.0564672479c8f2d0",
+            "resolution_status": "resolved",
             "runtime_resolution": null
           }
         ],
@@ -167893,8 +168292,8 @@
           "kind": "item",
           "raw_name": "千年黑珍珠",
           "quantity": 5,
-          "entity_canonical_id": null,
-          "resolution_status": "blocked_missing_definition",
+          "entity_canonical_id": "runtime.task_chain.item.0564672479c8f2d0",
+          "resolution_status": "resolved",
           "runtime_resolution": null
         }
       ],
@@ -168007,12 +168406,14 @@
         "VoyageRuntime"
       ],
       "fitting": {
-        "class_id": 7,
-        "class_name": "data_error_or_migration_damage",
+        "class_id": 2,
+        "class_name": "automatic_field_or_name_mapping",
         "reason_codes": [
-          "source_data_and_placement_disagree"
+          "automatic_runtime_mapping"
         ],
-        "derivations": []
+        "derivations": [
+          "source_explicit_task_described_encounter_drop"
+        ]
       },
       "directory_status": "validated",
       "legacy_selector": {
@@ -170681,8 +171082,8 @@
   ],
   "runtime_landing": {
     "stage_start_head": "2cbae183aa369fe0ac60176f3a1396914d786440",
-    "source_head": "4ca76fd02f24e0b07f36b25f9d13a153dc2753b7",
-    "generated_from_head": "4ca76fd02f24e0b07f36b25f9d13a153dc2753b7",
+    "source_head": "4058b33947b07215ce893c4391b936aded485eec",
+    "generated_from_head": "4058b33947b07215ce893c4391b936aded485eec",
     "reference_commits": {
       "zhsh": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
       "astrbot": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de",

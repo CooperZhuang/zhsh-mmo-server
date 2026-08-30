@@ -1,8 +1,8 @@
 {
   "selector_version": "global-runtime-directory/1.0.0",
   "stage_start_head": "2cbae183aa369fe0ac60176f3a1396914d786440",
-  "source_head": "4ca76fd02f24e0b07f36b25f9d13a153dc2753b7",
-  "generated_from_head": "4ca76fd02f24e0b07f36b25f9d13a153dc2753b7",
+  "source_head": "4058b33947b07215ce893c4391b936aded485eec",
+  "generated_from_head": "4058b33947b07215ce893c4391b936aded485eec",
   "reference_commits": {
     "zhsh": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
     "astrbot": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de",
@@ -18427,9 +18427,7 @@
         "resulting_status": "runnable_pending_validation"
       },
       "operational_fit": true,
-      "implemented_shared_systems": [
-        "task_acceptance_handoff"
-      ]
+      "implemented_shared_systems": []
     },
     {
       "canonical_id": "task.series.15.458",
@@ -18766,9 +18764,7 @@
         "resulting_status": "runnable_pending_validation"
       },
       "operational_fit": true,
-      "implemented_shared_systems": [
-        "task_acceptance_handoff"
-      ]
+      "implemented_shared_systems": []
     },
     {
       "canonical_id": "task.series.15.464",
@@ -19113,16 +19109,7 @@
       },
       "runtime_item_resolutions": [],
       "runtime_target_resolutions": [],
-      "runtime_reward_resolutions": [
-        {
-          "source_task_canonical_id": "task.series.15.470",
-          "reward_name": "龙鳞",
-          "quantity": 1,
-          "runtime_entity_canonical_id": "runtime.task_chain.item.ff1cc9899dfa1f5f",
-          "resolution_rule": "task_chain_reward_ledger",
-          "source_target_canonical_id": "task.series.15.471.target.01"
-        }
-      ],
+      "runtime_reward_resolutions": [],
       "task_location_override": null,
       "evidence_exception_resolution": null,
       "operational_fit": true,
@@ -19170,52 +19157,42 @@
       "runtime_item_resolutions": [
         {
           "target_canonical_id": "task.series.15.471.target.01",
+          "source_entity_canonical_id": "runtime.task_chain.item.ff1cc9899dfa1f5f",
           "runtime_entity_canonical_id": "runtime.task_chain.item.ff1cc9899dfa1f5f",
-          "resolution_rule": "task_chain_reward_ledger",
-          "target_kind_override": "item",
-          "original_target_kind": "item",
-          "task_item_policy": {
-            "acquisition_mode": "prerequisite_reward",
-            "reservation": "required_until_submit",
-            "source_task_canonical_id": "task.series.15.470",
-            "abandonment": "retain_source_reward",
-            "consumption": "submit_only"
-          },
+          "resolution_rule": "direct_formal_source",
           "formal_source": {
-            "canonical_id": "runtime.task_chain.source.0f78062ff0b7f7bc",
-            "source_canonical_id": "task.series.15.470",
-            "source_kind": "task_chain_reward",
-            "item_name": "龙鳞",
-            "source_task_canonical_id": "task.series.15.470",
-            "evidence_status": "SOURCE_TEXT_AND_ADJACENT_CHAIN",
-            "evidence_locator": "task.series.15.470 -> task.series.15.471"
+            "item": "runtime.task_chain.item.ff1cc9899dfa1f5f",
+            "canonical_id": "entity.drop.3aac6366ae12cd10",
+            "source_canonical_id": "entity.drop.3aac6366ae12cd10",
+            "source_kind": "drop",
+            "probability": null,
+            "quantity": null,
+            "runtime_capability": "queryable",
+            "monster_canonical_id": "derived.monster_definition.b8e76bfec2006ba1",
+            "location_canonical_id": "entity.location.69df8593c0ac1f9c"
           }
         }
       ],
       "runtime_target_resolutions": [],
-      "runtime_reward_resolutions": [
-        {
-          "source_task_canonical_id": "task.series.15.471",
-          "reward_name": "黑珍珠",
-          "quantity": 1,
-          "runtime_entity_canonical_id": "runtime.task_chain.item.8b4fe6ffc18a39c1",
-          "resolution_rule": "task_chain_reward_ledger",
-          "source_target_canonical_id": "task.series.15.472.target.01"
-        }
-      ],
+      "runtime_reward_resolutions": [],
       "task_location_override": null,
       "evidence_exception_resolution": null,
       "operational_fit": true,
-      "implemented_shared_systems": [
-        "task_chain_item_ledger"
-      ]
+      "implemented_shared_systems": []
     },
     {
       "canonical_id": "task.series.15.472",
       "series_canonical_id": "task.series.15",
       "sequence_position": 205,
       "directory_status": "validated",
-      "blocking_reasons": [],
+      "blocking_reasons": [
+        {
+          "code": "item_without_formal_source",
+          "target_canonical_id": "task.series.15.472.target.01",
+          "source_entity_canonical_id": "runtime.task_chain.item.8b4fe6ffc18a39c1",
+          "candidate_canonical_ids": []
+        }
+      ],
       "evidence": {
         "definition_complete": true,
         "required_locations": [
@@ -19246,39 +19223,13 @@
         "level_requirement": 1,
         "formal_runtime_path": null
       },
-      "runtime_item_resolutions": [
-        {
-          "target_canonical_id": "task.series.15.472.target.01",
-          "runtime_entity_canonical_id": "runtime.task_chain.item.8b4fe6ffc18a39c1",
-          "resolution_rule": "task_chain_reward_ledger",
-          "target_kind_override": "item",
-          "original_target_kind": "item",
-          "task_item_policy": {
-            "acquisition_mode": "prerequisite_reward",
-            "reservation": "required_until_submit",
-            "source_task_canonical_id": "task.series.15.471",
-            "abandonment": "retain_source_reward",
-            "consumption": "submit_only"
-          },
-          "formal_source": {
-            "canonical_id": "runtime.task_chain.source.1dc5ef19d696dc7e",
-            "source_canonical_id": "task.series.15.471",
-            "source_kind": "task_chain_reward",
-            "item_name": "黑珍珠",
-            "source_task_canonical_id": "task.series.15.471",
-            "evidence_status": "SOURCE_TEXT_AND_ADJACENT_CHAIN",
-            "evidence_locator": "task.series.15.471 -> task.series.15.472"
-          }
-        }
-      ],
+      "runtime_item_resolutions": [],
       "runtime_target_resolutions": [],
       "runtime_reward_resolutions": [],
       "task_location_override": null,
       "evidence_exception_resolution": null,
-      "operational_fit": true,
-      "implemented_shared_systems": [
-        "task_chain_item_ledger"
-      ]
+      "operational_fit": false,
+      "implemented_shared_systems": []
     },
     {
       "canonical_id": "task.series.15.473",
@@ -32571,7 +32522,7 @@
     "runnable_pending_validation": 3,
     "validated": 648
   },
-  "runtime_runnable_task_count": 651,
+  "runtime_runnable_task_count": 650,
   "implemented_shared_systems": [
     "task_acceptance_handoff",
     "task_chain_item_ledger",
@@ -32589,5 +32540,5 @@
   "formal_stage_start": {
     "selected_task_count": 78
   },
-  "selection_hash": "9484b8118e7646e65cac6ed2b1db8fa0317c11501fbb80faa2936119ebb2c163"
+  "selection_hash": "1d03d62f39eeb3d8dbed324df4dfe49b82cf761fb19c6aad098b3f8b200549e6"
 }

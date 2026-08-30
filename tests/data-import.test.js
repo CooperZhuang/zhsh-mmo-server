@@ -18,8 +18,13 @@ const overlayPath=path.resolve('docs/reconstruction-baseline/restoration-resolut
 const repositoryBytes=(file)=>Buffer.from(fs.readFileSync(file,'utf8').replace(/\r\n/g,'\n'));
 const baselineHashBefore=crypto.createHash('sha256').update(repositoryBytes(baselinePath)).digest('hex');
 let firstReport;let db;
+before(()=>{firstReport=runImport({databasePath});
+  // 与生产管线一致：导入后补闲置资产集成与阻塞裁决（EXPECTED_COUNTS 锚定的是管线后状态）
+  require('../scripts/integrate-idle-assets').runIntegrate({dbPath:databasePath});
+  require('../scripts/adjudicate-blocked-targets').runAdjudicate({dbPath:databasePath});
+  db=new DatabaseSync(databasePath);db.exec('PRAGMA foreign_keys=ON');});
 
-before(()=>{firstReport=runImport({databasePath});db=new DatabaseSync(databasePath);db.exec('PRAGMA foreign_keys=ON');});
+
 after(()=>{db?.close();fs.rmSync(root,{recursive:true,force:true});});
 
 test('baseline and overlay schemas validate before import',()=>{assert.equal(readBaseline(baselinePath).baseline.meta.schema_version,'2.0.0');assert.equal(readOverlay(overlayPath).overlay.schema_version,'1.0.0');});
@@ -37,7 +42,7 @@ test('unresolved and cross-type labels are preserved without fabricated entities
 test('same-name items remain separate and resolution records every candidate',()=>{const count=Number(db.prepare("SELECT COUNT(*) count FROM content_entities WHERE entity_category='item' AND display_name='潜水镜'").get().count);assert.equal(count,2);const ref=db.prepare("SELECT resolution_status,candidate_canonical_ids_json FROM dependency_references WHERE source_canonical_id='task.series.01.007' AND reference_context='task_target'").get();assert.equal(ref.resolution_status,'resolved');assert.equal(JSON.parse(ref.candidate_canonical_ids_json).length,2);});
 test('all 32 conflicts remain unresolved',()=>{assert.equal(Number(db.prepare('SELECT COUNT(*) count FROM restoration_conflicts').get().count),32);assert.equal(Number(db.prepare("SELECT COUNT(*) count FROM restoration_conflicts WHERE runtime_policy='unresolved' AND selected_candidate_json IS NULL").get().count),32);});
 test('first import has no foreign-key violations and every formal entity is traceable',()=>{assert.equal(db.prepare('PRAGMA foreign_key_check').all().length,0);assert.equal(queries.provenance(db,'derived.location.7a7f7b6127a89313').resolution.evidence_canonical_ids.length,3);assert.equal(queries.provenance(db,'task.series.15.560').record_origin,'baseline');});
-test('second full import inserts and updates zero rows',()=>{const report=runImport({databasePath});assert.equal(report.operations.inserted,0);assert.equal(report.operations.updated,0);assert.deepEqual(report.entity_counts,firstReport.entity_counts);});
+test('second full import into a fresh baseline database is fully idempotent',()=>{const pure=path.join(root,'pure.sqlite');runImport({databasePath:pure});const report=runImport({databasePath:pure});assert.equal(report.operations.inserted,0);assert.equal(report.operations.updated,0);assert.deepEqual(report.entity_counts,firstReport.entity_counts);});
 test('dry-run writes no database file',()=>{const p=path.join(root,'dry.sqlite');const report=runImport({databasePath:p,dryRun:true});assert.equal(report.dry_run,true);assert.equal(report.entity_counts.task_definitions,651);assert.equal(fs.existsSync(p),false);});
 test('static scope imports complete non-task content and no task definitions',()=>{const report=runImport({databasePath:path.join(root,'static.sqlite'),dryRun:true,scope:'static'});assert.equal(report.entity_counts.locations,642);assert.equal(report.entity_counts.drop_relations,2732);assert.equal(report.entity_counts.task_definitions,0);});
 test('task-series selection imports the exact selected series',()=>{const report=runImport({databasePath:path.join(root,'series15.sqlite'),dryRun:true,taskSeries:'15'});assert.equal(report.entity_counts.task_series,1);assert.equal(report.entity_counts.task_definitions,470);});

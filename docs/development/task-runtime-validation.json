@@ -1,0 +1,269 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-08-30T06:12:36.816Z",
+  "source_database": "data/zhsh-content.sqlite",
+  "static_content_reimported": false,
+  "passed": true,
+  "summary": {
+    "checks": 18,
+    "passed": 18,
+    "failed": 0,
+    "task_count": 13,
+    "completed_task_count": 13,
+    "money": 2900,
+    "experience": 29000,
+    "reward_grant_count": 39,
+    "blocked_task_count": 0,
+    "unresolved_conflict_count": 32
+  },
+  "event_types": [
+    "abandon_task",
+    "arrive_at_location",
+    "consume_item",
+    "defeat_monster",
+    "defeat_npc",
+    "fail_task",
+    "obtain_item",
+    "submit_to_npc",
+    "talk_to_npc"
+  ],
+  "first_chain_event_types": [
+    "arrive_at_location",
+    "defeat_monster",
+    "obtain_item",
+    "submit_to_npc",
+    "talk_to_npc"
+  ],
+  "blocked_tasks": [],
+  "non_inventory_source_label_rewards": [
+    {
+      "task_canonical_id": "task.series.01.neg001",
+      "reward_canonical_id": "task.series.01.neg001.reward.03",
+      "dependency_canonical_id": "task.series.01.neg001.reward.03.reference",
+      "original_reward_name": "声望",
+      "original_raw_quantity": "1",
+      "normalized_quantity": 1,
+      "resolution_status": "source_label_only",
+      "runtime_treatment": "recorded_source_label_only_not_inventory"
+    },
+    {
+      "task_canonical_id": "task.series.01.000",
+      "reward_canonical_id": "task.series.01.000.reward.03",
+      "dependency_canonical_id": "task.series.01.000.reward.03.reference",
+      "original_reward_name": "声望",
+      "original_raw_quantity": "1",
+      "normalized_quantity": 1,
+      "resolution_status": "source_label_only",
+      "runtime_treatment": "recorded_source_label_only_not_inventory"
+    },
+    {
+      "task_canonical_id": "task.series.01.001",
+      "reward_canonical_id": "task.series.01.001.reward.03",
+      "dependency_canonical_id": "task.series.01.001.reward.03.reference",
+      "original_reward_name": "声望",
+      "original_raw_quantity": "2",
+      "normalized_quantity": 2,
+      "resolution_status": "source_label_only",
+      "runtime_treatment": "recorded_source_label_only_not_inventory"
+    },
+    {
+      "task_canonical_id": "task.series.01.002",
+      "reward_canonical_id": "task.series.01.002.reward.03",
+      "dependency_canonical_id": "task.series.01.002.reward.03.reference",
+      "original_reward_name": "声望",
+      "original_raw_quantity": "2",
+      "normalized_quantity": 2,
+      "resolution_status": "source_label_only",
+      "runtime_treatment": "recorded_source_label_only_not_inventory"
+    },
+    {
+      "task_canonical_id": "task.series.01.003",
+      "reward_canonical_id": "task.series.01.003.reward.03",
+      "dependency_canonical_id": "task.series.01.003.reward.03.reference",
+      "original_reward_name": "声望",
+      "original_raw_quantity": "1",
+      "normalized_quantity": 1,
+      "resolution_status": "source_label_only",
+      "runtime_treatment": "recorded_source_label_only_not_inventory"
+    },
+    {
+      "task_canonical_id": "task.series.01.004",
+      "reward_canonical_id": "task.series.01.004.reward.03",
+      "dependency_canonical_id": "task.series.01.004.reward.03.reference",
+      "original_reward_name": "声望",
+      "original_raw_quantity": "2",
+      "normalized_quantity": 2,
+      "resolution_status": "source_label_only",
+      "runtime_treatment": "recorded_source_label_only_not_inventory"
+    },
+    {
+      "task_canonical_id": "task.series.01.005",
+      "reward_canonical_id": "task.series.01.005.reward.03",
+      "dependency_canonical_id": "task.series.01.005.reward.03.reference",
+      "original_reward_name": "声望",
+      "original_raw_quantity": "2",
+      "normalized_quantity": 2,
+      "resolution_status": "source_label_only",
+      "runtime_treatment": "recorded_source_label_only_not_inventory"
+    },
+    {
+      "task_canonical_id": "task.series.01.006",
+      "reward_canonical_id": "task.series.01.006.reward.03",
+      "dependency_canonical_id": "task.series.01.006.reward.03.reference",
+      "original_reward_name": "声望",
+      "original_raw_quantity": "1",
+      "normalized_quantity": 1,
+      "resolution_status": "source_label_only",
+      "runtime_treatment": "recorded_source_label_only_not_inventory"
+    },
+    {
+      "task_canonical_id": "task.series.01.007",
+      "reward_canonical_id": "task.series.01.007.reward.03",
+      "dependency_canonical_id": "task.series.01.007.reward.03.reference",
+      "original_reward_name": "声望",
+      "original_raw_quantity": "2",
+      "normalized_quantity": 2,
+      "resolution_status": "source_label_only",
+      "runtime_treatment": "recorded_source_label_only_not_inventory"
+    },
+    {
+      "task_canonical_id": "task.series.01.008",
+      "reward_canonical_id": "task.series.01.008.reward.03",
+      "dependency_canonical_id": "task.series.01.008.reward.03.reference",
+      "original_reward_name": "声望",
+      "original_raw_quantity": "1",
+      "normalized_quantity": 1,
+      "resolution_status": "source_label_only",
+      "runtime_treatment": "recorded_source_label_only_not_inventory"
+    },
+    {
+      "task_canonical_id": "task.series.01.009",
+      "reward_canonical_id": "task.series.01.009.reward.03",
+      "dependency_canonical_id": "task.series.01.009.reward.03.reference",
+      "original_reward_name": "声望",
+      "original_raw_quantity": "2",
+      "normalized_quantity": 2,
+      "resolution_status": "source_label_only",
+      "runtime_treatment": "recorded_source_label_only_not_inventory"
+    },
+    {
+      "task_canonical_id": "task.series.01.010",
+      "reward_canonical_id": "task.series.01.010.reward.03",
+      "dependency_canonical_id": "task.series.01.010.reward.03.reference",
+      "original_reward_name": "声望",
+      "original_raw_quantity": "2",
+      "normalized_quantity": 2,
+      "resolution_status": "source_label_only",
+      "runtime_treatment": "recorded_source_label_only_not_inventory"
+    },
+    {
+      "task_canonical_id": "task.series.01.011",
+      "reward_canonical_id": "task.series.01.011.reward.03",
+      "dependency_canonical_id": "task.series.01.011.reward.03.reference",
+      "original_reward_name": "声望",
+      "original_raw_quantity": "2",
+      "normalized_quantity": 2,
+      "resolution_status": "source_label_only",
+      "runtime_treatment": "recorded_source_label_only_not_inventory"
+    }
+  ],
+  "checks": [
+    {
+      "name": "task1_loads_exactly_13_tasks",
+      "passed": true,
+      "actual": 13,
+      "expected": 13
+    },
+    {
+      "name": "first_task_acceptance_event_succeeds",
+      "passed": true
+    },
+    {
+      "name": "all_prerequisites_are_satisfied_before_completion",
+      "passed": true
+    },
+    {
+      "name": "wrong_npc_and_location_do_not_advance",
+      "passed": true
+    },
+    {
+      "name": "required_event_types_are_supported",
+      "passed": true,
+      "event_types": [
+        "abandon_task",
+        "arrive_at_location",
+        "consume_item",
+        "defeat_monster",
+        "defeat_npc",
+        "fail_task",
+        "obtain_item",
+        "submit_to_npc",
+        "talk_to_npc"
+      ],
+      "first_chain_event_types": [
+        "arrive_at_location",
+        "defeat_monster",
+        "obtain_item",
+        "submit_to_npc",
+        "talk_to_npc"
+      ]
+    },
+    {
+      "name": "all_original_normalized_quantities_are_met",
+      "passed": true
+    },
+    {
+      "name": "correct_submission_npcs_complete_tasks",
+      "passed": true
+    },
+    {
+      "name": "rewards_have_one_grant_per_definition",
+      "passed": true,
+      "grant_count": 39
+    },
+    {
+      "name": "explicit_successors_unlock_in_order",
+      "passed": true
+    },
+    {
+      "name": "sqlite_save_reload_preserves_state",
+      "passed": true
+    },
+    {
+      "name": "repeated_event_and_reward_are_idempotent",
+      "passed": true
+    },
+    {
+      "name": "transaction_failure_rolls_back",
+      "passed": true
+    },
+    {
+      "name": "task1_prerequisite_graph_is_acyclic",
+      "passed": true
+    },
+    {
+      "name": "no_cross_series_prerequisite_exists",
+      "passed": true,
+      "actual": 0
+    },
+    {
+      "name": "all_32_conflicts_remain_unresolved",
+      "passed": true,
+      "actual": 32,
+      "expected": 32
+    },
+    {
+      "name": "sqlite_foreign_key_violations_are_zero",
+      "passed": true,
+      "actual": 0
+    },
+    {
+      "name": "memory_and_sqlite_adapters_match",
+      "passed": true
+    },
+    {
+      "name": "first_chain_completes_all_13_tasks",
+      "passed": true
+    }
+  ]
+}

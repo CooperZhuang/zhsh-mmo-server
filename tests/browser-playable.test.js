@@ -53,7 +53,7 @@ test('browser UI uses the user-confirmed classic mobile equivalent page structur
   assert.match(appSource,/app\.addEventListener\('click'/);
   assert.match(appSource,/captureMode \? 'player\.browser\.task1\.uat-capture' : 'player\.browser\.task1'/);
   assert.match(appSource,/!equipmentIds\.has\(id\)&&Number\(gameplayCatalog\.getItem\(id\)\?\.normalized_data\?\.type\)===4/);
-  assert.match(appSource,/__ZHSH_UAT_FISHING_RANDOM__/);
+  assert.match(appSource,/data-fishing-start/);
   assert.match(appSource,/data-page="npc" data-npc-id/);
   assert.match(appSource,/data-page="task" data-task-id/);
   assert.match(appSource,/data-shop-buy/);
@@ -197,7 +197,7 @@ test('real schema v1 1-of-13 browser save migrates losslessly and discovers all 
   const original={tasks:structuredClone(legacy.state.tasks),inventory:structuredClone(legacy.state.inventory),
     reward_grants:structuredClone(legacy.state.reward_grants),processed_events:structuredClone(legacy.state.processed_events)};
   const durableStore=new FakeDurableStore([legacy]);const storage=new BrowserRuntimeStorage({durableStore});await storage.ready();
-  const migrated=storage.loadPlayer(legacy.player_canonical_id);assert.equal(migrated.schema_version,5);
+  const migrated=storage.loadPlayer(legacy.player_canonical_id);assert.equal(migrated.schema_version,6);
   assert.equal(migrated.player.current_map_node_canonical_id,'derived.map_node.location.96481d67f171db13');
   assert.equal(browserCatalog.getMapNode(migrated.player.current_map_node_canonical_id).display_name,'铁匠铺');
   assert.equal(migrated.player.money,100);assert.equal(migrated.player.experience,1000);

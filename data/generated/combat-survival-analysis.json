@@ -2,8 +2,8 @@
   "schema_version": 1,
   "record_kind": "combat-survival-analysis",
   "stage_start_head": "2cbae183aa369fe0ac60176f3a1396914d786440",
-  "source_head": "ced0a9fb69eec0ff90b95587a9e720f4af405a69",
-  "generated_from_head": "ced0a9fb69eec0ff90b95587a9e720f4af405a69",
+  "source_head": "4058b33947b07215ce893c4391b936aded485eec",
+  "generated_from_head": "4058b33947b07215ce893c4391b936aded485eec",
   "reference_commits": {
     "zhsh": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
     "astrbot": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de",
@@ -29,7 +29,7 @@
     "available_quantity": 0,
     "evidence_status": "SOURCE_EXPLICIT"
   },
-  "baseline_selected_task_count": 117,
+  "baseline_selected_task_count": 143,
   "candidates": [
     {
       "task_canonical_id": "task.series.05.036",
@@ -68,13 +68,14 @@
               "won": false,
               "rounds": 32,
               "remaining_health": 0,
-              "monster_remaining_health": 8174,
-              "stamina_uses": 1
+              "monster_remaining_health": 8046,
+              "stamina_uses": 1,
+              "remaining_stamina_quantity": 0
             },
             "sample_count": 256,
             "wins": 0,
             "win_probability": 0,
-            "average_rounds": 21.992,
+            "average_rounds": 22.48,
             "average_stamina_uses": 1,
             "consumables_required": 1,
             "rule_ids": [
@@ -85,7 +86,7 @@
           }
         }
       ],
-      "simulated_selected_task_count": 117,
+      "simulated_selected_task_count": 143,
       "simulated_unlock_delta": 0,
       "newly_selected_task_ids": [],
       "terminal_task_canonical_id": null,
@@ -102,8 +103,8 @@
               "closed": false,
               "player_level": 45,
               "player_max_health": 729,
-              "player_damage_per_round": 393,
-              "monster_damage_per_round": 282,
+              "player_damage_per_round": 397,
+              "monster_damage_per_round": 275,
               "rounds_to_win": 53,
               "rounds_to_defeat": 3,
               "loadout": [
@@ -126,9 +127,9 @@
                   "equipment_type": 3
                 },
                 {
-                  "canonical_id": "entity.equipment.3c546ec516b8de66",
-                  "display_name": "断网腰带",
-                  "required_level": 36,
+                  "canonical_id": "entity.equipment.f484da158e237d99",
+                  "display_name": "哥伦布皮长靴",
+                  "required_level": 32,
                   "equipment_type": 4
                 },
                 {
@@ -164,7 +165,7 @@
               "sample_count": 256,
               "wins": 0,
               "win_probability": 0,
-              "average_rounds": 2.383,
+              "average_rounds": 2.457,
               "maximum_rounds": 3,
               "acquisition_closed": true,
               "target_combat_closed": false,
@@ -200,9 +201,9 @@
                     "acquisition_wave": 0
                   },
                   {
-                    "canonical_id": "entity.equipment.3c546ec516b8de66",
-                    "display_name": "断网腰带",
-                    "required_level": 36,
+                    "canonical_id": "entity.equipment.f484da158e237d99",
+                    "display_name": "哥伦布皮长靴",
+                    "required_level": 32,
                     "equipment_type": 4,
                     "slot": "belt",
                     "acquisition_wave": 0
@@ -302,14 +303,15 @@
             "deterministic_best_play": {
               "won": true,
               "rounds": 30,
-              "remaining_health": 3298,
+              "remaining_health": 3350,
               "monster_remaining_health": 0,
-              "stamina_uses": 1
+              "stamina_uses": 1,
+              "remaining_stamina_quantity": 0
             },
             "sample_count": 256,
             "wins": 0,
             "win_probability": 0,
-            "average_rounds": 32.938,
+            "average_rounds": 33.637,
             "average_stamina_uses": 1,
             "consumables_required": 1,
             "rule_ids": [
@@ -320,7 +322,7 @@
           }
         }
       ],
-      "simulated_selected_task_count": 117,
+      "simulated_selected_task_count": 143,
       "simulated_unlock_delta": 0,
       "newly_selected_task_ids": [],
       "terminal_task_canonical_id": null,
@@ -338,8 +340,8 @@
               "closed": false,
               "player_level": 45,
               "player_max_health": 729,
-              "player_damage_per_round": 491,
-              "monster_damage_per_round": 187,
+              "player_damage_per_round": 496,
+              "monster_damage_per_round": 183,
               "rounds_to_win": 30,
               "rounds_to_defeat": 4,
               "loadout": [
@@ -362,9 +364,9 @@
                   "equipment_type": 3
                 },
                 {
-                  "canonical_id": "entity.equipment.3c546ec516b8de66",
-                  "display_name": "断网腰带",
-                  "required_level": 36,
+                  "canonical_id": "entity.equipment.f484da158e237d99",
+                  "display_name": "哥伦布皮长靴",
+                  "required_level": 32,
                   "equipment_type": 4
                 },
                 {
@@ -400,7 +402,7 @@
               "sample_count": 256,
               "wins": 0,
               "win_probability": 0,
-              "average_rounds": 3.281,
+              "average_rounds": 3.359,
               "maximum_rounds": 4,
               "acquisition_closed": true,
               "target_combat_closed": false,
@@ -436,9 +438,9 @@
                     "acquisition_wave": 0
                   },
                   {
-                    "canonical_id": "entity.equipment.3c546ec516b8de66",
-                    "display_name": "断网腰带",
-                    "required_level": 36,
+                    "canonical_id": "entity.equipment.f484da158e237d99",
+                    "display_name": "哥伦布皮长靴",
+                    "required_level": 32,
                     "equipment_type": 4,
                     "slot": "belt",
                     "acquisition_wave": 0
@@ -538,14 +540,15 @@
             "deterministic_best_play": {
               "won": true,
               "rounds": 20,
-              "remaining_health": 3164,
+              "remaining_health": 3221,
               "monster_remaining_health": 0,
-              "stamina_uses": 0
+              "stamina_uses": 0,
+              "remaining_stamina_quantity": 1
             },
             "sample_count": 256,
-            "wins": 240,
-            "win_probability": 0.938,
-            "average_rounds": 40.305,
+            "wins": 248,
+            "win_probability": 0.969,
+            "average_rounds": 40.004,
             "average_stamina_uses": 1,
             "consumables_required": 1,
             "rule_ids": [
@@ -556,7 +559,7 @@
           }
         }
       ],
-      "simulated_selected_task_count": 117,
+      "simulated_selected_task_count": 143,
       "simulated_unlock_delta": 0,
       "newly_selected_task_ids": [],
       "terminal_task_canonical_id": null,
@@ -574,8 +577,8 @@
               "closed": false,
               "player_level": 45,
               "player_max_health": 729,
-              "player_damage_per_round": 569,
-              "monster_damage_per_round": 135,
+              "player_damage_per_round": 574,
+              "monster_damage_per_round": 132,
               "rounds_to_win": 20,
               "rounds_to_defeat": 6,
               "loadout": [
@@ -598,9 +601,9 @@
                   "equipment_type": 3
                 },
                 {
-                  "canonical_id": "entity.equipment.3c546ec516b8de66",
-                  "display_name": "断网腰带",
-                  "required_level": 36,
+                  "canonical_id": "entity.equipment.f484da158e237d99",
+                  "display_name": "哥伦布皮长靴",
+                  "required_level": 32,
                   "equipment_type": 4
                 },
                 {
@@ -636,7 +639,7 @@
               "sample_count": 256,
               "wins": 0,
               "win_probability": 0,
-              "average_rounds": 4.41,
+              "average_rounds": 4.441,
               "maximum_rounds": 5,
               "acquisition_closed": true,
               "target_combat_closed": false,
@@ -672,9 +675,9 @@
                     "acquisition_wave": 0
                   },
                   {
-                    "canonical_id": "entity.equipment.3c546ec516b8de66",
-                    "display_name": "断网腰带",
-                    "required_level": 36,
+                    "canonical_id": "entity.equipment.f484da158e237d99",
+                    "display_name": "哥伦布皮长靴",
+                    "required_level": 32,
                     "equipment_type": 4,
                     "slot": "belt",
                     "acquisition_wave": 0
@@ -773,15 +776,16 @@
             },
             "deterministic_best_play": {
               "won": false,
-              "rounds": 23,
+              "rounds": 24,
               "remaining_health": 0,
-              "monster_remaining_health": 17323,
-              "stamina_uses": 1
+              "monster_remaining_health": 17076,
+              "stamina_uses": 1,
+              "remaining_stamina_quantity": 0
             },
             "sample_count": 256,
             "wins": 0,
             "win_probability": 0,
-            "average_rounds": 16.133,
+            "average_rounds": 16.922,
             "average_stamina_uses": 1,
             "consumables_required": 1,
             "rule_ids": [
@@ -792,7 +796,7 @@
           }
         }
       ],
-      "simulated_selected_task_count": 117,
+      "simulated_selected_task_count": 143,
       "simulated_unlock_delta": 0,
       "newly_selected_task_ids": [],
       "terminal_task_canonical_id": null,
@@ -810,9 +814,9 @@
               "closed": false,
               "player_level": 54,
               "player_max_health": 905,
-              "player_damage_per_round": 452,
-              "monster_damage_per_round": 272,
-              "rounds_to_win": 49,
+              "player_damage_per_round": 457,
+              "monster_damage_per_round": 268,
+              "rounds_to_win": 48,
               "rounds_to_defeat": 4,
               "loadout": [
                 {
@@ -834,9 +838,9 @@
                   "equipment_type": 3
                 },
                 {
-                  "canonical_id": "entity.equipment.d3e13e0377cf5a48",
-                  "display_name": "冲浪腰带",
-                  "required_level": 53,
+                  "canonical_id": "entity.equipment.f484da158e237d99",
+                  "display_name": "哥伦布皮长靴",
+                  "required_level": 32,
                   "equipment_type": 4
                 },
                 {
@@ -872,7 +876,7 @@
               "sample_count": 256,
               "wins": 0,
               "win_probability": 0,
-              "average_rounds": 2.688,
+              "average_rounds": 2.73,
               "maximum_rounds": 4,
               "acquisition_closed": true,
               "target_combat_closed": false,
@@ -908,9 +912,9 @@
                     "acquisition_wave": 0
                   },
                   {
-                    "canonical_id": "entity.equipment.d3e13e0377cf5a48",
-                    "display_name": "冲浪腰带",
-                    "required_level": 53,
+                    "canonical_id": "entity.equipment.f484da158e237d99",
+                    "display_name": "哥伦布皮长靴",
+                    "required_level": 32,
                     "equipment_type": 4,
                     "slot": "belt",
                     "acquisition_wave": 0
@@ -956,7 +960,481 @@
                     "monster_canonical_id": "derived.monster_definition.2e6d709f8f6430d2",
                     "deterministic_best_play": false,
                     "win_probability": 0,
-                    "rounds_to_win": 49,
+                    "rounds_to_win": 48,
+                    "rounds_to_defeat": 4
+                  }
+                ],
+                "source_confidence": "SOURCE_EXPLICIT",
+                "runtime_adjudication_status": "BLOCKED_BY_FORMAL_COMBAT",
+                "has_active_conflict": true,
+                "compatibility_experience_dependency": true
+              },
+              "reason": "target_combat_not_closed"
+            }
+          }
+        ],
+        "evidence_rule": "source-backed equipment acquisition, formal source stats and damage formula must prove the scheduled player wins a deterministic best-play encounter before defeat"
+      },
+      "earned_money_from_new_tasks": 0,
+      "remaining_money": 18065
+    },
+    {
+      "task_canonical_id": "task.series.14.175",
+      "series_canonical_id": "task.series.14",
+      "sequence_position": 5,
+      "prerequisite_reachable": true,
+      "source_closed": false,
+      "closes_all_requirements": false,
+      "consumables_required": 0,
+      "proofs": [
+        {
+          "target_canonical_id": "task.series.14.175.target.01",
+          "origin": "item_source",
+          "monster_canonical_id": "derived.monster_definition.807fddd63885aea0",
+          "scheduled_player_level": 45,
+          "acquisition_closed": true,
+          "base_closed": false,
+          "proof": {
+            "closed": false,
+            "best_play_closed": true,
+            "player_level": 45,
+            "player_base_max_health": 729,
+            "active_max_health": 5729,
+            "monster_canonical_id": "derived.monster_definition.807fddd63885aea0",
+            "stamina_item": {
+              "item_canonical_id": "entity.item.8a516352a5046efd",
+              "display_name": "体力宝",
+              "type": 45,
+              "add_hp": 5000,
+              "all_hp": 50000,
+              "rule_id": "zhsh.play.stamina-item.v1",
+              "trigger_health_ratio": 0.5,
+              "source_behavior": "active item adds temporary maximum health and is consumed automatically below 50% after all attacks"
+            },
+            "deterministic_best_play": {
+              "won": true,
+              "rounds": 15,
+              "remaining_health": 1817,
+              "monster_remaining_health": 0,
+              "stamina_uses": 1,
+              "remaining_stamina_quantity": 0
+            },
+            "sample_count": 256,
+            "wins": 0,
+            "win_probability": 0,
+            "average_rounds": 13.027,
+            "average_stamina_uses": 1,
+            "consumables_required": 1,
+            "rule_ids": [
+              "zhsh.monster.type-level.v1",
+              "formal.damage.v1",
+              "zhsh.play.stamina-item.v1"
+            ]
+          }
+        }
+      ],
+      "simulated_selected_task_count": 143,
+      "simulated_unlock_delta": 0,
+      "newly_selected_task_ids": [],
+      "terminal_task_canonical_id": null,
+      "next_blocker": {
+        "code": "item_source_combat_not_closed",
+        "requirements": [
+          {
+            "origin": "item_source",
+            "target_canonical_id": "task.series.14.175.target.01",
+            "monster_canonical_id": "derived.monster_definition.807fddd63885aea0",
+            "monster_level": 139,
+            "scheduled_player_level": 52,
+            "location_canonical_id": "entity.location.e00d5aec965a9048",
+            "combat_proof": {
+              "closed": false,
+              "player_level": 52,
+              "player_max_health": 865,
+              "player_damage_per_round": 356,
+              "monster_damage_per_round": 372,
+              "rounds_to_win": 8,
+              "rounds_to_defeat": 3,
+              "loadout": [
+                {
+                  "canonical_id": "entity.equipment.2f744eb62d69838c",
+                  "display_name": "冰霜利爪",
+                  "required_level": 47,
+                  "equipment_type": 1
+                },
+                {
+                  "canonical_id": "entity.equipment.29e598075d2df6a2",
+                  "display_name": "破天面盔",
+                  "required_level": 52,
+                  "equipment_type": 2
+                },
+                {
+                  "canonical_id": "entity.equipment.971e62427087dc34",
+                  "display_name": "冬鳞护胸",
+                  "required_level": 46,
+                  "equipment_type": 3
+                },
+                {
+                  "canonical_id": "entity.equipment.f484da158e237d99",
+                  "display_name": "哥伦布皮长靴",
+                  "required_level": 32,
+                  "equipment_type": 4
+                },
+                {
+                  "canonical_id": "entity.equipment.cdf5ed1225c8dd22",
+                  "display_name": "守卫者之靴",
+                  "required_level": 51,
+                  "equipment_type": 5
+                },
+                {
+                  "canonical_id": "entity.equipment.c9fcbdd1622bbf4a",
+                  "display_name": "龙头护符",
+                  "required_level": 45,
+                  "equipment_type": 6
+                },
+                {
+                  "canonical_id": "entity.equipment.f01802ac86282e50",
+                  "display_name": "锁链护喉",
+                  "required_level": 44,
+                  "equipment_type": 6
+                },
+                {
+                  "canonical_id": "entity.equipment.ffcc43c52a70a4c7",
+                  "display_name": "火热串珠",
+                  "required_level": 46,
+                  "equipment_type": 6
+                }
+              ],
+              "rule_ids": [
+                "zhsh.monster.type-level.v1",
+                "formal.damage.v1",
+                "zhsh.equipment.actual-loadout.v1"
+              ],
+              "sample_count": 256,
+              "wins": 0,
+              "win_probability": 0,
+              "average_rounds": 2.012,
+              "maximum_rounds": 3,
+              "acquisition_closed": true,
+              "target_combat_closed": false,
+              "acquisition_plan": {
+                "canonical_id": "equipment.acquisition.cab8fa7ff055c689",
+                "detail_file": "data/generated/equipment-acquisition-analysis.json",
+                "acquisition_closed": true,
+                "target_combat_closed": false,
+                "closed": false,
+                "actual_loadout": [
+                  {
+                    "canonical_id": "entity.equipment.2f744eb62d69838c",
+                    "display_name": "冰霜利爪",
+                    "required_level": 47,
+                    "equipment_type": 1,
+                    "slot": "weapon",
+                    "acquisition_wave": 1
+                  },
+                  {
+                    "canonical_id": "entity.equipment.29e598075d2df6a2",
+                    "display_name": "破天面盔",
+                    "required_level": 52,
+                    "equipment_type": 2,
+                    "slot": "headgear",
+                    "acquisition_wave": 1
+                  },
+                  {
+                    "canonical_id": "entity.equipment.971e62427087dc34",
+                    "display_name": "冬鳞护胸",
+                    "required_level": 46,
+                    "equipment_type": 3,
+                    "slot": "clothes",
+                    "acquisition_wave": 0
+                  },
+                  {
+                    "canonical_id": "entity.equipment.f484da158e237d99",
+                    "display_name": "哥伦布皮长靴",
+                    "required_level": 32,
+                    "equipment_type": 4,
+                    "slot": "belt",
+                    "acquisition_wave": 0
+                  },
+                  {
+                    "canonical_id": "entity.equipment.cdf5ed1225c8dd22",
+                    "display_name": "守卫者之靴",
+                    "required_level": 51,
+                    "equipment_type": 5,
+                    "slot": "shoes",
+                    "acquisition_wave": 0
+                  },
+                  {
+                    "canonical_id": "entity.equipment.c9fcbdd1622bbf4a",
+                    "display_name": "龙头护符",
+                    "required_level": 45,
+                    "equipment_type": 6,
+                    "slot": "accessories",
+                    "acquisition_wave": 0
+                  },
+                  {
+                    "canonical_id": "entity.equipment.f01802ac86282e50",
+                    "display_name": "锁链护喉",
+                    "required_level": 44,
+                    "equipment_type": 6,
+                    "slot": "accessories",
+                    "acquisition_wave": 0
+                  },
+                  {
+                    "canonical_id": "entity.equipment.ffcc43c52a70a4c7",
+                    "display_name": "火热串珠",
+                    "required_level": 46,
+                    "equipment_type": 6,
+                    "slot": "accessories",
+                    "acquisition_wave": 1
+                  }
+                ],
+                "acquired_equipment_count": 11,
+                "cycle_dependencies": [],
+                "unclosed_reasons": [
+                  {
+                    "code": "target_combat_not_closed",
+                    "monster_canonical_id": "derived.monster_definition.807fddd63885aea0",
+                    "deterministic_best_play": false,
+                    "win_probability": 0,
+                    "rounds_to_win": 8,
+                    "rounds_to_defeat": 3
+                  }
+                ],
+                "source_confidence": "SOURCE_EXPLICIT",
+                "runtime_adjudication_status": "BLOCKED_BY_FORMAL_COMBAT",
+                "has_active_conflict": true,
+                "compatibility_experience_dependency": true
+              },
+              "reason": "target_combat_not_closed"
+            }
+          }
+        ],
+        "evidence_rule": "source-backed equipment acquisition, formal source stats and damage formula must prove the scheduled player wins a deterministic best-play encounter before defeat"
+      },
+      "earned_money_from_new_tasks": 0,
+      "remaining_money": 18065
+    },
+    {
+      "task_canonical_id": "task.series.15.199",
+      "series_canonical_id": "task.series.15",
+      "sequence_position": 19,
+      "prerequisite_reachable": true,
+      "source_closed": false,
+      "closes_all_requirements": false,
+      "consumables_required": 0,
+      "proofs": [
+        {
+          "target_canonical_id": "task.series.15.199.target.01",
+          "origin": "task_target",
+          "monster_canonical_id": "derived.monster_definition.c9c3d9ade6afd063",
+          "scheduled_player_level": 45,
+          "acquisition_closed": true,
+          "base_closed": false,
+          "proof": {
+            "closed": false,
+            "best_play_closed": false,
+            "player_level": 45,
+            "player_base_max_health": 729,
+            "active_max_health": 5729,
+            "monster_canonical_id": "derived.monster_definition.c9c3d9ade6afd063",
+            "stamina_item": {
+              "item_canonical_id": "entity.item.8a516352a5046efd",
+              "display_name": "体力宝",
+              "type": 45,
+              "add_hp": 5000,
+              "all_hp": 50000,
+              "rule_id": "zhsh.play.stamina-item.v1",
+              "trigger_health_ratio": 0.5,
+              "source_behavior": "active item adds temporary maximum health and is consumed automatically below 50% after all attacks"
+            },
+            "deterministic_best_play": {
+              "won": false,
+              "rounds": 17,
+              "remaining_health": 0,
+              "monster_remaining_health": 27733,
+              "stamina_uses": 1,
+              "remaining_stamina_quantity": 0
+            },
+            "sample_count": 256,
+            "wins": 0,
+            "win_probability": 0,
+            "average_rounds": 11.676,
+            "average_stamina_uses": 1,
+            "consumables_required": 1,
+            "rule_ids": [
+              "zhsh.monster.type-level.v1",
+              "formal.damage.v1",
+              "zhsh.play.stamina-item.v1"
+            ]
+          }
+        }
+      ],
+      "simulated_selected_task_count": 143,
+      "simulated_unlock_delta": 0,
+      "newly_selected_task_ids": [],
+      "terminal_task_canonical_id": null,
+      "next_blocker": {
+        "code": "combat_loadout_not_closed",
+        "requirements": [
+          {
+            "origin": "task_target",
+            "target_canonical_id": "task.series.15.199.target.01",
+            "monster_canonical_id": "derived.monster_definition.c9c3d9ade6afd063",
+            "monster_level": 49,
+            "scheduled_player_level": 70,
+            "location_canonical_id": "entity.location.388e36417d38ae4c",
+            "combat_proof": {
+              "closed": false,
+              "player_level": 70,
+              "player_max_health": 1259,
+              "player_damage_per_round": 488,
+              "monster_damage_per_round": 318,
+              "rounds_to_win": 63,
+              "rounds_to_defeat": 4,
+              "loadout": [
+                {
+                  "canonical_id": "entity.equipment.8eb0b7d97481b304",
+                  "display_name": "匕潭罩帽",
+                  "required_level": 69,
+                  "equipment_type": 1
+                },
+                {
+                  "canonical_id": "entity.equipment.18ce1248d3c548e4",
+                  "display_name": "几丁加固兜帽",
+                  "required_level": 67,
+                  "equipment_type": 2
+                },
+                {
+                  "canonical_id": "entity.equipment.e156a287baf90005",
+                  "display_name": "冰霜暗纹长袍",
+                  "required_level": 64,
+                  "equipment_type": 3
+                },
+                {
+                  "canonical_id": "entity.equipment.f484da158e237d99",
+                  "display_name": "哥伦布皮长靴",
+                  "required_level": 32,
+                  "equipment_type": 4
+                },
+                {
+                  "canonical_id": "entity.equipment.22176e1ac0fa66e3",
+                  "display_name": "主宰之履",
+                  "required_level": 67,
+                  "equipment_type": 5
+                },
+                {
+                  "canonical_id": "entity.equipment.a33d46726e634a8c",
+                  "display_name": "绘子手的指环",
+                  "required_level": 70,
+                  "equipment_type": 6
+                },
+                {
+                  "canonical_id": "entity.equipment.ccfe717fd2697ff9",
+                  "display_name": "血肉塑造者",
+                  "required_level": 60,
+                  "equipment_type": 6
+                },
+                {
+                  "canonical_id": "entity.equipment.e431f59baa3a30b4",
+                  "display_name": "冬至徽记",
+                  "required_level": 67,
+                  "equipment_type": 6
+                }
+              ],
+              "rule_ids": [
+                "zhsh.monster.type-level.v1",
+                "formal.damage.v1",
+                "zhsh.equipment.actual-loadout.v1"
+              ],
+              "sample_count": 256,
+              "wins": 0,
+              "win_probability": 0,
+              "average_rounds": 3.348,
+              "maximum_rounds": 4,
+              "acquisition_closed": true,
+              "target_combat_closed": false,
+              "acquisition_plan": {
+                "canonical_id": "equipment.acquisition.680b253ea972bc5a",
+                "detail_file": "data/generated/equipment-acquisition-analysis.json",
+                "acquisition_closed": true,
+                "target_combat_closed": false,
+                "closed": false,
+                "actual_loadout": [
+                  {
+                    "canonical_id": "entity.equipment.8eb0b7d97481b304",
+                    "display_name": "匕潭罩帽",
+                    "required_level": 69,
+                    "equipment_type": 1,
+                    "slot": "weapon",
+                    "acquisition_wave": 0
+                  },
+                  {
+                    "canonical_id": "entity.equipment.18ce1248d3c548e4",
+                    "display_name": "几丁加固兜帽",
+                    "required_level": 67,
+                    "equipment_type": 2,
+                    "slot": "headgear",
+                    "acquisition_wave": 0
+                  },
+                  {
+                    "canonical_id": "entity.equipment.e156a287baf90005",
+                    "display_name": "冰霜暗纹长袍",
+                    "required_level": 64,
+                    "equipment_type": 3,
+                    "slot": "clothes",
+                    "acquisition_wave": 0
+                  },
+                  {
+                    "canonical_id": "entity.equipment.f484da158e237d99",
+                    "display_name": "哥伦布皮长靴",
+                    "required_level": 32,
+                    "equipment_type": 4,
+                    "slot": "belt",
+                    "acquisition_wave": 0
+                  },
+                  {
+                    "canonical_id": "entity.equipment.22176e1ac0fa66e3",
+                    "display_name": "主宰之履",
+                    "required_level": 67,
+                    "equipment_type": 5,
+                    "slot": "shoes",
+                    "acquisition_wave": 1
+                  },
+                  {
+                    "canonical_id": "entity.equipment.a33d46726e634a8c",
+                    "display_name": "绘子手的指环",
+                    "required_level": 70,
+                    "equipment_type": 6,
+                    "slot": "accessories",
+                    "acquisition_wave": 0
+                  },
+                  {
+                    "canonical_id": "entity.equipment.ccfe717fd2697ff9",
+                    "display_name": "血肉塑造者",
+                    "required_level": 60,
+                    "equipment_type": 6,
+                    "slot": "accessories",
+                    "acquisition_wave": 0
+                  },
+                  {
+                    "canonical_id": "entity.equipment.e431f59baa3a30b4",
+                    "display_name": "冬至徽记",
+                    "required_level": 67,
+                    "equipment_type": 6,
+                    "slot": "accessories",
+                    "acquisition_wave": 0
+                  }
+                ],
+                "acquired_equipment_count": 9,
+                "cycle_dependencies": [],
+                "unclosed_reasons": [
+                  {
+                    "code": "target_combat_not_closed",
+                    "monster_canonical_id": "derived.monster_definition.c9c3d9ade6afd063",
+                    "deterministic_best_play": false,
+                    "win_probability": 0,
+                    "rounds_to_win": 63,
                     "rounds_to_defeat": 4
                   }
                 ],

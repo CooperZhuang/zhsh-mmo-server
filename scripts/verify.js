@@ -7,7 +7,7 @@ const path=require('node:path');
 
 const root=path.resolve(__dirname,'..');
 const baselineRelative='docs/reconstruction-baseline/multisource-baseline.json';
-const expectedBaselineSha256='431bee8fff1a2d91e58028a4870443431a920815d485266536615a6b9bd7adbb';
+const expectedBaselineSha256='1f8d033e60895bccfd2a992cc34d1b6f51e191746fa4e02ec92b04579b4efbe5';
 const rawRecords=[];
 
 function run(label,args) {
@@ -54,9 +54,13 @@ function main() {
   if(baselineSha256!==expectedBaselineSha256)throw new Error(`Baseline SHA-256 changed: ${baselineSha256}`);
   process.stdout.write('[pass] baseline byte hash\n');
 
+  // 强制全新构建：内容库的历史 overlay 残留会使 upsert 式导入复活已裁决删除的行，破坏确定性
+  const contentDb=path.join(root,'data','zhsh-content.sqlite');
+  if(fs.existsSync(contentDb))fs.rmSync(contentDb,{force:true});
   run('full data generation',['scripts/import-content.js']);
+  run('idle visual asset integration',['scripts/integrate-idle-assets.js']);
+  run('blocked targets adjudication',['scripts/adjudicate-blocked-targets.js']);
   run('database validation',['scripts/validate-import.js']);
-  run('deterministic runnable task selection',['scripts/select-runnable-tasks.js']);
   run('browser build',['scripts/build-browser.js']);
   const testOutput=runNpmTest();
   require('./generate-formal-core-uat').writeValidationFromTestOutput(testOutput);

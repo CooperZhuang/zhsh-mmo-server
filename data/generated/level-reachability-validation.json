@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "selection_hash": "9f38d1cb1445c5e1728b0efcfeda1d6cbfc00acf6b398da5f1d01c47d180479d",
+  "selection_hash": "bd66be69fe45a45fe4a9c0cbd87c61b04ab67c063083e012503131bd03c4c6d1",
   "reward_rule": {
     "schema_version": 1,
     "rule_id": "compatibility.monster-rewards.v1",
@@ -335,7 +335,7 @@
         }
       ],
       "accepted_25_checkpoint": null,
-      "baseline_evidence_file": "artifacts/equipment-combat-stage/raw/node24-current-formal-core-new.json",
+      "baseline_evidence_file": "tests/fixtures/formal-core-new.json",
       "baseline_git_head": "e71899d4075535ef4b33bd958e0b0a6b21b654a5",
       "incremental_source_fixture": "tests/fixtures/browser-save-v4-formal-72-of-72.json",
       "incremental_task_canonical_ids": [
@@ -645,7 +645,7 @@
         "money": 9190,
         "reloaded": true
       },
-      "baseline_evidence_file": "artifacts/equipment-combat-stage/raw/node24-current-formal-core-old.json",
+      "baseline_evidence_file": "tests/fixtures/formal-core-legacy.json",
       "baseline_git_head": "c4fcf3afb8db77a3120fbd96b069bbbb33039883",
       "incremental_source_fixture": "tests/fixtures/browser-save-v4-formal-72-of-72.json",
       "incremental_task_canonical_ids": [

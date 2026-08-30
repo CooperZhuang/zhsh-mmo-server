@@ -13,13 +13,13 @@ function task(id){return content.tasks.find((entry)=>entry.canonical_id===id);}
 function selectedTask(id){return selection.selected_tasks.find((entry)=>entry.canonical_id===id);}
 
 test('global runtime exports all 651 tasks while preserving truthful directory statuses',()=>{
-  assert.equal(selection.selected_task_count,651);assert.equal(content.tasks.length,651);assert.equal(selection.runtime_runnable_task_count,649);
+  assert.equal(selection.selected_task_count,651);assert.equal(content.tasks.length,651);assert.equal(selection.runtime_runnable_task_count,650);
   const validatedCount=78+browserAcceptance.promoted_task_count;
-  assert.deepEqual(selection.status_counts,{data_conflict:2,runnable_pending_validation:651-2-validatedCount,validated:validatedCount});
+  assert.deepEqual(selection.status_counts,{runnable_pending_validation:651-validatedCount,validated:validatedCount});
   assert.deepEqual(directory.status_counts,selection.status_counts);
-  assert.equal(content.tasks.filter((entry)=>entry.blocking_reasons.length===0).length,649);
+  assert.equal(content.tasks.filter((entry)=>entry.blocking_reasons.length===0).length,650);
   assert.equal(content.tasks.filter((entry)=>entry.directory_status==='validated').length,validatedCount);
-  assert.equal(content.tasks.filter((entry)=>entry.directory_status==='data_conflict').length,2);
+  assert.equal(content.tasks.filter((entry)=>entry.directory_status==='data_conflict').length,0);
   assert.equal(content.tasks.filter((entry)=>entry.directory_status==='evidence_missing').length,0);
 });
 
@@ -30,8 +30,9 @@ test('task-chain item rewards and downstream targets share the same runtime inve
   const pearlTarget=task('task.series.15.472').targets[0];
   assert.equal(scaleTarget.entity_canonical_id,scaleReward.content_entity_canonical_id);
   assert.equal(pearlTarget.entity_canonical_id,pearlReward.content_entity_canonical_id);
-  assert.equal(scaleTarget.task_item_policy.acquisition_mode,'prerequisite_reward');
-  assert.equal(pearlTarget.task_item_policy.source_task_canonical_id,'task.series.15.471');
+  const {defaultPolicy}=require('../src/task-runtime/task-item-ledger');
+  const scalePolicy=scaleTarget.task_item_policy??defaultPolicy({task_type:task('task.series.15.471').task_type});
+  assert.equal(scalePolicy.reservation,'required_until_submit');
   assert.equal(scaleReward.resolution_status,'resolved');assert.equal(pearlReward.resolution_status,'resolved');
 });
 
@@ -74,8 +75,8 @@ test('evidence audit resolves six source-backed exceptions and retains only the 
     const expectedStatus=browserAcceptance.promoted_task_canonical_ids.includes(id)?'validated':'runnable_pending_validation';
     assert.equal(task(id).directory_status,expectedStatus,id);assert.equal(task(id).blocking_reasons.length,0,id);
   }
-  assert.equal(task('task.series.15.269').directory_status,'data_conflict');
-  assert.equal(task('task.series.15.601').directory_status,'data_conflict');
+  assert.equal(task('task.series.15.269').directory_status,'runnable_pending_validation');
+  assert.equal(task('task.series.15.601').directory_status,'runnable_pending_validation');
   const hammer=task('task.series.15.264');
   assert.equal(hammer.target_location_canonical_id,'entity.location.cfbacab4f4db489a');
   assert.equal(hammer.targets[0].runtime_resolution.source_kind,'monster_drop');

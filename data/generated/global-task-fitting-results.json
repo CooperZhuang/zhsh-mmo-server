@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "stage_start_head": "2cbae183aa369fe0ac60176f3a1396914d786440",
-  "source_head": "709720ebd4a65eaaba5781bb6700790e6a5cacd7",
-  "generated_from_head": "709720ebd4a65eaaba5781bb6700790e6a5cacd7",
+  "source_head": "4058b33947b07215ce893c4391b936aded485eec",
+  "generated_from_head": "4058b33947b07215ce893c4391b936aded485eec",
   "reference_commits": {
     "zhsh": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
     "astrbot": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de",
@@ -13,9 +13,9 @@
   "generated_at": "2026-07-18T00:00:00.000Z",
   "total_task_count": 651,
   "validated_baseline_count": 78,
-  "development_sample_count": 117,
+  "development_sample_count": 143,
   "record_kind": "global-task-fitting-results",
-  "remaining_task_count": 534,
+  "remaining_task_count": 508,
   "classification_labels": {
     "1": "existing_rules_direct",
     "2": "automatic_field_or_name_mapping",
@@ -32,7 +32,7 @@
     {
       "class_id": 1,
       "class_name": "existing_rules_direct",
-      "count": 442,
+      "count": 427,
       "task_canonical_ids": [
         "task.series.05.037",
         "task.series.05.038",
@@ -73,25 +73,8 @@
         "task.series.13.166",
         "task.series.13.167",
         "task.series.13.168",
-        "task.series.14.171",
-        "task.series.14.172",
-        "task.series.14.174",
         "task.series.14.176",
         "task.series.14.178",
-        "task.series.15.182",
-        "task.series.15.183",
-        "task.series.15.184",
-        "task.series.15.185",
-        "task.series.15.188",
-        "task.series.15.189",
-        "task.series.15.190",
-        "task.series.15.191",
-        "task.series.15.193",
-        "task.series.15.194",
-        "task.series.15.195",
-        "task.series.15.196",
-        "task.series.15.197",
-        "task.series.15.198",
         "task.series.15.199",
         "task.series.15.200",
         "task.series.15.201",
@@ -234,10 +217,12 @@
         "task.series.15.454",
         "task.series.15.455",
         "task.series.15.456",
+        "task.series.15.457",
         "task.series.15.459",
         "task.series.15.460",
         "task.series.15.461",
         "task.series.15.462",
+        "task.series.15.463",
         "task.series.15.464",
         "task.series.15.465",
         "task.series.15.468",
@@ -501,12 +486,12 @@
         {
           "canonical_id": "task.series.14",
           "display_name": "亚丁与龙珠后续地区任务",
-          "count": 5
+          "count": 2
         },
         {
           "canonical_id": "task.series.15",
           "display_name": "寻裔之路",
-          "count": 398
+          "count": 386
         }
       ],
       "reason_codes": [
@@ -516,13 +501,12 @@
     {
       "class_id": 2,
       "class_name": "automatic_field_or_name_mapping",
-      "count": 46,
+      "count": 47,
       "task_canonical_ids": [
         "task.series.05.036",
         "task.series.11.073",
         "task.series.11.083",
         "task.series.11.085",
-        "task.series.12.099",
         "task.series.13.144",
         "task.series.13.145",
         "task.series.13.147",
@@ -532,14 +516,12 @@
         "task.series.13.164",
         "task.series.13.165",
         "task.series.14.175",
-        "task.series.15.181",
-        "task.series.15.186",
-        "task.series.15.187",
-        "task.series.15.192",
         "task.series.15.224",
         "task.series.15.245",
         "task.series.15.254",
+        "task.series.15.264",
         "task.series.15.268",
+        "task.series.15.269",
         "task.series.15.270",
         "task.series.15.280",
         "task.series.15.290",
@@ -550,20 +532,24 @@
         "task.series.15.458",
         "task.series.15.466",
         "task.series.15.467",
+        "task.series.15.471",
         "task.series.15.514",
         "task.series.15.532",
         "task.series.15.543",
         "task.series.15.560",
         "task.series.15.561",
+        "task.series.15.583",
         "task.series.15.584",
         "task.series.15.585",
+        "task.series.15.601",
         "task.series.15.631",
         "task.series.15.652",
         "task.series.15.655",
         "task.series.15.656",
         "task.series.15.670",
         "task.series.15.726",
-        "task.series.15.727"
+        "task.series.15.727",
+        "task.series.15.728"
       ],
       "affected_series": [
         {
@@ -575,11 +561,6 @@
           "canonical_id": "task.series.11",
           "display_name": "北海及各地区任务",
           "count": 3
-        },
-        {
-          "canonical_id": "task.series.12",
-          "display_name": "东亚—印度洋地区任务",
-          "count": 1
         },
         {
           "canonical_id": "task.series.13",
@@ -594,7 +575,7 @@
         {
           "canonical_id": "task.series.15",
           "display_name": "寻裔之路",
-          "count": 32
+          "count": 34
         }
       ],
       "reason_codes": [
@@ -612,15 +593,11 @@
     {
       "class_id": 4,
       "class_name": "reliable_small_field_inference",
-      "count": 35,
+      "count": 31,
       "task_canonical_ids": [
-        "task.series.12.100",
         "task.series.13.169",
-        "task.series.14.170",
-        "task.series.14.173",
         "task.series.14.177",
         "task.series.14.179",
-        "task.series.15.180",
         "task.series.15.235",
         "task.series.15.236",
         "task.series.15.292",
@@ -652,11 +629,6 @@
       ],
       "affected_series": [
         {
-          "canonical_id": "task.series.12",
-          "display_name": "东亚—印度洋地区任务",
-          "count": 1
-        },
-        {
           "canonical_id": "task.series.13",
           "display_name": "通商—圣火令—亚丁—龙珠候选链",
           "count": 1
@@ -664,12 +636,12 @@
         {
           "canonical_id": "task.series.14",
           "display_name": "亚丁与龙珠后续地区任务",
-          "count": 4
+          "count": 2
         },
         {
           "canonical_id": "task.series.15",
           "display_name": "寻裔之路",
-          "count": 29
+          "count": 28
         }
       ],
       "reason_codes": [
@@ -679,21 +651,10 @@
     {
       "class_id": 5,
       "class_name": "extend_existing_common_algorithm",
-      "count": 2,
-      "task_canonical_ids": [
-        "task.series.15.471",
-        "task.series.15.472"
-      ],
-      "affected_series": [
-        {
-          "canonical_id": "task.series.15",
-          "display_name": "寻裔之路",
-          "count": 2
-        }
-      ],
-      "reason_codes": [
-        "task_chain_item_ledger"
-      ]
+      "count": 0,
+      "task_canonical_ids": [],
+      "affected_series": [],
+      "reason_codes": []
     },
     {
       "class_id": 6,
@@ -716,25 +677,20 @@
     {
       "class_id": 7,
       "class_name": "data_error_or_migration_damage",
-      "count": 6,
+      "count": 2,
       "task_canonical_ids": [
-        "task.series.15.264",
-        "task.series.15.269",
         "task.series.15.415",
-        "task.series.15.583",
-        "task.series.15.601",
-        "task.series.15.728"
+        "task.series.15.472"
       ],
       "affected_series": [
         {
           "canonical_id": "task.series.15",
           "display_name": "寻裔之路",
-          "count": 6
+          "count": 2
         }
       ],
       "reason_codes": [
-        "source_data_and_placement_disagree",
-        "target_kind_migration_mismatch"
+        "source_data_and_placement_disagree"
       ]
     },
     {
@@ -756,21 +712,10 @@
     {
       "class_id": 10,
       "class_name": "insufficient_evidence_hold",
-      "count": 2,
-      "task_canonical_ids": [
-        "task.series.15.457",
-        "task.series.15.463"
-      ],
-      "affected_series": [
-        {
-          "canonical_id": "task.series.15",
-          "display_name": "寻裔之路",
-          "count": 2
-        }
-      ],
-      "reason_codes": [
-        "dependency_evidence_missing"
-      ]
+      "count": 0,
+      "task_canonical_ids": [],
+      "affected_series": [],
+      "reason_codes": []
     }
   ],
   "tasks": [
@@ -962,7 +907,7 @@
         "automatic_runtime_mapping"
       ],
       "derivations": [
-        "candidate_with_formal_source"
+        "direct_formal_source"
       ],
       "blocking_reasons": [],
       "affected_shared_systems": [],
@@ -1323,7 +1268,7 @@
         "automatic_runtime_mapping"
       ],
       "derivations": [
-        "candidate_with_formal_source"
+        "direct_formal_source"
       ],
       "blocking_reasons": [],
       "affected_shared_systems": [],
@@ -1911,7 +1856,7 @@
         "automatic_runtime_mapping"
       ],
       "derivations": [
-        "candidate_with_formal_source"
+        "direct_formal_source"
       ],
       "blocking_reasons": [],
       "affected_shared_systems": [],
@@ -2669,7 +2614,7 @@
         "automatic_runtime_mapping"
       ],
       "derivations": [
-        "candidate_with_formal_source"
+        "direct_formal_source"
       ],
       "blocking_reasons": [],
       "affected_shared_systems": [],
@@ -3019,16 +2964,14 @@
       "canonical_id": "task.series.12.099",
       "series_canonical_id": "task.series.12",
       "sequence_position": 11,
-      "in_remaining_534": true,
-      "class_id": 2,
-      "class_name": "automatic_field_or_name_mapping",
+      "in_remaining_534": false,
+      "class_id": 1,
+      "class_name": "existing_rules_direct",
       "direct_fit": true,
       "reason_codes": [
-        "automatic_runtime_mapping"
+        "development_sample_rule_match"
       ],
-      "derivations": [
-        "single_candidate_dependency_mapping"
-      ],
+      "derivations": [],
       "blocking_reasons": [],
       "affected_shared_systems": [],
       "evidence_repositories": [
@@ -3043,7 +2986,7 @@
       "canonical_id": "task.series.12.100",
       "series_canonical_id": "task.series.12",
       "sequence_position": 12,
-      "in_remaining_534": true,
+      "in_remaining_534": false,
       "class_id": 4,
       "class_name": "reliable_small_field_inference",
       "direct_fit": true,
@@ -3420,7 +3363,7 @@
         "automatic_runtime_mapping"
       ],
       "derivations": [
-        "candidate_with_formal_source"
+        "direct_formal_source"
       ],
       "blocking_reasons": [],
       "affected_shared_systems": [],
@@ -4633,7 +4576,7 @@
       "canonical_id": "task.series.14.170",
       "series_canonical_id": "task.series.14",
       "sequence_position": 0,
-      "in_remaining_534": true,
+      "in_remaining_534": false,
       "class_id": 4,
       "class_name": "reliable_small_field_inference",
       "direct_fit": true,
@@ -4657,12 +4600,12 @@
       "canonical_id": "task.series.14.171",
       "series_canonical_id": "task.series.14",
       "sequence_position": 1,
-      "in_remaining_534": true,
+      "in_remaining_534": false,
       "class_id": 1,
       "class_name": "existing_rules_direct",
       "direct_fit": true,
       "reason_codes": [
-        "independent_rule_match"
+        "development_sample_rule_match"
       ],
       "derivations": [],
       "blocking_reasons": [],
@@ -4679,12 +4622,12 @@
       "canonical_id": "task.series.14.172",
       "series_canonical_id": "task.series.14",
       "sequence_position": 2,
-      "in_remaining_534": true,
+      "in_remaining_534": false,
       "class_id": 1,
       "class_name": "existing_rules_direct",
       "direct_fit": true,
       "reason_codes": [
-        "independent_rule_match"
+        "development_sample_rule_match"
       ],
       "derivations": [],
       "blocking_reasons": [],
@@ -4701,7 +4644,7 @@
       "canonical_id": "task.series.14.173",
       "series_canonical_id": "task.series.14",
       "sequence_position": 3,
-      "in_remaining_534": true,
+      "in_remaining_534": false,
       "class_id": 4,
       "class_name": "reliable_small_field_inference",
       "direct_fit": true,
@@ -4725,12 +4668,12 @@
       "canonical_id": "task.series.14.174",
       "series_canonical_id": "task.series.14",
       "sequence_position": 4,
-      "in_remaining_534": true,
+      "in_remaining_534": false,
       "class_id": 1,
       "class_name": "existing_rules_direct",
       "direct_fit": true,
       "reason_codes": [
-        "independent_rule_match"
+        "development_sample_rule_match"
       ],
       "derivations": [],
       "blocking_reasons": [],
@@ -4863,7 +4806,7 @@
       "canonical_id": "task.series.15.180",
       "series_canonical_id": "task.series.15",
       "sequence_position": 0,
-      "in_remaining_534": true,
+      "in_remaining_534": false,
       "class_id": 4,
       "class_name": "reliable_small_field_inference",
       "direct_fit": true,
@@ -4887,7 +4830,7 @@
       "canonical_id": "task.series.15.181",
       "series_canonical_id": "task.series.15",
       "sequence_position": 1,
-      "in_remaining_534": true,
+      "in_remaining_534": false,
       "class_id": 2,
       "class_name": "automatic_field_or_name_mapping",
       "direct_fit": true,
@@ -4911,12 +4854,12 @@
       "canonical_id": "task.series.15.182",
       "series_canonical_id": "task.series.15",
       "sequence_position": 2,
-      "in_remaining_534": true,
+      "in_remaining_534": false,
       "class_id": 1,
       "class_name": "existing_rules_direct",
       "direct_fit": true,
       "reason_codes": [
-        "independent_rule_match"
+        "development_sample_rule_match"
       ],
       "derivations": [],
       "blocking_reasons": [],
@@ -4933,12 +4876,12 @@
       "canonical_id": "task.series.15.183",
       "series_canonical_id": "task.series.15",
       "sequence_position": 3,
-      "in_remaining_534": true,
+      "in_remaining_534": false,
       "class_id": 1,
       "class_name": "existing_rules_direct",
       "direct_fit": true,
       "reason_codes": [
-        "independent_rule_match"
+        "development_sample_rule_match"
       ],
       "derivations": [],
       "blocking_reasons": [],
@@ -4955,12 +4898,12 @@
       "canonical_id": "task.series.15.184",
       "series_canonical_id": "task.series.15",
       "sequence_position": 4,
-      "in_remaining_534": true,
+      "in_remaining_534": false,
       "class_id": 1,
       "class_name": "existing_rules_direct",
       "direct_fit": true,
       "reason_codes": [
-        "independent_rule_match"
+        "development_sample_rule_match"
       ],
       "derivations": [],
       "blocking_reasons": [],
@@ -4977,12 +4920,12 @@
       "canonical_id": "task.series.15.185",
       "series_canonical_id": "task.series.15",
       "sequence_position": 5,
-      "in_remaining_534": true,
+      "in_remaining_534": false,
       "class_id": 1,
       "class_name": "existing_rules_direct",
       "direct_fit": true,
       "reason_codes": [
-        "independent_rule_match"
+        "development_sample_rule_match"
       ],
       "derivations": [],
       "blocking_reasons": [],
@@ -4999,7 +4942,7 @@
       "canonical_id": "task.series.15.186",
       "series_canonical_id": "task.series.15",
       "sequence_position": 6,
-      "in_remaining_534": true,
+      "in_remaining_534": false,
       "class_id": 2,
       "class_name": "automatic_field_or_name_mapping",
       "direct_fit": true,
@@ -5023,7 +4966,7 @@
       "canonical_id": "task.series.15.187",
       "series_canonical_id": "task.series.15",
       "sequence_position": 7,
-      "in_remaining_534": true,
+      "in_remaining_534": false,
       "class_id": 2,
       "class_name": "automatic_field_or_name_mapping",
       "direct_fit": true,
@@ -5031,7 +4974,7 @@
         "automatic_runtime_mapping"
       ],
       "derivations": [
-        "candidate_with_formal_source"
+        "direct_formal_source"
       ],
       "blocking_reasons": [],
       "affected_shared_systems": [],
@@ -5047,12 +4990,12 @@
       "canonical_id": "task.series.15.188",
       "series_canonical_id": "task.series.15",
       "sequence_position": 8,
-      "in_remaining_534": true,
+      "in_remaining_534": false,
       "class_id": 1,
       "class_name": "existing_rules_direct",
       "direct_fit": true,
       "reason_codes": [
-        "independent_rule_match"
+        "development_sample_rule_match"
       ],
       "derivations": [],
       "blocking_reasons": [],
@@ -5069,12 +5012,12 @@
       "canonical_id": "task.series.15.189",
       "series_canonical_id": "task.series.15",
       "sequence_position": 9,
-      "in_remaining_534": true,
+      "in_remaining_534": false,
       "class_id": 1,
       "class_name": "existing_rules_direct",
       "direct_fit": true,
       "reason_codes": [
-        "independent_rule_match"
+        "development_sample_rule_match"
       ],
       "derivations": [],
       "blocking_reasons": [],
@@ -5091,12 +5034,12 @@
       "canonical_id": "task.series.15.190",
       "series_canonical_id": "task.series.15",
       "sequence_position": 10,
-      "in_remaining_534": true,
+      "in_remaining_534": false,
       "class_id": 1,
       "class_name": "existing_rules_direct",
       "direct_fit": true,
       "reason_codes": [
-        "independent_rule_match"
+        "development_sample_rule_match"
       ],
       "derivations": [],
       "blocking_reasons": [],
@@ -5113,12 +5056,12 @@
       "canonical_id": "task.series.15.191",
       "series_canonical_id": "task.series.15",
       "sequence_position": 11,
-      "in_remaining_534": true,
+      "in_remaining_534": false,
       "class_id": 1,
       "class_name": "existing_rules_direct",
       "direct_fit": true,
       "reason_codes": [
-        "independent_rule_match"
+        "development_sample_rule_match"
       ],
       "derivations": [],
       "blocking_reasons": [],
@@ -5135,7 +5078,7 @@
       "canonical_id": "task.series.15.192",
       "series_canonical_id": "task.series.15",
       "sequence_position": 12,
-      "in_remaining_534": true,
+      "in_remaining_534": false,
       "class_id": 2,
       "class_name": "automatic_field_or_name_mapping",
       "direct_fit": true,
@@ -5159,12 +5102,12 @@
       "canonical_id": "task.series.15.193",
       "series_canonical_id": "task.series.15",
       "sequence_position": 13,
-      "in_remaining_534": true,
+      "in_remaining_534": false,
       "class_id": 1,
       "class_name": "existing_rules_direct",
       "direct_fit": true,
       "reason_codes": [
-        "independent_rule_match"
+        "development_sample_rule_match"
       ],
       "derivations": [],
       "blocking_reasons": [],
@@ -5181,12 +5124,12 @@
       "canonical_id": "task.series.15.194",
       "series_canonical_id": "task.series.15",
       "sequence_position": 14,
-      "in_remaining_534": true,
+      "in_remaining_534": false,
       "class_id": 1,
       "class_name": "existing_rules_direct",
       "direct_fit": true,
       "reason_codes": [
-        "independent_rule_match"
+        "development_sample_rule_match"
       ],
       "derivations": [],
       "blocking_reasons": [],
@@ -5203,12 +5146,12 @@
       "canonical_id": "task.series.15.195",
       "series_canonical_id": "task.series.15",
       "sequence_position": 15,
-      "in_remaining_534": true,
+      "in_remaining_534": false,
       "class_id": 1,
       "class_name": "existing_rules_direct",
       "direct_fit": true,
       "reason_codes": [
-        "independent_rule_match"
+        "development_sample_rule_match"
       ],
       "derivations": [],
       "blocking_reasons": [],
@@ -5225,12 +5168,12 @@
       "canonical_id": "task.series.15.196",
       "series_canonical_id": "task.series.15",
       "sequence_position": 16,
-      "in_remaining_534": true,
+      "in_remaining_534": false,
       "class_id": 1,
       "class_name": "existing_rules_direct",
       "direct_fit": true,
       "reason_codes": [
-        "independent_rule_match"
+        "development_sample_rule_match"
       ],
       "derivations": [],
       "blocking_reasons": [],
@@ -5247,12 +5190,12 @@
       "canonical_id": "task.series.15.197",
       "series_canonical_id": "task.series.15",
       "sequence_position": 17,
-      "in_remaining_534": true,
+      "in_remaining_534": false,
       "class_id": 1,
       "class_name": "existing_rules_direct",
       "direct_fit": true,
       "reason_codes": [
-        "independent_rule_match"
+        "development_sample_rule_match"
       ],
       "derivations": [],
       "blocking_reasons": [],
@@ -5269,12 +5212,12 @@
       "canonical_id": "task.series.15.198",
       "series_canonical_id": "task.series.15",
       "sequence_position": 18,
-      "in_remaining_534": true,
+      "in_remaining_534": false,
       "class_id": 1,
       "class_name": "existing_rules_direct",
       "direct_fit": true,
       "reason_codes": [
-        "independent_rule_match"
+        "development_sample_rule_match"
       ],
       "derivations": [],
       "blocking_reasons": [],
@@ -6733,33 +6676,16 @@
       "series_canonical_id": "task.series.15",
       "sequence_position": 84,
       "in_remaining_534": true,
-      "class_id": 7,
-      "class_name": "data_error_or_migration_damage",
-      "direct_fit": false,
+      "class_id": 2,
+      "class_name": "automatic_field_or_name_mapping",
+      "direct_fit": true,
       "reason_codes": [
-        "source_data_and_placement_disagree"
+        "automatic_runtime_mapping"
       ],
-      "derivations": [],
-      "blocking_reasons": [
-        {
-          "code": "unresolved_dependency",
-          "details": [
-            {
-              "type": "unresolved_target",
-              "target_canonical_id": "task.series.15.264.target.01",
-              "dependency_canonical_id": "task.series.15.264.target.01.reference",
-              "resolution_status": "blocked_missing_definition",
-              "candidate_canonical_ids": []
-            }
-          ]
-        },
-        {
-          "code": "item_without_formal_source",
-          "target_canonical_id": "task.series.15.264.target.01",
-          "source_entity_canonical_id": null,
-          "candidate_canonical_ids": []
-        }
+      "derivations": [
+        "direct_formal_source"
       ],
+      "blocking_reasons": [],
       "affected_shared_systems": [],
       "evidence_repositories": [
         "zhsh"
@@ -6864,33 +6790,16 @@
       "series_canonical_id": "task.series.15",
       "sequence_position": 89,
       "in_remaining_534": true,
-      "class_id": 7,
-      "class_name": "data_error_or_migration_damage",
-      "direct_fit": false,
+      "class_id": 2,
+      "class_name": "automatic_field_or_name_mapping",
+      "direct_fit": true,
       "reason_codes": [
-        "source_data_and_placement_disagree"
+        "automatic_runtime_mapping"
       ],
-      "derivations": [],
-      "blocking_reasons": [
-        {
-          "code": "unresolved_dependency",
-          "details": [
-            {
-              "type": "unresolved_target",
-              "target_canonical_id": "task.series.15.269.target.01",
-              "dependency_canonical_id": "task.series.15.269.target.01.reference",
-              "resolution_status": "blocked_missing_definition",
-              "candidate_canonical_ids": []
-            }
-          ]
-        },
-        {
-          "code": "item_without_formal_source",
-          "target_canonical_id": "task.series.15.269.target.01",
-          "source_entity_canonical_id": null,
-          "candidate_canonical_ids": []
-        }
+      "derivations": [
+        "source_explicit_task_described_encounter_drop"
       ],
+      "blocking_reasons": [],
       "affected_shared_systems": [],
       "evidence_repositories": [
         "zhsh"
@@ -8208,39 +8117,15 @@
       "class_name": "data_error_or_migration_damage",
       "direct_fit": false,
       "reason_codes": [
-        "target_kind_migration_mismatch"
+        "source_data_and_placement_disagree"
       ],
-      "derivations": [
-        {
-          "target_canonical_id": "task.series.15.415.target.01",
-          "from": "monster",
-          "to": "item",
-          "source_monster_canonical_id": "derived.monster_definition.faf1f5f9ac63a777",
-          "evidence": "task acquisition verb + unique named encounter"
-        }
-      ],
+      "derivations": [],
       "blocking_reasons": [
-        {
-          "code": "unresolved_dependency",
-          "details": [
-            {
-              "type": "unresolved_target",
-              "target_canonical_id": "task.series.15.415.target.01",
-              "dependency_canonical_id": "task.series.15.415.target.01.reference",
-              "resolution_status": "ambiguous",
-              "candidate_canonical_ids": [
-                "derived.monster_definition.98cce59824527e3b",
-                "derived.monster_definition.b6c33ddc0a318a25",
-                "derived.monster_definition.dde38682f98e53e2"
-              ]
-            }
-          ]
-        },
         {
           "code": "monster_without_formal_encounter",
           "requirements": [
             {
-              "monster_canonical_id": null,
+              "monster_canonical_id": "derived.monster_definition.b6c33ddc0a318a25",
               "location_canonical_id": "entity.location.6b994d2ecbcc7076"
             }
           ]
@@ -9182,27 +9067,14 @@
       "series_canonical_id": "task.series.15",
       "sequence_position": 190,
       "in_remaining_534": true,
-      "class_id": 10,
-      "class_name": "insufficient_evidence_hold",
-      "direct_fit": false,
+      "class_id": 1,
+      "class_name": "existing_rules_direct",
+      "direct_fit": true,
       "reason_codes": [
-        "dependency_evidence_missing"
+        "independent_rule_match"
       ],
       "derivations": [],
-      "blocking_reasons": [
-        {
-          "code": "unresolved_dependency",
-          "details": [
-            {
-              "type": "unresolved_target",
-              "target_canonical_id": "task.series.15.457.target.01",
-              "dependency_canonical_id": "task.series.15.457.target.01.reference",
-              "resolution_status": "blocked_missing_definition",
-              "candidate_canonical_ids": []
-            }
-          ]
-        }
-      ],
+      "blocking_reasons": [],
       "affected_shared_systems": [],
       "evidence_repositories": [
         "zhsh"
@@ -9210,7 +9082,7 @@
       "directory_status": "validated",
       "runtime_fit": true,
       "runtime_blocking_reasons": [],
-      "implementation_status": "shared_system_implemented"
+      "implementation_status": "evidence_exception_resolved"
     },
     {
       "canonical_id": "task.series.15.458",
@@ -9329,27 +9201,14 @@
       "series_canonical_id": "task.series.15",
       "sequence_position": 196,
       "in_remaining_534": true,
-      "class_id": 10,
-      "class_name": "insufficient_evidence_hold",
-      "direct_fit": false,
+      "class_id": 1,
+      "class_name": "existing_rules_direct",
+      "direct_fit": true,
       "reason_codes": [
-        "dependency_evidence_missing"
+        "independent_rule_match"
       ],
       "derivations": [],
-      "blocking_reasons": [
-        {
-          "code": "unresolved_dependency",
-          "details": [
-            {
-              "type": "unresolved_target",
-              "target_canonical_id": "task.series.15.463.target.01",
-              "dependency_canonical_id": "task.series.15.463.target.01.reference",
-              "resolution_status": "blocked_missing_definition",
-              "candidate_canonical_ids": []
-            }
-          ]
-        }
-      ],
+      "blocking_reasons": [],
       "affected_shared_systems": [],
       "evidence_repositories": [
         "zhsh"
@@ -9357,7 +9216,7 @@
       "directory_status": "validated",
       "runtime_fit": true,
       "runtime_blocking_reasons": [],
-      "implementation_status": "shared_system_implemented"
+      "implementation_status": "evidence_exception_resolved"
     },
     {
       "canonical_id": "task.series.15.464",
@@ -9415,7 +9274,7 @@
         "automatic_runtime_mapping"
       ],
       "derivations": [
-        "source_explicit_task_described_encounter_drop"
+        "direct_formal_source"
       ],
       "blocking_reasons": [],
       "affected_shared_systems": [],
@@ -9522,94 +9381,60 @@
       "series_canonical_id": "task.series.15",
       "sequence_position": 204,
       "in_remaining_534": true,
-      "class_id": 5,
-      "class_name": "extend_existing_common_algorithm",
-      "direct_fit": false,
+      "class_id": 2,
+      "class_name": "automatic_field_or_name_mapping",
+      "direct_fit": true,
       "reason_codes": [
-        "task_chain_item_ledger"
+        "automatic_runtime_mapping"
       ],
       "derivations": [
-        {
-          "target_canonical_id": "task.series.15.471.target.01",
-          "item_name": "龙鳞",
-          "source_task_canonical_id": "task.series.15.470",
-          "evidence": "prerequisite reward or adjacent task text"
-        }
+        "direct_formal_source"
       ],
-      "blocking_reasons": [
-        {
-          "code": "unresolved_dependency",
-          "details": [
-            {
-              "type": "unresolved_target",
-              "target_canonical_id": "task.series.15.471.target.01",
-              "dependency_canonical_id": "task.series.15.471.target.01.reference",
-              "resolution_status": "blocked_missing_definition",
-              "candidate_canonical_ids": []
-            }
-          ]
-        }
-      ],
-      "affected_shared_systems": [
-        "task_chain_item_ledger"
-      ],
+      "blocking_reasons": [],
+      "affected_shared_systems": [],
       "evidence_repositories": [
         "zhsh"
       ],
       "directory_status": "validated",
       "runtime_fit": true,
       "runtime_blocking_reasons": [],
-      "implementation_status": "shared_system_implemented"
+      "implementation_status": "fitted_existing_runtime"
     },
     {
       "canonical_id": "task.series.15.472",
       "series_canonical_id": "task.series.15",
       "sequence_position": 205,
       "in_remaining_534": true,
-      "class_id": 5,
-      "class_name": "extend_existing_common_algorithm",
+      "class_id": 7,
+      "class_name": "data_error_or_migration_damage",
       "direct_fit": false,
       "reason_codes": [
-        "task_chain_item_ledger"
+        "source_data_and_placement_disagree"
       ],
-      "derivations": [
-        {
-          "target_canonical_id": "task.series.15.472.target.01",
-          "item_name": "黑珍珠",
-          "source_task_canonical_id": "task.series.15.471",
-          "evidence": "prerequisite reward or adjacent task text"
-        }
-      ],
+      "derivations": [],
       "blocking_reasons": [
-        {
-          "code": "unresolved_dependency",
-          "details": [
-            {
-              "type": "unresolved_target",
-              "target_canonical_id": "task.series.15.472.target.01",
-              "dependency_canonical_id": "task.series.15.472.target.01.reference",
-              "resolution_status": "blocked_missing_definition",
-              "candidate_canonical_ids": []
-            }
-          ]
-        },
         {
           "code": "item_without_formal_source",
           "target_canonical_id": "task.series.15.472.target.01",
-          "source_entity_canonical_id": null,
+          "source_entity_canonical_id": "runtime.task_chain.item.8b4fe6ffc18a39c1",
           "candidate_canonical_ids": []
         }
       ],
-      "affected_shared_systems": [
-        "task_chain_item_ledger"
-      ],
+      "affected_shared_systems": [],
       "evidence_repositories": [
         "zhsh"
       ],
       "directory_status": "validated",
-      "runtime_fit": true,
-      "runtime_blocking_reasons": [],
-      "implementation_status": "shared_system_implemented"
+      "runtime_fit": false,
+      "runtime_blocking_reasons": [
+        {
+          "code": "item_without_formal_source",
+          "target_canonical_id": "task.series.15.472.target.01",
+          "source_entity_canonical_id": "runtime.task_chain.item.8b4fe6ffc18a39c1",
+          "candidate_canonical_ids": []
+        }
+      ],
+      "implementation_status": "evidence_or_data_hold"
     },
     {
       "canonical_id": "task.series.15.473",
@@ -12055,33 +11880,16 @@
       "series_canonical_id": "task.series.15",
       "sequence_position": 316,
       "in_remaining_534": true,
-      "class_id": 7,
-      "class_name": "data_error_or_migration_damage",
-      "direct_fit": false,
+      "class_id": 2,
+      "class_name": "automatic_field_or_name_mapping",
+      "direct_fit": true,
       "reason_codes": [
-        "source_data_and_placement_disagree"
+        "automatic_runtime_mapping"
       ],
-      "derivations": [],
-      "blocking_reasons": [
-        {
-          "code": "unresolved_dependency",
-          "details": [
-            {
-              "type": "unresolved_target",
-              "target_canonical_id": "task.series.15.583.target.01",
-              "dependency_canonical_id": "task.series.15.583.target.01.reference",
-              "resolution_status": "blocked_missing_definition",
-              "candidate_canonical_ids": []
-            }
-          ]
-        },
-        {
-          "code": "item_without_formal_source",
-          "target_canonical_id": "task.series.15.583.target.01",
-          "source_entity_canonical_id": null,
-          "candidate_canonical_ids": []
-        }
+      "derivations": [
+        "direct_formal_source"
       ],
+      "blocking_reasons": [],
       "affected_shared_systems": [],
       "evidence_repositories": [
         "zhsh"
@@ -12474,33 +12282,16 @@
       "series_canonical_id": "task.series.15",
       "sequence_position": 334,
       "in_remaining_534": true,
-      "class_id": 7,
-      "class_name": "data_error_or_migration_damage",
-      "direct_fit": false,
+      "class_id": 2,
+      "class_name": "automatic_field_or_name_mapping",
+      "direct_fit": true,
       "reason_codes": [
-        "source_data_and_placement_disagree"
+        "automatic_runtime_mapping"
       ],
-      "derivations": [],
-      "blocking_reasons": [
-        {
-          "code": "unresolved_dependency",
-          "details": [
-            {
-              "type": "unresolved_target",
-              "target_canonical_id": "task.series.15.601.target.01",
-              "dependency_canonical_id": "task.series.15.601.target.01.reference",
-              "resolution_status": "blocked_missing_definition",
-              "candidate_canonical_ids": []
-            }
-          ]
-        },
-        {
-          "code": "item_without_formal_source",
-          "target_canonical_id": "task.series.15.601.target.01",
-          "source_entity_canonical_id": null,
-          "candidate_canonical_ids": []
-        }
+      "derivations": [
+        "direct_formal_source"
       ],
+      "blocking_reasons": [],
       "affected_shared_systems": [],
       "evidence_repositories": [
         "zhsh"
@@ -13169,7 +12960,7 @@
         "automatic_runtime_mapping"
       ],
       "derivations": [
-        "normalize_migrated_collection_target_to_item"
+        "source_explicit_task_described_encounter_drop"
       ],
       "blocking_reasons": [],
       "affected_shared_systems": [],
@@ -13619,7 +13410,7 @@
         "automatic_runtime_mapping"
       ],
       "derivations": [
-        "normalize_migrated_collection_target_to_item"
+        "source_explicit_task_described_encounter_drop"
       ],
       "blocking_reasons": [],
       "affected_shared_systems": [],
@@ -14620,31 +14411,14 @@
         {
           "target_canonical_id": "task.series.15.698.target.01",
           "npc_canonical_id": "derived.npc_definition.9a40c3b4b13a16b1",
-          "evidence": "combat verb + unique NPC candidate"
+          "evidence": "adjudicated npc duel target"
         }
       ],
       "blocking_reasons": [
         {
-          "code": "unresolved_dependency",
-          "details": [
-            {
-              "type": "unresolved_target",
-              "target_canonical_id": "task.series.15.698.target.01",
-              "dependency_canonical_id": "task.series.15.698.target.01.reference",
-              "resolution_status": "cross_type_suspected",
-              "candidate_canonical_ids": [
-                "derived.npc_definition.9a40c3b4b13a16b1"
-              ]
-            }
-          ]
-        },
-        {
-          "code": "monster_without_formal_encounter",
-          "requirements": [
-            {
-              "monster_canonical_id": null,
-              "location_canonical_id": "entity.location.7cba04807f603958"
-            }
+          "code": "unsupported_target_kind",
+          "target_kinds": [
+            "npc_duel"
           ]
         }
       ],
@@ -15306,33 +15080,16 @@
       "series_canonical_id": "task.series.15",
       "sequence_position": 459,
       "in_remaining_534": true,
-      "class_id": 7,
-      "class_name": "data_error_or_migration_damage",
-      "direct_fit": false,
+      "class_id": 2,
+      "class_name": "automatic_field_or_name_mapping",
+      "direct_fit": true,
       "reason_codes": [
-        "source_data_and_placement_disagree"
+        "automatic_runtime_mapping"
       ],
-      "derivations": [],
-      "blocking_reasons": [
-        {
-          "code": "unresolved_dependency",
-          "details": [
-            {
-              "type": "unresolved_target",
-              "target_canonical_id": "task.series.15.728.target.01",
-              "dependency_canonical_id": "task.series.15.728.target.01.reference",
-              "resolution_status": "blocked_missing_definition",
-              "candidate_canonical_ids": []
-            }
-          ]
-        },
-        {
-          "code": "item_without_formal_source",
-          "target_canonical_id": "task.series.15.728.target.01",
-          "source_entity_canonical_id": null,
-          "candidate_canonical_ids": []
-        }
+      "derivations": [
+        "source_explicit_task_described_encounter_drop"
       ],
+      "blocking_reasons": [],
       "affected_shared_systems": [],
       "evidence_repositories": [
         "zhsh"
@@ -15568,7 +15325,7 @@
   "runtime_fit_summary": {
     "runnable_pending_validation": 3,
     "validated": 648,
-    "runtime_fit_count": 651,
+    "runtime_fit_count": 650,
     "implemented_shared_systems": [
       "task_acceptance_handoff",
       "task_chain_item_ledger",

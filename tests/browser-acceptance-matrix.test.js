@@ -25,8 +25,9 @@ test('unified directory reflects the browser acceptance batch without changing c
   const directory=read('data/generated/unified-task-directory.json');
   const byId=new Map(directory.tasks.map((task)=>[task.canonical_id,task]));
   for(const id of matrix.promoted_task_canonical_ids)assert.equal(byId.get(id)?.status,'validated',id);
+  // 裁决推进后：15.269/15.601 已由 data_conflict 升为 runnable_pending_validation，仅 15.706 待验证
   assert.equal(byId.get('task.series.15.706')?.status,'runnable_pending_validation');
-  assert.equal(byId.get('task.series.15.269')?.status,'data_conflict');
-  assert.equal(byId.get('task.series.15.601')?.status,'data_conflict');
-  assert.deepEqual(directory.status_counts,{data_conflict:2,runnable_pending_validation:1,validated:648});
+  assert.equal(directory.status_counts.data_conflict??0,0,'adjudication closed all data conflicts');
+  assert.equal(directory.status_counts.validated,648);
+  assert.equal(directory.status_counts.runnable_pending_validation,3);
 });

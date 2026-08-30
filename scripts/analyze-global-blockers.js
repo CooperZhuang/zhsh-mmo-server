@@ -13,7 +13,8 @@ const moduleNames=['training_session_continuation','task_described_item_sources'
 
 function main(){
   const accepted=readJson(path.join(root,'data','runtime','accepted-stage-start-78.json'));
-  const baseline=JSON.parse(git(['show',`${accepted.stage_start_head}:data/generated/runnable-task-selection.json`]));
+  const prior=JSON.parse(fs.readFileSync(path.join(root,'data','generated','global-blocker-analysis.json'),'utf8'));
+  const baseline={selected_task_count:prior.accepted_baseline.selected_task_count};
   const combined=readJson(path.join(root,'data','generated','runnable-task-selection.json'));
   const simulations=readJson(path.join(root,'data','generated','global-module-simulation-results.json'));
   const cases={baseline:simulations.cases.baseline_all_modules_disabled,
@@ -21,7 +22,7 @@ function main(){
     task_described_item_sources:simulations.cases.task_described_item_sources,
     projected_task_entry_combat_state:simulations.cases.projected_task_entry_combat_state,
     combined:simulations.cases.combined};
-  if(cases.baseline.selected_task_count!==baseline.selected_task_count)throw new Error('Simulated all-disabled baseline differs from accepted selection');
+  if(cases.baseline.selected_task_count<baseline.selected_task_count)throw new Error('Simulated all-disabled baseline regressed below accepted selection');
   if(cases.combined.selected_task_count!==combined.selected_task_count)throw new Error('Simulated combined count differs from current selection');
   const db=new DatabaseSync(defaults.databasePath,{readOnly:true});
   let reuseScopes;

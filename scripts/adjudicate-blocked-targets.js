@@ -477,6 +477,7 @@ const NPC_PLACEMENT_FIXES = [
   { npc: 'derived.npc_definition.1a591b9cfe3b0695', city: '泉州', location: '酒馆' },            // 商人李 15.233
   { npc: 'derived.npc_definition.199c696318fc94a6', city: '亚特兰蒂斯', location: '码头' },      // 卡拉迪 13.162
   { npc: 'derived.npc_definition.6b51943c56cebd0a', city: '泉州', location: '丹霞山' },          // 狐仙小美 12.092/093（文本"丹霞山寻找狐仙小美"）
+  { npc: 'derived.npc_definition.3dea4b1eac3ad3f3', city: '威尼斯', location: '珠宝店' },        // 威尼斯公主 07.041（文本"珠宝店寻找威尼斯公主"）
 ];
 
 const NPC_LOCATION_RETARGETS = [
@@ -644,8 +645,18 @@ function ensureAllOverlayResolutions(db, stats) {
 function ensureRewardGrant(db, taskCid, itemName, itemEnt, stats) {  if (!itemEnt) { stats.failures += 1; return; }
   const task = db.prepare('SELECT id FROM task_definitions WHERE canonical_id=?').get(taskCid);
   if (!task) { stats.failures += 1; return; }
-  const exists = db.prepare('SELECT id FROM task_rewards WHERE task_id=? AND reward_name=?').get(task.id, itemName);
-  if (exists) return;
+  const exists = db.prepare(`SELECT tr.id, tr.dependency_reference_id FROM task_rewards tr WHERE tr.task_id=? AND tr.reward_name=?`).get(task.id, itemName);
+  if (exists) {
+    // 既有原版奖励行：引用未解析时补齐到裁决实体（导出层要求 resolved 才入运行时身份）
+    if (exists.dependency_reference_id) {
+      const ref = db.prepare('SELECT id, resolution_status, resolved_content_entity_id FROM dependency_references WHERE id=?').get(exists.dependency_reference_id);
+      if (ref && (ref.resolution_status !== 'resolved' || Number(ref.resolved_content_entity_id ?? 0) !== Number(itemEnt.entityId))) {
+        db.prepare("UPDATE dependency_references SET resolution_status='resolved',resolved_content_entity_id=?,runtime_capability='queryable' WHERE id=?").run(Number(itemEnt.entityId), Number(ref.id));
+        stats.updated += 1;
+      }
+    }
+    return;
+  }
   const refCid = sig('entity.task_reward', `${taskCid}|${itemName}`);
   const ref = ensureDropReference(db, refCid, 'task_reward', itemName, 'item', { resolved_content_entity_id: itemEnt.entityId }, stats);
   const orderRow = db.prepare('SELECT COALESCE(MAX(reward_order),0) o FROM task_rewards WHERE task_id=?').get(task.id);
@@ -725,3 +736,8 @@ function runAdjudicate({ dbPath = DB_PATH, dryRun = false } = {}) {
 }
 
 module.exports = { runAdjudicate };
+if (require.main === module) {
+  const result = runAdjudicate({ dryRun: process.argv.includes('--dry-run') });
+  process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
+  if (!result.ok) process.exitCode = 1;
+}

@@ -93,7 +93,7 @@ const STORY_ITEMS = {
 // ---- 怪物（等级/类型随副本曲线；属性由 monster.type-level.v1 自动派生） --------
 const MONSTERS = {
   '狐仙':     { level: 88, city: '泉州', location: '丹霞山', tip: '丹霞山雾中的狐仙本尊，狐仙小美的真正面貌。' },
-  '邪恶花精': { level: 152, city: '威尼斯', location: '后山', tip: '后山古树里孕出的妖花之精，守护着一段旧缘。' },
+  '邪恶花精': { level: 152, city: '杭州', location: '野外', tip: '杭城野外古木孕出的妖花之精，守护着一段旧缘。' },
 };
 const MONSTER_DROPS = {
   '狐仙': ['百宝袋'],
@@ -276,6 +276,12 @@ function ensureMonster(db, monsterName, meta, stats) {
     const placementCid = sig('entity.monster_placement', `${monsterName}|${meta.city}|${meta.location}`);
     if (!db.prepare('SELECT id FROM monster_placements WHERE canonical_id=?').get(placementCid)) {
       const def = db.prepare('SELECT id FROM monster_definitions WHERE canonical_id=?').get(canonicalId);
+      // 既有放置位置迁移（改配置后旧放置作废，避免同怪停留在旧址）
+      const oldPlacements = db.prepare('SELECT mp.canonical_id FROM monster_placements mp JOIN monster_definitions md ON md.id=mp.monster_definition_id WHERE md.display_name=?').all(monsterName);
+      for (const old of oldPlacements) {
+        if (db.prepare('SELECT id FROM monster_placements WHERE canonical_id=?').get(placementCid)?.canonical_id === old.canonical_id) continue;
+        db.prepare('DELETE FROM monster_placements WHERE canonical_id=?').run(old.canonical_id);
+      }
       const rec = ensureOverlayRecord(db, placementCid, 'monster_placement', `${monsterName}@${meta.city}/${meta.location}`, { monster: monsterName, city: meta.city, location: meta.location }, stats, 'idle-assets-integration');
       db.prepare(`INSERT INTO monster_placements (canonical_id,source_record_id,source_canonical_id,monster_definition_id,location_id,raw_city_name,raw_location_name,location_resolution_status,raw_data_json,normalized_data_json,runtime_capability) VALUES (?,?,?,?,?,?,?,?,?,?,?)`)
         .run(placementCid, Number(rec.id), placementCid, Number(def.id), Number(loc.id), meta.city, meta.location, 'resolved', '{}', stableJson({ monster: monsterName, city: meta.city, location: meta.location }), 'queryable');
@@ -413,3 +419,8 @@ function runIntegrate({ dbPath = DB_PATH, dryRun = false } = {}) {
 }
 
 module.exports = { runIntegrate };
+if (require.main === module) {
+  const result = runIntegrate({ dryRun: process.argv.includes('--dry-run') });
+  process.stdout.write(`${JSON.stringify(result, null, 2)}\n`);
+  if (!result.ok) process.exitCode = 1;
+}

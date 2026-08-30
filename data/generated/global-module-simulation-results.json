@@ -2,8 +2,8 @@
   "schema_version": 1,
   "record_kind": "global-module-simulation-results",
   "stage_start_head": "2cbae183aa369fe0ac60176f3a1396914d786440",
-  "source_head": "ced0a9fb69eec0ff90b95587a9e720f4af405a69",
-  "generated_from_head": "ced0a9fb69eec0ff90b95587a9e720f4af405a69",
+  "source_head": "4058b33947b07215ce893c4391b936aded485eec",
+  "generated_from_head": "4058b33947b07215ce893c4391b936aded485eec",
   "reference_commits": {
     "zhsh": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
     "astrbot": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de",
@@ -28,11 +28,11 @@
         "task_described_item_sources": false,
         "projected_task_entry_combat_state": false
       },
-      "duration_ms": 19005,
-      "selected_task_count": 78,
-      "selected_series_count": 13,
-      "remaining_task_count": 573,
-      "selection_hash": "9d646b9888a6735f1b18ac53911cf72102a76afda1857bd48ab1914700cff269",
+      "duration_ms": 9814,
+      "selected_task_count": 82,
+      "selected_series_count": 14,
+      "remaining_task_count": 569,
+      "selection_hash": "2a12da7d5cbd171e8ae26527ae37e1e8022ec94ebaf07da07ed97bc64455467d",
       "selected_series": [
         {
           "canonical_id": "task.series.01",
@@ -125,10 +125,10 @@
         {
           "canonical_id": "task.series.12",
           "display_name": "东亚—印度洋地区任务",
-          "selected_task_count": 10,
+          "selected_task_count": 13,
           "total_task_count": 13,
-          "selection_kind": "maximal_continuous_prefix",
-          "terminal_task_canonical_id": "task.series.12.097"
+          "selection_kind": "complete_series",
+          "terminal_task_canonical_id": "task.series.12.100"
         },
         {
           "canonical_id": "task.series.13",
@@ -137,6 +137,14 @@
           "total_task_count": 69,
           "selection_kind": "maximal_continuous_prefix",
           "terminal_task_canonical_id": "task.series.13.103"
+        },
+        {
+          "canonical_id": "task.series.14",
+          "display_name": "亚丁与龙珠后续地区任务",
+          "selected_task_count": 1,
+          "total_task_count": 10,
+          "selection_kind": "maximal_continuous_prefix",
+          "terminal_task_canonical_id": "task.series.14.170"
         }
       ],
       "root_blockers": [
@@ -168,16 +176,6 @@
           "blocked_task_count": 17
         },
         {
-          "series_canonical_id": "task.series.12",
-          "task_canonical_id": "task.series.12.098",
-          "sequence_position": 10,
-          "reason_codes": [
-            "unresolved_dependency",
-            "item_without_formal_source"
-          ],
-          "blocked_task_count": 3
-        },
-        {
           "series_canonical_id": "task.series.13",
           "task_canonical_id": "task.series.13.104",
           "sequence_position": 3,
@@ -188,21 +186,19 @@
         },
         {
           "series_canonical_id": "task.series.14",
-          "task_canonical_id": "task.series.14.170",
-          "sequence_position": 0,
+          "task_canonical_id": "task.series.14.171",
+          "sequence_position": 1,
           "reason_codes": [
-            "incomplete_task_definition",
-            "unresolved_dependency"
+            "level_balance_anomaly"
           ],
-          "blocked_task_count": 10
+          "blocked_task_count": 9
         },
         {
           "series_canonical_id": "task.series.15",
           "task_canonical_id": "task.series.15.180",
           "sequence_position": 0,
           "reason_codes": [
-            "incomplete_task_definition",
-            "unresolved_dependency"
+            "level_balance_anomaly"
           ],
           "blocked_task_count": 470
         }
@@ -214,11 +210,11 @@
         "task_described_item_sources": false,
         "projected_task_entry_combat_state": false
       },
-      "duration_ms": 20211,
-      "selected_task_count": 103,
-      "selected_series_count": 13,
-      "remaining_task_count": 548,
-      "selection_hash": "cca941e5849a4ea7b579b60af571d19bc85221e023c28f85857c558f4830198d",
+      "duration_ms": 57527,
+      "selected_task_count": 148,
+      "selected_series_count": 15,
+      "remaining_task_count": 503,
+      "selection_hash": "d816ee314e66b876b3dee570befd7e531f66c66a2cedbd1da40fea5e86dc7fa2",
       "selected_series": [
         {
           "canonical_id": "task.series.01",
@@ -311,18 +307,34 @@
         {
           "canonical_id": "task.series.12",
           "display_name": "东亚—印度洋地区任务",
-          "selected_task_count": 10,
+          "selected_task_count": 13,
           "total_task_count": 13,
-          "selection_kind": "maximal_continuous_prefix",
-          "terminal_task_canonical_id": "task.series.12.097"
+          "selection_kind": "complete_series",
+          "terminal_task_canonical_id": "task.series.12.100"
         },
         {
           "canonical_id": "task.series.13",
           "display_name": "通商—圣火令—亚丁—龙珠候选链",
-          "selected_task_count": 28,
+          "selected_task_count": 41,
           "total_task_count": 69,
           "selection_kind": "maximal_continuous_prefix",
-          "terminal_task_canonical_id": "task.series.13.128"
+          "terminal_task_canonical_id": "task.series.13.141"
+        },
+        {
+          "canonical_id": "task.series.14",
+          "display_name": "亚丁与龙珠后续地区任务",
+          "selected_task_count": 10,
+          "total_task_count": 10,
+          "selection_kind": "complete_series",
+          "terminal_task_canonical_id": "task.series.14.179"
+        },
+        {
+          "canonical_id": "task.series.15",
+          "display_name": "寻裔之路",
+          "selected_task_count": 19,
+          "total_task_count": 470,
+          "selection_kind": "maximal_continuous_prefix",
+          "terminal_task_canonical_id": "task.series.15.198"
         }
       ],
       "root_blockers": [
@@ -354,44 +366,22 @@
           "blocked_task_count": 17
         },
         {
-          "series_canonical_id": "task.series.12",
-          "task_canonical_id": "task.series.12.098",
-          "sequence_position": 10,
-          "reason_codes": [
-            "unresolved_dependency",
-            "item_without_formal_source"
-          ],
-          "blocked_task_count": 3
-        },
-        {
           "series_canonical_id": "task.series.13",
-          "task_canonical_id": "task.series.13.129",
-          "sequence_position": 28,
+          "task_canonical_id": "task.series.13.142",
+          "sequence_position": 41,
           "reason_codes": [
-            "unresolved_dependency",
-            "item_without_formal_source"
+            "combat_loadout_not_closed"
           ],
-          "blocked_task_count": 41
-        },
-        {
-          "series_canonical_id": "task.series.14",
-          "task_canonical_id": "task.series.14.170",
-          "sequence_position": 0,
-          "reason_codes": [
-            "incomplete_task_definition",
-            "unresolved_dependency"
-          ],
-          "blocked_task_count": 10
+          "blocked_task_count": 28
         },
         {
           "series_canonical_id": "task.series.15",
-          "task_canonical_id": "task.series.15.180",
-          "sequence_position": 0,
+          "task_canonical_id": "task.series.15.199",
+          "sequence_position": 19,
           "reason_codes": [
-            "incomplete_task_definition",
-            "unresolved_dependency"
+            "combat_loadout_not_closed"
           ],
-          "blocked_task_count": 470
+          "blocked_task_count": 451
         }
       ]
     },
@@ -401,11 +391,11 @@
         "task_described_item_sources": true,
         "projected_task_entry_combat_state": false
       },
-      "duration_ms": 19399,
-      "selected_task_count": 79,
-      "selected_series_count": 13,
-      "remaining_task_count": 572,
-      "selection_hash": "c5258e9d0487341794aeb5f14178363502fe49c48ff1ce60656a9c9eeaa005a2",
+      "duration_ms": 9951,
+      "selected_task_count": 82,
+      "selected_series_count": 14,
+      "remaining_task_count": 569,
+      "selection_hash": "cbca9082f1f5a7a7440f82d6159c33e7f741dd7cc63c328c18c584a445234e4d",
       "selected_series": [
         {
           "canonical_id": "task.series.01",
@@ -498,10 +488,10 @@
         {
           "canonical_id": "task.series.12",
           "display_name": "东亚—印度洋地区任务",
-          "selected_task_count": 11,
+          "selected_task_count": 13,
           "total_task_count": 13,
-          "selection_kind": "maximal_continuous_prefix",
-          "terminal_task_canonical_id": "task.series.12.098"
+          "selection_kind": "complete_series",
+          "terminal_task_canonical_id": "task.series.12.100"
         },
         {
           "canonical_id": "task.series.13",
@@ -510,6 +500,14 @@
           "total_task_count": 69,
           "selection_kind": "maximal_continuous_prefix",
           "terminal_task_canonical_id": "task.series.13.103"
+        },
+        {
+          "canonical_id": "task.series.14",
+          "display_name": "亚丁与龙珠后续地区任务",
+          "selected_task_count": 1,
+          "total_task_count": 10,
+          "selection_kind": "maximal_continuous_prefix",
+          "terminal_task_canonical_id": "task.series.14.170"
         }
       ],
       "root_blockers": [
@@ -539,15 +537,6 @@
             "combat_consumable_budget_exhausted"
           ],
           "blocked_task_count": 17
-        },
-        {
-          "series_canonical_id": "task.series.12",
-          "task_canonical_id": "task.series.12.099",
-          "sequence_position": 11,
-          "reason_codes": [
-            "unresolved_dependency"
-          ],
-          "blocked_task_count": 2
         },
         {
           "series_canonical_id": "task.series.13",
@@ -560,21 +549,19 @@
         },
         {
           "series_canonical_id": "task.series.14",
-          "task_canonical_id": "task.series.14.170",
-          "sequence_position": 0,
+          "task_canonical_id": "task.series.14.171",
+          "sequence_position": 1,
           "reason_codes": [
-            "incomplete_task_definition",
-            "unresolved_dependency"
+            "level_balance_anomaly"
           ],
-          "blocked_task_count": 10
+          "blocked_task_count": 9
         },
         {
           "series_canonical_id": "task.series.15",
           "task_canonical_id": "task.series.15.180",
           "sequence_position": 0,
           "reason_codes": [
-            "incomplete_task_definition",
-            "unresolved_dependency"
+            "level_balance_anomaly"
           ],
           "blocked_task_count": 470
         }
@@ -586,11 +573,11 @@
         "task_described_item_sources": false,
         "projected_task_entry_combat_state": true
       },
-      "duration_ms": 19260,
-      "selected_task_count": 78,
-      "selected_series_count": 13,
-      "remaining_task_count": 573,
-      "selection_hash": "243862cda75fc58ea3cfc566d22c521a8cb0f3398ec35eb43c2ed860ae62a518",
+      "duration_ms": 9686,
+      "selected_task_count": 82,
+      "selected_series_count": 14,
+      "remaining_task_count": 569,
+      "selection_hash": "74105718e57384f53fc6eaa5cb54e7fb14eae73e0edf36655bdee80766acf34c",
       "selected_series": [
         {
           "canonical_id": "task.series.01",
@@ -683,10 +670,10 @@
         {
           "canonical_id": "task.series.12",
           "display_name": "东亚—印度洋地区任务",
-          "selected_task_count": 10,
+          "selected_task_count": 13,
           "total_task_count": 13,
-          "selection_kind": "maximal_continuous_prefix",
-          "terminal_task_canonical_id": "task.series.12.097"
+          "selection_kind": "complete_series",
+          "terminal_task_canonical_id": "task.series.12.100"
         },
         {
           "canonical_id": "task.series.13",
@@ -695,6 +682,14 @@
           "total_task_count": 69,
           "selection_kind": "maximal_continuous_prefix",
           "terminal_task_canonical_id": "task.series.13.103"
+        },
+        {
+          "canonical_id": "task.series.14",
+          "display_name": "亚丁与龙珠后续地区任务",
+          "selected_task_count": 1,
+          "total_task_count": 10,
+          "selection_kind": "maximal_continuous_prefix",
+          "terminal_task_canonical_id": "task.series.14.170"
         }
       ],
       "root_blockers": [
@@ -724,16 +719,6 @@
             "combat_consumable_budget_exhausted"
           ],
           "blocked_task_count": 17
-        },
-        {
-          "series_canonical_id": "task.series.12",
-          "task_canonical_id": "task.series.12.098",
-          "sequence_position": 10,
-          "reason_codes": [
-            "unresolved_dependency",
-            "item_without_formal_source"
-          ],
-          "blocked_task_count": 3
         },
         {
           "series_canonical_id": "task.series.13",
@@ -746,21 +731,19 @@
         },
         {
           "series_canonical_id": "task.series.14",
-          "task_canonical_id": "task.series.14.170",
-          "sequence_position": 0,
+          "task_canonical_id": "task.series.14.171",
+          "sequence_position": 1,
           "reason_codes": [
-            "incomplete_task_definition",
-            "unresolved_dependency"
+            "level_balance_anomaly"
           ],
-          "blocked_task_count": 10
+          "blocked_task_count": 9
         },
         {
           "series_canonical_id": "task.series.15",
           "task_canonical_id": "task.series.15.180",
           "sequence_position": 0,
           "reason_codes": [
-            "incomplete_task_definition",
-            "unresolved_dependency"
+            "level_balance_anomaly"
           ],
           "blocked_task_count": 470
         }
@@ -772,11 +755,11 @@
         "task_described_item_sources": true,
         "projected_task_entry_combat_state": true
       },
-      "duration_ms": 25755,
-      "selected_task_count": 117,
-      "selected_series_count": 13,
-      "remaining_task_count": 534,
-      "selection_hash": "ff602b9b6cc68ea2c785ee9db84806a00baca33097765495cfae3a39a5decc21",
+      "duration_ms": 63799,
+      "selected_task_count": 143,
+      "selected_series_count": 15,
+      "remaining_task_count": 508,
+      "selection_hash": "c39d3b355f3fbfb150edda0bf95af20c7b1f276780b0f7b754d1eb79c39b9d0e",
       "selected_series": [
         {
           "canonical_id": "task.series.01",
@@ -869,10 +852,10 @@
         {
           "canonical_id": "task.series.12",
           "display_name": "东亚—印度洋地区任务",
-          "selected_task_count": 11,
+          "selected_task_count": 13,
           "total_task_count": 13,
-          "selection_kind": "maximal_continuous_prefix",
-          "terminal_task_canonical_id": "task.series.12.098"
+          "selection_kind": "complete_series",
+          "terminal_task_canonical_id": "task.series.12.100"
         },
         {
           "canonical_id": "task.series.13",
@@ -881,6 +864,22 @@
           "total_task_count": 69,
           "selection_kind": "maximal_continuous_prefix",
           "terminal_task_canonical_id": "task.series.13.141"
+        },
+        {
+          "canonical_id": "task.series.14",
+          "display_name": "亚丁与龙珠后续地区任务",
+          "selected_task_count": 5,
+          "total_task_count": 10,
+          "selection_kind": "maximal_continuous_prefix",
+          "terminal_task_canonical_id": "task.series.14.174"
+        },
+        {
+          "canonical_id": "task.series.15",
+          "display_name": "寻裔之路",
+          "selected_task_count": 19,
+          "total_task_count": 470,
+          "selection_kind": "maximal_continuous_prefix",
+          "terminal_task_canonical_id": "task.series.15.198"
         }
       ],
       "root_blockers": [
@@ -910,15 +909,6 @@
             "combat_consumable_budget_exhausted"
           ],
           "blocked_task_count": 17
-        },
-        {
-          "series_canonical_id": "task.series.12",
-          "task_canonical_id": "task.series.12.099",
-          "sequence_position": 11,
-          "reason_codes": [
-            "unresolved_dependency"
-          ],
-          "blocked_task_count": 2
         },
         {
           "series_canonical_id": "task.series.13",
@@ -931,23 +921,21 @@
         },
         {
           "series_canonical_id": "task.series.14",
-          "task_canonical_id": "task.series.14.170",
-          "sequence_position": 0,
+          "task_canonical_id": "task.series.14.175",
+          "sequence_position": 5,
           "reason_codes": [
-            "incomplete_task_definition",
-            "unresolved_dependency"
+            "item_source_combat_not_closed"
           ],
-          "blocked_task_count": 10
+          "blocked_task_count": 5
         },
         {
           "series_canonical_id": "task.series.15",
-          "task_canonical_id": "task.series.15.180",
-          "sequence_position": 0,
+          "task_canonical_id": "task.series.15.199",
+          "sequence_position": 19,
           "reason_codes": [
-            "incomplete_task_definition",
-            "unresolved_dependency"
+            "combat_loadout_not_closed"
           ],
-          "blocked_task_count": 470
+          "blocked_task_count": 451
         }
       ]
     }

@@ -52,7 +52,7 @@ test('selection has no unresolved dependency or undecided restoration conflict',
   for(const task of selection.selected_tasks)assert.equal(task.evidence.formal_runtime_path!==null,true,task.canonical_id);
   const selectedIds=new Set(selection.selected_tasks.map((task)=>task.canonical_id));
   for(const task of selection.unselected_tasks.filter((entry)=>selectedIds.has(entry.canonical_id)))assert.fail(`selected task also blocked: ${task.canonical_id}`);
-  assert.ok(selection.unselected_tasks.some((task)=>task.blocking_reasons.some((reason)=>reason.code==='unresolved_dependency')));
+  assert.ok(selection.unselected_tasks.every((task)=>task.blocking_reasons.every((reason)=>reason.code!=='unresolved_dependency')),'adjudication must close every unresolved dependency');
 });
 
 test('selector closes level gates with source-derived duration, cache and recovery bounds',()=>{

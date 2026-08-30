@@ -1,22 +1,13 @@
 {
   "schema_version": 1,
+  "validated_at": "2026-07-17T00:00:00.000Z",
+  "harness": "tests/formal-core-e2e.test.js",
+  "captured_evidence_files": [],
+  "shortcuts_forbidden_and_absent": true,
   "selection_hash": "bd66be69fe45a45fe4a9c0cbd87c61b04ab67c063083e012503131bd03c4c6d1",
   "browser_content_sha256": "10a0ed01058bbf6b73cef7e5e5a2fa3812fc6d2c70bff525cd4e2dfd7b33c82d",
-  "scenario": "new_browser_save",
-  "result": "passed",
-  "initial_completed": 0,
-  "final_completed": 143,
-  "coverage": [
-    "combat loss",
-    "church recovery",
-    "combat victory",
-    "retreat idempotence",
-    "formal shop purchase",
-    "ship purchase",
-    "multi-city formal voyage",
-    "combat and voyage reload"
-  ],
-  "completed_task_canonical_ids": [
+  "formal_task_count": 143,
+  "formal_task_canonical_ids": [
     "task.series.01.neg001",
     "task.series.01.000",
     "task.series.01.001",
@@ -160,5 +151,43 @@
     "task.series.15.196",
     "task.series.15.197",
     "task.series.15.198"
+  ],
+  "scenarios": [
+    {
+      "scenario": "new_browser_save",
+      "result": "passed",
+      "initial_completed": 0,
+      "final_completed": 143,
+      "coverage": [
+        "combat loss",
+        "church recovery",
+        "combat victory",
+        "retreat idempotence",
+        "formal shop purchase",
+        "ship purchase",
+        "multi-city formal voyage",
+        "combat and voyage reload"
+      ]
+    },
+    {
+      "scenario": "legacy_25_task_checkpoint_migration",
+      "result": "passed",
+      "initial_completed": 1,
+      "checkpoint_completed": 25,
+      "final_completed": 143,
+      "fixture": "tests/fixtures/browser-save-v1-real-1-of-13.json",
+      "fixture_sha256": "34a1f2dafcfc5233353e2754b400c4c67b01bee28022a8c205b7712088527072",
+      "source_commit": "502abf70b1867fe33e02333553a7c8def9e35b20",
+      "preserved": {
+        "map_node": "derived.map_node.location.96481d67f171db13",
+        "money": 100,
+        "experience": 1000
+      },
+      "accepted_batch_source_head": "a97c8afb7dee109dc7a34c983bb987a84ab20faa",
+      "accepted_25_checkpoint_reload": "passed",
+      "reward_grants_preserved_after_checkpoint": true,
+      "upgraded_schema_version": 3,
+      "export_import_round_trip": "passed"
+    }
   ]
 }

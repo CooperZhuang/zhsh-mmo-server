@@ -31,7 +31,7 @@ function fixture(contentData=content) {
 function mutate(storage,playerId,operation) { storage.transact(playerId,(state)=>{ operation(state);return null; }); }
 
 test('formal browser package exports source-traceable ships, route, shop, equipment and drops',()=>{
-  assert.equal(content.schema_version,4);assert.equal(content.tasks.length,content.runnable_task_selection.selected_task_count);assert.equal(content.ships.length,14);assert.ok(content.voyage_routes.length>2);
+  assert.equal(content.schema_version,4);assert.equal(content.tasks.length,content.runnable_task_selection.selected_task_count);assert.equal(content.ships.length,21);assert.ok(content.voyage_routes.length>2);
   assert.ok(content.shop_entries.length>=3);assert.ok(content.formal_items.length>=2);assert.ok(content.formal_items.some((entry)=>entry.canonical_id==='entity.item.8a516352a5046efd'));assert.ok(content.equipment.length>0);assert.ok(content.drop_relations.length>0);
   assert.ok(content.ships.every((entry)=>entry.source_canonical_id));assert.ok(content.voyage_routes.every((entry)=>entry.source_canonical_id&&entry.distance>0));
 });
@@ -306,7 +306,7 @@ test('SQLite adapter upgrades and round-trips schema v5 maritime, voyage, combat
   try { const source=fixture();const initial=source.engine.loadPlayer(source.playerId);storage.createPlayer(initial);
     storage.transact(source.playerId,(state)=>{state.current_ship_canonical_id=content.ships[0].canonical_id;state.owned_ships[state.current_ship_canonical_id]={purchased_at:'now'};state.voyage={remaining_distance:20};state.combat={round:2};state.equipment.weapon=content.equipment[0].canonical_id;return null;});
     storage.close();const reopened=new SqliteRuntimeStorage(database);const state=reopened.loadPlayer(source.playerId);
-    assert.equal(state.schema_version,5);assert.equal(state.voyage.remaining_distance,20);assert.equal(state.combat.round,2);assert.equal(state.fishing,null);assert.ok(state.owned_ships[state.current_ship_canonical_id]);reopened.close();
+    assert.equal(state.schema_version,6);assert.equal(state.voyage.remaining_distance,20);assert.equal(state.combat.round,2);assert.equal(state.fishing,null);assert.ok(state.owned_ships[state.current_ship_canonical_id]);reopened.close();
   } finally { if(storage.db?.isOpen)storage.close();fs.rmSync(temporary,{recursive:true,force:true}); }
 });
 
@@ -316,7 +316,7 @@ test('public fishing runtime is voyage-gated, consumes bait once and catches the
   const chest=content.maritime.fishing.catches.find((entry)=>entry.display_name==='神秘铁箱');const routePair=chest.route_pairs[0];
   const runtime=new FishingRuntime({storage:f.storage,catalog:f.catalog,taskEngine:f.engine,random:()=>0,clock:()=> '2026-07-18T00:00:00.000Z'});
   mutate(f.storage,f.playerId,(state)=>{state.inventory[rod.canonical_id]=1;state.inventory[bait.canonical_id]=2;});
-  assert.throws(()=>runtime.start(f.playerId,rod.canonical_id,bait.canonical_id,'fish-off-route'),/active idle voyage/);
+  assert.throws(()=>runtime.start(f.playerId,rod.canonical_id,bait.canonical_id,'fish-off-route'),/空闲的进行中航海/);
   mutate(f.storage,f.playerId,(state)=>{state.voyage={from_city_canonical_id:routePair.from_city_canonical_id,to_city_canonical_id:routePair.to_city_canonical_id};});
   runtime.start(f.playerId,rod.canonical_id,bait.canonical_id,'fish-start');const cast=runtime.cast(f.playerId,'fish-cast');
   assert.equal(cast.remaining_bait,1);assert.equal(runtime.cast(f.playerId,'fish-cast').idempotent_replay,true);

@@ -242,14 +242,15 @@ test('18. all 13 first-chain tasks run from available to completed',() => {
   assert.equal(state.player.experience,29000);
 });
 
-test('19. source-label-only reputation rewards are auditable but never fabricated as inventory items',() => {
+test('19. reputation rewards stay auditable, apply to reputation, and never fabricate inventory items',() => {
   const { engine,playerId } = memoryEngine();
   runFirstTaskChain(engine,playerId,'source-label-ledger');
   const state = engine.loadPlayer(playerId);
-  const ledgerOnly = Object.values(state.reward_grants).filter((grant) => grant.effect_status === 'recorded_source_label_only');
-  assert.equal(ledgerOnly.length,13);
+  const appliedGrants = Object.values(state.reward_grants).filter((grant) => grant.effect_status === 'applied');
+  assert.equal(appliedGrants.length,39);
   assert.equal(Object.keys(state.inventory).length,0);
-  assert.ok(Object.values(state.tasks).every((task) => task.reward_status === 'granted_with_source_label_records'));
+  assert.equal(state.player.reputation,21);
+  assert.ok(Object.values(state.tasks).every((task) => ['granted','granted_with_source_label_records'].includes(task.reward_status)));
 });
 
 test('20. adjacent move follows a stored connection and current-location NPC query uses placements',() => {

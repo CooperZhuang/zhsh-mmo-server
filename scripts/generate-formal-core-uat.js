@@ -33,8 +33,8 @@ function writeValidationFromTestOutput(testOutput,{evidenceFiles=[]}={}) {
   const content=JSON.parse(fs.readFileSync(path.join(root,'web','generated','task1-content.json'),'utf8'));
   const fixtureBytes=fs.readFileSync(path.join(root,fixtureFile));
   const fixture=JSON.parse(fixtureBytes.toString('utf8'));
-  const tasks=content.tasks.map((task)=>task.canonical_id);
   const selection=JSON.parse(fs.readFileSync(path.join(root,'data','generated','runnable-task-selection.json'),'utf8'));
+  const tasks=selection.selected_tasks.map((task)=>task.canonical_id);
   const validation={
     schema_version:1,
     validated_at:'2026-07-17T00:00:00.000Z',
