@@ -298,7 +298,12 @@ class DomGameplayScenario{
     assert.equal(await this.page.text('.current-location'),this.nodeById.get(this.currentNode).display_name);
   }
   async advanceVoyageStep(){
-    const dismiss='[data-maritime-dismiss="1"]';if(await this.page.countVisible(dismiss)===1){await this.click(dismiss,{save:true});return;}
+    const voyageActive=await this.page.evaluate(`(async()=>{
+      const resp=await fetch('/api/game/state',{headers:{Authorization:'Bearer '+(localStorage.getItem('zhsh_token')??'')}});
+      if(!resp.ok)return null;
+      return (await resp.json()).voyage??null;
+    })()`);
+    if(voyageActive==null){await this.click('[data-page="location"]',{save:true}).catch(()=>{});return;}
     const advance='[data-voyage-advance="1"]';const count=await this.page.countVisible(advance);
     if(count===0&&await this.page.countVisible('[data-voyage-start]')>0){await this.click('[data-page="location"]');await this.waitPage('location');return;}
     assert.equal(count,1,`Voyage must expose a visible advance action; page=${await this.page.pageName()} text=${await this.page.text('.wap-page')}`);

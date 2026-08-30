@@ -129,7 +129,7 @@ class EdgePage{
       if(event.entry.source==='network'&&/Failed to load resource.*status of 4\d\d/.test(event.entry.text??''))return;
       this.console.push({source:event.entry.source,level:event.entry.level,message:event.entry.text});
     },{sessionId:this.sessionId});
-    this.client.on('Network.loadingFailed',(event)=>this.networkErrors.push({type:'loadingFailed',url:event.url,error:event.errorText,canceled:Boolean(event.canceled)}),{sessionId:this.sessionId});
+    this.client.on('Network.loadingFailed',(event)=>{if(event.canceled||event.errorText==='net::ERR_ABORTED')return;this.networkErrors.push({type:'loadingFailed',url:event.url,error:event.errorText,canceled:Boolean(event.canceled)});},{sessionId:this.sessionId});
     this.client.on('Network.requestWillBeSent',(event)=>{if(event.request?.postData)this.requestBodies.set(event.requestId,{url:event.request.url,body:event.request.postData});},{sessionId:this.sessionId});
     this.client.on('Network.responseReceived',(event)=>{if(Number(event.response?.status)>=400){const sent=this.requestBodies.get(event.requestId);this.networkErrors.push({type:'http',url:event.response.url,status:event.response.status,postData:sent?.body?.slice(0,200)??null});}this.requestBodies.delete(event.requestId);},{sessionId:this.sessionId});
   }
