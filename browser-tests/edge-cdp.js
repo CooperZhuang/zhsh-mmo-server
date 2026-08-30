@@ -54,16 +54,26 @@ async function waitForHttp(url,{timeout=30000}={}){
 async function startStaticServer(root){
   const port=await freePort();const output=[];const bindHost=process.env.ZHSH_BROWSER_BIND_HOST??'127.0.0.1';
   const browserHost=process.env.ZHSH_BROWSER_HOST??(bindHost==='0.0.0.0'?'127.0.0.1':bindHost);
-  const child=childProcess.spawn(process.execPath,['scripts/dev-server.js'],{cwd:root,env:{...process.env,PORT:String(port),HOST:bindHost},stdio:['ignore','pipe','pipe'],detached:process.platform!=='win32'});
+  // 服务器权威版（scripts/dev-server.js 已随单人版移除，见 1ef5426）：
+  // server/server.js 静态托管 dist/ 与 /api 路由。运行时库用临时副本，
+  // 避免污染 server/data/runtime.sqlite（可能被运行中的服务器进程占用）。
+  const runtimeDirectory=fs.mkdtempSync(path.join(os.tmpdir(),'zhsh-browser-runtime-'));
+  const runtimeDb=path.join(runtimeDirectory,'runtime.sqlite');
+  fs.copyFileSync(path.join(root,'data','zhsh-content.sqlite'),runtimeDb);
+  const child=childProcess.spawn(process.execPath,['server/server.js'],
+    {cwd:root,env:{...process.env,PORT:String(port),HOST:bindHost,
+      ZHSH_RUNTIME_DB:runtimeDb,ZHSH_CONTENT_DB:path.join(root,'data','zhsh-content.sqlite')},
+     stdio:['ignore','pipe','pipe'],detached:process.platform!=='win32'});
   child.stdout.on('data',(bytes)=>output.push(bytes.toString('utf8')));child.stderr.on('data',(bytes)=>output.push(bytes.toString('utf8')));
-  child.once('exit',(code)=>{if(code&&code!==0)output.push(`dev-server exit_code=${code}\n`);});
-  try{await waitForHttp(`http://127.0.0.1:${port}/`);return {child,port,url:`http://${browserHost}:${port}/`,output};}
+  child.once('exit',(code)=>{if(code&&code!==0)output.push(`server exit_code=${code}\n`);});
+  try{await waitForHttp(`http://127.0.0.1:${port}/`);return {child,port,url:`http://${browserHost}:${port}/`,output,runtimeDirectory};}
   catch(error){await terminateProcessTree(child);throw new Error(`${error.message}\n${output.join('')}`);}
 }
 
 async function stopStaticServer(server){
   if(!server?.child||server.child.exitCode!==null)return;
   await terminateProcessTree(server.child);
+  if(server.runtimeDirectory){try{fs.rmSync(server.runtimeDirectory,{recursive:true,force:true,maxRetries:8,retryDelay:250});}catch{}}
 }
 
 class CdpClient{
@@ -204,7 +214,13 @@ async function launchEdge({profileDirectory,downloadRoot,inlineRoot=null}){
     '--disable-gpu','--no-sandbox','--no-proxy-server','about:blank',
   ],{stdio:['ignore','ignore','pipe'],detached:process.platform!=='win32'});
   browserProcess.stderr.on('data',(bytes)=>stderr.push(bytes.toString('utf8')));
-  await Promise.race([waitForFile(portFile,{timeout:30000}),new Promise((_,reject)=>browserProcess.once('exit',(code,signal)=>reject(new Error(`Browser exited before DevTools became ready (code=${code}, signal=${signal})\n${stderr.join('')}`))))]);
+  // Edge 新版为进程拆分架构（msedge.exe broker 拉起 new_msedge.exe 真身）：broker 在
+  // 子浏览器就绪后自行退出（code=0），不代表浏览器已死亡。因此仅当退出码非 0 时
+  // 立即判失败；code=0 时继续等 DevToolsActivePort（真身启动中），超时再判失败。
+  const browserExit=new Promise((_,reject)=>browserProcess.once('exit',(code,signal)=>{
+    if(code!==0)reject(new Error(`Browser exited before DevTools became ready (code=${code}, signal=${signal})\n${stderr.join('')}`));
+  }));
+  await Promise.race([waitForFile(portFile,{timeout:40000}),browserExit]);
   const [port]=fs.readFileSync(portFile,'utf8').trim().split(/\r?\n/);const version=await readJson(`http://127.0.0.1:${port}/json/version`);
   let client;try{
     client=await new CdpClient(version.webSocketDebuggerUrl).connect();const {targetId}=await client.send('Target.createTarget',{url:'about:blank'});

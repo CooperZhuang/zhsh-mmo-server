@@ -46,7 +46,8 @@ class DomGameplayScenario{
     const started=Date.now();this.startedAt=new Date().toISOString();
     try{
       this.stage='open browser';
-      await this.openBrowser();await this.page.navigate(this.url);await this.page.waitFor(()=>document.querySelector('[data-action="new-game"], [data-action="continue-game"], [data-action="import-save"]'),{label:'start-game controls'});
+      await this.openBrowser();await this.page.navigate(this.url);
+      await this.page.waitFor(()=>document.querySelector('[data-action="new-game"], [data-action="continue-game"], [data-action="import-save"], [data-action="auth-register"]'),{label:'start-game controls'});
       this.stage='create or import save';
       if(this.legacyFixture)await this.importLegacy();else await this.createNewSave();
       await this.measure('initial_location');
@@ -109,7 +110,21 @@ class DomGameplayScenario{
   trace(message){if(process.env.ZHSH_DOM_E2E_TRACE==='1')process.stderr.write(`[dom-e2e:${this.scenario}] ${message}\n`);}
   async waitPage(name){await this.page.waitFor(`document.body.dataset.page===${JSON.stringify(name)}`,{label:`${name} page`});}
   async createNewSave(){
-    await this.click('[data-action="new-game"]',{save:true});await this.waitPage('location');this.currentNode=this.nodeByLocation.get(this.content.tasks[0].receive_location_canonical_id).map_node_canonical_id;
+    // 服务器权威版：注册后即进入游戏（createPlayer 在服务端完成，无开始屏）。
+    const hasAuth=await this.page.countVisible('[data-action="auth-register"]');
+    let entered=false;
+    if(hasAuth===1){
+      const username=(`dom${Date.now().toString(36).slice(-6)}`).slice(0,12);
+      await this.page.evaluate(`(()=>{const fill=(selector,value)=>{const input=document.querySelector(selector);if(!input)return false;input.value=value;input.dispatchEvent(new Event('input',{bubbles:true}));input.dispatchEvent(new Event('change',{bubbles:true}));return true;};return fill('input[placeholder*="角色名"]',${JSON.stringify(username)})&&fill('input[placeholder*="密码"]','test1234');})()`);
+      await this.click('[data-action="auth-register"]',{save:true});
+      entered=await this.page.waitFor(`document.body.dataset.page===${JSON.stringify('location')}`,{label:'location after register',timeout:8000}).then(()=>true).catch(()=>false);
+    }
+    if(!entered){
+      const hasNewGame=await this.page.countVisible('[data-action="new-game"]');
+      if(hasNewGame===1)await this.click('[data-action="new-game"]',{save:true});
+      else await this.click('[data-action="continue-game"]',{save:true});
+    }
+    await this.waitPage('location');this.currentNode=this.nodeByLocation.get(this.content.tasks[0].receive_location_canonical_id).map_node_canonical_id;
   }
   async importLegacy(){
     await this.page.chooseFile('[data-action="import-save"]',path.join(this.root,'tests','fixtures','browser-save-v1-real-1-of-13.json'));this.uiClicks+=1;
@@ -140,6 +155,9 @@ class DomGameplayScenario{
     let control=`.primary-nav ${selector('data-page',name)}`;let count=await this.page.countVisible(control);if(count!==1){await this.ensureLocationPage();control=`.primary-nav ${selector('data-page',name)}`;count=await this.page.countVisible(control);}
     if(count!==1)throw new Error(`Expected one primary navigation control for ${name}, found ${count}`);await this.click(control);await this.waitPage(name);
   }
+  async waitLocationName(expected, nodeId) {
+    await this.page.waitFor(`document.querySelector('.current-location')?.textContent===${JSON.stringify(expected)}`, { label: `location after moving to ${nodeId}` });
+  }
   nodeForLocation(locationId){const node=this.nodeByLocation.get(locationId);if(!node)throw new Error(`No map node for ${locationId}`);return node;}
   cityForNode(nodeId){const node=this.nodeById.get(nodeId);if(!node)throw new Error(`Unknown map node ${nodeId}`);return node.city_canonical_id;}
   adjacency(nodeId){
@@ -163,9 +181,9 @@ class DomGameplayScenario{
   }
   async verifyMapMovement(){
     await this.ensureLocationPage();const origin=this.currentNode;await this.click('[data-page="map"]');await this.waitPage('map');await this.measure('map');
-    const candidates=await this.page.evaluate("Array.from(document.querySelectorAll('[data-move]')).map((element)=>element.getAttribute('data-move'))");assert.ok(candidates.length,'Map must expose a visible adjacent move');
+    const candidates=await this.page.evaluate("Array.from(document.querySelectorAll('[data-move]')).map((element)=>element.getAttribute('data-move'))"); if(process.env.ZHSH_MOVE_DEBUG==='1'){const dbg=await this.page.evaluate("({page:document.body.dataset.page,cur:document.querySelector('.current-location')?.textContent,moves:Array.from(document.querySelectorAll('[data-move]')).map(b=>b.getAttribute('data-move')+'|'+b.textContent),html:document.querySelector('.wap-page')?.innerText.slice(0,400)})");console.error('[MOVE-DEBUG]',JSON.stringify(dbg));}assert.ok(candidates.length,'Map must expose a visible adjacent move');
     const destination=candidates[0];await this.click(selector('data-move',destination),{save:true});await this.waitPage('location');this.currentNode=destination;
-    assert.equal(await this.page.text('.current-location'),this.nodeById.get(destination).display_name);await this.reach(this.nodeById.get(origin).location_canonical_id);
+    await this.waitLocationName(this.nodeById.get(destination).display_name,destination);await this.reach(this.nodeById.get(origin).location_canonical_id);
   }
 
   async reach(locationId){
@@ -185,7 +203,7 @@ class DomGameplayScenario{
     const pathNodes=this.findPath(this.currentNode,destination.map_node_canonical_id);
     for(const nodeId of pathNodes.slice(1)){
       await this.ensureLocationPage();await this.click(selector('data-move',nodeId),{save:true});await this.waitPage('location');this.currentNode=nodeId;
-      const expected=this.nodeById.get(nodeId).display_name;assert.equal(await this.page.text('.current-location'),expected,`DOM location text after moving to ${nodeId}`);
+      const expected=this.nodeById.get(nodeId).display_name;await this.waitLocationName(expected,nodeId);
     }
   }
   async sail(route){
@@ -372,9 +390,16 @@ class DomGameplayScenario{
   async fight(monsterId,{restartAfterStart=false}={}){
     await this.ensureLocationPage();await this.click('[data-page="encounter"]');await this.waitPage('encounter');await this.measure('combat');
     await this.click(selector('data-combat-start',monsterId),{save:true});
+    const startError=await this.page.text('.error')??'';if(startError)throw new Error(`DOM combat start failed for ${monsterId}: ${startError}`);const startMessage=await this.page.text('.message')??'';
+    if(startMessage.includes('战斗胜利')){this.battle.won+=1;return 'won';}
+    if(startMessage.includes('你被击败')){this.battle.lost+=1;this.currentNode=this.content.gameplay_rules.defeat_return.map_node_canonical_id;await this.recoverAfterDefeat();return 'lost';}
     if(restartAfterStart){await this.restartBrowser();await this.ensurePage('encounter');}
     for(let round=0;round<300;round+=1){
-      const attack='[data-combat-attack="1"]';if(await this.page.countVisible(attack)!==1)break;
+      const attack='[data-combat-attack="1"]';
+      if(await this.page.countVisible(attack)!==1){
+        if(process.env.ZHSH_COMBAT_DEBUG==='1'){const dbg=await this.page.evaluate("({attack:Array.from(document.querySelectorAll('[data-combat-attack]')).length,message:document.querySelector('.message')?.textContent,error:document.querySelector('.error')?.textContent,page:document.body.dataset.page,buttons:Array.from(document.querySelectorAll('.wap-page button')).map(b=>b.textContent.slice(0,10)).slice(0,20)})");console.error('[COMBAT-DEBUG]',JSON.stringify(dbg));}
+        break;
+      }
       await this.click(attack,{save:true});this.battle.rounds+=1;const actionError=await this.page.text('.error');if(actionError)throw new Error(`DOM combat action failed for ${monsterId}: ${actionError}`);const message=await this.page.text('.message')??'';
       if(message.includes('体力宝自动使用'))this.staminaFeedback.push(message);
       if(message.includes('战斗胜利')){this.battle.won+=1;return 'won';}
