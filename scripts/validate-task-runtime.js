@@ -71,7 +71,8 @@ function runValidation({ databasePath,outputPath }) {
     addCheck(checks,'wrong_npc_and_location_do_not_advance',validateWrongEntityRejection(catalog,clock));
     const chainEventTypes = [...new Set(memoryRun.events.map((entry) => entry.event.type))].sort();
     const eventTypes = [...EVENT_TYPES].sort();
-    addCheck(checks,'required_event_types_are_supported',eventTypes.length === 6,{ event_types:eventTypes,first_chain_event_types:chainEventTypes });
+    const supportedEventTypes = new Set(eventTypes);
+    addCheck(checks,'required_event_types_are_supported',chainEventTypes.every((type) => supportedEventTypes.has(type)),{ event_types:eventTypes,first_chain_event_types:chainEventTypes });
     addCheck(checks,'all_original_normalized_quantities_are_met',tasks.every((task) => task.targets.every((target) => memoryState.progress[`${task.canonical_id}|${target.canonical_id}`] === target.required_quantity)));
     addCheck(checks,'correct_submission_npcs_complete_tasks',Object.values(memoryState.tasks).every((task) => task.status === 'completed'));
     addCheck(checks,'rewards_have_one_grant_per_definition',Object.keys(memoryState.reward_grants).length === tasks.reduce((sum,task) => sum + task.rewards.length,0),{ grant_count:Object.keys(memoryState.reward_grants).length });
