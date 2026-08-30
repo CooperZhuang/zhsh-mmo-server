@@ -38,6 +38,15 @@ const accepted72TaskIds=accepted72.completed_task_evidence.json_pointer==='/stat
   ?Object.entries(accepted72Evidence.state?.tasks??{}).filter(([,task])=>task.status==='completed').map(([id])=>id).sort()
   :accepted72Evidence.completed_task_canonical_ids;
 assert.equal(accepted72TaskIds.length,accepted72.selected_task_count);
+// 旧版 71 检查点（data/runtime/formal-stage-start-71.json）：按旧指针解析（迁移兼容回归）
+const accepted71=JSON.parse(fs.readFileSync(path.resolve('data','runtime','formal-stage-start-71.json'),'utf8'));
+assert.equal(accepted71.schema_version,1);
+if(accepted71.completed_task_evidence){
+  const legacy71Evidence=JSON.parse(fs.readFileSync(path.resolve(accepted71.completed_task_evidence.path),'utf8'));
+  const legacy71Ids=accepted71.completed_task_evidence.json_pointer==='/state/tasks (status=completed)'
+    ?Object.entries(legacy71Evidence.state?.tasks??{}).filter(([,task])=>task.status==='completed').map(([id])=>id).sort():[];
+  assert.equal(legacy71Ids.length,accepted71.selected_task_count);
+}
 const accepted72FixturePath=path.resolve('tests','fixtures','browser-save-v4-formal-72-of-72.json');
 const equipmentAnalysis=JSON.parse(fs.readFileSync(path.resolve('tests','fixtures','accepted-78-equipment-acquisition-analysis.json'),'utf8'));
 const combatSurvivalAnalysis=JSON.parse(fs.readFileSync(path.resolve('tests','fixtures','accepted-78-combat-survival-analysis.json'),'utf8'));

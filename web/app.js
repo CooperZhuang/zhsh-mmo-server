@@ -376,7 +376,7 @@ function renderPetsPage() {
       <button class="text-link" data-pet-feed="${attr(p.instance_id)}">喂食</button>
       <button class="text-link" data-pet-release="${attr(p.instance_id)}">放生</button></p>`).join('')}</div>`:'<p>没有宠物，去捕捉一只吧。</p>'}
     <p><strong>宠物图鉴（可捕获）</strong></p>
-    <div class="line-list">${petCatalog.filter((c)=>!ownedByType[c.canonical_id]).slice(0,10).map((c)=>`<p>${escapeHtml(c.name)}（${c.type} 攻${c.attack}）　<button class="text-link" data-pet-capture="${attr(c.canonical_id)}">捕获</button></p>`).join('')}</div>
+    <div class="line-list">${petCatalog.filter((c)=>!ownedByType[c.canonical_id]).slice(0,10).map((c)=>`<p>${renderNamedVisual(c.name,'entity-art')}${escapeHtml(c.name)}（${c.type} 攻${c.attack}）　<button class="text-link" data-pet-capture="${attr(c.canonical_id)}">捕获</button></p>`).join('')}</div>
     <p><button class="text-link" data-page="location">返回</button></p>
     ${renderPrimaryNav()}
   </section>`;
@@ -475,11 +475,13 @@ function renderQuestlinePage() {
   const seriesProgress=new Map((view.task_series??[]).map((s)=>[s.canonical_id,s]));
   const chapterNo=(c)=>{ const m=String(c.chapter??'').match(/\d+/); return m?m[0]:c.chapter; };
   const renderChain=(row)=>{ if(!row.length) return ''; return `<p class="line-item">${row.map((it)=>`<span>${escapeHtml(it)}</span>`).join(' · ')}</p>`; };
-  const keyItems=(c)=>((c.key_items??[]).length?`<p class="key-item">关键剧情物：${c.key_items.map((k)=>`<span>${escapeHtml(k)}`).join("、")}</p>`:'');
+  const keyItems=(c)=>((c.key_items??[]).length?`<p class="key-item">关键剧情物：${c.key_items.map((k)=>`<span>${renderNamedVisual(k,'detail-art')}${escapeHtml(k)}</span>`).join("、")}</p>`:'');
   const renderExpansions=(c)=>{ const ex=c.expansions; if(!ex) return ''; const disc=(ex.discoveries??[]); const parts=[]; if(disc.length) parts.push(`<span>可探索发现物 ${disc.length} 处</span>`); if(ex.world_events) parts.push(`<span>${ex.world_events}</span>`); return (parts.length?`<p class="line-item expansion">扩充：${parts.join(' · ')}</p>`:''); };
+  const allCompleted=(view.all_task_chain??[]).length>=651&&(view.all_task_chain??[]).every((entry)=>entry.runtime.status==='completed');
   app.innerHTML=`<section class="wap-page">
     <p><strong>主线 · 原版任务线</strong>（声望 ${view.player.reputation??0}　爵位：${escapeHtml(view.player.title||'水手')}）</p>
     ${renderFeedback()}
+    ${allCompleted?renderFinale(view):''}
     <p class="sub">依原版任务顺序展开，从威尼斯新手到寻裔之路终局。点击章节可进入对应任务日志。</p>
     <div class="line-list">${chapters.map((c)=>{
       return `<p class="questline-chapter"><strong>第${chapterNo(c)}章 ${escapeHtml(c.name)}</strong>（${escapeHtml(c.region)}　等级 ${escapeHtml(c.level_range??'--')}）<br>目标：${escapeHtml(c.main_goal)}<br>${questCount(c)}${keyItems(c)}${renderExpansions(c)}${renderChain((c.city_flow??'').split('→').filter(Boolean))}<button class="text-link" data-page="tasks" data-series-select="${attr(c.series)}">进入任务日志</button></p>`;
@@ -488,6 +490,28 @@ function renderQuestlinePage() {
     ${renderPrimaryNav()}
   </section>`;
   bindPageActions();
+}
+
+function renderFinale(view) {
+  const credits=[
+    ['哥伦布之刃','远征者的佩刃，锈迹里藏着新大陆的月光。'],
+    ['桂魄银蟾','月宫桂树下的银蟾，陪你看遍七海潮起。'],
+    ['玉兔绒衣','月宫与深海的雪白一件，见证你的每一次披星戴月。'],
+    ['航海勋章','远洋船长们互相赠予的勋章，刻着一艘三桅帆船。'],
+    ['黄金金币','从海贼靴筒里翻出的硬通货，终究不如你眼里的光。'],
+    ['圣火令','紫焰圣火令，圣火教的至高信物——终局燃尽，火种归海。'],
+    ['龙珠碎片·金','龙珠拼图最后一角，寻裔之路的句点。'],
+  ];
+  const epilogue=document.createElement('div');
+  epilogue.className='finale-epilogue';
+  epilogue.innerHTML=`<div class="line-list"><p>${renderNamedVisual('威尼斯国王','entity-art')}<strong>终幕 · 御前册封</strong></p>
+    <p>威尼斯国王：亲爱的船长，七海都在传颂你的名字。</p>
+    <p>从威尼斯酒馆的一无所有，到寻裔之路的终点——<strong>${escapeHtml(view.player.name??'船长')}</strong>，纵横四海，你做到了。</p>
+    <p>任务全部完成：${view.all_task_chain.length}/${view.all_task_chain.length}　声望 ${view.player.reputation??0}　爵位：${escapeHtml(view.player.title||'水手')}</p>
+    <p class="sub">通关结算：本次冒险的旅程与战利品</p>
+    ${credits.map(([name,tip])=>`<p>${renderNamedVisual(name,'detail-art')}<strong>${escapeHtml(name)}</strong>　${escapeHtml(tip)}</p>`).join('')}
+    <p class="sub">—— 纵横四海 · 全主线完成 ——</p></div>`;
+  return `<div class="finale-banner" data-page="finale">${epilogue.innerHTML}</div>`;
 }
 function renderNpcPage() {
   document.body.dataset.page = 'npc';
@@ -1280,6 +1304,8 @@ function visualByReferenceName(name) {
 function visualForMaritimeEncounter(displayName) {
   const aliases=[
     [/海盗/,'海盗船'],[/幽灵/,'幽灵船'],[/宝箱/,'百宝箱'],[/哥伦布/,'哥伦布之刃'],[/奔月|月宫/,'月宫仙子冠'],[/漩涡/,'漩涡怀表'],[/风暴/,'暴风海域'],
+    // 航海事件图（闲置视觉集成）：事件名 → 对应事件图
+    [/遭遇漩涡/,'漩涡'],[/遭遇礁石/,'暗礁触礁危险'],[/海盗袭击/,'海盗来袭'],[/神秘宝箱/,'发现漂流宝箱'],[/怪船/,'怪船遭遇'],[/海妖/,'怪船遭遇'],[/顺风航行/,'顺风航行'],[/逆风/,'逆风航行'],[/暴风雨|风暴/,'暴风雨'],[/暗礁/,'暗礁触礁危险'],[/藏宝线索/,'发现藏宝线索'],[/港口/,'港口停靠'],[/荒岛|登岛/,'荒岛登陆'],[/月夜/,'夜航月夜海面'],
   ];
   return visualByName(displayName)??aliases.filter(([pattern])=>pattern.test(displayName)).map(([,name])=>visualByName(name)).find(Boolean)??null;
 }

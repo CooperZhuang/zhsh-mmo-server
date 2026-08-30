@@ -1,991 +1,1051 @@
 {
-  "schema_version": 1,
-  "evidence_status": "SINGLE_SOURCE_EXPLICIT_WITH_SAILING_CONFLICT_RECORDED",
-  "source_evidence": {
-    "fish": {
-      "repository": "zhsh",
-      "relative_path": "config/fish.json",
-      "sha256": "83bcae7f22a0ad1f027ec50ddc4e355037cfb4515944873b31cc6bdb9a36492c"
-    },
-    "shopItems": {
-      "repository": "zhsh",
-      "relative_path": "config/shopItems.json",
-      "sha256": "693c18162985221ad13c03d9e5303dc9d3bd9a19f739366d57b38143cebbcc22"
-    },
-    "shipFb": {
-      "repository": "zhsh",
-      "relative_path": "config/shipFb.json",
-      "sha256": "911a56c9999ba16e37913579739efe5ba0c6ab38ba087b9c3d34a022f5ea39bf"
-    },
-    "shipNpc": {
-      "repository": "zhsh",
-      "relative_path": "config/shipNpc.json",
-      "sha256": "0573f79d15490a9a69cf29329122187d301a9a89f9adb70ed5ee511f1efba4b5"
-    },
-    "shipFbTips": {
-      "repository": "zhsh",
-      "relative_path": "config/shipFbTips.json",
-      "sha256": "ee6d71ddf415552f4faf1ed5ddb1f585377b88333567fd7124e77f1f4832de95"
-    },
-    "monsterItems": {
-      "repository": "zhsh",
-      "relative_path": "config/monsterItems.json",
-      "sha256": "ce7fd97db8b960506468129b43127672112076729f41f7480e8a013615b3bc5e"
-    },
-    "monsterDrops": {
-      "repository": "zhsh",
-      "relative_path": "config/monsterDrops.json",
-      "sha256": "b7682e730c4e12348999761bc3ccb5285962a6e9535c82bf6e5355f02ba962d0"
-    },
-    "monsters": {
-      "repository": "zhsh",
-      "relative_path": "config/monsters.json",
-      "sha256": "157ecd8a3d0d4000adc5beec0f9a8bd461b769b80b8052ef6b20056de83e11c9"
-    },
-    "sailingEncounters": {
-      "repository": "zhsh",
-      "relative_path": "config/sailingEncounters.json",
-      "sha256": "f982bd10a0a78c8583dd151505cbef56fc387dac948daa11396ba3961b9caf90"
-    },
-    "sailingSpecialEvents": {
-      "repository": "zhsh",
-      "relative_path": "config/sailingSpecialEvents.json",
-      "sha256": "816330e54698730fe6237cb4fb7ff53f2fd05198e921e31dd791c1598554e72f"
-    }
+ "schema_version": 1,
+ "evidence_status": "SINGLE_SOURCE_EXPLICIT_WITH_SAILING_CONFLICT_RECORDED",
+ "source_evidence": {
+  "fish": {
+   "repository": "zhsh",
+   "relative_path": "config/fish.json",
+   "sha256": "83bcae7f22a0ad1f027ec50ddc4e355037cfb4515944873b31cc6bdb9a36492c"
   },
-  "fishing": {
-    "gear": [
-      {
-        "name": "鱼竿",
-        "price": 4000,
-        "tip": "普通的鱼竿",
-        "type": 14,
-        "sellPosition": [
-          1
-        ],
-        "info": {}
-      },
-      {
-        "name": "鱼饵",
-        "price": 4000,
-        "tip": "普通的钓鱼用饵料，可以吸引一般鱼类。",
-        "sellPosition": [
-          1
-        ],
-        "type": 8,
-        "info": {}
-      },
-      {
-        "name": "优质鱼饵",
-        "price": 10000,
-        "tip": "高级钓鱼饵料，更容易吸引稀有鱼类。",
-        "sellPosition": [
-          1
-        ],
-        "type": 8,
-        "info": {}
-      }
-    ],
-    "catches": [
-      {
-        "name": "鲯鳅王",
-        "price": 4000,
-        "tip": "鲯鳅中的王者，极其罕见，肉质鲜美无比。",
-        "type": 13,
-        "info": {},
-        "bait": "高级鱼饵",
-        "locations": [
-          [
-            "科潘",
-            "泉州"
-          ],
-          [
-            "拉古扎",
-            "莫桑比克"
-          ]
-        ],
-        "rarity": "epic"
-      },
-      {
-        "name": "小黄鱼",
-        "price": 500,
-        "tip": "一种常见的海鱼，肉质鲜美，适合清蒸或红烧。",
-        "type": 13,
-        "info": {},
-        "bait": "普通鱼饵",
-        "rarity": "common"
-      },
-      {
-        "name": "鲷鱼",
-        "price": 800,
-        "tip": "身体侧扁，色彩鲜艳的海鱼，肉质细嫩，营养丰富。",
-        "type": 13,
-        "info": {},
-        "bait": "普通鱼饵",
-        "rarity": "common"
-      },
-      {
-        "name": "石斑鱼",
-        "price": 1500,
-        "tip": "名贵的海鱼品种，肉质肥美，是宴席上的佳肴。",
-        "type": 13,
-        "info": {},
-        "bait": "优质鱼饵",
-        "rarity": "uncommon"
-      },
-      {
-        "name": "神秘铁箱",
-        "price": 500,
-        "tip": "神秘铁箱。",
-        "type": 13,
-        "info": {},
-        "bait": "鱼饵",
-        "locations": [
-          [
-            "拉古扎",
-            "雅典"
-          ]
-        ],
-        "rarity": "rare"
-      },
-      {
-        "name": "金枪鱼",
-        "price": 2500,
-        "tip": "游速极快的大型海鱼，肉质鲜美，常用于制作刺身。",
-        "type": 13,
-        "info": {},
-        "bait": "高级鱼饵",
-        "locations": [
-          [
-            "大阪",
-            "泉州"
-          ]
-        ],
-        "rarity": "rare"
-      },
-      {
-        "name": "带鱼",
-        "price": 600,
-        "tip": "体型细长如带的海鱼，银鳞闪闪，味道鲜美。",
-        "type": 13,
-        "info": {},
-        "bait": "普通鱼饵",
-        "rarity": "common"
-      },
-      {
-        "name": "鲳鱼",
-        "price": 700,
-        "tip": "身体侧扁呈卵圆形的海鱼，肉质细腻，适合煎炸。",
-        "type": 13,
-        "info": {},
-        "bait": "普通鱼饵",
-        "rarity": "common"
-      },
-      {
-        "name": "鲈鱼",
-        "price": 900,
-        "tip": "肉质洁白松软的海鱼，刺少肉多，是常见的食用鱼类。",
-        "type": 13,
-        "info": {},
-        "bait": "普通鱼饵",
-        "rarity": "common"
-      },
-      {
-        "name": "黄花鱼",
-        "price": 650,
-        "tip": "肉质鲜嫩的小型海鱼，味道清香，适合多种烹饪方式。",
-        "type": 13,
-        "info": {},
-        "bait": "普通鱼饵",
-        "rarity": "common"
-      },
-      {
-        "name": "鳗鱼",
-        "price": 1200,
-        "tip": "外形似蛇的海鱼，肉质鲜嫩，富含营养，可制作多种美食。",
-        "type": 13,
-        "info": {},
-        "bait": "优质鱼饵",
-        "rarity": "uncommon"
-      },
-      {
-        "name": "秋刀鱼",
-        "price": 550,
-        "tip": "体型细长的海鱼，脂肪含量高，适合盐烤食用。",
-        "type": 13,
-        "info": {},
-        "bait": "普通鱼饵",
-        "rarity": "common"
-      },
-      {
-        "name": "沙丁鱼",
-        "price": 400,
-        "tip": "小型海鱼，肉质鲜美，营养价值高，常被制成罐头。",
-        "type": 13,
-        "info": {},
-        "bait": "普通鱼饵",
-        "rarity": "common"
-      },
-      {
-        "name": "鲱鱼",
-        "price": 450,
-        "tip": "常见的海鱼品种，肉质鲜美，适合腌制或烟熏。",
-        "type": 13,
-        "info": {},
-        "bait": "普通鱼饵",
-        "rarity": "common"
-      },
-      {
-        "name": "鳕鱼",
-        "price": 1800,
-        "tip": "重要的经济鱼类，肉质白嫩，蛋白质含量高。",
-        "type": 13,
-        "info": {},
-        "bait": "优质鱼饵",
-        "rarity": "uncommon"
-      },
-      {
-        "name": "鲻鱼",
-        "price": 750,
-        "tip": "广盐性鱼类，适应能力强，肉质鲜美且富有营养。",
-        "type": 13,
-        "info": {},
-        "bait": "普通鱼饵",
-        "rarity": "common"
-      },
-      {
-        "name": "安康鱼",
-        "price": 2000,
-        "tip": "深海鱼类，头部巨大，肉质鲜美，营养丰富。",
-        "type": 13,
-        "info": {},
-        "bait": "优质鱼饵",
-        "rarity": "uncommon"
-      },
-      {
-        "name": "鲯鳅",
-        "price": 2200,
-        "tip": "色彩艳丽的热带海洋鱼类，肉质鲜美，极具观赏价值。",
-        "type": 13,
-        "info": {},
-        "bait": "优质鱼饵",
-        "rarity": "rare"
-      },
-      {
-        "name": "鲯鲨",
-        "price": 2800,
-        "tip": "珍贵的大型海洋鱼类，肉质鲜美，是难得的美味。",
-        "type": 13,
-        "info": {},
-        "bait": "高级鱼饵",
-        "rarity": "rare"
-      },
-      {
-        "name": "旗鱼",
-        "price": 3200,
-        "tip": "大型远洋鱼类，游泳速度快，是高级食材。",
-        "type": 13,
-        "info": {},
-        "bait": "高级鱼饵",
-        "rarity": "rare"
-      },
-      {
-        "name": "蓝鳍金枪鱼",
-        "price": 5000,
-        "tip": "金枪鱼中的极品，脂肪丰富，是制作顶级刺身的材料。",
-        "type": 13,
-        "info": {},
-        "bait": "高级鱼饵",
-        "locations": [
-          [
-            "大阪",
-            "泉州"
-          ]
-        ],
-        "rarity": "epic"
-      }
-    ],
-    "rarity_weights": {
-      "common": 50,
-      "uncommon": 30,
-      "rare": 15,
-      "epic": 5
-    },
-    "rarity_weight_adjustments": {
-      "below_one": {
-        "common": 20,
-        "uncommon": -10,
-        "rare": -5,
-        "epic": -2
-      },
-      "above_one": {
-        "common": -10,
-        "uncommon": 10,
-        "rare": 5,
-        "epic": 2
-      }
-    },
-    "wait_event_probability": {
-      "base": 0.1,
-      "increment_per_wait": 0.05,
-      "maximum": 0.5
-    },
-    "wait_event_candidates": [
-      "nothing",
-      "bite",
-      "line_snapped",
-      "bait_eaten"
-    ],
-    "wait_event_selection": "uniform_after_independent_trigger_roll",
-    "initial_catch_probability": 0.1
+  "shopItems": {
+   "repository": "zhsh",
+   "relative_path": "config/shopItems.json",
+   "sha256": "693c18162985221ad13c03d9e5303dc9d3bd9a19f739366d57b38143cebbcc22"
   },
-  "sailing": {
-    "special_event_trigger_probability": 0.05,
-    "special_events": [
-      {
-        "name": "美人鱼的歌声",
-        "probability": 0.02,
-        "luckFactor": 0,
-        "effect": {
-          "type": "morale",
-          "value": 10
-        },
-        "tip": "你听到了美人鱼的美妙歌声，心情变得愉悦，士气大增！"
-      },
-      {
-        "name": "风暴",
-        "probability": 0.03,
-        "luckFactor": -0.5,
-        "effect": {
-          "type": "marketLoss",
-          "minLoss": 0.5,
-          "maxLoss": 0.9
-        },
-        "tip": "糟糕！你遇到了强烈的风暴，船上的货物受到了损失！"
-      },
-      {
-        "name": "鼠灾",
-        "probability": 0.03,
-        "luckFactor": -0.5,
-        "effect": {
-          "type": "marketLoss",
-          "minLoss": 0.7,
-          "maxLoss": 0.95
-        },
-        "tip": "天哪！船上发生了鼠灾，大量的货物被老鼠啃食！"
-      },
-      {
-        "name": "海豚引航",
-        "probability": 0.02,
-        "luckFactor": 0.5,
-        "effect": {
-          "type": "speedBoost",
-          "value": 20
-        },
-        "tip": "一群海豚在船周围游弋，它们似乎在为你引航，航行速度提升了！"
-      },
-      {
-        "name": "神秘宝箱",
-        "probability": 0.01,
-        "luckFactor": 0.8,
-        "effect": {
-          "type": "treasure",
-          "items": [
-            {
-              "name": "铜贝",
-              "type": 10,
-              "min": 1000,
-              "max": 5000
-            }
-          ]
-        },
-        "tip": "你发现了一个神秘的宝箱，里面装着一些财宝！"
-      },
-      {
-        "name": "海盗袭击",
-        "probability": 0.02,
-        "luckFactor": -0.7,
-        "effect": {
-          "type": "pirateAttack",
-          "lossPercent": 0.01
-        },
-        "tip": "糟糕！你遭遇了海盗袭击，损失了一部分货物和金钱！"
-      },
-      {
-        "name": "幸运女神的祝福",
-        "probability": 0.015,
-        "luckFactor": 1,
-        "effect": {
-          "type": "luckBoost",
-          "value": 5
-        },
-        "tip": "幸运女神向你投来了祝福的目光，你的幸运值提升了！"
-      },
-      {
-        "name": "海妖的诱惑",
-        "probability": 0.02,
-        "luckFactor": -0.6,
-        "effect": {
-          "type": "moraleLoss",
-          "value": 15
-        },
-        "tip": "你听到了海妖的歌声，但那不是美妙的音乐，而是诱惑你走向毁灭的魔音，士气大减！"
-      },
-      {
-        "name": "顺风航行",
-        "probability": 0.025,
-        "luckFactor": 0.7,
-        "effect": {
-          "type": "distanceBoost",
-          "value": 0.2
-        },
-        "tip": "你遇到了顺风，航行速度大幅提升，一段航程被快速完成了！"
-      },
-      {
-        "name": "船体受损",
-        "probability": 0.02,
-        "luckFactor": -0.5,
-        "effect": {
-          "type": "shipDamage",
-          "repairCost": 500
-        },
-        "tip": "船体在航行中受到了损伤，需要支付修理费用来修复！"
-      },
-      {
-        "name": "发现新大陆",
-        "probability": 0.005,
-        "luckFactor": 0.9,
-        "effect": {
-          "type": "expGain",
-          "value": 100
-        },
-        "tip": "你发现了一片未知的大陆，这次伟大的发现让你获得了宝贵的经验！"
-      },
-      {
-        "name": "遭遇漩涡",
-        "probability": 0.015,
-        "luckFactor": -0.8,
-        "effect": {
-          "type": "timeLoss",
-          "value": 3
-        },
-        "tip": "你的船只被卷入了巨大的漩涡，费了很大劲才脱离，浪费了大量时间！"
-      },
-      {
-        "name": "货物被偷",
-        "probability": 0.025,
-        "luckFactor": -0.6,
-        "effect": {
-          "type": "marketLoss",
-          "minLoss": 0.3,
-          "maxLoss": 0.7
-        },
-        "tip": "糟糕！航行途中一些货物被海盗偷走了！"
-      },
-      {
-        "name": "遭遇海啸",
-        "probability": 0.02,
-        "luckFactor": -0.7,
-        "effect": {
-          "type": "marketLoss",
-          "minLoss": 0.6,
-          "maxLoss": 0.9
-        },
-        "tip": "不幸遇到了海啸，大量的货物被海水浸泡损坏了！"
-      },
-      {
-        "name": "仓库失火",
-        "probability": 0.015,
-        "luckFactor": -0.8,
-        "effect": {
-          "type": "marketLoss",
-          "minLoss": 0.7,
-          "maxLoss": 0.95
-        },
-        "tip": "船上的仓库突然起火，大量货物被烧毁了！"
-      },
-      {
-        "name": "遭遇礁石",
-        "probability": 0.02,
-        "luckFactor": -0.6,
-        "effect": {
-          "type": "marketLoss",
-          "minLoss": 0.4,
-          "maxLoss": 0.8
-        },
-        "tip": "船只撞上了暗礁，船舱破损导致部分货物丢失！"
-      },
-      {
-        "name": "武士的馈赠",
-        "probability": 0.01,
-        "luckFactor": 0.8,
-        "effect": {
-          "type": "equipmentReward",
-          "equipmentList": [
-            "+武士之刀",
-            "+武士之帽",
-            "+武士战甲",
-            "+武士腰带",
-            "+武士布鞋"
-          ]
-        },
-        "tip": "你遇到了一位武士的幻影，他赞赏你的勇气并赠予你一件装备！"
-      },
-      {
-        "name": "哥伦布的遗产",
-        "probability": 0.008,
-        "luckFactor": 0.85,
-        "effect": {
-          "type": "equipmentReward",
-          "equipmentList": [
-            "+哥伦布之锤",
-            "+哥伦布胸甲",
-            "+哥伦布之帽"
-          ]
-        },
-        "tip": "你发现了航海家哥伦布的遗物，从中获得了一件珍贵的装备！"
-      },
-      {
-        "name": "麦哲伦的宝藏",
-        "probability": 0.008,
-        "luckFactor": 0.85,
-        "effect": {
-          "type": "equipmentReward",
-          "equipmentList": [
-            "+麦哲伦之匕",
-            "麦哲伦之戒",
-            "麦哲伦之腰带"
-          ]
-        },
-        "tip": "你找到了麦哲伦航海时遗失的宝箱，里面有一件精美的装备！"
-      },
-      {
-        "name": "霸者之证",
-        "probability": 0.007,
-        "luckFactor": 0.85,
-        "effect": {
-          "type": "equipmentReward",
-          "equipmentList": [
-            "+霸者之刃",
-            "+霸者之盔",
-            "+霸者之靴"
-          ]
-        },
-        "tip": "你获得了霸者的认可，被赐予了一件霸者装备！"
-      },
-      {
-        "name": "奔月之礼",
-        "probability": 0.005,
-        "luckFactor": 0.9,
-        "effect": {
-          "type": "equipmentReward",
-          "equipmentList": [
-            "+月华相思剑",
-            "+奔月の玄冰",
-            "+奔月の玉鳞",
-            "+奔月の逐风",
-            "+奔月の承影"
-          ]
-        },
-        "tip": "中秋月圆之夜，你获得了奔月套装中的一件神兵！"
-      },
-      {
-        "name": "地魔之魂",
-        "probability": 0.004,
-        "luckFactor": 0.9,
-        "effect": {
-          "type": "equipmentReward",
-          "equipmentList": [
-            "+地魔龙角羽冠",
-            "+地魔龙脊护肩",
-            "+地魔龙鳞绑腿",
-            "+地魔龙爪之靴"
-          ]
-        },
-        "tip": "你感受到了地魔的气息，获得了地魔套装中的一件强力装备！"
-      },
-      {
-        "name": "天魔之赐",
-        "probability": 0.003,
-        "luckFactor": 0.95,
-        "effect": {
-          "type": "equipmentReward",
-          "equipmentList": [
-            "+天魔荆棘皇冠",
-            "+天魔玄夜战铠",
-            "+天魔碧玉束腰",
-            "+天魔风沙之靴"
-          ]
-        },
-        "tip": "天魔认可了你的实力，将套装中的一件神装赐予了你！"
-      }
-    ],
-    "ship_dungeon_encounter_probability": 0.05,
-    "source_ship_dungeon_order": [
-      "走私船",
-      "求救船",
-      "日本船",
-      "愚人船",
-      "血帆号",
-      "归墟方舟",
-      "寡妇制造者",
-      "潮汐窃贼",
-      "深渊低语",
-      "永暮之帆",
-      "海怪之怒",
-      "翡翠囚徒",
-      "迷途女王",
-      "鸦巢号",
-      "锈蚀狂想",
-      "风暴先驱",
-      "戴蒙之影",
-      "潮歌者",
-      "放逐者黎明",
-      "七海诅咒",
-      "不朽虚荣",
-      "盐渍遗嘱",
-      "终末欢愉"
-    ],
-    "route_encounters": [
-      {
-        "route": [
-          "泉州",
-          "大阪"
-        ],
-        "probability": 0.03,
-        "location": "蓬莱仙岛",
-        "position": "码头"
-      },
-      {
-        "route": [
-          "大阪",
-          "泉州"
-        ],
-        "probability": 0.03,
-        "location": "蓬莱仙岛",
-        "position": "码头"
-      }
-    ],
-    "implementation_conflict": "zhsh uses step-based voyage events; astrbot uses real-time voyage and pirate encounters. This stage retains the already accepted formal step-based runtime and adds zhsh event data without claiming multi-source agreement."
+  "shipFb": {
+   "repository": "zhsh",
+   "relative_path": "config/shipFb.json",
+   "sha256": "911a56c9999ba16e37913579739efe5ba0c6ab38ba087b9c3d34a022f5ea39bf"
   },
-  "diving": {
-    "encounter_probability": 0.05,
-    "availability": [
-      {
-        "minimum_level": 160,
-        "count": null
-      },
-      {
-        "minimum_level": 140,
-        "count": 16
-      },
-      {
-        "minimum_level": 120,
-        "count": 14
-      },
-      {
-        "minimum_level": 100,
-        "count": 12
-      },
-      {
-        "minimum_level": 80,
-        "count": 10
-      },
-      {
-        "minimum_level": 60,
-        "count": 8
-      },
-      {
-        "minimum_level": 40,
-        "count": 6
-      },
-      {
-        "minimum_level": 20,
-        "count": 4
-      },
-      {
-        "minimum_level": 1,
-        "count": 2
-      }
-    ],
-    "source_dungeon_order": [
-      "海皇宫殿",
-      "幽灵船",
-      "亚特兰王座",
-      "深渊回响圣殿",
-      "珊瑚王庭",
-      "潮汐摇篮",
-      "珍珠泪宫",
-      "深渊之眼",
-      "海龙巢宫",
-      "寂静裂口祭坛",
-      "沉睡海神大殿",
-      "月照沉眠地",
-      "遗忘回廊",
-      "深渊权杖大厅",
-      "潮铸熔炉",
-      "流光珊瑚林",
-      "波塞冬之冠",
-      "巨兽沉眠所",
-      "深渊珍珠宫",
-      "螺旋尖塔",
-      "海渊归宿",
-      "静谧深渊之心"
-    ],
-    "formal_dungeons": [
-      {
-        "display_name": "海皇宫殿",
-        "tip": "深海中出现了一座华丽的宫殿，宫殿周围环绕着各种海洋生物，宛如龙宫一般。",
-        "stages": [
-          {
-            "sequence": 1,
-            "display_name": "珊瑚前殿",
-            "monster": {
-              "display_name": "海皇守卫",
-              "level": 40,
-              "monster_type": 40,
-              "item_drops": [
-                "海皇之盾"
-              ],
-              "equipment_drops": [
-                "冰冷之戒",
-                "迅箭头盔",
-                "领主战靴"
-              ]
-            }
-          },
-          {
-            "sequence": 2,
-            "display_name": "波塞冬神座",
-            "monster": {
-              "display_name": "神殿守卫",
-              "level": 40,
-              "monster_type": 40,
-              "item_drops": [
-                "神殿之钥"
-              ],
-              "equipment_drops": [
-                "剔骨者面甲",
-                "三宝腰带",
-                "+哥伦布胸甲"
-              ]
-            }
-          },
-          {
-            "sequence": 3,
-            "display_name": "珍珠偏殿",
-            "monster": {
-              "display_name": "珊瑚卫士",
-              "level": 40,
-              "monster_type": 40,
-              "item_drops": [
-                "珊瑚之枝"
-              ],
-              "equipment_drops": [
-                "说服之靴",
-                "火热串珠",
-                "短路之靴"
-              ]
-            }
-          },
-          {
-            "sequence": 4,
-            "display_name": "熔岩核心",
-            "monster": {
-              "display_name": "熔岩守卫",
-              "level": 40,
-              "monster_type": 40,
-              "item_drops": [
-                "熔岩之核"
-              ],
-              "equipment_drops": [
-                "和谐外衣",
-                "元素腰带",
-                "丛林行者兜帽"
-              ]
-            }
-          },
-          {
-            "sequence": 5,
-            "display_name": "海皇密室",
-            "monster": {
-              "display_name": "宝箱守护者",
-              "level": 40,
-              "monster_type": 45,
-              "item_drops": [
-                "海皇的宝箱"
-              ],
-              "equipment_drops": [
-                "+霸者之靴",
-                "磨石裹足",
-                "丹尼芬雷外衣",
-                "北伐军护符",
-                "鳞片冰靴",
-                "+地魔龙角羽冠",
-                "+地魔龙脊护肩",
-                "+地魔龙鳞绑腿",
-                "+地魔龙爪之靴"
-              ]
-            }
-          }
-        ]
-      }
-    ],
-    "equipment_requirement": null,
-    "route_requirement": null,
-    "coastal_item_sources": [
-      {
-        "city": "威尼斯",
-        "location": "浅海",
-        "monster_name": "走私者",
-        "monster_level": 7,
-        "monster_type": 5,
-        "item_name": "走私酒"
-      },
-      {
-        "city": "威尼斯",
-        "location": "浅海",
-        "monster_name": "大王乌贼",
-        "monster_level": 95,
-        "monster_type": 5,
-        "item_name": "乌贼墨汁"
-      },
-      {
-        "city": "威尼斯",
-        "location": "深海",
-        "monster_name": "锯齿鲨鱼",
-        "monster_level": 71,
-        "monster_type": 5,
-        "item_name": "锯齿鲨牙"
-      },
-      {
-        "city": "伊斯坦堡",
-        "location": "浅海",
-        "monster_name": "鲨鱼",
-        "monster_level": 14,
-        "monster_type": 5,
-        "item_name": "鲨鱼皮"
-      },
-      {
-        "city": "汉堡",
-        "location": "浅海",
-        "monster_name": "灵敏小猫",
-        "monster_level": 50,
-        "monster_type": 5,
-        "item_name": "猫眼石"
-      },
-      {
-        "city": "泉州",
-        "location": "浅海",
-        "monster_name": "鲨妖",
-        "monster_level": 76,
-        "monster_type": 5,
-        "item_name": "鲨鱼鳍"
-      },
-      {
-        "city": "长安",
-        "location": "深海",
-        "monster_name": "海魔",
-        "monster_level": 94,
-        "monster_type": 5,
-        "item_name": "海魔之心"
-      },
-      {
-        "city": "锡兰",
-        "location": "浅海",
-        "monster_name": "扎布拉",
-        "monster_level": 70,
-        "monster_type": 5,
-        "item_name": "扎布拉的弯刀"
-      },
-      {
-        "city": "锡兰",
-        "location": "浅海",
-        "monster_name": "海盗头子扎布拉",
-        "monster_level": 45,
-        "monster_type": 5,
-        "item_name": "海盗船长帽"
-      },
-      {
-        "city": "孟买",
-        "location": "浅海",
-        "monster_name": "鲨鱼",
-        "monster_level": 73,
-        "monster_type": 5,
-        "item_name": "鲨鱼皮"
-      },
-      {
-        "city": "亚特兰蒂斯",
-        "location": "浅海",
-        "monster_name": "大白鲨",
-        "monster_level": 52,
-        "monster_type": 5,
-        "item_name": "鲨鱼牙齿"
-      },
-      {
-        "city": "突尼斯",
-        "location": "浅海",
-        "monster_name": "迈克探长",
-        "monster_level": 121,
-        "monster_type": 5,
-        "item_name": "探长徽章"
-      },
-      {
-        "city": "突尼斯",
-        "location": "浅海",
-        "monster_name": "乌兹马赫",
-        "monster_level": 111,
-        "monster_type": 6,
-        "item_name": "马赫的靴子"
-      },
-      {
-        "city": "大阪",
-        "location": "浅海",
-        "monster_name": "鲨妖",
-        "monster_level": 109,
-        "monster_type": 5,
-        "item_name": "鲨鱼鳍"
-      },
-      {
-        "city": "大阪",
-        "location": "深海",
-        "monster_name": "海蛇精",
-        "monster_level": 109,
-        "monster_type": 5,
-        "item_name": "海蛇胆"
-      },
-      {
-        "city": "阿尔及尔",
-        "location": "深海",
-        "monster_name": "海怪",
-        "monster_level": 123,
-        "monster_type": 5,
-        "item_name": "海怪触须"
-      },
-      {
-        "city": "莫桑比克",
-        "location": "浅海",
-        "monster_name": "大王乌贼",
-        "monster_level": 125,
-        "monster_type": 5,
-        "item_name": "乌贼墨汁"
-      },
-      {
-        "city": "开普敦",
-        "location": "深海",
-        "monster_name": "魔鬼鱼",
-        "monster_level": 117,
-        "monster_type": 5,
-        "item_name": "魔鬼鱼鳍"
-      },
-      {
-        "city": "里斯本",
-        "location": "深海",
-        "monster_name": "巨钳海蟹",
-        "monster_level": 47,
-        "monster_type": 5,
-        "item_name": "海蟹巨钳"
-      }
-    ]
+  "shipNpc": {
+   "repository": "zhsh",
+   "relative_path": "config/shipNpc.json",
+   "sha256": "0573f79d15490a9a69cf29329122187d301a9a89f9adb70ed5ee511f1efba4b5"
+  },
+  "shipFbTips": {
+   "repository": "zhsh",
+   "relative_path": "config/shipFbTips.json",
+   "sha256": "ee6d71ddf415552f4faf1ed5ddb1f585377b88333567fd7124e77f1f4832de95"
+  },
+  "monsterItems": {
+   "repository": "zhsh",
+   "relative_path": "config/monsterItems.json",
+   "sha256": "ce7fd97db8b960506468129b43127672112076729f41f7480e8a013615b3bc5e"
+  },
+  "monsterDrops": {
+   "repository": "zhsh",
+   "relative_path": "config/monsterDrops.json",
+   "sha256": "b7682e730c4e12348999761bc3ccb5285962a6e9535c82bf6e5355f02ba962d0"
+  },
+  "monsters": {
+   "repository": "zhsh",
+   "relative_path": "config/monsters.json",
+   "sha256": "157ecd8a3d0d4000adc5beec0f9a8bd461b769b80b8052ef6b20056de83e11c9"
+  },
+  "sailingEncounters": {
+   "repository": "zhsh",
+   "relative_path": "config/sailingEncounters.json",
+   "sha256": "f982bd10a0a78c8583dd151505cbef56fc387dac948daa11396ba3961b9caf90"
+  },
+  "sailingSpecialEvents": {
+   "repository": "zhsh",
+   "relative_path": "config/sailingSpecialEvents.json",
+   "sha256": "816330e54698730fe6237cb4fb7ff53f2fd05198e921e31dd791c1598554e72f"
   }
+ },
+ "fishing": {
+  "gear": [
+   {
+    "name": "鱼竿",
+    "price": 4000,
+    "tip": "普通的鱼竿",
+    "type": 14,
+    "sellPosition": [
+     1
+    ],
+    "info": {}
+   },
+   {
+    "name": "鱼饵",
+    "price": 4000,
+    "tip": "普通的钓鱼用饵料，可以吸引一般鱼类。",
+    "sellPosition": [
+     1
+    ],
+    "type": 8,
+    "info": {}
+   },
+   {
+    "name": "优质鱼饵",
+    "price": 10000,
+    "tip": "高级钓鱼饵料，更容易吸引稀有鱼类。",
+    "sellPosition": [
+     1
+    ],
+    "type": 8,
+    "info": {}
+   }
+  ],
+  "catches": [
+   {
+    "name": "鲯鳅王",
+    "price": 4000,
+    "tip": "鲯鳅中的王者，极其罕见，肉质鲜美无比。",
+    "type": 13,
+    "info": {},
+    "bait": "高级鱼饵",
+    "locations": [
+     [
+      "科潘",
+      "泉州"
+     ],
+     [
+      "拉古扎",
+      "莫桑比克"
+     ]
+    ],
+    "rarity": "epic"
+   },
+   {
+    "name": "小黄鱼",
+    "price": 500,
+    "tip": "一种常见的海鱼，肉质鲜美，适合清蒸或红烧。",
+    "type": 13,
+    "info": {},
+    "bait": "普通鱼饵",
+    "rarity": "common"
+   },
+   {
+    "name": "鲷鱼",
+    "price": 800,
+    "tip": "身体侧扁，色彩鲜艳的海鱼，肉质细嫩，营养丰富。",
+    "type": 13,
+    "info": {},
+    "bait": "普通鱼饵",
+    "rarity": "common"
+   },
+   {
+    "name": "石斑鱼",
+    "price": 1500,
+    "tip": "名贵的海鱼品种，肉质肥美，是宴席上的佳肴。",
+    "type": 13,
+    "info": {},
+    "bait": "优质鱼饵",
+    "rarity": "uncommon"
+   },
+   {
+    "name": "神秘铁箱",
+    "price": 500,
+    "tip": "神秘铁箱。",
+    "type": 13,
+    "info": {},
+    "bait": "鱼饵",
+    "locations": [
+     [
+      "拉古扎",
+      "雅典"
+     ]
+    ],
+    "rarity": "rare"
+   },
+   {
+    "name": "金枪鱼",
+    "price": 2500,
+    "tip": "游速极快的大型海鱼，肉质鲜美，常用于制作刺身。",
+    "type": 13,
+    "info": {},
+    "bait": "高级鱼饵",
+    "locations": [
+     [
+      "大阪",
+      "泉州"
+     ]
+    ],
+    "rarity": "rare"
+   },
+   {
+    "name": "带鱼",
+    "price": 600,
+    "tip": "体型细长如带的海鱼，银鳞闪闪，味道鲜美。",
+    "type": 13,
+    "info": {},
+    "bait": "普通鱼饵",
+    "rarity": "common"
+   },
+   {
+    "name": "鲳鱼",
+    "price": 700,
+    "tip": "身体侧扁呈卵圆形的海鱼，肉质细腻，适合煎炸。",
+    "type": 13,
+    "info": {},
+    "bait": "普通鱼饵",
+    "rarity": "common"
+   },
+   {
+    "name": "鲈鱼",
+    "price": 900,
+    "tip": "肉质洁白松软的海鱼，刺少肉多，是常见的食用鱼类。",
+    "type": 13,
+    "info": {},
+    "bait": "普通鱼饵",
+    "rarity": "common"
+   },
+   {
+    "name": "黄花鱼",
+    "price": 650,
+    "tip": "肉质鲜嫩的小型海鱼，味道清香，适合多种烹饪方式。",
+    "type": 13,
+    "info": {},
+    "bait": "普通鱼饵",
+    "rarity": "common"
+   },
+   {
+    "name": "鳗鱼",
+    "price": 1200,
+    "tip": "外形似蛇的海鱼，肉质鲜嫩，富含营养，可制作多种美食。",
+    "type": 13,
+    "info": {},
+    "bait": "优质鱼饵",
+    "rarity": "uncommon"
+   },
+   {
+    "name": "秋刀鱼",
+    "price": 550,
+    "tip": "体型细长的海鱼，脂肪含量高，适合盐烤食用。",
+    "type": 13,
+    "info": {},
+    "bait": "普通鱼饵",
+    "rarity": "common"
+   },
+   {
+    "name": "沙丁鱼",
+    "price": 400,
+    "tip": "小型海鱼，肉质鲜美，营养价值高，常被制成罐头。",
+    "type": 13,
+    "info": {},
+    "bait": "普通鱼饵",
+    "rarity": "common"
+   },
+   {
+    "name": "鲱鱼",
+    "price": 450,
+    "tip": "常见的海鱼品种，肉质鲜美，适合腌制或烟熏。",
+    "type": 13,
+    "info": {},
+    "bait": "普通鱼饵",
+    "rarity": "common"
+   },
+   {
+    "name": "鳕鱼",
+    "price": 1800,
+    "tip": "重要的经济鱼类，肉质白嫩，蛋白质含量高。",
+    "type": 13,
+    "info": {},
+    "bait": "优质鱼饵",
+    "rarity": "uncommon"
+   },
+   {
+    "name": "鲻鱼",
+    "price": 750,
+    "tip": "广盐性鱼类，适应能力强，肉质鲜美且富有营养。",
+    "type": 13,
+    "info": {},
+    "bait": "普通鱼饵",
+    "rarity": "common"
+   },
+   {
+    "name": "安康鱼",
+    "price": 2000,
+    "tip": "深海鱼类，头部巨大，肉质鲜美，营养丰富。",
+    "type": 13,
+    "info": {},
+    "bait": "优质鱼饵",
+    "rarity": "uncommon"
+   },
+   {
+    "name": "鲯鳅",
+    "price": 2200,
+    "tip": "色彩艳丽的热带海洋鱼类，肉质鲜美，极具观赏价值。",
+    "type": 13,
+    "info": {},
+    "bait": "优质鱼饵",
+    "rarity": "rare"
+   },
+   {
+    "name": "鲯鲨",
+    "price": 2800,
+    "tip": "珍贵的大型海洋鱼类，肉质鲜美，是难得的美味。",
+    "type": 13,
+    "info": {},
+    "bait": "高级鱼饵",
+    "rarity": "rare"
+   },
+   {
+    "name": "旗鱼",
+    "price": 3200,
+    "tip": "大型远洋鱼类，游泳速度快，是高级食材。",
+    "type": 13,
+    "info": {},
+    "bait": "高级鱼饵",
+    "rarity": "rare"
+   },
+   {
+    "name": "蓝鳍金枪鱼",
+    "price": 5000,
+    "tip": "金枪鱼中的极品，脂肪丰富，是制作顶级刺身的材料。",
+    "type": 13,
+    "info": {},
+    "bait": "高级鱼饵",
+    "locations": [
+     [
+      "大阪",
+      "泉州"
+     ]
+    ],
+    "rarity": "epic"
+   },
+   {
+    "name": "鲑鱼",
+    "price": 600,
+    "tip": "洄游上溯的冷水鱼，肉质肥厚，煮熟后泛着淡粉。",
+    "type": 13,
+    "info": {},
+    "bait": "普通鱼饵",
+    "locations": [
+     [
+      "伦敦",
+      "开普敦"
+     ]
+    ],
+    "rarity": "common"
+   },
+   {
+    "name": "螃蟹",
+    "price": 300,
+    "tip": "横着走路的海蟹，钓上来时钳子还在咔咔作响。",
+    "type": 13,
+    "info": {},
+    "bait": "普通鱼饵",
+    "locations": [
+     [
+      "威尼斯",
+      "大阪"
+     ]
+    ],
+    "rarity": "common"
+   },
+   {
+    "name": "章鱼",
+    "price": 800,
+    "tip": "八条腕的深海章鱼，是海怪们的远房亲戚。",
+    "type": 13,
+    "info": {},
+    "bait": "高级鱼饵",
+    "locations": [
+     [
+      "大阪",
+      "亚丁"
+     ]
+    ],
+    "rarity": "uncommon"
+   },
+   {
+    "name": "剑鱼",
+    "price": 1500,
+    "tip": "顶着铠甲状长喙的大鱼，冲浪时像一支离弦的箭。",
+    "type": 13,
+    "info": {},
+    "bait": "高级鱼饵",
+    "locations": [
+     [
+      "开普敦",
+      "泉州"
+     ]
+    ],
+    "rarity": "rare"
+   }
+  ],
+  "rarity_weights": {
+   "common": 50,
+   "uncommon": 30,
+   "rare": 15,
+   "epic": 5
+  },
+  "rarity_weight_adjustments": {
+   "below_one": {
+    "common": 20,
+    "uncommon": -10,
+    "rare": -5,
+    "epic": -2
+   },
+   "above_one": {
+    "common": -10,
+    "uncommon": 10,
+    "rare": 5,
+    "epic": 2
+   }
+  },
+  "wait_event_probability": {
+   "base": 0.1,
+   "increment_per_wait": 0.05,
+   "maximum": 0.5
+  },
+  "wait_event_candidates": [
+   "nothing",
+   "bite",
+   "line_snapped",
+   "bait_eaten"
+  ],
+  "wait_event_selection": "uniform_after_independent_trigger_roll",
+  "initial_catch_probability": 0.1
+ },
+ "sailing": {
+  "special_event_trigger_probability": 0.05,
+  "special_events": [
+   {
+    "name": "美人鱼的歌声",
+    "probability": 0.02,
+    "luckFactor": 0,
+    "effect": {
+     "type": "morale",
+     "value": 10
+    },
+    "tip": "你听到了美人鱼的美妙歌声，心情变得愉悦，士气大增！"
+   },
+   {
+    "name": "风暴",
+    "probability": 0.03,
+    "luckFactor": -0.5,
+    "effect": {
+     "type": "marketLoss",
+     "minLoss": 0.5,
+     "maxLoss": 0.9
+    },
+    "tip": "糟糕！你遇到了强烈的风暴，船上的货物受到了损失！"
+   },
+   {
+    "name": "鼠灾",
+    "probability": 0.03,
+    "luckFactor": -0.5,
+    "effect": {
+     "type": "marketLoss",
+     "minLoss": 0.7,
+     "maxLoss": 0.95
+    },
+    "tip": "天哪！船上发生了鼠灾，大量的货物被老鼠啃食！"
+   },
+   {
+    "name": "海豚引航",
+    "probability": 0.02,
+    "luckFactor": 0.5,
+    "effect": {
+     "type": "speedBoost",
+     "value": 20
+    },
+    "tip": "一群海豚在船周围游弋，它们似乎在为你引航，航行速度提升了！"
+   },
+   {
+    "name": "神秘宝箱",
+    "probability": 0.01,
+    "luckFactor": 0.8,
+    "effect": {
+     "type": "treasure",
+     "items": [
+      {
+       "name": "铜贝",
+       "type": 10,
+       "min": 1000,
+       "max": 5000
+      }
+     ]
+    },
+    "tip": "你发现了一个神秘的宝箱，里面装着一些财宝！"
+   },
+   {
+    "name": "海盗袭击",
+    "probability": 0.02,
+    "luckFactor": -0.7,
+    "effect": {
+     "type": "pirateAttack",
+     "lossPercent": 0.01
+    },
+    "tip": "糟糕！你遭遇了海盗袭击，损失了一部分货物和金钱！"
+   },
+   {
+    "name": "幸运女神的祝福",
+    "probability": 0.015,
+    "luckFactor": 1,
+    "effect": {
+     "type": "luckBoost",
+     "value": 5
+    },
+    "tip": "幸运女神向你投来了祝福的目光，你的幸运值提升了！"
+   },
+   {
+    "name": "海妖的诱惑",
+    "probability": 0.02,
+    "luckFactor": -0.6,
+    "effect": {
+     "type": "moraleLoss",
+     "value": 15
+    },
+    "tip": "你听到了海妖的歌声，但那不是美妙的音乐，而是诱惑你走向毁灭的魔音，士气大减！"
+   },
+   {
+    "name": "顺风航行",
+    "probability": 0.025,
+    "luckFactor": 0.7,
+    "effect": {
+     "type": "distanceBoost",
+     "value": 0.2
+    },
+    "tip": "你遇到了顺风，航行速度大幅提升，一段航程被快速完成了！"
+   },
+   {
+    "name": "船体受损",
+    "probability": 0.02,
+    "luckFactor": -0.5,
+    "effect": {
+     "type": "shipDamage",
+     "repairCost": 500
+    },
+    "tip": "船体在航行中受到了损伤，需要支付修理费用来修复！"
+   },
+   {
+    "name": "发现新大陆",
+    "probability": 0.005,
+    "luckFactor": 0.9,
+    "effect": {
+     "type": "expGain",
+     "value": 100
+    },
+    "tip": "你发现了一片未知的大陆，这次伟大的发现让你获得了宝贵的经验！"
+   },
+   {
+    "name": "遭遇漩涡",
+    "probability": 0.015,
+    "luckFactor": -0.8,
+    "effect": {
+     "type": "timeLoss",
+     "value": 3
+    },
+    "tip": "你的船只被卷入了巨大的漩涡，费了很大劲才脱离，浪费了大量时间！"
+   },
+   {
+    "name": "货物被偷",
+    "probability": 0.025,
+    "luckFactor": -0.6,
+    "effect": {
+     "type": "marketLoss",
+     "minLoss": 0.3,
+     "maxLoss": 0.7
+    },
+    "tip": "糟糕！航行途中一些货物被海盗偷走了！"
+   },
+   {
+    "name": "遭遇海啸",
+    "probability": 0.02,
+    "luckFactor": -0.7,
+    "effect": {
+     "type": "marketLoss",
+     "minLoss": 0.6,
+     "maxLoss": 0.9
+    },
+    "tip": "不幸遇到了海啸，大量的货物被海水浸泡损坏了！"
+   },
+   {
+    "name": "仓库失火",
+    "probability": 0.015,
+    "luckFactor": -0.8,
+    "effect": {
+     "type": "marketLoss",
+     "minLoss": 0.7,
+     "maxLoss": 0.95
+    },
+    "tip": "船上的仓库突然起火，大量货物被烧毁了！"
+   },
+   {
+    "name": "遭遇礁石",
+    "probability": 0.02,
+    "luckFactor": -0.6,
+    "effect": {
+     "type": "marketLoss",
+     "minLoss": 0.4,
+     "maxLoss": 0.8
+    },
+    "tip": "船只撞上了暗礁，船舱破损导致部分货物丢失！"
+   },
+   {
+    "name": "武士的馈赠",
+    "probability": 0.01,
+    "luckFactor": 0.8,
+    "effect": {
+     "type": "equipmentReward",
+     "equipmentList": [
+      "+武士之刀",
+      "+武士之帽",
+      "+武士战甲",
+      "+武士腰带",
+      "+武士布鞋"
+     ]
+    },
+    "tip": "你遇到了一位武士的幻影，他赞赏你的勇气并赠予你一件装备！"
+   },
+   {
+    "name": "哥伦布的遗产",
+    "probability": 0.008,
+    "luckFactor": 0.85,
+    "effect": {
+     "type": "equipmentReward",
+     "equipmentList": [
+      "+哥伦布之锤",
+      "+哥伦布胸甲",
+      "+哥伦布之帽"
+     ]
+    },
+    "tip": "你发现了航海家哥伦布的遗物，从中获得了一件珍贵的装备！"
+   },
+   {
+    "name": "麦哲伦的宝藏",
+    "probability": 0.008,
+    "luckFactor": 0.85,
+    "effect": {
+     "type": "equipmentReward",
+     "equipmentList": [
+      "+麦哲伦之匕",
+      "麦哲伦之戒",
+      "麦哲伦之腰带"
+     ]
+    },
+    "tip": "你找到了麦哲伦航海时遗失的宝箱，里面有一件精美的装备！"
+   },
+   {
+    "name": "霸者之证",
+    "probability": 0.007,
+    "luckFactor": 0.85,
+    "effect": {
+     "type": "equipmentReward",
+     "equipmentList": [
+      "+霸者之刃",
+      "+霸者之盔",
+      "+霸者之靴"
+     ]
+    },
+    "tip": "你获得了霸者的认可，被赐予了一件霸者装备！"
+   },
+   {
+    "name": "奔月之礼",
+    "probability": 0.005,
+    "luckFactor": 0.9,
+    "effect": {
+     "type": "equipmentReward",
+     "equipmentList": [
+      "+月华相思剑",
+      "+奔月の玄冰",
+      "+奔月の玉鳞",
+      "+奔月の逐风",
+      "+奔月の承影"
+     ]
+    },
+    "tip": "中秋月圆之夜，你获得了奔月套装中的一件神兵！"
+   },
+   {
+    "name": "地魔之魂",
+    "probability": 0.004,
+    "luckFactor": 0.9,
+    "effect": {
+     "type": "equipmentReward",
+     "equipmentList": [
+      "+地魔龙角羽冠",
+      "+地魔龙脊护肩",
+      "+地魔龙鳞绑腿",
+      "+地魔龙爪之靴"
+     ]
+    },
+    "tip": "你感受到了地魔的气息，获得了地魔套装中的一件强力装备！"
+   },
+   {
+    "name": "天魔之赐",
+    "probability": 0.003,
+    "luckFactor": 0.95,
+    "effect": {
+     "type": "equipmentReward",
+     "equipmentList": [
+      "+天魔荆棘皇冠",
+      "+天魔玄夜战铠",
+      "+天魔碧玉束腰",
+      "+天魔风沙之靴"
+     ]
+    },
+    "tip": "天魔认可了你的实力，将套装中的一件神装赐予了你！"
+   }
+  ],
+  "ship_dungeon_encounter_probability": 0.05,
+  "source_ship_dungeon_order": [
+   "走私船",
+   "求救船",
+   "日本船",
+   "愚人船",
+   "血帆号",
+   "归墟方舟",
+   "寡妇制造者",
+   "潮汐窃贼",
+   "深渊低语",
+   "永暮之帆",
+   "海怪之怒",
+   "翡翠囚徒",
+   "迷途女王",
+   "鸦巢号",
+   "锈蚀狂想",
+   "风暴先驱",
+   "戴蒙之影",
+   "潮歌者",
+   "放逐者黎明",
+   "七海诅咒",
+   "不朽虚荣",
+   "盐渍遗嘱",
+   "终末欢愉"
+  ],
+  "route_encounters": [
+   {
+    "route": [
+     "泉州",
+     "大阪"
+    ],
+    "probability": 0.03,
+    "location": "蓬莱仙岛",
+    "position": "码头"
+   },
+   {
+    "route": [
+     "大阪",
+     "泉州"
+    ],
+    "probability": 0.03,
+    "location": "蓬莱仙岛",
+    "position": "码头"
+   }
+  ],
+  "implementation_conflict": "zhsh uses step-based voyage events; astrbot uses real-time voyage and pirate encounters. This stage retains the already accepted formal step-based runtime and adds zhsh event data without claiming multi-source agreement."
+ },
+ "diving": {
+  "encounter_probability": 0.05,
+  "availability": [
+   {
+    "minimum_level": 160,
+    "count": null
+   },
+   {
+    "minimum_level": 140,
+    "count": 16
+   },
+   {
+    "minimum_level": 120,
+    "count": 14
+   },
+   {
+    "minimum_level": 100,
+    "count": 12
+   },
+   {
+    "minimum_level": 80,
+    "count": 10
+   },
+   {
+    "minimum_level": 60,
+    "count": 8
+   },
+   {
+    "minimum_level": 40,
+    "count": 6
+   },
+   {
+    "minimum_level": 20,
+    "count": 4
+   },
+   {
+    "minimum_level": 1,
+    "count": 2
+   }
+  ],
+  "source_dungeon_order": [
+   "海皇宫殿",
+   "幽灵船",
+   "亚特兰王座",
+   "深渊回响圣殿",
+   "珊瑚王庭",
+   "潮汐摇篮",
+   "珍珠泪宫",
+   "深渊之眼",
+   "海龙巢宫",
+   "寂静裂口祭坛",
+   "沉睡海神大殿",
+   "月照沉眠地",
+   "遗忘回廊",
+   "深渊权杖大厅",
+   "潮铸熔炉",
+   "流光珊瑚林",
+   "波塞冬之冠",
+   "巨兽沉眠所",
+   "深渊珍珠宫",
+   "螺旋尖塔",
+   "海渊归宿",
+   "静谧深渊之心"
+  ],
+  "formal_dungeons": [
+   {
+    "display_name": "海皇宫殿",
+    "tip": "深海中出现了一座华丽的宫殿，宫殿周围环绕着各种海洋生物，宛如龙宫一般。",
+    "stages": [
+     {
+      "sequence": 1,
+      "display_name": "珊瑚前殿",
+      "monster": {
+       "display_name": "海皇守卫",
+       "level": 40,
+       "monster_type": 40,
+       "item_drops": [
+        "海皇之盾"
+       ],
+       "equipment_drops": [
+        "冰冷之戒",
+        "迅箭头盔",
+        "领主战靴"
+       ]
+      }
+     },
+     {
+      "sequence": 2,
+      "display_name": "波塞冬神座",
+      "monster": {
+       "display_name": "神殿守卫",
+       "level": 40,
+       "monster_type": 40,
+       "item_drops": [
+        "神殿之钥"
+       ],
+       "equipment_drops": [
+        "剔骨者面甲",
+        "三宝腰带",
+        "+哥伦布胸甲"
+       ]
+      }
+     },
+     {
+      "sequence": 3,
+      "display_name": "珍珠偏殿",
+      "monster": {
+       "display_name": "珊瑚卫士",
+       "level": 40,
+       "monster_type": 40,
+       "item_drops": [
+        "珊瑚之枝"
+       ],
+       "equipment_drops": [
+        "说服之靴",
+        "火热串珠",
+        "短路之靴"
+       ]
+      }
+     },
+     {
+      "sequence": 4,
+      "display_name": "熔岩核心",
+      "monster": {
+       "display_name": "熔岩守卫",
+       "level": 40,
+       "monster_type": 40,
+       "item_drops": [
+        "熔岩之核"
+       ],
+       "equipment_drops": [
+        "和谐外衣",
+        "元素腰带",
+        "丛林行者兜帽"
+       ]
+      }
+     },
+     {
+      "sequence": 5,
+      "display_name": "海皇密室",
+      "monster": {
+       "display_name": "宝箱守护者",
+       "level": 40,
+       "monster_type": 45,
+       "item_drops": [
+        "海皇的宝箱"
+       ],
+       "equipment_drops": [
+        "+霸者之靴",
+        "磨石裹足",
+        "丹尼芬雷外衣",
+        "北伐军护符",
+        "鳞片冰靴",
+        "+地魔龙角羽冠",
+        "+地魔龙脊护肩",
+        "+地魔龙鳞绑腿",
+        "+地魔龙爪之靴"
+       ]
+      }
+     }
+    ]
+   }
+  ],
+  "equipment_requirement": null,
+  "route_requirement": null,
+  "coastal_item_sources": [
+   {
+    "city": "威尼斯",
+    "location": "浅海",
+    "monster_name": "走私者",
+    "monster_level": 7,
+    "monster_type": 5,
+    "item_name": "走私酒"
+   },
+   {
+    "city": "威尼斯",
+    "location": "浅海",
+    "monster_name": "大王乌贼",
+    "monster_level": 95,
+    "monster_type": 5,
+    "item_name": "乌贼墨汁"
+   },
+   {
+    "city": "威尼斯",
+    "location": "深海",
+    "monster_name": "锯齿鲨鱼",
+    "monster_level": 71,
+    "monster_type": 5,
+    "item_name": "锯齿鲨牙"
+   },
+   {
+    "city": "伊斯坦堡",
+    "location": "浅海",
+    "monster_name": "鲨鱼",
+    "monster_level": 14,
+    "monster_type": 5,
+    "item_name": "鲨鱼皮"
+   },
+   {
+    "city": "汉堡",
+    "location": "浅海",
+    "monster_name": "灵敏小猫",
+    "monster_level": 50,
+    "monster_type": 5,
+    "item_name": "猫眼石"
+   },
+   {
+    "city": "泉州",
+    "location": "浅海",
+    "monster_name": "鲨妖",
+    "monster_level": 76,
+    "monster_type": 5,
+    "item_name": "鲨鱼鳍"
+   },
+   {
+    "city": "长安",
+    "location": "深海",
+    "monster_name": "海魔",
+    "monster_level": 94,
+    "monster_type": 5,
+    "item_name": "海魔之心"
+   },
+   {
+    "city": "锡兰",
+    "location": "浅海",
+    "monster_name": "扎布拉",
+    "monster_level": 70,
+    "monster_type": 5,
+    "item_name": "扎布拉的弯刀"
+   },
+   {
+    "city": "锡兰",
+    "location": "浅海",
+    "monster_name": "海盗头子扎布拉",
+    "monster_level": 45,
+    "monster_type": 5,
+    "item_name": "海盗船长帽"
+   },
+   {
+    "city": "孟买",
+    "location": "浅海",
+    "monster_name": "鲨鱼",
+    "monster_level": 73,
+    "monster_type": 5,
+    "item_name": "鲨鱼皮"
+   },
+   {
+    "city": "亚特兰蒂斯",
+    "location": "浅海",
+    "monster_name": "大白鲨",
+    "monster_level": 52,
+    "monster_type": 5,
+    "item_name": "鲨鱼牙齿"
+   },
+   {
+    "city": "突尼斯",
+    "location": "浅海",
+    "monster_name": "迈克探长",
+    "monster_level": 121,
+    "monster_type": 5,
+    "item_name": "探长徽章"
+   },
+   {
+    "city": "突尼斯",
+    "location": "浅海",
+    "monster_name": "乌兹马赫",
+    "monster_level": 111,
+    "monster_type": 6,
+    "item_name": "马赫的靴子"
+   },
+   {
+    "city": "大阪",
+    "location": "浅海",
+    "monster_name": "鲨妖",
+    "monster_level": 109,
+    "monster_type": 5,
+    "item_name": "鲨鱼鳍"
+   },
+   {
+    "city": "大阪",
+    "location": "深海",
+    "monster_name": "海蛇精",
+    "monster_level": 109,
+    "monster_type": 5,
+    "item_name": "海蛇胆"
+   },
+   {
+    "city": "阿尔及尔",
+    "location": "深海",
+    "monster_name": "海怪",
+    "monster_level": 123,
+    "monster_type": 5,
+    "item_name": "海怪触须"
+   },
+   {
+    "city": "莫桑比克",
+    "location": "浅海",
+    "monster_name": "大王乌贼",
+    "monster_level": 125,
+    "monster_type": 5,
+    "item_name": "乌贼墨汁"
+   },
+   {
+    "city": "开普敦",
+    "location": "深海",
+    "monster_name": "魔鬼鱼",
+    "monster_level": 117,
+    "monster_type": 5,
+    "item_name": "魔鬼鱼鳍"
+   },
+   {
+    "city": "里斯本",
+    "location": "深海",
+    "monster_name": "巨钳海蟹",
+    "monster_level": 47,
+    "monster_type": 5,
+    "item_name": "海蟹巨钳"
+   }
+  ]
+ }
 }

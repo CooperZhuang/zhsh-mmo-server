@@ -111,7 +111,7 @@
   "capability_status": "global_runtime_content",
   "runnable_task_selection": {
     "selector_version": "global-runtime-directory/1.0.0",
-    "selection_hash": "6a852a34f9a0b7150f3e877bdff00fe0f71f6e0b011542a5d2fb06f32800d6e9",
+    "selection_hash": "9484b8118e7646e65cac6ed2b1db8fa0317c11501fbb80faa2936119ebb2c163",
     "selected_task_count": 651,
     "selected_series_count": 15,
     "formal_stage_start_selected_task_count": 78,
@@ -11410,6 +11410,24 @@
           "candidate_canonical_ids": [],
           "runtime_resolution": null,
           "source_canonical_id": "task.series.05.032"
+        },
+        {
+          "canonical_id": "entity.task_reward.0753397cc826b305",
+          "reward_order": 4,
+          "reward_kind": "item",
+          "reward_name": "太阳徽章",
+          "raw_quantity": "1",
+          "normalized_quantity": 1,
+          "raw_value_json": "{\"item\":\"太阳徽章\",\"quantity\":1}",
+          "dependency_canonical_id": "entity.task_reward.0753397cc826b305",
+          "resolution_status": "resolved",
+          "runtime_capability": "queryable",
+          "candidate_canonical_ids_json": "[]",
+          "content_entity_canonical_id": "runtime.item.083b844a413f2339",
+          "quantity": 1,
+          "candidate_canonical_ids": [],
+          "runtime_resolution": null,
+          "source_canonical_id": "task.series.05.032"
         }
       ],
       "dialogues": [
@@ -11736,6 +11754,24 @@
           "runtime_capability": "definition_only",
           "candidate_canonical_ids_json": "[]",
           "content_entity_canonical_id": null,
+          "quantity": 1,
+          "candidate_canonical_ids": [],
+          "runtime_resolution": null,
+          "source_canonical_id": "task.series.05.033"
+        },
+        {
+          "canonical_id": "entity.task_reward.0e76760fc320a35b",
+          "reward_order": 4,
+          "reward_kind": "item",
+          "reward_name": "太阳徽章",
+          "raw_quantity": "1",
+          "normalized_quantity": 1,
+          "raw_value_json": "{\"item\":\"太阳徽章\",\"quantity\":1}",
+          "dependency_canonical_id": "entity.task_reward.0e76760fc320a35b",
+          "resolution_status": "resolved",
+          "runtime_capability": "queryable",
+          "candidate_canonical_ids_json": "[]",
+          "content_entity_canonical_id": "runtime.item.083b844a413f2339",
           "quantity": 1,
           "candidate_canonical_ids": [],
           "runtime_resolution": null,
@@ -12753,6 +12789,24 @@
           "candidate_canonical_ids_json": "[]",
           "content_entity_canonical_id": null,
           "quantity": 2,
+          "candidate_canonical_ids": [],
+          "runtime_resolution": null,
+          "source_canonical_id": "task.series.05.036"
+        },
+        {
+          "canonical_id": "entity.task_reward.54962f523d240100",
+          "reward_order": 4,
+          "reward_kind": "item",
+          "reward_name": "蓝纹宝箱",
+          "raw_quantity": "1",
+          "normalized_quantity": 1,
+          "raw_value_json": "{\"item\":\"蓝纹宝箱\",\"quantity\":1}",
+          "dependency_canonical_id": "entity.task_reward.54962f523d240100",
+          "resolution_status": "resolved",
+          "runtime_capability": "queryable",
+          "candidate_canonical_ids_json": "[]",
+          "content_entity_canonical_id": "runtime.item.9fa15c36e7e4ff6e",
+          "quantity": 1,
           "candidate_canonical_ids": [],
           "runtime_resolution": null,
           "source_canonical_id": "task.series.05.036"
@@ -32375,6 +32429,24 @@
           "candidate_canonical_ids": [],
           "runtime_resolution": null,
           "source_canonical_id": "task.series.12.096"
+        },
+        {
+          "canonical_id": "entity.task_reward.11d84df203242d31",
+          "reward_order": 2,
+          "reward_kind": "item",
+          "reward_name": "青龙玉佩",
+          "raw_quantity": "1",
+          "normalized_quantity": 1,
+          "raw_value_json": "{\"item\":\"青龙玉佩\",\"quantity\":1}",
+          "dependency_canonical_id": "entity.task_reward.11d84df203242d31",
+          "resolution_status": "resolved",
+          "runtime_capability": "queryable",
+          "candidate_canonical_ids_json": "[]",
+          "content_entity_canonical_id": "runtime.item.586fec3896207a43",
+          "quantity": 1,
+          "candidate_canonical_ids": [],
+          "runtime_resolution": null,
+          "source_canonical_id": "task.series.12.096"
         }
       ],
       "dialogues": [
@@ -33612,6 +33684,222 @@
           "candidate_canonical_ids": [],
           "runtime_resolution": null,
           "source_canonical_id": "task.series.12.100"
+        },
+        {
+          "canonical_id": "entity.task_reward.70b51be75556816a",
+          "reward_order": 4,
+          "reward_kind": "item",
+          "reward_name": "龙珠碎片·赤",
+          "raw_quantity": "1",
+          "normalized_quantity": 1,
+          "raw_value_json": "{\"item\":\"龙珠碎片·赤\",\"quantity\":1}",
+          "dependency_canonical_id": "entity.task_reward.70b51be75556816a",
+          "resolution_status": "resolved",
+          "runtime_capability": "queryable",
+          "candidate_canonical_ids_json": "[]",
+          "content_entity_canonical_id": "runtime.item.9e7f9214ce7d878c",
+          "quantity": 1,
+          "candidate_canonical_ids": [],
+          "runtime_resolution": null,
+          "source_canonical_id": "task.series.12.100"
+        },
+        {
+          "canonical_id": "entity.task_reward.93d2fe3a02e60b59",
+          "reward_order": 5,
+          "reward_kind": "item",
+          "reward_name": "龙珠碎片·蓝",
+          "raw_quantity": "1",
+          "normalized_quantity": 1,
+          "raw_value_json": "{\"item\":\"龙珠碎片·蓝\",\"quantity\":1}",
+          "dependency_canonical_id": "entity.task_reward.93d2fe3a02e60b59",
+          "resolution_status": "resolved",
+          "runtime_capability": "queryable",
+          "candidate_canonical_ids_json": "[]",
+          "content_entity_canonical_id": "runtime.item.fdeae4a1e1999008",
+          "quantity": 1,
+          "candidate_canonical_ids": [],
+          "runtime_resolution": null,
+          "source_canonical_id": "task.series.12.100"
+        },
+        {
+          "canonical_id": "entity.task_reward.504bb63e86f55cd5",
+          "reward_order": 6,
+          "reward_kind": "item",
+          "reward_name": "龙珠碎片·绿",
+          "raw_quantity": "1",
+          "normalized_quantity": 1,
+          "raw_value_json": "{\"item\":\"龙珠碎片·绿\",\"quantity\":1}",
+          "dependency_canonical_id": "entity.task_reward.504bb63e86f55cd5",
+          "resolution_status": "resolved",
+          "runtime_capability": "queryable",
+          "candidate_canonical_ids_json": "[]",
+          "content_entity_canonical_id": "runtime.item.83a060a1778749f9",
+          "quantity": 1,
+          "candidate_canonical_ids": [],
+          "runtime_resolution": null,
+          "source_canonical_id": "task.series.12.100"
+        },
+        {
+          "canonical_id": "entity.task_reward.d4842b40a47024dc",
+          "reward_order": 7,
+          "reward_kind": "item",
+          "reward_name": "龙珠碎片·金",
+          "raw_quantity": "1",
+          "normalized_quantity": 1,
+          "raw_value_json": "{\"item\":\"龙珠碎片·金\",\"quantity\":1}",
+          "dependency_canonical_id": "entity.task_reward.d4842b40a47024dc",
+          "resolution_status": "resolved",
+          "runtime_capability": "queryable",
+          "candidate_canonical_ids_json": "[]",
+          "content_entity_canonical_id": "runtime.item.e1d46972982fafa9",
+          "quantity": 1,
+          "candidate_canonical_ids": [],
+          "runtime_resolution": null,
+          "source_canonical_id": "task.series.12.100"
+        },
+        {
+          "canonical_id": "entity.task_reward.91c3dfe56a4e0b3b",
+          "reward_order": 8,
+          "reward_kind": "item",
+          "reward_name": "印蜡官印",
+          "raw_quantity": "1",
+          "normalized_quantity": 1,
+          "raw_value_json": "{\"item\":\"印蜡官印\",\"quantity\":1}",
+          "dependency_canonical_id": "entity.task_reward.91c3dfe56a4e0b3b",
+          "resolution_status": "resolved",
+          "runtime_capability": "queryable",
+          "candidate_canonical_ids_json": "[]",
+          "content_entity_canonical_id": "runtime.item.7ec5b65b1a6036f9",
+          "quantity": 1,
+          "candidate_canonical_ids": [],
+          "runtime_resolution": null,
+          "source_canonical_id": "task.series.12.100"
+        },
+        {
+          "canonical_id": "entity.task_reward.f827d88e744d0251",
+          "reward_order": 9,
+          "reward_kind": "item",
+          "reward_name": "圣杯",
+          "raw_quantity": "1",
+          "normalized_quantity": 1,
+          "raw_value_json": "{\"item\":\"圣杯\",\"quantity\":1}",
+          "dependency_canonical_id": "entity.task_reward.f827d88e744d0251",
+          "resolution_status": "resolved",
+          "runtime_capability": "queryable",
+          "candidate_canonical_ids_json": "[]",
+          "content_entity_canonical_id": "runtime.item.ff3f779360a58ddb",
+          "quantity": 1,
+          "candidate_canonical_ids": [],
+          "runtime_resolution": null,
+          "source_canonical_id": "task.series.12.100"
+        },
+        {
+          "canonical_id": "entity.task_reward.ef54c6bcb41427c9",
+          "reward_order": 10,
+          "reward_kind": "item",
+          "reward_name": "玉筒",
+          "raw_quantity": "1",
+          "normalized_quantity": 1,
+          "raw_value_json": "{\"item\":\"玉筒\",\"quantity\":1}",
+          "dependency_canonical_id": "entity.task_reward.ef54c6bcb41427c9",
+          "resolution_status": "resolved",
+          "runtime_capability": "queryable",
+          "candidate_canonical_ids_json": "[]",
+          "content_entity_canonical_id": "runtime.item.43c7d7cefa4ae8b6",
+          "quantity": 1,
+          "candidate_canonical_ids": [],
+          "runtime_resolution": null,
+          "source_canonical_id": "task.series.12.100"
+        },
+        {
+          "canonical_id": "entity.task_reward.490b6ec3dd7909ec",
+          "reward_order": 11,
+          "reward_kind": "item",
+          "reward_name": "水晶头骨",
+          "raw_quantity": "1",
+          "normalized_quantity": 1,
+          "raw_value_json": "{\"item\":\"水晶头骨\",\"quantity\":1}",
+          "dependency_canonical_id": "entity.task_reward.490b6ec3dd7909ec",
+          "resolution_status": "resolved",
+          "runtime_capability": "queryable",
+          "candidate_canonical_ids_json": "[]",
+          "content_entity_canonical_id": "runtime.item.b40abb7dbcb5e4b7",
+          "quantity": 1,
+          "candidate_canonical_ids": [],
+          "runtime_resolution": null,
+          "source_canonical_id": "task.series.12.100"
+        },
+        {
+          "canonical_id": "entity.task_reward.d013905c5c5a8c00",
+          "reward_order": 12,
+          "reward_kind": "item",
+          "reward_name": "月影水晶球",
+          "raw_quantity": "1",
+          "normalized_quantity": 1,
+          "raw_value_json": "{\"item\":\"月影水晶球\",\"quantity\":1}",
+          "dependency_canonical_id": "entity.task_reward.d013905c5c5a8c00",
+          "resolution_status": "resolved",
+          "runtime_capability": "queryable",
+          "candidate_canonical_ids_json": "[]",
+          "content_entity_canonical_id": "runtime.item.e035a3d7f7cc3b0e",
+          "quantity": 1,
+          "candidate_canonical_ids": [],
+          "runtime_resolution": null,
+          "source_canonical_id": "task.series.12.100"
+        },
+        {
+          "canonical_id": "entity.task_reward.d75f64574effa96b",
+          "reward_order": 13,
+          "reward_kind": "item",
+          "reward_name": "古护符",
+          "raw_quantity": "1",
+          "normalized_quantity": 1,
+          "raw_value_json": "{\"item\":\"古护符\",\"quantity\":1}",
+          "dependency_canonical_id": "entity.task_reward.d75f64574effa96b",
+          "resolution_status": "resolved",
+          "runtime_capability": "queryable",
+          "candidate_canonical_ids_json": "[]",
+          "content_entity_canonical_id": "runtime.item.07189b7db2ed38ac",
+          "quantity": 1,
+          "candidate_canonical_ids": [],
+          "runtime_resolution": null,
+          "source_canonical_id": "task.series.12.100"
+        },
+        {
+          "canonical_id": "entity.task_reward.66a8eec88bcda48e",
+          "reward_order": 14,
+          "reward_kind": "item",
+          "reward_name": "镇印石盒",
+          "raw_quantity": "1",
+          "normalized_quantity": 1,
+          "raw_value_json": "{\"item\":\"镇印石盒\",\"quantity\":1}",
+          "dependency_canonical_id": "entity.task_reward.66a8eec88bcda48e",
+          "resolution_status": "resolved",
+          "runtime_capability": "queryable",
+          "candidate_canonical_ids_json": "[]",
+          "content_entity_canonical_id": "runtime.item.ff6fcb7c28ae1ded",
+          "quantity": 1,
+          "candidate_canonical_ids": [],
+          "runtime_resolution": null,
+          "source_canonical_id": "task.series.12.100"
+        },
+        {
+          "canonical_id": "entity.task_reward.4e4aa10af9918d47",
+          "reward_order": 15,
+          "reward_kind": "item",
+          "reward_name": "漩涡怀表",
+          "raw_quantity": "1",
+          "normalized_quantity": 1,
+          "raw_value_json": "{\"item\":\"漩涡怀表\",\"quantity\":1}",
+          "dependency_canonical_id": "entity.task_reward.4e4aa10af9918d47",
+          "resolution_status": "resolved",
+          "runtime_capability": "queryable",
+          "candidate_canonical_ids_json": "[]",
+          "content_entity_canonical_id": "runtime.item.5c27467ecfa61e61",
+          "quantity": 1,
+          "candidate_canonical_ids": [],
+          "runtime_resolution": null,
+          "source_canonical_id": "task.series.12.100"
         }
       ],
       "dialogues": [
@@ -33965,6 +34253,258 @@
           "candidate_canonical_ids_json": "[]",
           "content_entity_canonical_id": null,
           "quantity": 2,
+          "candidate_canonical_ids": [],
+          "runtime_resolution": null,
+          "source_canonical_id": "task.series.13.101"
+        },
+        {
+          "canonical_id": "entity.task_reward.3c584327b092fd3c",
+          "reward_order": 4,
+          "reward_kind": "item",
+          "reward_name": "圣火令",
+          "raw_quantity": "1",
+          "normalized_quantity": 1,
+          "raw_value_json": "{\"item\":\"圣火令\",\"quantity\":1}",
+          "dependency_canonical_id": "entity.task_reward.3c584327b092fd3c",
+          "resolution_status": "resolved",
+          "runtime_capability": "queryable",
+          "candidate_canonical_ids_json": "[]",
+          "content_entity_canonical_id": "runtime.item.2a16eba99d838ed0",
+          "quantity": 1,
+          "candidate_canonical_ids": [],
+          "runtime_resolution": null,
+          "source_canonical_id": "task.series.13.101"
+        },
+        {
+          "canonical_id": "entity.task_reward.c25f0681324d48a0",
+          "reward_order": 5,
+          "reward_kind": "item",
+          "reward_name": "通商卷轴",
+          "raw_quantity": "1",
+          "normalized_quantity": 1,
+          "raw_value_json": "{\"item\":\"通商卷轴\",\"quantity\":1}",
+          "dependency_canonical_id": "entity.task_reward.c25f0681324d48a0",
+          "resolution_status": "resolved",
+          "runtime_capability": "queryable",
+          "candidate_canonical_ids_json": "[]",
+          "content_entity_canonical_id": "runtime.item.9216af6fd9009442",
+          "quantity": 1,
+          "candidate_canonical_ids": [],
+          "runtime_resolution": null,
+          "source_canonical_id": "task.series.13.101"
+        },
+        {
+          "canonical_id": "entity.task_reward.99b54deedcc982be",
+          "reward_order": 6,
+          "reward_kind": "item",
+          "reward_name": "通商文书",
+          "raw_quantity": "1",
+          "normalized_quantity": 1,
+          "raw_value_json": "{\"item\":\"通商文书\",\"quantity\":1}",
+          "dependency_canonical_id": "entity.task_reward.99b54deedcc982be",
+          "resolution_status": "resolved",
+          "runtime_capability": "queryable",
+          "candidate_canonical_ids_json": "[]",
+          "content_entity_canonical_id": "runtime.item.4e87ebf02b34f737",
+          "quantity": 1,
+          "candidate_canonical_ids": [],
+          "runtime_resolution": null,
+          "source_canonical_id": "task.series.13.101"
+        },
+        {
+          "canonical_id": "entity.task_reward.c2b366c9e9e53303",
+          "reward_order": 7,
+          "reward_kind": "item",
+          "reward_name": "亚丁权杖",
+          "raw_quantity": "1",
+          "normalized_quantity": 1,
+          "raw_value_json": "{\"item\":\"亚丁权杖\",\"quantity\":1}",
+          "dependency_canonical_id": "entity.task_reward.c2b366c9e9e53303",
+          "resolution_status": "resolved",
+          "runtime_capability": "queryable",
+          "candidate_canonical_ids_json": "[]",
+          "content_entity_canonical_id": "runtime.item.3ad18738be2bb7d3",
+          "quantity": 1,
+          "candidate_canonical_ids": [],
+          "runtime_resolution": null,
+          "source_canonical_id": "task.series.13.101"
+        },
+        {
+          "canonical_id": "entity.task_reward.314ea53211a45565",
+          "reward_order": 8,
+          "reward_kind": "item",
+          "reward_name": "加封谕旨",
+          "raw_quantity": "1",
+          "normalized_quantity": 1,
+          "raw_value_json": "{\"item\":\"加封谕旨\",\"quantity\":1}",
+          "dependency_canonical_id": "entity.task_reward.314ea53211a45565",
+          "resolution_status": "resolved",
+          "runtime_capability": "queryable",
+          "candidate_canonical_ids_json": "[]",
+          "content_entity_canonical_id": "runtime.item.25fb8273a4b5eedc",
+          "quantity": 1,
+          "candidate_canonical_ids": [],
+          "runtime_resolution": null,
+          "source_canonical_id": "task.series.13.101"
+        },
+        {
+          "canonical_id": "entity.task_reward.3f4f031535f85aa6",
+          "reward_order": 9,
+          "reward_kind": "item",
+          "reward_name": "律法纹章",
+          "raw_quantity": "1",
+          "normalized_quantity": 1,
+          "raw_value_json": "{\"item\":\"律法纹章\",\"quantity\":1}",
+          "dependency_canonical_id": "entity.task_reward.3f4f031535f85aa6",
+          "resolution_status": "resolved",
+          "runtime_capability": "queryable",
+          "candidate_canonical_ids_json": "[]",
+          "content_entity_canonical_id": "runtime.item.b8db0ebdcf750fa5",
+          "quantity": 1,
+          "candidate_canonical_ids": [],
+          "runtime_resolution": null,
+          "source_canonical_id": "task.series.13.101"
+        },
+        {
+          "canonical_id": "entity.task_reward.4e8619e130a699bf",
+          "reward_order": 10,
+          "reward_kind": "item",
+          "reward_name": "印蜡官印",
+          "raw_quantity": "1",
+          "normalized_quantity": 1,
+          "raw_value_json": "{\"item\":\"印蜡官印\",\"quantity\":1}",
+          "dependency_canonical_id": "entity.task_reward.4e8619e130a699bf",
+          "resolution_status": "resolved",
+          "runtime_capability": "queryable",
+          "candidate_canonical_ids_json": "[]",
+          "content_entity_canonical_id": "runtime.item.7ec5b65b1a6036f9",
+          "quantity": 1,
+          "candidate_canonical_ids": [],
+          "runtime_resolution": null,
+          "source_canonical_id": "task.series.13.101"
+        },
+        {
+          "canonical_id": "entity.task_reward.b817f38b7ab5570c",
+          "reward_order": 11,
+          "reward_kind": "item",
+          "reward_name": "圣杯",
+          "raw_quantity": "1",
+          "normalized_quantity": 1,
+          "raw_value_json": "{\"item\":\"圣杯\",\"quantity\":1}",
+          "dependency_canonical_id": "entity.task_reward.b817f38b7ab5570c",
+          "resolution_status": "resolved",
+          "runtime_capability": "queryable",
+          "candidate_canonical_ids_json": "[]",
+          "content_entity_canonical_id": "runtime.item.ff3f779360a58ddb",
+          "quantity": 1,
+          "candidate_canonical_ids": [],
+          "runtime_resolution": null,
+          "source_canonical_id": "task.series.13.101"
+        },
+        {
+          "canonical_id": "entity.task_reward.0582a8afc5b4ff2c",
+          "reward_order": 12,
+          "reward_kind": "item",
+          "reward_name": "玉筒",
+          "raw_quantity": "1",
+          "normalized_quantity": 1,
+          "raw_value_json": "{\"item\":\"玉筒\",\"quantity\":1}",
+          "dependency_canonical_id": "entity.task_reward.0582a8afc5b4ff2c",
+          "resolution_status": "resolved",
+          "runtime_capability": "queryable",
+          "candidate_canonical_ids_json": "[]",
+          "content_entity_canonical_id": "runtime.item.43c7d7cefa4ae8b6",
+          "quantity": 1,
+          "candidate_canonical_ids": [],
+          "runtime_resolution": null,
+          "source_canonical_id": "task.series.13.101"
+        },
+        {
+          "canonical_id": "entity.task_reward.5f99583f84d02b2c",
+          "reward_order": 13,
+          "reward_kind": "item",
+          "reward_name": "水晶头骨",
+          "raw_quantity": "1",
+          "normalized_quantity": 1,
+          "raw_value_json": "{\"item\":\"水晶头骨\",\"quantity\":1}",
+          "dependency_canonical_id": "entity.task_reward.5f99583f84d02b2c",
+          "resolution_status": "resolved",
+          "runtime_capability": "queryable",
+          "candidate_canonical_ids_json": "[]",
+          "content_entity_canonical_id": "runtime.item.b40abb7dbcb5e4b7",
+          "quantity": 1,
+          "candidate_canonical_ids": [],
+          "runtime_resolution": null,
+          "source_canonical_id": "task.series.13.101"
+        },
+        {
+          "canonical_id": "entity.task_reward.710da95a5a475263",
+          "reward_order": 14,
+          "reward_kind": "item",
+          "reward_name": "月影水晶球",
+          "raw_quantity": "1",
+          "normalized_quantity": 1,
+          "raw_value_json": "{\"item\":\"月影水晶球\",\"quantity\":1}",
+          "dependency_canonical_id": "entity.task_reward.710da95a5a475263",
+          "resolution_status": "resolved",
+          "runtime_capability": "queryable",
+          "candidate_canonical_ids_json": "[]",
+          "content_entity_canonical_id": "runtime.item.e035a3d7f7cc3b0e",
+          "quantity": 1,
+          "candidate_canonical_ids": [],
+          "runtime_resolution": null,
+          "source_canonical_id": "task.series.13.101"
+        },
+        {
+          "canonical_id": "entity.task_reward.4ddd3e972371bb3a",
+          "reward_order": 15,
+          "reward_kind": "item",
+          "reward_name": "古护符",
+          "raw_quantity": "1",
+          "normalized_quantity": 1,
+          "raw_value_json": "{\"item\":\"古护符\",\"quantity\":1}",
+          "dependency_canonical_id": "entity.task_reward.4ddd3e972371bb3a",
+          "resolution_status": "resolved",
+          "runtime_capability": "queryable",
+          "candidate_canonical_ids_json": "[]",
+          "content_entity_canonical_id": "runtime.item.07189b7db2ed38ac",
+          "quantity": 1,
+          "candidate_canonical_ids": [],
+          "runtime_resolution": null,
+          "source_canonical_id": "task.series.13.101"
+        },
+        {
+          "canonical_id": "entity.task_reward.74e8dc69ea65c0f3",
+          "reward_order": 16,
+          "reward_kind": "item",
+          "reward_name": "镇印石盒",
+          "raw_quantity": "1",
+          "normalized_quantity": 1,
+          "raw_value_json": "{\"item\":\"镇印石盒\",\"quantity\":1}",
+          "dependency_canonical_id": "entity.task_reward.74e8dc69ea65c0f3",
+          "resolution_status": "resolved",
+          "runtime_capability": "queryable",
+          "candidate_canonical_ids_json": "[]",
+          "content_entity_canonical_id": "runtime.item.ff6fcb7c28ae1ded",
+          "quantity": 1,
+          "candidate_canonical_ids": [],
+          "runtime_resolution": null,
+          "source_canonical_id": "task.series.13.101"
+        },
+        {
+          "canonical_id": "entity.task_reward.a52a28eae3da4722",
+          "reward_order": 17,
+          "reward_kind": "item",
+          "reward_name": "漩涡怀表",
+          "raw_quantity": "1",
+          "normalized_quantity": 1,
+          "raw_value_json": "{\"item\":\"漩涡怀表\",\"quantity\":1}",
+          "dependency_canonical_id": "entity.task_reward.a52a28eae3da4722",
+          "resolution_status": "resolved",
+          "runtime_capability": "queryable",
+          "candidate_canonical_ids_json": "[]",
+          "content_entity_canonical_id": "runtime.item.5c27467ecfa61e61",
+          "quantity": 1,
           "candidate_canonical_ids": [],
           "runtime_resolution": null,
           "source_canonical_id": "task.series.13.101"
@@ -34344,6 +34884,114 @@
           "candidate_canonical_ids_json": "[]",
           "content_entity_canonical_id": null,
           "quantity": 2,
+          "candidate_canonical_ids": [],
+          "runtime_resolution": null,
+          "source_canonical_id": "task.series.13.102"
+        },
+        {
+          "canonical_id": "entity.task_reward.66d9d0ff6d58d748",
+          "reward_order": 4,
+          "reward_kind": "item",
+          "reward_name": "圣火令",
+          "raw_quantity": "1",
+          "normalized_quantity": 1,
+          "raw_value_json": "{\"item\":\"圣火令\",\"quantity\":1}",
+          "dependency_canonical_id": "entity.task_reward.66d9d0ff6d58d748",
+          "resolution_status": "resolved",
+          "runtime_capability": "queryable",
+          "candidate_canonical_ids_json": "[]",
+          "content_entity_canonical_id": "runtime.item.2a16eba99d838ed0",
+          "quantity": 1,
+          "candidate_canonical_ids": [],
+          "runtime_resolution": null,
+          "source_canonical_id": "task.series.13.102"
+        },
+        {
+          "canonical_id": "entity.task_reward.1433aae880388774",
+          "reward_order": 5,
+          "reward_kind": "item",
+          "reward_name": "通商卷轴",
+          "raw_quantity": "1",
+          "normalized_quantity": 1,
+          "raw_value_json": "{\"item\":\"通商卷轴\",\"quantity\":1}",
+          "dependency_canonical_id": "entity.task_reward.1433aae880388774",
+          "resolution_status": "resolved",
+          "runtime_capability": "queryable",
+          "candidate_canonical_ids_json": "[]",
+          "content_entity_canonical_id": "runtime.item.9216af6fd9009442",
+          "quantity": 1,
+          "candidate_canonical_ids": [],
+          "runtime_resolution": null,
+          "source_canonical_id": "task.series.13.102"
+        },
+        {
+          "canonical_id": "entity.task_reward.fa52e711412bfd27",
+          "reward_order": 6,
+          "reward_kind": "item",
+          "reward_name": "通商文书",
+          "raw_quantity": "1",
+          "normalized_quantity": 1,
+          "raw_value_json": "{\"item\":\"通商文书\",\"quantity\":1}",
+          "dependency_canonical_id": "entity.task_reward.fa52e711412bfd27",
+          "resolution_status": "resolved",
+          "runtime_capability": "queryable",
+          "candidate_canonical_ids_json": "[]",
+          "content_entity_canonical_id": "runtime.item.4e87ebf02b34f737",
+          "quantity": 1,
+          "candidate_canonical_ids": [],
+          "runtime_resolution": null,
+          "source_canonical_id": "task.series.13.102"
+        },
+        {
+          "canonical_id": "entity.task_reward.b24e00e6f01330d0",
+          "reward_order": 7,
+          "reward_kind": "item",
+          "reward_name": "亚丁权杖",
+          "raw_quantity": "1",
+          "normalized_quantity": 1,
+          "raw_value_json": "{\"item\":\"亚丁权杖\",\"quantity\":1}",
+          "dependency_canonical_id": "entity.task_reward.b24e00e6f01330d0",
+          "resolution_status": "resolved",
+          "runtime_capability": "queryable",
+          "candidate_canonical_ids_json": "[]",
+          "content_entity_canonical_id": "runtime.item.3ad18738be2bb7d3",
+          "quantity": 1,
+          "candidate_canonical_ids": [],
+          "runtime_resolution": null,
+          "source_canonical_id": "task.series.13.102"
+        },
+        {
+          "canonical_id": "entity.task_reward.59e7f0858c59a1b6",
+          "reward_order": 8,
+          "reward_kind": "item",
+          "reward_name": "加封谕旨",
+          "raw_quantity": "1",
+          "normalized_quantity": 1,
+          "raw_value_json": "{\"item\":\"加封谕旨\",\"quantity\":1}",
+          "dependency_canonical_id": "entity.task_reward.59e7f0858c59a1b6",
+          "resolution_status": "resolved",
+          "runtime_capability": "queryable",
+          "candidate_canonical_ids_json": "[]",
+          "content_entity_canonical_id": "runtime.item.25fb8273a4b5eedc",
+          "quantity": 1,
+          "candidate_canonical_ids": [],
+          "runtime_resolution": null,
+          "source_canonical_id": "task.series.13.102"
+        },
+        {
+          "canonical_id": "entity.task_reward.95f8bc8af0c906ba",
+          "reward_order": 9,
+          "reward_kind": "item",
+          "reward_name": "律法纹章",
+          "raw_quantity": "1",
+          "normalized_quantity": 1,
+          "raw_value_json": "{\"item\":\"律法纹章\",\"quantity\":1}",
+          "dependency_canonical_id": "entity.task_reward.95f8bc8af0c906ba",
+          "resolution_status": "resolved",
+          "runtime_capability": "queryable",
+          "candidate_canonical_ids_json": "[]",
+          "content_entity_canonical_id": "runtime.item.b8db0ebdcf750fa5",
+          "quantity": 1,
           "candidate_canonical_ids": [],
           "runtime_resolution": null,
           "source_canonical_id": "task.series.13.102"
@@ -50866,6 +51514,24 @@
           "candidate_canonical_ids": [],
           "runtime_resolution": null,
           "source_canonical_id": "task.series.13.154"
+        },
+        {
+          "canonical_id": "entity.task_reward.ccd500ac63fbefa2",
+          "reward_order": 2,
+          "reward_kind": "item",
+          "reward_name": "密封信函",
+          "raw_quantity": "1",
+          "normalized_quantity": 1,
+          "raw_value_json": "{\"item\":\"密封信函\",\"quantity\":1}",
+          "dependency_canonical_id": "entity.task_reward.ccd500ac63fbefa2",
+          "resolution_status": "resolved",
+          "runtime_capability": "queryable",
+          "candidate_canonical_ids_json": "[]",
+          "content_entity_canonical_id": "runtime.item.80799273a1951294",
+          "quantity": 1,
+          "candidate_canonical_ids": [],
+          "runtime_resolution": null,
+          "source_canonical_id": "task.series.13.154"
         }
       ],
       "dialogues": [
@@ -51534,6 +52200,24 @@
           "runtime_capability": "definition_only",
           "candidate_canonical_ids_json": "[]",
           "content_entity_canonical_id": null,
+          "quantity": 1,
+          "candidate_canonical_ids": [],
+          "runtime_resolution": null,
+          "source_canonical_id": "task.series.13.156"
+        },
+        {
+          "canonical_id": "entity.task_reward.13d812ea97dd0144",
+          "reward_order": 4,
+          "reward_kind": "item",
+          "reward_name": "密封信函",
+          "raw_quantity": "1",
+          "normalized_quantity": 1,
+          "raw_value_json": "{\"item\":\"密封信函\",\"quantity\":1}",
+          "dependency_canonical_id": "entity.task_reward.13d812ea97dd0144",
+          "resolution_status": "resolved",
+          "runtime_capability": "queryable",
+          "candidate_canonical_ids_json": "[]",
+          "content_entity_canonical_id": "runtime.item.80799273a1951294",
           "quantity": 1,
           "candidate_canonical_ids": [],
           "runtime_resolution": null,
@@ -52918,6 +53602,42 @@
           ],
           "runtime_resolution": null,
           "source_canonical_id": "task.series.13.160"
+        },
+        {
+          "canonical_id": "entity.task_reward.236fa01d86ccc18a",
+          "reward_order": 5,
+          "reward_kind": "item",
+          "reward_name": "古航海图",
+          "raw_quantity": "1",
+          "normalized_quantity": 1,
+          "raw_value_json": "{\"item\":\"古航海图\",\"quantity\":1}",
+          "dependency_canonical_id": "entity.task_reward.236fa01d86ccc18a",
+          "resolution_status": "resolved",
+          "runtime_capability": "queryable",
+          "candidate_canonical_ids_json": "[]",
+          "content_entity_canonical_id": "runtime.item.042e15fef31f26be",
+          "quantity": 1,
+          "candidate_canonical_ids": [],
+          "runtime_resolution": null,
+          "source_canonical_id": "task.series.13.160"
+        },
+        {
+          "canonical_id": "entity.task_reward.495b2fe65bcb9e26",
+          "reward_order": 6,
+          "reward_kind": "item",
+          "reward_name": "航海罗盘",
+          "raw_quantity": "1",
+          "normalized_quantity": 1,
+          "raw_value_json": "{\"item\":\"航海罗盘\",\"quantity\":1}",
+          "dependency_canonical_id": "entity.task_reward.495b2fe65bcb9e26",
+          "resolution_status": "resolved",
+          "runtime_capability": "queryable",
+          "candidate_canonical_ids_json": "[]",
+          "content_entity_canonical_id": "runtime.item.8f79cc1311a40f9d",
+          "quantity": 1,
+          "candidate_canonical_ids": [],
+          "runtime_resolution": null,
+          "source_canonical_id": "task.series.13.160"
         }
       ],
       "dialogues": [
@@ -53239,6 +53959,42 @@
           "candidate_canonical_ids_json": "[]",
           "content_entity_canonical_id": null,
           "quantity": 2,
+          "candidate_canonical_ids": [],
+          "runtime_resolution": null,
+          "source_canonical_id": "task.series.13.161"
+        },
+        {
+          "canonical_id": "entity.task_reward.fcad5e673bda5b5c",
+          "reward_order": 4,
+          "reward_kind": "item",
+          "reward_name": "古航海图",
+          "raw_quantity": "1",
+          "normalized_quantity": 1,
+          "raw_value_json": "{\"item\":\"古航海图\",\"quantity\":1}",
+          "dependency_canonical_id": "entity.task_reward.fcad5e673bda5b5c",
+          "resolution_status": "resolved",
+          "runtime_capability": "queryable",
+          "candidate_canonical_ids_json": "[]",
+          "content_entity_canonical_id": "runtime.item.042e15fef31f26be",
+          "quantity": 1,
+          "candidate_canonical_ids": [],
+          "runtime_resolution": null,
+          "source_canonical_id": "task.series.13.161"
+        },
+        {
+          "canonical_id": "entity.task_reward.075e4db3a02b36f5",
+          "reward_order": 5,
+          "reward_kind": "item",
+          "reward_name": "航海罗盘",
+          "raw_quantity": "1",
+          "normalized_quantity": 1,
+          "raw_value_json": "{\"item\":\"航海罗盘\",\"quantity\":1}",
+          "dependency_canonical_id": "entity.task_reward.075e4db3a02b36f5",
+          "resolution_status": "resolved",
+          "runtime_capability": "queryable",
+          "candidate_canonical_ids_json": "[]",
+          "content_entity_canonical_id": "runtime.item.8f79cc1311a40f9d",
+          "quantity": 1,
           "candidate_canonical_ids": [],
           "runtime_resolution": null,
           "source_canonical_id": "task.series.13.161"
@@ -54605,6 +55361,78 @@
           "runtime_capability": "definition_only",
           "candidate_canonical_ids_json": "[]",
           "content_entity_canonical_id": null,
+          "quantity": 1,
+          "candidate_canonical_ids": [],
+          "runtime_resolution": null,
+          "source_canonical_id": "task.series.13.165"
+        },
+        {
+          "canonical_id": "entity.task_reward.ec1cac688cc73e55",
+          "reward_order": 5,
+          "reward_kind": "item",
+          "reward_name": "龙珠碎片·赤",
+          "raw_quantity": "1",
+          "normalized_quantity": 1,
+          "raw_value_json": "{\"item\":\"龙珠碎片·赤\",\"quantity\":1}",
+          "dependency_canonical_id": "entity.task_reward.ec1cac688cc73e55",
+          "resolution_status": "resolved",
+          "runtime_capability": "queryable",
+          "candidate_canonical_ids_json": "[]",
+          "content_entity_canonical_id": "runtime.item.9e7f9214ce7d878c",
+          "quantity": 1,
+          "candidate_canonical_ids": [],
+          "runtime_resolution": null,
+          "source_canonical_id": "task.series.13.165"
+        },
+        {
+          "canonical_id": "entity.task_reward.59b77e1f20cc3394",
+          "reward_order": 6,
+          "reward_kind": "item",
+          "reward_name": "龙珠碎片·蓝",
+          "raw_quantity": "1",
+          "normalized_quantity": 1,
+          "raw_value_json": "{\"item\":\"龙珠碎片·蓝\",\"quantity\":1}",
+          "dependency_canonical_id": "entity.task_reward.59b77e1f20cc3394",
+          "resolution_status": "resolved",
+          "runtime_capability": "queryable",
+          "candidate_canonical_ids_json": "[]",
+          "content_entity_canonical_id": "runtime.item.fdeae4a1e1999008",
+          "quantity": 1,
+          "candidate_canonical_ids": [],
+          "runtime_resolution": null,
+          "source_canonical_id": "task.series.13.165"
+        },
+        {
+          "canonical_id": "entity.task_reward.e6c83d971e6a33f7",
+          "reward_order": 7,
+          "reward_kind": "item",
+          "reward_name": "龙珠碎片·绿",
+          "raw_quantity": "1",
+          "normalized_quantity": 1,
+          "raw_value_json": "{\"item\":\"龙珠碎片·绿\",\"quantity\":1}",
+          "dependency_canonical_id": "entity.task_reward.e6c83d971e6a33f7",
+          "resolution_status": "resolved",
+          "runtime_capability": "queryable",
+          "candidate_canonical_ids_json": "[]",
+          "content_entity_canonical_id": "runtime.item.83a060a1778749f9",
+          "quantity": 1,
+          "candidate_canonical_ids": [],
+          "runtime_resolution": null,
+          "source_canonical_id": "task.series.13.165"
+        },
+        {
+          "canonical_id": "entity.task_reward.f60c646d85a70475",
+          "reward_order": 8,
+          "reward_kind": "item",
+          "reward_name": "龙珠碎片·金",
+          "raw_quantity": "1",
+          "normalized_quantity": 1,
+          "raw_value_json": "{\"item\":\"龙珠碎片·金\",\"quantity\":1}",
+          "dependency_canonical_id": "entity.task_reward.f60c646d85a70475",
+          "resolution_status": "resolved",
+          "runtime_capability": "queryable",
+          "candidate_canonical_ids_json": "[]",
+          "content_entity_canonical_id": "runtime.item.e1d46972982fafa9",
           "quantity": 1,
           "candidate_canonical_ids": [],
           "runtime_resolution": null,
@@ -98325,6 +99153,96 @@
           "runtime_capability": "definition_only",
           "candidate_canonical_ids_json": "[]",
           "content_entity_canonical_id": null,
+          "quantity": 1,
+          "candidate_canonical_ids": [],
+          "runtime_resolution": null,
+          "source_canonical_id": "task.series.15.295"
+        },
+        {
+          "canonical_id": "entity.task_reward.439717e110f002b3",
+          "reward_order": 5,
+          "reward_kind": "item",
+          "reward_name": "黑铁钥匙",
+          "raw_quantity": "1",
+          "normalized_quantity": 1,
+          "raw_value_json": "{\"item\":\"黑铁钥匙\",\"quantity\":1}",
+          "dependency_canonical_id": "entity.task_reward.439717e110f002b3",
+          "resolution_status": "resolved",
+          "runtime_capability": "queryable",
+          "candidate_canonical_ids_json": "[]",
+          "content_entity_canonical_id": "runtime.item.8b74a7b28060691a",
+          "quantity": 1,
+          "candidate_canonical_ids": [],
+          "runtime_resolution": null,
+          "source_canonical_id": "task.series.15.295"
+        },
+        {
+          "canonical_id": "entity.task_reward.94890c0211d9d61c",
+          "reward_order": 6,
+          "reward_kind": "item",
+          "reward_name": "铜钥匙",
+          "raw_quantity": "1",
+          "normalized_quantity": 1,
+          "raw_value_json": "{\"item\":\"铜钥匙\",\"quantity\":1}",
+          "dependency_canonical_id": "entity.task_reward.94890c0211d9d61c",
+          "resolution_status": "resolved",
+          "runtime_capability": "queryable",
+          "candidate_canonical_ids_json": "[]",
+          "content_entity_canonical_id": "runtime.item.ff6cef9d8a68451b",
+          "quantity": 1,
+          "candidate_canonical_ids": [],
+          "runtime_resolution": null,
+          "source_canonical_id": "task.series.15.295"
+        },
+        {
+          "canonical_id": "entity.task_reward.812a2d9346e9856f",
+          "reward_order": 7,
+          "reward_kind": "item",
+          "reward_name": "银钥匙",
+          "raw_quantity": "1",
+          "normalized_quantity": 1,
+          "raw_value_json": "{\"item\":\"银钥匙\",\"quantity\":1}",
+          "dependency_canonical_id": "entity.task_reward.812a2d9346e9856f",
+          "resolution_status": "resolved",
+          "runtime_capability": "queryable",
+          "candidate_canonical_ids_json": "[]",
+          "content_entity_canonical_id": "runtime.item.372e7a0da738d7b6",
+          "quantity": 1,
+          "candidate_canonical_ids": [],
+          "runtime_resolution": null,
+          "source_canonical_id": "task.series.15.295"
+        },
+        {
+          "canonical_id": "entity.task_reward.82b441af24ab652c",
+          "reward_order": 8,
+          "reward_kind": "item",
+          "reward_name": "金钥匙",
+          "raw_quantity": "1",
+          "normalized_quantity": 1,
+          "raw_value_json": "{\"item\":\"金钥匙\",\"quantity\":1}",
+          "dependency_canonical_id": "entity.task_reward.82b441af24ab652c",
+          "resolution_status": "resolved",
+          "runtime_capability": "queryable",
+          "candidate_canonical_ids_json": "[]",
+          "content_entity_canonical_id": "runtime.item.abb9d800063cd3bc",
+          "quantity": 1,
+          "candidate_canonical_ids": [],
+          "runtime_resolution": null,
+          "source_canonical_id": "task.series.15.295"
+        },
+        {
+          "canonical_id": "entity.task_reward.4f7dc5ac864d7e89",
+          "reward_order": 9,
+          "reward_kind": "item",
+          "reward_name": "骷髅钥匙",
+          "raw_quantity": "1",
+          "normalized_quantity": 1,
+          "raw_value_json": "{\"item\":\"骷髅钥匙\",\"quantity\":1}",
+          "dependency_canonical_id": "entity.task_reward.4f7dc5ac864d7e89",
+          "resolution_status": "resolved",
+          "runtime_capability": "queryable",
+          "candidate_canonical_ids_json": "[]",
+          "content_entity_canonical_id": "runtime.item.e9073c5038adbde4",
           "quantity": 1,
           "candidate_canonical_ids": [],
           "runtime_resolution": null,
@@ -143561,6 +144479,24 @@
           "candidate_canonical_ids_json": "[]",
           "content_entity_canonical_id": null,
           "quantity": 5,
+          "candidate_canonical_ids": [],
+          "runtime_resolution": null,
+          "source_canonical_id": "task.series.15.519"
+        },
+        {
+          "canonical_id": "entity.task_reward.42109c85e4b553ef",
+          "reward_order": 4,
+          "reward_kind": "item",
+          "reward_name": "青龙玉佩",
+          "raw_quantity": "1",
+          "normalized_quantity": 1,
+          "raw_value_json": "{\"item\":\"青龙玉佩\",\"quantity\":1}",
+          "dependency_canonical_id": "entity.task_reward.42109c85e4b553ef",
+          "resolution_status": "resolved",
+          "runtime_capability": "queryable",
+          "candidate_canonical_ids_json": "[]",
+          "content_entity_canonical_id": "runtime.item.586fec3896207a43",
+          "quantity": 1,
           "candidate_canonical_ids": [],
           "runtime_resolution": null,
           "source_canonical_id": "task.series.15.519"
@@ -241120,6 +242056,30 @@
       }
     },
     {
+      "canonical_id": "derived.monster_definition.e64e02d87cec37d8",
+      "source_canonical_id": "derived.monster_definition.e64e02d87cec37d8",
+      "display_name": "邪恶花精",
+      "level": 152,
+      "monster_type": 5,
+      "runtime_capability": "queryable",
+      "identity_signature": [
+        "邪恶花精",
+        152,
+        5
+      ],
+      "encounter_type": "wild",
+      "repeatable": true,
+      "respawn_rule": "source_location_cache_refresh_5_minutes",
+      "evidence_status": "SOURCE_EXPLICIT",
+      "rewards": {
+        "experience": 6080,
+        "copper": 760,
+        "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
+        "copper_rule_status": "SOURCE_EXPLICIT",
+        "rule_id": "compatibility.monster-rewards.v1"
+      }
+    },
+    {
       "canonical_id": "derived.monster_definition.e7939a80d14edfcf",
       "source_canonical_id": "entity.monster.16a67e5e4f0681ef",
       "display_name": "白骨骷髅",
@@ -241330,6 +242290,30 @@
       "rewards": {
         "experience": 4920,
         "copper": 615,
+        "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
+        "copper_rule_status": "SOURCE_EXPLICIT",
+        "rule_id": "compatibility.monster-rewards.v1"
+      }
+    },
+    {
+      "canonical_id": "derived.monster_definition.ef74e1d297efebbd",
+      "source_canonical_id": "derived.monster_definition.ef74e1d297efebbd",
+      "display_name": "狐仙",
+      "level": 88,
+      "monster_type": 5,
+      "runtime_capability": "queryable",
+      "identity_signature": [
+        "狐仙",
+        88,
+        5
+      ],
+      "encounter_type": "wild",
+      "repeatable": true,
+      "respawn_rule": "source_location_cache_refresh_5_minutes",
+      "evidence_status": "SOURCE_EXPLICIT",
+      "rewards": {
+        "experience": 3520,
+        "copper": 440,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
         "copper_rule_status": "SOURCE_EXPLICIT",
         "rule_id": "compatibility.monster-rewards.v1"
@@ -241903,6 +242887,23 @@
       "evidence_status": "SOURCE_EXPLICIT"
     },
     {
+      "canonical_id": "entity.monster_placement.6cb3ecb20c1f85bb",
+      "source_canonical_id": "entity.monster_placement.6cb3ecb20c1f85bb",
+      "monster_canonical_id": "derived.monster_definition.ef74e1d297efebbd",
+      "location_canonical_id": "entity.location.97f578081181d571",
+      "location_resolution_status": "resolved",
+      "runtime_capability": "queryable",
+      "normalized_data": {
+        "city": "泉州",
+        "location": "丹霞山",
+        "monster": "狐仙"
+      },
+      "encounter_type": "wild",
+      "repeatable": true,
+      "respawn_rule": "source_location_cache_refresh_5_minutes",
+      "evidence_status": "SOURCE_EXPLICIT"
+    },
+    {
       "canonical_id": "entity.monster_placement.bc24e877c1ab6d40",
       "source_canonical_id": "entity.monster_placement.bc24e877c1ab6d40",
       "monster_canonical_id": "derived.monster_definition.9cdb92b5619a712d",
@@ -241913,6 +242914,23 @@
         "city": "威尼斯",
         "location": "枯树林",
         "monster": "巨熊"
+      },
+      "encounter_type": "wild",
+      "repeatable": true,
+      "respawn_rule": "source_location_cache_refresh_5_minutes",
+      "evidence_status": "SOURCE_EXPLICIT"
+    },
+    {
+      "canonical_id": "entity.monster_placement.c4502ee0b08f6e54",
+      "source_canonical_id": "entity.monster_placement.c4502ee0b08f6e54",
+      "monster_canonical_id": "derived.monster_definition.e64e02d87cec37d8",
+      "location_canonical_id": "entity.location.44c084a8df22d30d",
+      "location_resolution_status": "resolved",
+      "runtime_capability": "queryable",
+      "normalized_data": {
+        "city": "威尼斯",
+        "location": "后山",
+        "monster": "邪恶花精"
       },
       "encounter_type": "wild",
       "repeatable": true,
@@ -247976,6 +248994,27 @@
       }
     },
     {
+      "canonical_id": "entity.item.3efc0d87f78ee263",
+      "source_canonical_id": "entity.item.3efc0d87f78ee263",
+      "entity_category": "item",
+      "display_name": "螃蟹",
+      "normalized_data": {
+        "catalog": "fish",
+        "info": {},
+        "locations": [
+          [
+            "威尼斯",
+            "大阪"
+          ]
+        ],
+        "name": "螃蟹",
+        "price": 300,
+        "rarity": "common",
+        "tip": "横着走路的海蟹，钓上来时钳子还在咔咔作响。",
+        "type": 13
+      }
+    },
+    {
       "canonical_id": "entity.item.42f515f82fca1c51",
       "source_canonical_id": "entity.item.42f515f82fca1c51",
       "entity_category": "item",
@@ -248026,6 +249065,27 @@
         "catalog": "taskItems",
         "name": "好酒",
         "value": 1
+      }
+    },
+    {
+      "canonical_id": "entity.item.4e09967b7446105d",
+      "source_canonical_id": "entity.item.4e09967b7446105d",
+      "entity_category": "item",
+      "display_name": "剑鱼",
+      "normalized_data": {
+        "catalog": "fish",
+        "info": {},
+        "locations": [
+          [
+            "开普敦",
+            "泉州"
+          ]
+        ],
+        "name": "剑鱼",
+        "price": 1500,
+        "rarity": "rare",
+        "tip": "顶着铠甲状长喙的大鱼，冲浪时像一支离弦的箭。",
+        "type": 13
       }
     },
     {
@@ -248463,6 +249523,27 @@
       }
     },
     {
+      "canonical_id": "entity.item.ae1d91f7dc68ff3c",
+      "source_canonical_id": "entity.item.ae1d91f7dc68ff3c",
+      "entity_category": "item",
+      "display_name": "章鱼",
+      "normalized_data": {
+        "catalog": "fish",
+        "info": {},
+        "locations": [
+          [
+            "大阪",
+            "亚丁"
+          ]
+        ],
+        "name": "章鱼",
+        "price": 800,
+        "rarity": "uncommon",
+        "tip": "八条腕的深海章鱼，是海怪们的远房亲戚。",
+        "type": 13
+      }
+    },
+    {
       "canonical_id": "entity.item.af6879c857daa5b6",
       "source_canonical_id": "entity.item.af6879c857daa5b6",
       "entity_category": "item",
@@ -248711,6 +249792,38 @@
       }
     },
     {
+      "canonical_id": "entity.item.dced9d406b3780ff",
+      "source_canonical_id": "entity.item.dced9d406b3780ff",
+      "entity_category": "item",
+      "display_name": "百宝箱",
+      "normalized_data": {
+        "catalog": "allItems",
+        "name": "百宝箱",
+        "price": 10000
+      }
+    },
+    {
+      "canonical_id": "entity.item.df9ccd92ec9d49f8",
+      "source_canonical_id": "entity.item.df9ccd92ec9d49f8",
+      "entity_category": "item",
+      "display_name": "鲑鱼",
+      "normalized_data": {
+        "catalog": "fish",
+        "info": {},
+        "locations": [
+          [
+            "伦敦",
+            "开普敦"
+          ]
+        ],
+        "name": "鲑鱼",
+        "price": 600,
+        "rarity": "common",
+        "tip": "洄游上溯的冷水鱼，肉质肥厚，煮熟后泛着淡粉。",
+        "type": 13
+      }
+    },
+    {
       "canonical_id": "entity.item.e4ea2b25f4f0e798",
       "source_canonical_id": "entity.item.e4ea2b25f4f0e798",
       "entity_category": "item",
@@ -248803,6 +249916,42 @@
       "evidence_locator": "task.series.15.584 description + target encounter placement"
     },
     {
+      "canonical_id": "runtime.item.042e15fef31f26be",
+      "source_canonical_id": "runtime.item.042e15fef31f26be",
+      "entity_category": "item",
+      "display_name": "古航海图",
+      "normalized_data": {
+        "catalog": "taskItems",
+        "name": "古航海图",
+        "price": null,
+        "tip": "画着消失航线的古航海图，边缘已经烧灼。"
+      }
+    },
+    {
+      "canonical_id": "runtime.item.07189b7db2ed38ac",
+      "source_canonical_id": "runtime.item.07189b7db2ed38ac",
+      "entity_category": "item",
+      "display_name": "古护符",
+      "normalized_data": {
+        "catalog": "taskItems",
+        "name": "古护符",
+        "price": null,
+        "tip": "绳子都磨亮了的古护符，上面刻着看不懂的文字。"
+      }
+    },
+    {
+      "canonical_id": "runtime.item.083b844a413f2339",
+      "source_canonical_id": "runtime.item.083b844a413f2339",
+      "entity_category": "item",
+      "display_name": "太阳徽章",
+      "normalized_data": {
+        "catalog": "taskItems",
+        "name": "太阳徽章",
+        "price": null,
+        "tip": "太阳纹样的纯铜徽章，暖得像午后甲板。"
+      }
+    },
+    {
       "canonical_id": "runtime.item.186026db0c45bd9f",
       "source_canonical_id": "task.series.15.467",
       "entity_category": "item",
@@ -248831,6 +249980,30 @@
       },
       "provenance_status": "SOURCE_EXPLICIT_TASK_CONDITION",
       "evidence_locator": "task.series.15.458 description + target encounter placement"
+    },
+    {
+      "canonical_id": "runtime.item.25fb8273a4b5eedc",
+      "source_canonical_id": "runtime.item.25fb8273a4b5eedc",
+      "entity_category": "item",
+      "display_name": "加封谕旨",
+      "normalized_data": {
+        "catalog": "taskItems",
+        "name": "加封谕旨",
+        "price": null,
+        "tip": "加盖御玺的加封谕旨，受封者姓名处仍是空白。"
+      }
+    },
+    {
+      "canonical_id": "runtime.item.2a16eba99d838ed0",
+      "source_canonical_id": "runtime.item.2a16eba99d838ed0",
+      "entity_category": "item",
+      "display_name": "圣火令",
+      "normalized_data": {
+        "catalog": "taskItems",
+        "name": "圣火令",
+        "price": null,
+        "tip": "一柄燃着紫焰的圣火令，是圣火教至高信物。"
+      }
     },
     {
       "canonical_id": "runtime.item.2b73463f2fabf312",
@@ -248893,6 +250066,18 @@
       "evidence_locator": "zhsh/config/monsterItems.json"
     },
     {
+      "canonical_id": "runtime.item.372e7a0da738d7b6",
+      "source_canonical_id": "runtime.item.372e7a0da738d7b6",
+      "entity_category": "item",
+      "display_name": "银钥匙",
+      "normalized_data": {
+        "catalog": "taskItems",
+        "name": "银钥匙",
+        "price": null,
+        "tip": "银钥匙贴着细细的铭牌：交予有缘人。"
+      }
+    },
+    {
       "canonical_id": "runtime.item.37c940e0ed1f049b",
       "source_canonical_id": "task.series.15.543",
       "entity_category": "item",
@@ -248921,6 +250106,18 @@
       },
       "provenance_status": "SOURCE_EXPLICIT_TASK_CONDITION",
       "evidence_locator": "task.series.15.270 description + target encounter placement"
+    },
+    {
+      "canonical_id": "runtime.item.3ad18738be2bb7d3",
+      "source_canonical_id": "runtime.item.3ad18738be2bb7d3",
+      "entity_category": "item",
+      "display_name": "亚丁权杖",
+      "normalized_data": {
+        "catalog": "taskItems",
+        "name": "亚丁权杖",
+        "price": null,
+        "tip": "亚丁总督的权杖，杖头嵌着航海罗盘。"
+      }
     },
     {
       "canonical_id": "runtime.item.3b3f53cf5c43cf4f",
@@ -248968,6 +250165,18 @@
       "evidence_locator": "task.series.12.098 description + target encounter placement"
     },
     {
+      "canonical_id": "runtime.item.43c7d7cefa4ae8b6",
+      "source_canonical_id": "runtime.item.43c7d7cefa4ae8b6",
+      "entity_category": "item",
+      "display_name": "玉筒",
+      "normalized_data": {
+        "catalog": "taskItems",
+        "name": "玉筒",
+        "price": null,
+        "tip": "上好的青玉笔筒，内衬一方古纸。"
+      }
+    },
+    {
       "canonical_id": "runtime.item.4d5b4502853fa908",
       "source_canonical_id": "task.series.15.411",
       "entity_category": "item",
@@ -248996,6 +250205,18 @@
       },
       "provenance_status": "SOURCE_EXPLICIT",
       "evidence_locator": "zhsh/config/monsterItems.json"
+    },
+    {
+      "canonical_id": "runtime.item.4e87ebf02b34f737",
+      "source_canonical_id": "runtime.item.4e87ebf02b34f737",
+      "entity_category": "item",
+      "display_name": "通商文书",
+      "normalized_data": {
+        "catalog": "taskItems",
+        "name": "通商文书",
+        "price": null,
+        "tip": "商会签发的通商文书，骑缝盖着火漆大印。"
+      }
     },
     {
       "canonical_id": "runtime.item.4ea62b01710f7caa",
@@ -249073,6 +250294,18 @@
       "evidence_locator": "task.series.15.269 description + target encounter placement"
     },
     {
+      "canonical_id": "runtime.item.586fec3896207a43",
+      "source_canonical_id": "runtime.item.586fec3896207a43",
+      "entity_category": "item",
+      "display_name": "青龙玉佩",
+      "normalized_data": {
+        "catalog": "taskItems",
+        "name": "青龙玉佩",
+        "price": null,
+        "tip": "青龙纹青玉佩，通体温润，雕的是东方四灵之首。"
+      }
+    },
+    {
       "canonical_id": "runtime.item.587731d8287b195f",
       "source_canonical_id": "task.series.15.254",
       "entity_category": "item",
@@ -249086,6 +250319,18 @@
       },
       "provenance_status": "SOURCE_EXPLICIT_TASK_CONDITION",
       "evidence_locator": "task.series.15.254 description + target encounter placement"
+    },
+    {
+      "canonical_id": "runtime.item.5c27467ecfa61e61",
+      "source_canonical_id": "runtime.item.5c27467ecfa61e61",
+      "entity_category": "item",
+      "display_name": "漩涡怀表",
+      "normalized_data": {
+        "catalog": "taskItems",
+        "name": "漩涡怀表",
+        "price": null,
+        "tip": "表盘呈漩涡状的怀表，指针逆着走。"
+      }
     },
     {
       "canonical_id": "runtime.item.5d6c46dc0490cfe0",
@@ -249193,6 +250438,42 @@
       "evidence_locator": "zhsh/config/monsterItems.json"
     },
     {
+      "canonical_id": "runtime.item.7ec5b65b1a6036f9",
+      "source_canonical_id": "runtime.item.7ec5b65b1a6036f9",
+      "entity_category": "item",
+      "display_name": "印蜡官印",
+      "normalized_data": {
+        "catalog": "taskItems",
+        "name": "印蜡官印",
+        "price": null,
+        "tip": "官印的印蜡盒，烙过每一张加封的信函。"
+      }
+    },
+    {
+      "canonical_id": "runtime.item.80799273a1951294",
+      "source_canonical_id": "runtime.item.80799273a1951294",
+      "entity_category": "item",
+      "display_name": "密封信函",
+      "normalized_data": {
+        "catalog": "taskItems",
+        "name": "密封信函",
+        "price": null,
+        "tip": "封蜡完好的密信，火漆上压着一枚锚形印记。"
+      }
+    },
+    {
+      "canonical_id": "runtime.item.83a060a1778749f9",
+      "source_canonical_id": "runtime.item.83a060a1778749f9",
+      "entity_category": "item",
+      "display_name": "龙珠碎片·绿",
+      "normalized_data": {
+        "catalog": "taskItems",
+        "name": "龙珠碎片·绿",
+        "price": null,
+        "tip": "龙珠的一块绿色碎片，映着森林的光。"
+      }
+    },
+    {
       "canonical_id": "runtime.item.879939da40170b1b",
       "source_canonical_id": "task.series.15.186",
       "entity_category": "item",
@@ -249223,6 +250504,30 @@
       "evidence_locator": "task.series.15.224 description + target encounter placement"
     },
     {
+      "canonical_id": "runtime.item.8b74a7b28060691a",
+      "source_canonical_id": "runtime.item.8b74a7b28060691a",
+      "entity_category": "item",
+      "display_name": "黑铁钥匙",
+      "normalized_data": {
+        "catalog": "taskItems",
+        "name": "黑铁钥匙",
+        "price": null,
+        "tip": "沉重漆黑的黑钥匙，齿形取自海盗船的龙骨。"
+      }
+    },
+    {
+      "canonical_id": "runtime.item.8f79cc1311a40f9d",
+      "source_canonical_id": "runtime.item.8f79cc1311a40f9d",
+      "entity_category": "item",
+      "display_name": "航海罗盘",
+      "normalized_data": {
+        "catalog": "taskItems",
+        "name": "航海罗盘",
+        "price": null,
+        "tip": "指针总指着某个无名岛的方向，从未失灵。"
+      }
+    },
+    {
       "canonical_id": "runtime.item.90e4e58d454b4a78",
       "source_canonical_id": "task.series.15.655",
       "entity_category": "item",
@@ -249236,6 +250541,18 @@
       },
       "provenance_status": "SOURCE_EXPLICIT_TASK_CONDITION",
       "evidence_locator": "task.series.15.655 description + target encounter placement"
+    },
+    {
+      "canonical_id": "runtime.item.9216af6fd9009442",
+      "source_canonical_id": "runtime.item.9216af6fd9009442",
+      "entity_category": "item",
+      "display_name": "通商卷轴",
+      "normalized_data": {
+        "catalog": "taskItems",
+        "name": "通商卷轴",
+        "price": null,
+        "tip": "记载着七国通商口岸与关税的旧卷轴。"
+      }
     },
     {
       "canonical_id": "runtime.item.97ec88b8cc4e7664",
@@ -249268,6 +250585,30 @@
       "evidence_locator": "task.series.15.416 description + target encounter placement"
     },
     {
+      "canonical_id": "runtime.item.9e7f9214ce7d878c",
+      "source_canonical_id": "runtime.item.9e7f9214ce7d878c",
+      "entity_category": "item",
+      "display_name": "龙珠碎片·赤",
+      "normalized_data": {
+        "catalog": "taskItems",
+        "name": "龙珠碎片·赤",
+        "price": null,
+        "tip": "龙珠的一块赤色碎片，捏着发烫。"
+      }
+    },
+    {
+      "canonical_id": "runtime.item.9fa15c36e7e4ff6e",
+      "source_canonical_id": "runtime.item.9fa15c36e7e4ff6e",
+      "entity_category": "item",
+      "display_name": "蓝纹宝箱",
+      "normalized_data": {
+        "catalog": "taskItems",
+        "name": "蓝纹宝箱",
+        "price": null,
+        "tip": "蓝纹漆器宝箱，开锁处是一枚小小的玉钮。"
+      }
+    },
+    {
       "canonical_id": "runtime.item.a0fedb28c6ae448f",
       "source_canonical_id": "task.series.15.670",
       "entity_category": "item",
@@ -249281,6 +250622,18 @@
       },
       "provenance_status": "SOURCE_EXPLICIT_TASK_CONDITION",
       "evidence_locator": "task.series.15.670 description + target encounter placement"
+    },
+    {
+      "canonical_id": "runtime.item.abb9d800063cd3bc",
+      "source_canonical_id": "runtime.item.abb9d800063cd3bc",
+      "entity_category": "item",
+      "display_name": "金钥匙",
+      "normalized_data": {
+        "catalog": "taskItems",
+        "name": "金钥匙",
+        "price": null,
+        "tip": "金钥匙共有七齿，据说对应七座宝库。"
+      }
     },
     {
       "canonical_id": "runtime.item.ac59252eb64cde19",
@@ -249343,6 +250696,30 @@
       "evidence_locator": "task.series.13.160 description + target encounter placement"
     },
     {
+      "canonical_id": "runtime.item.b40abb7dbcb5e4b7",
+      "source_canonical_id": "runtime.item.b40abb7dbcb5e4b7",
+      "entity_category": "item",
+      "display_name": "水晶头骨",
+      "normalized_data": {
+        "catalog": "taskItems",
+        "name": "水晶头骨",
+        "price": null,
+        "tip": "半透明的水晶头骨，额心有月影浮动。"
+      }
+    },
+    {
+      "canonical_id": "runtime.item.b8db0ebdcf750fa5",
+      "source_canonical_id": "runtime.item.b8db0ebdcf750fa5",
+      "entity_category": "item",
+      "display_name": "律法纹章",
+      "normalized_data": {
+        "catalog": "taskItems",
+        "name": "律法纹章",
+        "price": null,
+        "tip": "商埠法庭的律法纹章，象征海商的正当权益。"
+      }
+    },
+    {
       "canonical_id": "runtime.item.bf8e99401d2d0f49",
       "source_canonical_id": "task.series.15.726",
       "entity_category": "item",
@@ -249403,6 +250780,53 @@
       "evidence_locator": "task.series.15.656 description + target encounter placement"
     },
     {
+      "canonical_id": "runtime.item.ddcee7db71d17ef9",
+      "source_canonical_id": "runtime.item.ddcee7db71d17ef9",
+      "entity_category": "item",
+      "display_name": "黄金金币",
+      "normalized_data": {
+        "catalog": "taskItems",
+        "name": "黄金金币",
+        "tip": "黄澄澄的金币，海贼们藏在靴筒里的硬通货。"
+      }
+    },
+    {
+      "canonical_id": "runtime.item.e035a3d7f7cc3b0e",
+      "source_canonical_id": "runtime.item.e035a3d7f7cc3b0e",
+      "entity_category": "item",
+      "display_name": "月影水晶球",
+      "normalized_data": {
+        "catalog": "taskItems",
+        "name": "月影水晶球",
+        "price": null,
+        "tip": "夜光水晶球，球心雾气里隐隐有月影。"
+      }
+    },
+    {
+      "canonical_id": "runtime.item.e1d46972982fafa9",
+      "source_canonical_id": "runtime.item.e1d46972982fafa9",
+      "entity_category": "item",
+      "display_name": "龙珠碎片·金",
+      "normalized_data": {
+        "catalog": "taskItems",
+        "name": "龙珠碎片·金",
+        "price": null,
+        "tip": "龙珠的一块金色碎片，整颗龙珠拼图的一角。"
+      }
+    },
+    {
+      "canonical_id": "runtime.item.e9073c5038adbde4",
+      "source_canonical_id": "runtime.item.e9073c5038adbde4",
+      "entity_category": "item",
+      "display_name": "骷髅钥匙",
+      "normalized_data": {
+        "catalog": "taskItems",
+        "name": "骷髅钥匙",
+        "price": null,
+        "tip": "钥匙柄是一枚骷髅头，海贼口耳相传的不祥之物。"
+      }
+    },
+    {
       "canonical_id": "runtime.item.ead34659a24d689e",
       "source_canonical_id": "source.zhsh.config.monsterItems",
       "entity_category": "item",
@@ -249433,6 +250857,17 @@
       "evidence_locator": "task.series.13.129 description + target encounter placement"
     },
     {
+      "canonical_id": "runtime.item.f871288f0c675456",
+      "source_canonical_id": "runtime.item.f871288f0c675456",
+      "entity_category": "item",
+      "display_name": "百宝袋",
+      "normalized_data": {
+        "catalog": "taskItems",
+        "name": "百宝袋",
+        "tip": "塞得鼓鼓囊囊的帆布袋，谁也不知道里面装了什么。"
+      }
+    },
+    {
       "canonical_id": "runtime.item.fde0e6fbfe4b8da9",
       "source_canonical_id": "task.series.15.268",
       "entity_category": "item",
@@ -249446,6 +250881,54 @@
       },
       "provenance_status": "SOURCE_EXPLICIT_TASK_CONDITION",
       "evidence_locator": "task.series.15.268 description + target encounter placement"
+    },
+    {
+      "canonical_id": "runtime.item.fdeae4a1e1999008",
+      "source_canonical_id": "runtime.item.fdeae4a1e1999008",
+      "entity_category": "item",
+      "display_name": "龙珠碎片·蓝",
+      "normalized_data": {
+        "catalog": "taskItems",
+        "name": "龙珠碎片·蓝",
+        "price": null,
+        "tip": "龙珠的一块蓝色碎片，像含着一汪海水。"
+      }
+    },
+    {
+      "canonical_id": "runtime.item.ff3f779360a58ddb",
+      "source_canonical_id": "runtime.item.ff3f779360a58ddb",
+      "entity_category": "item",
+      "display_name": "圣杯",
+      "normalized_data": {
+        "catalog": "taskItems",
+        "name": "圣杯",
+        "price": null,
+        "tip": "烛台般大小的圣杯，杯壁刻着潮汐起落。"
+      }
+    },
+    {
+      "canonical_id": "runtime.item.ff6cef9d8a68451b",
+      "source_canonical_id": "runtime.item.ff6cef9d8a68451b",
+      "entity_category": "item",
+      "display_name": "铜钥匙",
+      "normalized_data": {
+        "catalog": "taskItems",
+        "name": "铜钥匙",
+        "price": null,
+        "tip": "老旧的铜钥匙，磨损得看不出纹样。"
+      }
+    },
+    {
+      "canonical_id": "runtime.item.ff6fcb7c28ae1ded",
+      "source_canonical_id": "runtime.item.ff6fcb7c28ae1ded",
+      "entity_category": "item",
+      "display_name": "镇印石盒",
+      "normalized_data": {
+        "catalog": "taskItems",
+        "name": "镇印石盒",
+        "price": null,
+        "tip": "石盒盖上压着一枚镇印，沉得几乎抬不动。"
+      }
     },
     {
       "canonical_id": "runtime.market_item.1aac8b956f808df5",
@@ -250027,6 +251510,17 @@
       "monster_display_name": "山猪"
     },
     {
+      "canonical_id": "entity.drop.4731f78f08d59276",
+      "source_canonical_id": "derived.monster_definition.adb0a4588b6f8c39",
+      "source_kind": "drop",
+      "probability": 0.4,
+      "quantity": 1,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.f871288f0c675456",
+      "monster_canonical_id": "derived.monster_definition.adb0a4588b6f8c39",
+      "monster_display_name": "海盗头子扎布拉"
+    },
+    {
       "canonical_id": "entity.drop.4751ab3414d6c69b",
       "source_canonical_id": "derived.monster_definition.e799e5c05fc23e1e",
       "source_kind": "drop",
@@ -250168,6 +251662,17 @@
       "content_entity_canonical_id": "runtime.item.6e1ec2b8b4a1f49a",
       "monster_canonical_id": "derived.monster_definition.39f9a83a573c7d74",
       "monster_display_name": "龙虾"
+    },
+    {
+      "canonical_id": "entity.drop.5e58c898947c6d95",
+      "source_canonical_id": "derived.monster_definition.adb0a4588b6f8c39",
+      "source_kind": "drop",
+      "probability": 0.4,
+      "quantity": 1,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "entity.item.dced9d406b3780ff",
+      "monster_canonical_id": "derived.monster_definition.adb0a4588b6f8c39",
+      "monster_display_name": "海盗头子扎布拉"
     },
     {
       "canonical_id": "entity.drop.5f99ae241df140c2",
@@ -250487,6 +251992,17 @@
       "content_entity_canonical_id": "entity.equipment.ffcc43c52a70a4c7",
       "monster_canonical_id": "derived.monster_definition.e437c616ce4aef80",
       "monster_display_name": "白云之精"
+    },
+    {
+      "canonical_id": "entity.drop.8ffeb3de0d266eca",
+      "source_canonical_id": "derived.monster_definition.ef74e1d297efebbd",
+      "source_kind": "drop",
+      "probability": 0.4,
+      "quantity": 1,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.f871288f0c675456",
+      "monster_canonical_id": "derived.monster_definition.ef74e1d297efebbd",
+      "monster_display_name": "狐仙"
     },
     {
       "canonical_id": "entity.drop.90100d486a4610dd",
@@ -250907,6 +252423,17 @@
       "monster_display_name": "地蜘蛛"
     },
     {
+      "canonical_id": "entity.drop.d71b5f4acee24331",
+      "source_canonical_id": "derived.monster_definition.e64e02d87cec37d8",
+      "source_kind": "drop",
+      "probability": 0.4,
+      "quantity": 1,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "entity.item.7ba771bd31f63445",
+      "monster_canonical_id": "derived.monster_definition.e64e02d87cec37d8",
+      "monster_display_name": "邪恶花精"
+    },
+    {
       "canonical_id": "entity.drop.d874e1199cdedc19",
       "source_canonical_id": "derived.monster_definition.91e67387eeb8d589",
       "source_kind": "drop",
@@ -251061,6 +252588,17 @@
       "monster_display_name": "山猪"
     },
     {
+      "canonical_id": "entity.drop.e7bc3dc20a03e9a2",
+      "source_canonical_id": "entity.drop.e7bc3dc20a03e9a2",
+      "source_kind": "drop",
+      "probability": null,
+      "quantity": null,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "entity.item.7ba771bd31f63445",
+      "monster_canonical_id": "derived.monster_definition.e64e02d87cec37d8",
+      "monster_display_name": "邪恶花精"
+    },
+    {
       "canonical_id": "entity.drop.e896d27520b7f8d4",
       "source_canonical_id": "entity.drop.e896d27520b7f8d4",
       "source_kind": "drop",
@@ -251169,6 +252707,17 @@
       "content_entity_canonical_id": "runtime.item.ac59252eb64cde19",
       "monster_canonical_id": "derived.monster_definition.854432156ab03a51",
       "monster_display_name": "玫瑰花"
+    },
+    {
+      "canonical_id": "entity.drop.fc47f416a6caf6e8",
+      "source_canonical_id": "derived.monster_definition.1246caee0ea1f386",
+      "source_kind": "drop",
+      "probability": 0.4,
+      "quantity": 1,
+      "runtime_capability": "queryable",
+      "content_entity_canonical_id": "runtime.item.ddcee7db71d17ef9",
+      "monster_canonical_id": "derived.monster_definition.1246caee0ea1f386",
+      "monster_display_name": "亚丁海盗头子"
     },
     {
       "canonical_id": "entity.drop.fcd0940c97ac949a",
@@ -251446,6 +252995,90 @@
       "price": 2,
       "weight": 150,
       "speed": 76,
+      "city_canonical_id": null,
+      "port_location_canonical_id": null,
+      "port_map_node_canonical_id": null
+    },
+    {
+      "canonical_id": "entity.ship.cf9bb152465a73b4",
+      "source_canonical_id": "entity.ship.cf9bb152465a73b4",
+      "display_name": "双桅商船",
+      "city_display_name": "伦敦",
+      "price": 7000,
+      "weight": 70,
+      "speed": 22,
+      "city_canonical_id": "entity.city.5d8adf9a8553ebca",
+      "port_location_canonical_id": "entity.location.7e6fb1e0eb5b3fa2",
+      "port_map_node_canonical_id": "derived.map_node.location.ce6bb50539c192cf"
+    },
+    {
+      "canonical_id": "entity.ship.c2aa3a8d546c69ce",
+      "source_canonical_id": "entity.ship.c2aa3a8d546c69ce",
+      "display_name": "武装商船",
+      "city_display_name": "伦敦",
+      "price": 12000,
+      "weight": 90,
+      "speed": 26,
+      "city_canonical_id": "entity.city.5d8adf9a8553ebca",
+      "port_location_canonical_id": "entity.location.7e6fb1e0eb5b3fa2",
+      "port_map_node_canonical_id": "derived.map_node.location.ce6bb50539c192cf"
+    },
+    {
+      "canonical_id": "entity.ship.6d0a992e272ac3f5",
+      "source_canonical_id": "entity.ship.6d0a992e272ac3f5",
+      "display_name": "卡拉维尔帆船",
+      "city_display_name": "开普敦",
+      "price": 10500,
+      "weight": 65,
+      "speed": 30,
+      "city_canonical_id": null,
+      "port_location_canonical_id": null,
+      "port_map_node_canonical_id": null
+    },
+    {
+      "canonical_id": "entity.ship.d8abe8bc33bf24cb",
+      "source_canonical_id": "entity.ship.d8abe8bc33bf24cb",
+      "display_name": "海盗船",
+      "city_display_name": "泉州",
+      "price": 20000,
+      "weight": 110,
+      "speed": 34,
+      "city_canonical_id": "entity.city.3f395aab4eb9614b",
+      "port_location_canonical_id": "entity.location.0846000448b67ea5",
+      "port_map_node_canonical_id": "derived.map_node.location.7141b48f2e587e5a"
+    },
+    {
+      "canonical_id": "entity.ship.583ef5095878bba2",
+      "source_canonical_id": "entity.ship.583ef5095878bba2",
+      "display_name": "幽灵船",
+      "city_display_name": "泉州",
+      "price": 26000,
+      "weight": 120,
+      "speed": 40,
+      "city_canonical_id": "entity.city.3f395aab4eb9614b",
+      "port_location_canonical_id": "entity.location.0846000448b67ea5",
+      "port_map_node_canonical_id": "derived.map_node.location.7141b48f2e587e5a"
+    },
+    {
+      "canonical_id": "entity.ship.f90a7ca93f90a4c8",
+      "source_canonical_id": "entity.ship.f90a7ca93f90a4c8",
+      "display_name": "远洋帆船",
+      "city_display_name": "威尼斯",
+      "price": 18000,
+      "weight": 130,
+      "speed": 38,
+      "city_canonical_id": "entity.city.7ff6ada0319bc625",
+      "port_location_canonical_id": "entity.location.eaf3b23904bb6425",
+      "port_map_node_canonical_id": "derived.map_node.location.7e79b57e8c8622e9"
+    },
+    {
+      "canonical_id": "entity.ship.65d8475a8c58dbb3",
+      "source_canonical_id": "entity.ship.65d8475a8c58dbb3",
+      "display_name": "大型鱼带泡船",
+      "city_display_name": "商城",
+      "price": 16000,
+      "weight": 100,
+      "speed": 42,
       "city_canonical_id": null,
       "port_location_canonical_id": null,
       "port_map_node_canonical_id": null
@@ -262493,6 +264126,31 @@
       "type": 6
     },
     {
+      "canonical_id": "entity.equipment.01695b52af71584d",
+      "source_canonical_id": "entity.equipment.01695b52af71584d",
+      "display_name": "哥伦布防御服",
+      "required_level": 35,
+      "equipment_type": 3,
+      "attributes": {
+        "catalog_key": "哥伦布防御服",
+        "defense": 29,
+        "level": 35,
+        "lj": 510,
+        "name": "哥伦布防御服",
+        "tip": "哥伦布远征队的制式防具，帆布下缝着旧航图。",
+        "tx": "抗迟缓+6",
+        "type": 3
+      },
+      "catalog_key": "哥伦布防御服",
+      "defense": 29,
+      "level": 35,
+      "lj": 510,
+      "name": "哥伦布防御服",
+      "tip": "哥伦布远征队的制式防具，帆布下缝着旧航图。",
+      "tx": "抗迟缓+6",
+      "type": 3
+    },
+    {
       "canonical_id": "entity.equipment.021b06c616027fea",
       "source_canonical_id": "entity.equipment.021b06c616027fea",
       "display_name": "毒蛇长靴",
@@ -262909,6 +264567,35 @@
       "type": 3
     },
     {
+      "canonical_id": "entity.equipment.10dc3022a8f21331",
+      "source_canonical_id": "entity.equipment.10dc3022a8f21331",
+      "display_name": "船锚",
+      "required_level": 25,
+      "equipment_type": 5,
+      "attributes": {
+        "agility": 5,
+        "catalog_key": "船锚",
+        "defense": 7,
+        "level": 25,
+        "lj": 450,
+        "morale": 6,
+        "name": "船锚",
+        "tip": "老水手的旧锚，沉过七处海沟，也能锚定你的航路。",
+        "tx": "体力回复+1",
+        "type": 5
+      },
+      "agility": 5,
+      "catalog_key": "船锚",
+      "defense": 7,
+      "level": 25,
+      "lj": 450,
+      "morale": 6,
+      "name": "船锚",
+      "tip": "老水手的旧锚，沉过七处海沟，也能锚定你的航路。",
+      "tx": "体力回复+1",
+      "type": 5
+    },
+    {
       "canonical_id": "entity.equipment.117660c3f001b052",
       "source_canonical_id": "entity.equipment.117660c3f001b052",
       "display_name": "勇敢护腰",
@@ -263089,6 +264776,31 @@
       "maxAttack": 16,
       "name": "龙鳞项圈",
       "type": 6
+    },
+    {
+      "canonical_id": "entity.equipment.15398aab12c7137c",
+      "source_canonical_id": "entity.equipment.15398aab12c7137c",
+      "display_name": "海军外套",
+      "required_level": 15,
+      "equipment_type": 3,
+      "attributes": {
+        "catalog_key": "海军外套",
+        "defense": 12,
+        "level": 15,
+        "lj": 390,
+        "name": "海军外套",
+        "tip": "防浪的帆布外套，袖口绣着锚徽。",
+        "tx": "抗迟缓+2",
+        "type": 3
+      },
+      "catalog_key": "海军外套",
+      "defense": 12,
+      "level": 15,
+      "lj": 390,
+      "name": "海军外套",
+      "tip": "防浪的帆布外套，袖口绣着锚徽。",
+      "tx": "抗迟缓+2",
+      "type": 3
     },
     {
       "canonical_id": "entity.equipment.154266d8a2d295e5",
@@ -265078,6 +266790,35 @@
       "type": 1
     },
     {
+      "canonical_id": "entity.equipment.4c46d06cd54bedad",
+      "source_canonical_id": "entity.equipment.4c46d06cd54bedad",
+      "display_name": "航海护符",
+      "required_level": 18,
+      "equipment_type": 5,
+      "attributes": {
+        "agility": 3,
+        "catalog_key": "航海护符",
+        "defense": 5,
+        "level": 18,
+        "lj": 408,
+        "morale": 4,
+        "name": "航海护符",
+        "tip": "护符里封着一缕顺风，护佑短途航行的水手。",
+        "tx": "暴风雨抗性+1",
+        "type": 5
+      },
+      "agility": 3,
+      "catalog_key": "航海护符",
+      "defense": 5,
+      "level": 18,
+      "lj": 408,
+      "morale": 4,
+      "name": "航海护符",
+      "tip": "护符里封着一缕顺风，护佑短途航行的水手。",
+      "tx": "暴风雨抗性+1",
+      "type": 5
+    },
+    {
       "canonical_id": "entity.equipment.4c7b17ee435b6b8d",
       "source_canonical_id": "entity.equipment.4c7b17ee435b6b8d",
       "display_name": "灯穗腰带",
@@ -265494,6 +267235,35 @@
       "type": 1
     },
     {
+      "canonical_id": "entity.equipment.54f2dd75181c255e",
+      "source_canonical_id": "entity.equipment.54f2dd75181c255e",
+      "display_name": "航海腰带",
+      "required_level": 22,
+      "equipment_type": 5,
+      "attributes": {
+        "agility": 4,
+        "catalog_key": "航海腰带",
+        "defense": 6,
+        "level": 22,
+        "lj": 432,
+        "morale": 5,
+        "name": "航海腰带",
+        "tip": "结实的帆绳腰带，挂着打火镰与一根旧铅笔。",
+        "tx": "抗迟缓+2",
+        "type": 5
+      },
+      "agility": 4,
+      "catalog_key": "航海腰带",
+      "defense": 6,
+      "level": 22,
+      "lj": 432,
+      "morale": 5,
+      "name": "航海腰带",
+      "tip": "结实的帆绳腰带，挂着打火镰与一根旧铅笔。",
+      "tx": "抗迟缓+2",
+      "type": 5
+    },
+    {
       "canonical_id": "entity.equipment.56238783b0d26c25",
       "source_canonical_id": "entity.equipment.56238783b0d26c25",
       "display_name": "鳞片冰靴",
@@ -265799,6 +267569,31 @@
       "name": "+月华相思剑",
       "tip": "月华光耀，亲人远疏，万里孤穹，泪为相思",
       "type": 1
+    },
+    {
+      "canonical_id": "entity.equipment.5de2d5c77fed50a8",
+      "source_canonical_id": "entity.equipment.5de2d5c77fed50a8",
+      "display_name": "玉兔绒衣",
+      "required_level": 45,
+      "equipment_type": 3,
+      "attributes": {
+        "catalog_key": "玉兔绒衣",
+        "defense": 38,
+        "level": 45,
+        "lj": 570,
+        "name": "玉兔绒衣",
+        "tip": "玉兔绒毛织成的雪白衣衫，触手生温。",
+        "tx": "恢复+2",
+        "type": 3
+      },
+      "catalog_key": "玉兔绒衣",
+      "defense": 38,
+      "level": 45,
+      "lj": 570,
+      "name": "玉兔绒衣",
+      "tip": "玉兔绒毛织成的雪白衣衫，触手生温。",
+      "tx": "恢复+2",
+      "type": 3
     },
     {
       "canonical_id": "entity.equipment.5e0484d8c1ca4825",
@@ -266202,6 +267997,35 @@
       "type": 5
     },
     {
+      "canonical_id": "entity.equipment.6b334515180fd342",
+      "source_canonical_id": "entity.equipment.6b334515180fd342",
+      "display_name": "红宝石戒指",
+      "required_level": 35,
+      "equipment_type": 5,
+      "attributes": {
+        "agility": 7,
+        "catalog_key": "红宝石戒指",
+        "defense": 10,
+        "level": 35,
+        "lj": 510,
+        "morale": 8,
+        "name": "红宝石戒指",
+        "tip": "在亚丁集市淘来的红宝石，戒托刻着祝福的古文。",
+        "tx": "致命攻+5",
+        "type": 5
+      },
+      "agility": 7,
+      "catalog_key": "红宝石戒指",
+      "defense": 10,
+      "level": 35,
+      "lj": 510,
+      "morale": 8,
+      "name": "红宝石戒指",
+      "tip": "在亚丁集市淘来的红宝石，戒托刻着祝福的古文。",
+      "tx": "致命攻+5",
+      "type": 5
+    },
+    {
       "canonical_id": "entity.equipment.6b427f703fd592da",
       "source_canonical_id": "entity.equipment.6b427f703fd592da",
       "display_name": "刺客匕首",
@@ -266526,6 +268350,35 @@
       "type": 2
     },
     {
+      "canonical_id": "entity.equipment.74350968e3e43981",
+      "source_canonical_id": "entity.equipment.74350968e3e43981",
+      "display_name": "桂魄银蟾",
+      "required_level": 44,
+      "equipment_type": 5,
+      "attributes": {
+        "agility": 8,
+        "catalog_key": "桂魄银蟾",
+        "defense": 13,
+        "level": 44,
+        "lj": 564,
+        "morale": 11,
+        "name": "桂魄银蟾",
+        "tip": "月宫桂树下的银蟾石，握在掌心有月华微凉。",
+        "tx": "抗诅咒+2",
+        "type": 5
+      },
+      "agility": 8,
+      "catalog_key": "桂魄银蟾",
+      "defense": 13,
+      "level": 44,
+      "lj": 564,
+      "morale": 11,
+      "name": "桂魄银蟾",
+      "tip": "月宫桂树下的银蟾石，握在掌心有月华微凉。",
+      "tx": "抗诅咒+2",
+      "type": 5
+    },
+    {
       "canonical_id": "entity.equipment.74c6313ec03f3b7c",
       "source_canonical_id": "entity.equipment.74c6313ec03f3b7c",
       "display_name": "坚硬重戒",
@@ -266800,6 +268653,35 @@
       "lj": 581,
       "name": "乔丹腰带",
       "type": 4
+    },
+    {
+      "canonical_id": "entity.equipment.7c42a46337706f8a",
+      "source_canonical_id": "entity.equipment.7c42a46337706f8a",
+      "display_name": "航海图卷",
+      "required_level": 28,
+      "equipment_type": 5,
+      "attributes": {
+        "agility": 5,
+        "catalog_key": "航海图卷",
+        "defense": 8,
+        "level": 28,
+        "lj": 468,
+        "morale": 7,
+        "name": "航海图卷",
+        "tip": "泛黄的图卷，标注着早已消失的罗盘航线。",
+        "tx": "声望+1",
+        "type": 5
+      },
+      "agility": 5,
+      "catalog_key": "航海图卷",
+      "defense": 8,
+      "level": 28,
+      "lj": 468,
+      "morale": 7,
+      "name": "航海图卷",
+      "tip": "泛黄的图卷，标注着早已消失的罗盘航线。",
+      "tx": "声望+1",
+      "type": 5
     },
     {
       "canonical_id": "entity.equipment.7ce88cd579127569",
@@ -267724,6 +269606,62 @@
       "name": "+武士之帽",
       "tx": "抗麻痹+1",
       "type": 2
+    },
+    {
+      "canonical_id": "entity.equipment.98529ccd81558bb0",
+      "source_canonical_id": "entity.equipment.98529ccd81558bb0",
+      "display_name": "哥伦布的铁盔",
+      "required_level": 34,
+      "equipment_type": 2,
+      "attributes": {
+        "catalog_key": "哥伦布的铁盔",
+        "defense": 5,
+        "level": 34,
+        "lj": 504,
+        "morale": 12,
+        "name": "哥伦布的铁盔",
+        "tip": "锈迹斑斑的铁盔，内衬写着哥伦布的名字。",
+        "tx": "抗迟缓+3",
+        "type": 2
+      },
+      "catalog_key": "哥伦布的铁盔",
+      "defense": 5,
+      "level": 34,
+      "lj": 504,
+      "morale": 12,
+      "name": "哥伦布的铁盔",
+      "tip": "锈迹斑斑的铁盔，内衬写着哥伦布的名字。",
+      "tx": "抗迟缓+3",
+      "type": 2
+    },
+    {
+      "canonical_id": "entity.equipment.9af92b48d893bdcd",
+      "source_canonical_id": "entity.equipment.9af92b48d893bdcd",
+      "display_name": "航海勋章",
+      "required_level": 28,
+      "equipment_type": 5,
+      "attributes": {
+        "agility": 5,
+        "catalog_key": "航海勋章",
+        "defense": 8,
+        "level": 28,
+        "lj": 468,
+        "morale": 7,
+        "name": "航海勋章",
+        "tip": "远洋船长们互相赠送的勋章，刻着一艘三桅帆船。",
+        "tx": "声望+1",
+        "type": 5
+      },
+      "agility": 5,
+      "catalog_key": "航海勋章",
+      "defense": 8,
+      "level": 28,
+      "lj": 468,
+      "morale": 7,
+      "name": "航海勋章",
+      "tip": "远洋船长们互相赠送的勋章，刻着一艘三桅帆船。",
+      "tx": "声望+1",
+      "type": 5
     },
     {
       "canonical_id": "entity.equipment.9b4b00b08f1dcdcb",
@@ -269796,6 +271734,33 @@
       "type": 4
     },
     {
+      "canonical_id": "entity.equipment.d77f203df5b97aca",
+      "source_canonical_id": "entity.equipment.d77f203df5b97aca",
+      "display_name": "月宫仙子冠",
+      "required_level": 46,
+      "equipment_type": 2,
+      "attributes": {
+        "catalog_key": "月宫仙子冠",
+        "defense": 6,
+        "level": 46,
+        "lj": 576,
+        "morale": 17,
+        "name": "月宫仙子冠",
+        "tip": "月宫仙子的发冠，夜里有桂香萦绕。",
+        "tx": "抗诅咒+3",
+        "type": 2
+      },
+      "catalog_key": "月宫仙子冠",
+      "defense": 6,
+      "level": 46,
+      "lj": 576,
+      "morale": 17,
+      "name": "月宫仙子冠",
+      "tip": "月宫仙子的发冠，夜里有桂香萦绕。",
+      "tx": "抗诅咒+3",
+      "type": 2
+    },
+    {
       "canonical_id": "entity.equipment.d8e2fee2884f4f68",
       "source_canonical_id": "entity.equipment.d8e2fee2884f4f68",
       "display_name": "骷髅践踏者",
@@ -269890,6 +271855,33 @@
       "type": 3
     },
     {
+      "canonical_id": "entity.equipment.db9539f61ee47169",
+      "source_canonical_id": "entity.equipment.db9539f61ee47169",
+      "display_name": "哥伦布之刃",
+      "required_level": 30,
+      "equipment_type": 1,
+      "attributes": {
+        "attack": 33,
+        "catalog_key": "哥伦布之刃",
+        "level": 30,
+        "lj": 480,
+        "maxAttack": 43,
+        "name": "哥伦布之刃",
+        "tip": "航海家哥伦布的佩刃，传说曾斩断过风暴的船缆。",
+        "tx": "致命攻+10",
+        "type": 1
+      },
+      "attack": 33,
+      "catalog_key": "哥伦布之刃",
+      "level": 30,
+      "lj": 480,
+      "maxAttack": 43,
+      "name": "哥伦布之刃",
+      "tip": "航海家哥伦布的佩刃，传说曾斩断过风暴的船缆。",
+      "tx": "致命攻+10",
+      "type": 1
+    },
+    {
       "canonical_id": "entity.equipment.dc299e89b99b8826",
       "source_canonical_id": "entity.equipment.dc299e89b99b8826",
       "display_name": "乌鲁洛斯皮靴",
@@ -269936,6 +271928,33 @@
       "maxAttack": 17,
       "name": "解救坠饰",
       "type": 6
+    },
+    {
+      "canonical_id": "entity.equipment.dded10333118f8e5",
+      "source_canonical_id": "entity.equipment.dded10333118f8e5",
+      "display_name": "海军匕首",
+      "required_level": 15,
+      "equipment_type": 1,
+      "attributes": {
+        "attack": 19,
+        "catalog_key": "海军匕首",
+        "level": 15,
+        "lj": 390,
+        "maxAttack": 29,
+        "name": "海军匕首",
+        "tip": "巡航艇水兵的制式匕首，刃口有细密磨痕。",
+        "tx": "致命攻+4",
+        "type": 1
+      },
+      "attack": 19,
+      "catalog_key": "海军匕首",
+      "level": 15,
+      "lj": 390,
+      "maxAttack": 29,
+      "name": "海军匕首",
+      "tip": "巡航艇水兵的制式匕首，刃口有细密磨痕。",
+      "tx": "致命攻+4",
+      "type": 1
     },
     {
       "canonical_id": "entity.equipment.df6c265a221ca2a4",
@@ -270588,6 +272607,33 @@
       "maxAttack": 27,
       "name": "永恒",
       "type": 6
+    },
+    {
+      "canonical_id": "entity.equipment.f484da158e237d99",
+      "source_canonical_id": "entity.equipment.f484da158e237d99",
+      "display_name": "哥伦布皮长靴",
+      "required_level": 32,
+      "equipment_type": 4,
+      "attributes": {
+        "agility": 9,
+        "catalog_key": "哥伦布皮长靴",
+        "defense": 16,
+        "level": 32,
+        "lj": 492,
+        "name": "哥伦布皮长靴",
+        "tip": "穿过半个旧大陆的皮靴，鞋底还嵌着新大陆的砂。",
+        "tx": "物品掉落+1",
+        "type": 4
+      },
+      "agility": 9,
+      "catalog_key": "哥伦布皮长靴",
+      "defense": 16,
+      "level": 32,
+      "lj": 492,
+      "name": "哥伦布皮长靴",
+      "tip": "穿过半个旧大陆的皮靴，鞋底还嵌着新大陆的砂。",
+      "tx": "物品掉落+1",
+      "type": 4
     },
     {
       "canonical_id": "entity.equipment.f4f7f1198ad0a121",
@@ -271692,6 +273738,16 @@
       "raw_data_json": "\"锁链护喉\""
     },
     {
+      "canonical_id": "entity.drop.16236a1bd29ed1af",
+      "source_canonical_id": "derived.monster_definition.adb0a4588b6f8c39",
+      "monster_canonical_id": "derived.monster_definition.adb0a4588b6f8c39",
+      "content_entity_canonical_id": "entity.equipment.98529ccd81558bb0",
+      "drop_kind": "equipment",
+      "probability": 0.4,
+      "quantity": 1,
+      "raw_data_json": "{\"monster\":\"海盗头子扎布拉\",\"source\":\"idle-assets-integration\"}"
+    },
+    {
       "canonical_id": "entity.drop.1628d7f0d0f86d00",
       "source_canonical_id": "entity.drop.1628d7f0d0f86d00",
       "monster_canonical_id": "derived.monster_definition.0b416a6c05709f97",
@@ -272430,6 +274486,16 @@
       "probability": null,
       "quantity": null,
       "raw_data_json": "\"鱼眼棒\""
+    },
+    {
+      "canonical_id": "entity.drop.296fc2e608f0cf5d",
+      "source_canonical_id": "derived.monster_definition.c36f149284922c0d",
+      "monster_canonical_id": "derived.monster_definition.c36f149284922c0d",
+      "content_entity_canonical_id": "entity.equipment.4c46d06cd54bedad",
+      "drop_kind": "equipment",
+      "probability": 0.4,
+      "quantity": 1,
+      "raw_data_json": "{\"monster\":\"挪威海盗\",\"source\":\"idle-assets-integration\"}"
     },
     {
       "canonical_id": "entity.drop.29be7c7c90ae984c",
@@ -273396,6 +275462,16 @@
       "raw_data_json": "\"破天面盔\""
     },
     {
+      "canonical_id": "entity.drop.4731f78f08d59276",
+      "source_canonical_id": "derived.monster_definition.adb0a4588b6f8c39",
+      "monster_canonical_id": "derived.monster_definition.adb0a4588b6f8c39",
+      "content_entity_canonical_id": "runtime.item.f871288f0c675456",
+      "drop_kind": "item",
+      "probability": 0.4,
+      "quantity": 1,
+      "raw_data_json": "{\"monster\":\"海盗头子扎布拉\",\"source\":\"idle-assets-integration\"}"
+    },
+    {
       "canonical_id": "entity.drop.473faa6dfd452e60",
       "source_canonical_id": "entity.drop.473faa6dfd452e60",
       "monster_canonical_id": "derived.monster_definition.8dab407b5659c987",
@@ -273444,6 +275520,16 @@
       "probability": null,
       "quantity": null,
       "raw_data_json": "\"龙族重戒\""
+    },
+    {
+      "canonical_id": "entity.drop.47c3828ed1ebca9d",
+      "source_canonical_id": "derived.monster_definition.e8edba99cec6f49a",
+      "monster_canonical_id": "derived.monster_definition.e8edba99cec6f49a",
+      "content_entity_canonical_id": "entity.equipment.5de2d5c77fed50a8",
+      "drop_kind": "equipment",
+      "probability": 0.4,
+      "quantity": 1,
+      "raw_data_json": "{\"monster\":\"百花妖王\",\"source\":\"idle-assets-integration\"}"
     },
     {
       "canonical_id": "entity.drop.47cfd285aaa2658c",
@@ -273776,6 +275862,16 @@
       "raw_data_json": "\"长躬腰带\""
     },
     {
+      "canonical_id": "entity.drop.53b738ffdfa2fa5c",
+      "source_canonical_id": "derived.monster_definition.d6654241ec99d295",
+      "monster_canonical_id": "derived.monster_definition.d6654241ec99d295",
+      "content_entity_canonical_id": "entity.equipment.6b334515180fd342",
+      "drop_kind": "equipment",
+      "probability": 0.4,
+      "quantity": 1,
+      "raw_data_json": "{\"monster\":\"大毒枭杰克\",\"source\":\"idle-assets-integration\"}"
+    },
+    {
       "canonical_id": "entity.drop.53d5a35f4aa41a1d",
       "source_canonical_id": "entity.drop.53d5a35f4aa41a1d",
       "monster_canonical_id": "derived.monster_definition.854432156ab03a51",
@@ -273814,6 +275910,16 @@
       "probability": null,
       "quantity": null,
       "raw_data_json": "\"麻痹匕首\""
+    },
+    {
+      "canonical_id": "entity.drop.54dadfa74aabc03f",
+      "source_canonical_id": "derived.monster_definition.adb0a4588b6f8c39",
+      "monster_canonical_id": "derived.monster_definition.adb0a4588b6f8c39",
+      "content_entity_canonical_id": "entity.equipment.10dc3022a8f21331",
+      "drop_kind": "equipment",
+      "probability": 0.4,
+      "quantity": 1,
+      "raw_data_json": "{\"monster\":\"海盗头子扎布拉\",\"source\":\"idle-assets-integration\"}"
     },
     {
       "canonical_id": "entity.drop.54df928d6cec1744",
@@ -274234,6 +276340,16 @@
       "probability": null,
       "quantity": null,
       "raw_data_json": "\"血铸指环\""
+    },
+    {
+      "canonical_id": "entity.drop.5e58c898947c6d95",
+      "source_canonical_id": "derived.monster_definition.adb0a4588b6f8c39",
+      "monster_canonical_id": "derived.monster_definition.adb0a4588b6f8c39",
+      "content_entity_canonical_id": "entity.item.dced9d406b3780ff",
+      "drop_kind": "item",
+      "probability": 0.4,
+      "quantity": 1,
+      "raw_data_json": "{\"monster\":\"海盗头子扎布拉\",\"source\":\"idle-assets-integration\"}"
     },
     {
       "canonical_id": "entity.drop.5e609564df588d70",
@@ -274936,6 +277052,16 @@
       "raw_data_json": "\"阳炎坠饰\""
     },
     {
+      "canonical_id": "entity.drop.72098198d4b9e72a",
+      "source_canonical_id": "derived.monster_definition.e8edba99cec6f49a",
+      "monster_canonical_id": "derived.monster_definition.e8edba99cec6f49a",
+      "content_entity_canonical_id": "entity.equipment.d77f203df5b97aca",
+      "drop_kind": "equipment",
+      "probability": 0.4,
+      "quantity": 1,
+      "raw_data_json": "{\"monster\":\"百花妖王\",\"source\":\"idle-assets-integration\"}"
+    },
+    {
       "canonical_id": "entity.drop.728b4544de2f3b7a",
       "source_canonical_id": "entity.drop.728b4544de2f3b7a",
       "monster_canonical_id": "derived.monster_definition.aa95f9c0bbedb43b",
@@ -275024,6 +277150,16 @@
       "probability": null,
       "quantity": null,
       "raw_data_json": "\"冷魂长靴\""
+    },
+    {
+      "canonical_id": "entity.drop.756bdca72d648dea",
+      "source_canonical_id": "derived.monster_definition.88b89f936d54a33a",
+      "monster_canonical_id": "derived.monster_definition.88b89f936d54a33a",
+      "content_entity_canonical_id": "entity.equipment.15398aab12c7137c",
+      "drop_kind": "equipment",
+      "probability": 0.4,
+      "quantity": 1,
+      "raw_data_json": "{\"monster\":\"海贼\",\"source\":\"idle-assets-integration\"}"
     },
     {
       "canonical_id": "entity.drop.75a9ab5ae4615f87",
@@ -275256,6 +277392,16 @@
       "raw_data_json": "\"碎裂重锤\""
     },
     {
+      "canonical_id": "entity.drop.7beeae9e02ca5b9e",
+      "source_canonical_id": "derived.monster_definition.e8edba99cec6f49a",
+      "monster_canonical_id": "derived.monster_definition.e8edba99cec6f49a",
+      "content_entity_canonical_id": "entity.equipment.74350968e3e43981",
+      "drop_kind": "equipment",
+      "probability": 0.4,
+      "quantity": 1,
+      "raw_data_json": "{\"monster\":\"百花妖王\",\"source\":\"idle-assets-integration\"}"
+    },
+    {
       "canonical_id": "entity.drop.7c1ef0100bede2dc",
       "source_canonical_id": "entity.drop.7c1ef0100bede2dc",
       "monster_canonical_id": "derived.monster_definition.e437c616ce4aef80",
@@ -275304,6 +277450,16 @@
       "probability": null,
       "quantity": null,
       "raw_data_json": "\"荆棘指环\""
+    },
+    {
+      "canonical_id": "entity.drop.7d57f3c357acd633",
+      "source_canonical_id": "derived.monster_definition.ebb509fb29d55c39",
+      "monster_canonical_id": "derived.monster_definition.ebb509fb29d55c39",
+      "content_entity_canonical_id": "entity.equipment.7c42a46337706f8a",
+      "drop_kind": "equipment",
+      "probability": 0.4,
+      "quantity": 1,
+      "raw_data_json": "{\"monster\":\"索马里海盗\",\"source\":\"idle-assets-integration\"}"
     },
     {
       "canonical_id": "entity.drop.7d74ae0be6a52730",
@@ -275404,6 +277560,16 @@
       "probability": null,
       "quantity": null,
       "raw_data_json": "\"+武士战甲\""
+    },
+    {
+      "canonical_id": "entity.drop.7fea36fcef69dc19",
+      "source_canonical_id": "derived.monster_definition.1246caee0ea1f386",
+      "monster_canonical_id": "derived.monster_definition.1246caee0ea1f386",
+      "content_entity_canonical_id": "entity.equipment.db9539f61ee47169",
+      "drop_kind": "equipment",
+      "probability": 0.4,
+      "quantity": 1,
+      "raw_data_json": "{\"monster\":\"亚丁海盗头子\",\"source\":\"idle-assets-integration\"}"
     },
     {
       "canonical_id": "entity.drop.801cb10f1ee8743d",
@@ -275986,6 +278152,16 @@
       "raw_data_json": "\"无畏战甲\""
     },
     {
+      "canonical_id": "entity.drop.8ffeb3de0d266eca",
+      "source_canonical_id": "derived.monster_definition.ef74e1d297efebbd",
+      "monster_canonical_id": "derived.monster_definition.ef74e1d297efebbd",
+      "content_entity_canonical_id": "runtime.item.f871288f0c675456",
+      "drop_kind": "item",
+      "probability": 0.4,
+      "quantity": 1,
+      "raw_data_json": "{\"monster\":\"狐仙\",\"source\":\"idle-assets-integration\"}"
+    },
+    {
       "canonical_id": "entity.drop.90917189aac8b2bf",
       "source_canonical_id": "entity.drop.90917189aac8b2bf",
       "monster_canonical_id": "derived.monster_definition.5d4992cfd7acccf5",
@@ -276014,6 +278190,16 @@
       "probability": null,
       "quantity": null,
       "raw_data_json": "\"不屈束带\""
+    },
+    {
+      "canonical_id": "entity.drop.90d884736f7a2ff6",
+      "source_canonical_id": "derived.monster_definition.adb0a4588b6f8c39",
+      "monster_canonical_id": "derived.monster_definition.adb0a4588b6f8c39",
+      "content_entity_canonical_id": "entity.equipment.f484da158e237d99",
+      "drop_kind": "equipment",
+      "probability": 0.4,
+      "quantity": 1,
+      "raw_data_json": "{\"monster\":\"海盗头子扎布拉\",\"source\":\"idle-assets-integration\"}"
     },
     {
       "canonical_id": "entity.drop.916bd94c111f024d",
@@ -276324,6 +278510,16 @@
       "probability": null,
       "quantity": null,
       "raw_data_json": "\"龙鹰皮帽\""
+    },
+    {
+      "canonical_id": "entity.drop.996f818d30f8c1e6",
+      "source_canonical_id": "derived.monster_definition.6c94bb3a3d6d3274",
+      "monster_canonical_id": "derived.monster_definition.6c94bb3a3d6d3274",
+      "content_entity_canonical_id": "entity.equipment.db9539f61ee47169",
+      "drop_kind": "equipment",
+      "probability": 0.4,
+      "quantity": 1,
+      "raw_data_json": "{\"monster\":\"海贼头目\",\"source\":\"idle-assets-integration\"}"
     },
     {
       "canonical_id": "entity.drop.99cb63adeda101a3",
@@ -276744,6 +278940,16 @@
       "probability": null,
       "quantity": null,
       "raw_data_json": "\"断网腰带\""
+    },
+    {
+      "canonical_id": "entity.drop.a4b0196f659a478f",
+      "source_canonical_id": "derived.monster_definition.1246caee0ea1f386",
+      "monster_canonical_id": "derived.monster_definition.1246caee0ea1f386",
+      "content_entity_canonical_id": "entity.equipment.9af92b48d893bdcd",
+      "drop_kind": "equipment",
+      "probability": 0.4,
+      "quantity": 1,
+      "raw_data_json": "{\"monster\":\"亚丁海盗头子\",\"source\":\"idle-assets-integration\"}"
     },
     {
       "canonical_id": "entity.drop.a4bf81827c95b689",
@@ -278644,6 +280850,16 @@
       "raw_data_json": "\"荣耀盔甲\""
     },
     {
+      "canonical_id": "entity.drop.df2cfb72b24e5bc9",
+      "source_canonical_id": "derived.monster_definition.adb0a4588b6f8c39",
+      "monster_canonical_id": "derived.monster_definition.adb0a4588b6f8c39",
+      "content_entity_canonical_id": "entity.equipment.01695b52af71584d",
+      "drop_kind": "equipment",
+      "probability": 0.4,
+      "quantity": 1,
+      "raw_data_json": "{\"monster\":\"海盗头子扎布拉\",\"source\":\"idle-assets-integration\"}"
+    },
+    {
       "canonical_id": "entity.drop.df4a8dd47f7ccafe",
       "source_canonical_id": "entity.drop.df4a8dd47f7ccafe",
       "monster_canonical_id": "derived.monster_definition.f0fe192c79377ed9",
@@ -278914,6 +281130,16 @@
       "raw_data_json": "\"冰雾头饰\""
     },
     {
+      "canonical_id": "entity.drop.e7bc3dc20a03e9a2",
+      "source_canonical_id": "entity.drop.e7bc3dc20a03e9a2",
+      "monster_canonical_id": "derived.monster_definition.e64e02d87cec37d8",
+      "content_entity_canonical_id": "entity.item.7ba771bd31f63445",
+      "drop_kind": "item",
+      "probability": null,
+      "quantity": null,
+      "raw_data_json": "\"小良的毛笔\""
+    },
+    {
       "canonical_id": "entity.drop.e7bc902d3b5fcde5",
       "source_canonical_id": "entity.drop.e7bc902d3b5fcde5",
       "monster_canonical_id": "derived.monster_definition.5d4992cfd7acccf5",
@@ -279112,6 +281338,16 @@
       "probability": null,
       "quantity": null,
       "raw_data_json": "\"联结项圈\""
+    },
+    {
+      "canonical_id": "entity.drop.ed6799bad48619ce",
+      "source_canonical_id": "derived.monster_definition.6c94bb3a3d6d3274",
+      "monster_canonical_id": "derived.monster_definition.6c94bb3a3d6d3274",
+      "content_entity_canonical_id": "entity.equipment.dded10333118f8e5",
+      "drop_kind": "equipment",
+      "probability": 0.4,
+      "quantity": 1,
+      "raw_data_json": "{\"monster\":\"海贼头目\",\"source\":\"idle-assets-integration\"}"
     },
     {
       "canonical_id": "entity.drop.eda7b6da7e4fb6c2",
@@ -279444,6 +281680,16 @@
       "raw_data_json": "\"皮革长靴\""
     },
     {
+      "canonical_id": "entity.drop.f7fb6516a48f4092",
+      "source_canonical_id": "derived.monster_definition.c78ece2e846d905d",
+      "monster_canonical_id": "derived.monster_definition.c78ece2e846d905d",
+      "content_entity_canonical_id": "entity.equipment.54f2dd75181c255e",
+      "drop_kind": "equipment",
+      "probability": 0.4,
+      "quantity": 1,
+      "raw_data_json": "{\"monster\":\"亚丁海盗\",\"source\":\"idle-assets-integration\"}"
+    },
+    {
       "canonical_id": "entity.drop.f8020211e37ed9c8",
       "source_canonical_id": "entity.drop.f8020211e37ed9c8",
       "monster_canonical_id": "derived.monster_definition.989692903e3f172c",
@@ -279522,6 +281768,16 @@
       "probability": null,
       "quantity": null,
       "raw_data_json": "\"本能外套\""
+    },
+    {
+      "canonical_id": "entity.drop.fc47f416a6caf6e8",
+      "source_canonical_id": "derived.monster_definition.1246caee0ea1f386",
+      "monster_canonical_id": "derived.monster_definition.1246caee0ea1f386",
+      "content_entity_canonical_id": "runtime.item.ddcee7db71d17ef9",
+      "drop_kind": "item",
+      "probability": 0.4,
+      "quantity": 1,
+      "raw_data_json": "{\"monster\":\"亚丁海盗头子\",\"source\":\"idle-assets-integration\"}"
     },
     {
       "canonical_id": "entity.drop.fcbce691fe5e28bc",
@@ -281598,6 +283854,74 @@
               "to_city_display_name": "泉州"
             }
           ]
+        },
+        {
+          "display_name": "鲑鱼",
+          "content_entity_canonical_id": "entity.item.df9ccd92ec9d49f8",
+          "bait_name": "普通鱼饵",
+          "bait_content_entity_canonical_id": null,
+          "bait_source_resolved": false,
+          "rarity": "common",
+          "price": 600,
+          "route_pairs": [
+            {
+              "from_city_canonical_id": "entity.city.5d8adf9a8553ebca",
+              "to_city_canonical_id": "entity.city.4d0bd89dbb3b1e2a",
+              "from_city_display_name": "伦敦",
+              "to_city_display_name": "开普敦"
+            }
+          ]
+        },
+        {
+          "display_name": "螃蟹",
+          "content_entity_canonical_id": "entity.item.3efc0d87f78ee263",
+          "bait_name": "普通鱼饵",
+          "bait_content_entity_canonical_id": null,
+          "bait_source_resolved": false,
+          "rarity": "common",
+          "price": 300,
+          "route_pairs": [
+            {
+              "from_city_canonical_id": "entity.city.7ff6ada0319bc625",
+              "to_city_canonical_id": "entity.city.12dbc1806d984e5a",
+              "from_city_display_name": "威尼斯",
+              "to_city_display_name": "大阪"
+            }
+          ]
+        },
+        {
+          "display_name": "章鱼",
+          "content_entity_canonical_id": "entity.item.ae1d91f7dc68ff3c",
+          "bait_name": "高级鱼饵",
+          "bait_content_entity_canonical_id": null,
+          "bait_source_resolved": false,
+          "rarity": "uncommon",
+          "price": 800,
+          "route_pairs": [
+            {
+              "from_city_canonical_id": "entity.city.12dbc1806d984e5a",
+              "to_city_canonical_id": "entity.city.e51457158a9475bb",
+              "from_city_display_name": "大阪",
+              "to_city_display_name": "亚丁"
+            }
+          ]
+        },
+        {
+          "display_name": "剑鱼",
+          "content_entity_canonical_id": "entity.item.4e09967b7446105d",
+          "bait_name": "高级鱼饵",
+          "bait_content_entity_canonical_id": null,
+          "bait_source_resolved": false,
+          "rarity": "rare",
+          "price": 1500,
+          "route_pairs": [
+            {
+              "from_city_canonical_id": "entity.city.4d0bd89dbb3b1e2a",
+              "to_city_canonical_id": "entity.city.3f395aab4eb9614b",
+              "from_city_display_name": "开普敦",
+              "to_city_display_name": "泉州"
+            }
+          ]
         }
       ],
       "rules": {
@@ -282058,7 +284382,7 @@
     "preview_routes_supported": false,
     "normal_runtime_reads_this_section": false
   },
-  "content_sha256": "0e222cdd070ed8fad0a2d88c948ea1cc24b5fc5a52bb4d39432f63737f569994",
+  "content_sha256": "efbc08b8b1e454afbf82aff946220f97b12a756390a65270098775752837d144",
   "entity_counts": {
     "tasks": 651,
     "cities": 28,
@@ -282067,15 +284391,15 @@
     "location_connections": 515,
     "npcs": 277,
     "npc_placements": 359,
-    "monsters": 259,
-    "monster_placements": 273,
-    "content_entities": 182,
-    "item_sources": 146,
-    "ships": 14,
+    "monsters": 261,
+    "monster_placements": 275,
+    "content_entities": 218,
+    "item_sources": 152,
+    "ships": 21,
     "voyage_routes": 702,
     "shops": 44,
     "shop_entries": 105,
-    "equipment": 366,
-    "drop_relations": 934
+    "equipment": 381,
+    "drop_relations": 955
   }
 }

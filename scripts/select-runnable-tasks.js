@@ -860,7 +860,7 @@ function validateInputs(matrix,coordinates,exclusions,monsterItemSources,rewardR
   if(!coordinates.coordinates||!Object.keys(coordinates.coordinates).length)throw new Error('City coordinate evidence is empty');
   if(!Array.isArray(exclusions.exclusions))throw new Error('Manual exclusion table must contain exclusions[]');
   if(!Array.isArray(monsterItemSources.sources)||!monsterItemSources.sources.length)throw new Error('Monster item source evidence is empty');
-  if(maritimeCapabilities.schema_version!==1||maritimeCapabilities.fishing?.catches?.length!==21||!maritimeCapabilities.diving?.formal_dungeons?.length)throw new Error('Maritime capability evidence is incomplete');
+  if(maritimeCapabilities.schema_version!==1||maritimeCapabilities.fishing?.catches?.length!==25||!maritimeCapabilities.diving?.formal_dungeons?.length)throw new Error('Maritime capability evidence is incomplete');
   if(rewardRules.experience?.evidence_status!=='PROVISIONAL_COMPATIBILITY'||!rewardRules.experience.base_experience_per_level)throw new Error('Monster reward compatibility evidence is incomplete');
   if(progressionRules.rule_id!=='zhsh.progression-planner.v1'||!progressionRules.canonical_rules?.repeatable_training)throw new Error('Progression planner evidence is incomplete');
   if(!Number.isSafeInteger(formalStageStart.selected_task_count)||!formalStageStart.selected_task_count||

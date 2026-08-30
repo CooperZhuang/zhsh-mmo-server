@@ -1,0 +1,12 @@
+1	欧洲王城广场	地点插图	mapped_interface_slot	assets/authoritative/batch09/ee58b6af91c34dde.png
+2	王宫贵族府邸	地点插图	mapped_interface_slot	assets/authoritative/batch09/720996142b1ec8f4.png
+3	海盗港	地点插图	mapped_interface_slot	assets/authoritative/batch09/6ddc484f265fc9c2.png
+4	船坞造船厂	地点插图	mapped_interface_slot	assets/authoritative/batch09/19bbcbbf23647f83.png
+5	酒馆	地点插图	mapped_interface_slot	assets/authoritative/batch09/eb52fbc45d075140.png
+6	赌场	地点插图	mapped_interface_slot	assets/authoritative/batch09/578e11480ad3c4c3.png
+7	渔村码头	地点插图	mapped_interface_slot	assets/authoritative/batch09/0ccf508bae916b0b.png
+8	沙漠绿洲商旅集市	地点插图	mapped_interface_slot	assets/authoritative/batch09/e6c661c4c2e7f43f.png
+9	道观仙山	地点插图	mapped_interface_slot	assets/authoritative/batch09/2573079360e4069f.png
+10	火山岛	地点插图	mapped_interface_slot	assets/authoritative/batch09/8bfeda7a2b13df39.png
+11	沼泽秘境	地点插图	mapped_interface_slot	assets/authoritative/batch09/1f7573e5fe6836b5.png
+12	古代遗迹地下藏宝洞	地点插图	mapped_interface_slot	assets/authoritative/batch09/026f847d00bf6846.png

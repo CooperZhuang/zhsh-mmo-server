@@ -402,6 +402,10 @@ function completeAdjudicationBaselineDrops(db, itemEntity, stats) {
       if (!def && row.src_name === '妖龙' && row.tgt_name === '龙鳞') {
         def = db.prepare('SELECT id FROM monster_definitions WHERE display_name=? AND level=?').get('妖龙', 117); // 15.470 裁决：Lv117 杭州/西湖湖底
       }
+      if (!def) {
+        // 同名定义兜底：idle-assets-integration 建成同名怪物后（如 邪恶花精），原版掉落源不再悬空
+        def = db.prepare('SELECT id FROM monster_definitions WHERE display_name=? ORDER BY id LIMIT 1').get(row.src_name);
+      }
       if (def && Number(def.id) !== Number(row.src_mid)) {
         db.prepare("UPDATE dependency_references SET resolution_status='resolved',resolved_monster_definition_id=?,runtime_capability='queryable' WHERE id=?")
           .run(Number(def.id), Number(row.src_id));

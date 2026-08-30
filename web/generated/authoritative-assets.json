@@ -19,17 +19,17 @@
   "catalog_only_unmapped_count": 0,
   "status_counts": {
     "mapped_explicit_canonical": 30,
-    "mapped_interface_slot": 48,
-    "mapped_name_family": 59,
-    "mapped_task_reference": 32,
-    "mapped_type_slot": 51,
+    "mapped_interface_slot": 42,
+    "mapped_name_family": 79,
+    "mapped_task_reference": 30,
+    "mapped_type_slot": 39,
     "mapped_variant_family": 9
   },
   "assets": [
     {
       "asset_canonical_id": "visual.asset.f2be739b71cb283a",
       "source_file": "merged_final_assets/batch01/px_item__entity.item.8a516352a5046efd__v001.png",
-      "source_batch": "batch01",
+      "source_batch": "01",
       "display_name": "体力宝",
       "category": "item",
       "mapping_status": "mapped_explicit_canonical",
@@ -50,7 +50,7 @@
     {
       "asset_canonical_id": "visual.asset.869b41c0b5a82818",
       "source_file": "merged_final_assets/batch01/px_item__entity.item.c8ce3a99edc5fd2f__v001.png",
-      "source_batch": "batch01",
+      "source_batch": "01",
       "display_name": "大体力宝",
       "category": "item",
       "mapping_status": "mapped_explicit_canonical",
@@ -71,7 +71,7 @@
     {
       "asset_canonical_id": "visual.asset.bc8cc768455dbaa6",
       "source_file": "merged_final_assets/batch01/px_quest_item__entity.item.878c75fdf5a8a4db__v001.png",
-      "source_batch": "batch01",
+      "source_batch": "01",
       "display_name": "火灵珠",
       "category": "quest_item",
       "mapping_status": "mapped_explicit_canonical",
@@ -92,7 +92,7 @@
     {
       "asset_canonical_id": "visual.asset.c2a10abf7d8100a8",
       "source_file": "merged_final_assets/batch01/px_quest_item__entity.item.567e654d2b5ebe9c__v001.png",
-      "source_batch": "batch01",
+      "source_batch": "01",
       "display_name": "照妖镜",
       "category": "quest_item",
       "mapping_status": "mapped_explicit_canonical",
@@ -113,7 +113,7 @@
     {
       "asset_canonical_id": "visual.asset.2df03f591d7f0bf6",
       "source_file": "merged_final_assets/batch01/px_quest_item__entity.item.c03243eec96ebf87__v001.png",
-      "source_batch": "batch01",
+      "source_batch": "01",
       "display_name": "蓬莱仙岛航海图",
       "category": "quest_item",
       "mapping_status": "mapped_explicit_canonical",
@@ -134,7 +134,7 @@
     {
       "asset_canonical_id": "visual.asset.a1ab24e68b3d223f",
       "source_file": "merged_final_assets/batch01/px_treasure__entity.item.bd234f1f1daf22a1__v001.png",
-      "source_batch": "batch01",
+      "source_batch": "01",
       "display_name": "百宝箱",
       "category": "treasure",
       "mapping_status": "mapped_explicit_canonical",
@@ -155,7 +155,7 @@
     {
       "asset_canonical_id": "visual.asset.1fecb268f22b2f5b",
       "source_file": "merged_final_assets/batch01/px_equipment__entity.equipment.0a9002051ec96a64__v001.png",
-      "source_batch": "batch01",
+      "source_batch": "01",
       "display_name": "+地魔指环(左)",
       "category": "equipment",
       "mapping_status": "mapped_explicit_canonical",
@@ -176,7 +176,7 @@
     {
       "asset_canonical_id": "visual.asset.b26c7a4d9347b14f",
       "source_file": "merged_final_assets/batch01/px_equipment__entity.equipment.4ba9089b6dcc3a52__v001.png",
-      "source_batch": "batch01",
+      "source_batch": "01",
       "display_name": "+地魔指环(右)",
       "category": "equipment",
       "mapping_status": "mapped_explicit_canonical",
@@ -197,7 +197,7 @@
     {
       "asset_canonical_id": "visual.asset.69f3829e1d284667",
       "source_file": "merged_final_assets/batch01/px_equipment__entity.equipment.4ba9089b6dcc3a52__rare_glow__v001.png",
-      "source_batch": "batch01",
+      "source_batch": "01",
       "display_name": "+地魔指环(右)_稀有发光",
       "category": "equipment",
       "mapping_status": "mapped_explicit_canonical",
@@ -218,7 +218,7 @@
     {
       "asset_canonical_id": "visual.asset.3a0fb3667f9d0001",
       "source_file": "merged_final_assets/batch01/px_equipment__entity.equipment.4ba9089b6dcc3a52__drop_flash__v001.png",
-      "source_batch": "batch01",
+      "source_batch": "01",
       "display_name": "+地魔指环(右)_掉落特效",
       "category": "equipment",
       "mapping_status": "mapped_explicit_canonical",
@@ -239,7 +239,7 @@
     {
       "asset_canonical_id": "visual.asset.ff48b5014ab654b4",
       "source_file": "merged_final_assets/batch01/px_equipment__entity.equipment.ad153fc7e9b82159__v001.png",
-      "source_batch": "batch01",
+      "source_batch": "01",
       "display_name": "+地魔龙脊护肩",
       "category": "equipment",
       "mapping_status": "mapped_explicit_canonical",
@@ -260,7 +260,7 @@
     {
       "asset_canonical_id": "visual.asset.60eba00a3a7582b1",
       "source_file": "merged_final_assets/batch01/px_equipment__entity.equipment.af99781bac5b5b21__v001.png",
-      "source_batch": "batch01",
+      "source_batch": "01",
       "display_name": "+地魔回魂之恋",
       "category": "equipment",
       "mapping_status": "mapped_explicit_canonical",
@@ -281,7 +281,7 @@
     {
       "asset_canonical_id": "visual.asset.23dba89384f77071",
       "source_file": "merged_final_assets/batch01/px_equipment__entity.equipment.c633d6db53aca205__v001.png",
-      "source_batch": "batch01",
+      "source_batch": "01",
       "display_name": "+地魔龙角羽冠",
       "category": "equipment",
       "mapping_status": "mapped_explicit_canonical",
@@ -302,7 +302,7 @@
     {
       "asset_canonical_id": "visual.asset.29b006358be570f6",
       "source_file": "merged_final_assets/batch01/px_equipment__entity.equipment.d71454a4426cdc9c__v001.png",
-      "source_batch": "batch01",
+      "source_batch": "01",
       "display_name": "+地魔龙爪之靴",
       "category": "equipment",
       "mapping_status": "mapped_explicit_canonical",
@@ -323,7 +323,7 @@
     {
       "asset_canonical_id": "visual.asset.718b6aa738d3ad5c",
       "source_file": "merged_final_assets/batch01/px_equipment__entity.equipment.597b7a87d7ba7771__v001.png",
-      "source_batch": "batch01",
+      "source_batch": "01",
       "display_name": "+地魔龙鳞绑腿",
       "category": "equipment",
       "mapping_status": "mapped_explicit_canonical",
@@ -344,7 +344,7 @@
     {
       "asset_canonical_id": "visual.asset.046059111a29b6e4",
       "source_file": "merged_final_assets/batch01/px_equipment__entity.equipment.1ef177807961d5b6__v001.png",
-      "source_batch": "batch01",
+      "source_batch": "01",
       "display_name": "天魔惊神指",
       "category": "equipment",
       "mapping_status": "mapped_explicit_canonical",
@@ -365,7 +365,7 @@
     {
       "asset_canonical_id": "visual.asset.c73716e2a8b3642b",
       "source_file": "merged_final_assets/batch01/px_equipment__entity.equipment.1ef177807961d5b6__rare_glow__v001.png",
-      "source_batch": "batch01",
+      "source_batch": "01",
       "display_name": "天魔惊神指_稀有发光",
       "category": "equipment",
       "mapping_status": "mapped_explicit_canonical",
@@ -386,7 +386,7 @@
     {
       "asset_canonical_id": "visual.asset.62d1e8d38947d05d",
       "source_file": "merged_final_assets/batch01/px_equipment__entity.equipment.67dc4911873e9eed__v001.png",
-      "source_batch": "batch01",
+      "source_batch": "01",
       "display_name": "天魔轮回杖",
       "category": "equipment",
       "mapping_status": "mapped_explicit_canonical",
@@ -407,7 +407,7 @@
     {
       "asset_canonical_id": "visual.asset.6b8afa0d088723ca",
       "source_file": "merged_final_assets/batch01/px_equipment__entity.equipment.67dc4911873e9eed__rare_glow__v001.png",
-      "source_batch": "batch01",
+      "source_batch": "01",
       "display_name": "天魔轮回杖_稀有发光",
       "category": "equipment",
       "mapping_status": "mapped_explicit_canonical",
@@ -428,7 +428,7 @@
     {
       "asset_canonical_id": "visual.asset.46424fd47c16a8de",
       "source_file": "merged_final_assets/batch01/px_equipment__entity.equipment.d319659d3957c117__v001.png",
-      "source_batch": "batch01",
+      "source_batch": "01",
       "display_name": "天魔风雷链",
       "category": "equipment",
       "mapping_status": "mapped_explicit_canonical",
@@ -449,7 +449,7 @@
     {
       "asset_canonical_id": "visual.asset.1d816a643be62a6d",
       "source_file": "merged_final_assets/batch01/px_equipment__entity.equipment.d319659d3957c117__rare_glow__v001.png",
-      "source_batch": "batch01",
+      "source_batch": "01",
       "display_name": "天魔风雷链_稀有发光",
       "category": "equipment",
       "mapping_status": "mapped_explicit_canonical",
@@ -470,7 +470,7 @@
     {
       "asset_canonical_id": "visual.asset.ed9b5afd18b127c8",
       "source_file": "merged_final_assets/batch01/px_equipment__entity.equipment.af7da4213d474335__v001.png",
-      "source_batch": "batch01",
+      "source_batch": "01",
       "display_name": "凤凰的右爪",
       "category": "equipment",
       "mapping_status": "mapped_explicit_canonical",
@@ -491,7 +491,7 @@
     {
       "asset_canonical_id": "visual.asset.7b60baa165997cdc",
       "source_file": "merged_final_assets/batch01/px_equipment__entity.equipment.af7da4213d474335__rare_glow__v001.png",
-      "source_batch": "batch01",
+      "source_batch": "01",
       "display_name": "凤凰的右爪_稀有发光",
       "category": "equipment",
       "mapping_status": "mapped_explicit_canonical",
@@ -512,7 +512,7 @@
     {
       "asset_canonical_id": "visual.asset.5635d287068e904f",
       "source_file": "merged_final_assets/batch01/px_equipment__entity.equipment.4ff3392bab5f2618__v001.png",
-      "source_batch": "batch01",
+      "source_batch": "01",
       "display_name": "麦哲伦之匕",
       "category": "equipment",
       "mapping_status": "mapped_explicit_canonical",
@@ -533,7 +533,7 @@
     {
       "asset_canonical_id": "visual.asset.5d3a61a13910dedb",
       "source_file": "merged_final_assets/batch01/px_equipment__entity.equipment.0f88405e7689961e__v001.png",
-      "source_batch": "batch01",
+      "source_batch": "01",
       "display_name": "+麦哲伦之匕",
       "category": "equipment",
       "mapping_status": "mapped_explicit_canonical",
@@ -554,7 +554,7 @@
     {
       "asset_canonical_id": "visual.asset.2bd044df9ef2b149",
       "source_file": "merged_final_assets/batch01/px_equipment__entity.equipment.ff0dc7b5f26e07f2__v001.png",
-      "source_batch": "batch01",
+      "source_batch": "01",
       "display_name": "麦哲伦之戒",
       "category": "equipment",
       "mapping_status": "mapped_explicit_canonical",
@@ -575,7 +575,7 @@
     {
       "asset_canonical_id": "visual.asset.14aa01b26493153d",
       "source_file": "merged_final_assets/batch01/px_equipment__entity.equipment.af15ba18a7bcece5__v001.png",
-      "source_batch": "batch01",
+      "source_batch": "01",
       "display_name": "麦哲伦之腰带",
       "category": "equipment",
       "mapping_status": "mapped_explicit_canonical",
@@ -596,7 +596,7 @@
     {
       "asset_canonical_id": "visual.asset.9f7c534adbe64506",
       "source_file": "merged_final_assets/batch01/px_equipment__entity.equipment.0f88405e7689961e__rare_glow__v001.png",
-      "source_batch": "batch01",
+      "source_batch": "01",
       "display_name": "+麦哲伦之匕_稀有发光",
       "category": "equipment",
       "mapping_status": "mapped_explicit_canonical",
@@ -617,7 +617,7 @@
     {
       "asset_canonical_id": "visual.asset.5a54feeb9b2c2873",
       "source_file": "merged_final_assets/batch01/px_equipment__entity.equipment.ff0dc7b5f26e07f2__rare_glow__v001.png",
-      "source_batch": "batch01",
+      "source_batch": "01",
       "display_name": "麦哲伦之戒_稀有发光",
       "category": "equipment",
       "mapping_status": "mapped_explicit_canonical",
@@ -638,7 +638,7 @@
     {
       "asset_canonical_id": "visual.asset.992a5c1a2c1e6cf4",
       "source_file": "merged_final_assets/batch01/px_equipment__entity.equipment.af15ba18a7bcece5__rare_glow__v001.png",
-      "source_batch": "batch01",
+      "source_batch": "01",
       "display_name": "麦哲伦之腰带_稀有发光",
       "category": "equipment",
       "mapping_status": "mapped_explicit_canonical",
@@ -659,7 +659,7 @@
     {
       "asset_canonical_id": "visual.asset.96f7e62d863b892d",
       "source_file": "merged_final_assets/batch02/01_蓬莱仙岛航海图.png",
-      "source_batch": "batch02",
+      "source_batch": "02",
       "display_name": "蓬莱仙岛航海图",
       "category": "未分类",
       "mapping_status": "mapped_name_family",
@@ -680,7 +680,7 @@
     {
       "asset_canonical_id": "visual.asset.83a2372ad1ef54ad",
       "source_file": "merged_final_assets/batch02/02_大型鱼带泡船.png",
-      "source_batch": "batch02",
+      "source_batch": "02",
       "display_name": "大型鱼带泡船",
       "category": "未分类",
       "mapping_status": "mapped_type_slot",
@@ -688,7 +688,9 @@
       "family_id": null,
       "slot_id": "visual.ship_type.65d8475a8c58dbb3",
       "visual_reference_id": null,
-      "binding_ids": [],
+      "binding_ids": [
+        "entity.ship.65d8475a8c58dbb3"
+      ],
       "task_reference_ids": [],
       "target_resource_path": "assets/authoritative/batch02/83a2372ad1ef54ad.png",
       "usage_interfaces": "航海|船只|海上事件",
@@ -699,26 +701,28 @@
     {
       "asset_canonical_id": "visual.asset.3f1c243cca7ad016",
       "source_file": "merged_final_assets/batch02/03_百宝箱.png",
-      "source_batch": "batch02",
+      "source_batch": "02",
       "display_name": "百宝箱",
       "category": "未分类",
-      "mapping_status": "mapped_type_slot",
-      "canonical_id": null,
+      "mapping_status": "mapped_name_family",
+      "canonical_id": "entity.item.dced9d406b3780ff",
       "family_id": "visual.family.7b2a5133349a7018",
-      "slot_id": "visual.slot.gameplay.7b2a5133349a7018",
+      "slot_id": null,
       "visual_reference_id": null,
-      "binding_ids": [],
+      "binding_ids": [
+        "entity.item.dced9d406b3780ff"
+      ],
       "task_reference_ids": [],
       "target_resource_path": "assets/authoritative/batch02/3f1c243cca7ad016.png",
-      "usage_interfaces": "奖励|背包|商店",
+      "usage_interfaces": "背包|奖励",
       "variant": "base",
-      "mapping_reason": "绑定已确认的装备、航海或宝藏视觉类型槽位，不创建缺失实体。",
+      "mapping_reason": "按名称与类型绑定全部一致实体。",
       "sha256": "3f1c243cca7ad016a4945ec7c26203f24266521aa1a719854acc26eae802aeeb"
     },
     {
       "asset_canonical_id": "visual.asset.a3ba0399ea3ac444",
       "source_file": "merged_final_assets/batch02/04_百宝箱_稀有版.png",
-      "source_batch": "batch02",
+      "source_batch": "02",
       "display_name": "百宝箱·稀有版",
       "category": "未分类",
       "mapping_status": "mapped_variant_family",
@@ -737,26 +741,28 @@
     {
       "asset_canonical_id": "visual.asset.45857985637900b0",
       "source_file": "merged_final_assets/batch02/05_百宝袋.png",
-      "source_batch": "batch02",
+      "source_batch": "02",
       "display_name": "百宝袋",
       "category": "未分类",
-      "mapping_status": "mapped_type_slot",
-      "canonical_id": null,
+      "mapping_status": "mapped_name_family",
+      "canonical_id": "runtime.item.f871288f0c675456",
       "family_id": "visual.family.f871288f0c675456",
-      "slot_id": "visual.slot.gameplay.f871288f0c675456",
+      "slot_id": null,
       "visual_reference_id": null,
-      "binding_ids": [],
+      "binding_ids": [
+        "runtime.item.f871288f0c675456"
+      ],
       "task_reference_ids": [],
       "target_resource_path": "assets/authoritative/batch02/45857985637900b0.png",
-      "usage_interfaces": "奖励|背包|商店",
+      "usage_interfaces": "背包|奖励",
       "variant": "base",
-      "mapping_reason": "绑定已确认的装备、航海或宝藏视觉类型槽位，不创建缺失实体。",
+      "mapping_reason": "按名称与类型绑定全部一致实体。",
       "sha256": "45857985637900b05b467fdef8376d768252bf39ec7ff5649b1e7e60afdc4f24"
     },
     {
       "asset_canonical_id": "visual.asset.3aecdc1be8d47ea4",
       "source_file": "merged_final_assets/batch02/06_百宝袋_稀有版.png",
-      "source_batch": "batch02",
+      "source_batch": "02",
       "display_name": "百宝袋·稀有版",
       "category": "未分类",
       "mapping_status": "mapped_variant_family",
@@ -775,26 +781,28 @@
     {
       "asset_canonical_id": "visual.asset.b2c144c3fc8fbc7e",
       "source_file": "merged_final_assets/batch02/07_哥伦布之刃.png",
-      "source_batch": "batch02",
+      "source_batch": "02",
       "display_name": "哥伦布之刃",
       "category": "未分类",
-      "mapping_status": "mapped_type_slot",
-      "canonical_id": null,
+      "mapping_status": "mapped_name_family",
+      "canonical_id": "entity.equipment.db9539f61ee47169",
       "family_id": "visual.family.db9539f61ee47169",
-      "slot_id": "visual.slot.gameplay.db9539f61ee47169",
+      "slot_id": null,
       "visual_reference_id": null,
-      "binding_ids": [],
+      "binding_ids": [
+        "entity.equipment.db9539f61ee47169"
+      ],
       "task_reference_ids": [],
       "target_resource_path": "assets/authoritative/batch02/b2c144c3fc8fbc7e.png",
-      "usage_interfaces": "装备|背包|战斗|奖励",
+      "usage_interfaces": "装备|背包|战斗",
       "variant": "base",
-      "mapping_reason": "绑定已确认的装备、航海或宝藏视觉类型槽位，不创建缺失实体。",
+      "mapping_reason": "按名称与类型绑定全部一致实体。",
       "sha256": "b2c144c3fc8fbc7e3f9ba979a06ee75c1f4cec7e38aa31c0ae593646e961f53f"
     },
     {
       "asset_canonical_id": "visual.asset.b292cb58446a131f",
       "source_file": "merged_final_assets/batch02/08_哥伦布之刃_稀有版.png",
-      "source_batch": "batch02",
+      "source_batch": "02",
       "display_name": "哥伦布之刃·稀有版",
       "category": "未分类",
       "mapping_status": "mapped_variant_family",
@@ -813,26 +821,28 @@
     {
       "asset_canonical_id": "visual.asset.8baefc74f9ba1c8c",
       "source_file": "merged_final_assets/batch02/09_哥伦布防御服.png",
-      "source_batch": "batch02",
+      "source_batch": "02",
       "display_name": "哥伦布防御服",
       "category": "未分类",
-      "mapping_status": "mapped_type_slot",
-      "canonical_id": null,
+      "mapping_status": "mapped_name_family",
+      "canonical_id": "entity.equipment.01695b52af71584d",
       "family_id": "visual.family.01695b52af71584d",
-      "slot_id": "visual.slot.gameplay.01695b52af71584d",
+      "slot_id": null,
       "visual_reference_id": null,
-      "binding_ids": [],
+      "binding_ids": [
+        "entity.equipment.01695b52af71584d"
+      ],
       "task_reference_ids": [],
       "target_resource_path": "assets/authoritative/batch02/8baefc74f9ba1c8c.png",
-      "usage_interfaces": "装备|背包|战斗|奖励",
+      "usage_interfaces": "背包|奖励",
       "variant": "base",
-      "mapping_reason": "绑定已确认的装备、航海或宝藏视觉类型槽位，不创建缺失实体。",
+      "mapping_reason": "按名称与类型绑定全部一致实体。",
       "sha256": "8baefc74f9ba1c8c98e359125cbabc7e51c5d25063e52086edde992c74a8af03"
     },
     {
       "asset_canonical_id": "visual.asset.11a9e5177911669c",
       "source_file": "merged_final_assets/batch02/10_哥伦布防御服_稀有版.png",
-      "source_batch": "batch02",
+      "source_batch": "02",
       "display_name": "哥伦布防御服·稀有版",
       "category": "未分类",
       "mapping_status": "mapped_variant_family",
@@ -851,26 +861,28 @@
     {
       "asset_canonical_id": "visual.asset.ee897b579d5bbb32",
       "source_file": "merged_final_assets/batch02/11_哥伦布的铁盔.png",
-      "source_batch": "batch02",
+      "source_batch": "02",
       "display_name": "哥伦布的铁盔",
       "category": "未分类",
-      "mapping_status": "mapped_type_slot",
-      "canonical_id": null,
+      "mapping_status": "mapped_name_family",
+      "canonical_id": "entity.equipment.98529ccd81558bb0",
       "family_id": "visual.family.98529ccd81558bb0",
-      "slot_id": "visual.slot.gameplay.98529ccd81558bb0",
+      "slot_id": null,
       "visual_reference_id": null,
-      "binding_ids": [],
+      "binding_ids": [
+        "entity.equipment.98529ccd81558bb0"
+      ],
       "task_reference_ids": [],
       "target_resource_path": "assets/authoritative/batch02/ee897b579d5bbb32.png",
-      "usage_interfaces": "装备|背包|战斗|奖励",
+      "usage_interfaces": "装备|背包|战斗",
       "variant": "base",
-      "mapping_reason": "绑定已确认的装备、航海或宝藏视觉类型槽位，不创建缺失实体。",
+      "mapping_reason": "按名称与类型绑定全部一致实体。",
       "sha256": "ee897b579d5bbb32f59d9d95ab766c14f83b63bbf8b82e7c37bd1bb328b0c5a5"
     },
     {
       "asset_canonical_id": "visual.asset.8e2df9864682b160",
       "source_file": "merged_final_assets/batch02/12_哥伦布的铁盔_稀有版.png",
-      "source_batch": "batch02",
+      "source_batch": "02",
       "display_name": "哥伦布的铁盔·稀有版",
       "category": "未分类",
       "mapping_status": "mapped_variant_family",
@@ -889,26 +901,28 @@
     {
       "asset_canonical_id": "visual.asset.e797493f2f8d62a1",
       "source_file": "merged_final_assets/batch02/13_哥伦布皮长靴.png",
-      "source_batch": "batch02",
+      "source_batch": "02",
       "display_name": "哥伦布皮长靴",
       "category": "未分类",
-      "mapping_status": "mapped_type_slot",
-      "canonical_id": null,
+      "mapping_status": "mapped_name_family",
+      "canonical_id": "entity.equipment.f484da158e237d99",
       "family_id": "visual.family.f484da158e237d99",
-      "slot_id": "visual.slot.gameplay.f484da158e237d99",
+      "slot_id": null,
       "visual_reference_id": null,
-      "binding_ids": [],
+      "binding_ids": [
+        "entity.equipment.f484da158e237d99"
+      ],
       "task_reference_ids": [],
       "target_resource_path": "assets/authoritative/batch02/e797493f2f8d62a1.png",
-      "usage_interfaces": "装备|背包|战斗|奖励",
+      "usage_interfaces": "装备|背包|战斗",
       "variant": "base",
-      "mapping_reason": "绑定已确认的装备、航海或宝藏视觉类型槽位，不创建缺失实体。",
+      "mapping_reason": "按名称与类型绑定全部一致实体。",
       "sha256": "e797493f2f8d62a195856917151a486156365a150d79f0b1ce7d35a873ddea6a"
     },
     {
       "asset_canonical_id": "visual.asset.63bbc0df8794deb9",
       "source_file": "merged_final_assets/batch02/14_哥伦布皮长靴_稀有版.png",
-      "source_batch": "batch02",
+      "source_batch": "02",
       "display_name": "哥伦布皮长靴·稀有版",
       "category": "未分类",
       "mapping_status": "mapped_variant_family",
@@ -927,26 +941,28 @@
     {
       "asset_canonical_id": "visual.asset.72e8ca86146a5ce2",
       "source_file": "merged_final_assets/batch02/15_桂魄银蟾.png",
-      "source_batch": "batch02",
+      "source_batch": "02",
       "display_name": "桂魄银蟾",
       "category": "未分类",
-      "mapping_status": "mapped_type_slot",
-      "canonical_id": null,
+      "mapping_status": "mapped_name_family",
+      "canonical_id": "entity.equipment.74350968e3e43981",
       "family_id": "visual.family.74350968e3e43981",
-      "slot_id": "visual.slot.gameplay.74350968e3e43981",
+      "slot_id": null,
       "visual_reference_id": null,
-      "binding_ids": [],
+      "binding_ids": [
+        "entity.equipment.74350968e3e43981"
+      ],
       "task_reference_ids": [],
       "target_resource_path": "assets/authoritative/batch02/72e8ca86146a5ce2.png",
-      "usage_interfaces": "装备|背包|战斗|奖励",
+      "usage_interfaces": "背包|奖励",
       "variant": "base",
-      "mapping_reason": "绑定已确认的装备、航海或宝藏视觉类型槽位，不创建缺失实体。",
+      "mapping_reason": "按名称与类型绑定全部一致实体。",
       "sha256": "72e8ca86146a5ce28832f16269819be0f2bf1a80ef84685fb5ebf7454097c772"
     },
     {
       "asset_canonical_id": "visual.asset.c2bb7e097ff3afef",
       "source_file": "merged_final_assets/batch02/16_桂魄银蟾_稀有版.png",
-      "source_batch": "batch02",
+      "source_batch": "02",
       "display_name": "桂魄银蟾·稀有版",
       "category": "未分类",
       "mapping_status": "mapped_variant_family",
@@ -965,26 +981,28 @@
     {
       "asset_canonical_id": "visual.asset.eb6ab5eb2ce91b11",
       "source_file": "merged_final_assets/batch02/17_玉兔绒衣.png",
-      "source_batch": "batch02",
+      "source_batch": "02",
       "display_name": "玉兔绒衣",
       "category": "未分类",
-      "mapping_status": "mapped_type_slot",
-      "canonical_id": null,
+      "mapping_status": "mapped_name_family",
+      "canonical_id": "entity.equipment.5de2d5c77fed50a8",
       "family_id": "visual.family.5de2d5c77fed50a8",
-      "slot_id": "visual.slot.gameplay.5de2d5c77fed50a8",
+      "slot_id": null,
       "visual_reference_id": null,
-      "binding_ids": [],
+      "binding_ids": [
+        "entity.equipment.5de2d5c77fed50a8"
+      ],
       "task_reference_ids": [],
       "target_resource_path": "assets/authoritative/batch02/eb6ab5eb2ce91b11.png",
-      "usage_interfaces": "装备|背包|战斗|奖励",
+      "usage_interfaces": "装备|背包|战斗",
       "variant": "base",
-      "mapping_reason": "绑定已确认的装备、航海或宝藏视觉类型槽位，不创建缺失实体。",
+      "mapping_reason": "按名称与类型绑定全部一致实体。",
       "sha256": "eb6ab5eb2ce91b114fe03f77caa0b5539b76828156cbf8347f1d4b907b5e5fd5"
     },
     {
       "asset_canonical_id": "visual.asset.b7e0f231ff744683",
       "source_file": "merged_final_assets/batch02/18_玉兔绒衣_稀有版.png",
-      "source_batch": "batch02",
+      "source_batch": "02",
       "display_name": "玉兔绒衣·稀有版",
       "category": "未分类",
       "mapping_status": "mapped_variant_family",
@@ -1003,26 +1021,28 @@
     {
       "asset_canonical_id": "visual.asset.eae579ba272b94b3",
       "source_file": "merged_final_assets/batch02/19_月宫仙子冠.png",
-      "source_batch": "batch02",
+      "source_batch": "02",
       "display_name": "月宫仙子冠",
       "category": "未分类",
-      "mapping_status": "mapped_type_slot",
-      "canonical_id": null,
+      "mapping_status": "mapped_name_family",
+      "canonical_id": "entity.equipment.d77f203df5b97aca",
       "family_id": "visual.family.d77f203df5b97aca",
-      "slot_id": "visual.slot.gameplay.d77f203df5b97aca",
+      "slot_id": null,
       "visual_reference_id": null,
-      "binding_ids": [],
+      "binding_ids": [
+        "entity.equipment.d77f203df5b97aca"
+      ],
       "task_reference_ids": [],
       "target_resource_path": "assets/authoritative/batch02/eae579ba272b94b3.png",
-      "usage_interfaces": "装备|背包|战斗|奖励",
+      "usage_interfaces": "装备|背包|战斗",
       "variant": "base",
-      "mapping_reason": "绑定已确认的装备、航海或宝藏视觉类型槽位，不创建缺失实体。",
+      "mapping_reason": "按名称与类型绑定全部一致实体。",
       "sha256": "eae579ba272b94b337136561b0deb5cd83c27a76ba0cedb4611fd8b1423fc9eb"
     },
     {
       "asset_canonical_id": "visual.asset.489e29e53a7e919f",
       "source_file": "merged_final_assets/batch02/20_月宫仙子冠_稀有版.png",
-      "source_batch": "batch02",
+      "source_batch": "02",
       "display_name": "月宫仙子冠·稀有版",
       "category": "未分类",
       "mapping_status": "mapped_variant_family",
@@ -1041,140 +1061,154 @@
     {
       "asset_canonical_id": "visual.asset.32119f99f9dc8369",
       "source_file": "merged_final_assets/batch02/21_船锚.png",
-      "source_batch": "batch02",
+      "source_batch": "02",
       "display_name": "船锚",
       "category": "未分类",
-      "mapping_status": "mapped_type_slot",
-      "canonical_id": null,
+      "mapping_status": "mapped_name_family",
+      "canonical_id": "entity.equipment.10dc3022a8f21331",
       "family_id": "visual.family.10dc3022a8f21331",
-      "slot_id": "visual.slot.gameplay.10dc3022a8f21331",
+      "slot_id": null,
       "visual_reference_id": null,
-      "binding_ids": [],
+      "binding_ids": [
+        "entity.equipment.10dc3022a8f21331"
+      ],
       "task_reference_ids": [],
       "target_resource_path": "assets/authoritative/batch02/32119f99f9dc8369.png",
-      "usage_interfaces": "航海|船只|背包",
+      "usage_interfaces": "背包|奖励",
       "variant": "base",
-      "mapping_reason": "绑定已确认的装备、航海或宝藏视觉类型槽位，不创建缺失实体。",
+      "mapping_reason": "按名称与类型绑定全部一致实体。",
       "sha256": "32119f99f9dc83699930e4ad532379ea00c254284ded8838b1762f4d995c30b4"
     },
     {
       "asset_canonical_id": "visual.asset.21e1fd289fe9a4c2",
       "source_file": "merged_final_assets/batch02/22_航海图卷.png",
-      "source_batch": "batch02",
+      "source_batch": "02",
       "display_name": "航海图卷",
       "category": "未分类",
-      "mapping_status": "mapped_type_slot",
-      "canonical_id": null,
+      "mapping_status": "mapped_name_family",
+      "canonical_id": "entity.equipment.7c42a46337706f8a",
       "family_id": "visual.family.7c42a46337706f8a",
-      "slot_id": "visual.slot.gameplay.7c42a46337706f8a",
+      "slot_id": null,
       "visual_reference_id": null,
-      "binding_ids": [],
+      "binding_ids": [
+        "entity.equipment.7c42a46337706f8a"
+      ],
       "task_reference_ids": [],
       "target_resource_path": "assets/authoritative/batch02/21e1fd289fe9a4c2.png",
-      "usage_interfaces": "航海|船只|背包",
+      "usage_interfaces": "背包|奖励",
       "variant": "base",
-      "mapping_reason": "绑定已确认的装备、航海或宝藏视觉类型槽位，不创建缺失实体。",
+      "mapping_reason": "按名称与类型绑定全部一致实体。",
       "sha256": "21e1fd289fe9a4c21137959958227943dec3a94ca3e88d7a6ba28743174976aa"
     },
     {
       "asset_canonical_id": "visual.asset.627c9c66d8d7a3b5",
       "source_file": "merged_final_assets/batch02/23_航海护符.png",
-      "source_batch": "batch02",
+      "source_batch": "02",
       "display_name": "航海护符",
       "category": "未分类",
-      "mapping_status": "mapped_type_slot",
-      "canonical_id": null,
+      "mapping_status": "mapped_name_family",
+      "canonical_id": "entity.equipment.4c46d06cd54bedad",
       "family_id": "visual.family.4c46d06cd54bedad",
-      "slot_id": "visual.slot.gameplay.4c46d06cd54bedad",
+      "slot_id": null,
       "visual_reference_id": null,
-      "binding_ids": [],
+      "binding_ids": [
+        "entity.equipment.4c46d06cd54bedad"
+      ],
       "task_reference_ids": [],
       "target_resource_path": "assets/authoritative/batch02/627c9c66d8d7a3b5.png",
-      "usage_interfaces": "航海|船只|背包",
+      "usage_interfaces": "背包|奖励",
       "variant": "base",
-      "mapping_reason": "绑定已确认的装备、航海或宝藏视觉类型槽位，不创建缺失实体。",
+      "mapping_reason": "按名称与类型绑定全部一致实体。",
       "sha256": "627c9c66d8d7a3b572c9b4490b406f123378656b59ae40835672eb1f7a6a9d85"
     },
     {
       "asset_canonical_id": "visual.asset.66d852de97be651b",
       "source_file": "merged_final_assets/batch02/24_航海勋章.png",
-      "source_batch": "batch02",
+      "source_batch": "02",
       "display_name": "航海勋章",
       "category": "未分类",
-      "mapping_status": "mapped_type_slot",
-      "canonical_id": null,
+      "mapping_status": "mapped_name_family",
+      "canonical_id": "entity.equipment.9af92b48d893bdcd",
       "family_id": "visual.family.9af92b48d893bdcd",
-      "slot_id": "visual.slot.gameplay.9af92b48d893bdcd",
+      "slot_id": null,
       "visual_reference_id": null,
-      "binding_ids": [],
+      "binding_ids": [
+        "entity.equipment.9af92b48d893bdcd"
+      ],
       "task_reference_ids": [],
       "target_resource_path": "assets/authoritative/batch02/66d852de97be651b.png",
-      "usage_interfaces": "航海|船只|背包",
+      "usage_interfaces": "背包|奖励",
       "variant": "base",
-      "mapping_reason": "绑定已确认的装备、航海或宝藏视觉类型槽位，不创建缺失实体。",
+      "mapping_reason": "按名称与类型绑定全部一致实体。",
       "sha256": "66d852de97be651b4982b145c032c7a5a6e676607f712f6759e1bc27da6c5751"
     },
     {
       "asset_canonical_id": "visual.asset.b295b2b63f5470cd",
       "source_file": "merged_final_assets/batch02/25_航海腰带.png",
-      "source_batch": "batch02",
+      "source_batch": "02",
       "display_name": "航海腰带",
       "category": "未分类",
-      "mapping_status": "mapped_type_slot",
-      "canonical_id": null,
+      "mapping_status": "mapped_name_family",
+      "canonical_id": "entity.equipment.54f2dd75181c255e",
       "family_id": "visual.family.54f2dd75181c255e",
-      "slot_id": "visual.slot.gameplay.54f2dd75181c255e",
+      "slot_id": null,
       "visual_reference_id": null,
-      "binding_ids": [],
+      "binding_ids": [
+        "entity.equipment.54f2dd75181c255e"
+      ],
       "task_reference_ids": [],
       "target_resource_path": "assets/authoritative/batch02/b295b2b63f5470cd.png",
-      "usage_interfaces": "航海|船只|背包",
+      "usage_interfaces": "装备|背包|战斗",
       "variant": "base",
-      "mapping_reason": "绑定已确认的装备、航海或宝藏视觉类型槽位，不创建缺失实体。",
+      "mapping_reason": "按名称与类型绑定全部一致实体。",
       "sha256": "b295b2b63f5470cd5a3be9a6dddcc712d84f70a9d0f947822db5d5f5c80db274"
     },
     {
       "asset_canonical_id": "visual.asset.9d40f06b905b1cba",
       "source_file": "merged_final_assets/batch02/26_海军匕首.png",
-      "source_batch": "batch02",
+      "source_batch": "02",
       "display_name": "海军匕首",
       "category": "未分类",
-      "mapping_status": "mapped_type_slot",
-      "canonical_id": null,
+      "mapping_status": "mapped_name_family",
+      "canonical_id": "entity.equipment.dded10333118f8e5",
       "family_id": "visual.family.dded10333118f8e5",
-      "slot_id": "visual.slot.gameplay.dded10333118f8e5",
+      "slot_id": null,
       "visual_reference_id": null,
-      "binding_ids": [],
+      "binding_ids": [
+        "entity.equipment.dded10333118f8e5"
+      ],
       "task_reference_ids": [],
       "target_resource_path": "assets/authoritative/batch02/9d40f06b905b1cba.png",
-      "usage_interfaces": "航海|船只|背包",
+      "usage_interfaces": "装备|背包|战斗",
       "variant": "base",
-      "mapping_reason": "绑定已确认的装备、航海或宝藏视觉类型槽位，不创建缺失实体。",
+      "mapping_reason": "按名称与类型绑定全部一致实体。",
       "sha256": "9d40f06b905b1cba7e84c890f3ad15e6f34f9dbaa7614c051fbfe7a3fe10475c"
     },
     {
       "asset_canonical_id": "visual.asset.4953f24bb13bddfd",
       "source_file": "merged_final_assets/batch02/27_海军外套.png",
-      "source_batch": "batch02",
+      "source_batch": "02",
       "display_name": "海军外套",
       "category": "未分类",
-      "mapping_status": "mapped_type_slot",
-      "canonical_id": null,
+      "mapping_status": "mapped_name_family",
+      "canonical_id": "entity.equipment.15398aab12c7137c",
       "family_id": "visual.family.15398aab12c7137c",
-      "slot_id": "visual.slot.gameplay.15398aab12c7137c",
+      "slot_id": null,
       "visual_reference_id": null,
-      "binding_ids": [],
+      "binding_ids": [
+        "entity.equipment.15398aab12c7137c"
+      ],
       "task_reference_ids": [],
       "target_resource_path": "assets/authoritative/batch02/4953f24bb13bddfd.png",
-      "usage_interfaces": "航海|船只|背包",
+      "usage_interfaces": "背包|奖励",
       "variant": "base",
-      "mapping_reason": "绑定已确认的装备、航海或宝藏视觉类型槽位，不创建缺失实体。",
+      "mapping_reason": "按名称与类型绑定全部一致实体。",
       "sha256": "4953f24bb13bddfd289915795ff53aab9a68d22abaabc689d36031be18b1d9a9"
     },
     {
       "asset_canonical_id": "visual.asset.4b89c25875b79f28",
       "source_file": "merged_final_assets/batch02/28_远洋帆船.png",
-      "source_batch": "batch02",
+      "source_batch": "02",
       "display_name": "远洋帆船",
       "category": "未分类",
       "mapping_status": "mapped_type_slot",
@@ -1196,45 +1230,49 @@
     {
       "asset_canonical_id": "visual.asset.6ff62aa6a9565657",
       "source_file": "merged_final_assets/batch02/29_红宝石戒指.png",
-      "source_batch": "batch02",
+      "source_batch": "02",
       "display_name": "红宝石戒指",
       "category": "未分类",
-      "mapping_status": "mapped_type_slot",
-      "canonical_id": null,
+      "mapping_status": "mapped_name_family",
+      "canonical_id": "entity.equipment.6b334515180fd342",
       "family_id": "visual.family.6b334515180fd342",
-      "slot_id": "visual.slot.gameplay.6b334515180fd342",
+      "slot_id": null,
       "visual_reference_id": null,
-      "binding_ids": [],
+      "binding_ids": [
+        "entity.equipment.6b334515180fd342"
+      ],
       "task_reference_ids": [],
       "target_resource_path": "assets/authoritative/batch02/6ff62aa6a9565657.png",
-      "usage_interfaces": "装备|背包|战斗|奖励",
+      "usage_interfaces": "装备|背包|战斗",
       "variant": "base",
-      "mapping_reason": "绑定已确认的装备、航海或宝藏视觉类型槽位，不创建缺失实体。",
+      "mapping_reason": "按名称与类型绑定全部一致实体。",
       "sha256": "6ff62aa6a9565657232c1560394de48b01750b982b369652d0ece507321fdaab"
     },
     {
       "asset_canonical_id": "visual.asset.bfaa59656978c54a",
       "source_file": "merged_final_assets/batch02/30_黄金金币.png",
-      "source_batch": "batch02",
+      "source_batch": "02",
       "display_name": "黄金金币",
       "category": "未分类",
-      "mapping_status": "mapped_type_slot",
-      "canonical_id": null,
+      "mapping_status": "mapped_name_family",
+      "canonical_id": "runtime.item.ddcee7db71d17ef9",
       "family_id": "visual.family.ddcee7db71d17ef9",
-      "slot_id": "visual.slot.gameplay.ddcee7db71d17ef9",
+      "slot_id": null,
       "visual_reference_id": null,
-      "binding_ids": [],
+      "binding_ids": [
+        "runtime.item.ddcee7db71d17ef9"
+      ],
       "task_reference_ids": [],
       "target_resource_path": "assets/authoritative/batch02/bfaa59656978c54a.png",
-      "usage_interfaces": "奖励|背包|商店",
+      "usage_interfaces": "背包|奖励",
       "variant": "base",
-      "mapping_reason": "绑定已确认的装备、航海或宝藏视觉类型槽位，不创建缺失实体。",
+      "mapping_reason": "按名称与类型绑定全部一致实体。",
       "sha256": "bfaa59656978c54a5db6c860a95aedc1371ffbc74f471aae181d0c93c5f316be"
     },
     {
       "asset_canonical_id": "visual.asset.cb7a478ff0a3093a",
       "source_file": "merged_final_assets/batch03/01_白虎王.png",
-      "source_batch": "batch03",
+      "source_batch": "03",
       "display_name": "白虎王",
       "category": "怪物",
       "mapping_status": "mapped_name_family",
@@ -1255,7 +1293,7 @@
     {
       "asset_canonical_id": "visual.asset.736c59f387c5d2c7",
       "source_file": "merged_final_assets/batch03/02_巨红蜈蚣王.png",
-      "source_batch": "batch03",
+      "source_batch": "03",
       "display_name": "巨红蜈蚣王",
       "category": "怪物",
       "mapping_status": "mapped_name_family",
@@ -1276,7 +1314,7 @@
     {
       "asset_canonical_id": "visual.asset.ea961706a90bc9cb",
       "source_file": "merged_final_assets/batch03/03_桃花妖.png",
-      "source_batch": "batch03",
+      "source_batch": "03",
       "display_name": "桃花妖",
       "category": "怪物",
       "mapping_status": "mapped_name_family",
@@ -1297,32 +1335,28 @@
     {
       "asset_canonical_id": "visual.asset.2199b1031872294c",
       "source_file": "merged_final_assets/batch03/04_狐仙.png",
-      "source_batch": "batch03",
+      "source_batch": "03",
       "display_name": "狐仙",
       "category": "怪物",
-      "mapping_status": "mapped_task_reference",
+      "mapping_status": "mapped_name_family",
       "canonical_id": null,
-      "family_id": null,
+      "family_id": "visual.family.monster.076fd67043cafcde",
       "slot_id": null,
-      "visual_reference_id": "visual.task_item.076fd67043cafcde",
-      "binding_ids": [],
-      "task_reference_ids": [
-        "task.series.12.092",
-        "task.series.12.093",
-        "task.series.15.586",
-        "task.series.15.587",
-        "task.series.15.588"
+      "visual_reference_id": null,
+      "binding_ids": [
+        "derived.monster_definition.ef74e1d297efebbd"
       ],
+      "task_reference_ids": [],
       "target_resource_path": "assets/authoritative/batch03/2199b1031872294c.png",
-      "usage_interfaces": "任务|背包|奖励|特殊场景",
+      "usage_interfaces": "战斗|任务|掉落提示",
       "variant": "base",
-      "mapping_reason": "怪物名称仅在任务文字中出现；建立视觉任务引用，不补写属性、地点或掉率。",
+      "mapping_reason": "绑定全部同名怪物定义与放置实例。",
       "sha256": "2199b1031872294c7d138c930c2538a39f82a4216d543eac3b5bc4cdb09c3194"
     },
     {
       "asset_canonical_id": "visual.asset.f0dc2f66353634c6",
       "source_file": "merged_final_assets/batch03/05_千年桐妖.png",
-      "source_batch": "batch03",
+      "source_batch": "03",
       "display_name": "千年桐妖",
       "category": "怪物",
       "mapping_status": "mapped_name_family",
@@ -1343,7 +1377,7 @@
     {
       "asset_canonical_id": "visual.asset.aa12641a1eae44d1",
       "source_file": "merged_final_assets/batch03/06_凤凰.png",
-      "source_batch": "batch03",
+      "source_batch": "03",
       "display_name": "凤凰",
       "category": "怪物",
       "mapping_status": "mapped_name_family",
@@ -1364,7 +1398,7 @@
     {
       "asset_canonical_id": "visual.asset.a1025b8afcbae7c5",
       "source_file": "merged_final_assets/batch03/07_妖龙.png",
-      "source_batch": "batch03",
+      "source_batch": "03",
       "display_name": "妖龙",
       "category": "怪物",
       "mapping_status": "mapped_name_family",
@@ -1386,7 +1420,7 @@
     {
       "asset_canonical_id": "visual.asset.6bb4240586c31c84",
       "source_file": "merged_final_assets/batch03/08_地魔戈蒂拉.png",
-      "source_batch": "batch03",
+      "source_batch": "03",
       "display_name": "地魔戈蒂拉",
       "category": "怪物",
       "mapping_status": "mapped_name_family",
@@ -1407,7 +1441,7 @@
     {
       "asset_canonical_id": "visual.asset.9e179c1f5184a2b2",
       "source_file": "merged_final_assets/batch03/09_千年花妖.png",
-      "source_batch": "batch03",
+      "source_batch": "03",
       "display_name": "千年花妖",
       "category": "怪物",
       "mapping_status": "mapped_name_family",
@@ -1428,7 +1462,7 @@
     {
       "asset_canonical_id": "visual.asset.a4cd1de2e0e6baed",
       "source_file": "merged_final_assets/batch03/10_沼泽蜂.png",
-      "source_batch": "batch03",
+      "source_batch": "03",
       "display_name": "沼泽蜂",
       "category": "怪物",
       "mapping_status": "mapped_name_family",
@@ -1449,7 +1483,7 @@
     {
       "asset_canonical_id": "visual.asset.f162c725ec58bbfa",
       "source_file": "merged_final_assets/batch03/11_沼泽鼠.png",
-      "source_batch": "batch03",
+      "source_batch": "03",
       "display_name": "沼泽鼠",
       "category": "怪物",
       "mapping_status": "mapped_name_family",
@@ -1470,7 +1504,7 @@
     {
       "asset_canonical_id": "visual.asset.ff38938f04585de8",
       "source_file": "merged_final_assets/batch03/12_沼泽玄龟.png",
-      "source_batch": "batch03",
+      "source_batch": "03",
       "display_name": "沼泽玄龟",
       "category": "怪物",
       "mapping_status": "mapped_name_family",
@@ -1491,7 +1525,7 @@
     {
       "asset_canonical_id": "visual.asset.70258f3f38d17e65",
       "source_file": "merged_final_assets/batch03/13_剑齿虎.png",
-      "source_batch": "batch03",
+      "source_batch": "03",
       "display_name": "剑齿虎",
       "category": "怪物",
       "mapping_status": "mapped_name_family",
@@ -1512,7 +1546,7 @@
     {
       "asset_canonical_id": "visual.asset.52a343638f3d087b",
       "source_file": "merged_final_assets/batch03/14_火山岩虫头领.png",
-      "source_batch": "batch03",
+      "source_batch": "03",
       "display_name": "火山岩虫头领",
       "category": "怪物",
       "mapping_status": "mapped_name_family",
@@ -1533,7 +1567,7 @@
     {
       "asset_canonical_id": "visual.asset.789cdf66caf05e64",
       "source_file": "merged_final_assets/batch03/15_双头蛇.png",
-      "source_batch": "batch03",
+      "source_batch": "03",
       "display_name": "双头蛇",
       "category": "怪物",
       "mapping_status": "mapped_name_family",
@@ -1555,7 +1589,7 @@
     {
       "asset_canonical_id": "visual.asset.198bd93349c3b806",
       "source_file": "merged_final_assets/batch03/16_灰熊.png",
-      "source_batch": "batch03",
+      "source_batch": "03",
       "display_name": "灰熊",
       "category": "怪物",
       "mapping_status": "mapped_name_family",
@@ -1576,7 +1610,7 @@
     {
       "asset_canonical_id": "visual.asset.f018e4d71cddd54d",
       "source_file": "merged_final_assets/batch03/17_海贼头目.png",
-      "source_batch": "batch03",
+      "source_batch": "03",
       "display_name": "海贼头目",
       "category": "怪物",
       "mapping_status": "mapped_name_family",
@@ -1597,7 +1631,7 @@
     {
       "asset_canonical_id": "visual.asset.b12191e42f033ac2",
       "source_file": "merged_final_assets/batch03/18_邪恶山精.png",
-      "source_batch": "batch03",
+      "source_batch": "03",
       "display_name": "邪恶山精",
       "category": "怪物",
       "mapping_status": "mapped_name_family",
@@ -1619,7 +1653,7 @@
     {
       "asset_canonical_id": "visual.asset.ccc98ce6f7a4813a",
       "source_file": "merged_final_assets/batch03/19_邪恶水妖.png",
-      "source_batch": "batch03",
+      "source_batch": "03",
       "display_name": "邪恶水妖",
       "category": "怪物",
       "mapping_status": "mapped_name_family",
@@ -1641,28 +1675,28 @@
     {
       "asset_canonical_id": "visual.asset.cd813ccc47bdc01b",
       "source_file": "merged_final_assets/batch03/20_邪恶花精.png",
-      "source_batch": "batch03",
+      "source_batch": "03",
       "display_name": "邪恶花精",
       "category": "怪物",
-      "mapping_status": "mapped_task_reference",
+      "mapping_status": "mapped_name_family",
       "canonical_id": null,
-      "family_id": null,
+      "family_id": "visual.family.monster.3823d7b7f0515417",
       "slot_id": null,
-      "visual_reference_id": "visual.task_item.3823d7b7f0515417",
-      "binding_ids": [],
-      "task_reference_ids": [
-        "task.series.15.601"
+      "visual_reference_id": null,
+      "binding_ids": [
+        "derived.monster_definition.e64e02d87cec37d8"
       ],
+      "task_reference_ids": [],
       "target_resource_path": "assets/authoritative/batch03/cd813ccc47bdc01b.png",
-      "usage_interfaces": "任务|背包|奖励|特殊场景",
+      "usage_interfaces": "战斗|任务|掉落提示",
       "variant": "base",
-      "mapping_reason": "怪物名称仅在任务文字中出现；建立视觉任务引用，不补写属性、地点或掉率。",
+      "mapping_reason": "绑定全部同名怪物定义与放置实例。",
       "sha256": "cd813ccc47bdc01b2b0bc68261b467b02ebfbeacc12a0b55cb83a6d746fefc28"
     },
     {
       "asset_canonical_id": "visual.asset.77aa4b05f354b62f",
       "source_file": "merged_final_assets/batch03/21_强化邪恶僵尸.png",
-      "source_batch": "batch03",
+      "source_batch": "03",
       "display_name": "强化邪恶僵尸",
       "category": "怪物",
       "mapping_status": "mapped_name_family",
@@ -1683,7 +1717,7 @@
     {
       "asset_canonical_id": "visual.asset.1f8038da11be2c4a",
       "source_file": "merged_final_assets/batch03/22_地蜘蛛.png",
-      "source_batch": "batch03",
+      "source_batch": "03",
       "display_name": "地蜘蛛",
       "category": "怪物",
       "mapping_status": "mapped_name_family",
@@ -1704,7 +1738,7 @@
     {
       "asset_canonical_id": "visual.asset.2e478bb37d8cf777",
       "source_file": "merged_final_assets/batch03/23_鳄鱼.png",
-      "source_batch": "batch03",
+      "source_batch": "03",
       "display_name": "鳄鱼",
       "category": "怪物",
       "mapping_status": "mapped_name_family",
@@ -1726,7 +1760,7 @@
     {
       "asset_canonical_id": "visual.asset.58edd7bd9000ee28",
       "source_file": "merged_final_assets/batch03/24_山猪.png",
-      "source_batch": "batch03",
+      "source_batch": "03",
       "display_name": "山猪",
       "category": "怪物",
       "mapping_status": "mapped_name_family",
@@ -1747,7 +1781,7 @@
     {
       "asset_canonical_id": "visual.asset.98e5e2a7c79519d7",
       "source_file": "merged_final_assets/batch03/25_龙虾.png",
-      "source_batch": "batch03",
+      "source_batch": "03",
       "display_name": "龙虾",
       "category": "怪物",
       "mapping_status": "mapped_name_family",
@@ -1768,7 +1802,7 @@
     {
       "asset_canonical_id": "visual.asset.2eee90b38ea9e142",
       "source_file": "merged_final_assets/batch03/26_海贼.png",
-      "source_batch": "batch03",
+      "source_batch": "03",
       "display_name": "海贼",
       "category": "怪物",
       "mapping_status": "mapped_name_family",
@@ -1790,7 +1824,7 @@
     {
       "asset_canonical_id": "visual.asset.44eb92dab78c2bbe",
       "source_file": "merged_final_assets/batch03/27_偷渡客.png",
-      "source_batch": "batch03",
+      "source_batch": "03",
       "display_name": "偷渡客",
       "category": "怪物",
       "mapping_status": "mapped_name_family",
@@ -1811,7 +1845,7 @@
     {
       "asset_canonical_id": "visual.asset.9c20a182b385cc34",
       "source_file": "merged_final_assets/batch03/28_走私客.png",
-      "source_batch": "batch03",
+      "source_batch": "03",
       "display_name": "走私客",
       "category": "怪物",
       "mapping_status": "mapped_name_family",
@@ -1832,7 +1866,7 @@
     {
       "asset_canonical_id": "visual.asset.3cc02b990bd9cc34",
       "source_file": "merged_final_assets/batch03/29_火山岩虫.png",
-      "source_batch": "batch03",
+      "source_batch": "03",
       "display_name": "火山岩虫",
       "category": "怪物",
       "mapping_status": "mapped_name_family",
@@ -1853,7 +1887,7 @@
     {
       "asset_canonical_id": "visual.asset.a95c67421eda2cc7",
       "source_file": "merged_final_assets/batch03/30_鲨鱼.png",
-      "source_batch": "batch03",
+      "source_batch": "03",
       "display_name": "鲨鱼",
       "category": "怪物",
       "mapping_status": "mapped_name_family",
@@ -1875,7 +1909,7 @@
     {
       "asset_canonical_id": "visual.asset.4d9319f657c68937",
       "source_file": "merged_final_assets/batch04/01_老板（新手指引）.png",
-      "source_batch": "batch04",
+      "source_batch": "04",
       "display_name": "老板（新手指引）",
       "category": "NPC",
       "mapping_status": "mapped_name_family",
@@ -1896,7 +1930,7 @@
     {
       "asset_canonical_id": "visual.asset.0a156730dcb13b93",
       "source_file": "merged_final_assets/batch04/02_福利官.png",
-      "source_batch": "batch04",
+      "source_batch": "04",
       "display_name": "福利官",
       "category": "NPC",
       "mapping_status": "mapped_name_family",
@@ -1917,7 +1951,7 @@
     {
       "asset_canonical_id": "visual.asset.df6545cbe9be7556",
       "source_file": "merged_final_assets/batch04/03_卡萨诺.png",
-      "source_batch": "batch04",
+      "source_batch": "04",
       "display_name": "卡萨诺",
       "category": "NPC",
       "mapping_status": "mapped_name_family",
@@ -1938,7 +1972,7 @@
     {
       "asset_canonical_id": "visual.asset.d61ce3cb0fd0fbea",
       "source_file": "merged_final_assets/batch04/04_赌场老板.png",
-      "source_batch": "batch04",
+      "source_batch": "04",
       "display_name": "赌场老板",
       "category": "NPC",
       "mapping_status": "mapped_name_family",
@@ -1959,7 +1993,7 @@
     {
       "asset_canonical_id": "visual.asset.c849332b6501cd43",
       "source_file": "merged_final_assets/batch04/05_威尼斯公主.png",
-      "source_batch": "batch04",
+      "source_batch": "04",
       "display_name": "威尼斯公主",
       "category": "NPC",
       "mapping_status": "mapped_name_family",
@@ -1980,7 +2014,7 @@
     {
       "asset_canonical_id": "visual.asset.f4f48c62356b734c",
       "source_file": "merged_final_assets/batch04/06_威尼斯国王.png",
-      "source_batch": "batch04",
+      "source_batch": "04",
       "display_name": "威尼斯国王",
       "category": "NPC",
       "mapping_status": "mapped_name_family",
@@ -2001,7 +2035,7 @@
     {
       "asset_canonical_id": "visual.asset.7c2c3e332f462cdf",
       "source_file": "merged_final_assets/batch04/07_罗西.png",
-      "source_batch": "batch04",
+      "source_batch": "04",
       "display_name": "罗西",
       "category": "NPC",
       "mapping_status": "mapped_name_family",
@@ -2022,7 +2056,7 @@
     {
       "asset_canonical_id": "visual.asset.ec5d569e340b8d4e",
       "source_file": "merged_final_assets/batch04/08_詹姆斯.png",
-      "source_batch": "batch04",
+      "source_batch": "04",
       "display_name": "詹姆斯",
       "category": "NPC",
       "mapping_status": "mapped_name_family",
@@ -2043,7 +2077,7 @@
     {
       "asset_canonical_id": "visual.asset.17c7ed2dbb50231c",
       "source_file": "merged_final_assets/batch04/09_怪博士.png",
-      "source_batch": "batch04",
+      "source_batch": "04",
       "display_name": "怪博士",
       "category": "NPC",
       "mapping_status": "mapped_name_family",
@@ -2064,7 +2098,7 @@
     {
       "asset_canonical_id": "visual.asset.77429f6a13c0d35b",
       "source_file": "merged_final_assets/batch04/10_多纳多.png",
-      "source_batch": "batch04",
+      "source_batch": "04",
       "display_name": "多纳多",
       "category": "NPC",
       "mapping_status": "mapped_name_family",
@@ -2085,7 +2119,7 @@
     {
       "asset_canonical_id": "visual.asset.49f0c16ed66c4b75",
       "source_file": "merged_final_assets/batch04/11_露丝.png",
-      "source_batch": "batch04",
+      "source_batch": "04",
       "display_name": "露丝",
       "category": "NPC",
       "mapping_status": "mapped_name_family",
@@ -2107,7 +2141,7 @@
     {
       "asset_canonical_id": "visual.asset.c13567b7c96468eb",
       "source_file": "merged_final_assets/batch04/12_保罗.png",
-      "source_batch": "batch04",
+      "source_batch": "04",
       "display_name": "保罗",
       "category": "NPC",
       "mapping_status": "mapped_name_family",
@@ -2128,7 +2162,7 @@
     {
       "asset_canonical_id": "visual.asset.e59d0c2a2028b90d",
       "source_file": "merged_final_assets/batch04/13_宠物饲养员.png",
-      "source_batch": "batch04",
+      "source_batch": "04",
       "display_name": "宠物饲养员",
       "category": "NPC",
       "mapping_status": "mapped_name_family",
@@ -2149,7 +2183,7 @@
     {
       "asset_canonical_id": "visual.asset.4d02f245fa4bd126",
       "source_file": "merged_final_assets/batch04/14_张真人.png",
-      "source_batch": "batch04",
+      "source_batch": "04",
       "display_name": "张真人",
       "category": "NPC",
       "mapping_status": "mapped_name_family",
@@ -2179,7 +2213,7 @@
     {
       "asset_canonical_id": "visual.asset.b3f27aa3cb767d79",
       "source_file": "merged_final_assets/batch04/15_苦难大师.png",
-      "source_batch": "batch04",
+      "source_batch": "04",
       "display_name": "苦难大师",
       "category": "NPC",
       "mapping_status": "mapped_name_family",
@@ -2209,7 +2243,7 @@
     {
       "asset_canonical_id": "visual.asset.187ebe1b1b24ad73",
       "source_file": "merged_final_assets/batch04/16_韩生.png",
-      "source_batch": "batch04",
+      "source_batch": "04",
       "display_name": "韩生",
       "category": "NPC",
       "mapping_status": "mapped_name_family",
@@ -2235,7 +2269,7 @@
     {
       "asset_canonical_id": "visual.asset.1c9a661753c8f0c8",
       "source_file": "merged_final_assets/batch04/17_垂钓老人.png",
-      "source_batch": "batch04",
+      "source_batch": "04",
       "display_name": "垂钓老人",
       "category": "NPC",
       "mapping_status": "mapped_name_family",
@@ -2259,7 +2293,7 @@
     {
       "asset_canonical_id": "visual.asset.86f5d083a4e5170d",
       "source_file": "merged_final_assets/batch04/18_沈茂.png",
-      "source_batch": "batch04",
+      "source_batch": "04",
       "display_name": "沈茂",
       "category": "NPC",
       "mapping_status": "mapped_name_family",
@@ -2283,7 +2317,7 @@
     {
       "asset_canonical_id": "visual.asset.85db71eebe3d92fb",
       "source_file": "merged_final_assets/batch04/19_商人李.png",
-      "source_batch": "batch04",
+      "source_batch": "04",
       "display_name": "商人李",
       "category": "NPC",
       "mapping_status": "mapped_name_family",
@@ -2304,7 +2338,7 @@
     {
       "asset_canonical_id": "visual.asset.d90f485cec7bd830",
       "source_file": "merged_final_assets/batch04/20_阿巴斯.png",
-      "source_batch": "batch04",
+      "source_batch": "04",
       "display_name": "阿巴斯",
       "category": "NPC",
       "mapping_status": "mapped_name_family",
@@ -2325,7 +2359,7 @@
     {
       "asset_canonical_id": "visual.asset.d021ddcaa2a5688b",
       "source_file": "merged_final_assets/batch04/21_侯赛因.png",
-      "source_batch": "batch04",
+      "source_batch": "04",
       "display_name": "侯赛因",
       "category": "NPC",
       "mapping_status": "mapped_name_family",
@@ -2346,7 +2380,7 @@
     {
       "asset_canonical_id": "visual.asset.ca2c1d4f771742eb",
       "source_file": "merged_final_assets/batch04/22_马蒂.png",
-      "source_batch": "batch04",
+      "source_batch": "04",
       "display_name": "马蒂",
       "category": "NPC",
       "mapping_status": "mapped_name_family",
@@ -2368,7 +2402,7 @@
     {
       "asset_canonical_id": "visual.asset.5374688320e26f80",
       "source_file": "merged_final_assets/batch04/23_奥布帕斯.png",
-      "source_batch": "batch04",
+      "source_batch": "04",
       "display_name": "奥布帕斯",
       "category": "NPC",
       "mapping_status": "mapped_name_family",
@@ -2389,7 +2423,7 @@
     {
       "asset_canonical_id": "visual.asset.a5c0e77b2f5b2ad2",
       "source_file": "merged_final_assets/batch04/24_龙珠使者.png",
-      "source_batch": "batch04",
+      "source_batch": "04",
       "display_name": "龙珠使者",
       "category": "NPC",
       "mapping_status": "mapped_name_family",
@@ -2412,7 +2446,7 @@
     {
       "asset_canonical_id": "visual.asset.dff013f262ed3fc2",
       "source_file": "merged_final_assets/batch04/25_药王.png",
-      "source_batch": "batch04",
+      "source_batch": "04",
       "display_name": "药王",
       "category": "NPC",
       "mapping_status": "mapped_name_family",
@@ -2437,7 +2471,7 @@
     {
       "asset_canonical_id": "visual.asset.ec64a0f4a1ab4904",
       "source_file": "merged_final_assets/batch04/26_王一仙.png",
-      "source_batch": "batch04",
+      "source_batch": "04",
       "display_name": "王一仙",
       "category": "NPC",
       "mapping_status": "mapped_name_family",
@@ -2458,7 +2492,7 @@
     {
       "asset_canonical_id": "visual.asset.d6ff39e190e33cfe",
       "source_file": "merged_final_assets/batch04/27_小良.png",
-      "source_batch": "batch04",
+      "source_batch": "04",
       "display_name": "小良",
       "category": "NPC",
       "mapping_status": "mapped_name_family",
@@ -2481,7 +2515,7 @@
     {
       "asset_canonical_id": "visual.asset.66edcb4dfa27eebe",
       "source_file": "merged_final_assets/batch04/28_吕洞宾.png",
-      "source_batch": "batch04",
+      "source_batch": "04",
       "display_name": "吕洞宾",
       "category": "NPC",
       "mapping_status": "mapped_name_family",
@@ -2502,7 +2536,7 @@
     {
       "asset_canonical_id": "visual.asset.6c8740596b1522ef",
       "source_file": "merged_final_assets/batch04/29_张果老.png",
-      "source_batch": "batch04",
+      "source_batch": "04",
       "display_name": "张果老",
       "category": "NPC",
       "mapping_status": "mapped_name_family",
@@ -2523,7 +2557,7 @@
     {
       "asset_canonical_id": "visual.asset.a70216837a7c2d1c",
       "source_file": "merged_final_assets/batch04/30_干将.png",
-      "source_batch": "batch04",
+      "source_batch": "04",
       "display_name": "干将",
       "category": "NPC",
       "mapping_status": "mapped_name_family",
@@ -2544,7 +2578,7 @@
     {
       "asset_canonical_id": "visual.asset.3ba7bec321e17913",
       "source_file": "merged_final_assets/batch05/11_大型鱼带泡船.png",
-      "source_batch": "batch05",
+      "source_batch": "05",
       "display_name": "大型鱼带泡船",
       "category": "船只",
       "mapping_status": "mapped_type_slot",
@@ -2552,7 +2586,9 @@
       "family_id": null,
       "slot_id": "visual.ship_type.65d8475a8c58dbb3",
       "visual_reference_id": null,
-      "binding_ids": [],
+      "binding_ids": [
+        "entity.ship.65d8475a8c58dbb3"
+      ],
       "task_reference_ids": [],
       "target_resource_path": "assets/authoritative/batch05/3ba7bec321e17913.png",
       "usage_interfaces": "航海|船只|海上事件",
@@ -2563,7 +2599,7 @@
     {
       "asset_canonical_id": "visual.asset.819d91229ac64bab",
       "source_file": "merged_final_assets/batch05/12_宠物蛋.png",
-      "source_batch": "batch05",
+      "source_batch": "05",
       "display_name": "宠物蛋",
       "category": "宠物/鱼类",
       "mapping_status": "mapped_type_slot",
@@ -2582,7 +2618,7 @@
     {
       "asset_canonical_id": "visual.asset.df8437f6816f6964",
       "source_file": "merged_final_assets/batch05/13_小猫.png",
-      "source_batch": "batch05",
+      "source_batch": "05",
       "display_name": "小猫",
       "category": "宠物/鱼类",
       "mapping_status": "mapped_type_slot",
@@ -2601,7 +2637,7 @@
     {
       "asset_canonical_id": "visual.asset.cb53bc5621510027",
       "source_file": "merged_final_assets/batch05/14_小狗.png",
-      "source_batch": "batch05",
+      "source_batch": "05",
       "display_name": "小狗",
       "category": "宠物/鱼类",
       "mapping_status": "mapped_type_slot",
@@ -2620,7 +2656,7 @@
     {
       "asset_canonical_id": "visual.asset.7db3c05cd74b06af",
       "source_file": "merged_final_assets/batch05/15_鹦鹉.png",
-      "source_batch": "batch05",
+      "source_batch": "05",
       "display_name": "鹦鹉",
       "category": "宠物/鱼类",
       "mapping_status": "mapped_type_slot",
@@ -2639,7 +2675,7 @@
     {
       "asset_canonical_id": "visual.asset.2e5a2ace62927302",
       "source_file": "merged_final_assets/batch05/16_小猴.png",
-      "source_batch": "batch05",
+      "source_batch": "05",
       "display_name": "小猴",
       "category": "宠物/鱼类",
       "mapping_status": "mapped_type_slot",
@@ -2658,7 +2694,7 @@
     {
       "asset_canonical_id": "visual.asset.3955176560b86d99",
       "source_file": "merged_final_assets/batch05/17_小海龟.png",
-      "source_batch": "batch05",
+      "source_batch": "05",
       "display_name": "小海龟",
       "category": "宠物/鱼类",
       "mapping_status": "mapped_type_slot",
@@ -2677,7 +2713,7 @@
     {
       "asset_canonical_id": "visual.asset.27eb0a7123911fb1",
       "source_file": "merged_final_assets/batch05/18_玉兔.png",
-      "source_batch": "batch05",
+      "source_batch": "05",
       "display_name": "玉兔",
       "category": "宠物/鱼类",
       "mapping_status": "mapped_type_slot",
@@ -2696,7 +2732,7 @@
     {
       "asset_canonical_id": "visual.asset.670e3426830edc9a",
       "source_file": "merged_final_assets/batch05/19_幼狐.png",
-      "source_batch": "batch05",
+      "source_batch": "05",
       "display_name": "幼狐",
       "category": "宠物/鱼类",
       "mapping_status": "mapped_type_slot",
@@ -2715,7 +2751,7 @@
     {
       "asset_canonical_id": "visual.asset.da0d8a8596e14e18",
       "source_file": "merged_final_assets/batch05/20_狼崽.png",
-      "source_batch": "batch05",
+      "source_batch": "05",
       "display_name": "狼崽",
       "category": "宠物/鱼类",
       "mapping_status": "mapped_type_slot",
@@ -2734,7 +2770,7 @@
     {
       "asset_canonical_id": "visual.asset.9bc7828aef7ca598",
       "source_file": "merged_final_assets/batch05/21_凤凰雏鸟.png",
-      "source_batch": "batch05",
+      "source_batch": "05",
       "display_name": "凤凰雏鸟",
       "category": "宠物/鱼类",
       "mapping_status": "mapped_type_slot",
@@ -2753,7 +2789,7 @@
     {
       "asset_canonical_id": "visual.asset.26cbabc83c3af0d1",
       "source_file": "merged_final_assets/batch05/22_小龙.png",
-      "source_batch": "batch05",
+      "source_batch": "05",
       "display_name": "小龙",
       "category": "宠物/鱼类",
       "mapping_status": "mapped_type_slot",
@@ -2772,7 +2808,7 @@
     {
       "asset_canonical_id": "visual.asset.a7112e17c1338529",
       "source_file": "merged_final_assets/batch05/23_沙丁鱼.png",
-      "source_batch": "batch05",
+      "source_batch": "05",
       "display_name": "沙丁鱼",
       "category": "宠物/鱼类",
       "mapping_status": "mapped_type_slot",
@@ -2793,7 +2829,7 @@
     {
       "asset_canonical_id": "visual.asset.e0ae2906e6d24667",
       "source_file": "merged_final_assets/batch05/24_金枪鱼.png",
-      "source_batch": "batch05",
+      "source_batch": "05",
       "display_name": "金枪鱼",
       "category": "宠物/鱼类",
       "mapping_status": "mapped_type_slot",
@@ -2814,7 +2850,7 @@
     {
       "asset_canonical_id": "visual.asset.35859782f8f01284",
       "source_file": "merged_final_assets/batch05/25_鳕鱼.png",
-      "source_batch": "batch05",
+      "source_batch": "05",
       "display_name": "鳕鱼",
       "category": "宠物/鱼类",
       "mapping_status": "mapped_type_slot",
@@ -2835,7 +2871,7 @@
     {
       "asset_canonical_id": "visual.asset.2590ca7a8452a25e",
       "source_file": "merged_final_assets/batch05/26_鲑鱼.png",
-      "source_batch": "batch05",
+      "source_batch": "05",
       "display_name": "鲑鱼",
       "category": "宠物/鱼类",
       "mapping_status": "mapped_type_slot",
@@ -2843,7 +2879,9 @@
       "family_id": null,
       "slot_id": "visual.fish_type.df9ccd92ec9d49f8",
       "visual_reference_id": null,
-      "binding_ids": [],
+      "binding_ids": [
+        "entity.item.df9ccd92ec9d49f8"
+      ],
       "task_reference_ids": [],
       "target_resource_path": "assets/authoritative/batch05/2590ca7a8452a25e.png",
       "usage_interfaces": "钓鱼|航海|背包",
@@ -2854,7 +2892,7 @@
     {
       "asset_canonical_id": "visual.asset.7e255199dfdd650e",
       "source_file": "merged_final_assets/batch05/27_龙虾.png",
-      "source_batch": "batch05",
+      "source_batch": "05",
       "display_name": "龙虾",
       "category": "宠物/鱼类",
       "mapping_status": "mapped_type_slot",
@@ -2873,7 +2911,7 @@
     {
       "asset_canonical_id": "visual.asset.6fb517ac1df8ebc3",
       "source_file": "merged_final_assets/batch05/28_螃蟹.png",
-      "source_batch": "batch05",
+      "source_batch": "05",
       "display_name": "螃蟹",
       "category": "宠物/鱼类",
       "mapping_status": "mapped_type_slot",
@@ -2881,7 +2919,9 @@
       "family_id": null,
       "slot_id": "visual.fish_type.3efc0d87f78ee263",
       "visual_reference_id": null,
-      "binding_ids": [],
+      "binding_ids": [
+        "entity.item.3efc0d87f78ee263"
+      ],
       "task_reference_ids": [],
       "target_resource_path": "assets/authoritative/batch05/6fb517ac1df8ebc3.png",
       "usage_interfaces": "钓鱼|航海|背包",
@@ -2892,7 +2932,7 @@
     {
       "asset_canonical_id": "visual.asset.77590ce7484845b1",
       "source_file": "merged_final_assets/batch05/29_章鱼.png",
-      "source_batch": "batch05",
+      "source_batch": "05",
       "display_name": "章鱼",
       "category": "宠物/鱼类",
       "mapping_status": "mapped_type_slot",
@@ -2900,7 +2940,9 @@
       "family_id": null,
       "slot_id": "visual.fish_type.ae1d91f7dc68ff3c",
       "visual_reference_id": null,
-      "binding_ids": [],
+      "binding_ids": [
+        "entity.item.ae1d91f7dc68ff3c"
+      ],
       "task_reference_ids": [],
       "target_resource_path": "assets/authoritative/batch05/77590ce7484845b1.png",
       "usage_interfaces": "钓鱼|航海|背包",
@@ -2911,7 +2953,7 @@
     {
       "asset_canonical_id": "visual.asset.7a019de2bf76ae85",
       "source_file": "merged_final_assets/batch05/30_剑鱼.png",
-      "source_batch": "batch05",
+      "source_batch": "05",
       "display_name": "剑鱼",
       "category": "宠物/鱼类",
       "mapping_status": "mapped_type_slot",
@@ -2932,7 +2974,7 @@
     {
       "asset_canonical_id": "visual.asset.e0da3a737a7c5e70",
       "source_file": "merged_final_assets/batch06/01_神秘铁箱.png",
-      "source_batch": "batch06",
+      "source_batch": "06",
       "display_name": "神秘铁箱",
       "category": "关键任务物/宝藏",
       "mapping_status": "mapped_task_reference",
@@ -2960,7 +3002,7 @@
     {
       "asset_canonical_id": "visual.asset.69d515f5e752addb",
       "source_file": "merged_final_assets/batch06/02_通商卷轴.png",
-      "source_batch": "batch06",
+      "source_batch": "06",
       "display_name": "通商卷轴",
       "category": "关键任务物/宝藏",
       "mapping_status": "mapped_task_reference",
@@ -2969,7 +3011,10 @@
       "slot_id": null,
       "visual_reference_id": "visual.task_item.9216af6fd9009442",
       "binding_ids": [],
-      "task_reference_ids": [],
+      "task_reference_ids": [
+        "task.series.13.101",
+        "task.series.13.102"
+      ],
       "target_resource_path": "assets/authoritative/batch06/69d515f5e752addb.png",
       "usage_interfaces": "任务|背包|奖励|特殊场景",
       "variant": "base",
@@ -2979,7 +3024,7 @@
     {
       "asset_canonical_id": "visual.asset.c3074e2b482628bd",
       "source_file": "merged_final_assets/batch06/03_通商文书.png",
-      "source_batch": "batch06",
+      "source_batch": "06",
       "display_name": "通商文书",
       "category": "关键任务物/宝藏",
       "mapping_status": "mapped_task_reference",
@@ -2988,7 +3033,10 @@
       "slot_id": null,
       "visual_reference_id": "visual.task_item.4e87ebf02b34f737",
       "binding_ids": [],
-      "task_reference_ids": [],
+      "task_reference_ids": [
+        "task.series.13.101",
+        "task.series.13.102"
+      ],
       "target_resource_path": "assets/authoritative/batch06/c3074e2b482628bd.png",
       "usage_interfaces": "任务|背包|奖励|特殊场景",
       "variant": "base",
@@ -2998,7 +3046,7 @@
     {
       "asset_canonical_id": "visual.asset.1613f94f153dfbfb",
       "source_file": "merged_final_assets/batch06/04_密封信函.png",
-      "source_batch": "batch06",
+      "source_batch": "06",
       "display_name": "密封信函",
       "category": "关键任务物/宝藏",
       "mapping_status": "mapped_task_reference",
@@ -3007,7 +3055,10 @@
       "slot_id": null,
       "visual_reference_id": "visual.task_item.80799273a1951294",
       "binding_ids": [],
-      "task_reference_ids": [],
+      "task_reference_ids": [
+        "task.series.13.154",
+        "task.series.13.156"
+      ],
       "target_resource_path": "assets/authoritative/batch06/1613f94f153dfbfb.png",
       "usage_interfaces": "任务|背包|奖励|特殊场景",
       "variant": "base",
@@ -3017,7 +3068,7 @@
     {
       "asset_canonical_id": "visual.asset.bc447f0f9eabc465",
       "source_file": "merged_final_assets/batch06/05_圣火令.png",
-      "source_batch": "batch06",
+      "source_batch": "06",
       "display_name": "圣火令",
       "category": "关键任务物/宝藏",
       "mapping_status": "mapped_task_reference",
@@ -3106,7 +3157,7 @@
     {
       "asset_canonical_id": "visual.asset.ce47591c3b513761",
       "source_file": "merged_final_assets/batch06/06_亚丁权杖.png",
-      "source_batch": "batch06",
+      "source_batch": "06",
       "display_name": "亚丁权杖",
       "category": "关键任务物/宝藏",
       "mapping_status": "mapped_task_reference",
@@ -3115,7 +3166,10 @@
       "slot_id": null,
       "visual_reference_id": "visual.task_item.3ad18738be2bb7d3",
       "binding_ids": [],
-      "task_reference_ids": [],
+      "task_reference_ids": [
+        "task.series.13.101",
+        "task.series.13.102"
+      ],
       "target_resource_path": "assets/authoritative/batch06/ce47591c3b513761.png",
       "usage_interfaces": "任务|背包|奖励|特殊场景",
       "variant": "base",
@@ -3125,7 +3179,7 @@
     {
       "asset_canonical_id": "visual.asset.728b65c6eee648c4",
       "source_file": "merged_final_assets/batch06/07_龙珠碎片·赤.png",
-      "source_batch": "batch06",
+      "source_batch": "06",
       "display_name": "龙珠碎片·赤",
       "category": "关键任务物/宝藏",
       "mapping_status": "mapped_task_reference",
@@ -3149,7 +3203,7 @@
     {
       "asset_canonical_id": "visual.asset.cf50d3f3a09aafa0",
       "source_file": "merged_final_assets/batch06/08_龙珠碎片·蓝.png",
-      "source_batch": "batch06",
+      "source_batch": "06",
       "display_name": "龙珠碎片·蓝",
       "category": "关键任务物/宝藏",
       "mapping_status": "mapped_task_reference",
@@ -3173,7 +3227,7 @@
     {
       "asset_canonical_id": "visual.asset.4c2853b5d99d20ca",
       "source_file": "merged_final_assets/batch06/09_龙珠碎片·绿.png",
-      "source_batch": "batch06",
+      "source_batch": "06",
       "display_name": "龙珠碎片·绿",
       "category": "关键任务物/宝藏",
       "mapping_status": "mapped_task_reference",
@@ -3197,7 +3251,7 @@
     {
       "asset_canonical_id": "visual.asset.84ceed7d2e463342",
       "source_file": "merged_final_assets/batch06/10_龙珠碎片·金.png",
-      "source_batch": "batch06",
+      "source_batch": "06",
       "display_name": "龙珠碎片·金",
       "category": "关键任务物/宝藏",
       "mapping_status": "mapped_task_reference",
@@ -3221,7 +3275,7 @@
     {
       "asset_canonical_id": "visual.asset.50313c1df3219366",
       "source_file": "merged_final_assets/batch06/11_加封谕旨.png",
-      "source_batch": "batch06",
+      "source_batch": "06",
       "display_name": "加封谕旨",
       "category": "关键任务物/宝藏",
       "mapping_status": "mapped_task_reference",
@@ -3230,7 +3284,10 @@
       "slot_id": null,
       "visual_reference_id": "visual.task_item.25fb8273a4b5eedc",
       "binding_ids": [],
-      "task_reference_ids": [],
+      "task_reference_ids": [
+        "task.series.13.101",
+        "task.series.13.102"
+      ],
       "target_resource_path": "assets/authoritative/batch06/50313c1df3219366.png",
       "usage_interfaces": "任务|背包|奖励|特殊场景",
       "variant": "base",
@@ -3240,7 +3297,7 @@
     {
       "asset_canonical_id": "visual.asset.3a4bc277e544e921",
       "source_file": "merged_final_assets/batch06/12_古航海图.png",
-      "source_batch": "batch06",
+      "source_batch": "06",
       "display_name": "古航海图",
       "category": "关键任务物/宝藏",
       "mapping_status": "mapped_task_reference",
@@ -3249,7 +3306,10 @@
       "slot_id": null,
       "visual_reference_id": "visual.task_item.042e15fef31f26be",
       "binding_ids": [],
-      "task_reference_ids": [],
+      "task_reference_ids": [
+        "task.series.13.160",
+        "task.series.13.161"
+      ],
       "target_resource_path": "assets/authoritative/batch06/3a4bc277e544e921.png",
       "usage_interfaces": "任务|背包|奖励|特殊场景",
       "variant": "base",
@@ -3259,7 +3319,7 @@
     {
       "asset_canonical_id": "visual.asset.aece4487918b8262",
       "source_file": "merged_final_assets/batch06/13_航海罗盘.png",
-      "source_batch": "batch06",
+      "source_batch": "06",
       "display_name": "航海罗盘",
       "category": "关键任务物/宝藏",
       "mapping_status": "mapped_task_reference",
@@ -3268,7 +3328,10 @@
       "slot_id": null,
       "visual_reference_id": "visual.task_item.8f79cc1311a40f9d",
       "binding_ids": [],
-      "task_reference_ids": [],
+      "task_reference_ids": [
+        "task.series.13.160",
+        "task.series.13.161"
+      ],
       "target_resource_path": "assets/authoritative/batch06/aece4487918b8262.png",
       "usage_interfaces": "任务|背包|奖励|特殊场景",
       "variant": "base",
@@ -3278,7 +3341,7 @@
     {
       "asset_canonical_id": "visual.asset.78924bd263722838",
       "source_file": "merged_final_assets/batch06/14_黑铁钥匙.png",
-      "source_batch": "batch06",
+      "source_batch": "06",
       "display_name": "黑铁钥匙",
       "category": "关键任务物/宝藏",
       "mapping_status": "mapped_task_reference",
@@ -3287,7 +3350,9 @@
       "slot_id": null,
       "visual_reference_id": "visual.task_item.8b74a7b28060691a",
       "binding_ids": [],
-      "task_reference_ids": [],
+      "task_reference_ids": [
+        "task.series.15.295"
+      ],
       "target_resource_path": "assets/authoritative/batch06/78924bd263722838.png",
       "usage_interfaces": "任务|背包|奖励|特殊场景",
       "variant": "base",
@@ -3297,7 +3362,7 @@
     {
       "asset_canonical_id": "visual.asset.8fb2d6fa8057fd21",
       "source_file": "merged_final_assets/batch06/15_铜钥匙.png",
-      "source_batch": "batch06",
+      "source_batch": "06",
       "display_name": "铜钥匙",
       "category": "关键任务物/宝藏",
       "mapping_status": "mapped_task_reference",
@@ -3306,7 +3371,9 @@
       "slot_id": null,
       "visual_reference_id": "visual.task_item.ff6cef9d8a68451b",
       "binding_ids": [],
-      "task_reference_ids": [],
+      "task_reference_ids": [
+        "task.series.15.295"
+      ],
       "target_resource_path": "assets/authoritative/batch06/8fb2d6fa8057fd21.png",
       "usage_interfaces": "任务|背包|奖励|特殊场景",
       "variant": "base",
@@ -3316,7 +3383,7 @@
     {
       "asset_canonical_id": "visual.asset.76a04a324a178858",
       "source_file": "merged_final_assets/batch06/16_银钥匙.png",
-      "source_batch": "batch06",
+      "source_batch": "06",
       "display_name": "银钥匙",
       "category": "关键任务物/宝藏",
       "mapping_status": "mapped_task_reference",
@@ -3325,7 +3392,9 @@
       "slot_id": null,
       "visual_reference_id": "visual.task_item.372e7a0da738d7b6",
       "binding_ids": [],
-      "task_reference_ids": [],
+      "task_reference_ids": [
+        "task.series.15.295"
+      ],
       "target_resource_path": "assets/authoritative/batch06/76a04a324a178858.png",
       "usage_interfaces": "任务|背包|奖励|特殊场景",
       "variant": "base",
@@ -3335,7 +3404,7 @@
     {
       "asset_canonical_id": "visual.asset.d8c362088a5a89eb",
       "source_file": "merged_final_assets/batch06/17_金钥匙.png",
-      "source_batch": "batch06",
+      "source_batch": "06",
       "display_name": "金钥匙",
       "category": "关键任务物/宝藏",
       "mapping_status": "mapped_task_reference",
@@ -3344,7 +3413,9 @@
       "slot_id": null,
       "visual_reference_id": "visual.task_item.abb9d800063cd3bc",
       "binding_ids": [],
-      "task_reference_ids": [],
+      "task_reference_ids": [
+        "task.series.15.295"
+      ],
       "target_resource_path": "assets/authoritative/batch06/d8c362088a5a89eb.png",
       "usage_interfaces": "任务|背包|奖励|特殊场景",
       "variant": "base",
@@ -3354,7 +3425,7 @@
     {
       "asset_canonical_id": "visual.asset.afd1f8be6cea76bc",
       "source_file": "merged_final_assets/batch06/18_骷髅钥匙.png",
-      "source_batch": "batch06",
+      "source_batch": "06",
       "display_name": "骷髅钥匙",
       "category": "关键任务物/宝藏",
       "mapping_status": "mapped_task_reference",
@@ -3363,7 +3434,9 @@
       "slot_id": null,
       "visual_reference_id": "visual.task_item.e9073c5038adbde4",
       "binding_ids": [],
-      "task_reference_ids": [],
+      "task_reference_ids": [
+        "task.series.15.295"
+      ],
       "target_resource_path": "assets/authoritative/batch06/afd1f8be6cea76bc.png",
       "usage_interfaces": "任务|背包|奖励|特殊场景",
       "variant": "base",
@@ -3373,7 +3446,7 @@
     {
       "asset_canonical_id": "visual.asset.13d17f7c06012105",
       "source_file": "merged_final_assets/batch06/19_律法纹章.png",
-      "source_batch": "batch06",
+      "source_batch": "06",
       "display_name": "律法纹章",
       "category": "关键任务物/宝藏",
       "mapping_status": "mapped_task_reference",
@@ -3382,7 +3455,10 @@
       "slot_id": null,
       "visual_reference_id": "visual.task_item.b8db0ebdcf750fa5",
       "binding_ids": [],
-      "task_reference_ids": [],
+      "task_reference_ids": [
+        "task.series.13.101",
+        "task.series.13.102"
+      ],
       "target_resource_path": "assets/authoritative/batch06/13d17f7c06012105.png",
       "usage_interfaces": "任务|背包|奖励|特殊场景",
       "variant": "base",
@@ -3392,7 +3468,7 @@
     {
       "asset_canonical_id": "visual.asset.7a84a49f50c0ac62",
       "source_file": "merged_final_assets/batch06/20_印蜡官印.png",
-      "source_batch": "batch06",
+      "source_batch": "06",
       "display_name": "印蜡官印",
       "category": "关键任务物/宝藏",
       "mapping_status": "mapped_task_reference",
@@ -3401,7 +3477,10 @@
       "slot_id": null,
       "visual_reference_id": "visual.task_item.7ec5b65b1a6036f9",
       "binding_ids": [],
-      "task_reference_ids": [],
+      "task_reference_ids": [
+        "task.series.12.100",
+        "task.series.13.101"
+      ],
       "target_resource_path": "assets/authoritative/batch06/7a84a49f50c0ac62.png",
       "usage_interfaces": "任务|背包|奖励|特殊场景",
       "variant": "base",
@@ -3411,7 +3490,7 @@
     {
       "asset_canonical_id": "visual.asset.f6e0e9f7b23e9f42",
       "source_file": "merged_final_assets/batch06/21_蓝纹宝箱.png",
-      "source_batch": "batch06",
+      "source_batch": "06",
       "display_name": "蓝纹宝箱",
       "category": "关键任务物/宝藏",
       "mapping_status": "mapped_task_reference",
@@ -3420,7 +3499,9 @@
       "slot_id": null,
       "visual_reference_id": "visual.task_item.9fa15c36e7e4ff6e",
       "binding_ids": [],
-      "task_reference_ids": [],
+      "task_reference_ids": [
+        "task.series.05.036"
+      ],
       "target_resource_path": "assets/authoritative/batch06/f6e0e9f7b23e9f42.png",
       "usage_interfaces": "任务|背包|奖励|特殊场景",
       "variant": "base",
@@ -3430,7 +3511,7 @@
     {
       "asset_canonical_id": "visual.asset.b5f7c4c2e4b1804b",
       "source_file": "merged_final_assets/batch06/22_圣杯.png",
-      "source_batch": "batch06",
+      "source_batch": "06",
       "display_name": "圣杯",
       "category": "关键任务物/宝藏",
       "mapping_status": "mapped_task_reference",
@@ -3439,7 +3520,10 @@
       "slot_id": null,
       "visual_reference_id": "visual.task_item.ff3f779360a58ddb",
       "binding_ids": [],
-      "task_reference_ids": [],
+      "task_reference_ids": [
+        "task.series.12.100",
+        "task.series.13.101"
+      ],
       "target_resource_path": "assets/authoritative/batch06/b5f7c4c2e4b1804b.png",
       "usage_interfaces": "任务|背包|奖励|特殊场景",
       "variant": "base",
@@ -3449,7 +3533,7 @@
     {
       "asset_canonical_id": "visual.asset.f1f9d07d9a3bf719",
       "source_file": "merged_final_assets/batch06/23_玉筒.png",
-      "source_batch": "batch06",
+      "source_batch": "06",
       "display_name": "玉筒",
       "category": "关键任务物/宝藏",
       "mapping_status": "mapped_task_reference",
@@ -3458,7 +3542,10 @@
       "slot_id": null,
       "visual_reference_id": "visual.task_item.43c7d7cefa4ae8b6",
       "binding_ids": [],
-      "task_reference_ids": [],
+      "task_reference_ids": [
+        "task.series.12.100",
+        "task.series.13.101"
+      ],
       "target_resource_path": "assets/authoritative/batch06/f1f9d07d9a3bf719.png",
       "usage_interfaces": "任务|背包|奖励|特殊场景",
       "variant": "base",
@@ -3468,7 +3555,7 @@
     {
       "asset_canonical_id": "visual.asset.caef2ac166cabb29",
       "source_file": "merged_final_assets/batch06/24_水晶头骨.png",
-      "source_batch": "batch06",
+      "source_batch": "06",
       "display_name": "水晶头骨",
       "category": "关键任务物/宝藏",
       "mapping_status": "mapped_task_reference",
@@ -3477,7 +3564,10 @@
       "slot_id": null,
       "visual_reference_id": "visual.task_item.b40abb7dbcb5e4b7",
       "binding_ids": [],
-      "task_reference_ids": [],
+      "task_reference_ids": [
+        "task.series.12.100",
+        "task.series.13.101"
+      ],
       "target_resource_path": "assets/authoritative/batch06/caef2ac166cabb29.png",
       "usage_interfaces": "任务|背包|奖励|特殊场景",
       "variant": "base",
@@ -3487,7 +3577,7 @@
     {
       "asset_canonical_id": "visual.asset.ebcde7d676f436d3",
       "source_file": "merged_final_assets/batch06/25_太阳徽章.png",
-      "source_batch": "batch06",
+      "source_batch": "06",
       "display_name": "太阳徽章",
       "category": "关键任务物/宝藏",
       "mapping_status": "mapped_task_reference",
@@ -3496,7 +3586,10 @@
       "slot_id": null,
       "visual_reference_id": "visual.task_item.083b844a413f2339",
       "binding_ids": [],
-      "task_reference_ids": [],
+      "task_reference_ids": [
+        "task.series.05.032",
+        "task.series.05.033"
+      ],
       "target_resource_path": "assets/authoritative/batch06/ebcde7d676f436d3.png",
       "usage_interfaces": "任务|背包|奖励|特殊场景",
       "variant": "base",
@@ -3506,7 +3599,7 @@
     {
       "asset_canonical_id": "visual.asset.411b1bd41f86173e",
       "source_file": "merged_final_assets/batch06/26_月影水晶球.png",
-      "source_batch": "batch06",
+      "source_batch": "06",
       "display_name": "月影水晶球",
       "category": "关键任务物/宝藏",
       "mapping_status": "mapped_task_reference",
@@ -3515,7 +3608,10 @@
       "slot_id": null,
       "visual_reference_id": "visual.task_item.e035a3d7f7cc3b0e",
       "binding_ids": [],
-      "task_reference_ids": [],
+      "task_reference_ids": [
+        "task.series.12.100",
+        "task.series.13.101"
+      ],
       "target_resource_path": "assets/authoritative/batch06/411b1bd41f86173e.png",
       "usage_interfaces": "任务|背包|奖励|特殊场景",
       "variant": "base",
@@ -3525,7 +3621,7 @@
     {
       "asset_canonical_id": "visual.asset.ba717600c40947e3",
       "source_file": "merged_final_assets/batch06/27_古护符.png",
-      "source_batch": "batch06",
+      "source_batch": "06",
       "display_name": "古护符",
       "category": "关键任务物/宝藏",
       "mapping_status": "mapped_task_reference",
@@ -3534,7 +3630,10 @@
       "slot_id": null,
       "visual_reference_id": "visual.task_item.07189b7db2ed38ac",
       "binding_ids": [],
-      "task_reference_ids": [],
+      "task_reference_ids": [
+        "task.series.12.100",
+        "task.series.13.101"
+      ],
       "target_resource_path": "assets/authoritative/batch06/ba717600c40947e3.png",
       "usage_interfaces": "任务|背包|奖励|特殊场景",
       "variant": "base",
@@ -3544,7 +3643,7 @@
     {
       "asset_canonical_id": "visual.asset.39638095cc27960c",
       "source_file": "merged_final_assets/batch06/28_青龙玉佩.png",
-      "source_batch": "batch06",
+      "source_batch": "06",
       "display_name": "青龙玉佩",
       "category": "关键任务物/宝藏",
       "mapping_status": "mapped_task_reference",
@@ -3553,7 +3652,10 @@
       "slot_id": null,
       "visual_reference_id": "visual.task_item.586fec3896207a43",
       "binding_ids": [],
-      "task_reference_ids": [],
+      "task_reference_ids": [
+        "task.series.12.096",
+        "task.series.15.519"
+      ],
       "target_resource_path": "assets/authoritative/batch06/39638095cc27960c.png",
       "usage_interfaces": "任务|背包|奖励|特殊场景",
       "variant": "base",
@@ -3563,7 +3665,7 @@
     {
       "asset_canonical_id": "visual.asset.fb3f4b6bbc02a564",
       "source_file": "merged_final_assets/batch06/29_镇印石盒.png",
-      "source_batch": "batch06",
+      "source_batch": "06",
       "display_name": "镇印石盒",
       "category": "关键任务物/宝藏",
       "mapping_status": "mapped_task_reference",
@@ -3572,7 +3674,10 @@
       "slot_id": null,
       "visual_reference_id": "visual.task_item.ff6fcb7c28ae1ded",
       "binding_ids": [],
-      "task_reference_ids": [],
+      "task_reference_ids": [
+        "task.series.12.100",
+        "task.series.13.101"
+      ],
       "target_resource_path": "assets/authoritative/batch06/fb3f4b6bbc02a564.png",
       "usage_interfaces": "任务|背包|奖励|特殊场景",
       "variant": "base",
@@ -3582,7 +3687,7 @@
     {
       "asset_canonical_id": "visual.asset.c9326586616c93f8",
       "source_file": "merged_final_assets/batch06/30_漩涡怀表.png",
-      "source_batch": "batch06",
+      "source_batch": "06",
       "display_name": "漩涡怀表",
       "category": "关键任务物/宝藏",
       "mapping_status": "mapped_task_reference",
@@ -3591,7 +3696,10 @@
       "slot_id": null,
       "visual_reference_id": "visual.task_item.5c27467ecfa61e61",
       "binding_ids": [],
-      "task_reference_ids": [],
+      "task_reference_ids": [
+        "task.series.12.100",
+        "task.series.13.101"
+      ],
       "target_resource_path": "assets/authoritative/batch06/c9326586616c93f8.png",
       "usage_interfaces": "任务|背包|奖励|特殊场景",
       "variant": "base",
@@ -3601,7 +3709,7 @@
     {
       "asset_canonical_id": "visual.asset.631d5ce7176f8e17",
       "source_file": "merged_final_assets/batch07/01_三桅大型帆船.png",
-      "source_batch": "batch07",
+      "source_batch": "07",
       "display_name": "三桅大型帆船",
       "category": "船只/地点事件",
       "mapping_status": "mapped_type_slot",
@@ -3609,7 +3717,9 @@
       "family_id": null,
       "slot_id": "visual.ship_type.f12492991577bd14",
       "visual_reference_id": null,
-      "binding_ids": [],
+      "binding_ids": [
+        "entity.ship.1144799cb8ed2a29"
+      ],
       "task_reference_ids": [],
       "target_resource_path": "assets/authoritative/batch07/631d5ce7176f8e17.png",
       "usage_interfaces": "航海|船只|海上事件",
@@ -3620,7 +3730,7 @@
     {
       "asset_canonical_id": "visual.asset.f9b7068b8d2e2988",
       "source_file": "merged_final_assets/batch07/02_小型单桅帆船.png",
-      "source_batch": "batch07",
+      "source_batch": "07",
       "display_name": "小型单桅帆船",
       "category": "船只/地点事件",
       "mapping_status": "mapped_type_slot",
@@ -3642,7 +3752,7 @@
     {
       "asset_canonical_id": "visual.asset.0712a9416fb8852e",
       "source_file": "merged_final_assets/batch07/03_双桅商船.png",
-      "source_batch": "batch07",
+      "source_batch": "07",
       "display_name": "双桅商船",
       "category": "船只/地点事件",
       "mapping_status": "mapped_type_slot",
@@ -3664,7 +3774,7 @@
     {
       "asset_canonical_id": "visual.asset.0dd550cb96e048b1",
       "source_file": "merged_final_assets/batch07/04_武装商船.png",
-      "source_batch": "batch07",
+      "source_batch": "07",
       "display_name": "武装商船",
       "category": "船只/地点事件",
       "mapping_status": "mapped_type_slot",
@@ -3686,7 +3796,7 @@
     {
       "asset_canonical_id": "visual.asset.994623337720e87d",
       "source_file": "merged_final_assets/batch07/05_卡拉维尔帆船.png",
-      "source_batch": "batch07",
+      "source_batch": "07",
       "display_name": "卡拉维尔帆船",
       "category": "船只/地点事件",
       "mapping_status": "mapped_type_slot",
@@ -3707,7 +3817,7 @@
     {
       "asset_canonical_id": "visual.asset.8e2e65fa7d7b1c48",
       "source_file": "merged_final_assets/batch07/06_盖伦帆船.png",
-      "source_batch": "batch07",
+      "source_batch": "07",
       "display_name": "盖伦帆船",
       "category": "船只/地点事件",
       "mapping_status": "mapped_type_slot",
@@ -3730,7 +3840,7 @@
     {
       "asset_canonical_id": "visual.asset.b2b1d52c845c5327",
       "source_file": "merged_final_assets/batch07/07_中国福船.png",
-      "source_batch": "batch07",
+      "source_batch": "07",
       "display_name": "中国福船",
       "category": "船只/地点事件",
       "mapping_status": "mapped_type_slot",
@@ -3752,7 +3862,7 @@
     {
       "asset_canonical_id": "visual.asset.0f3250eaa9e70918",
       "source_file": "merged_final_assets/batch07/08_阿拉伯三角帆船.png",
-      "source_batch": "batch07",
+      "source_batch": "07",
       "display_name": "阿拉伯三角帆船",
       "category": "船只/地点事件",
       "mapping_status": "mapped_type_slot",
@@ -3775,7 +3885,7 @@
     {
       "asset_canonical_id": "visual.asset.c55e6ccc50cb4aa7",
       "source_file": "merged_final_assets/batch07/09_海盗船.png",
-      "source_batch": "batch07",
+      "source_batch": "07",
       "display_name": "海盗船",
       "category": "船只/地点事件",
       "mapping_status": "mapped_type_slot",
@@ -3783,7 +3893,9 @@
       "family_id": null,
       "slot_id": "visual.ship_type.d8abe8bc33bf24cb",
       "visual_reference_id": null,
-      "binding_ids": [],
+      "binding_ids": [
+        "entity.ship.d8abe8bc33bf24cb"
+      ],
       "task_reference_ids": [],
       "target_resource_path": "assets/authoritative/batch07/c55e6ccc50cb4aa7.png",
       "usage_interfaces": "航海|船只|海上事件",
@@ -3794,7 +3906,7 @@
     {
       "asset_canonical_id": "visual.asset.0d3aa9048c85fc7a",
       "source_file": "merged_final_assets/batch07/10_幽灵船.png",
-      "source_batch": "batch07",
+      "source_batch": "07",
       "display_name": "幽灵船",
       "category": "船只/地点事件",
       "mapping_status": "mapped_type_slot",
@@ -3802,7 +3914,9 @@
       "family_id": null,
       "slot_id": "visual.ship_type.583ef5095878bba2",
       "visual_reference_id": null,
-      "binding_ids": [],
+      "binding_ids": [
+        "entity.ship.583ef5095878bba2"
+      ],
       "task_reference_ids": [],
       "target_resource_path": "assets/authoritative/batch07/0d3aa9048c85fc7a.png",
       "usage_interfaces": "航海|船只|海上事件",
@@ -3813,7 +3927,7 @@
     {
       "asset_canonical_id": "visual.asset.8b55bbfc0740490b",
       "source_file": "merged_final_assets/batch07/11_明永乐大帆船.png",
-      "source_batch": "batch07",
+      "source_batch": "07",
       "display_name": "明永乐大帆船",
       "category": "船只/地点事件",
       "mapping_status": "mapped_type_slot",
@@ -3821,7 +3935,9 @@
       "family_id": null,
       "slot_id": "visual.ship_type.ad0207e0d83fe284",
       "visual_reference_id": null,
-      "binding_ids": [],
+      "binding_ids": [
+        "entity.ship.98c718db52363742"
+      ],
       "task_reference_ids": [],
       "target_resource_path": "assets/authoritative/batch07/8b55bbfc0740490b.png",
       "usage_interfaces": "航海|船只|海上事件",
@@ -3832,121 +3948,121 @@
     {
       "asset_canonical_id": "visual.asset.213393fe5adcc8f3",
       "source_file": "merged_final_assets/batch07/12_威尼斯港口.png",
-      "source_batch": "batch07",
+      "source_batch": "07",
       "display_name": "威尼斯港口",
       "category": "船只/地点事件",
-      "mapping_status": "mapped_interface_slot",
+      "mapping_status": "mapped_type_slot",
       "canonical_id": null,
       "family_id": null,
-      "slot_id": "visual.slot.world_scene.182",
+      "slot_id": "visual.ship_type.751d0179e4524f84",
       "visual_reference_id": null,
       "binding_ids": [],
       "task_reference_ids": [],
       "target_resource_path": "assets/authoritative/batch07/213393fe5adcc8f3.png",
-      "usage_interfaces": "航海|船只|对应功能页",
+      "usage_interfaces": "航海|船只|海上事件",
       "variant": "base",
-      "mapping_reason": "绑定已有界面或场景槽位。",
+      "mapping_reason": "绑定船型或海上事件视觉槽位；同一船型可服务多个正式船只。",
       "sha256": "213393fe5adcc8f37267602275dc4fa1b33a540bcf35257655985ab0e57bebe9"
     },
     {
       "asset_canonical_id": "visual.asset.f3cdb3678ac859b4",
       "source_file": "merged_final_assets/batch07/13_阿拉伯港市.png",
-      "source_batch": "batch07",
+      "source_batch": "07",
       "display_name": "阿拉伯港市",
       "category": "船只/地点事件",
-      "mapping_status": "mapped_interface_slot",
+      "mapping_status": "mapped_type_slot",
       "canonical_id": null,
       "family_id": null,
-      "slot_id": "visual.slot.world_scene.183",
+      "slot_id": "visual.ship_type.5634063d9faa73e3",
       "visual_reference_id": null,
       "binding_ids": [],
       "task_reference_ids": [],
       "target_resource_path": "assets/authoritative/batch07/f3cdb3678ac859b4.png",
-      "usage_interfaces": "航海|船只|对应功能页",
+      "usage_interfaces": "航海|船只|海上事件",
       "variant": "base",
-      "mapping_reason": "绑定已有界面或场景槽位。",
+      "mapping_reason": "绑定船型或海上事件视觉槽位；同一船型可服务多个正式船只。",
       "sha256": "f3cdb3678ac859b4f48c44613fcee6a2417021c1251b482c7b525a99cfef97dc"
     },
     {
       "asset_canonical_id": "visual.asset.960467f5f0c12267",
       "source_file": "merged_final_assets/batch07/14_中国海港.png",
-      "source_batch": "batch07",
+      "source_batch": "07",
       "display_name": "中国海港",
       "category": "船只/地点事件",
-      "mapping_status": "mapped_interface_slot",
+      "mapping_status": "mapped_type_slot",
       "canonical_id": null,
       "family_id": null,
-      "slot_id": "visual.slot.world_scene.184",
+      "slot_id": "visual.ship_type.8b6a030c98b91993",
       "visual_reference_id": null,
       "binding_ids": [],
       "task_reference_ids": [],
       "target_resource_path": "assets/authoritative/batch07/960467f5f0c12267.png",
-      "usage_interfaces": "航海|船只|对应功能页",
+      "usage_interfaces": "航海|船只|海上事件",
       "variant": "base",
-      "mapping_reason": "绑定已有界面或场景槽位。",
+      "mapping_reason": "绑定船型或海上事件视觉槽位；同一船型可服务多个正式船只。",
       "sha256": "960467f5f0c12267d023c7a00cd78dfa6c836259306a42437447d108278b4bbf"
     },
     {
       "asset_canonical_id": "visual.asset.91b5c66d58d374ab",
       "source_file": "merged_final_assets/batch07/15_暴风海域.png",
-      "source_batch": "batch07",
+      "source_batch": "07",
       "display_name": "暴风海域",
       "category": "船只/地点事件",
-      "mapping_status": "mapped_interface_slot",
+      "mapping_status": "mapped_type_slot",
       "canonical_id": null,
       "family_id": null,
-      "slot_id": "visual.slot.world_scene.185",
+      "slot_id": "visual.ship_type.97055b25fd6722dd",
       "visual_reference_id": null,
       "binding_ids": [],
       "task_reference_ids": [],
       "target_resource_path": "assets/authoritative/batch07/91b5c66d58d374ab.png",
-      "usage_interfaces": "航海|船只|对应功能页",
+      "usage_interfaces": "航海|船只|海上事件",
       "variant": "base",
-      "mapping_reason": "绑定已有界面或场景槽位。",
+      "mapping_reason": "绑定船型或海上事件视觉槽位；同一船型可服务多个正式船只。",
       "sha256": "91b5c66d58d374ab65dcecad09e28253c43547ecfef4f4c98fd415324e8e3db9"
     },
     {
       "asset_canonical_id": "visual.asset.92ba7356c4d8d5e4",
       "source_file": "merged_final_assets/batch07/16_宝藏岛.png",
-      "source_batch": "batch07",
+      "source_batch": "07",
       "display_name": "宝藏岛",
       "category": "船只/地点事件",
-      "mapping_status": "mapped_interface_slot",
+      "mapping_status": "mapped_type_slot",
       "canonical_id": null,
       "family_id": null,
-      "slot_id": "visual.slot.world_scene.186",
+      "slot_id": "visual.ship_type.21a550814913ca61",
       "visual_reference_id": null,
       "binding_ids": [],
       "task_reference_ids": [],
       "target_resource_path": "assets/authoritative/batch07/92ba7356c4d8d5e4.png",
-      "usage_interfaces": "航海|船只|对应功能页",
+      "usage_interfaces": "航海|船只|海上事件",
       "variant": "base",
-      "mapping_reason": "绑定已有界面或场景槽位。",
+      "mapping_reason": "绑定船型或海上事件视觉槽位；同一船型可服务多个正式船只。",
       "sha256": "92ba7356c4d8d5e4a2438869857d31c1cffd4d16082e81f1a87716359db79ed4"
     },
     {
       "asset_canonical_id": "visual.asset.9dee313afb5497ae",
       "source_file": "merged_final_assets/batch07/17_远洋灯塔.png",
-      "source_batch": "batch07",
+      "source_batch": "07",
       "display_name": "远洋灯塔",
       "category": "船只/地点事件",
-      "mapping_status": "mapped_interface_slot",
+      "mapping_status": "mapped_type_slot",
       "canonical_id": null,
       "family_id": null,
-      "slot_id": "visual.slot.world_scene.187",
+      "slot_id": "visual.ship_type.49cfa19b88226e7e",
       "visual_reference_id": null,
       "binding_ids": [],
       "task_reference_ids": [],
       "target_resource_path": "assets/authoritative/batch07/9dee313afb5497ae.png",
-      "usage_interfaces": "航海|船只|对应功能页",
+      "usage_interfaces": "航海|船只|海上事件",
       "variant": "base",
-      "mapping_reason": "绑定已有界面或场景槽位。",
+      "mapping_reason": "绑定船型或海上事件视觉槽位；同一船型可服务多个正式船只。",
       "sha256": "9dee313afb5497aecb887ee8465b970aec38ee669d4478c5adc85effd157ce5c"
     },
     {
       "asset_canonical_id": "visual.asset.9e794b59821aa4b1",
       "source_file": "merged_final_assets/batch08/01_角色状态.png",
-      "source_batch": "batch08",
+      "source_batch": "08",
       "display_name": "角色状态",
       "category": "UI功能图标",
       "mapping_status": "mapped_interface_slot",
@@ -3965,7 +4081,7 @@
     {
       "asset_canonical_id": "visual.asset.e8eda238a6310299",
       "source_file": "merged_final_assets/batch08/02_背包.png",
-      "source_batch": "batch08",
+      "source_batch": "08",
       "display_name": "背包",
       "category": "UI功能图标",
       "mapping_status": "mapped_interface_slot",
@@ -3984,7 +4100,7 @@
     {
       "asset_canonical_id": "visual.asset.a29859f2d47b6ff0",
       "source_file": "merged_final_assets/batch08/03_装备栏.png",
-      "source_batch": "batch08",
+      "source_batch": "08",
       "display_name": "装备栏",
       "category": "UI功能图标",
       "mapping_status": "mapped_interface_slot",
@@ -4003,7 +4119,7 @@
     {
       "asset_canonical_id": "visual.asset.d53dc073fcd165ca",
       "source_file": "merged_final_assets/batch08/04_任务日志.png",
-      "source_batch": "batch08",
+      "source_batch": "08",
       "display_name": "任务日志",
       "category": "UI功能图标",
       "mapping_status": "mapped_interface_slot",
@@ -4022,7 +4138,7 @@
     {
       "asset_canonical_id": "visual.asset.2c328ec750e6aab8",
       "source_file": "merged_final_assets/batch08/05_城市地图.png",
-      "source_batch": "batch08",
+      "source_batch": "08",
       "display_name": "城市地图",
       "category": "UI功能图标",
       "mapping_status": "mapped_interface_slot",
@@ -4041,7 +4157,7 @@
     {
       "asset_canonical_id": "visual.asset.2013b327a7625914",
       "source_file": "merged_final_assets/batch08/06_航海.png",
-      "source_batch": "batch08",
+      "source_batch": "08",
       "display_name": "航海",
       "category": "UI功能图标",
       "mapping_status": "mapped_interface_slot",
@@ -4060,7 +4176,7 @@
     {
       "asset_canonical_id": "visual.asset.145d95aa242ae5ac",
       "source_file": "merged_final_assets/batch08/07_战斗.png",
-      "source_batch": "batch08",
+      "source_batch": "08",
       "display_name": "战斗",
       "category": "UI功能图标",
       "mapping_status": "mapped_interface_slot",
@@ -4079,7 +4195,7 @@
     {
       "asset_canonical_id": "visual.asset.582020cce23d0c17",
       "source_file": "merged_final_assets/batch08/08_商店交易.png",
-      "source_batch": "batch08",
+      "source_batch": "08",
       "display_name": "商店交易",
       "category": "UI功能图标",
       "mapping_status": "mapped_interface_slot",
@@ -4098,7 +4214,7 @@
     {
       "asset_canonical_id": "visual.asset.7789e53b9eae5ea1",
       "source_file": "merged_final_assets/batch08/09_仓库.png",
-      "source_batch": "batch08",
+      "source_batch": "08",
       "display_name": "仓库",
       "category": "UI功能图标",
       "mapping_status": "mapped_interface_slot",
@@ -4117,7 +4233,7 @@
     {
       "asset_canonical_id": "visual.asset.3bb32009c0dfcb7d",
       "source_file": "merged_final_assets/batch08/10_宠物.png",
-      "source_batch": "batch08",
+      "source_batch": "08",
       "display_name": "宠物",
       "category": "UI功能图标",
       "mapping_status": "mapped_interface_slot",
@@ -4136,7 +4252,7 @@
     {
       "asset_canonical_id": "visual.asset.bf73742fdf393ff8",
       "source_file": "merged_final_assets/batch08/11_钓鱼.png",
-      "source_batch": "batch08",
+      "source_batch": "08",
       "display_name": "钓鱼",
       "category": "UI功能图标",
       "mapping_status": "mapped_interface_slot",
@@ -4155,7 +4271,7 @@
     {
       "asset_canonical_id": "visual.asset.2dfc0d2f403b015e",
       "source_file": "merged_final_assets/batch08/12_图鉴情报.png",
-      "source_batch": "batch08",
+      "source_batch": "08",
       "display_name": "图鉴情报",
       "category": "UI功能图标",
       "mapping_status": "mapped_interface_slot",
@@ -4174,7 +4290,7 @@
     {
       "asset_canonical_id": "visual.asset.d9fbfd3350424545",
       "source_file": "merged_final_assets/batch08/13_顺风航行.png",
-      "source_batch": "batch08",
+      "source_batch": "08",
       "display_name": "顺风航行",
       "category": "航海事件图",
       "mapping_status": "mapped_interface_slot",
@@ -4193,7 +4309,7 @@
     {
       "asset_canonical_id": "visual.asset.b6d385906e99941d",
       "source_file": "merged_final_assets/batch08/14_逆风航行.png",
-      "source_batch": "batch08",
+      "source_batch": "08",
       "display_name": "逆风航行",
       "category": "航海事件图",
       "mapping_status": "mapped_interface_slot",
@@ -4212,7 +4328,7 @@
     {
       "asset_canonical_id": "visual.asset.b29b21faf9333d2c",
       "source_file": "merged_final_assets/batch08/15_暴风雨.png",
-      "source_batch": "batch08",
+      "source_batch": "08",
       "display_name": "暴风雨",
       "category": "航海事件图",
       "mapping_status": "mapped_interface_slot",
@@ -4231,7 +4347,7 @@
     {
       "asset_canonical_id": "visual.asset.5c193d0f221ba275",
       "source_file": "merged_final_assets/batch08/16_漩涡.png",
-      "source_batch": "batch08",
+      "source_batch": "08",
       "display_name": "漩涡",
       "category": "航海事件图",
       "mapping_status": "mapped_interface_slot",
@@ -4250,7 +4366,7 @@
     {
       "asset_canonical_id": "visual.asset.c86dac4efed4584a",
       "source_file": "merged_final_assets/batch08/17_暗礁触礁危险.png",
-      "source_batch": "batch08",
+      "source_batch": "08",
       "display_name": "暗礁触礁危险",
       "category": "航海事件图",
       "mapping_status": "mapped_interface_slot",
@@ -4269,7 +4385,7 @@
     {
       "asset_canonical_id": "visual.asset.376324b4d76222c8",
       "source_file": "merged_final_assets/batch08/18_海盗来袭.png",
-      "source_batch": "batch08",
+      "source_batch": "08",
       "display_name": "海盗来袭",
       "category": "航海事件图",
       "mapping_status": "mapped_interface_slot",
@@ -4288,7 +4404,7 @@
     {
       "asset_canonical_id": "visual.asset.8bb0b4c31a3e592f",
       "source_file": "merged_final_assets/batch08/19_怪船遭遇.png",
-      "source_batch": "batch08",
+      "source_batch": "08",
       "display_name": "怪船遭遇",
       "category": "航海事件图",
       "mapping_status": "mapped_interface_slot",
@@ -4307,7 +4423,7 @@
     {
       "asset_canonical_id": "visual.asset.b735ed6720f152cc",
       "source_file": "merged_final_assets/batch08/20_发现漂流宝箱.png",
-      "source_batch": "batch08",
+      "source_batch": "08",
       "display_name": "发现漂流宝箱",
       "category": "航海事件图",
       "mapping_status": "mapped_interface_slot",
@@ -4326,7 +4442,7 @@
     {
       "asset_canonical_id": "visual.asset.8250ae8276afa71d",
       "source_file": "merged_final_assets/batch08/21_发现藏宝线索.png",
-      "source_batch": "batch08",
+      "source_batch": "08",
       "display_name": "发现藏宝线索",
       "category": "航海事件图",
       "mapping_status": "mapped_interface_slot",
@@ -4345,7 +4461,7 @@
     {
       "asset_canonical_id": "visual.asset.053a950bbe25cb62",
       "source_file": "merged_final_assets/batch08/22_港口停靠.png",
-      "source_batch": "batch08",
+      "source_batch": "08",
       "display_name": "港口停靠",
       "category": "航海事件图",
       "mapping_status": "mapped_interface_slot",
@@ -4364,7 +4480,7 @@
     {
       "asset_canonical_id": "visual.asset.55e707f2206c8a0b",
       "source_file": "merged_final_assets/batch08/23_荒岛登陆.png",
-      "source_batch": "batch08",
+      "source_batch": "08",
       "display_name": "荒岛登陆",
       "category": "航海事件图",
       "mapping_status": "mapped_interface_slot",
@@ -4383,7 +4499,7 @@
     {
       "asset_canonical_id": "visual.asset.2def515d66de4024",
       "source_file": "merged_final_assets/batch08/24_夜航月夜海面.png",
-      "source_batch": "batch08",
+      "source_batch": "08",
       "display_name": "夜航月夜海面",
       "category": "航海事件图",
       "mapping_status": "mapped_interface_slot",
@@ -4402,7 +4518,7 @@
     {
       "asset_canonical_id": "visual.asset.ee58b6af91c34dde",
       "source_file": "merged_final_assets/batch09/01_欧洲王城广场.png",
-      "source_batch": "batch09",
+      "source_batch": "09",
       "display_name": "欧洲王城广场",
       "category": "地点插图",
       "mapping_status": "mapped_interface_slot",
@@ -4421,7 +4537,7 @@
     {
       "asset_canonical_id": "visual.asset.720996142b1ec8f4",
       "source_file": "merged_final_assets/batch09/02_王宫贵族府邸.png",
-      "source_batch": "batch09",
+      "source_batch": "09",
       "display_name": "王宫贵族府邸",
       "category": "地点插图",
       "mapping_status": "mapped_interface_slot",
@@ -4440,7 +4556,7 @@
     {
       "asset_canonical_id": "visual.asset.6ddc484f265fc9c2",
       "source_file": "merged_final_assets/batch09/03_海盗港.png",
-      "source_batch": "batch09",
+      "source_batch": "09",
       "display_name": "海盗港",
       "category": "地点插图",
       "mapping_status": "mapped_interface_slot",
@@ -4459,7 +4575,7 @@
     {
       "asset_canonical_id": "visual.asset.19bbcbbf23647f83",
       "source_file": "merged_final_assets/batch09/04_船坞造船厂.png",
-      "source_batch": "batch09",
+      "source_batch": "09",
       "display_name": "船坞造船厂",
       "category": "地点插图",
       "mapping_status": "mapped_interface_slot",
@@ -4478,7 +4594,7 @@
     {
       "asset_canonical_id": "visual.asset.eb52fbc45d075140",
       "source_file": "merged_final_assets/batch09/05_酒馆.png",
-      "source_batch": "batch09",
+      "source_batch": "09",
       "display_name": "酒馆",
       "category": "地点插图",
       "mapping_status": "mapped_interface_slot",
@@ -4497,7 +4613,7 @@
     {
       "asset_canonical_id": "visual.asset.578e11480ad3c4c3",
       "source_file": "merged_final_assets/batch09/06_赌场.png",
-      "source_batch": "batch09",
+      "source_batch": "09",
       "display_name": "赌场",
       "category": "地点插图",
       "mapping_status": "mapped_interface_slot",
@@ -4516,7 +4632,7 @@
     {
       "asset_canonical_id": "visual.asset.0ccf508bae916b0b",
       "source_file": "merged_final_assets/batch09/07_渔村码头.png",
-      "source_batch": "batch09",
+      "source_batch": "09",
       "display_name": "渔村码头",
       "category": "地点插图",
       "mapping_status": "mapped_interface_slot",
@@ -4535,7 +4651,7 @@
     {
       "asset_canonical_id": "visual.asset.e6c661c4c2e7f43f",
       "source_file": "merged_final_assets/batch09/08_沙漠绿洲商旅集市.png",
-      "source_batch": "batch09",
+      "source_batch": "09",
       "display_name": "沙漠绿洲商旅集市",
       "category": "地点插图",
       "mapping_status": "mapped_interface_slot",
@@ -4554,7 +4670,7 @@
     {
       "asset_canonical_id": "visual.asset.2573079360e4069f",
       "source_file": "merged_final_assets/batch09/09_道观仙山.png",
-      "source_batch": "batch09",
+      "source_batch": "09",
       "display_name": "道观仙山",
       "category": "地点插图",
       "mapping_status": "mapped_interface_slot",
@@ -4573,7 +4689,7 @@
     {
       "asset_canonical_id": "visual.asset.8bfeda7a2b13df39",
       "source_file": "merged_final_assets/batch09/10_火山岛.png",
-      "source_batch": "batch09",
+      "source_batch": "09",
       "display_name": "火山岛",
       "category": "地点插图",
       "mapping_status": "mapped_interface_slot",
@@ -4592,7 +4708,7 @@
     {
       "asset_canonical_id": "visual.asset.1f7573e5fe6836b5",
       "source_file": "merged_final_assets/batch09/11_沼泽秘境.png",
-      "source_batch": "batch09",
+      "source_batch": "09",
       "display_name": "沼泽秘境",
       "category": "地点插图",
       "mapping_status": "mapped_interface_slot",
@@ -4611,7 +4727,7 @@
     {
       "asset_canonical_id": "visual.asset.026f847d00bf6846",
       "source_file": "merged_final_assets/batch09/12_古代遗迹地下藏宝洞.png",
-      "source_batch": "batch09",
+      "source_batch": "09",
       "display_name": "古代遗迹地下藏宝洞",
       "category": "地点插图",
       "mapping_status": "mapped_interface_slot",
@@ -4630,7 +4746,7 @@
     {
       "asset_canonical_id": "visual.asset.bb8b244bd8e9995f",
       "source_file": "merged_final_assets/batch09/13_造船师船匠.png",
-      "source_batch": "batch09",
+      "source_batch": "09",
       "display_name": "造船师船匠",
       "category": "功能NPC",
       "mapping_status": "mapped_interface_slot",
@@ -4651,7 +4767,7 @@
     {
       "asset_canonical_id": "visual.asset.f35daf6600cdbd55",
       "source_file": "merged_final_assets/batch09/14_酒馆老板.png",
-      "source_batch": "batch09",
+      "source_batch": "09",
       "display_name": "酒馆老板",
       "category": "功能NPC",
       "mapping_status": "mapped_interface_slot",
@@ -4670,7 +4786,7 @@
     {
       "asset_canonical_id": "visual.asset.41ec67323d97fc7d",
       "source_file": "merged_final_assets/batch09/15_商会管事贸易商.png",
-      "source_batch": "batch09",
+      "source_batch": "09",
       "display_name": "商会管事贸易商",
       "category": "功能NPC",
       "mapping_status": "mapped_interface_slot",
@@ -4689,7 +4805,7 @@
     {
       "asset_canonical_id": "visual.asset.31cb4c6908d9eb02",
       "source_file": "merged_final_assets/batch09/16_港务官海关官员.png",
-      "source_batch": "batch09",
+      "source_batch": "09",
       "display_name": "港务官海关官员",
       "category": "功能NPC",
       "mapping_status": "mapped_interface_slot",
@@ -4708,7 +4824,7 @@
     {
       "asset_canonical_id": "visual.asset.016c64cb3f024b08",
       "source_file": "merged_final_assets/batch09/17_航海士大副.png",
-      "source_batch": "batch09",
+      "source_batch": "09",
       "display_name": "航海士大副",
       "category": "功能NPC",
       "mapping_status": "mapped_interface_slot",
@@ -4727,7 +4843,7 @@
     {
       "asset_canonical_id": "visual.asset.4bca101b629d377d",
       "source_file": "merged_final_assets/batch09/18_治疗者药师修女.png",
-      "source_batch": "batch09",
+      "source_batch": "09",
       "display_name": "治疗者药师修女",
       "category": "功能NPC",
       "mapping_status": "mapped_interface_slot",

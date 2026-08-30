@@ -51,7 +51,12 @@
     "test:browser-dom:series15-long-chain": "node scripts/run-browser-test.js --budget-ms 900000 browser-tests/series15-long-chain-e2e.test.js",
     "test:browser-dom:release-land": "node scripts/run-browser-test.js --budget-ms 1200000 browser-tests/release-land-scenario-e2e.test.js",
     "test:browser-dom:release-maritime": "node scripts/run-browser-test.js --budget-ms 1200000 browser-tests/release-maritime-scenario-e2e.test.js",
-    "package:browser-acceptance": "node scripts/package-browser-acceptance-stage.js"
+    "package:browser-acceptance": "node scripts/package-browser-acceptance-stage.js",
+    "audit:maritime": "node scripts/audit-maritime-capabilities.js",
+    "e2e:manual": "node scripts/e2e-gameplay-test.js",
+    "mainline:e2e": "node scripts/mainline-e2e.js",
+    "smoke:public": "node scripts/smoke-public-release.js",
+    "verify:idle-assets": "node scripts/verify-idle-assets.js"
   },
   "engines": {
     "node": ">=22.5"

@@ -1,0 +1,1 @@
+1	大型鱼带泡船	船只	mapped_type_slot	assets/authoritative/batch05/3ba7bec321e17913.png

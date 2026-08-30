@@ -1,898 +1,917 @@
 {
-  "version": 1,
-  "sidequests": [
+ "version": 1,
+ "sidequests": [
+  {
+   "canonical_id": "side.mediterranean.帮渔夫寻回渔具",
+   "name": "帮渔夫寻回渔具",
+   "region": "region.mediterranean",
+   "npc": "渔夫",
+   "type": "收集",
+   "chain": [
     {
-      "canonical_id": "side.mediterranean.帮渔夫寻回渔具",
-      "name": "帮渔夫寻回渔具",
-      "region": "region.mediterranean",
-      "npc": "渔夫",
-      "type": "收集",
-      "chain": [
-        {
-          "name": "帮渔夫寻回渔具",
-          "type": "收集"
-        }
-      ],
-      "target": 1,
-      "reward": {
-        "money": 200,
-        "reputation": 10
-      },
-      "prereq": "none"
-    },
-    {
-      "canonical_id": "side.mediterranean.考古学家找石碑",
-      "name": "考古学家找石碑",
-      "region": "region.mediterranean",
-      "npc": "考古学家",
-      "type": "收集",
-      "chain": [
-        {
-          "name": "考古学家找石碑",
-          "type": "收集"
-        }
-      ],
-      "target": 1,
-      "reward": {
-        "money": 300,
-        "reputation": 20
-      },
-      "prereq": "none"
-    },
-    {
-      "canonical_id": "side.mediterranean.商会护送",
-      "name": "商会护送",
-      "region": "region.mediterranean",
-      "npc": "商会会长",
-      "type": "打怪",
-      "chain": [
-        {
-          "name": "商会护送",
-          "type": "打怪"
-        }
-      ],
-      "target": 1,
-      "reward": {
-        "money": 500,
-        "reputation": 30
-      },
-      "prereq": "none"
-    },
-    {
-      "canonical_id": "side.mediterranean.占星术士观星",
-      "name": "占星术士观星",
-      "region": "region.mediterranean",
-      "npc": "占星术士",
-      "type": "对话",
-      "chain": [
-        {
-          "name": "占星术士观星",
-          "type": "对话"
-        }
-      ],
-      "target": 1,
-      "reward": {
-        "money": 150,
-        "reputation": 15
-      },
-      "prereq": "none"
-    },
-    {
-      "canonical_id": "side.mediterranean.酒馆传闻收集",
-      "name": "酒馆传闻收集",
-      "region": "region.mediterranean",
-      "npc": "酒馆老板",
-      "type": "收集",
-      "chain": [
-        {
-          "name": "酒馆传闻收集",
-          "type": "收集"
-        }
-      ],
-      "target": 1,
-      "reward": {
-        "money": 250,
-        "reputation": 20
-      },
-      "prereq": "none"
-    },
-    {
-      "canonical_id": "side.northsea.灯塔守夜",
-      "name": "灯塔守夜",
-      "region": "region.northsea",
-      "npc": "守塔人",
-      "type": "打怪",
-      "chain": [
-        {
-          "name": "灯塔守夜",
-          "type": "打怪"
-        }
-      ],
-      "target": 1,
-      "reward": {
-        "money": 400,
-        "reputation": 25
-      },
-      "prereq": "none"
-    },
-    {
-      "canonical_id": "side.northsea.铁匠的寒铁",
-      "name": "铁匠的寒铁",
-      "region": "region.northsea",
-      "npc": "铁匠",
-      "type": "收集",
-      "chain": [
-        {
-          "name": "铁匠的寒铁",
-          "type": "收集"
-        }
-      ],
-      "target": 1,
-      "reward": {
-        "money": 350,
-        "reputation": 20
-      },
-      "prereq": "none"
-    },
-    {
-      "canonical_id": "side.northsea.女巫的预言",
-      "name": "女巫的预言",
-      "region": "region.northsea",
-      "npc": "女巫",
-      "type": "对话",
-      "chain": [
-        {
-          "name": "女巫的预言",
-          "type": "对话"
-        }
-      ],
-      "target": 1,
-      "reward": {
-        "money": 200,
-        "reputation": 30
-      },
-      "prereq": "none"
-    },
-    {
-      "canonical_id": "side.northsea.海盗挂帆",
-      "name": "海盗挂帆",
-      "region": "region.northsea",
-      "npc": "港口会长",
-      "type": "打怪",
-      "chain": [
-        {
-          "name": "海盗挂帆",
-          "type": "打怪"
-        }
-      ],
-      "target": 1,
-      "reward": {
-        "money": 450,
-        "reputation": 25
-      },
-      "prereq": "none"
-    },
-    {
-      "canonical_id": "side.westafrica.猎人狩猎",
-      "name": "猎人狩猎",
-      "region": "region.westafrica",
-      "npc": "猎人",
-      "type": "打怪",
-      "chain": [
-        {
-          "name": "猎人狩猎",
-          "type": "打怪"
-        }
-      ],
-      "target": 1,
-      "reward": {
-        "money": 400,
-        "reputation": 25
-      },
-      "prereq": "none"
-    },
-    {
-      "canonical_id": "side.westafrica.长老讲古",
-      "name": "长老讲古",
-      "region": "region.westafrica",
-      "npc": "长老",
-      "type": "对话",
-      "chain": [
-        {
-          "name": "长老讲古",
-          "type": "对话"
-        }
-      ],
-      "target": 1,
-      "reward": {
-        "money": 150,
-        "reputation": 20
-      },
-      "prereq": "none"
-    },
-    {
-      "canonical_id": "side.westafrica.香料走私",
-      "name": "香料走私",
-      "region": "region.westafrica",
-      "npc": "香料商人",
-      "type": "收集",
-      "chain": [
-        {
-          "name": "香料走私",
-          "type": "收集"
-        }
-      ],
-      "target": 1,
-      "reward": {
-        "money": 350,
-        "reputation": 20
-      },
-      "prereq": "none"
-    },
-    {
-      "canonical_id": "side.redsea.考古挖掘",
-      "name": "考古挖掘",
-      "region": "region.redsea",
-      "npc": "考古学家",
-      "type": "收集",
-      "chain": [
-        {
-          "name": "考古挖掘",
-          "type": "收集"
-        }
-      ],
-      "target": 1,
-      "reward": {
-        "money": 450,
-        "reputation": 30
-      },
-      "prereq": "none"
-    },
-    {
-      "canonical_id": "side.redsea.走私船拦截",
-      "name": "走私船拦截",
-      "region": "region.redsea",
-      "npc": "奴隶贩子",
-      "type": "打怪",
-      "chain": [
-        {
-          "name": "走私船拦截",
-          "type": "打怪"
-        }
-      ],
-      "target": 1,
-      "reward": {
-        "money": 500,
-        "reputation": 25
-      },
-      "prereq": "none"
-    },
-    {
-      "canonical_id": "side.redsea.祭司献祭",
-      "name": "祭司献祭",
-      "region": "region.redsea",
-      "npc": "神庙祭司",
-      "type": "对话",
-      "chain": [
-        {
-          "name": "祭司献祭",
-          "type": "对话"
-        }
-      ],
-      "target": 1,
-      "reward": {
-        "money": 200,
-        "reputation": 25
-      },
-      "prereq": "none"
-    },
-    {
-      "canonical_id": "side.indianocean.香料拍卖",
-      "name": "香料拍卖",
-      "region": "region.indianocean",
-      "npc": "香料大亨",
-      "type": "收集",
-      "chain": [
-        {
-          "name": "香料拍卖",
-          "type": "收集"
-        }
-      ],
-      "target": 1,
-      "reward": {
-        "money": 500,
-        "reputation": 30
-      },
-      "prereq": "none"
-    },
-    {
-      "canonical_id": "side.indianocean.圣者指路",
-      "name": "圣者指路",
-      "region": "region.indianocean",
-      "npc": "圣者",
-      "type": "对话",
-      "chain": [
-        {
-          "name": "圣者指路",
-          "type": "对话"
-        }
-      ],
-      "target": 1,
-      "reward": {
-        "money": 180,
-        "reputation": 20
-      },
-      "prereq": "none"
-    },
-    {
-      "canonical_id": "side.indianocean.佛前祈福",
-      "name": "佛前祈福",
-      "region": "region.indianocean",
-      "npc": "僧侣",
-      "type": "对话",
-      "chain": [
-        {
-          "name": "佛前祈福",
-          "type": "对话"
-        }
-      ],
-      "target": 1,
-      "reward": {
-        "money": 150,
-        "reputation": 30
-      },
-      "prereq": "none"
-    },
-    {
-      "canonical_id": "side.indianocean.宝石商人",
-      "name": "宝石商人",
-      "region": "region.indianocean",
-      "npc": "商人",
-      "type": "收集",
-      "chain": [
-        {
-          "name": "宝石商人",
-          "type": "收集"
-        }
-      ],
-      "target": 1,
-      "reward": {
-        "money": 400,
-        "reputation": 20
-      },
-      "prereq": "none"
-    },
-    {
-      "canonical_id": "side.seasia.海钓大赛",
-      "name": "海钓大赛",
-      "region": "region.seasia",
-      "npc": "渔夫",
-      "type": "打怪",
-      "chain": [
-        {
-          "name": "海钓大赛",
-          "type": "打怪"
-        }
-      ],
-      "target": 1,
-      "reward": {
-        "money": 350,
-        "reputation": 25
-      },
-      "prereq": "none"
-    },
-    {
-      "canonical_id": "side.seasia.炼金委托",
-      "name": "炼金委托",
-      "region": "region.seasia",
-      "npc": "炼金师",
-      "type": "收集",
-      "chain": [
-        {
-          "name": "炼金委托",
-          "type": "收集"
-        }
-      ],
-      "target": 1,
-      "reward": {
-        "money": 500,
-        "reputation": 30
-      },
-      "prereq": "none"
-    },
-    {
-      "canonical_id": "side.seasia.苏丹贡品",
-      "name": "苏丹贡品",
-      "region": "region.seasia",
-      "npc": "马来头领",
-      "type": "收集",
-      "chain": [
-        {
-          "name": "苏丹贡品",
-          "type": "收集"
-        }
-      ],
-      "target": 1,
-      "reward": {
-        "money": 450,
-        "reputation": 30
-      },
-      "prereq": "none"
-    },
-    {
-      "canonical_id": "side.seasia.走私船拦查",
-      "name": "走私船拦查",
-      "region": "region.seasia",
-      "npc": "海商",
-      "type": "打怪",
-      "chain": [
-        {
-          "name": "走私船拦查",
-          "type": "打怪"
-        }
-      ],
-      "target": 1,
-      "reward": {
-        "money": 400,
-        "reputation": 20
-      },
-      "prereq": "none"
-    },
-    {
-      "canonical_id": "side.chinahara.镖局护送",
-      "name": "镖局护送",
-      "region": "region.chinahara",
-      "npc": "镖头",
-      "type": "打怪",
-      "chain": [
-        {
-          "name": "镖局护送",
-          "type": "打怪"
-        }
-      ],
-      "target": 1,
-      "reward": {
-        "money": 600,
-        "reputation": 35
-      },
-      "prereq": "none"
-    },
-    {
-      "canonical_id": "side.chinahara.侠客比剑",
-      "name": "侠客比剑",
-      "region": "region.chinahara",
-      "npc": "剑客",
-      "type": "打怪",
-      "chain": [
-        {
-          "name": "侠客比剑",
-          "type": "打怪"
-        }
-      ],
-      "target": 1,
-      "reward": {
-        "money": 500,
-        "reputation": 30
-      },
-      "prereq": "none"
-    },
-    {
-      "canonical_id": "side.chinahara.茶商采茶",
-      "name": "茶商采茶",
-      "region": "region.chinahara",
-      "npc": "茶商",
-      "type": "收集",
-      "chain": [
-        {
-          "name": "茶商采茶",
-          "type": "收集"
-        }
-      ],
-      "target": 1,
-      "reward": {
-        "money": 300,
-        "reputation": 20
-      },
-      "prereq": "none"
-    },
-    {
-      "canonical_id": "side.chinahara.说书人听书",
-      "name": "说书人听书",
-      "region": "region.chinahara",
-      "npc": "说书人",
-      "type": "对话",
-      "chain": [
-        {
-          "name": "说书人听书",
-          "type": "对话"
-        }
-      ],
-      "target": 1,
-      "reward": {
-        "money": 150,
-        "reputation": 15
-      },
-      "prereq": "none"
-    },
-    {
-      "canonical_id": "side.chinahara.药铺寻药",
-      "name": "药铺寻药",
-      "region": "region.chinahara",
-      "npc": "药铺掌柜",
-      "type": "收集",
-      "chain": [
-        {
-          "name": "药铺寻药",
-          "type": "收集"
-        }
-      ],
-      "target": 1,
-      "reward": {
-        "money": 400,
-        "reputation": 25
-      },
-      "prereq": "none"
-    },
-    {
-      "canonical_id": "side.japan.歌舞伎演出",
-      "name": "歌舞伎演出",
-      "region": "region.japan",
-      "npc": "艺伎",
-      "type": "对话",
-      "chain": [
-        {
-          "name": "歌舞伎演出",
-          "type": "对话"
-        }
-      ],
-      "target": 1,
-      "reward": {
-        "money": 300,
-        "reputation": 25
-      },
-      "prereq": "none"
-    },
-    {
-      "canonical_id": "side.japan.茶道竞技",
-      "name": "茶道竞技",
-      "region": "region.japan",
-      "npc": "茶道大师",
-      "type": "对话",
-      "chain": [
-        {
-          "name": "茶道竞技",
-          "type": "对话"
-        }
-      ],
-      "target": 1,
-      "reward": {
-        "money": 250,
-        "reputation": 25
-      },
-      "prereq": "none"
-    },
-    {
-      "canonical_id": "side.japan.忍者秘训",
-      "name": "忍者秘训",
-      "region": "region.japan",
-      "npc": "忍者",
-      "type": "打怪",
-      "chain": [
-        {
-          "name": "忍者秘训",
-          "type": "打怪"
-        }
-      ],
-      "target": 1,
-      "reward": {
-        "money": 500,
-        "reputation": 30
-      },
-      "prereq": "none"
-    },
-    {
-      "canonical_id": "side.japan.铸刀试刃",
-      "name": "铸刀试刃",
-      "region": "region.japan",
-      "npc": "铁匠",
-      "type": "收集",
-      "chain": [
-        {
-          "name": "铸刀试刃",
-          "type": "收集"
-        }
-      ],
-      "target": 1,
-      "reward": {
-        "money": 450,
-        "reputation": 25
-      },
-      "prereq": "none"
-    },
-    {
-      "canonical_id": "side.maya.夜观星象",
-      "name": "夜观星象",
-      "region": "region.maya",
-      "npc": "星象师",
-      "type": "对话",
-      "chain": [
-        {
-          "name": "夜观星象",
-          "type": "对话"
-        }
-      ],
-      "target": 1,
-      "reward": {
-        "money": 200,
-        "reputation": 25
-      },
-      "prereq": "none"
-    },
-    {
-      "canonical_id": "side.maya.献祭礼器",
-      "name": "献祭礼器",
-      "region": "region.maya",
-      "npc": "玛雅祭司",
-      "type": "收集",
-      "chain": [
-        {
-          "name": "献祭礼器",
-          "type": "收集"
-        }
-      ],
-      "target": 1,
-      "reward": {
-        "money": 450,
-        "reputation": 30
-      },
-      "prereq": "none"
-    },
-    {
-      "canonical_id": "side.maya.探索遗迹",
-      "name": "探索遗迹",
-      "region": "region.maya",
-      "npc": "探索队长",
-      "type": "打怪",
-      "chain": [
-        {
-          "name": "探索遗迹",
-          "type": "打怪"
-        }
-      ],
-      "target": 1,
-      "reward": {
-        "money": 500,
-        "reputation": 30
-      },
-      "prereq": "none"
-    },
-    {
-      "canonical_id": "side.caribbean.赌场千术",
-      "name": "赌场千术",
-      "region": "region.caribbean",
-      "npc": "赌场主",
-      "type": "对话",
-      "chain": [
-        {
-          "name": "赌场千术",
-          "type": "对话"
-        }
-      ],
-      "target": 1,
-      "reward": {
-        "money": 400,
-        "reputation": 20
-      },
-      "prereq": "none"
-    },
-    {
-      "canonical_id": "side.caribbean.走私船拦截",
-      "name": "走私船拦截",
-      "region": "region.caribbean",
-      "npc": "走私贩",
-      "type": "打怪",
-      "chain": [
-        {
-          "name": "走私船拦截",
-          "type": "打怪"
-        }
-      ],
-      "target": 1,
-      "reward": {
-        "money": 550,
-        "reputation": 30
-      },
-      "prereq": "none"
-    },
-    {
-      "canonical_id": "side.caribbean.藏宝图残片",
-      "name": "藏宝图残片",
-      "region": "region.caribbean",
-      "npc": "海盗王",
-      "type": "收集",
-      "chain": [
-        {
-          "name": "藏宝图残片",
-          "type": "收集"
-        }
-      ],
-      "target": 1,
-      "reward": {
-        "money": 600,
-        "reputation": 35
-      },
-      "prereq": "none"
-    },
-    {
-      "canonical_id": "side.caribbean.朗姆酒配方",
-      "name": "朗姆酒配方",
-      "region": "region.caribbean",
-      "npc": "朗姆酒商",
-      "type": "收集",
-      "chain": [
-        {
-          "name": "朗姆酒配方",
-          "type": "收集"
-        }
-      ],
-      "target": 1,
-      "reward": {
-        "money": 450,
-        "reputation": 25
-      },
-      "prereq": "none"
-    },
-    {
-      "canonical_id": "side.southamerica.寻宝之旅",
-      "name": "寻宝之旅",
-      "region": "region.southamerica",
-      "npc": "探险家",
-      "type": "打怪",
-      "chain": [
-        {
-          "name": "寻宝之旅",
-          "type": "打怪"
-        }
-      ],
-      "target": 1,
-      "reward": {
-        "money": 600,
-        "reputation": 35
-      },
-      "prereq": "none"
-    },
-    {
-      "canonical_id": "side.southamerica.传教布道",
-      "name": "传教布道",
-      "region": "region.southamerica",
-      "npc": "牧师",
-      "type": "对话",
-      "chain": [
-        {
-          "name": "传教布道",
-          "type": "对话"
-        }
-      ],
-      "target": 1,
-      "reward": {
-        "money": 250,
-        "reputation": 25
-      },
-      "prereq": "none"
-    },
-    {
-      "canonical_id": "side.southamerica.印加祭祀",
-      "name": "印加祭祀",
-      "region": "region.southamerica",
-      "npc": "猎人",
-      "type": "收集",
-      "chain": [
-        {
-          "name": "印加祭祀",
-          "type": "收集"
-        }
-      ],
-      "target": 1,
-      "reward": {
-        "money": 500,
-        "reputation": 30
-      },
-      "prereq": "none"
-    },
-    {
-      "canonical_id": "side.southamerica.总督请托",
-      "name": "总督请托",
-      "region": "region.southamerica",
-      "npc": "殖民地总督",
-      "type": "打怪",
-      "chain": [
-        {
-          "name": "总督请托",
-          "type": "打怪"
-        }
-      ],
-      "target": 1,
-      "reward": {
-        "money": 550,
-        "reputation": 30
-      },
-      "prereq": "none"
-    },
-    {
-      "canonical_id": "side.polar.冰钓高手",
-      "name": "冰钓高手",
-      "region": "region.polar",
-      "npc": "渔夫",
-      "type": "打怪",
-      "chain": [
-        {
-          "name": "冰钓高手",
-          "type": "打怪"
-        }
-      ],
-      "target": 1,
-      "reward": {
-        "money": 400,
-        "reputation": 25
-      },
-      "prereq": "none"
-    },
-    {
-      "canonical_id": "side.polar.美人鱼之歌",
-      "name": "美人鱼之歌",
-      "region": "region.polar",
-      "npc": "美人鱼",
-      "type": "对话",
-      "chain": [
-        {
-          "name": "美人鱼之歌",
-          "type": "对话"
-        }
-      ],
-      "target": 1,
-      "reward": {
-        "money": 350,
-        "reputation": 30
-      },
-      "prereq": "none"
-    },
-    {
-      "canonical_id": "side.polar.极地生存",
-      "name": "极地生存",
-      "region": "region.polar",
-      "npc": "隐士",
-      "type": "收集",
-      "chain": [
-        {
-          "name": "极地生存",
-          "type": "收集"
-        }
-      ],
-      "target": 1,
-      "reward": {
-        "money": 450,
-        "reputation": 30
-      },
-      "prereq": "none"
-    },
-    {
-      "canonical_id": "side.polar.海妖献礼",
-      "name": "海妖献礼",
-      "region": "region.polar",
-      "npc": "海妖祭司",
-      "type": "收集",
-      "chain": [
-        {
-          "name": "海妖献礼",
-          "type": "收集"
-        }
-      ],
-      "target": 1,
-      "reward": {
-        "money": 500,
-        "reputation": 30
-      },
-      "prereq": "none"
+     "name": "帮渔夫寻回渔具",
+     "type": "收集"
     }
-  ]
+   ],
+   "target": 1,
+   "reward": {
+    "money": 200,
+    "reputation": 10
+   },
+   "prereq": "none"
+  },
+  {
+   "canonical_id": "side.mediterranean.考古学家找石碑",
+   "name": "考古学家找石碑",
+   "region": "region.mediterranean",
+   "npc": "考古学家",
+   "type": "收集",
+   "chain": [
+    {
+     "name": "考古学家找石碑",
+     "type": "收集"
+    }
+   ],
+   "target": 1,
+   "reward": {
+    "money": 300,
+    "reputation": 20
+   },
+   "prereq": "none"
+  },
+  {
+   "canonical_id": "side.mediterranean.商会护送",
+   "name": "商会护送",
+   "region": "region.mediterranean",
+   "npc": "商会会长",
+   "type": "打怪",
+   "chain": [
+    {
+     "name": "商会护送",
+     "type": "打怪"
+    }
+   ],
+   "target": 1,
+   "reward": {
+    "money": 500,
+    "reputation": 30
+   },
+   "prereq": "none"
+  },
+  {
+   "canonical_id": "side.mediterranean.占星术士观星",
+   "name": "占星术士观星",
+   "region": "region.mediterranean",
+   "npc": "占星术士",
+   "type": "对话",
+   "chain": [
+    {
+     "name": "占星术士观星",
+     "type": "对话"
+    }
+   ],
+   "target": 1,
+   "reward": {
+    "money": 150,
+    "reputation": 15
+   },
+   "prereq": "none"
+  },
+  {
+   "canonical_id": "side.mediterranean.酒馆传闻收集",
+   "name": "酒馆传闻收集",
+   "region": "region.mediterranean",
+   "npc": "酒馆老板",
+   "type": "收集",
+   "chain": [
+    {
+     "name": "酒馆传闻收集",
+     "type": "收集"
+    }
+   ],
+   "target": 1,
+   "reward": {
+    "money": 250,
+    "reputation": 20
+   },
+   "prereq": "none"
+  },
+  {
+   "canonical_id": "side.northsea.灯塔守夜",
+   "name": "灯塔守夜",
+   "region": "region.northsea",
+   "npc": "守塔人",
+   "type": "打怪",
+   "chain": [
+    {
+     "name": "灯塔守夜",
+     "type": "打怪"
+    }
+   ],
+   "target": 1,
+   "reward": {
+    "money": 400,
+    "reputation": 25
+   },
+   "prereq": "none"
+  },
+  {
+   "canonical_id": "side.northsea.铁匠的寒铁",
+   "name": "铁匠的寒铁",
+   "region": "region.northsea",
+   "npc": "铁匠",
+   "type": "收集",
+   "chain": [
+    {
+     "name": "铁匠的寒铁",
+     "type": "收集"
+    }
+   ],
+   "target": 1,
+   "reward": {
+    "money": 350,
+    "reputation": 20
+   },
+   "prereq": "none"
+  },
+  {
+   "canonical_id": "side.northsea.女巫的预言",
+   "name": "女巫的预言",
+   "region": "region.northsea",
+   "npc": "女巫",
+   "type": "对话",
+   "chain": [
+    {
+     "name": "女巫的预言",
+     "type": "对话"
+    }
+   ],
+   "target": 1,
+   "reward": {
+    "money": 200,
+    "reputation": 30
+   },
+   "prereq": "none"
+  },
+  {
+   "canonical_id": "side.northsea.海盗挂帆",
+   "name": "海盗挂帆",
+   "region": "region.northsea",
+   "npc": "港口会长",
+   "type": "打怪",
+   "chain": [
+    {
+     "name": "海盗挂帆",
+     "type": "打怪"
+    }
+   ],
+   "target": 1,
+   "reward": {
+    "money": 450,
+    "reputation": 25
+   },
+   "prereq": "none"
+  },
+  {
+   "canonical_id": "side.westafrica.猎人狩猎",
+   "name": "猎人狩猎",
+   "region": "region.westafrica",
+   "npc": "猎人",
+   "type": "打怪",
+   "chain": [
+    {
+     "name": "猎人狩猎",
+     "type": "打怪"
+    }
+   ],
+   "target": 1,
+   "reward": {
+    "money": 400,
+    "reputation": 25
+   },
+   "prereq": "none"
+  },
+  {
+   "canonical_id": "side.westafrica.长老讲古",
+   "name": "长老讲古",
+   "region": "region.westafrica",
+   "npc": "长老",
+   "type": "对话",
+   "chain": [
+    {
+     "name": "长老讲古",
+     "type": "对话"
+    }
+   ],
+   "target": 1,
+   "reward": {
+    "money": 150,
+    "reputation": 20
+   },
+   "prereq": "none"
+  },
+  {
+   "canonical_id": "side.westafrica.香料走私",
+   "name": "香料走私",
+   "region": "region.westafrica",
+   "npc": "香料商人",
+   "type": "收集",
+   "chain": [
+    {
+     "name": "香料走私",
+     "type": "收集"
+    }
+   ],
+   "target": 1,
+   "reward": {
+    "money": 350,
+    "reputation": 20
+   },
+   "prereq": "none"
+  },
+  {
+   "canonical_id": "side.redsea.考古挖掘",
+   "name": "考古挖掘",
+   "region": "region.redsea",
+   "npc": "考古学家",
+   "type": "收集",
+   "chain": [
+    {
+     "name": "考古挖掘",
+     "type": "收集"
+    }
+   ],
+   "target": 1,
+   "reward": {
+    "money": 450,
+    "reputation": 30
+   },
+   "prereq": "none"
+  },
+  {
+   "canonical_id": "side.redsea.走私船拦截",
+   "name": "走私船拦截",
+   "region": "region.redsea",
+   "npc": "奴隶贩子",
+   "type": "打怪",
+   "chain": [
+    {
+     "name": "走私船拦截",
+     "type": "打怪"
+    }
+   ],
+   "target": 1,
+   "reward": {
+    "money": 500,
+    "reputation": 25
+   },
+   "prereq": "none"
+  },
+  {
+   "canonical_id": "side.redsea.祭司献祭",
+   "name": "祭司献祭",
+   "region": "region.redsea",
+   "npc": "神庙祭司",
+   "type": "对话",
+   "chain": [
+    {
+     "name": "祭司献祭",
+     "type": "对话"
+    }
+   ],
+   "target": 1,
+   "reward": {
+    "money": 200,
+    "reputation": 25
+   },
+   "prereq": "none"
+  },
+  {
+   "canonical_id": "side.indianocean.香料拍卖",
+   "name": "香料拍卖",
+   "region": "region.indianocean",
+   "npc": "香料大亨",
+   "type": "收集",
+   "chain": [
+    {
+     "name": "香料拍卖",
+     "type": "收集"
+    }
+   ],
+   "target": 1,
+   "reward": {
+    "money": 500,
+    "reputation": 30
+   },
+   "prereq": "none"
+  },
+  {
+   "canonical_id": "side.indianocean.圣者指路",
+   "name": "圣者指路",
+   "region": "region.indianocean",
+   "npc": "圣者",
+   "type": "对话",
+   "chain": [
+    {
+     "name": "圣者指路",
+     "type": "对话"
+    }
+   ],
+   "target": 1,
+   "reward": {
+    "money": 180,
+    "reputation": 20
+   },
+   "prereq": "none"
+  },
+  {
+   "canonical_id": "side.indianocean.佛前祈福",
+   "name": "佛前祈福",
+   "region": "region.indianocean",
+   "npc": "僧侣",
+   "type": "对话",
+   "chain": [
+    {
+     "name": "佛前祈福",
+     "type": "对话"
+    }
+   ],
+   "target": 1,
+   "reward": {
+    "money": 150,
+    "reputation": 30
+   },
+   "prereq": "none"
+  },
+  {
+   "canonical_id": "side.indianocean.宝石商人",
+   "name": "宝石商人",
+   "region": "region.indianocean",
+   "npc": "商人",
+   "type": "收集",
+   "chain": [
+    {
+     "name": "宝石商人",
+     "type": "收集"
+    }
+   ],
+   "target": 1,
+   "reward": {
+    "money": 400,
+    "reputation": 20
+   },
+   "prereq": "none"
+  },
+  {
+   "canonical_id": "side.seasia.海钓大赛",
+   "name": "海钓大赛",
+   "region": "region.seasia",
+   "npc": "渔夫",
+   "type": "打怪",
+   "chain": [
+    {
+     "name": "海钓大赛",
+     "type": "打怪"
+    }
+   ],
+   "target": 1,
+   "reward": {
+    "money": 350,
+    "reputation": 25
+   },
+   "prereq": "none"
+  },
+  {
+   "canonical_id": "side.seasia.炼金委托",
+   "name": "炼金委托",
+   "region": "region.seasia",
+   "npc": "炼金师",
+   "type": "收集",
+   "chain": [
+    {
+     "name": "炼金委托",
+     "type": "收集"
+    }
+   ],
+   "target": 1,
+   "reward": {
+    "money": 500,
+    "reputation": 30
+   },
+   "prereq": "none"
+  },
+  {
+   "canonical_id": "side.seasia.苏丹贡品",
+   "name": "苏丹贡品",
+   "region": "region.seasia",
+   "npc": "马来头领",
+   "type": "收集",
+   "chain": [
+    {
+     "name": "苏丹贡品",
+     "type": "收集"
+    }
+   ],
+   "target": 1,
+   "reward": {
+    "money": 450,
+    "reputation": 30
+   },
+   "prereq": "none"
+  },
+  {
+   "canonical_id": "side.seasia.走私船拦查",
+   "name": "走私船拦查",
+   "region": "region.seasia",
+   "npc": "海商",
+   "type": "打怪",
+   "chain": [
+    {
+     "name": "走私船拦查",
+     "type": "打怪"
+    }
+   ],
+   "target": 1,
+   "reward": {
+    "money": 400,
+    "reputation": 20
+   },
+   "prereq": "none"
+  },
+  {
+   "canonical_id": "side.chinahara.镖局护送",
+   "name": "镖局护送",
+   "region": "region.chinahara",
+   "npc": "镖头",
+   "type": "打怪",
+   "chain": [
+    {
+     "name": "镖局护送",
+     "type": "打怪"
+    }
+   ],
+   "target": 1,
+   "reward": {
+    "money": 600,
+    "reputation": 35
+   },
+   "prereq": "none"
+  },
+  {
+   "canonical_id": "side.chinahara.侠客比剑",
+   "name": "侠客比剑",
+   "region": "region.chinahara",
+   "npc": "剑客",
+   "type": "打怪",
+   "chain": [
+    {
+     "name": "侠客比剑",
+     "type": "打怪"
+    }
+   ],
+   "target": 1,
+   "reward": {
+    "money": 500,
+    "reputation": 30
+   },
+   "prereq": "none"
+  },
+  {
+   "canonical_id": "side.chinahara.茶商采茶",
+   "name": "茶商采茶",
+   "region": "region.chinahara",
+   "npc": "茶商",
+   "type": "收集",
+   "chain": [
+    {
+     "name": "茶商采茶",
+     "type": "收集"
+    }
+   ],
+   "target": 1,
+   "reward": {
+    "money": 300,
+    "reputation": 20
+   },
+   "prereq": "none"
+  },
+  {
+   "canonical_id": "side.chinahara.说书人听书",
+   "name": "说书人听书",
+   "region": "region.chinahara",
+   "npc": "说书人",
+   "type": "对话",
+   "chain": [
+    {
+     "name": "说书人听书",
+     "type": "对话"
+    }
+   ],
+   "target": 1,
+   "reward": {
+    "money": 150,
+    "reputation": 15
+   },
+   "prereq": "none"
+  },
+  {
+   "canonical_id": "side.chinahara.药铺寻药",
+   "name": "药铺寻药",
+   "region": "region.chinahara",
+   "npc": "药铺掌柜",
+   "type": "收集",
+   "chain": [
+    {
+     "name": "药铺寻药",
+     "type": "收集"
+    }
+   ],
+   "target": 1,
+   "reward": {
+    "money": 400,
+    "reputation": 25
+   },
+   "prereq": "none"
+  },
+  {
+   "canonical_id": "side.japan.歌舞伎演出",
+   "name": "歌舞伎演出",
+   "region": "region.japan",
+   "npc": "艺伎",
+   "type": "对话",
+   "chain": [
+    {
+     "name": "歌舞伎演出",
+     "type": "对话"
+    }
+   ],
+   "target": 1,
+   "reward": {
+    "money": 300,
+    "reputation": 25
+   },
+   "prereq": "none"
+  },
+  {
+   "canonical_id": "side.japan.茶道竞技",
+   "name": "茶道竞技",
+   "region": "region.japan",
+   "npc": "茶道大师",
+   "type": "对话",
+   "chain": [
+    {
+     "name": "茶道竞技",
+     "type": "对话"
+    }
+   ],
+   "target": 1,
+   "reward": {
+    "money": 250,
+    "reputation": 25
+   },
+   "prereq": "none"
+  },
+  {
+   "canonical_id": "side.japan.忍者秘训",
+   "name": "忍者秘训",
+   "region": "region.japan",
+   "npc": "忍者",
+   "type": "打怪",
+   "chain": [
+    {
+     "name": "忍者秘训",
+     "type": "打怪"
+    }
+   ],
+   "target": 1,
+   "reward": {
+    "money": 500,
+    "reputation": 30
+   },
+   "prereq": "none"
+  },
+  {
+   "canonical_id": "side.japan.铸刀试刃",
+   "name": "铸刀试刃",
+   "region": "region.japan",
+   "npc": "铁匠",
+   "type": "收集",
+   "chain": [
+    {
+     "name": "铸刀试刃",
+     "type": "收集"
+    }
+   ],
+   "target": 1,
+   "reward": {
+    "money": 450,
+    "reputation": 25
+   },
+   "prereq": "none"
+  },
+  {
+   "canonical_id": "side.maya.夜观星象",
+   "name": "夜观星象",
+   "region": "region.maya",
+   "npc": "星象师",
+   "type": "对话",
+   "chain": [
+    {
+     "name": "夜观星象",
+     "type": "对话"
+    }
+   ],
+   "target": 1,
+   "reward": {
+    "money": 200,
+    "reputation": 25
+   },
+   "prereq": "none"
+  },
+  {
+   "canonical_id": "side.maya.献祭礼器",
+   "name": "献祭礼器",
+   "region": "region.maya",
+   "npc": "玛雅祭司",
+   "type": "收集",
+   "chain": [
+    {
+     "name": "献祭礼器",
+     "type": "收集"
+    }
+   ],
+   "target": 1,
+   "reward": {
+    "money": 450,
+    "reputation": 30
+   },
+   "prereq": "none"
+  },
+  {
+   "canonical_id": "side.maya.探索遗迹",
+   "name": "探索遗迹",
+   "region": "region.maya",
+   "npc": "探索队长",
+   "type": "打怪",
+   "chain": [
+    {
+     "name": "探索遗迹",
+     "type": "打怪"
+    }
+   ],
+   "target": 1,
+   "reward": {
+    "money": 500,
+    "reputation": 30
+   },
+   "prereq": "none"
+  },
+  {
+   "canonical_id": "side.caribbean.赌场千术",
+   "name": "赌场千术",
+   "region": "region.caribbean",
+   "npc": "赌场主",
+   "type": "对话",
+   "chain": [
+    {
+     "name": "赌场千术",
+     "type": "对话"
+    }
+   ],
+   "target": 1,
+   "reward": {
+    "money": 400,
+    "reputation": 20
+   },
+   "prereq": "none"
+  },
+  {
+   "canonical_id": "side.caribbean.走私船拦截",
+   "name": "走私船拦截",
+   "region": "region.caribbean",
+   "npc": "走私贩",
+   "type": "打怪",
+   "chain": [
+    {
+     "name": "走私船拦截",
+     "type": "打怪"
+    }
+   ],
+   "target": 1,
+   "reward": {
+    "money": 550,
+    "reputation": 30
+   },
+   "prereq": "none"
+  },
+  {
+   "canonical_id": "side.caribbean.藏宝图残片",
+   "name": "藏宝图残片",
+   "region": "region.caribbean",
+   "npc": "海盗王",
+   "type": "收集",
+   "chain": [
+    {
+     "name": "藏宝图残片",
+     "type": "收集"
+    }
+   ],
+   "target": 1,
+   "reward": {
+    "money": 600,
+    "reputation": 35
+   },
+   "prereq": "none"
+  },
+  {
+   "canonical_id": "side.caribbean.朗姆酒配方",
+   "name": "朗姆酒配方",
+   "region": "region.caribbean",
+   "npc": "朗姆酒商",
+   "type": "收集",
+   "chain": [
+    {
+     "name": "朗姆酒配方",
+     "type": "收集"
+    }
+   ],
+   "target": 1,
+   "reward": {
+    "money": 450,
+    "reputation": 25
+   },
+   "prereq": "none"
+  },
+  {
+   "canonical_id": "side.southamerica.寻宝之旅",
+   "name": "寻宝之旅",
+   "region": "region.southamerica",
+   "npc": "探险家",
+   "type": "打怪",
+   "chain": [
+    {
+     "name": "寻宝之旅",
+     "type": "打怪"
+    }
+   ],
+   "target": 1,
+   "reward": {
+    "money": 600,
+    "reputation": 35
+   },
+   "prereq": "none"
+  },
+  {
+   "canonical_id": "side.southamerica.传教布道",
+   "name": "传教布道",
+   "region": "region.southamerica",
+   "npc": "牧师",
+   "type": "对话",
+   "chain": [
+    {
+     "name": "传教布道",
+     "type": "对话"
+    }
+   ],
+   "target": 1,
+   "reward": {
+    "money": 250,
+    "reputation": 25
+   },
+   "prereq": "none"
+  },
+  {
+   "canonical_id": "side.southamerica.印加祭祀",
+   "name": "印加祭祀",
+   "region": "region.southamerica",
+   "npc": "猎人",
+   "type": "收集",
+   "chain": [
+    {
+     "name": "印加祭祀",
+     "type": "收集"
+    }
+   ],
+   "target": 1,
+   "reward": {
+    "money": 500,
+    "reputation": 30
+   },
+   "prereq": "none"
+  },
+  {
+   "canonical_id": "side.southamerica.总督请托",
+   "name": "总督请托",
+   "region": "region.southamerica",
+   "npc": "殖民地总督",
+   "type": "打怪",
+   "chain": [
+    {
+     "name": "总督请托",
+     "type": "打怪"
+    }
+   ],
+   "target": 1,
+   "reward": {
+    "money": 550,
+    "reputation": 30
+   },
+   "prereq": "none"
+  },
+  {
+   "canonical_id": "side.polar.冰钓高手",
+   "name": "冰钓高手",
+   "region": "region.polar",
+   "npc": "渔夫",
+   "type": "打怪",
+   "chain": [
+    {
+     "name": "冰钓高手",
+     "type": "打怪"
+    }
+   ],
+   "target": 1,
+   "reward": {
+    "money": 400,
+    "reputation": 25
+   },
+   "prereq": "none"
+  },
+  {
+   "canonical_id": "side.polar.美人鱼之歌",
+   "name": "美人鱼之歌",
+   "region": "region.polar",
+   "npc": "美人鱼",
+   "type": "对话",
+   "chain": [
+    {
+     "name": "美人鱼之歌",
+     "type": "对话"
+    }
+   ],
+   "target": 1,
+   "reward": {
+    "money": 350,
+    "reputation": 30
+   },
+   "prereq": "none"
+  },
+  {
+   "canonical_id": "side.polar.极地生存",
+   "name": "极地生存",
+   "region": "region.polar",
+   "npc": "隐士",
+   "type": "收集",
+   "chain": [
+    {
+     "name": "极地生存",
+     "type": "收集"
+    }
+   ],
+   "target": 1,
+   "reward": {
+    "money": 450,
+    "reputation": 30
+   },
+   "prereq": "none"
+  },
+  {
+   "canonical_id": "side.polar.海妖献礼",
+   "name": "海妖献礼",
+   "region": "region.polar",
+   "npc": "海妖祭司",
+   "type": "收集",
+   "chain": [
+    {
+     "name": "海妖献礼",
+     "type": "收集"
+    }
+   ],
+   "target": 1,
+   "reward": {
+    "money": 500,
+    "reputation": 30
+   },
+   "prereq": "none"
+  },
+  {
+   "canonical_id": "side.mediterranean.御前嘱托",
+   "name": "御前嘱托",
+   "region": "region.mediterranean",
+   "npc": "威尼斯国王",
+   "type": "打怪",
+   "chain": [
+    {
+     "name": "御前嘱托",
+     "type": "打怪"
+    }
+   ],
+   "target": 1,
+   "reward": {
+    "money": 500,
+    "reputation": 30
+   },
+   "prereq": "none"
+  }
+ ]
 }

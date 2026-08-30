@@ -1,0 +1,12 @@
+1	顺风航行	航海事件图	mapped_interface_slot	assets/authoritative/batch08/d9fbfd3350424545.png
+2	逆风航行	航海事件图	mapped_interface_slot	assets/authoritative/batch08/b6d385906e99941d.png
+3	暴风雨	航海事件图	mapped_interface_slot	assets/authoritative/batch08/b29b21faf9333d2c.png
+4	漩涡	航海事件图	mapped_interface_slot	assets/authoritative/batch08/5c193d0f221ba275.png
+5	暗礁触礁危险	航海事件图	mapped_interface_slot	assets/authoritative/batch08/c86dac4efed4584a.png
+6	海盗来袭	航海事件图	mapped_interface_slot	assets/authoritative/batch08/376324b4d76222c8.png
+7	怪船遭遇	航海事件图	mapped_interface_slot	assets/authoritative/batch08/8bb0b4c31a3e592f.png
+8	发现漂流宝箱	航海事件图	mapped_interface_slot	assets/authoritative/batch08/b735ed6720f152cc.png
+9	发现藏宝线索	航海事件图	mapped_interface_slot	assets/authoritative/batch08/8250ae8276afa71d.png
+10	港口停靠	航海事件图	mapped_interface_slot	assets/authoritative/batch08/053a950bbe25cb62.png
+11	荒岛登陆	航海事件图	mapped_interface_slot	assets/authoritative/batch08/55e707f2206c8a0b.png
+12	夜航月夜海面	航海事件图	mapped_interface_slot	assets/authoritative/batch08/2def515d66de4024.png

@@ -98,12 +98,12 @@ function resolveMapping(entry,index,content,entities){
   }
   if(entry.category==='关键任务物/宝藏'||TASK_REFERENCE_NAMES.has(entry.display_name))return taskReference(entry,content,'用户确认的任务物视觉引用；仅参与任务、背包、奖励或特殊场景显示，不创建事实实体。');
   if(entry.category==='宠物/鱼类'){
-    const type=FISH_ALIASES.has(entry.display_name)||/[鱼蟹章]/.test(entry.display_name)?'fish':'pet';const alias=FISH_ALIASES.get(entry.display_name)??entry.display_name;
+    const type=FISH_ALIASES.has(entry.display_name)||/[鱼蟹章]/.test(entry.display_name)?'fish':'pet';const alias=FISH_ALIASES.get(entry.display_name)??entry.display_name;const entityBindings=entities.filter((e)=>e.display_name===entry.display_name).map((e)=>e.canonical_id);
     const bindings=(content.maritime?.fishing?.catches??[]).filter((catchEntry)=>catchEntry.display_name===alias).map((catchEntry)=>catchEntry.content_entity_canonical_id);
     return mapped('mapped_type_slot',{slot_id:visualId(`visual.${type}_type`,entry.display_name),binding_ids:bindings,usage_interfaces:type==='fish'?'钓鱼|航海|背包':'宠物|任务|状态',mapping_reason:`绑定${type==='fish'?'鱼类':'宠物'}视觉类型槽位；不创建宠物或物品事实。`});
   }
   if(['船只','船只/地点事件'].includes(entry.category)||/帆船|商船|海盗船|幽灵船|泡船/.test(entry.display_name)){
-    const pattern=SHIP_PATTERNS.get(entry.display_name);const bindings=pattern?content.ships.filter((ship)=>pattern.test(ship.display_name)).map((ship)=>ship.canonical_id):[];
+    const pattern=SHIP_PATTERNS.get(entry.display_name);let bindings=pattern?content.ships.filter((ship)=>pattern.test(ship.display_name)).map((ship)=>ship.canonical_id):[];if(!bindings.length)bindings=content.ships.filter((ship)=>ship.display_name===entry.display_name).map((ship)=>ship.canonical_id);
     return mapped('mapped_type_slot',{slot_id:visualId('visual.ship_type',entry.display_name),binding_ids:bindings,usage_interfaces:'航海|船只|海上事件',mapping_reason:'绑定船型或海上事件视觉槽位；同一船型可服务多个正式船只。'});
   }
   const typedMatches=typedEntityMatches(entry,entities);

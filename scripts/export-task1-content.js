@@ -145,7 +145,8 @@ function exportTask1Content({ databasePath = defaultDatabase,outputPath = defaul
 
     const maritimeEntities=resolveMaritimeEntities(db,maritimeCapabilities);
     const requiredContentIds = unique(tasks.flatMap((task) => [...task.targets.map((target) => target.content_entity_canonical_id),
-      ...task.rewards.map((reward) => reward.content_entity_canonical_id)].filter(Boolean)).concat(maritimeEntities.map((entry)=>entry.canonical_id)));
+      ...task.rewards.map((reward) => reward.content_entity_canonical_id)].filter(Boolean)).concat(maritimeEntities.map((entry)=>entry.canonical_id))
+      .concat(collectDropTargetContentIds(db)));
     const databaseContentEntities = selectIn(db,`
       SELECT canonical_id,source_canonical_id,entity_category,display_name,normalized_data_json
       FROM content_entities WHERE canonical_id IN (__IN__) ORDER BY canonical_id`,requiredContentIds)
@@ -638,3 +639,15 @@ if (require.main === module) {
 }
 
 module.exports = { exportTask1Content };
+
+/**
+ * 库内可查询掉落的目标实体 id（掉落物品未必被任务目标/奖励引用，
+ * 也必须进内容包，否则运行时掉落结算无法解析背包物品定义）。
+ */
+function collectDropTargetContentIds(db) {
+  return db.prepare(`
+    SELECT DISTINCT ce.canonical_id FROM drop_relations d
+    JOIN dependency_references target ON target.id=d.target_reference_id
+    JOIN content_entities ce ON ce.id=target.resolved_content_entity_id
+    WHERE d.runtime_capability='queryable' AND target.resolution_status='resolved' AND ce.entity_category!='equipment' AND ce.canonical_id IS NOT NULL`).all().map((row)=>row.canonical_id);
+}

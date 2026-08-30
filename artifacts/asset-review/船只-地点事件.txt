@@ -1,0 +1,17 @@
+1	三桅大型帆船	船只/地点事件	mapped_type_slot	assets/authoritative/batch07/631d5ce7176f8e17.png
+2	小型单桅帆船	船只/地点事件	mapped_type_slot	assets/authoritative/batch07/f9b7068b8d2e2988.png
+3	双桅商船	船只/地点事件	mapped_type_slot	assets/authoritative/batch07/0712a9416fb8852e.png
+4	武装商船	船只/地点事件	mapped_type_slot	assets/authoritative/batch07/0dd550cb96e048b1.png
+5	卡拉维尔帆船	船只/地点事件	mapped_type_slot	assets/authoritative/batch07/994623337720e87d.png
+6	盖伦帆船	船只/地点事件	mapped_type_slot	assets/authoritative/batch07/8e2e65fa7d7b1c48.png
+7	中国福船	船只/地点事件	mapped_type_slot	assets/authoritative/batch07/b2b1d52c845c5327.png
+8	阿拉伯三角帆船	船只/地点事件	mapped_type_slot	assets/authoritative/batch07/0f3250eaa9e70918.png
+9	海盗船	船只/地点事件	mapped_type_slot	assets/authoritative/batch07/c55e6ccc50cb4aa7.png
+10	幽灵船	船只/地点事件	mapped_type_slot	assets/authoritative/batch07/0d3aa9048c85fc7a.png
+11	明永乐大帆船	船只/地点事件	mapped_type_slot	assets/authoritative/batch07/8b55bbfc0740490b.png
+12	威尼斯港口	船只/地点事件	mapped_interface_slot	assets/authoritative/batch07/213393fe5adcc8f3.png
+13	阿拉伯港市	船只/地点事件	mapped_interface_slot	assets/authoritative/batch07/f3cdb3678ac859b4.png
+14	中国海港	船只/地点事件	mapped_interface_slot	assets/authoritative/batch07/960467f5f0c12267.png
+15	暴风海域	船只/地点事件	mapped_interface_slot	assets/authoritative/batch07/91b5c66d58d374ab.png
+16	宝藏岛	船只/地点事件	mapped_interface_slot	assets/authoritative/batch07/92ba7356c4d8d5e4.png
+17	远洋灯塔	船只/地点事件	mapped_interface_slot	assets/authoritative/batch07/9dee313afb5497ae.png

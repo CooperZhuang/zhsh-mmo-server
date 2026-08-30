@@ -1,0 +1,12 @@
+1	角色状态	UI功能图标	mapped_interface_slot	assets/authoritative/batch08/9e794b59821aa4b1.png
+2	背包	UI功能图标	mapped_interface_slot	assets/authoritative/batch08/e8eda238a6310299.png
+3	装备栏	UI功能图标	mapped_interface_slot	assets/authoritative/batch08/a29859f2d47b6ff0.png
+4	任务日志	UI功能图标	mapped_interface_slot	assets/authoritative/batch08/d53dc073fcd165ca.png
+5	城市地图	UI功能图标	mapped_interface_slot	assets/authoritative/batch08/2c328ec750e6aab8.png
+6	航海	UI功能图标	mapped_interface_slot	assets/authoritative/batch08/2013b327a7625914.png
+7	战斗	UI功能图标	mapped_interface_slot	assets/authoritative/batch08/145d95aa242ae5ac.png
+8	商店交易	UI功能图标	mapped_interface_slot	assets/authoritative/batch08/582020cce23d0c17.png
+9	仓库	UI功能图标	mapped_interface_slot	assets/authoritative/batch08/7789e53b9eae5ea1.png
+10	宠物	UI功能图标	mapped_interface_slot	assets/authoritative/batch08/3bb32009c0dfcb7d.png
+11	钓鱼	UI功能图标	mapped_interface_slot	assets/authoritative/batch08/bf73742fdf393ff8.png
+12	图鉴情报	UI功能图标	mapped_interface_slot	assets/authoritative/batch08/2dfc0d2f403b015e.png

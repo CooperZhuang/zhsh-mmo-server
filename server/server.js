@@ -27,6 +27,7 @@ const { aiEventNarrative } = require('./ai/ai-narrative');
 const { aiNpcBanter } = require('./ai/ai-npc-banter');
 const { aiCombatNarrative } = require('./ai/ai-combat-narrative');
 const { aiDiscoveryDescription } = require('./ai/ai-discovery-description');
+const { aiTaskNarrative } = require('./ai/ai-task-narrative');
 const { memoryDigest, buildWorldContext } = require('./ai/ai-memory');
 const { decideChainEvent } = require('./eco/ai-event-chain');
 const { aiGenerateWorldSidequest } = require('./ai/ai-quest-gen');
@@ -339,6 +340,14 @@ const server = http.createServer(async (req, res) => {
   catch { sendJson(res, 400, { error: 'Bad Request' }); return; }
 
   try {
+    // 客户端结构化日志桥（web/app.js 上报批次；服务器不做存储，仅确认接收）
+    if (pathname === '/api/logs' && req.method === 'POST') {
+      readBody(req).catch(()=>{});
+      res.writeHead(204, { 'Content-Type': 'text/plain' });
+      res.end();
+      return;
+    }
+
     // 注册
     if (pathname === '/api/auth/register' && req.method === 'POST') {
       const { username, password } = JSON.parse(await readBody(req));
@@ -581,6 +590,20 @@ const server = http.createServer(async (req, res) => {
           return sendJson(res, 200, banter);
         } catch (err) {
           return sendJson(res, 200, { line: `${name}：${err.message}`, npc: name, source: 'fallback' });
+        }
+      }
+      if (pathname === '/api/game/task_narrative' && req.method === 'POST') {
+        // AI 任务情境叙述：接取/提交任务时一句 NPC 口吻旁白（短时缓存复用）
+        const { npc_name: npcName, task_name: taskName, phase, player_title: playerTitle, player_level: playerLevel } = JSON.parse(await readBody(req) || '{}');
+        const key = `${phase}|${npcName}|${taskName}`;
+        const cached = taskNarrCache.get(key);
+        if (cached && Date.now() - cached.at < 60000) return sendJson(res, 200, { line: cached.line, source: cached.source });
+        try {
+          const narr = await aiTaskNarrative({ npcName, taskName, phase, playerTitle, playerLevel });
+          taskNarrCache.set(key, { line: narr.line, at: Date.now(), source: narr.source });
+          return sendJson(res, 200, narr);
+        } catch (err) {
+          return sendJson(res, 200, { line: `${npcName}：这委托就拜托你了。`, task: taskName, phase, source: 'fallback' });
         }
       }
       if (pathname === '/api/game/combat_narrative' && req.method === 'POST') {

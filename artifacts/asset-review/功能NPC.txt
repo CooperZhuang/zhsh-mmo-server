@@ -1,0 +1,6 @@
+1	造船师船匠	功能NPC	mapped_interface_slot	assets/authoritative/batch09/bb8b244bd8e9995f.png
+2	酒馆老板	功能NPC	mapped_interface_slot	assets/authoritative/batch09/f35daf6600cdbd55.png
+3	商会管事贸易商	功能NPC	mapped_interface_slot	assets/authoritative/batch09/41ec67323d97fc7d.png
+4	港务官海关官员	功能NPC	mapped_interface_slot	assets/authoritative/batch09/31cb4c6908d9eb02.png
+5	航海士大副	功能NPC	mapped_interface_slot	assets/authoritative/batch09/016c64cb3f024b08.png
+6	治疗者药师修女	功能NPC	mapped_interface_slot	assets/authoritative/batch09/4bca101b629d377d.png
