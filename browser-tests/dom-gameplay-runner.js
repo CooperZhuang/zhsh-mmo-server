@@ -511,6 +511,13 @@ class DomGameplayScenario{
       await this.click('[data-page="location"]',{save:true});await this.waitPage('location');
     }
     await this.click(selector('data-voyage-start',departure.canonical_id),{save:true});
+    // 等待钓鱼会话建立（post-start 重渲染 + 服务端 fishing phase=ready），再点开始钓鱼
+    await this.page.waitFor(`document.body.dataset.page==='voyage'&&document.querySelector('[data-fishing-start]')!==null`,{label:'fishing start control after voyage start',timeout:20000}).catch(()=>{});
+    for(let startAttempt=0;startAttempt<4;startAttempt+=1){
+      if(await this.page.countVisible(`${selector('data-fishing-start',rod.canonical_id)}${selector('data-bait-id',bait.canonical_id)}`)===1)break;
+      if(startAttempt===3)throw new Error(`fishing start control missing after voyage start: page=${await this.page.pageName()} text=${(await this.page.text('.wap-page')??'').slice(0,200)}`);
+      await this.click('[data-page="voyage"]',{save:true}).catch(()=>{});await this.waitPage('voyage');
+    }
     await this.click(`${selector('data-fishing-start',rod.canonical_id)}${selector('data-bait-id',bait.canonical_id)}`,{save:true});await this.measure('fishing');
     let caught=false,casts=0;
     for(let action=0;action<80&&!caught;action+=1){if(await this.page.countVisible('[data-fishing-cast="1"]')===1){casts+=1;assert.ok(casts<=8,'Fishing exhausted the eight formally purchased baits');await this.click('[data-fishing-cast="1"]',{save:true});}
