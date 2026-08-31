@@ -459,7 +459,8 @@ const server = http.createServer(async (req, res) => {
       if (pathname === '/api/game/import' && req.method === 'POST') {
         // 服务器权威导入：接收浏览器存档 JSON，模式升级到当前版本后整体替换该玩家运行时状态。
         const body = JSON.parse(await readBody(req) || '{}');
-        const rawState = body?.state ?? body;
+        // 兼容两种上传形态：完整信封（{schema_version,state,...}）或裸 state
+        const rawState = body?.state?.state ?? body?.state ?? body;
         if (!rawState || typeof rawState !== 'object' || !rawState.player) return sendJson(res, 400, { error: '存档格式无效' });
         const { upgradeGameplayState } = require('../src/task-runtime/gameplay-state');
         const migrated = upgradeGameplayState(rawState);

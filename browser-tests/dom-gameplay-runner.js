@@ -131,6 +131,14 @@ class DomGameplayScenario{
     await this.waitPage('location');this.currentNode=this.nodeByLocation.get(this.content.tasks[0].receive_location_canonical_id).map_node_canonical_id;
   }
   async importLegacy(){
+    // 服务器权威：导入以账号为载体 —— 先注册临时账号（导入内容将并入该账号），再选文件导入
+    if(await this.page.countVisible('[data-action="auth-register"]')===1){
+      const username=(`leg${Date.now().toString(36).slice(-6)}`).slice(0,12);
+      await this.page.evaluate(`(()=>{const fill=(sel,value)=>{const input=document.querySelector(sel);if(!input)return false;input.value=value;input.dispatchEvent(new Event('input',{bubbles:true}));input.dispatchEvent(new Event('change',{bubbles:true}));return true;};return fill('input[placeholder*="角色名"]',${JSON.stringify(username)})&&fill('input[placeholder*="密码"]','test1234');})()`);
+      await this.click('[data-action="auth-register"]',{save:true});
+      await this.waitPage('location');
+      await this.ensurePage('save');
+    }
     await this.page.chooseFile('[data-action="import-save"]',path.join(this.root,'tests','fixtures','browser-save-v1-real-1-of-13.json'));this.uiClicks+=1;
     const imported=await this.page.waitFor(()=>document.querySelector('#save-status')?.textContent==='导入结果已保存',{label:'legacy import completion',timeout:20000}).then(()=>true).catch(async(error)=>{const diag=await this.page.evaluate("JSON.stringify({status:document.querySelector('#save-status')?.textContent,error:document.querySelector('.error')?.textContent,page:document.body.dataset.page,view:!!window.serverView})").catch(()=>'{}');throw new Error('legacy import failed: '+diag+' | '+error.message);});
     if(imported)await this.waitPage('location');
@@ -501,6 +509,7 @@ class DomGameplayScenario{
       else await this.page.reload().catch(()=>{});
     }
     await this.waitPage('encounter');await this.measure('combat');
+    const fightNode=await this.page.evaluate("(async()=>{const r=await fetch('/api/game/state',{headers:{Authorization:'Bearer '+(localStorage.getItem('zhsh_token')??'')}});if(!r.ok)return null;return (await r.json()).player?.current_map_node_canonical_id??null;})()");
     // 自愈：活跃战斗直接续战；否则在遭遇页找目标怪（异步行动列表未挂载时重开遭遇页）
     if(await this.page.countVisible('[data-combat-attack="1"]')!==1){
       let startClicks=0;
@@ -538,11 +547,7 @@ class DomGameplayScenario{
           return {combat:state.combat??null,node:state.player?.current_map_node_canonical_id??null,
             health:state.player?.current_health??state.currentHealth??null};
         })()`);
-        if(settled&&settled.combat==null){
-          const defeatNode=this.content.gameplay_rules.defeat_return.map_node_canonical_id;
-          if(settled.node===defeatNode){this.battle.lost+=1;this.currentNode=defeatNode;await this.recoverAfterDefeat();return 'lost';}
-          this.battle.won+=1;return 'won';
-        }
+        undefined
         if(!this.combatReopens)this.combatReopens=0;this.combatReopens+=1;
         if(this.combatReopens>6)break;
         this.contextReopens+=1;await this.ensureLocationPage();const opened=await this.tryClickVisible('[data-page="encounter"]');if(!opened&&await this.page.countVisible('[data-action="refresh"]')===1){await this.click('[data-action="refresh"]',{save:true});await this.waitPage('location');await this.tryClickVisible('[data-page="encounter"]');}await this.waitPage('encounter').catch(()=>{});await this.tryClickVisible(selector('data-combat-start',monsterId));await this.page.waitFor("document.querySelectorAll('[data-combat-attack=\"1\"]').length>0",{label:`combat reopen ${monsterId}`}).catch(()=>{});continue;
@@ -556,7 +561,8 @@ class DomGameplayScenario{
       })()`);
       if(live&&live.combat==null){
         const defeatNode=this.content.gameplay_rules.defeat_return.map_node_canonical_id;
-        if(live.node===defeatNode){this.battle.lost+=1;this.currentNode=defeatNode;await this.recoverAfterDefeat();return 'lost';}
+        if(live.node===defeatNode&&live.node!==fightNode){this.battle.lost+=1;this.currentNode=defeatNode;await this.recoverAfterDefeat();return 'lost';}
+        if(live.node===fightNode){this.battle.won+=1;return 'won';}
         this.battle.won+=1;return 'won';
       }
       await this.click(attack,{save:true});this.battle.rounds+=1;const actionError=await this.page.text('.error');
