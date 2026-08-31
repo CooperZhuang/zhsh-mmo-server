@@ -492,7 +492,25 @@ class DomGameplayScenario{
     await this.ensurePage('shop');await this.measure('maritime_shop');await this.click(selector('data-shop-buy',rodEntry.canonical_id),{save:true});
     for(let count=0;count<8;count+=1)await this.click(selector('data-shop-buy',baitEntry.canonical_id),{save:true});
     const pair=catchDefinition.route_pairs[0];const departure=this.content.voyage_routes.find((entry)=>entry.from_city_canonical_id===pair.from_city_canonical_id&&entry.to_city_canonical_id===pair.to_city_canonical_id);assert.ok(departure,'Fishing route is not formally exported');
-    await this.reach(departure.from_port_location_canonical_id);await this.ensurePage('voyage');await this.click(selector('data-voyage-start',departure.canonical_id),{save:true});
+    await this.reach(departure.from_port_location_canonical_id);
+    // 守护式出发：若上一段航程未靠岸（服务端 voyage 仍活跃）→ 先推进至靠岸再重开航行页；
+    // 航线按钮未挂载（异步刷新）→ 重开航行页重试（与 sail() 同款自愈，但不自动续航到港，
+    // 因为钓鱼要求停留在进行中的航程上）
+    for(let attempt=0;attempt<5;attempt+=1){
+      const voyageActive=await this.page.evaluate(`(async()=>{
+        const resp=await fetch('/api/game/state',{headers:{Authorization:'Bearer '+(localStorage.getItem('zhsh_token')??'')}});
+        if(!resp.ok)return null;
+        const state=await resp.json();
+        return {voyage:state.voyage??null,node:state.player?.current_map_node_canonical_id??null};
+      })()`);
+      if(voyageActive?.voyage){for(let step=0;step<500;step+=1){if(await this.page.pageName()==='location')break;await this.advanceVoyageStep();}}
+      if((voyageActive?.node??this.currentNode)!==departure.from_port_map_node_canonical_id)await this.reach(departure.from_port_location_canonical_id);
+      await this.ensurePage('voyage');
+      if(await this.page.countVisible(selector('data-voyage-start',departure.canonical_id))===1)break;
+      if(attempt===4)throw new Error(`fishing voyage start missing for ${departure.canonical_id} at ${await this.page.pageName()}`);
+      await this.click('[data-page="location"]',{save:true});await this.waitPage('location');
+    }
+    await this.click(selector('data-voyage-start',departure.canonical_id),{save:true});
     await this.click(`${selector('data-fishing-start',rod.canonical_id)}${selector('data-bait-id',bait.canonical_id)}`,{save:true});await this.measure('fishing');
     let caught=false,casts=0;
     for(let action=0;action<80&&!caught;action+=1){if(await this.page.countVisible('[data-fishing-cast="1"]')===1){casts+=1;assert.ok(casts<=8,'Fishing exhausted the eight formally purchased baits');await this.click('[data-fishing-cast="1"]',{save:true});}
