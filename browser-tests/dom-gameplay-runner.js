@@ -618,8 +618,11 @@ class DomGameplayScenario{
 
   async verifyTaskContextNpcHidden(task){await this.reach(task.receive_location_canonical_id);assert.equal(await this.page.countVisible(selector('data-npc-id',task.issuer_npc_canonical_id)),0,'completed task-context NPC must disappear');}
   async refreshAndVerifyProgress(){
-    const before=await this.readStatus();await this.page.reload();this.pageRefreshes+=1;await this.page.waitFor(()=>document.querySelector('[data-action="continue-game"]'),{label:'continue after refresh'});
-    await this.click('[data-action="continue-game"]');await this.waitPage('location');const after=await this.readStatus();assert.equal(after.completed,before.completed);assert.equal(after.experience,before.experience);assert.equal(after.money,before.money);
+    const before=await this.readStatus();await this.page.reload();this.pageRefreshes+=1;
+    // 服务器权威：有效令牌刷新后直接进入 location；无令牌才会出现 continue-game
+    const landed=await this.page.waitFor("document.body.dataset.page==='location'||document.querySelector('[data-action=\"continue-game\"]')",{label:'continue after refresh'}).then(()=>true).catch(()=>false);
+    if(!landed){const cont=await this.page.countVisible('[data-action="continue-game"]');if(cont===1)await this.click('[data-action="continue-game"]',{save:true});}
+    await this.waitPage('location');const after=await this.readStatus();assert.equal(after.completed,before.completed);assert.equal(after.experience,before.experience);assert.equal(after.money,before.money);
   }
   async verifyAllSeriesPages(){
     for(const series of this.content.series){await this.selectSeries(series.canonical_id);assert.match(await this.page.text('.wap-page'),new RegExp(`${escapeRegExp(series.display_name)} ${this.content.tasks.filter((task)=>task.series_canonical_id===series.canonical_id).length}/${this.content.tasks.filter((task)=>task.series_canonical_id===series.canonical_id).length}`));}
