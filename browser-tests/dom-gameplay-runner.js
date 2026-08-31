@@ -448,7 +448,8 @@ class DomGameplayScenario{
     await this.npcAction(task.completion_npc_canonical_id);await this.waitTaskDone(task.canonical_id);
     this.markCompleted(task);
     await this.equipBestOwned();
-    if(task.canonical_id==='task.series.07.041')await this.verifyTaskContextNpcHidden(task);
+    // 07.041 的接取 NPC 经 C类裁决改派为常驻酒馆的露丝（全局放置），不再适用
+    // 任务上下文消失断言；上下文出现/消失语义由 feedContextualNpcPlacements 覆盖其余任务。
   }
   markCompleted(task){this.completed.add(task.canonical_id);if(['task.series.07.041','task.series.07.042','task.series.07.043','task.series.09.048','task.series.09.049','task.series.04.020'].includes(task.canonical_id))this.completedSpecial.push(task.canonical_id);
     this.trace(`complete ${task.canonical_id} (${this.completed.size}/${this.content.tasks.length})`);}
