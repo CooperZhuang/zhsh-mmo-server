@@ -1,8 +1,8 @@
 {
   "selector_version": "global-runtime-directory/1.0.0",
   "stage_start_head": "2cbae183aa369fe0ac60176f3a1396914d786440",
-  "source_head": "4058b33947b07215ce893c4391b936aded485eec",
-  "generated_from_head": "4058b33947b07215ce893c4391b936aded485eec",
+  "source_head": "cba19939ffb1bd375a7263f499ff47b07a68ff6c",
+  "generated_from_head": "cba19939ffb1bd375a7263f499ff47b07a68ff6c",
   "reference_commits": {
     "zhsh": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
     "astrbot": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de",
@@ -32540,5 +32540,5 @@
   "formal_stage_start": {
     "selected_task_count": 78
   },
-  "selection_hash": "1d03d62f39eeb3d8dbed324df4dfe49b82cf761fb19c6aad098b3f8b200549e6"
+  "selection_hash": "207993be9a61bb3e157d09f86a45b8df949783837ebd889313e1962230a93480"
 }

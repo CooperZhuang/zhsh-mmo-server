@@ -5,7 +5,7 @@ const { hash } = require('./database');
 const { readBaseline, readOverlay } = require('./importer');
 
 const EXPECTED_COUNTS = {
-  world_regions:6,cities:40,locations:642,location_connections:627,npc_placements:647,
+  world_regions:6,cities:40,locations:642,location_connections:627,npc_placements:646,
   items:246,equipment:438,monster_placements:287,drop_relations:2797,shop_definitions:63,
   city_price_ranges:54,ships:21,fish:25,pets:8,trial_definitions:12,story_nodes:20,
   system_rules:26,task_definitions:651,restoration_conflicts:32,
