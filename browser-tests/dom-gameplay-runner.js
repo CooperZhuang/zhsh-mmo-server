@@ -322,7 +322,8 @@ class DomGameplayScenario{
     })()`);
     assert.ok(arrived.arrived,`voyage ${route.canonical_id} did not arrive within 120s`);
     this.currentNode=route.to_port_map_node_canonical_id;
-    await this.waitPage('location');
+    // 到港后页面仍停留在航行页 → 显式返回地点页
+    await this.tryClickVisible('[data-page="location"]');await this.waitPage('location');
   }
   async advanceVoyageStep(){
     const voyageActive=await this.page.evaluate(`(async()=>{
