@@ -539,7 +539,11 @@ class DomGameplayScenario{
     }
     await this.click(`${selector('data-fishing-start',rod.canonical_id)}${selector('data-bait-id',bait.canonical_id)}`,{save:true});await this.measure('fishing');
     let caught=false,casts=0;
-    for(let action=0;action<80&&!caught;action+=1){if(await this.page.countVisible('[data-fishing-cast="1"]')===1){casts+=1;assert.ok(casts<=8,'Fishing exhausted the eight formally purchased baits');await this.click('[data-fishing-cast="1"]',{save:true});}
+    for(let action=0;action<80&&!caught;action+=1){
+      if(await this.page.countVisible('[data-fishing-cast="1"]')===1){casts+=1;assert.ok(casts<=8,'Fishing exhausted the eight formally purchased baits');await this.click('[data-fishing-cast="1"]',{save:true});}
+      // 收线控件随 phase 渲染（cast 后 waiting 才出现）——等待渲染完成再点击
+      const reelVisible=await this.page.waitFor(`document.querySelector('[data-fishing-reel="1"]')!==null`,{label:'fishing reel control',timeout:15000}).then(()=>true).catch(()=>false);
+      if(!reelVisible){if(await this.page.pageName()!=='voyage')break;continue;}
       await this.click('[data-fishing-reel="1"]',{save:true});caught=(await this.page.text('.message')??'').includes(`钓获${catchDefinition.display_name}`);}
     assert.equal(caught,true,`Fishing did not obtain ${catchDefinition.display_name}`);await this.click('[data-fishing-stop="1"]',{save:true});
     for(let step=0;step<500;step+=1){if(await this.page.pageName()==='location')break;await this.advanceVoyageStep();}
