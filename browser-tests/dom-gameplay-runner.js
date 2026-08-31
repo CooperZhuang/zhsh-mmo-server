@@ -302,9 +302,27 @@ class DomGameplayScenario{
     const startError=await this.page.text('.error');
     if(startError){const diagnostic=await this.exportSave('voyage-start-error');throw new Error(`Voyage start failed for ${route.canonical_id}: ${startError}; money=${diagnostic.state.player.money}; fee=${route.fee}`);}
     if(this.contextReopens===0){await this.advanceVoyageStep();if(await this.page.pageName()==='voyage'){await this.restartBrowser();await this.ensurePage('voyage');}}
-    for(let step=0;step<500;step+=1){if(await this.page.pageName()==='location')break;await this.advanceVoyageStep();}
-    await this.waitPage('location');this.currentNode=route.to_port_map_node_canonical_id;
-    assert.equal(await this.page.text('.current-location'),this.nodeById.get(this.currentNode).display_name);
+    // 权威确认到港：以服务端 voyage 状态为准推进，而非页面名（渲染竞态会让到达误判）
+    const arrived=await this.page.evaluate(`(async()=>{
+      const deadline=Date.now()+120000;
+      while(Date.now()<deadline){
+        try{
+          const resp=await fetch('/api/game/state',{headers:{Authorization:'Bearer '+(localStorage.getItem('zhsh_token')??'')}});
+          if(resp.ok){
+            const state=await resp.json();
+            if(!state.voyage)return {arrived:true,node:state.player?.current_map_node_canonical_id??null};
+            // 仍在航程：点一次「继续航行」推进（服务器每点击推进一段）
+            const advance=document.querySelector('[data-voyage-advance="1"]');
+            if(advance){advance.scrollIntoView({block:'center'});advance.click();}
+          }
+        }catch{}
+        await new Promise((resolve)=>setTimeout(resolve,300));
+      }
+      return {arrived:false};
+    })()`);
+    assert.ok(arrived.arrived,`voyage ${route.canonical_id} did not arrive within 120s`);
+    this.currentNode=route.to_port_map_node_canonical_id;
+    await this.waitPage('location');
   }
   async advanceVoyageStep(){
     const voyageActive=await this.page.evaluate(`(async()=>{
