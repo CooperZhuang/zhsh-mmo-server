@@ -477,7 +477,6 @@ const NPC_PLACEMENT_FIXES = [
   { npc: 'derived.npc_definition.1a591b9cfe3b0695', city: '泉州', location: '酒馆' },            // 商人李 15.233
   { npc: 'derived.npc_definition.199c696318fc94a6', city: '亚特兰蒂斯', location: '码头' },      // 卡拉迪 13.162
   { npc: 'derived.npc_definition.6b51943c56cebd0a', city: '泉州', location: '丹霞山' },          // 狐仙小美 12.092/093（文本"丹霞山寻找狐仙小美"）
-  { npc: 'derived.npc_definition.3dea4b1eac3ad3f3', city: '威尼斯', location: '珠宝店' },        // 威尼斯公主 07.041（文本"珠宝店寻找威尼斯公主"）
 ];
 
 const NPC_LOCATION_RETARGETS = [

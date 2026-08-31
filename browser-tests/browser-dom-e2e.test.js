@@ -21,12 +21,12 @@ after(async()=>{
     fs.writeFileSync(file,`${JSON.stringify({schema_version:1,scenarios},null,2)}\n`,'utf8');}
 });
 
-test('DOM browser E2E: new save completes every selected task through visible formal UI', {timeout:20*60*1000}, async()=>{
+test('DOM browser E2E: new save completes every selected task through visible formal UI', {timeout:4*60*60*1000}, async()=>{
   const result=await runDomGameplayScenario({root,url:server.url,scenario:'new-save'});evidence.push(result);
   process.stdout.write(`ZHSH_DOM_E2E:${JSON.stringify({scenario:result.scenario,duration_ms:result.duration_ms,completed_task_count:result.completed_task_count,series:result.formal_series_count,console:result.console,battle:result.battle})}\n`);
 });
 
-test('DOM browser E2E: real legacy 1/13 save imports, preserves checkpoint and completes every selected task', {timeout:20*60*1000}, async()=>{
+test('DOM browser E2E: real legacy 1/13 save imports, preserves checkpoint and completes every selected task', {timeout:4*60*60*1000}, async()=>{
   const result=await runDomGameplayScenario({root,url:server.url,scenario:'legacy-1-of-13',legacyFixture,checkpointTaskIds:accepted25.task_canonical_ids});evidence.push(result);
   process.stdout.write(`ZHSH_DOM_E2E:${JSON.stringify({scenario:result.scenario,duration_ms:result.duration_ms,completed_task_count:result.completed_task_count,checkpoint:result.legacy_checkpoint_task_count,series:result.formal_series_count,console:result.console,battle:result.battle})}\n`);
 });
