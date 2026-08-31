@@ -166,7 +166,9 @@ function buildGameplayRuntimes() {
     economy: new EconomyRuntime({ storage, catalog: gameplayCatalog, taskEngine: engine }),
     equipment: new EquipmentRuntime({ storage, catalog: gameplayCatalog }),
     enhance: new EquipmentEnhanceRuntime({ storage, catalog: gameplayCatalog }),
-    fishing: new FishingRuntime({ storage, catalog: gameplayCatalog, taskEngine: engine }),
+    fishing: new FishingRuntime({ storage, catalog: gameplayCatalog, taskEngine: engine,
+      // UAT 钩子：ZHSH_UAT_FISHING_RANDOM=<seed> 注入确定性随机（DOM E2E 稳定通关）
+      ...(process.env.ZHSH_UAT_FISHING_RANDOM!==undefined?{random:()=>Number(process.env.ZHSH_UAT_FISHING_RANDOM)}:{}) }),
     items: new ItemRuntime({ storage, catalog: gameplayCatalog }),
     market: new MarketRuntime({ storage, catalog: gameplayCatalog, economy: getEconomy() }),
     maritime: new MaritimeRuntime({ storage, catalog: gameplayCatalog }),
