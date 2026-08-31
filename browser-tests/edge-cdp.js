@@ -62,7 +62,7 @@ async function startStaticServer(root){
   fs.copyFileSync(path.join(root,'data','zhsh-content.sqlite'),runtimeDb);
   const child=childProcess.spawn(process.execPath,['server/server.js'],
     {cwd:root,env:{...process.env,PORT:String(port),HOST:bindHost,
-      ZHSH_RUNTIME_DB:runtimeDb,ZHSH_CONTENT_DB:path.join(root,'data','zhsh-content.sqlite')},
+      ZHSH_RUNTIME_DB:runtimeDb,ZHSH_CONTENT_DB:path.join(root,'data','zhsh-content.sqlite'),ZHSH_UAT_FISHING_RANDOM:'0'},
      stdio:['ignore','pipe','pipe'],detached:process.platform!=='win32'});
   child.stdout.on('data',(bytes)=>output.push(bytes.toString('utf8')));child.stderr.on('data',(bytes)=>output.push(bytes.toString('utf8')));
   child.once('exit',(code)=>{if(code&&code!==0)output.push(`server exit_code=${code}\n`);});
