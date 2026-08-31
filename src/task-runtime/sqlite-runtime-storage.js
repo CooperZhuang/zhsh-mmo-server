@@ -209,6 +209,7 @@ function gameplayProjection(state) {
     },
     inventory_capacity:state.inventory_capacity,owned_ships:state.owned_ships,current_ship_canonical_id:state.current_ship_canonical_id,
     voyage:state.voyage,combat:state.combat,equipment:state.equipment,shop_transactions:state.shop_transactions,
+    fishing:state.fishing??null,dungeon:state.dungeon??null,maritime_encounter:state.maritime_encounter??null,
     drop_settlements:state.drop_settlements,gameplay_events:state.gameplay_events,
     equipment_instances:state.equipment_instances,
     guild:state.guild,city_influence:state.city_influence,occupied_cities:state.occupied_cities,
