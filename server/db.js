@@ -30,7 +30,11 @@ function openAuthority() {
     seriesCanonicalId: 'task.series.01',
     seriesCanonicalIds: ['task.series.01','task.series.02','task.series.03','task.series.04','task.series.05','task.series.06','task.series.07','task.series.08','task.series.09','task.series.10','task.series.11','task.series.12','task.series.13','task.series.14','task.series.15'],
   });
-  feedContextualNpcPlacements(rt.catalog);
+  // 引擎 createPlayer 的 defeat_return 取自 catalog.content.gameplay_rules；
+  // SQLite 目录不持有内容包，这里挂上权威 gameplay_rules（否则败退回退到出生点酒馆）。
+  try {
+    rt.catalog.content = { gameplay_rules: JSON.parse(fs.readFileSync(path.join(path.dirname(CONTENT_DB), '..', 'web', 'generated', 'task1-content.json'), 'utf8')).gameplay_rules };
+  } catch { /* 规则缺失时维持 firstNode 兜底 */ }
   // 方案A：WAL 模式避免读写锁冲突（建库后开启）
   try { rt.storage.db.exec('PRAGMA journal_mode=WAL;'); } catch {}
   // 若为全新副本，任务运行时迁移已在 openSqliteRuntime 内 applyMigration 完成

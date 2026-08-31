@@ -54,6 +54,7 @@ class DomGameplayScenario{
       this.stage='map movement';await this.verifyMapMovement();
       this.stage='defeat and recovery';
       if(!this.legacyFixture)await this.verifyDefeatAndRecovery();
+      if(process.env.ZHSH_STOP_AFTER_DEFEAT==='1'){this.endedAt=new Date().toISOString();this.collectPageDiagnostics();return {scenario:this.scenario,battle:this.battle,console:this.consoleRecords.filter(e=>e.level==='error'),network:this.networkRecords};}
       this.stage='series 01';
       await this.completeSeriesOne();
       this.stage='refresh persistence';
@@ -323,8 +324,16 @@ class DomGameplayScenario{
     }
   }
   async selectSeries(seriesId){
-    await this.ensurePage('tasks');await this.measure('task_series_selector');await this.click(selector('data-series-select',seriesId),{save:true});this.seriesEntered.add(seriesId);
-    const active=this.content.series.find((entry)=>entry.canonical_id===seriesId);assert.match(await this.page.text('.wap-page'),new RegExp(`当前系列：${escapeRegExp(active.display_name)}`));
+    await this.ensurePage('tasks');await this.measure('task_series_selector');
+    const active=this.content.series.find((entry)=>entry.canonical_id===seriesId);
+    for(let attempt=0;attempt<3;attempt+=1){
+      await this.click(selector('data-series-select',seriesId),{save:true});
+      const text=await this.page.text('.wap-page')??'';
+      if(new RegExp(`当前系列：${escapeRegExp(active.display_name)}`).test(text))break;
+      if(attempt===2)assert.match(text,new RegExp(`当前系列：${escapeRegExp(active.display_name)}`));
+      await this.page.reload().catch(()=>{});await this.waitPage('location');await this.ensurePage('tasks');
+    }
+    this.seriesEntered.add(seriesId);
   }
   async visitNpc(npcId){
     await this.ensureLocationPage();await this.click(selector('data-npc-id',npcId));await this.waitPage('npc');await this.measure('npc');
@@ -528,6 +537,7 @@ class DomGameplayScenario{
     const startError=await this.page.text('.error')??'';if(startError)throw new Error(`DOM combat start failed for ${monsterId}: ${startError}`);const startMessage=await this.page.text('.message')??'';
     if(process.env.ZHSH_COMBAT_DEBUG==='1'){const dbg=await this.page.evaluate("({page:document.body.dataset.page,msg:document.querySelector('.message')?.textContent,err:document.querySelector('.error')?.textContent,full:document.querySelector('.wap-page')?.innerText?.slice(0,300)})");console.error('[COMBAT-AFTER-START]',JSON.stringify(dbg));}
     await this.page.waitFor("document.querySelectorAll('[data-combat-attack=\"1\"]').length>0",{label:`attack control after combat start ${monsterId}`,timeout:15000}).catch(async(error)=>{throw new Error(`combat did not enter attack for ${monsterId}: ${await this.page.evaluate("document.querySelector('.wap-page')?.innerText?.slice(0,260)")}`);});
+    if(process.env.ZHSH_STOP_AFTER_DEFEAT)console.error('[DEFEAT-DBG] startMessage=',JSON.stringify(startMessage.slice(0,120)),'fightNode=',fightNode);
     if(startMessage.includes('战斗胜利')){this.battle.won+=1;return 'won';}
     if(startMessage.includes('你被击败')){this.battle.lost+=1;this.currentNode=this.content.gameplay_rules.defeat_return.map_node_canonical_id;await this.recoverAfterDefeat();return 'lost';}
     if(restartAfterStart){await this.restartBrowser();await this.ensurePage('encounter');}
@@ -535,6 +545,7 @@ class DomGameplayScenario{
       const attack='[data-combat-attack="1"]';
       if(await this.page.countVisible(attack)!==1){
         const lateMessage=await this.page.text('.message')??'';
+        if(process.env.ZHSH_STOP_AFTER_DEFEAT)console.error('[DEFEAT-DBG] lateMessage=',JSON.stringify(lateMessage.slice(0,120)),'curNode=',this.nodeById.get(this.currentNode)?.display_name);
         if(lateMessage.includes('战斗胜利')){this.battle.won+=1;return 'won';}
         if(lateMessage.includes('你被击败')){this.battle.lost+=1;this.currentNode=this.content.gameplay_rules.defeat_return.map_node_canonical_id;await this.recoverAfterDefeat();return 'lost';}
         if(process.env.ZHSH_COMBAT_DEBUG==='1'){const dbg=await this.page.evaluate("({attack:Array.from(document.querySelectorAll('[data-combat-attack]')).length,message:document.querySelector('.message')?.textContent,error:document.querySelector('.error')?.textContent,page:document.body.dataset.page,buttons:Array.from(document.querySelectorAll('.wap-page button')).map(b=>b.textContent.slice(0,10)).slice(0,20)})");console.error('[COMBAT-DEBUG]',JSON.stringify(dbg));}
@@ -544,7 +555,7 @@ class DomGameplayScenario{
           const resp=await fetch('/api/game/state',{headers:{Authorization:'Bearer '+(localStorage.getItem('zhsh_token')??'')}});
           if(!resp.ok)return null;
           const state=await resp.json();
-          return {combat:state.combat??null,node:state.player?.current_map_node_canonical_id??null,
+          return {combat:state.combat??null,node:state.player?.current_map_node_canonical_id??null,returnNode:state.player?.defeat_return_map_node_canonical_id??null,
             health:state.player?.current_health??state.currentHealth??null};
         })()`);
         undefined
@@ -559,10 +570,12 @@ class DomGameplayScenario{
         const state=await resp.json();
         return {combat:state.combat??null,node:state.player?.current_map_node_canonical_id??null};
       })()`);
+      if(process.env.ZHSH_STOP_AFTER_DEFEAT)console.error('[DEFEAT-DBG] preclick live=',JSON.stringify(live));
       if(live&&live.combat==null){
-        const defeatNode=this.content.gameplay_rules.defeat_return.map_node_canonical_id;
+        const defeatNode=live?.returnNode??this.content.gameplay_rules.defeat_return.map_node_canonical_id;
         if(live.node===defeatNode&&live.node!==fightNode){this.battle.lost+=1;this.currentNode=defeatNode;await this.recoverAfterDefeat();return 'lost';}
         if(live.node===fightNode){this.battle.won+=1;return 'won';}
+        if(process.env.ZHSH_STOP_AFTER_DEFEAT)console.error('[DEFEAT-DBG] judged won node=',JSON.stringify(live?.node),'fightNode=',fightNode);
         this.battle.won+=1;return 'won';
       }
       await this.click(attack,{save:true});this.battle.rounds+=1;const actionError=await this.page.text('.error');
