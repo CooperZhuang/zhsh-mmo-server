@@ -507,7 +507,7 @@ class DomGameplayScenario{
       if((voyageActive?.node??this.currentNode)!==departure.from_port_map_node_canonical_id)await this.reach(departure.from_port_location_canonical_id);
       await this.ensurePage('voyage');
       if(await this.page.countVisible(selector('data-voyage-start',departure.canonical_id))===1)break;
-      if(attempt===4)throw new Error(`fishing voyage start missing for ${departure.canonical_id} at ${await this.page.pageName()}`);
+      if(attempt===4)throw new Error(`fishing voyage start missing for ${departure.canonical_id} at page=${await this.page.pageName()} text=${JSON.stringify((await this.page.text('.wap-page')??'').slice(0,400))} serverNode=${JSON.stringify(voyageActive?.node)}`);
       await this.click('[data-page="location"]',{save:true});await this.waitPage('location');
     }
     await this.click(selector('data-voyage-start',departure.canonical_id),{save:true});
