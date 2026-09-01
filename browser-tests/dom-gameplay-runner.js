@@ -236,6 +236,8 @@ class DomGameplayScenario{
 
   async reach(locationId){
     const destination=this.nodeForLocation(locationId);await this.ensureLocationPage();
+    // 权威节点同步：以服务器当前节点为准（sail/失败回退后本地指针可能漂移）
+    {const serverNode=await this.page.evaluate("(async()=>{const r=await fetch('/api/game/state',{headers:{Authorization:'Bearer '+(localStorage.getItem('zhsh_token')??'')}});if(!r.ok)return null;const s=await r.json();return s.player?.current_map_node_canonical_id??null;})()");if(serverNode&&this.nodeById.has(serverNode))this.currentNode=serverNode;}
     if(this.currentNode===destination.map_node_canonical_id)return;
     const currentCity=this.cityForNode(this.currentNode);
     if(currentCity!==destination.city_canonical_id){
@@ -299,6 +301,9 @@ class DomGameplayScenario{
       await this.click('[data-page="location"]');await this.waitPage('location');await this.click('[data-page="voyage"]');await this.waitPage('voyage');
     }
     await this.click(selector('data-voyage-start',route.canonical_id),{save:true});
+    // 出航确认：服务端 voyage 必须存在，否则本次 start 未生效（节点/船/费等问题）
+    const voyageStarted=await this.page.evaluate("(async()=>{const r=await fetch('/api/game/state',{headers:{Authorization:'Bearer '+(localStorage.getItem('zhsh_token')??'')}});if(!r.ok)return null;return (await r.json()).voyage??null;})()");
+    if(!voyageStarted)throw new Error(`voyage ${route.canonical_id} did not start (server voyage null); page=${await this.page.pageName()}`);
     const startError=await this.page.text('.error');
     if(startError){const diagnostic=await this.exportSave('voyage-start-error');throw new Error(`Voyage start failed for ${route.canonical_id}: ${startError}; money=${diagnostic.state.player.money}; fee=${route.fee}`);}
     if(this.contextReopens===0){await this.advanceVoyageStep();if(await this.page.pageName()==='voyage'){await this.restartBrowser();await this.ensurePage('voyage');}}
