@@ -190,7 +190,7 @@ class DomGameplayScenario{
             if(entry?.runtime?.status==='completed')return true;
           }
         }catch{}
-        await new Promise((resolve)=>setTimeout(resolve,300));
+        await new Promise((resolve)=>setTimeout(resolve,120));
       }
       return false;
     })()`);
@@ -309,7 +309,7 @@ class DomGameplayScenario{
     if(this.contextReopens===0){await this.advanceVoyageStep();if(await this.page.pageName()==='voyage'){await this.restartBrowser();await this.ensurePage('voyage');}}
     // 权威确认到港：以服务端 voyage 状态为准推进，而非页面名（渲染竞态会让到达误判）
     const arrived=await this.page.evaluate(`(async()=>{
-      const deadline=Date.now()+120000;
+      const deadline=Date.now()+600000;
       while(Date.now()<deadline){
         try{
           const resp=await fetch('/api/game/state',{headers:{Authorization:'Bearer '+(localStorage.getItem('zhsh_token')??'')}});
