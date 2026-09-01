@@ -271,6 +271,87 @@ class CookRuntime {
     const loc=this.catalog.content?.locations?.find((entry)=>entry.canonical_id===mapNode?.location_canonical_id);
     return loc?.city_canonical_id??null;
   }
+  cityIdFrom(state) { return this.currentCityId(state); }
+}
+
+// 港口订单：在指定港口交付商品，得银币 + 港口声望
+class TradeOrderRuntime {
+  constructor({ storage,catalog=null,clock=isoNow }) { this.storage=storage;this.catalog=catalog;this.clock=clock; }
+  acceptOrder(playerId,orderId,eventId) {
+    return transactEvent(this.storage,playerId,eventId,'trade_order_accept',{ order_canonical_id:orderId },this.clock,(state) => {
+      const order=this.catalog.getTradeOrder(orderId);
+      const active=state.trade_orders??(state.trade_orders={});
+      if(active[orderId])throw new Error('该订单已在处理中。');
+      active[orderId]={ accepted_at:this.clock(),count:0 };
+      return {applied:true,action:'trade_order_accepted',order_canonical_id:orderId};
+    });
+  }
+  deliverOrder(playerId,orderId,eventId) {
+    return transactEvent(this.storage,playerId,eventId,'trade_order_deliver',{ order_canonical_id:orderId },this.clock,(state) => {
+      const order=this.catalog.getTradeOrder(orderId);
+      const city=this.catalog.content?.locations?.find((entry)=>entry.canonical_id===state.player.current_map_node_canonical_id)?.city_canonical_id;
+      const goodId=order.good_canonical_id;
+      const amount=Number(order.amount??1);
+      if(city!==order.port_city_canonical_id)throw new Error('须在订单指定港口交付。');
+      if(Number(state.inventory[goodId]??0)<amount)throw new Error(`商品不足，需 ${amount} 件。`);
+      setInventory(state,goodId,Number(state.inventory[goodId])-amount);
+      state.player.money+=Number(order.bonus??0);
+      const rep=state.city_reputation??(state.city_reputation={});
+      rep[order.port_city_canonical_id]=(Number(rep[order.port_city_canonical_id]??0)+Number(order.reputation??0));
+      state.city_reputation=rep;
+      const active=state.trade_orders??{};
+      if(active[orderId])delete active[orderId];
+      return {applied:true,action:'trade_order_delivered',order_canonical_id:orderId,bonus:Number(order.bonus??0),
+        reputation:Number(order.reputation??0),money:state.player.money,city_reputation:state.city_reputation};
+    });
+  }
+}
+
+// 指定港卖出：在目标港口出售货物赚价差
+class TradeSellRuntime {
+  constructor({ storage,catalog=null,clock=isoNow }) { this.storage=storage;this.catalog=catalog;this.clock=clock; }
+  sell(playerId,goodId,quantity,eventId) {
+    return transactEvent(this.storage,playerId,eventId,'trade_good_sell',{ good_canonical_id:goodId,quantity },this.clock,(state) => {
+      const good=this.catalog.getTradeGood(goodId);
+      const city=this.catalog.content?.locations?.find((entry)=>entry.canonical_id===state.player.current_map_node_canonical_id)?.city_canonical_id;
+      const price=Number(good.prices?.[city]??0);
+      if(!price)throw new Error('该商品在当前港口无收购价。');
+      const qty=Number(quantity??1);
+      if(Number(state.inventory[goodId]??0)<qty)throw new Error('商品不足。');
+      setInventory(state,goodId,Number(state.inventory[goodId])-qty);
+      state.player.money+=price*qty;
+      return {applied:true,action:'trade_good_sold',good_canonical_id:goodId,quantity:qty,unit_price:price,
+        gained:price*qty,money:state.player.money};
+    });
+  }
+}
+
+// 护航物资：出航前购买，本航程降风险/抵风暴
+class VoyagePrepRuntime {
+  constructor({ storage,catalog=null,clock=isoNow }) { this.storage=storage;this.catalog=catalog;this.clock=clock; }
+  purchase(playerId,itemId,eventId) {
+    return transactEvent(this.storage,playerId,eventId,'convoy_purchase',{ convoy_item_canonical_id:itemId },this.clock,(state) => {
+      const item=this.catalog.getConvoyItem(itemId);
+      if(Number(state.player.money)<Number(item.price??0))throw new Error('银币不足。');
+      state.player.money-=Number(item.price??0);
+      const stock=state.convoy_bundles??(state.convoy_bundles={});
+      stock[itemId]=(Number(stock[itemId]??0)+1);
+      state.convoy_bundles=stock;
+      return {applied:true,action:'convoy_purchased',convoy_item_canonical_id:itemId,bundle_count:state.convoy_bundles[itemId],
+        money:state.player.money,effect:item.effect};
+    });
+  }
+}
+
+// 港口声望：查询某港累计声望
+class TradeReputationRuntime {
+  constructor({ storage,catalog=null,clock=isoNow }) { this.storage=storage;this.catalog=catalog;this.clock=clock; }
+  view(playerId,eventId) {
+    return transactEvent(this.storage,playerId,eventId,'city_reputation_view',{},this.clock,(state) => {
+      return {applied:true,action:'city_reputation_viewed',city_reputation:state.city_reputation??{},
+        total:Object.values(state.city_reputation??{}).reduce((sum,value)=>sum+Number(value),0)};
+    });
+  }
 }
 
 class FishingRuntime {
@@ -1253,4 +1334,4 @@ function required(map,id,label) { const value=map.get(id);if(!value)throw new Er
 function stableJson(value) { if(value===null||typeof value!=='object')return JSON.stringify(value);if(Array.isArray(value))return`[${value.map(stableJson).join(',')}]`;return`{${Object.keys(value).sort().map((key)=>`${JSON.stringify(key)}:${stableJson(value[key])}`).join(',')}}`; }
 function isoNow() { return new Date().toISOString(); }
 
-module.exports = { CombatRuntime,CookRuntime,DiscoverRuntime,DivingRuntime,DropRuntime,DungeonRuntime,EconomyRuntime,EquipmentRuntime,EquipmentEnhanceRuntime,FishingRuntime,FormalGameplayCatalog,GuildRuntime,CityRuntime,ItemRuntime,MarketRuntime,MaritimeRuntime,PetRuntime,RecoveryRuntime,RecruitRuntime,SkillRuntime,ShipRuntime,VoyageRuntime,EQUIPMENT_SLOT_BY_TYPE,applyTitle,chooseFishingWaitOutcome,consumeMealBattle,damage,effectiveStats,fishingRarityWeights,monsterStats };
+module.exports = { CombatRuntime,CookRuntime,DiscoverRuntime,DivingRuntime,DropRuntime,DungeonRuntime,EconomyRuntime,EquipmentRuntime,EquipmentEnhanceRuntime,FishingRuntime,FormalGameplayCatalog,GuildRuntime,CityRuntime,ItemRuntime,MarketRuntime,MaritimeRuntime,PetRuntime,RecoveryRuntime,RecruitRuntime,SkillRuntime,ShipRuntime,TradeOrderRuntime,TradeReputationRuntime,TradeSellRuntime,VoyagePrepRuntime,VoyageRuntime,EQUIPMENT_SLOT_BY_TYPE,applyTitle,chooseFishingWaitOutcome,consumeMealBattle,damage,effectiveStats,fishingRarityWeights,monsterStats };

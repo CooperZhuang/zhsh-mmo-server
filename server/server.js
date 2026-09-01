@@ -162,7 +162,7 @@ async function performAction(playerId, action, args, evId) {
 // ---- 游戏 runtime（formal gameplay：combat/economy/ship/voyage 等） ----
 function buildGameplayRuntimes() {
   const { CombatRuntime, CookRuntime, DiscoverRuntime, RecruitRuntime, SkillRuntime, GuildRuntime, CityRuntime, NpcDuelRuntime, DivingRuntime, DropRuntime, DungeonRuntime, EconomyRuntime, EquipmentRuntime, EquipmentEnhanceRuntime,
-    FishingRuntime, FormalGameplayCatalog, ItemRuntime, MarketRuntime, MaritimeRuntime, PetRuntime, RecoveryRuntime, ShipRuntime, VoyageRuntime } = require('../src/task-runtime/index.js');
+    FishingRuntime, FormalGameplayCatalog, ItemRuntime, MarketRuntime, MaritimeRuntime, PetRuntime, RecoveryRuntime, ShipRuntime, TradeOrderRuntime, TradeReputationRuntime, TradeSellRuntime, VoyagePrepRuntime, VoyageRuntime } = require('../src/task-runtime/index.js');
   const gameplayCatalog = new FormalGameplayCatalog(loadContent());
   // 复用引擎作为 task engine
   const drops = new DropRuntime({ storage, catalog: gameplayCatalog, taskEngine: engine });
@@ -178,6 +178,10 @@ function buildGameplayRuntimes() {
       // UAT 钩子：ZHSH_UAT_FISHING_RANDOM=<seed> 注入确定性随机（DOM E2E 稳定通关）
       ...(process.env.ZHSH_UAT_FISHING_RANDOM!==undefined?{random:()=>Number(process.env.ZHSH_UAT_FISHING_RANDOM)}:{}) }),
     cook: new CookRuntime({ storage, catalog: gameplayCatalog, taskEngine: engine }),
+    tradeOrder: new TradeOrderRuntime({ storage, catalog: gameplayCatalog }),
+    tradeSell: new TradeSellRuntime({ storage, catalog: gameplayCatalog }),
+    voyagePrep: new VoyagePrepRuntime({ storage, catalog: gameplayCatalog }),
+    tradeReputation: new TradeReputationRuntime({ storage, catalog: gameplayCatalog }),
     items: new ItemRuntime({ storage, catalog: gameplayCatalog }),
     market: new MarketRuntime({ storage, catalog: gameplayCatalog, economy: getEconomy() }),
     maritime: new MaritimeRuntime({ storage, catalog: gameplayCatalog }),

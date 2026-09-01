@@ -27,7 +27,7 @@ let page = { name:'start' };
 
 function bindRuntimeTargets() {
   // 逻辑：各运行时方法 (playerId, ...args, eventId) -> gameApi.runtime(gadget, method, {_arg1.._arg3}, eventId)
-  const runtimeGadgets = ['combat','npcDuel','dungeon','diving','economy','equipment','enhance','fishing','items','market','maritime','pets','recovery','ships','voyage','discover','cook'];
+  const runtimeGadgets = ['combat','npcDuel','dungeon','diving','economy','equipment','enhance','fishing','items','market','maritime','pets','recovery','ships','voyage','discover','cook','tradeOrder','tradeSell','voyagePrep','tradeReputation'];
   const proxies = {};
   for (const gadget of runtimeGadgets) {
     proxies[gadget] = new Proxy({}, {
