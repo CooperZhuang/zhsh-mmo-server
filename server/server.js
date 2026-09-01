@@ -11,7 +11,7 @@
  *
  * 静态托管 dist/（打包后的客户端），JWT 经 Authorization: Bearer 头。
  */
-const http = require('node:http');
+const zlib = require('node:zlib');
 const path = require('node:path');
 const fs = require('node:fs');
 const { openAuthority, openAccountStore } = require('./db');
@@ -62,9 +62,16 @@ function authenticate(req) {
   return { accountId: payload.sub, username: account.username, playerCanonicalId: account.player_canonical_id };
 }
 
-function sendJson(res, status, body) {
-  res.writeHead(status, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' });
-  res.end(JSON.stringify(body));
+function sendJson(res, status, body, req = null) {
+  const payload = JSON.stringify(body);
+  const acceptsGzip = req ? /gzip/.test(String(req.headers?.['accept-encoding'] ?? '')) : false;
+  if (acceptsGzip) {
+    res.writeHead(status, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store', 'Content-Encoding': 'gzip' });
+    res.end(zlib.gzipSync(payload));
+  } else {
+    res.writeHead(status, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' });
+    res.end(payload);
+  }
 }
 
 function readBody(req) {
@@ -456,7 +463,7 @@ const server = http.createServer(async (req, res) => {
       if (!auth) return sendJson(res, 401, { error: '未登录或登录已过期' });
       if (pathname === '/api/game/state' && req.method === 'GET') {
         const view = engine.getPlayerView(auth.playerCanonicalId);
-        return sendJson(res, 200, view);
+        return sendJson(res, 200, view, req);
       }
       if (pathname === '/api/game/import' && req.method === 'POST') {
         // 服务器权威导入：接收浏览器存档 JSON，模式升级到当前版本后整体替换该玩家运行时状态。
@@ -477,19 +484,7 @@ const server = http.createServer(async (req, res) => {
         const { action, args, event_id } = JSON.parse(await readBody(req) || '{}');
         const evId = event_id || eventId(action);
         const result = await performAction(auth.playerCanonicalId, action, args, evId);
-        return sendJson(res, 200, result);
-      }
-      if (pathname === '/api/game/runtime' && req.method === 'POST') {
-        // formal gameplay runtime（combat/economy/ship/voyage/market/enhance/pet）统一入口
-        const { gadget, method, args: gargs, event_id } = JSON.parse(await readBody(req) || '{}');
-        const rt = getRuntime();
-        const body = gargs || {};
-        const evId = event_id || eventId(`${gadget}-${method}`);
-        const fn = rt[gadget]?.[method];
-        if (!fn) return sendJson(res, 404, { error: `No runtime ${gadget}.${method}` });
-        // 统一签名 (playerId, ...args, eventId)
-        const result = await fn.call(rt[gadget], auth.playerCanonicalId, ...[body._arg1, body._arg2, body._arg3].filter(v => v !== undefined), evId);
-        return sendJson(res, 200, result);
+        return sendJson(res, 200, result, req);
       }
       if (pathname === '/api/game/players' && req.method === 'GET') {
         // 在线玩家列表（同场景可见 + 全局）
