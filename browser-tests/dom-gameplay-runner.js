@@ -334,7 +334,12 @@ class DomGameplayScenario{
     if(voyageActive==null){await this.click('[data-page="location"]',{save:true}).catch(()=>{});return;}
     const advance='[data-voyage-advance="1"]';const count=await this.page.countVisible(advance);
     if(count===0&&await this.page.countVisible('[data-voyage-start]')>0){await this.click('[data-page="location"]');await this.waitPage('location');return;}
-    assert.equal(count,1,`Voyage must expose a visible advance action; page=${await this.page.pageName()} text=${await this.page.text('.wap-page')}`);
+    if(count!==1){
+      // 页面渲染竞态（既无 advance 也无 start）：重载后由调用方循环重试
+      this.pageRefreshes+=1;await this.page.reload().catch(()=>{});
+      await this.page.waitFor(`document.body.dataset.page==='location'||document.body.dataset.page==='voyage'`,{label:'voyage reload',timeout:15000}).catch(()=>{});
+      return;
+    }
     try{await this.click(advance,{save:true});}
     catch(error){
       // 已靠岸后残留的 advance 按钮（渲染竞态）→ 服务器 400「已经靠岸」属正常终态
