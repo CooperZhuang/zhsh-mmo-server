@@ -871,6 +871,14 @@ class CombatRuntime {
     });
   }
   attack(playerId,eventId,{ rounds=1 }={}) {
+    if (typeof eventId === 'number') {
+      rounds = eventId;
+      eventId = typeof arguments[2] === 'string' ? arguments[2] : `combat-attack.${this.clock()}`;
+    } else if (typeof eventId === 'object' && eventId !== null) {
+      const opts = eventId;
+      eventId = typeof arguments[2] === 'string' ? arguments[2] : `combat-attack.${this.clock()}`;
+      rounds = opts.rounds ?? 1;
+    }
     rounds=positive(rounds);
     const result=transactEvent(this.storage,playerId,eventId,'combat_attack',{ rounds },this.clock,(state) => {
       if (!state.combat) throw new Error('No active combat');

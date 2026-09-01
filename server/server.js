@@ -13,6 +13,7 @@
  */
 const zlib = require('node:zlib');
 const path = require('node:path');
+const http = require('node:http');
 const fs = require('node:fs');
 const { openAuthority, openAccountStore } = require('./db');
 const { verifyJwt, hashPassword, verifyPassword, issueToken } = require('./auth');
@@ -484,6 +485,18 @@ const server = http.createServer(async (req, res) => {
         const { action, args, event_id } = JSON.parse(await readBody(req) || '{}');
         const evId = event_id || eventId(action);
         const result = await performAction(auth.playerCanonicalId, action, args, evId);
+        return sendJson(res, 200, result, req);
+      }
+      if (pathname === '/api/game/runtime' && req.method === 'POST') {
+        // formal gameplay runtime（combat/economy/ship/voyage/market/enhance/pet）统一入口
+        const { gadget, method, args: gargs, event_id } = JSON.parse(await readBody(req) || '{}');
+        const rt = getRuntime();
+        const body = gargs || {};
+        const evId = event_id || eventId(`${gadget}-${method}`);
+        const fn = rt[gadget]?.[method];
+        if (!fn) return sendJson(res, 404, { error: `No runtime ${gadget}.${method}` });
+        // 统一签名 (playerId, ...args, eventId)
+        const result = await fn.call(rt[gadget], auth.playerCanonicalId, ...[body._arg1, body._arg2, body._arg3].filter(v => v !== undefined), evId);
         return sendJson(res, 200, result, req);
       }
       if (pathname === '/api/game/players' && req.method === 'GET') {

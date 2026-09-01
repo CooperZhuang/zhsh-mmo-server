@@ -27,6 +27,14 @@ class NpcDuelRuntime{
     return result;
   }
   attack(playerId,eventId,{rounds=1}={}){
+    if (typeof eventId === 'number') {
+      rounds = eventId;
+      eventId = typeof arguments[2] === 'string' ? arguments[2] : `npc-duel-attack.${this.clock()}`;
+    } else if (typeof eventId === 'object' && eventId !== null) {
+      const opts = eventId;
+      eventId = typeof arguments[2] === 'string' ? arguments[2] : `npc-duel-attack.${this.clock()}`;
+      rounds = opts.rounds ?? 1;
+    }
     rounds=positive(rounds);
     const result=transact(this.storage,playerId,eventId,'npc_duel_attack',{rounds},this.clock,(state)=>{
       if(!state.npc_duel)throw new Error('当前没有进行中的 NPC 决斗。');

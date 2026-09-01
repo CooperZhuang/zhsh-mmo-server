@@ -54,7 +54,7 @@ let steps=0;const MAX_STEPS=Number(process.env.ZHSH_MAINLINE_MAX_STEPS??4000);
       const mlock=tgt.location_canonical_id??d.target_location_canonical_id;
       if(mlock)await goto(mlock);
       const st2=await state();
-      if(st2.combat){const r=await rt('combat','attack');if(r.action==='combat_lost'||r.action==='combat_won')continue;continue;}
+      if(st2.combat){const r=await rt('combat','attack',{rounds:300});if(r.action==='combat_lost'||r.action==='combat_won')continue;continue;}
       const startC=await rt('combat','start',{monster_canonical_id:tgt.entity_canonical_id});
       if(startC.error){console.log('  [战斗受阻]',name,startC.error);}
       continue;
@@ -65,12 +65,12 @@ let steps=0;const MAX_STEPS=Number(process.env.ZHSH_MAINLINE_MAX_STEPS??4000);
       if(shop){await goto(shop.location_canonical_id);
         for(let q=0;q<Number(itemTgt.required_quantity??1);q+=1)await rt('economy','buy',{shop_entry_canonical_id:shop.canonical_id,quantity:1});
         continue;}
-      const drop=content.drop_relations.find(e=>e.canonical_id===itemTgt.runtime_resolution?.formal_source_canonical_id||(e.item_canonical_id??e.content_entity_canonical_id)===itemTgt.entity_canonical_id);
+      const drop=content.drop_relations.filter(e=>e.canonical_id===itemTgt.runtime_resolution?.formal_source_canonical_id||(e.item_canonical_id??e.content_entity_canonical_id)===itemTgt.entity_canonical_id).sort((a,b)=>Number(b.probability??0)-Number(a.probability??0))[0];
       if(drop&&drop.monster_canonical_id){console.log('  [掉落击杀]',name,itemTgt.raw_name,'←',drop.monster_canonical_id.slice(-8));
         const mp=content.monster_placements.find(p=>p.monster_canonical_id===drop.monster_canonical_id&&p.repeatable);
-        if(mp)await goto(mp.location_canonical_id);
-        for(let k=0;k<30;k+=1){const stx=await state();if(stx.combat){const r=await rt('combat','attack');if(r.action==='combat_won')break;continue;}
-          const sc=await rt('combat','start',{monster_canonical_id:drop.monster_canonical_id});if(sc.error){await goto(mp?.location_canonical_id);break;}}
+        if(mp){const g=await goto(mp.location_canonical_id);console.log('  [goto]',g.action??g.error,g.current_map_node_canonical_id?.slice?.(-8)??'');}
+        for(let k=0;k<40;k+=1){const stx=await state();if(stx.combat){const r=await rt('combat','attack',{rounds:300});if(r.action==='combat_won'){console.log('  [胜] drops=',JSON.stringify(r.drops?.granted??[]).slice(0,100));break;}continue;}
+          const sc=await rt('combat','start',{monster_canonical_id:drop.monster_canonical_id});if(sc.error){console.log('  [start失败]',sc.error);await goto(mp?.location_canonical_id);break;}}
         continue;}
       console.log('  [物品目标无商店→航海]',name,itemTgt.raw_name);
       // 航海取得：从当前城市出发找 route，买船（若无），起航并推进到港

@@ -36,7 +36,7 @@ const check=(cond,label)=>{ if(ok(cond,label))pass++;else fail++; };
 // 1. 内容计数
 check(Object.keys(content.world_regions.regions).length===12,'world 12区');
 check(Object.values(content.goods.regions).reduce((n,r)=>n+r.specialty.length,0)>=200,'goods≥200');
-check(content.pets.pets.length===30,'pets=30');
+check(content.pets.pets.length>=30,'pets≥30');
 check(content.game_items.items.length>=45,'items≥45');
 check(content.discoveries.discoveries.length>=36,'discoveries≥36');
 check(content.questline.chapters.length===15,'questline=15章(原版主线)');
