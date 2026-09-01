@@ -61,6 +61,9 @@ function main() {
   run('idle visual asset integration',['scripts/integrate-idle-assets.js']);
   run('blocked targets adjudication',['scripts/adjudicate-blocked-targets.js']);
   run('external gameplay absorption',['scripts/absorb-external-gameplay.js']);
+  run('recipe/trade target data',['scripts/absorb-recipe-trade.js']);
+  run('narrative story generation',['scripts/generate-task-story.js']);
+  run('story chapters generation',['scripts/generate-story-chapters.js']);
   run('database validation',['scripts/validate-import.js']);
   run('browser build',['scripts/build-browser.js']);
   const testOutput=runNpmTest();

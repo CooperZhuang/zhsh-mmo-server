@@ -6,9 +6,10 @@ const { readBaseline, readOverlay } = require('./importer');
 
 const EXPECTED_COUNTS = {
   world_regions:6,cities:40,locations:642,location_connections:627,npc_placements:646,
-  items:246,equipment:438,monster_placements:287,drop_relations:2797,shop_definitions:63,
+  items:248,equipment:438,monster_placements:287,drop_relations:2797,shop_definitions:63,
   city_price_ranges:54,ships:21,fish:25,pets:8,trial_definitions:12,story_nodes:20,
   system_rules:26,task_definitions:651,restoration_conflicts:32,
+  recipes:2,trade_goods:7,trade_orders:10,convoy_items:2,
 };
 const EXPECTED_SERIES={1:13,2:1,3:1,4:7,5:19,6:1,7:3,8:4,9:2,10:10,11:28,12:13,13:69,14:10,15:470};
 

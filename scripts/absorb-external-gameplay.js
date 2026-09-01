@@ -105,7 +105,7 @@ function applyEquipmentSets(db, stats) {
 }
 
 function main() {
-  const db = openDatabase(DB_PATH);
+  const db = openDatabase(process.env.ZHSH_DB_PATH ?? DB_PATH);
   const stats = mkStats();
   try {
     db.exec('BEGIN IMMEDIATE');

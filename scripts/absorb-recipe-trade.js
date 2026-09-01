@@ -155,6 +155,15 @@ function ensureMealItem(db, meta, stats) {
     decision_reason: 'absorb-recipe-trade', conflicts_json: '[]', runtime_selection: 'approved_overlay',
     content_hash: hash(`meal|${canonicalId}|${stableJson(meta)}`),
   }, stats);
+  // overlay 记录必须有 restoration_resolutions 条目（validator complete_provenance 校验）
+  const resolutionExists = db.prepare('SELECT id FROM restoration_resolutions WHERE derived_record_id=?').get(Number(rec.id));
+  if (!resolutionExists) {
+    db.prepare(`INSERT INTO restoration_resolutions (resolution_id,action,entity_kind,derived_record_id,derived_canonical_id,display_name,restoration_status,originality_status,confidence,runtime_policy,decision_reason,unresolved_fields_json,created_from_baseline_commit,content_hash)
+      VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)`)
+      .run(`resolution.meal.${hash(canonicalId, 16)}`, 'create_derived_entity', 'item', Number(rec.id), canonicalId,
+        meta.name, 'APPROVED_OVERLAY', 'UNVERIFIED_AS_ORIGINAL', 'A', 'approved_overlay', 'absorb-recipe-trade', '[]',
+        'f61da146c551436d2c3afd5da4eb3eb817b8ab13', hash(canonicalId, 32));
+  }
   const normalized = { name: meta.name, catalog: 'mealItems', price: meta.price, buff: meta.buff, tip: meta.description };
   db.prepare(`INSERT INTO content_entities (canonical_id,source_record_id,source_canonical_id,entity_category,display_name,raw_data_json,normalized_data_json) VALUES (?,?,?,?,?,?,?)`)
     .run(canonicalId, Number(rec.id), canonicalId, 'item', meta.name, '{}', stableJson(normalized));
@@ -238,7 +247,7 @@ function applyConvoyItems(db, stats) {
 }
 
 function main() {
-  const db = openDatabase(DB_PATH);
+  const db = openDatabase(process.env.ZHSH_DB_PATH ?? DB_PATH);
   const stats = mkStats();
   try {
     db.exec('BEGIN IMMEDIATE');

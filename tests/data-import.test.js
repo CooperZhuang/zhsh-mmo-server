@@ -19,9 +19,13 @@ const repositoryBytes=(file)=>Buffer.from(fs.readFileSync(file,'utf8').replace(/
 const baselineHashBefore=crypto.createHash('sha256').update(repositoryBytes(baselinePath)).digest('hex');
 let firstReport;let db;
 before(()=>{firstReport=runImport({databasePath});
-  // 与生产管线一致：导入后补闲置资产集成与阻塞裁决（EXPECTED_COUNTS 锚定的是管线后状态）
+  // 与生产管线一致：导入后补闲置资产集成、阻塞裁决、外部玩法吸收 & 贸易数据（EXPECTED_COUNTS 锚定管线后状态）
   require('../scripts/integrate-idle-assets').runIntegrate({dbPath:databasePath});
   require('../scripts/adjudicate-blocked-targets').runAdjudicate({dbPath:databasePath});
+  process.env.ZHSH_DB_PATH=databasePath;
+  require('../scripts/absorb-external-gameplay').main();
+  require('../scripts/absorb-recipe-trade').main();
+  delete process.env.ZHSH_DB_PATH;
   db=new DatabaseSync(databasePath);db.exec('PRAGMA foreign_keys=ON');});
 
 
