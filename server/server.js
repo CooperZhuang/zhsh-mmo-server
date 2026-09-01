@@ -502,6 +502,15 @@ const server = http.createServer(async (req, res) => {
         if (!fn) return sendJson(res, 404, { error: `No runtime ${gadget}.${method}` });
         // 统一签名 (playerId, ...args, eventId)
         const result = await fn.call(rt[gadget], auth.playerCanonicalId, ...[body._arg1, body._arg2, body._arg3].filter(v => v !== undefined), evId);
+        // 战斗胜利后，在 runtime 事务(已提交)之外补发 defeat_monster，推进任务击杀计数。
+        // 不能在 combat_won 的事务内调用 processEvent(会嵌套 SQLite 事务报错)。
+        if (result?.action === 'combat_won' && gadget === 'combat' && method === 'attack') {
+          try {
+            const te = rt[gadget]?.taskEngine;
+            if (te) result.task_event = te.processEvent(auth.playerCanonicalId, { event_id: `${evId}.defeat`, type: 'defeat_monster',
+              monster_canonical_id: result.monster_canonical_id, location_canonical_id: result.location_canonical_id, quantity: 1 });
+          } catch (taskError) { result.task_event = { error: taskError.message }; }
+        }
         return sendJson(res, 200, result, req);
       }
       if (pathname === '/api/game/players' && req.method === 'GET') {
