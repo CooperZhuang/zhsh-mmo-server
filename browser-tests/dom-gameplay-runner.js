@@ -252,7 +252,7 @@ class DomGameplayScenario{
       // 自愈：以服务器权威状态校正本地节点（sail/传送后可能漂移）
       if(attempt===0){const serverNode=await this.page.evaluate("(async()=>{const r=await fetch('/api/game/state',{headers:{Authorization:'Bearer '+(localStorage.getItem('zhsh_token')??'')}});if(!r.ok)return null;const s=await r.json();return s.player?.current_map_node_canonical_id??null;})()");if(serverNode&&this.nodeById.has(serverNode))this.currentNode=serverNode;}
       let pathNodes;
-      try{pathNodes=this.findPath(this.currentNode,destination.map_node_canonical_id);}catch{throw new Error(`path missing for reach ${destination.display_name} from node=${this.currentNode} (${this.nodeById.get(this.currentNode)?.display_name}) city=${this.cityForNode(this.currentNode)}`);}
+      try{pathNodes=this.findPath(this.currentNode,destination.map_node_canonical_id);}catch{throw new Error(`path missing for reach ${destination.display_name} destLoc=${locationId} destCity=${destination.city_canonical_id} from node=${this.currentNode} (${this.nodeById.get(this.currentNode)?.display_name}) city=${this.cityForNode(this.currentNode)}`);}
       let failed=false;
       for(const nodeId of pathNodes.slice(1)){
         await this.ensureLocationPage();
