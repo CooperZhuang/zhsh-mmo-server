@@ -318,12 +318,12 @@ class DomGameplayScenario{
             if(!state.voyage)return {arrived:true,node:state.player?.current_map_node_canonical_id??null};
             // 仍在航程：点一次「继续航行」推进（服务器每点击推进一段）
             const advance=document.querySelector('[data-voyage-advance="1"]');
-            if(advance){advance.scrollIntoView({block:'center'});advance.click();}
+            if(advance){advance.scrollIntoView({block:'center'});advance.click();(window.__voyagePollLog??=[]).push('clicked@'+Math.floor((Date.now()%100000)/100));}else{(window.__voyagePollLog??=[]).push('no-advance-btn');}
           }
         }catch{}
         await new Promise((resolve)=>setTimeout(resolve,300));
       }
-      return {arrived:false};
+      return {arrived:false,log:window.__voyagePollLog?.slice?.(-8)??null};
     })()`);
     assert.ok(arrived.arrived,`voyage ${route.canonical_id} did not arrive within 120s`);
     this.currentNode=route.to_port_map_node_canonical_id;
