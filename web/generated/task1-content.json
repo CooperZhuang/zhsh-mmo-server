@@ -248879,6 +248879,33 @@
         "lj": 1000,
         "morale": 10,
         "name": "+地魔龙鳞绑腿",
+        "set_bonuses": [
+          {
+            "pieces": 2,
+            "stats": {
+              "agility": 2,
+              "attack": 5
+            }
+          },
+          {
+            "pieces": 4,
+            "stats": {
+              "agility": 5,
+              "attack": 12,
+              "max_health": 24
+            }
+          },
+          {
+            "pieces": 6,
+            "stats": {
+              "agility": 8,
+              "attack": 20,
+              "defense": 10,
+              "max_health": 48
+            }
+          }
+        ],
+        "set_id": "set.dragon",
         "tip": "地魔的绑腿",
         "tx": "诅咒攻+10",
         "type": 5
@@ -248928,6 +248955,33 @@
         "lj": 500,
         "maxAttack": 44,
         "name": "+哥伦布之锤",
+        "set_bonuses": [
+          {
+            "pieces": 2,
+            "stats": {
+              "attack": 4,
+              "defense": 3
+            }
+          },
+          {
+            "pieces": 4,
+            "stats": {
+              "attack": 9,
+              "defense": 7,
+              "max_health": 20
+            }
+          },
+          {
+            "pieces": 6,
+            "stats": {
+              "attack": 16,
+              "defense": 13,
+              "max_health": 40,
+              "morale": 10
+            }
+          }
+        ],
+        "set_id": "set.columbus",
         "tip": "航海家哥伦布的锤子，是土著人的噩梦",
         "tx": "麻痹攻+13",
         "type": 1
@@ -249020,6 +249074,33 @@
         "level": 90,
         "lj": 1000,
         "name": "+地魔龙脊护肩",
+        "set_bonuses": [
+          {
+            "pieces": 2,
+            "stats": {
+              "agility": 2,
+              "attack": 5
+            }
+          },
+          {
+            "pieces": 4,
+            "stats": {
+              "agility": 5,
+              "attack": 12,
+              "max_health": 24
+            }
+          },
+          {
+            "pieces": 6,
+            "stats": {
+              "agility": 8,
+              "attack": 20,
+              "defense": 10,
+              "max_health": 48
+            }
+          }
+        ],
+        "set_id": "set.dragon",
         "tip": "地魔龙脊护肩，传说乃是地魔生前佩戴的装备，拥有无穷尽的力量，是所有探险家的至宝",
         "tx": "反弹+10",
         "type": 6
@@ -249068,6 +249149,33 @@
         "lj": 500,
         "morale": 13,
         "name": "+哥伦布之帽",
+        "set_bonuses": [
+          {
+            "pieces": 2,
+            "stats": {
+              "attack": 4,
+              "defense": 3
+            }
+          },
+          {
+            "pieces": 4,
+            "stats": {
+              "attack": 9,
+              "defense": 7,
+              "max_health": 20
+            }
+          },
+          {
+            "pieces": 6,
+            "stats": {
+              "attack": 16,
+              "defense": 13,
+              "max_health": 40,
+              "morale": 10
+            }
+          }
+        ],
+        "set_id": "set.columbus",
         "tip": "航海家哥伦布的头盔",
         "tx": "抗迟缓+3",
         "type": 2
@@ -249101,6 +249209,33 @@
         "lj": 1000,
         "morale": 10,
         "name": "+地魔龙角羽冠",
+        "set_bonuses": [
+          {
+            "pieces": 2,
+            "stats": {
+              "agility": 2,
+              "attack": 5
+            }
+          },
+          {
+            "pieces": 4,
+            "stats": {
+              "agility": 5,
+              "attack": 12,
+              "max_health": 24
+            }
+          },
+          {
+            "pieces": 6,
+            "stats": {
+              "agility": 8,
+              "attack": 20,
+              "defense": 10,
+              "max_health": 48
+            }
+          }
+        ],
+        "set_id": "set.dragon",
         "tip": "地魔的头盔",
         "tx": "沮丧攻+10",
         "type": 1
@@ -249196,6 +249331,33 @@
         "level": 98,
         "lj": 1000,
         "name": "+地魔龙爪之靴",
+        "set_bonuses": [
+          {
+            "pieces": 2,
+            "stats": {
+              "agility": 2,
+              "attack": 5
+            }
+          },
+          {
+            "pieces": 4,
+            "stats": {
+              "agility": 5,
+              "attack": 12,
+              "max_health": 24
+            }
+          },
+          {
+            "pieces": 6,
+            "stats": {
+              "agility": 8,
+              "attack": 20,
+              "defense": 10,
+              "max_health": 48
+            }
+          }
+        ],
+        "set_id": "set.dragon",
         "tip": "地魔的靴子",
         "tx": "迟缓攻+10",
         "type": 1
@@ -249212,6 +249374,33 @@
         "level": 35,
         "lj": 500,
         "name": "+哥伦布胸甲",
+        "set_bonuses": [
+          {
+            "pieces": 2,
+            "stats": {
+              "attack": 4,
+              "defense": 3
+            }
+          },
+          {
+            "pieces": 4,
+            "stats": {
+              "attack": 9,
+              "defense": 7,
+              "max_health": 20
+            }
+          },
+          {
+            "pieces": 6,
+            "stats": {
+              "attack": 16,
+              "defense": 13,
+              "max_health": 40,
+              "morale": 10
+            }
+          }
+        ],
+        "set_id": "set.columbus",
         "tip": "航海家哥伦布的胸甲",
         "tx": "抗迟缓+6",
         "type": 3
@@ -264727,6 +264916,33 @@
         "level": 35,
         "lj": 510,
         "name": "哥伦布防御服",
+        "set_bonuses": [
+          {
+            "pieces": 2,
+            "stats": {
+              "attack": 4,
+              "defense": 3
+            }
+          },
+          {
+            "pieces": 4,
+            "stats": {
+              "attack": 9,
+              "defense": 7,
+              "max_health": 20
+            }
+          },
+          {
+            "pieces": 6,
+            "stats": {
+              "attack": 16,
+              "defense": 13,
+              "max_health": 40,
+              "morale": 10
+            }
+          }
+        ],
+        "set_id": "set.columbus",
         "tip": "哥伦布远征队的制式防具，帆布下缝着旧航图。",
         "tx": "抗迟缓+6",
         "type": 3
@@ -264736,6 +264952,33 @@
       "level": 35,
       "lj": 510,
       "name": "哥伦布防御服",
+      "set_bonuses": [
+        {
+          "pieces": 2,
+          "stats": {
+            "attack": 4,
+            "defense": 3
+          }
+        },
+        {
+          "pieces": 4,
+          "stats": {
+            "attack": 9,
+            "defense": 7,
+            "max_health": 20
+          }
+        },
+        {
+          "pieces": 6,
+          "stats": {
+            "attack": 16,
+            "defense": 13,
+            "max_health": 40,
+            "morale": 10
+          }
+        }
+      ],
+      "set_id": "set.columbus",
       "tip": "哥伦布远征队的制式防具，帆布下缝着旧航图。",
       "tx": "抗迟缓+6",
       "type": 3
@@ -265356,6 +265599,33 @@
         "lj": 419,
         "maxAttack": 16,
         "name": "龙鳞项圈",
+        "set_bonuses": [
+          {
+            "pieces": 2,
+            "stats": {
+              "agility": 2,
+              "attack": 5
+            }
+          },
+          {
+            "pieces": 4,
+            "stats": {
+              "agility": 5,
+              "attack": 12,
+              "max_health": 24
+            }
+          },
+          {
+            "pieces": 6,
+            "stats": {
+              "agility": 8,
+              "attack": 20,
+              "defense": 10,
+              "max_health": 48
+            }
+          }
+        ],
+        "set_id": "set.dragon",
         "type": 6
       },
       "agility": 5,
@@ -265365,6 +265635,33 @@
       "lj": 419,
       "maxAttack": 16,
       "name": "龙鳞项圈",
+      "set_bonuses": [
+        {
+          "pieces": 2,
+          "stats": {
+            "agility": 2,
+            "attack": 5
+          }
+        },
+        {
+          "pieces": 4,
+          "stats": {
+            "agility": 5,
+            "attack": 12,
+            "max_health": 24
+          }
+        },
+        {
+          "pieces": 6,
+          "stats": {
+            "agility": 8,
+            "attack": 20,
+            "defense": 10,
+            "max_health": 48
+          }
+        }
+      ],
+      "set_id": "set.dragon",
       "type": 6
     },
     {
@@ -265668,6 +265965,33 @@
         "lj": 421,
         "morale": 10,
         "name": "龙皮头盔",
+        "set_bonuses": [
+          {
+            "pieces": 2,
+            "stats": {
+              "agility": 2,
+              "attack": 5
+            }
+          },
+          {
+            "pieces": 4,
+            "stats": {
+              "agility": 5,
+              "attack": 12,
+              "max_health": 24
+            }
+          },
+          {
+            "pieces": 6,
+            "stats": {
+              "agility": 8,
+              "attack": 20,
+              "defense": 10,
+              "max_health": 48
+            }
+          }
+        ],
+        "set_id": "set.dragon",
         "type": 2
       },
       "catalog_key": "龙皮头盔",
@@ -265676,6 +266000,33 @@
       "lj": 421,
       "morale": 10,
       "name": "龙皮头盔",
+      "set_bonuses": [
+        {
+          "pieces": 2,
+          "stats": {
+            "agility": 2,
+            "attack": 5
+          }
+        },
+        {
+          "pieces": 4,
+          "stats": {
+            "agility": 5,
+            "attack": 12,
+            "max_health": 24
+          }
+        },
+        {
+          "pieces": 6,
+          "stats": {
+            "agility": 8,
+            "attack": 20,
+            "defense": 10,
+            "max_health": 48
+          }
+        }
+      ],
+      "set_id": "set.dragon",
       "type": 2
     },
     {
@@ -265713,6 +266064,33 @@
         "lj": 498,
         "maxAttack": 26,
         "name": "五色巨龙",
+        "set_bonuses": [
+          {
+            "pieces": 2,
+            "stats": {
+              "agility": 2,
+              "attack": 5
+            }
+          },
+          {
+            "pieces": 4,
+            "stats": {
+              "agility": 5,
+              "attack": 12,
+              "max_health": 24
+            }
+          },
+          {
+            "pieces": 6,
+            "stats": {
+              "agility": 8,
+              "attack": 20,
+              "defense": 10,
+              "max_health": 48
+            }
+          }
+        ],
+        "set_id": "set.dragon",
         "type": 6
       },
       "agility": 4,
@@ -265722,6 +266100,33 @@
       "lj": 498,
       "maxAttack": 26,
       "name": "五色巨龙",
+      "set_bonuses": [
+        {
+          "pieces": 2,
+          "stats": {
+            "agility": 2,
+            "attack": 5
+          }
+        },
+        {
+          "pieces": 4,
+          "stats": {
+            "agility": 5,
+            "attack": 12,
+            "max_health": 24
+          }
+        },
+        {
+          "pieces": 6,
+          "stats": {
+            "agility": 8,
+            "attack": 20,
+            "defense": 10,
+            "max_health": 48
+          }
+        }
+      ],
+      "set_id": "set.dragon",
       "type": 6
     },
     {
@@ -266254,6 +266659,33 @@
         "lj": 382,
         "maxAttack": 11,
         "name": "龙族重戒",
+        "set_bonuses": [
+          {
+            "pieces": 2,
+            "stats": {
+              "agility": 2,
+              "attack": 5
+            }
+          },
+          {
+            "pieces": 4,
+            "stats": {
+              "agility": 5,
+              "attack": 12,
+              "max_health": 24
+            }
+          },
+          {
+            "pieces": 6,
+            "stats": {
+              "agility": 8,
+              "attack": 20,
+              "defense": 10,
+              "max_health": 48
+            }
+          }
+        ],
+        "set_id": "set.dragon",
         "type": 6
       },
       "agility": 5,
@@ -266263,6 +266695,33 @@
       "lj": 382,
       "maxAttack": 11,
       "name": "龙族重戒",
+      "set_bonuses": [
+        {
+          "pieces": 2,
+          "stats": {
+            "agility": 2,
+            "attack": 5
+          }
+        },
+        {
+          "pieces": 4,
+          "stats": {
+            "agility": 5,
+            "attack": 12,
+            "max_health": 24
+          }
+        },
+        {
+          "pieces": 6,
+          "stats": {
+            "agility": 8,
+            "attack": 20,
+            "defense": 10,
+            "max_health": 48
+          }
+        }
+      ],
+      "set_id": "set.dragon",
       "type": 6
     },
     {
@@ -266511,6 +266970,33 @@
         "lj": 419,
         "maxAttack": 16,
         "name": "龙人坠饰",
+        "set_bonuses": [
+          {
+            "pieces": 2,
+            "stats": {
+              "agility": 2,
+              "attack": 5
+            }
+          },
+          {
+            "pieces": 4,
+            "stats": {
+              "agility": 5,
+              "attack": 12,
+              "max_health": 24
+            }
+          },
+          {
+            "pieces": 6,
+            "stats": {
+              "agility": 8,
+              "attack": 20,
+              "defense": 10,
+              "max_health": 48
+            }
+          }
+        ],
+        "set_id": "set.dragon",
         "type": 6
       },
       "agility": 4,
@@ -266520,6 +267006,33 @@
       "lj": 419,
       "maxAttack": 16,
       "name": "龙人坠饰",
+      "set_bonuses": [
+        {
+          "pieces": 2,
+          "stats": {
+            "agility": 2,
+            "attack": 5
+          }
+        },
+        {
+          "pieces": 4,
+          "stats": {
+            "agility": 5,
+            "attack": 12,
+            "max_health": 24
+          }
+        },
+        {
+          "pieces": 6,
+          "stats": {
+            "agility": 8,
+            "attack": 20,
+            "defense": 10,
+            "max_health": 48
+          }
+        }
+      ],
+      "set_id": "set.dragon",
       "type": 6
     },
     {
@@ -266697,6 +267210,33 @@
         "level": 45,
         "lj": 470,
         "name": "龙皮外套",
+        "set_bonuses": [
+          {
+            "pieces": 2,
+            "stats": {
+              "agility": 2,
+              "attack": 5
+            }
+          },
+          {
+            "pieces": 4,
+            "stats": {
+              "agility": 5,
+              "attack": 12,
+              "max_health": 24
+            }
+          },
+          {
+            "pieces": 6,
+            "stats": {
+              "agility": 8,
+              "attack": 20,
+              "defense": 10,
+              "max_health": 48
+            }
+          }
+        ],
+        "set_id": "set.dragon",
         "type": 3
       },
       "catalog_key": "龙皮外套",
@@ -266704,6 +267244,33 @@
       "level": 45,
       "lj": 470,
       "name": "龙皮外套",
+      "set_bonuses": [
+        {
+          "pieces": 2,
+          "stats": {
+            "agility": 2,
+            "attack": 5
+          }
+        },
+        {
+          "pieces": 4,
+          "stats": {
+            "agility": 5,
+            "attack": 12,
+            "max_health": 24
+          }
+        },
+        {
+          "pieces": 6,
+          "stats": {
+            "agility": 8,
+            "attack": 20,
+            "defense": 10,
+            "max_health": 48
+          }
+        }
+      ],
+      "set_id": "set.dragon",
       "type": 3
     },
     {
@@ -267393,6 +267960,22 @@
         "lj": 408,
         "morale": 4,
         "name": "航海护符",
+        "set_bonuses": [
+          {
+            "pieces": 2,
+            "stats": {
+              "agility": 3
+            }
+          },
+          {
+            "pieces": 4,
+            "stats": {
+              "agility": 6,
+              "max_health": 18
+            }
+          }
+        ],
+        "set_id": "set.voyage",
         "tip": "护符里封着一缕顺风，护佑短途航行的水手。",
         "tx": "暴风雨抗性+1",
         "type": 5
@@ -267404,6 +267987,22 @@
       "lj": 408,
       "morale": 4,
       "name": "航海护符",
+      "set_bonuses": [
+        {
+          "pieces": 2,
+          "stats": {
+            "agility": 3
+          }
+        },
+        {
+          "pieces": 4,
+          "stats": {
+            "agility": 6,
+            "max_health": 18
+          }
+        }
+      ],
+      "set_id": "set.voyage",
       "tip": "护符里封着一缕顺风，护佑短途航行的水手。",
       "tx": "暴风雨抗性+1",
       "type": 5
@@ -267838,6 +268437,22 @@
         "lj": 432,
         "morale": 5,
         "name": "航海腰带",
+        "set_bonuses": [
+          {
+            "pieces": 2,
+            "stats": {
+              "agility": 3
+            }
+          },
+          {
+            "pieces": 4,
+            "stats": {
+              "agility": 6,
+              "max_health": 18
+            }
+          }
+        ],
+        "set_id": "set.voyage",
         "tip": "结实的帆绳腰带，挂着打火镰与一根旧铅笔。",
         "tx": "抗迟缓+2",
         "type": 5
@@ -267849,6 +268464,22 @@
       "lj": 432,
       "morale": 5,
       "name": "航海腰带",
+      "set_bonuses": [
+        {
+          "pieces": 2,
+          "stats": {
+            "agility": 3
+          }
+        },
+        {
+          "pieces": 4,
+          "stats": {
+            "agility": 6,
+            "max_health": 18
+          }
+        }
+      ],
+      "set_id": "set.voyage",
       "tip": "结实的帆绳腰带，挂着打火镰与一根旧铅笔。",
       "tx": "抗迟缓+2",
       "type": 5
@@ -267981,6 +268612,33 @@
         "lj": 1000,
         "morale": 10,
         "name": "+地魔龙鳞绑腿",
+        "set_bonuses": [
+          {
+            "pieces": 2,
+            "stats": {
+              "agility": 2,
+              "attack": 5
+            }
+          },
+          {
+            "pieces": 4,
+            "stats": {
+              "agility": 5,
+              "attack": 12,
+              "max_health": 24
+            }
+          },
+          {
+            "pieces": 6,
+            "stats": {
+              "agility": 8,
+              "attack": 20,
+              "defense": 10,
+              "max_health": 48
+            }
+          }
+        ],
+        "set_id": "set.dragon",
         "tip": "地魔的绑腿",
         "tx": "诅咒攻+10",
         "type": 5
@@ -267991,6 +268649,33 @@
       "lj": 1000,
       "morale": 10,
       "name": "+地魔龙鳞绑腿",
+      "set_bonuses": [
+        {
+          "pieces": 2,
+          "stats": {
+            "agility": 2,
+            "attack": 5
+          }
+        },
+        {
+          "pieces": 4,
+          "stats": {
+            "agility": 5,
+            "attack": 12,
+            "max_health": 24
+          }
+        },
+        {
+          "pieces": 6,
+          "stats": {
+            "agility": 8,
+            "attack": 20,
+            "defense": 10,
+            "max_health": 48
+          }
+        }
+      ],
+      "set_id": "set.dragon",
       "tip": "地魔的绑腿",
       "tx": "诅咒攻+10",
       "type": 5
@@ -268269,6 +268954,33 @@
         "lj": 500,
         "maxAttack": 44,
         "name": "+哥伦布之锤",
+        "set_bonuses": [
+          {
+            "pieces": 2,
+            "stats": {
+              "attack": 4,
+              "defense": 3
+            }
+          },
+          {
+            "pieces": 4,
+            "stats": {
+              "attack": 9,
+              "defense": 7,
+              "max_health": 20
+            }
+          },
+          {
+            "pieces": 6,
+            "stats": {
+              "attack": 16,
+              "defense": 13,
+              "max_health": 40,
+              "morale": 10
+            }
+          }
+        ],
+        "set_id": "set.columbus",
         "tip": "航海家哥伦布的锤子，是土著人的噩梦",
         "tx": "麻痹攻+13",
         "type": 1
@@ -268279,6 +268991,33 @@
       "lj": 500,
       "maxAttack": 44,
       "name": "+哥伦布之锤",
+      "set_bonuses": [
+        {
+          "pieces": 2,
+          "stats": {
+            "attack": 4,
+            "defense": 3
+          }
+        },
+        {
+          "pieces": 4,
+          "stats": {
+            "attack": 9,
+            "defense": 7,
+            "max_health": 20
+          }
+        },
+        {
+          "pieces": 6,
+          "stats": {
+            "attack": 16,
+            "defense": 13,
+            "max_health": 40,
+            "morale": 10
+          }
+        }
+      ],
+      "set_id": "set.columbus",
       "tip": "航海家哥伦布的锤子，是土著人的噩梦",
       "tx": "麻痹攻+13",
       "type": 1
@@ -268296,6 +269035,33 @@
         "level": 40,
         "lj": 436,
         "name": "龙族长靴",
+        "set_bonuses": [
+          {
+            "pieces": 2,
+            "stats": {
+              "agility": 2,
+              "attack": 5
+            }
+          },
+          {
+            "pieces": 4,
+            "stats": {
+              "agility": 5,
+              "attack": 12,
+              "max_health": 24
+            }
+          },
+          {
+            "pieces": 6,
+            "stats": {
+              "agility": 8,
+              "attack": 20,
+              "defense": 10,
+              "max_health": 48
+            }
+          }
+        ],
+        "set_id": "set.dragon",
         "type": 5
       },
       "agility": 5,
@@ -268304,6 +269070,33 @@
       "level": 40,
       "lj": 436,
       "name": "龙族长靴",
+      "set_bonuses": [
+        {
+          "pieces": 2,
+          "stats": {
+            "agility": 2,
+            "attack": 5
+          }
+        },
+        {
+          "pieces": 4,
+          "stats": {
+            "agility": 5,
+            "attack": 12,
+            "max_health": 24
+          }
+        },
+        {
+          "pieces": 6,
+          "stats": {
+            "agility": 8,
+            "attack": 20,
+            "defense": 10,
+            "max_health": 48
+          }
+        }
+      ],
+      "set_id": "set.dragon",
       "type": 5
     },
     {
@@ -269258,6 +270051,22 @@
         "lj": 468,
         "morale": 7,
         "name": "航海图卷",
+        "set_bonuses": [
+          {
+            "pieces": 2,
+            "stats": {
+              "agility": 3
+            }
+          },
+          {
+            "pieces": 4,
+            "stats": {
+              "agility": 6,
+              "max_health": 18
+            }
+          }
+        ],
+        "set_id": "set.voyage",
         "tip": "泛黄的图卷，标注着早已消失的罗盘航线。",
         "tx": "声望+1",
         "type": 5
@@ -269269,6 +270078,22 @@
       "lj": 468,
       "morale": 7,
       "name": "航海图卷",
+      "set_bonuses": [
+        {
+          "pieces": 2,
+          "stats": {
+            "agility": 3
+          }
+        },
+        {
+          "pieces": 4,
+          "stats": {
+            "agility": 6,
+            "max_health": 18
+          }
+        }
+      ],
+      "set_id": "set.voyage",
       "tip": "泛黄的图卷，标注着早已消失的罗盘航线。",
       "tx": "声望+1",
       "type": 5
@@ -270210,6 +271035,33 @@
         "lj": 504,
         "morale": 12,
         "name": "哥伦布的铁盔",
+        "set_bonuses": [
+          {
+            "pieces": 2,
+            "stats": {
+              "attack": 4,
+              "defense": 3
+            }
+          },
+          {
+            "pieces": 4,
+            "stats": {
+              "attack": 9,
+              "defense": 7,
+              "max_health": 20
+            }
+          },
+          {
+            "pieces": 6,
+            "stats": {
+              "attack": 16,
+              "defense": 13,
+              "max_health": 40,
+              "morale": 10
+            }
+          }
+        ],
+        "set_id": "set.columbus",
         "tip": "锈迹斑斑的铁盔，内衬写着哥伦布的名字。",
         "tx": "抗迟缓+3",
         "type": 2
@@ -270220,6 +271072,33 @@
       "lj": 504,
       "morale": 12,
       "name": "哥伦布的铁盔",
+      "set_bonuses": [
+        {
+          "pieces": 2,
+          "stats": {
+            "attack": 4,
+            "defense": 3
+          }
+        },
+        {
+          "pieces": 4,
+          "stats": {
+            "attack": 9,
+            "defense": 7,
+            "max_health": 20
+          }
+        },
+        {
+          "pieces": 6,
+          "stats": {
+            "attack": 16,
+            "defense": 13,
+            "max_health": 40,
+            "morale": 10
+          }
+        }
+      ],
+      "set_id": "set.columbus",
       "tip": "锈迹斑斑的铁盔，内衬写着哥伦布的名字。",
       "tx": "抗迟缓+3",
       "type": 2
@@ -270238,6 +271117,22 @@
         "lj": 468,
         "morale": 7,
         "name": "航海勋章",
+        "set_bonuses": [
+          {
+            "pieces": 2,
+            "stats": {
+              "agility": 3
+            }
+          },
+          {
+            "pieces": 4,
+            "stats": {
+              "agility": 6,
+              "max_health": 18
+            }
+          }
+        ],
+        "set_id": "set.voyage",
         "tip": "远洋船长们互相赠送的勋章，刻着一艘三桅帆船。",
         "tx": "声望+1",
         "type": 5
@@ -270249,6 +271144,22 @@
       "lj": 468,
       "morale": 7,
       "name": "航海勋章",
+      "set_bonuses": [
+        {
+          "pieces": 2,
+          "stats": {
+            "agility": 3
+          }
+        },
+        {
+          "pieces": 4,
+          "stats": {
+            "agility": 6,
+            "max_health": 18
+          }
+        }
+      ],
+      "set_id": "set.voyage",
       "tip": "远洋船长们互相赠送的勋章，刻着一艘三桅帆船。",
       "tx": "声望+1",
       "type": 5
@@ -270448,6 +271359,33 @@
         "lj": 397,
         "morale": 6,
         "name": "龙鹰皮帽",
+        "set_bonuses": [
+          {
+            "pieces": 2,
+            "stats": {
+              "agility": 2,
+              "attack": 5
+            }
+          },
+          {
+            "pieces": 4,
+            "stats": {
+              "agility": 5,
+              "attack": 12,
+              "max_health": 24
+            }
+          },
+          {
+            "pieces": 6,
+            "stats": {
+              "agility": 8,
+              "attack": 20,
+              "defense": 10,
+              "max_health": 48
+            }
+          }
+        ],
+        "set_id": "set.dragon",
         "type": 2
       },
       "catalog_key": "龙鹰皮帽",
@@ -270456,6 +271394,33 @@
       "lj": 397,
       "morale": 6,
       "name": "龙鹰皮帽",
+      "set_bonuses": [
+        {
+          "pieces": 2,
+          "stats": {
+            "agility": 2,
+            "attack": 5
+          }
+        },
+        {
+          "pieces": 4,
+          "stats": {
+            "agility": 5,
+            "attack": 12,
+            "max_health": 24
+          }
+        },
+        {
+          "pieces": 6,
+          "stats": {
+            "agility": 8,
+            "attack": 20,
+            "defense": 10,
+            "max_health": 48
+          }
+        }
+      ],
+      "set_id": "set.dragon",
       "type": 2
     },
     {
@@ -270769,6 +271734,33 @@
         "level": 90,
         "lj": 1000,
         "name": "+地魔龙脊护肩",
+        "set_bonuses": [
+          {
+            "pieces": 2,
+            "stats": {
+              "agility": 2,
+              "attack": 5
+            }
+          },
+          {
+            "pieces": 4,
+            "stats": {
+              "agility": 5,
+              "attack": 12,
+              "max_health": 24
+            }
+          },
+          {
+            "pieces": 6,
+            "stats": {
+              "agility": 8,
+              "attack": 20,
+              "defense": 10,
+              "max_health": 48
+            }
+          }
+        ],
+        "set_id": "set.dragon",
         "tip": "地魔龙脊护肩，传说乃是地魔生前佩戴的装备，拥有无穷尽的力量，是所有探险家的至宝",
         "tx": "反弹+10",
         "type": 6
@@ -270778,6 +271770,33 @@
       "level": 90,
       "lj": 1000,
       "name": "+地魔龙脊护肩",
+      "set_bonuses": [
+        {
+          "pieces": 2,
+          "stats": {
+            "agility": 2,
+            "attack": 5
+          }
+        },
+        {
+          "pieces": 4,
+          "stats": {
+            "agility": 5,
+            "attack": 12,
+            "max_health": 24
+          }
+        },
+        {
+          "pieces": 6,
+          "stats": {
+            "agility": 8,
+            "attack": 20,
+            "defense": 10,
+            "max_health": 48
+          }
+        }
+      ],
+      "set_id": "set.dragon",
       "tip": "地魔龙脊护肩，传说乃是地魔生前佩戴的装备，拥有无穷尽的力量，是所有探险家的至宝",
       "tx": "反弹+10",
       "type": 6
@@ -271240,6 +272259,33 @@
         "lj": 500,
         "morale": 13,
         "name": "+哥伦布之帽",
+        "set_bonuses": [
+          {
+            "pieces": 2,
+            "stats": {
+              "attack": 4,
+              "defense": 3
+            }
+          },
+          {
+            "pieces": 4,
+            "stats": {
+              "attack": 9,
+              "defense": 7,
+              "max_health": 20
+            }
+          },
+          {
+            "pieces": 6,
+            "stats": {
+              "attack": 16,
+              "defense": 13,
+              "max_health": 40,
+              "morale": 10
+            }
+          }
+        ],
+        "set_id": "set.columbus",
         "tip": "航海家哥伦布的头盔",
         "tx": "抗迟缓+3",
         "type": 2
@@ -271250,6 +272296,33 @@
       "lj": 500,
       "morale": 13,
       "name": "+哥伦布之帽",
+      "set_bonuses": [
+        {
+          "pieces": 2,
+          "stats": {
+            "attack": 4,
+            "defense": 3
+          }
+        },
+        {
+          "pieces": 4,
+          "stats": {
+            "attack": 9,
+            "defense": 7,
+            "max_health": 20
+          }
+        },
+        {
+          "pieces": 6,
+          "stats": {
+            "attack": 16,
+            "defense": 13,
+            "max_health": 40,
+            "morale": 10
+          }
+        }
+      ],
+      "set_id": "set.columbus",
       "tip": "航海家哥伦布的头盔",
       "tx": "抗迟缓+3",
       "type": 2
@@ -271622,6 +272695,33 @@
         "lj": 1000,
         "morale": 10,
         "name": "+地魔龙角羽冠",
+        "set_bonuses": [
+          {
+            "pieces": 2,
+            "stats": {
+              "agility": 2,
+              "attack": 5
+            }
+          },
+          {
+            "pieces": 4,
+            "stats": {
+              "agility": 5,
+              "attack": 12,
+              "max_health": 24
+            }
+          },
+          {
+            "pieces": 6,
+            "stats": {
+              "agility": 8,
+              "attack": 20,
+              "defense": 10,
+              "max_health": 48
+            }
+          }
+        ],
+        "set_id": "set.dragon",
         "tip": "地魔的头盔",
         "tx": "沮丧攻+10",
         "type": 1
@@ -271632,6 +272732,33 @@
       "lj": 1000,
       "morale": 10,
       "name": "+地魔龙角羽冠",
+      "set_bonuses": [
+        {
+          "pieces": 2,
+          "stats": {
+            "agility": 2,
+            "attack": 5
+          }
+        },
+        {
+          "pieces": 4,
+          "stats": {
+            "agility": 5,
+            "attack": 12,
+            "max_health": 24
+          }
+        },
+        {
+          "pieces": 6,
+          "stats": {
+            "agility": 8,
+            "attack": 20,
+            "defense": 10,
+            "max_health": 48
+          }
+        }
+      ],
+      "set_id": "set.dragon",
       "tip": "地魔的头盔",
       "tx": "沮丧攻+10",
       "type": 1
@@ -271649,6 +272776,33 @@
         "level": 58,
         "lj": 480,
         "name": "屠龙战靴",
+        "set_bonuses": [
+          {
+            "pieces": 2,
+            "stats": {
+              "agility": 2,
+              "attack": 5
+            }
+          },
+          {
+            "pieces": 4,
+            "stats": {
+              "agility": 5,
+              "attack": 12,
+              "max_health": 24
+            }
+          },
+          {
+            "pieces": 6,
+            "stats": {
+              "agility": 8,
+              "attack": 20,
+              "defense": 10,
+              "max_health": 48
+            }
+          }
+        ],
+        "set_id": "set.dragon",
         "type": 5
       },
       "agility": 4,
@@ -271657,6 +272811,33 @@
       "level": 58,
       "lj": 480,
       "name": "屠龙战靴",
+      "set_bonuses": [
+        {
+          "pieces": 2,
+          "stats": {
+            "agility": 2,
+            "attack": 5
+          }
+        },
+        {
+          "pieces": 4,
+          "stats": {
+            "agility": 5,
+            "attack": 12,
+            "max_health": 24
+          }
+        },
+        {
+          "pieces": 6,
+          "stats": {
+            "agility": 8,
+            "attack": 20,
+            "defense": 10,
+            "max_health": 48
+          }
+        }
+      ],
+      "set_id": "set.dragon",
       "type": 5
     },
     {
@@ -271746,6 +272927,33 @@
         "lj": 519,
         "maxAttack": 21,
         "name": "龙头护符",
+        "set_bonuses": [
+          {
+            "pieces": 2,
+            "stats": {
+              "agility": 2,
+              "attack": 5
+            }
+          },
+          {
+            "pieces": 4,
+            "stats": {
+              "agility": 5,
+              "attack": 12,
+              "max_health": 24
+            }
+          },
+          {
+            "pieces": 6,
+            "stats": {
+              "agility": 8,
+              "attack": 20,
+              "defense": 10,
+              "max_health": 48
+            }
+          }
+        ],
+        "set_id": "set.dragon",
         "type": 6
       },
       "agility": 14,
@@ -271755,6 +272963,33 @@
       "lj": 519,
       "maxAttack": 21,
       "name": "龙头护符",
+      "set_bonuses": [
+        {
+          "pieces": 2,
+          "stats": {
+            "agility": 2,
+            "attack": 5
+          }
+        },
+        {
+          "pieces": 4,
+          "stats": {
+            "agility": 5,
+            "attack": 12,
+            "max_health": 24
+          }
+        },
+        {
+          "pieces": 6,
+          "stats": {
+            "agility": 8,
+            "attack": 20,
+            "defense": 10,
+            "max_health": 48
+          }
+        }
+      ],
+      "set_id": "set.dragon",
       "type": 6
     },
     {
@@ -271770,6 +273005,33 @@
         "lj": 492,
         "maxAttack": 82,
         "name": "五色巨龙之怒",
+        "set_bonuses": [
+          {
+            "pieces": 2,
+            "stats": {
+              "agility": 2,
+              "attack": 5
+            }
+          },
+          {
+            "pieces": 4,
+            "stats": {
+              "agility": 5,
+              "attack": 12,
+              "max_health": 24
+            }
+          },
+          {
+            "pieces": 6,
+            "stats": {
+              "agility": 8,
+              "attack": 20,
+              "defense": 10,
+              "max_health": 48
+            }
+          }
+        ],
+        "set_id": "set.dragon",
         "type": 1
       },
       "attack": 63,
@@ -271778,6 +273040,33 @@
       "lj": 492,
       "maxAttack": 82,
       "name": "五色巨龙之怒",
+      "set_bonuses": [
+        {
+          "pieces": 2,
+          "stats": {
+            "agility": 2,
+            "attack": 5
+          }
+        },
+        {
+          "pieces": 4,
+          "stats": {
+            "agility": 5,
+            "attack": 12,
+            "max_health": 24
+          }
+        },
+        {
+          "pieces": 6,
+          "stats": {
+            "agility": 8,
+            "attack": 20,
+            "defense": 10,
+            "max_health": 48
+          }
+        }
+      ],
+      "set_id": "set.dragon",
       "type": 1
     },
     {
@@ -272288,6 +273577,33 @@
         "level": 98,
         "lj": 1000,
         "name": "+地魔龙爪之靴",
+        "set_bonuses": [
+          {
+            "pieces": 2,
+            "stats": {
+              "agility": 2,
+              "attack": 5
+            }
+          },
+          {
+            "pieces": 4,
+            "stats": {
+              "agility": 5,
+              "attack": 12,
+              "max_health": 24
+            }
+          },
+          {
+            "pieces": 6,
+            "stats": {
+              "agility": 8,
+              "attack": 20,
+              "defense": 10,
+              "max_health": 48
+            }
+          }
+        ],
+        "set_id": "set.dragon",
         "tip": "地魔的靴子",
         "tx": "迟缓攻+10",
         "type": 1
@@ -272298,6 +273614,33 @@
       "level": 98,
       "lj": 1000,
       "name": "+地魔龙爪之靴",
+      "set_bonuses": [
+        {
+          "pieces": 2,
+          "stats": {
+            "agility": 2,
+            "attack": 5
+          }
+        },
+        {
+          "pieces": 4,
+          "stats": {
+            "agility": 5,
+            "attack": 12,
+            "max_health": 24
+          }
+        },
+        {
+          "pieces": 6,
+          "stats": {
+            "agility": 8,
+            "attack": 20,
+            "defense": 10,
+            "max_health": 48
+          }
+        }
+      ],
+      "set_id": "set.dragon",
       "tip": "地魔的靴子",
       "tx": "迟缓攻+10",
       "type": 1
@@ -272457,6 +273800,33 @@
         "lj": 480,
         "maxAttack": 43,
         "name": "哥伦布之刃",
+        "set_bonuses": [
+          {
+            "pieces": 2,
+            "stats": {
+              "attack": 4,
+              "defense": 3
+            }
+          },
+          {
+            "pieces": 4,
+            "stats": {
+              "attack": 9,
+              "defense": 7,
+              "max_health": 20
+            }
+          },
+          {
+            "pieces": 6,
+            "stats": {
+              "attack": 16,
+              "defense": 13,
+              "max_health": 40,
+              "morale": 10
+            }
+          }
+        ],
+        "set_id": "set.columbus",
         "tip": "航海家哥伦布的佩刃，传说曾斩断过风暴的船缆。",
         "tx": "致命攻+10",
         "type": 1
@@ -272467,6 +273837,33 @@
       "lj": 480,
       "maxAttack": 43,
       "name": "哥伦布之刃",
+      "set_bonuses": [
+        {
+          "pieces": 2,
+          "stats": {
+            "attack": 4,
+            "defense": 3
+          }
+        },
+        {
+          "pieces": 4,
+          "stats": {
+            "attack": 9,
+            "defense": 7,
+            "max_health": 20
+          }
+        },
+        {
+          "pieces": 6,
+          "stats": {
+            "attack": 16,
+            "defense": 13,
+            "max_health": 40,
+            "morale": 10
+          }
+        }
+      ],
+      "set_id": "set.columbus",
       "tip": "航海家哥伦布的佩刃，传说曾斩断过风暴的船缆。",
       "tx": "致命攻+10",
       "type": 1
@@ -272604,6 +274001,33 @@
         "level": 35,
         "lj": 500,
         "name": "+哥伦布胸甲",
+        "set_bonuses": [
+          {
+            "pieces": 2,
+            "stats": {
+              "attack": 4,
+              "defense": 3
+            }
+          },
+          {
+            "pieces": 4,
+            "stats": {
+              "attack": 9,
+              "defense": 7,
+              "max_health": 20
+            }
+          },
+          {
+            "pieces": 6,
+            "stats": {
+              "attack": 16,
+              "defense": 13,
+              "max_health": 40,
+              "morale": 10
+            }
+          }
+        ],
+        "set_id": "set.columbus",
         "tip": "航海家哥伦布的胸甲",
         "tx": "抗迟缓+6",
         "type": 3
@@ -272613,6 +274037,33 @@
       "level": 35,
       "lj": 500,
       "name": "+哥伦布胸甲",
+      "set_bonuses": [
+        {
+          "pieces": 2,
+          "stats": {
+            "attack": 4,
+            "defense": 3
+          }
+        },
+        {
+          "pieces": 4,
+          "stats": {
+            "attack": 9,
+            "defense": 7,
+            "max_health": 20
+          }
+        },
+        {
+          "pieces": 6,
+          "stats": {
+            "attack": 16,
+            "defense": 13,
+            "max_health": 40,
+            "morale": 10
+          }
+        }
+      ],
+      "set_id": "set.columbus",
       "tip": "航海家哥伦布的胸甲",
       "tx": "抗迟缓+6",
       "type": 3
@@ -273211,6 +274662,33 @@
         "level": 32,
         "lj": 492,
         "name": "哥伦布皮长靴",
+        "set_bonuses": [
+          {
+            "pieces": 2,
+            "stats": {
+              "attack": 4,
+              "defense": 3
+            }
+          },
+          {
+            "pieces": 4,
+            "stats": {
+              "attack": 9,
+              "defense": 7,
+              "max_health": 20
+            }
+          },
+          {
+            "pieces": 6,
+            "stats": {
+              "attack": 16,
+              "defense": 13,
+              "max_health": 40,
+              "morale": 10
+            }
+          }
+        ],
+        "set_id": "set.columbus",
         "tip": "穿过半个旧大陆的皮靴，鞋底还嵌着新大陆的砂。",
         "tx": "物品掉落+1",
         "type": 4
@@ -273221,6 +274699,33 @@
       "level": 32,
       "lj": 492,
       "name": "哥伦布皮长靴",
+      "set_bonuses": [
+        {
+          "pieces": 2,
+          "stats": {
+            "attack": 4,
+            "defense": 3
+          }
+        },
+        {
+          "pieces": 4,
+          "stats": {
+            "attack": 9,
+            "defense": 7,
+            "max_health": 20
+          }
+        },
+        {
+          "pieces": 6,
+          "stats": {
+            "attack": 16,
+            "defense": 13,
+            "max_health": 40,
+            "morale": 10
+          }
+        }
+      ],
+      "set_id": "set.columbus",
       "tip": "穿过半个旧大陆的皮靴，鞋底还嵌着新大陆的砂。",
       "tx": "物品掉落+1",
       "type": 4
@@ -273544,6 +275049,33 @@
         "lj": 549,
         "maxAttack": 28,
         "name": "上古巨龙",
+        "set_bonuses": [
+          {
+            "pieces": 2,
+            "stats": {
+              "agility": 2,
+              "attack": 5
+            }
+          },
+          {
+            "pieces": 4,
+            "stats": {
+              "agility": 5,
+              "attack": 12,
+              "max_health": 24
+            }
+          },
+          {
+            "pieces": 6,
+            "stats": {
+              "agility": 8,
+              "attack": 20,
+              "defense": 10,
+              "max_health": 48
+            }
+          }
+        ],
+        "set_id": "set.dragon",
         "type": 6
       },
       "agility": 9,
@@ -273553,6 +275085,33 @@
       "lj": 549,
       "maxAttack": 28,
       "name": "上古巨龙",
+      "set_bonuses": [
+        {
+          "pieces": 2,
+          "stats": {
+            "agility": 2,
+            "attack": 5
+          }
+        },
+        {
+          "pieces": 4,
+          "stats": {
+            "agility": 5,
+            "attack": 12,
+            "max_health": 24
+          }
+        },
+        {
+          "pieces": 6,
+          "stats": {
+            "agility": 8,
+            "attack": 20,
+            "defense": 10,
+            "max_health": 48
+          }
+        }
+      ],
+      "set_id": "set.dragon",
       "type": 6
     },
     {
@@ -284972,7 +286531,7 @@
     "preview_routes_supported": false,
     "normal_runtime_reads_this_section": false
   },
-  "content_sha256": "464d194ea19caa2bbca9ad18e9496cf33b161a142d81cb3a98f7575a5153f162",
+  "content_sha256": "9afbbeeda0a13a16016ba5a10d54d453ae8845026f7d3566c8620b9ee626a581",
   "entity_counts": {
     "tasks": 651,
     "cities": 28,

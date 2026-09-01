@@ -1005,6 +1005,16 @@ function effectiveStats(state,catalog) {
   const result={ attack:Number(state.player.base_attack),max_attack:Number(state.player.base_max_attack),defense:Number(state.player.base_defense),agility:Number(state.player.base_agility),max_health:Number(state.player.max_health)+Number(stamina?.semantics.add_hp??0),morale:Number(state.player.morale) };
   const equipped=[...Object.entries(state.equipment).filter(([key])=>key!=='accessories').map(([,id])=>id),...state.equipment.accessories].filter(Boolean);
   for (const id of equipped) { const item=catalog.getEquipment(id);result.attack+=Number(item.attack??0);result.max_attack+=Number(item.max_attack??item.maxAttack??0);result.defense+=Number(item.defense??0);result.agility+=Number(item.agility??0);result.max_health+=Number(item.health??0);result.morale+=Number(item.morale??0); }
+  // 装备套装分段共鸣：按 set_id 分组件数，取该套已达最高档（2/4/6 件）的加成累计
+  const setCounts=new Map();
+  for (const id of equipped) { const item=catalog.getEquipment(id);const setId=item?.set_id;if(setId)setCounts.set(setId,(setCounts.get(setId)??0)+1); }
+  for (const [setId,count] of setCounts) {
+    const sample=catalog.getEquipment(equipped.find((id)=>catalog.getEquipment(id)?.set_id===setId));
+    const bonuses=sample?.set_bonuses??[];
+    let applied=null;
+    for (const tier of bonuses) if (count>=Number(tier.pieces)) applied=tier;
+    if (applied) { for (const [stat,value] of Object.entries(applied.stats??{})) { result[stat]=(result[stat]??0)+Number(value); } }
+  }
   return result;
 }
 

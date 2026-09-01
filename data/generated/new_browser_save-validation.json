@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "selection_hash": "bd66be69fe45a45fe4a9c0cbd87c61b04ab67c063083e012503131bd03c4c6d1",
-  "browser_content_sha256": "464d194ea19caa2bbca9ad18e9496cf33b161a142d81cb3a98f7575a5153f162",
+  "browser_content_sha256": "9afbbeeda0a13a16016ba5a10d54d453ae8845026f7d3566c8620b9ee626a581",
   "scenario": "new_browser_save",
   "result": "passed",
   "initial_completed": 0,

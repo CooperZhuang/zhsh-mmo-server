@@ -307,7 +307,7 @@ class DomGameplayScenario{
     const startError=await this.page.text('.error');
     if(startError){const diagnostic=await this.exportSave('voyage-start-error');throw new Error(`Voyage start failed for ${route.canonical_id}: ${startError}; money=${diagnostic.state.player.money}; fee=${route.fee}`);}
     if(this.contextReopens===0){await this.advanceVoyageStep();if(await this.page.pageName()==='voyage'){await this.restartBrowser();await this.ensurePage('voyage');}}
-    // 权威确认到港：以服务端 voyage 状态为准推进，而非页面名（渲染竞态会让到达误判）
+    // 权威确认到港：点击「持续航行至靠岸」循环推进，直到服务端 voyage 清空（到港后页面自动回 location）
     const arrived=await this.page.evaluate(`(async()=>{
       const deadline=Date.now()+600000;
       while(Date.now()<deadline){
@@ -316,19 +316,24 @@ class DomGameplayScenario{
           if(resp.ok){
             const state=await resp.json();
             if(!state.voyage)return {arrived:true,node:state.player?.current_map_node_canonical_id??null};
-            // 仍在航程：点一次「继续航行」推进（服务器每点击推进一段）
-            const advance=document.querySelector('[data-voyage-advance="1"]');
-            if(advance){advance.scrollIntoView({block:'center'});advance.click();(window.__voyagePollLog??=[]).push('clicked@'+Math.floor((Date.now()%100000)/100));}else{(window.__voyagePollLog??=[]).push('no-advance-btn');}
+            const finish=document.querySelector('[data-voyage-finish="1"]');
+            if(finish){finish.scrollIntoView({block:'center'});finish.click();(window.__voyagePollLog??=[]).push('finish-clicked');}
+            else{const advance=document.querySelector('[data-voyage-advance="1"]');if(advance){advance.scrollIntoView({block:'center'});advance.click();(window.__voyagePollLog??=[]).push('advance-clicked');}}
           }
         }catch{}
         await new Promise((resolve)=>setTimeout(resolve,300));
       }
       return {arrived:false,log:window.__voyagePollLog?.slice?.(-8)??null};
     })()`);
-    assert.ok(arrived.arrived,`voyage ${route.canonical_id} did not arrive within 120s`);
+    assert.ok(arrived.arrived,`voyage ${route.canonical_id} did not arrive within 600s`);
     this.currentNode=route.to_port_map_node_canonical_id;
-    // 到港后页面仍停留在航行页 → 显式返回地点页
-    await this.tryClickVisible('[data-page="location"]');await this.waitPage('location');
+    // 到港后由 perform 自动回 location；兜底经任务页返回
+    const landed=await this.page.waitFor(`document.body.dataset.page==='location'`,{label:'arrival to location',timeout:30000}).then(()=>true).catch(()=>false);
+    if(!landed){
+      const tasks='.primary-nav [data-page="tasks"]';
+      if(await this.page.countVisible(tasks)===1){await this.click(tasks,{save:true});await this.waitPage('tasks');await this.tryClickVisible('[data-page="location"]');}
+      await this.waitPage('location');
+    }
   }
   async advanceVoyageStep(){
     const voyageActive=await this.page.evaluate(`(async()=>{

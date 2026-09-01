@@ -53,10 +53,55 @@ function applyMonsterEffects(db, stats) {
   }
 }
 
+// ---- 装备套装分段共鸣（2/4/6；数值锚定现有装备区间） -------------------------
+// set_bonuses 数值取同套单件属性的 ~25%/50%/75% 量级，平滑叠加、不破坏平衡。
+const EQUIPMENT_SETS = {
+  'set.columbus': {
+    member: (displayName) => displayName.includes('哥伦布'), // 7 件：锤/刃/胸甲/防御服/帽/铁盔/皮长靴
+    bonuses: [
+      { pieces: 2, stats: { attack: 4, defense: 3 } },
+      { pieces: 4, stats: { attack: 9, defense: 7, max_health: 20 } },
+      { pieces: 6, stats: { attack: 16, defense: 13, max_health: 40, morale: 10 } },
+    ],
+  },
+  'set.dragon': {
+    member: (displayName) => displayName.includes('龙') && !/龙珠/.test(displayName), // 龙主题装备（避开剧情龙珠）
+    bonuses: [
+      { pieces: 2, stats: { attack: 5, agility: 2 } },
+      { pieces: 4, stats: { attack: 12, agility: 5, max_health: 24 } },
+      { pieces: 6, stats: { attack: 20, agility: 8, max_health: 48, defense: 10 } },
+    ],
+  },
+  'set.voyage': {
+    member: (displayName) => displayName.includes('航海'),
+    bonuses: [
+      { pieces: 2, stats: { agility: 3 } },
+      { pieces: 4, stats: { agility: 6, max_health: 18 } },
+    ],
+  },
+};
+
 function applyEquipmentSets(db, stats) {
-  // 检查 equipment 是否存在（表可能命名为查询时不同）；幂等安全
-  const hasSetCol = db.prepare('SELECT 1 FROM pragma_table_info(\'equipment\') WHERE name=\'set_json\'').get();
-  if (!hasSetCol) return; // 表结构不匹配则跳过（不污染）
+  const equipmentRows = db.prepare(`
+    SELECT e.id, ce.canonical_id, ce.display_name, ce.normalized_data_json
+    FROM equipment e JOIN content_entities ce ON ce.id=e.content_entity_id`).all();
+  for (const [setId, setDef] of Object.entries(EQUIPMENT_SETS)) {
+    stats.tables[setId] ??= 0;
+    for (const row of equipmentRows) {
+      if (!setDef.member(row.display_name)) continue;
+      let attrs;
+      try { attrs = JSON.parse(row.normalized_data_json); } catch { continue; }
+      if (typeof attrs !== 'object' || attrs === null) attrs = {};
+      if (attrs.set_id === setId && stableJson(attrs.set_bonuses ?? null) === stableJson(setDef.bonuses)) {
+        stats.skipped += 1; continue;
+      }
+      attrs.set_id = setId;
+      attrs.set_bonuses = setDef.bonuses;
+      db.prepare('UPDATE content_entities SET normalized_data_json=? WHERE canonical_id=?')
+        .run(stableJson(attrs), row.canonical_id);
+      stats.tables[setId] += 1; stats.updated += 1;
+    }
+  }
 }
 
 function main() {
