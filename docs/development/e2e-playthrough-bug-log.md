@@ -25,7 +25,8 @@
 | 14 | 移动图与运行时可移动子集不一致（01.009 断边） | reach() 自愈：缺边回城市枢纽重规划 + 页面重载回溯 |
 | 15 | 浏览器重开后等待 continue-game 超时 | 重开后应用会直接回到 location，等待二者其一 |
 
-| 16 | 01.010 出海步：data-voyage-start=route.f244… 未找到（8.9 分钟跑程推进至此） | 该航线为 雅典→威尼斯（from_port=3f23f155@雅典），sail() 到达 from_port 后航线未出现在航行页；疑似 运行时当前节点与航线 from_port 节点/城市分叉（雅典 87a20d 与条目节点 3f23f155 归属核对），下一轮核对至日期待续 |
+
+| 17 | 战斗胜利后任务击杀计数不更新，DOM 线每个打怪任务都「won 但未 completed」→ 事件 15s 超时 → 重载浏览器重打（单任务数分钟，全线慢的元凶） | `src/task-runtime/formal-gameplay.js` combat_won 在 `transactEvent`（SQLite `BEGIN IMMEDIATE` 事务）内调用 `taskEngine.processEvent('defeat_monster')`，而 `processEvent` 内部又调 `storage.transact()` 开第二个 `BEGIN IMMEDIATE` → SQLite 抛「transaction within a transaction」，被 try/catch 吞掉 → 任务击杀计数永不更新 | `server/server.js` `/api/game/runtime` 分发器在 `combat_won` 事务**提交之后**补发 `defeat_monster`（`result.task_event = rt[gadget].taskEngine.processEvent(...)`，此时外层事务已结束、不嵌套） | 修复后 mainline(API 确定性线) 畅通穿 01.001→01.011（含 01.010/01.011 跨城航行）13/13 零超时；DOM tut-run 01.001→01.008 全部零重试、毫秒级完成 |
 
 ## 未修复（下次推进，附证据）
 
