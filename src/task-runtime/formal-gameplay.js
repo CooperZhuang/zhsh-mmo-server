@@ -277,6 +277,11 @@ class CookRuntime {
 // 港口订单：在指定港口交付商品，得银币 + 港口声望
 class TradeOrderRuntime {
   constructor({ storage,catalog=null,clock=isoNow }) { this.storage=storage;this.catalog=catalog;this.clock=clock; }
+  currentCityId(state) {
+    const mapNode=this.catalog.content?.map_nodes?.find((entry)=>entry.map_node_canonical_id===state.player.current_map_node_canonical_id);
+    const loc=this.catalog.content?.locations?.find((entry)=>entry.canonical_id===mapNode?.location_canonical_id);
+    return loc?.city_canonical_id??null;
+  }
   acceptOrder(playerId,orderId,eventId) {
     return transactEvent(this.storage,playerId,eventId,'trade_order_accept',{ order_canonical_id:orderId },this.clock,(state) => {
       const order=this.catalog.getTradeOrder(orderId);
@@ -289,7 +294,7 @@ class TradeOrderRuntime {
   deliverOrder(playerId,orderId,eventId) {
     return transactEvent(this.storage,playerId,eventId,'trade_order_deliver',{ order_canonical_id:orderId },this.clock,(state) => {
       const order=this.catalog.getTradeOrder(orderId);
-      const city=this.catalog.content?.locations?.find((entry)=>entry.canonical_id===state.player.current_map_node_canonical_id)?.city_canonical_id;
+      const city=this.currentCityId(state);
       const goodId=order.good_canonical_id;
       const amount=Number(order.amount??1);
       if(city!==order.port_city_canonical_id)throw new Error('须在订单指定港口交付。');
@@ -310,10 +315,15 @@ class TradeOrderRuntime {
 // 指定港卖出：在目标港口出售货物赚价差
 class TradeSellRuntime {
   constructor({ storage,catalog=null,clock=isoNow }) { this.storage=storage;this.catalog=catalog;this.clock=clock; }
+  currentCityId(state) {
+    const mapNode=this.catalog.content?.map_nodes?.find((entry)=>entry.map_node_canonical_id===state.player.current_map_node_canonical_id);
+    const loc=this.catalog.content?.locations?.find((entry)=>entry.canonical_id===mapNode?.location_canonical_id);
+    return loc?.city_canonical_id??null;
+  }
   sell(playerId,goodId,quantity,eventId) {
     return transactEvent(this.storage,playerId,eventId,'trade_good_sell',{ good_canonical_id:goodId,quantity },this.clock,(state) => {
       const good=this.catalog.getTradeGood(goodId);
-      const city=this.catalog.content?.locations?.find((entry)=>entry.canonical_id===state.player.current_map_node_canonical_id)?.city_canonical_id;
+      const city=this.currentCityId(state);
       const price=Number(good.prices?.[city]??0);
       if(!price)throw new Error('该商品在当前港口无收购价。');
       const qty=Number(quantity??1);
