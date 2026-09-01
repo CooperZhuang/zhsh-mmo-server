@@ -511,6 +511,21 @@ const server = http.createServer(async (req, res) => {
               monster_canonical_id: result.monster_canonical_id, location_canonical_id: result.location_canonical_id, quantity: 1 });
           } catch (taskError) { result.task_event = { error: taskError.message }; }
         }
+        // 玩法型 runtime 成功后在事务外补发对应事件，推进 cook/trade_order/trade_sell/prepare_voyage 目标
+        const playDispatch = {
+          'cook.cook':         { action: 'meal_cooked',        event: 'cook_completed',         build: (r) => ({ recipe_canonical_id: r.recipe_canonical_id }) },
+          'tradeOrder.deliverOrder': { action: 'trade_order_delivered', event: 'trade_order_delivered', build: (r) => ({ order_canonical_id: r.order_canonical_id }) },
+          'tradeSell.sell':    { action: 'trade_good_sold',    event: 'trade_good_sold',         build: (r) => ({ good_canonical_id: r.good_canonical_id, quantity: r.quantity ?? 1 }) },
+          'voyagePrep.purchase': { action: 'convoy_purchased', event: 'convoy_purchased',       build: (r) => ({ convoy_item_canonical_id: r.convoy_item_canonical_id }) },
+        };
+        const playKey = `${gadget}.${method}`;
+        const playRule = playDispatch[playKey];
+        if (playRule && result?.action === playRule.action) {
+          try {
+            const te = rt[gadget]?.taskEngine;
+            if (te) result.task_event = te.processEvent(auth.playerCanonicalId, { event_id: `${evId}.${playRule.event}`, type: playRule.event, ...playRule.build(result) });
+          } catch (taskError) { result.task_event = { error: taskError.message }; }
+        }
         return sendJson(res, 200, result, req);
       }
       if (pathname === '/api/game/players' && req.method === 'GET') {

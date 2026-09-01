@@ -11,6 +11,12 @@ const EVENT_TYPES = Object.freeze([
   'submit_to_npc',
   'abandon_task',
   'fail_task',
+  // 玩法型任务目标（吸收自外部仓库：烹饪/港口订单/指定港卖出/护航/港口声望）
+  'cook_completed',
+  'trade_order_delivered',
+  'trade_good_sold',
+  'convoy_purchased',
+  'port_reputation_reached',
 ]);
 const ACTIVE_STATUSES = new Set(['accepted','in_progress','completable']);
 const TASK_EVENT_REPLAY_WINDOW=128;
@@ -394,6 +400,11 @@ class TaskRuntimeEngine {
         case 'submit_to_npc': result = this.handleSubmit(state,event); break;
         case 'abandon_task': result = this.handleAbandon(state,event,'abandoned'); break;
         case 'fail_task': result = this.handleAbandon(state,event,'failed'); break;
+        case 'cook_completed': result = this.handleCookComplete(state,event); break;
+        case 'trade_order_delivered': result = this.handleTradeOrderDeliver(state,event); break;
+        case 'trade_good_sold': result = this.handleTradeSell(state,event); break;
+        case 'convoy_purchased': result = this.handleConvoyPurchase(state,event); break;
+        case 'port_reputation_reached': result = this.handlePortReputation(state,event); break;
         default: throw new Error(`Unsupported event type: ${event.type}`);
       }
       this.injectFault('before_event_commit',{ state,event,result });
@@ -519,6 +530,32 @@ class TaskRuntimeEngine {
     const changes = [];
     for (const task of this.activeTasks(state)) changes.push(...this.syncItemTargets(state,task,event.item_canonical_id));
     return { applied: true, action: 'inventory_obtained', item_canonical_id: event.item_canonical_id, quantity, changes };
+  }
+
+  // ---- 玩法型任务目标推进（烹饪/港口订单/指定港卖出/护航/港口声望） ----
+  advancePlayTarget(state, event, targetKind, quantity, eventType, entityId) {
+    const changes = [];
+    for (const task of this.activeTasks(state)) {
+      for (const target of task.targets.filter((entry) => entry.target_kind === targetKind && entry.entity_canonical_id === entityId)) {
+        changes.push(this.advanceTarget(state, task, target, quantity, eventType));
+      }
+    }
+    return { applied: changes.length > 0, action: eventType, changes };
+  }
+  handleCookComplete(state, event) {
+    return this.advancePlayTarget(state, event, 'cook', 1, 'cook_completed', event.recipe_canonical_id);
+  }
+  handleTradeOrderDeliver(state, event) {
+    return this.advancePlayTarget(state, event, 'trade_order', 1, 'trade_order_delivered', event.order_canonical_id);
+  }
+  handleTradeSell(state, event) {
+    return this.advancePlayTarget(state, event, 'trade_sell', positiveInteger(event.quantity ?? 1, 'quantity'), 'trade_good_sold', event.good_canonical_id);
+  }
+  handleConvoyPurchase(state, event) {
+    return this.advancePlayTarget(state, event, 'prepare_voyage', 1, 'convoy_purchased', event.convoy_item_canonical_id);
+  }
+  handlePortReputation(state, event) {
+    return this.advancePlayTarget(state, event, 'trade_reputation', positiveInteger(event.amount ?? 1, 'amount'), 'port_reputation_reached', event.city_canonical_id);
   }
 
   handleConsume(state,event) {
