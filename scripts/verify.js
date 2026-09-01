@@ -60,6 +60,7 @@ function main() {
   run('full data generation',['scripts/import-content.js']);
   run('idle visual asset integration',['scripts/integrate-idle-assets.js']);
   run('blocked targets adjudication',['scripts/adjudicate-blocked-targets.js']);
+  run('external gameplay absorption',['scripts/absorb-external-gameplay.js']);
   run('database validation',['scripts/validate-import.js']);
   run('browser build',['scripts/build-browser.js']);
   const testOutput=runNpmTest();

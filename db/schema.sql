@@ -171,6 +171,7 @@ CREATE TABLE IF NOT EXISTS monster_definitions (
   id INTEGER PRIMARY KEY, canonical_id TEXT NOT NULL UNIQUE,
   source_record_id INTEGER NOT NULL REFERENCES restoration_records(id), source_canonical_id TEXT NOT NULL,
   display_name TEXT NOT NULL, level INTEGER, monster_type INTEGER,
+  effect TEXT, special TEXT,
   identity_signature_json TEXT NOT NULL CHECK(json_valid(identity_signature_json)),
   identity_basis TEXT NOT NULL CHECK(identity_basis='exact_name_level_type_and_available_attributes')
 ) STRICT;

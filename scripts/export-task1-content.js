@@ -118,12 +118,13 @@ function exportTask1Content({ databasePath = defaultDatabase,outputPath = defaul
         runtimeTargetResolutions.map((entry)=>entry.formal_source?.monster_canonical_id).filter(Boolean),placedEncounterMonsterIds));
     const rewardRules=JSON.parse(fs.readFileSync(rewardRulesPath,'utf8'));
     const monsters = selectIn(db,`
-      SELECT m.canonical_id,m.source_canonical_id,m.display_name,m.level,m.monster_type,m.identity_signature_json,'queryable' runtime_capability
+      SELECT m.canonical_id,m.source_canonical_id,m.display_name,m.level,m.monster_type,m.identity_signature_json,m.effect,m.special,'queryable' runtime_capability
       FROM monster_definitions m
       WHERE m.canonical_id IN (__IN__) ORDER BY m.canonical_id`,requiredMonsterIds)
       .map((entry) => {
         const encounter=classifyEncounter(entry.monster_type);
         return { ...entry,identity_signature:JSON.parse(entry.identity_signature_json),...encounter,
+          effect:entry.effect?JSON.parse(entry.effect):null,special:entry.special?JSON.parse(entry.special):null,
           rewards:calculateMonsterRewards(entry,rewardRules,encounter.encounter_type) };
       });
     for (const monster of monsters) delete monster.identity_signature_json;

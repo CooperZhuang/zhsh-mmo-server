@@ -910,6 +910,26 @@ class CombatRuntime {
         }
         const monsterDamage=damage(combat.monster_stats.attack,combat.monster_stats.max_attack,stats.defense,combat.monster_stats.agility,stats.agility,this.random);
         state.player.current_health=Math.max(0,state.player.current_health-monsterDamage);
+        // 未知道具吸收：怪物状态效果（中毒/虚弱/诅咒/缓慢）+ 周期技能（伤害倍增）
+        const monsterEffect=combat.monster_stats.effect;
+        if (monsterEffect) {
+          const effectRoll=this.random();
+          if (effectRoll < Number(monsterEffect.chance ?? 0)) {
+            const active=state.player.effects ?? (state.player.effects={});
+            const existing=active[monsterEffect.name];
+            active[monsterEffect.name]={ rounds: Math.max(existing?.rounds ?? 0, Number(monsterEffect.rounds ?? 1)), round: combat.round };
+            combat.last_effects=combat.last_effects??[]; combat.last_effects.push(monsterEffect.name);
+            if(monsterEffect.damage_multiplier) {
+              state.player.current_health=Math.max(0,state.player.current_health-Math.round(monsterDamage*(Number(monsterEffect.damage_multiplier)-1)));
+            }
+          }
+        }
+        const monsterSpecial=combat.monster_stats.special;
+        if (monsterSpecial && Number(monsterSpecial.every ?? 0) > 0 && combat.round % Number(monsterSpecial.every) === 0) {
+          const specialDamage=Math.round(monsterDamage*Number(monsterSpecial.damage_multiplier ?? 1));
+          state.player.current_health=Math.max(0,state.player.current_health-specialDamage);
+          combat.last_special=monsterSpecial.name;
+        }
         const staminaItem=state.player.current_health>0?useActiveStaminaItem(state,this.catalog,{automatic:true}):{applied:false,reason:'player_defeated'};
         if(staminaItem.applied)appliedStaminaItems.push(staminaItem);
         if (state.player.current_health===0) {
@@ -993,6 +1013,7 @@ function monsterStats(monster) {
   const type=Number(monster.monster_type ?? 5);
   if (type === 3 || type === 4) return {
     health:Math.floor(200+300*(level-1)/209),attack:1,max_attack:1,defense:10000,agility:1,
+    effect:monster.effect??null,special:monster.special??null,
     rule_status:'SOURCE_EXPLICIT',rule_id:'zhsh.monster.plant-mineral.v1',
   };
   const multiplier=({ 40:1.5,50:2,45:2.5,6:3,55:3.5 })[type] ?? 1;
@@ -1003,6 +1024,7 @@ function monsterStats(monster) {
     max_attack:Math.floor((12+6*(level-1))*multiplier),
     defense:Math.floor((8+3*(level-1))*multiplier),
     agility:Math.floor((5+2*(level-1))*multiplier),
+    effect:monster.effect??null,special:monster.special??null,
     rule_status:'SOURCE_EXPLICIT',rule_id:'zhsh.monster.type-level.v1',
   };
 }

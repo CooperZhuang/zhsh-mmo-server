@@ -111,7 +111,7 @@
   "capability_status": "global_runtime_content",
   "runnable_task_selection": {
     "selector_version": "global-runtime-directory/1.0.0",
-    "selection_hash": "207993be9a61bb3e157d09f86a45b8df949783837ebd889313e1962230a93480",
+    "selection_hash": "7dc91a72446599993cff8d3df1d52d786151d11a22496b4f25615c4331df3e22",
     "selected_task_count": 651,
     "selected_series_count": 15,
     "formal_stage_start_selected_task_count": 78,
@@ -236521,6 +236521,8 @@
       "display_name": "飞虎兽",
       "level": 61,
       "monster_type": 6,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "飞虎兽",
@@ -236545,6 +236547,8 @@
       "display_name": "基恩",
       "level": 23,
       "monster_type": 6,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "基恩",
@@ -236569,6 +236573,8 @@
       "display_name": "红野猪",
       "level": 131,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "红野猪",
@@ -236593,6 +236599,8 @@
       "display_name": "海魔",
       "level": 46,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "海魔",
@@ -236617,6 +236625,8 @@
       "display_name": "发疯的野猪",
       "level": 71,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "发疯的野猪",
@@ -236641,6 +236651,8 @@
       "display_name": "灵敏小猫",
       "level": 50,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "灵敏小猫",
@@ -236665,6 +236677,8 @@
       "display_name": "地魔戈蒂拉",
       "level": 184,
       "monster_type": 6,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "地魔戈蒂拉",
@@ -236689,6 +236703,8 @@
       "display_name": "激进分子",
       "level": 31,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "激进分子",
@@ -236713,6 +236729,8 @@
       "display_name": "地蜘蛛",
       "level": 164,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "地蜘蛛",
@@ -236737,6 +236755,8 @@
       "display_name": "乌兹马赫",
       "level": 111,
       "monster_type": 6,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "乌兹马赫",
@@ -236761,6 +236781,8 @@
       "display_name": "疯狂的罗思",
       "level": 143,
       "monster_type": 6,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "疯狂的罗思",
@@ -236785,6 +236807,8 @@
       "display_name": "凤凰",
       "level": 39,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "凤凰",
@@ -236809,6 +236833,8 @@
       "display_name": "强盗",
       "level": 76,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "强盗",
@@ -236833,6 +236859,8 @@
       "display_name": "棕树木",
       "level": 69,
       "monster_type": 3,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "棕树木",
@@ -236857,6 +236885,8 @@
       "display_name": "黑色恶蛆",
       "level": 74,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "黑色恶蛆",
@@ -236881,6 +236911,8 @@
       "display_name": "山魈",
       "level": 94,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "山魈",
@@ -236905,6 +236937,8 @@
       "display_name": "杰森",
       "level": 119,
       "monster_type": 6,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "杰森",
@@ -236929,6 +236963,8 @@
       "display_name": "亚丁海盗头子",
       "level": 50,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "亚丁海盗头子",
@@ -236953,6 +236989,8 @@
       "display_name": "黑龙忍者",
       "level": 23,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "黑龙忍者",
@@ -236977,6 +237015,8 @@
       "display_name": "北欧海盗",
       "level": 13,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "北欧海盗",
@@ -237001,6 +237041,8 @@
       "display_name": "鸦片贩子",
       "level": 52,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "鸦片贩子",
@@ -237025,6 +237067,8 @@
       "display_name": "伐木工",
       "level": 41,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "伐木工",
@@ -237049,6 +237093,8 @@
       "display_name": "锯齿鲨鱼",
       "level": 71,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "锯齿鲨鱼",
@@ -237073,6 +237119,8 @@
       "display_name": "藕莲子",
       "level": 159,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "藕莲子",
@@ -237097,6 +237145,8 @@
       "display_name": "金环蛇",
       "level": 74,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "金环蛇",
@@ -237121,6 +237171,8 @@
       "display_name": "鲨妖",
       "level": 109,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "鲨妖",
@@ -237145,6 +237197,8 @@
       "display_name": "走私客",
       "level": 25,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "走私客",
@@ -237169,6 +237223,8 @@
       "display_name": "千年花妖",
       "level": 144,
       "monster_type": 6,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "千年花妖",
@@ -237193,6 +237249,8 @@
       "display_name": "岩狼",
       "level": 94,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "岩狼",
@@ -237217,6 +237275,8 @@
       "display_name": "假太监",
       "level": 57,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "假太监",
@@ -237241,6 +237301,16 @@
       "display_name": "疯牛",
       "level": 16,
       "monster_type": 5,
+      "effect": {
+        "chance": 0.18,
+        "name": "虚弱",
+        "rounds": 2
+      },
+      "special": {
+        "damage_multiplier": 1.38,
+        "every": 3,
+        "name": "蛮牛冲撞"
+      },
       "runtime_capability": "queryable",
       "identity_signature": [
         "疯牛",
@@ -237265,6 +237335,8 @@
       "display_name": "领主魂",
       "level": 108,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "领主魂",
@@ -237289,6 +237361,8 @@
       "display_name": "沼泽鼠",
       "level": 68,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "沼泽鼠",
@@ -237313,6 +237387,8 @@
       "display_name": "茶虫",
       "level": 66,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "茶虫",
@@ -237337,6 +237413,16 @@
       "display_name": "猛虎",
       "level": 12,
       "monster_type": 5,
+      "effect": {
+        "chance": 0.2,
+        "name": "虚弱",
+        "rounds": 2
+      },
+      "special": {
+        "damage_multiplier": 1.4,
+        "every": 4,
+        "name": "猛虎扑击"
+      },
       "runtime_capability": "queryable",
       "identity_signature": [
         "猛虎",
@@ -237361,6 +237447,16 @@
       "display_name": "灰熊",
       "level": 7,
       "monster_type": 5,
+      "effect": {
+        "chance": 0.28,
+        "name": "虚弱",
+        "rounds": 3
+      },
+      "special": {
+        "damage_multiplier": 1.45,
+        "every": 3,
+        "name": "裂地重击"
+      },
       "runtime_capability": "queryable",
       "identity_signature": [
         "灰熊",
@@ -237385,6 +237481,8 @@
       "display_name": "巨红蜈蚣",
       "level": 51,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "巨红蜈蚣",
@@ -237409,6 +237507,8 @@
       "display_name": "黄鼬",
       "level": 8,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "黄鼬",
@@ -237433,6 +237533,8 @@
       "display_name": "华南虎",
       "level": 11,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "华南虎",
@@ -237457,6 +237559,8 @@
       "display_name": "海蛇精",
       "level": 109,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "海蛇精",
@@ -237481,6 +237585,8 @@
       "display_name": "部族首领",
       "level": 35,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "部族首领",
@@ -237505,6 +237611,8 @@
       "display_name": "虎纹老鼠",
       "level": 106,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "虎纹老鼠",
@@ -237529,6 +237637,8 @@
       "display_name": "玳瑁",
       "level": 8,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "玳瑁",
@@ -237553,6 +237663,8 @@
       "display_name": "阿卜杜勒",
       "level": 35,
       "monster_type": 6,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "阿卜杜勒",
@@ -237577,6 +237689,8 @@
       "display_name": "干佛草",
       "level": 143,
       "monster_type": 3,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "干佛草",
@@ -237601,6 +237715,8 @@
       "display_name": "红牛头怪",
       "level": 131,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "红牛头怪",
@@ -237625,6 +237741,8 @@
       "display_name": "可疑的人",
       "level": 48,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "可疑的人",
@@ -237649,6 +237767,8 @@
       "display_name": "你看到:",
       "level": 124,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "你看到:",
@@ -237673,6 +237793,8 @@
       "display_name": "龙虾",
       "level": 22,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "龙虾",
@@ -237697,6 +237819,8 @@
       "display_name": "地火兽",
       "level": 160,
       "monster_type": 6,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "地火兽",
@@ -237721,6 +237845,8 @@
       "display_name": "藕莲子",
       "level": 160,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "藕莲子",
@@ -237745,6 +237871,8 @@
       "display_name": "鲤鱼精",
       "level": 94,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "鲤鱼精",
@@ -237769,6 +237897,8 @@
       "display_name": "妖龙",
       "level": 127,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "妖龙",
@@ -237793,6 +237923,8 @@
       "display_name": "疯狂的山猪",
       "level": 53,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "疯狂的山猪",
@@ -237817,6 +237949,8 @@
       "display_name": "狐仙小美",
       "level": 146,
       "monster_type": 6,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "狐仙小美",
@@ -237841,6 +237975,8 @@
       "display_name": "养人毒蝎",
       "level": 88,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "养人毒蝎",
@@ -237865,6 +238001,8 @@
       "display_name": "仙人掌",
       "level": 135,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "仙人掌",
@@ -237889,6 +238027,12 @@
       "display_name": "鳄鱼",
       "level": 19,
       "monster_type": 5,
+      "effect": {
+        "chance": 0.16,
+        "name": "中毒",
+        "rounds": 3
+      },
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "鳄鱼",
@@ -237913,6 +238057,8 @@
       "display_name": "双头蛇",
       "level": 73,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "双头蛇",
@@ -237937,6 +238083,8 @@
       "display_name": "甲贺忍者",
       "level": 109,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "甲贺忍者",
@@ -237961,6 +238109,8 @@
       "display_name": "铁皮人",
       "level": 3,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "铁皮人",
@@ -237985,6 +238135,8 @@
       "display_name": "金鲤鱼",
       "level": 102,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "金鲤鱼",
@@ -238009,6 +238161,12 @@
       "display_name": "野兔",
       "level": 17,
       "monster_type": 5,
+      "effect": {
+        "chance": 0.1,
+        "name": "缓慢",
+        "rounds": 2
+      },
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "野兔",
@@ -238033,6 +238191,8 @@
       "display_name": "凤凰蝶",
       "level": 97,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "凤凰蝶",
@@ -238057,6 +238217,8 @@
       "display_name": "双头巨蟒",
       "level": 73,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "双头巨蟒",
@@ -238081,6 +238243,8 @@
       "display_name": "鲨妖",
       "level": 76,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "鲨妖",
@@ -238105,6 +238269,8 @@
       "display_name": "疯野猪",
       "level": 33,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "疯野猪",
@@ -238129,6 +238295,8 @@
       "display_name": "地火结晶",
       "level": 140,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "地火结晶",
@@ -238153,6 +238321,8 @@
       "display_name": "火山岩虫",
       "level": 63,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "火山岩虫",
@@ -238177,6 +238347,8 @@
       "display_name": "荒狼",
       "level": 108,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "荒狼",
@@ -238201,6 +238373,8 @@
       "display_name": "火鸡",
       "level": 64,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "火鸡",
@@ -238225,6 +238399,8 @@
       "display_name": "豹妖",
       "level": 76,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "豹妖",
@@ -238249,6 +238425,8 @@
       "display_name": "沼泽玄龟",
       "level": 68,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "沼泽玄龟",
@@ -238273,6 +238451,12 @@
       "display_name": "走私者",
       "level": 7,
       "monster_type": 5,
+      "effect": {
+        "chance": 0.14,
+        "name": "缓慢",
+        "rounds": 2
+      },
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "走私者",
@@ -238297,6 +238481,8 @@
       "display_name": "挪威海盗",
       "level": 28,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "挪威海盗",
@@ -238321,6 +238507,8 @@
       "display_name": "腐骨藤妖",
       "level": 61,
       "monster_type": 6,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "腐骨藤妖",
@@ -238345,6 +238533,12 @@
       "display_name": "野猪",
       "level": 3,
       "monster_type": 5,
+      "effect": {
+        "chance": 0.1,
+        "name": "中毒",
+        "rounds": 2
+      },
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "野猪",
@@ -238369,6 +238563,8 @@
       "display_name": "白虎王",
       "level": 61,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "白虎王",
@@ -238393,6 +238589,8 @@
       "display_name": "蝗虫巢穴",
       "level": 60,
       "monster_type": 6,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "蝗虫巢穴",
@@ -238417,6 +238615,8 @@
       "display_name": "巨型仙人掌",
       "level": 142,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "巨型仙人掌",
@@ -238441,6 +238641,12 @@
       "display_name": "病鸡",
       "level": 2,
       "monster_type": 5,
+      "effect": {
+        "chance": 0.14,
+        "name": "中毒",
+        "rounds": 2
+      },
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "病鸡",
@@ -238465,6 +238671,8 @@
       "display_name": "千年桐妖",
       "level": 38,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "千年桐妖",
@@ -238489,6 +238697,8 @@
       "display_name": "海魔",
       "level": 94,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "海魔",
@@ -238513,6 +238723,8 @@
       "display_name": "剑齿虎",
       "level": 72,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "剑齿虎",
@@ -238537,6 +238749,8 @@
       "display_name": "桃花妖",
       "level": 29,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "桃花妖",
@@ -238561,6 +238775,16 @@
       "display_name": "老虎",
       "level": 5,
       "monster_type": 5,
+      "effect": {
+        "chance": 0.18,
+        "name": "虚弱",
+        "rounds": 2
+      },
+      "special": {
+        "damage_multiplier": 1.4,
+        "every": 4,
+        "name": "猛虎扑击"
+      },
       "runtime_capability": "queryable",
       "identity_signature": [
         "老虎",
@@ -238585,6 +238809,8 @@
       "display_name": "拉帕斯",
       "level": 121,
       "monster_type": 6,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "拉帕斯",
@@ -238609,6 +238835,8 @@
       "display_name": "樱花魅妖",
       "level": 77,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "樱花魅妖",
@@ -238633,6 +238861,8 @@
       "display_name": "强悍劫匪",
       "level": 36,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "强悍劫匪",
@@ -238657,6 +238887,8 @@
       "display_name": "邪恶水妖",
       "level": 149,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "邪恶水妖",
@@ -238681,6 +238913,8 @@
       "display_name": "熟透的葡萄",
       "level": 71,
       "monster_type": 3,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "熟透的葡萄",
@@ -238705,6 +238939,8 @@
       "display_name": "变色龙",
       "level": 57,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "变色龙",
@@ -238729,6 +238965,8 @@
       "display_name": "牛蛙",
       "level": 115,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "牛蛙",
@@ -238753,6 +238991,8 @@
       "display_name": "强化邪恶水妖",
       "level": 155,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "强化邪恶水妖",
@@ -238777,6 +239017,8 @@
       "display_name": "蒙面人",
       "level": 124,
       "monster_type": 6,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "蒙面人",
@@ -238801,6 +239043,8 @@
       "display_name": "百花露",
       "level": 158,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "百花露",
@@ -238825,6 +239069,8 @@
       "display_name": "乌兹米拉",
       "level": 115,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "乌兹米拉",
@@ -238849,6 +239095,16 @@
       "display_name": "海贼头目",
       "level": 10,
       "monster_type": 5,
+      "effect": {
+        "chance": 0.2,
+        "name": "诅咒",
+        "rounds": 3
+      },
+      "special": {
+        "damage_multiplier": 1.4,
+        "every": 3,
+        "name": "海盗突袭"
+      },
       "runtime_capability": "queryable",
       "identity_signature": [
         "海贼头目",
@@ -238873,6 +239129,8 @@
       "display_name": "血蛙",
       "level": 118,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "血蛙",
@@ -238897,6 +239155,8 @@
       "display_name": "流魂",
       "level": 94,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "流魂",
@@ -238921,6 +239181,8 @@
       "display_name": "茯苓",
       "level": 164,
       "monster_type": 3,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "茯苓",
@@ -238945,6 +239207,8 @@
       "display_name": "豹妖",
       "level": 46,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "豹妖",
@@ -238969,6 +239233,8 @@
       "display_name": "蛇魔",
       "level": 108,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "蛇魔",
@@ -238993,6 +239259,8 @@
       "display_name": "血僵尸",
       "level": 100,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "血僵尸",
@@ -239017,6 +239285,8 @@
       "display_name": "流魂",
       "level": 76,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "流魂",
@@ -239041,6 +239311,8 @@
       "display_name": "尖牙毒蛇",
       "level": 111,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "尖牙毒蛇",
@@ -239065,6 +239337,8 @@
       "display_name": "变异河蟹",
       "level": 108,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "变异河蟹",
@@ -239089,6 +239363,8 @@
       "display_name": "铜雕像",
       "level": 15,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "铜雕像",
@@ -239113,6 +239389,8 @@
       "display_name": "黑野猪",
       "level": 52,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "黑野猪",
@@ -239137,6 +239415,8 @@
       "display_name": "鲛人",
       "level": 49,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "鲛人",
@@ -239161,6 +239441,8 @@
       "display_name": "流浪倭寇",
       "level": 36,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "流浪倭寇",
@@ -239185,6 +239467,12 @@
       "display_name": "野狼",
       "level": 1,
       "monster_type": 5,
+      "effect": {
+        "chance": 0.12,
+        "name": "中毒",
+        "rounds": 3
+      },
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "野狼",
@@ -239209,6 +239497,8 @@
       "display_name": "山匪",
       "level": 52,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "山匪",
@@ -239233,6 +239523,8 @@
       "display_name": "蝗虫",
       "level": 57,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "蝗虫",
@@ -239257,6 +239549,8 @@
       "display_name": "大王乌贼",
       "level": 95,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "大王乌贼",
@@ -239281,6 +239575,8 @@
       "display_name": "红野猪",
       "level": 139,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "红野猪",
@@ -239305,6 +239601,12 @@
       "display_name": "鳄鱼",
       "level": 22,
       "monster_type": 5,
+      "effect": {
+        "chance": 0.16,
+        "name": "中毒",
+        "rounds": 3
+      },
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "鳄鱼",
@@ -239329,6 +239631,8 @@
       "display_name": "鹿杖客",
       "level": 141,
       "monster_type": 6,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "鹿杖客",
@@ -239353,6 +239657,8 @@
       "display_name": "大王乌贼",
       "level": 125,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "大王乌贼",
@@ -239377,6 +239683,8 @@
       "display_name": "玫瑰花",
       "level": 1,
       "monster_type": 3,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "玫瑰花",
@@ -239401,6 +239709,8 @@
       "display_name": "鲨鱼",
       "level": 73,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "鲨鱼",
@@ -239425,6 +239735,8 @@
       "display_name": "流浪狗",
       "level": 20,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "流浪狗",
@@ -239449,6 +239761,8 @@
       "display_name": "乔治",
       "level": 107,
       "monster_type": 6,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "乔治",
@@ -239473,6 +239787,12 @@
       "display_name": "海贼",
       "level": 20,
       "monster_type": 5,
+      "effect": {
+        "chance": 0.12,
+        "name": "中毒",
+        "rounds": 2
+      },
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "海贼",
@@ -239497,6 +239817,8 @@
       "display_name": "吸血蝙蝠",
       "level": 16,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "吸血蝙蝠",
@@ -239521,6 +239843,8 @@
       "display_name": "稻草魔",
       "level": 76,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "稻草魔",
@@ -239545,6 +239869,8 @@
       "display_name": "魅精",
       "level": 104,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "魅精",
@@ -239569,6 +239895,8 @@
       "display_name": "奶牛",
       "level": 16,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "奶牛",
@@ -239593,6 +239921,8 @@
       "display_name": "猴子",
       "level": 12,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "猴子",
@@ -239617,6 +239947,8 @@
       "display_name": "疯熊",
       "level": 23,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "疯熊",
@@ -239641,6 +239973,8 @@
       "display_name": "火岩结晶",
       "level": 64,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "火岩结晶",
@@ -239665,6 +239999,8 @@
       "display_name": "赤壳玄龟",
       "level": 15,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "赤壳玄龟",
@@ -239689,6 +240025,8 @@
       "display_name": "赌徒",
       "level": 19,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "赌徒",
@@ -239713,6 +240051,8 @@
       "display_name": "岩狼",
       "level": 76,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "岩狼",
@@ -239737,6 +240077,8 @@
       "display_name": "索隆亚监狱长",
       "level": 105,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "索隆亚监狱长",
@@ -239761,6 +240103,8 @@
       "display_name": "百年树妖",
       "level": 173,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "百年树妖",
@@ -239785,6 +240129,8 @@
       "display_name": "剧毒赤蜂",
       "level": 52,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "剧毒赤蜂",
@@ -239809,6 +240155,8 @@
       "display_name": "僵尸",
       "level": 104,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "僵尸",
@@ -239833,6 +240181,8 @@
       "display_name": "巨鲸",
       "level": 174,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "巨鲸",
@@ -239857,6 +240207,8 @@
       "display_name": "水蛇精",
       "level": 94,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "水蛇精",
@@ -239881,6 +240233,8 @@
       "display_name": "金甲天牛",
       "level": 123,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "金甲天牛",
@@ -239905,6 +240259,8 @@
       "display_name": "巨熊",
       "level": 111,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "巨熊",
@@ -239929,6 +240285,8 @@
       "display_name": "爱哭鬼",
       "level": 79,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "爱哭鬼",
@@ -239953,6 +240311,8 @@
       "display_name": "阿什利",
       "level": 19,
       "monster_type": 6,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "阿什利",
@@ -239977,6 +240337,8 @@
       "display_name": "蝗虫",
       "level": 86,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "蝗虫",
@@ -240001,6 +240363,8 @@
       "display_name": "荷花妖",
       "level": 79,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "荷花妖",
@@ -240025,6 +240389,8 @@
       "display_name": "庙灵",
       "level": 119,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "庙灵",
@@ -240049,6 +240415,8 @@
       "display_name": "仙人掌",
       "level": 81,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "仙人掌",
@@ -240073,6 +240441,8 @@
       "display_name": "红薯",
       "level": 53,
       "monster_type": 3,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "红薯",
@@ -240097,6 +240467,8 @@
       "display_name": "枯木树妖",
       "level": 75,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "枯木树妖",
@@ -240121,6 +240493,8 @@
       "display_name": "偷猎者",
       "level": 76,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "偷猎者",
@@ -240145,6 +240519,8 @@
       "display_name": "蝗虫",
       "level": 83,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "蝗虫",
@@ -240169,6 +240545,8 @@
       "display_name": "臭鼬",
       "level": 52,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "臭鼬",
@@ -240193,6 +240571,8 @@
       "display_name": "老鹰",
       "level": 44,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "老鹰",
@@ -240217,6 +240597,8 @@
       "display_name": "强化邪恶僵尸",
       "level": 150,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "强化邪恶僵尸",
@@ -240241,6 +240623,8 @@
       "display_name": "强化邪恶山精",
       "level": 155,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "强化邪恶山精",
@@ -240265,6 +240649,8 @@
       "display_name": "火山岩虫头领",
       "level": 58,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "火山岩虫头领",
@@ -240289,6 +240675,8 @@
       "display_name": "海盗头子扎布拉",
       "level": 45,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "海盗头子扎布拉",
@@ -240313,6 +240701,8 @@
       "display_name": "百年猪妖",
       "level": 174,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "百年猪妖",
@@ -240337,6 +240727,8 @@
       "display_name": "罗思",
       "level": 106,
       "monster_type": 6,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "罗思",
@@ -240361,6 +240753,8 @@
       "display_name": "黑铁矿",
       "level": 51,
       "monster_type": 4,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "黑铁矿",
@@ -240385,6 +240779,8 @@
       "display_name": "鸦片贩子",
       "level": 49,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "鸦片贩子",
@@ -240409,6 +240805,8 @@
       "display_name": "火凤凰",
       "level": 131,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "火凤凰",
@@ -240433,6 +240831,8 @@
       "display_name": "缩水僵尸",
       "level": 89,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "缩水僵尸",
@@ -240457,6 +240857,8 @@
       "display_name": "狼妖",
       "level": 46,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "狼妖",
@@ -240481,6 +240883,8 @@
       "display_name": "变色龙",
       "level": 125,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "变色龙",
@@ -240505,6 +240909,8 @@
       "display_name": "邪恶僵尸",
       "level": 154,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "邪恶僵尸",
@@ -240529,6 +240935,8 @@
       "display_name": "鹤笔翁",
       "level": 142,
       "monster_type": 6,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "鹤笔翁",
@@ -240553,6 +240961,8 @@
       "display_name": "僵尸",
       "level": 113,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "僵尸",
@@ -240577,6 +240987,8 @@
       "display_name": "鲨鱼",
       "level": 14,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "鲨鱼",
@@ -240601,6 +241013,8 @@
       "display_name": "妖龙",
       "level": 117,
       "monster_type": 6,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "妖龙",
@@ -240625,6 +241039,8 @@
       "display_name": "沼泽蜂",
       "level": 65,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "沼泽蜂",
@@ -240649,6 +241065,8 @@
       "display_name": "梅花鹿",
       "level": 100,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "梅花鹿",
@@ -240673,6 +241091,8 @@
       "display_name": "王道长（魔）",
       "level": 166,
       "monster_type": 6,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "王道长（魔）",
@@ -240697,6 +241117,8 @@
       "display_name": "海砂虫",
       "level": 77,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "海砂虫",
@@ -240721,6 +241143,8 @@
       "display_name": "山魈",
       "level": 98,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "山魈",
@@ -240745,6 +241169,8 @@
       "display_name": "地精",
       "level": 46,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "地精",
@@ -240769,6 +241195,8 @@
       "display_name": "野猴",
       "level": 85,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "野猴",
@@ -240793,6 +241221,8 @@
       "display_name": "倭寇",
       "level": 41,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "倭寇",
@@ -240817,6 +241247,8 @@
       "display_name": "迈克探长",
       "level": 121,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "迈克探长",
@@ -240841,6 +241273,8 @@
       "display_name": "迈克探长",
       "level": 139,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "迈克探长",
@@ -240865,6 +241299,8 @@
       "display_name": "幽灵",
       "level": 103,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "幽灵",
@@ -240889,6 +241325,8 @@
       "display_name": "挪威海盗",
       "level": 18,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "挪威海盗",
@@ -240913,6 +241351,8 @@
       "display_name": "卡鲁",
       "level": 23,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "卡鲁",
@@ -240937,6 +241377,8 @@
       "display_name": "巨红蜈蚣王",
       "level": 70,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "巨红蜈蚣王",
@@ -240961,6 +241403,8 @@
       "display_name": "邪恶山精",
       "level": 47,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "邪恶山精",
@@ -240985,6 +241429,8 @@
       "display_name": "邪恶水妖",
       "level": 154,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "邪恶水妖",
@@ -241009,6 +241455,8 @@
       "display_name": "亚丁海盗",
       "level": 50,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "亚丁海盗",
@@ -241033,6 +241481,8 @@
       "display_name": "亚丁海盗",
       "level": 27,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "亚丁海盗",
@@ -241057,6 +241507,8 @@
       "display_name": "清水之精",
       "level": 146,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "清水之精",
@@ -241081,6 +241533,8 @@
       "display_name": "米罗",
       "level": 16,
       "monster_type": 6,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "米罗",
@@ -241105,6 +241559,8 @@
       "display_name": "邪恶山精",
       "level": 154,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "邪恶山精",
@@ -241129,6 +241585,8 @@
       "display_name": "摩西",
       "level": 49,
       "monster_type": 6,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "摩西",
@@ -241153,6 +241611,8 @@
       "display_name": "千年巨蟒",
       "level": 130,
       "monster_type": 6,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "千年巨蟒",
@@ -241177,6 +241637,8 @@
       "display_name": "哈鲁达",
       "level": 64,
       "monster_type": 6,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "哈鲁达",
@@ -241201,6 +241663,12 @@
       "display_name": "海贼",
       "level": 9,
       "monster_type": 5,
+      "effect": {
+        "chance": 0.12,
+        "name": "中毒",
+        "rounds": 2
+      },
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "海贼",
@@ -241225,6 +241693,8 @@
       "display_name": "挪威海盗",
       "level": 27,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "挪威海盗",
@@ -241249,6 +241719,8 @@
       "display_name": "学者魂",
       "level": 94,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "学者魂",
@@ -241273,6 +241745,8 @@
       "display_name": "村落首领",
       "level": 31,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "村落首领",
@@ -241297,6 +241771,8 @@
       "display_name": "偷渡客",
       "level": 23,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "偷渡客",
@@ -241321,6 +241797,8 @@
       "display_name": "大白鲨",
       "level": 52,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "大白鲨",
@@ -241345,6 +241823,8 @@
       "display_name": "萨贝拉",
       "level": 134,
       "monster_type": 6,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "萨贝拉",
@@ -241369,6 +241849,8 @@
       "display_name": "金丝绵羊",
       "level": 98,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "金丝绵羊",
@@ -241393,6 +241875,8 @@
       "display_name": "巨红蜈蚣",
       "level": 62,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "巨红蜈蚣",
@@ -241417,6 +241901,8 @@
       "display_name": "阳本武士",
       "level": 76,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "阳本武士",
@@ -241441,6 +241927,8 @@
       "display_name": "章鱼怪",
       "level": 94,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "章鱼怪",
@@ -241465,6 +241953,8 @@
       "display_name": "巨型蠕虫",
       "level": 41,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "巨型蠕虫",
@@ -241489,6 +241979,8 @@
       "display_name": "大毒枭杰克",
       "level": 51,
       "monster_type": 6,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "大毒枭杰克",
@@ -241513,6 +242005,8 @@
       "display_name": "田鼠精",
       "level": 109,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "田鼠精",
@@ -241537,6 +242031,8 @@
       "display_name": "流魂",
       "level": 109,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "流魂",
@@ -241561,6 +242057,8 @@
       "display_name": "毒贩子",
       "level": 26,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "毒贩子",
@@ -241585,6 +242083,8 @@
       "display_name": "雪精灵",
       "level": 140,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "雪精灵",
@@ -241609,6 +242109,8 @@
       "display_name": "野狼王",
       "level": 83,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "野狼王",
@@ -241633,6 +242135,8 @@
       "display_name": "约根森",
       "level": 17,
       "monster_type": 6,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "约根森",
@@ -241657,6 +242161,8 @@
       "display_name": "金丝猴",
       "level": 70,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "金丝猴",
@@ -241681,6 +242187,8 @@
       "display_name": "水怪",
       "level": 81,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "水怪",
@@ -241705,6 +242213,8 @@
       "display_name": "僵尸",
       "level": 134,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "僵尸",
@@ -241729,6 +242239,8 @@
       "display_name": "雄虎",
       "level": 61,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "雄虎",
@@ -241753,6 +242265,8 @@
       "display_name": "百合花精",
       "level": 64,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "百合花精",
@@ -241777,6 +242291,8 @@
       "display_name": "伦敦赌徒",
       "level": 2,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "伦敦赌徒",
@@ -241801,6 +242317,16 @@
       "display_name": "白虎",
       "level": 20,
       "monster_type": 5,
+      "effect": {
+        "chance": 0.22,
+        "name": "虚弱",
+        "rounds": 3
+      },
+      "special": {
+        "damage_multiplier": 1.45,
+        "every": 4,
+        "name": "白虎咆哮"
+      },
       "runtime_capability": "queryable",
       "identity_signature": [
         "白虎",
@@ -241825,6 +242351,8 @@
       "display_name": "莲花仙子",
       "level": 84,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "莲花仙子",
@@ -241849,6 +242377,8 @@
       "display_name": "邪恶僵尸",
       "level": 149,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "邪恶僵尸",
@@ -241873,6 +242403,8 @@
       "display_name": "双头蛇",
       "level": 21,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "双头蛇",
@@ -241897,6 +242429,8 @@
       "display_name": "牛头怪",
       "level": 55,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "牛头怪",
@@ -241921,6 +242455,8 @@
       "display_name": "尖牙毒蛇",
       "level": 66,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "尖牙毒蛇",
@@ -241945,6 +242481,8 @@
       "display_name": "豹妖",
       "level": 94,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "豹妖",
@@ -241969,6 +242507,8 @@
       "display_name": "大黄蜂",
       "level": 119,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "大黄蜂",
@@ -241993,6 +242533,8 @@
       "display_name": "白云之精",
       "level": 40,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "白云之精",
@@ -242017,6 +242559,8 @@
       "display_name": "蛇牙草",
       "level": 119,
       "monster_type": 3,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "蛇牙草",
@@ -242041,6 +242585,8 @@
       "display_name": "邪恶花精",
       "level": 152,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "邪恶花精",
@@ -242065,6 +242611,8 @@
       "display_name": "白骨骷髅",
       "level": 83,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "白骨骷髅",
@@ -242089,6 +242637,12 @@
       "display_name": "乌龟",
       "level": 8,
       "monster_type": 5,
+      "effect": {
+        "chance": 0.1,
+        "name": "缓慢",
+        "rounds": 2
+      },
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "乌龟",
@@ -242113,6 +242667,8 @@
       "display_name": "清水之精",
       "level": 81,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "清水之精",
@@ -242137,6 +242693,8 @@
       "display_name": "百花妖王",
       "level": 44,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "百花妖王",
@@ -242161,6 +242719,8 @@
       "display_name": "魔物",
       "level": 26,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "魔物",
@@ -242185,6 +242745,8 @@
       "display_name": "黑蚌",
       "level": 176,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "黑蚌",
@@ -242209,6 +242771,8 @@
       "display_name": "索马里海盗",
       "level": 26,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "索马里海盗",
@@ -242233,6 +242797,8 @@
       "display_name": "山猪",
       "level": 22,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "山猪",
@@ -242257,6 +242823,8 @@
       "display_name": "海怪",
       "level": 123,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "海怪",
@@ -242281,6 +242849,8 @@
       "display_name": "狐仙",
       "level": 88,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "狐仙",
@@ -242305,6 +242875,8 @@
       "display_name": "地魔",
       "level": 104,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "地魔",
@@ -242329,6 +242901,8 @@
       "display_name": "江湖郎中",
       "level": 64,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "江湖郎中",
@@ -242353,6 +242927,12 @@
       "display_name": "偷矿者",
       "level": 1,
       "monster_type": 5,
+      "effect": {
+        "chance": 0.14,
+        "name": "缓慢",
+        "rounds": 2
+      },
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "偷矿者",
@@ -242377,6 +242957,8 @@
       "display_name": "佐佐木",
       "level": 75,
       "monster_type": 6,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "佐佐木",
@@ -242401,6 +242983,8 @@
       "display_name": "扎布拉",
       "level": 70,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "扎布拉",
@@ -242425,6 +243009,8 @@
       "display_name": "圣甲虫",
       "level": 66,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "圣甲虫",
@@ -242449,6 +243035,16 @@
       "display_name": "棕熊",
       "level": 11,
       "monster_type": 5,
+      "effect": {
+        "chance": 0.25,
+        "name": "虚弱",
+        "rounds": 3
+      },
+      "special": {
+        "damage_multiplier": 1.42,
+        "every": 3,
+        "name": "熊掌重拍"
+      },
       "runtime_capability": "queryable",
       "identity_signature": [
         "棕熊",
@@ -242473,6 +243069,8 @@
       "display_name": "水怪",
       "level": 52,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "水怪",
@@ -242497,6 +243095,8 @@
       "display_name": "神秘人",
       "level": 52,
       "monster_type": 6,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "神秘人",
@@ -242521,6 +243121,8 @@
       "display_name": "索马里狂海盗",
       "level": 47,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "索马里狂海盗",
@@ -242545,6 +243147,8 @@
       "display_name": "锯齿老鼠",
       "level": 47,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "锯齿老鼠",
@@ -242569,6 +243173,8 @@
       "display_name": "利爪猫妖",
       "level": 117,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "利爪猫妖",
@@ -242593,6 +243199,8 @@
       "display_name": "魔物",
       "level": 76,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "魔物",
@@ -242617,6 +243225,8 @@
       "display_name": "火蝙蝠",
       "level": 126,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "火蝙蝠",
@@ -242641,6 +243251,8 @@
       "display_name": "山地虎",
       "level": 113,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "山地虎",
@@ -242665,6 +243277,8 @@
       "display_name": "水之精",
       "level": 163,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "水之精",
@@ -242689,6 +243303,8 @@
       "display_name": "张三彪",
       "level": 135,
       "monster_type": 6,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "张三彪",
@@ -242713,6 +243329,8 @@
       "display_name": "莲花仙子",
       "level": 173,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "莲花仙子",
@@ -242737,6 +243355,8 @@
       "display_name": "一团黑气",
       "level": 176,
       "monster_type": 6,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "一团黑气",
@@ -242761,6 +243381,8 @@
       "display_name": "流魂",
       "level": 46,
       "monster_type": 5,
+      "effect": null,
+      "special": null,
       "runtime_capability": "queryable",
       "identity_signature": [
         "流魂",
@@ -284350,7 +284972,7 @@
     "preview_routes_supported": false,
     "normal_runtime_reads_this_section": false
   },
-  "content_sha256": "3278b44079070f3fb3f1358986e582287eb336931a30902609326c7f5ada0236",
+  "content_sha256": "464d194ea19caa2bbca9ad18e9496cf33b161a142d81cb3a98f7575a5153f162",
   "entity_counts": {
     "tasks": 651,
     "cities": 28,
