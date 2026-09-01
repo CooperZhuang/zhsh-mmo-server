@@ -1039,9 +1039,15 @@ class CombatRuntime {
           adjustCrewLoyalty(state, +2); // 并肩取胜 → 船员忠诚提升
           // 餐食 buff：每获胜一场递减剩余场次，归零自动清除
           const mealBuffAfter=consumeMealBattle(state);
+          let taskEvent=null;
+          if(this.taskEngine){
+            try{ taskEvent=this.taskEngine.processEvent(playerId,{ event_id:`${eventId}.defeat`,type:'defeat_monster',
+              monster_canonical_id:monster.canonical_id,location_canonical_id:combat.location_canonical_id,quantity:1 }); }
+            catch(taskError){ taskEvent={error:taskError.message}; }
+          }
           return { applied:true,action:'combat_won',combat_canonical_id:combatId,monster_canonical_id:monster.canonical_id,
             location_canonical_id:combat.location_canonical_id,player_damage:playerDamage,pet_damage:petDamage,experience,money,progression,
-            stamina_item:appliedStaminaItems.at(-1)??null,stamina_items:[...appliedStaminaItems],batched_rounds:batchRound+1,meal_buff:mealBuffAfter };
+            stamina_item:appliedStaminaItems.at(-1)??null,stamina_items:[...appliedStaminaItems],batched_rounds:batchRound+1,meal_buff:mealBuffAfter,task_event:taskEvent };
         }
         const monsterDamage=damage(combat.monster_stats.attack,combat.monster_stats.max_attack,stats.defense,combat.monster_stats.agility,stats.agility,this.random);
         state.player.current_health=Math.max(0,state.player.current_health-monsterDamage);
