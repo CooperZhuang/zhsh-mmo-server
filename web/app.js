@@ -27,7 +27,7 @@ let page = { name:'start' };
 
 function bindRuntimeTargets() {
   // 逻辑：各运行时方法 (playerId, ...args, eventId) -> gameApi.runtime(gadget, method, {_arg1.._arg3}, eventId)
-  const runtimeGadgets = ['combat','npcDuel','dungeon','diving','economy','equipment','enhance','fishing','items','market','maritime','pets','recovery','ships','voyage','discover'];
+  const runtimeGadgets = ['combat','npcDuel','dungeon','diving','economy','equipment','enhance','fishing','items','market','maritime','pets','recovery','ships','voyage','discover','cook'];
   const proxies = {};
   for (const gadget of runtimeGadgets) {
     proxies[gadget] = new Proxy({}, {
@@ -181,7 +181,7 @@ async function render() {
   const renderers = {
     location:renderLocationPage,map:renderMapPage,world:renderWorldPage,npc:renderNpcPage,tasks:renderTaskListPage,task:renderTaskDetailPage,
     backpack:renderBackpackPage,item:renderItemDetailPage,encounter:renderFormalEncounterPage,shop:renderFormalShopPage,voyage:renderFormalVoyagePage,status:renderStatusPage,save:renderSavePage,compendium:renderCompendiumPage,admin:renderAdminPage,settings:renderSettingsPage,
-    market:renderMarketPage,pets:renderPetsPage,enhance:renderEnhancePage,regions:renderRegionsPage,discoveries:renderDiscoveriesPage,questline:renderQuestlinePage,
+    market:renderMarketPage,pets:renderPetsPage,enhance:renderEnhancePage,regions:renderRegionsPage,discoveries:renderDiscoveriesPage,questline:renderQuestlinePage,cook:renderCookPage,
   };
   try { (renderers[page.name] ?? renderLocationPage)(); }
   catch (error) { showFatal(error); }
@@ -278,6 +278,7 @@ function renderLocationPage() {
     ${journeys.length ? '<p>【<button class="text-link" data-page="voyage">出航</button>】</p>' : ''}
     ${shopEntries.length ? '<p>【<button class="text-link" data-page="shop">商店</button>】</p>' : ''}
     ${recoveryServices.map((service)=>`<p>【<button class="text-link" data-recovery="${attr(service.canonical_id)}">向神父祈祷恢复体力</button>】</p>`).join('')}
+    ${(content.recipes??[]).filter((r)=>r.port_city_canonical_id===view.current_location?.city_canonical_id).length ? '<p>【<button class="text-link" data-page="cook">烹饪台</button>】</p>' : ''}
     ${renderPrimaryNav()}
   </section>`;
   bindPageActions();bindFormalPageActions();
@@ -635,6 +636,7 @@ function renderItemDetailPage() {
     ${gear?`<p>装备等级：${gear.required_level??1}</p><p>${stats.map(([name,value])=>`${name}+${value}`).join('、')||'无附加属性'}</p>
       ${Number(gear.equipment_type)===6?'<p><button class="text-link" data-equip-item="'+attr(id)+'" data-accessory-index="0">装备至饰品槽1</button>　<button class="text-link" data-equip-item="'+attr(id)+'" data-accessory-index="1">槽2</button>　<button class="text-link" data-equip-item="'+attr(id)+'" data-accessory-index="2">槽3</button></p>':`<p><button class="text-link" data-equip-item="${attr(id)}">穿戴</button></p>`}`:''}
     ${healing>0?`<p>恢复体力：${healing}</p><p><button class="text-link" data-use-item="${attr(id)}">使用</button></p>`:''}
+    ${item.normalized_data?.catalog==='mealItems'||item.buff?`<p>${item.buff?`多场战斗加成：攻击+${Number(item.buff.attack??0)} 防御+${Number(item.buff.defense??0)} 体力+${Number(item.buff.max_health??0)} 敏捷+${Number(item.buff.agility??0)}（${Number(item.buff.battles??3)}场）`:''}</p><p><button class="text-link" data-eat-meal="${attr(id)}">食用</button></p>`:''}
     <p><button class="text-link" data-page="backpack">返回背包</button></p>${renderPrimaryNav()}</section>`;
   bindPageActions();bindFormalPageActions();
 }
@@ -659,6 +661,22 @@ function renderFormalEncounterPage() {
         :`<section class="encounter-row">${renderCanonicalVisual(action.monster_canonical_id,'encounter-icon')}<p><strong>挑战${escapeHtml(action.display_name)}</strong>（${action.level}级）</p>
         <p>${action.task?`任务进度：${renderProgressText(action.task)}`:'自由遭遇，可重复挑战'} · 经验${action.experience} · 铜币${action.copper}</p>
         <p><button class="text-link" data-combat-start="${attr(action.monster_canonical_id)}">进入战斗</button></p></section>`).join('') : '<p>当前位置没有可执行的正式战斗目标。</p>'}
+    <p><button class="text-link" data-page="location">返回</button></p>${renderPrimaryNav()}</section>`;
+  bindPageActions();bindFormalPageActions();
+}
+
+function renderCookPage() {
+  document.body.dataset.page='cook';const view=serverView;
+  const cityId=view.current_location?.city_canonical_id;
+  const cityRecipes=(content.recipes??[]).filter((r)=>r.port_city_canonical_id===cityId);
+  const meals=(content.items??[]).filter((item)=>item.normalized_data?.catalog==='mealItems'||(content.content_entities??[]).find((ce)=>ce.canonical_id===item.canonical_id)?.normalized_data?.catalog==='mealItems');
+  app.innerHTML=`<section class="wap-page"><p><strong>${renderUiIcon('烹饪')}烹饪台</strong></p>${renderFeedback()}<p>铜币：${view.player.money}</p>
+    ${cityRecipes.length ? cityRecipes.map((recipe)=>{
+      const cargo=(Object.entries(recipe.cargo??{}).map(([ingredientId,quantity])=>{const ing=(content.content_entities??[]).find((ce)=>ce.canonical_id===ingredientId)??null;const owned=view.inventory[ingredientId]??0;return `${ing?escapeHtml(ing.display_name):ingredientId}(${owned}/${quantity})`;})).join(' + ');
+      const affordable=Object.entries(recipe.cargo??{}).every(([ingredientId,quantity])=>Number(view.inventory[ingredientId]??0)>=Number(quantity));
+      const meal=(content.content_entities??[]).find((ce)=>ce.canonical_id===recipe.result_item_canonical_id);
+      return `<p class="asset-row">${meal?renderCanonicalVisual(meal.canonical_id,'item-icon'):''}<strong>${escapeHtml(recipe.display_name)}</strong>（${cargo}）　<button class="text-link" data-cook="${attr(recipe.canonical_id)}" ${affordable?'':'disabled'}>烹制</button></p>`;
+    }).join('') : '<p>当前城市没有可烹制的配方。</p>'}
     <p><button class="text-link" data-page="location">返回</button></p>${renderPrimaryNav()}</section>`;
   bindPageActions();bindFormalPageActions();
 }
@@ -961,6 +979,12 @@ function bindFormalPageActions() {
     ()=>diving.dive(PLAYER_ID,eventId('diving-attempt')),'潜水探查已经完成。','voyage')));
   document.querySelectorAll('[data-diving-enter]').forEach((button)=>button.addEventListener('click',()=>perform(
     ()=>diving.enter(PLAYER_ID,eventId('diving-enter')),'已经进入海底地点。','encounter')));
+  document.querySelectorAll('[data-maritime-dismiss]').forEach((button)=>button.addEventListener('click',()=>perform(
+    ()=>maritime.dismiss(PLAYER_ID,eventId('maritime-dismiss')),'已经放弃继续航行。','voyage')));
+  document.querySelectorAll('[data-cook]').forEach((button)=>button.addEventListener('click',()=>perform(
+    ()=>cook.cook(PLAYER_ID,button.dataset.cook,eventId('cook')),'已经烹制完成。','cook')));
+  document.querySelectorAll('[data-eat-meal]').forEach((button)=>button.addEventListener('click',()=>perform(
+    ()=>cook.consumeMeal(PLAYER_ID,button.dataset.eatMeal,eventId('eat-meal')),'已经食用餐食。','backpack')));
 }
 
 function bindAdminActions() {

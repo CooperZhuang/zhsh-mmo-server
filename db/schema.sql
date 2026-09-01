@@ -393,4 +393,49 @@ CREATE INDEX IF NOT EXISTS idx_monster_name ON monster_definitions(display_name)
 CREATE INDEX IF NOT EXISTS idx_dependency_status ON dependency_references(resolution_status, reference_context);
 CREATE INDEX IF NOT EXISTS idx_tasks_series ON task_definitions(task_series_id, sequence_position);
 CREATE INDEX IF NOT EXISTS idx_evidence_record ON source_evidence(restoration_record_id);
-CREATE INDEX IF NOT EXISTS idx_player_tasks_status ON player_tasks(player_canonical_id, status);
+
+-- 玩法型任务目标数据层（吸收自《纵横四海·潮汐纪事》，数值锚定本项目基准）
+CREATE TABLE IF NOT EXISTS recipes (
+  id INTEGER PRIMARY KEY,
+  canonical_id TEXT NOT NULL UNIQUE,
+  display_name TEXT NOT NULL,
+  port_city_canonical_id TEXT NOT NULL REFERENCES cities(canonical_id),
+  cargo_json TEXT NOT NULL CHECK(json_valid(cargo_json)),
+  silver_cost REAL NOT NULL,
+  result_item_canonical_id TEXT NOT NULL REFERENCES content_entities(canonical_id),
+  description TEXT NOT NULL,
+  source_canonical_id TEXT
+) STRICT;
+CREATE TABLE IF NOT EXISTS trade_goods (
+  id INTEGER PRIMARY KEY,
+  canonical_id TEXT NOT NULL UNIQUE,
+  display_name TEXT NOT NULL,
+  unit TEXT NOT NULL,
+  space INTEGER NOT NULL,
+  supply INTEGER NOT NULL,
+  demand INTEGER NOT NULL,
+  origin_city_canonical_id TEXT NOT NULL REFERENCES cities(canonical_id),
+  prices_json TEXT NOT NULL CHECK(json_valid(prices_json)),
+  source_canonical_id TEXT
+) STRICT;
+CREATE TABLE IF NOT EXISTS trade_orders (
+  id INTEGER PRIMARY KEY,
+  canonical_id TEXT NOT NULL UNIQUE,
+  title TEXT NOT NULL,
+  port_city_canonical_id TEXT NOT NULL REFERENCES cities(canonical_id),
+  good_canonical_id TEXT NOT NULL REFERENCES trade_goods(canonical_id),
+  amount INTEGER NOT NULL,
+  bonus REAL NOT NULL,
+  reputation INTEGER NOT NULL,
+  description TEXT NOT NULL,
+  source_canonical_id TEXT
+) STRICT;
+CREATE TABLE IF NOT EXISTS convoy_items (
+  id INTEGER PRIMARY KEY,
+  canonical_id TEXT NOT NULL UNIQUE,
+  display_name TEXT NOT NULL,
+  price REAL NOT NULL,
+  effect_json TEXT NOT NULL CHECK(json_valid(effect_json)),
+  description TEXT NOT NULL,
+  source_canonical_id TEXT
+) STRICT;

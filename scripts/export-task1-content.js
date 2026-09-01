@@ -363,10 +363,31 @@ function collectFormalGameplay(db,{ requiredMonsterIds,tasks,selection,cityIds,r
   }
   const baseDungeons=buildDungeonEncounters(db,JSON.parse(fs.readFileSync(dungeonEncountersPath,'utf8')),rewardRules,cityIds);
   const maritime=buildMaritimeGameplay(db,maritimeCapabilities,maritimeEntities,rewardRules,cityIds);
+  const recipeTrade=collectRecipeTrade(db);
   return { ships,voyage_routes:voyageRoutes,shops:dedupeByCanonical([...shops,...maritime.shops]),
     shop_entries:dedupeByCanonical([...shopEntries,...maritime.shop_entries]),formal_items:formalItems,
     equipment:dedupeByCanonical([...equipment,...maritime.equipment]),drop_relations:dedupeByCanonical([...dropRelations,...maritime.drop_relations]),
-    recovery_services:recoveryServices,gameplay_rules:gameplayRules,dungeons:[...baseDungeons,...maritime.dungeons],maritime:maritime.runtime };
+    recovery_services:recoveryServices,gameplay_rules:gameplayRules,dungeons:[...baseDungeons,...maritime.dungeons],maritime:maritime.runtime,
+    recipes:recipeTrade.recipes,trade_goods:recipeTrade.trade_goods,trade_orders:recipeTrade.trade_orders,convoy_items:recipeTrade.convoy_items };
+}
+
+function collectRecipeTrade(db) {
+  const recipes=db.prepare(`
+    SELECT canonical_id,source_canonical_id,display_name,port_city_canonical_id,cargo_json,silver_cost,result_item_canonical_id,description
+    FROM recipes ORDER BY id`).all().map(normalizeNumbers)
+    .map((entry)=>({ ...entry,cargo:JSON.parse(entry.cargo_json),cargo_json:undefined }));
+  const goods=db.prepare(`
+    SELECT canonical_id,source_canonical_id,display_name,unit,space,supply,demand,origin_city_canonical_id,prices_json
+    FROM trade_goods ORDER BY id`).all().map(normalizeNumbers)
+    .map((entry)=>({ ...entry,prices:JSON.parse(entry.prices_json).prices??{},prices_json:undefined }));
+  const orders=db.prepare(`
+    SELECT canonical_id,source_canonical_id,title,port_city_canonical_id,good_canonical_id,amount,bonus,reputation,description
+    FROM trade_orders ORDER BY id`).all().map(normalizeNumbers);
+  const convoy=db.prepare(`
+    SELECT canonical_id,source_canonical_id,display_name,price,effect_json,description
+    FROM convoy_items ORDER BY id`).all().map(normalizeNumbers)
+    .map((entry)=>({ ...entry,effect:JSON.parse(entry.effect_json),effect_json:undefined }));
+  return { recipes,trade_goods:goods,trade_orders:orders,convoy_items:convoy };
 }
 
 function buildMaritimeGameplay(db,data,entities,rewardRules,cityIds) {

@@ -34,7 +34,15 @@ class FormalGameplayCatalog {
     this.maritime = content.maritime ?? {};
     this.fishingGear = index(this.maritime.fishing?.gear);
     this.fishingCatches = index((this.maritime.fishing?.catches ?? []).map((entry)=>({ ...entry,canonical_id:entry.content_entity_canonical_id })));
+    this.recipes = index(content.recipes);
+    this.tradeGoods = index(content.trade_goods);
+    this.tradeOrders = index(content.trade_orders);
+    this.convoyItems = index(content.convoy_items);
   }
+  getRecipe(id) { return required(this.recipes,id,'recipe'); }
+  getTradeGood(id) { return required(this.tradeGoods,id,'trade good'); }
+  getTradeOrder(id) { return required(this.tradeOrders,id,'trade order'); }
+  getConvoyItem(id) { return required(this.convoyItems,id,'convoy item'); }
   getShip(id) { return required(this.ships,id,'ship'); }
   listShipsAtPort(cityId) { return [...this.ships.values()].filter((entry) => entry.city_canonical_id === cityId); }
   getRoute(id) { return required(this.routes,id,'voyage route'); }
@@ -218,6 +226,50 @@ class MaritimeRuntime {
     else if(effect.type==='equipmentReward'){const name=effect.equipmentList[Math.min(effect.equipmentList.length-1,Math.floor(this.random()*effect.equipmentList.length))];
       const item=this.catalog.findItemByName(name);if(item){state.inventory[item.canonical_id]=(state.inventory[item.canonical_id]??0)+1;result.content_entity_canonical_id=item.canonical_id;}}
     return result;
+  }
+}
+
+class CookRuntime {
+  constructor({ storage,catalog,taskEngine=null,clock=isoNow }) {
+    this.storage=storage;this.catalog=catalog;this.taskEngine=taskEngine;this.clock=clock;
+  }
+  // 在当前城市港口按配方烹制餐食：扣素材 + 计费 + 产出餐食物品
+  cook(playerId,recipeId,eventId) {
+    return transactEvent(this.storage,playerId,eventId,'recipe_cook',{ recipe_canonical_id:recipeId },this.clock,(state) => {
+      const recipe=this.catalog.getRecipe(recipeId);
+      const city=this.currentCityId(state);
+      if(recipe.port_city_canonical_id!==city)throw new Error(`该配方须在对应港口烹制（${recipe.port_city_canonical_id}）。`);
+      if(Number(state.player.money)<Number(recipe.silver_cost??0))throw new Error('银币不足，无法支付烹制费用。');
+      for(const [ingredientId,quantity] of Object.entries(recipe.cargo??{})) {
+        if(Number(state.inventory[ingredientId]??0)<Number(quantity))throw new Error('食材不足，无法烹制。');
+      }
+      state.player.money-=Number(recipe.silver_cost??0);
+      for(const [ingredientId,quantity] of Object.entries(recipe.cargo??{}))setInventory(state,ingredientId,Number(state.inventory[ingredientId])-Number(quantity));
+      const meal=this.catalog.getItem(recipe.result_item_canonical_id);
+      const mealId=meal.canonical_id;
+      state.inventory[mealId]=(state.inventory[mealId]??0)+1;
+      const buff=meal.normalized_data?.buff??meal.buff??null;
+      return {applied:true,action:'meal_cooked',recipe_canonical_id:recipeId,result_item_canonical_id:mealId,
+        display_name:meal.display_name??mealId,buff,remaining_money:Number(state.player.money)};
+    });
+  }
+  // 食用餐食：设置多场战斗 buff
+  consumeMeal(playerId,mealId,eventId) {
+    return transactEvent(this.storage,playerId,eventId,'meal_consume',{ item_canonical_id:mealId },this.clock,(state) => {
+      if(Number(state.inventory[mealId]??0)<1)throw new Error('背包中没有该餐食。');
+      const meal=this.catalog.getItem(mealId);
+      const buff=meal.normalized_data?.buff??meal.buff??null;
+      if(!buff)throw new Error('该物品不是可食用餐食。');
+      setInventory(state,mealId,Number(state.inventory[mealId])-1);
+      state.player.meal_buff={ ...buff,remaining_battles:Number(buff.battles??3) };
+      return {applied:true,action:'meal_consumed',item_canonical_id:mealId,display_name:meal.display_name??mealId,buff:{...state.player.meal_buff}};
+    });
+  }
+  currentCityId(state) {
+    const node=state.player.current_map_node_canonical_id;
+    const mapNode=this.catalog.content?.map_nodes?.find((entry)=>entry.map_node_canonical_id===node);
+    const loc=this.catalog.content?.locations?.find((entry)=>entry.canonical_id===mapNode?.location_canonical_id);
+    return loc?.city_canonical_id??null;
   }
 }
 
@@ -904,9 +956,11 @@ class CombatRuntime {
           if(monster.repeatable===false)state.encounter_defeats[combat.encounter_defeat_key??combat.placement_canonical_id]={defeated_at:this.clock(),monster_canonical_id:monster.canonical_id,task_context_canonical_id:combat.task_context_canonical_id??null};
           recordPlayerMemory(state,{type:'combat',text:`击败了${monster.display_name??monster.canonical_id}${monster.repeatable===false?'（强敌）':''}`,importance:monster.repeatable===false?3:1});
           adjustCrewLoyalty(state, +2); // 并肩取胜 → 船员忠诚提升
+          // 餐食 buff：每获胜一场递减剩余场次，归零自动清除
+          const mealBuffAfter=consumeMealBattle(state);
           return { applied:true,action:'combat_won',combat_canonical_id:combatId,monster_canonical_id:monster.canonical_id,
             location_canonical_id:combat.location_canonical_id,player_damage:playerDamage,pet_damage:petDamage,experience,money,progression,
-            stamina_item:appliedStaminaItems.at(-1)??null,stamina_items:[...appliedStaminaItems],batched_rounds:batchRound+1 };
+            stamina_item:appliedStaminaItems.at(-1)??null,stamina_items:[...appliedStaminaItems],batched_rounds:batchRound+1,meal_buff:mealBuffAfter };
         }
         const monsterDamage=damage(combat.monster_stats.attack,combat.monster_stats.max_attack,stats.defense,combat.monster_stats.agility,stats.agility,this.random);
         state.player.current_health=Math.max(0,state.player.current_health-monsterDamage);
@@ -1015,7 +1069,24 @@ function effectiveStats(state,catalog) {
     for (const tier of bonuses) if (count>=Number(tier.pieces)) applied=tier;
     if (applied) { for (const [stat,value] of Object.entries(applied.stats??{})) { result[stat]=(result[stat]??0)+Number(value); } }
   }
+  // 餐食 buff：食用后多场战斗获得攻击/防御/体力加成
+  const mealBuff=state.player?.meal_buff;
+  if(mealBuff&&Number(mealBuff.remaining_battles??0)>0){
+    result.attack+=Number(mealBuff.attack??0);result.max_attack+=Number(mealBuff.attack??0);
+    result.defense+=Number(mealBuff.defense??0);result.agility+=Number(mealBuff.agility??0);
+    result.max_health+=Number(mealBuff.max_health??0);result.morale+=Number(mealBuff.morale??0);
+  }
   return result;
+}
+
+// 每获胜一场递减餐食 buff 剩余场次，归零清除
+function consumeMealBattle(state) {
+  const buff=state.player?.meal_buff;
+  if(!buff||Number(buff.remaining_battles??0)<=0){state.player.meal_buff=null;return null;}
+  const next=Number(buff.remaining_battles)-1;
+  if(next<=0){state.player.meal_buff=null;return null;}
+  state.player.meal_buff={ ...buff,remaining_battles:next };
+  return { ...state.player.meal_buff };
 }
 
 function monsterStats(monster) {
@@ -1182,4 +1253,4 @@ function required(map,id,label) { const value=map.get(id);if(!value)throw new Er
 function stableJson(value) { if(value===null||typeof value!=='object')return JSON.stringify(value);if(Array.isArray(value))return`[${value.map(stableJson).join(',')}]`;return`{${Object.keys(value).sort().map((key)=>`${JSON.stringify(key)}:${stableJson(value[key])}`).join(',')}}`; }
 function isoNow() { return new Date().toISOString(); }
 
-module.exports = { CombatRuntime,DiscoverRuntime,DivingRuntime,DropRuntime,DungeonRuntime,EconomyRuntime,EquipmentRuntime,EquipmentEnhanceRuntime,FishingRuntime,FormalGameplayCatalog,GuildRuntime,CityRuntime,ItemRuntime,MarketRuntime,MaritimeRuntime,PetRuntime,RecoveryRuntime,RecruitRuntime,SkillRuntime,ShipRuntime,VoyageRuntime,EQUIPMENT_SLOT_BY_TYPE,applyTitle,chooseFishingWaitOutcome,damage,effectiveStats,fishingRarityWeights,monsterStats };
+module.exports = { CombatRuntime,CookRuntime,DiscoverRuntime,DivingRuntime,DropRuntime,DungeonRuntime,EconomyRuntime,EquipmentRuntime,EquipmentEnhanceRuntime,FishingRuntime,FormalGameplayCatalog,GuildRuntime,CityRuntime,ItemRuntime,MarketRuntime,MaritimeRuntime,PetRuntime,RecoveryRuntime,RecruitRuntime,SkillRuntime,ShipRuntime,VoyageRuntime,EQUIPMENT_SLOT_BY_TYPE,applyTitle,chooseFishingWaitOutcome,consumeMealBattle,damage,effectiveStats,fishingRarityWeights,monsterStats };

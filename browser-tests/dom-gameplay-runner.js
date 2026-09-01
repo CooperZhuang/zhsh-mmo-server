@@ -307,25 +307,30 @@ class DomGameplayScenario{
     const startError=await this.page.text('.error');
     if(startError){const diagnostic=await this.exportSave('voyage-start-error');throw new Error(`Voyage start failed for ${route.canonical_id}: ${startError}; money=${diagnostic.state.player.money}; fee=${route.fee}`);}
     if(this.contextReopens===0){await this.advanceVoyageStep();if(await this.page.pageName()==='voyage'){await this.restartBrowser();await this.ensurePage('voyage');}}
-    // 权威确认到港：点击「持续航行至靠岸」循环推进，直到服务端 voyage 清空（到港后页面自动回 location）
+    // 权威确认到港：以服务端状态为准同步推进（遇海上发现/钓鱼/副本先排空，再 advance 直至靠岸）
     const arrived=await this.page.evaluate(`(async()=>{
+      const token=localStorage.getItem('zhsh_token')??'';
+      const rt=async(gadget,method,args={})=>{
+        const r=await fetch('/api/game/runtime',{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+token},body:JSON.stringify({gadget,method,args,event_id:gadget+'-'+method+'.'+Date.now()})});
+        return r.json();
+      };
       const deadline=Date.now()+600000;
       while(Date.now()<deadline){
         try{
-          const resp=await fetch('/api/game/state',{headers:{Authorization:'Bearer '+(localStorage.getItem('zhsh_token')??'')}});
-          if(resp.ok){
-            const state=await resp.json();
-            if(!state.voyage)return {arrived:true,node:state.player?.current_map_node_canonical_id??null};
-            const finish=document.querySelector('[data-voyage-finish="1"]');
-            if(finish){finish.scrollIntoView({block:'center'});finish.click();(window.__voyagePollLog??=[]).push('finish-clicked');}
-            else{const advance=document.querySelector('[data-voyage-advance="1"]');if(advance){advance.scrollIntoView({block:'center'});advance.click();(window.__voyagePollLog??=[]).push('advance-clicked');}}
-          }
-        }catch{}
-        await new Promise((resolve)=>setTimeout(resolve,300));
+          const st=await (async()=>{const rr=await fetch('/api/game/state',{headers:{Authorization:'Bearer '+token}});return rr.ok?await rr.json():null;})();
+          if(!st||!st.voyage)return {arrived:true,node:st?.player?.current_map_node_canonical_id??null};
+          if(st.maritime_encounter){await rt('maritime','dismiss');(window.__voyagePollLog??=[]).push('dismiss');continue;}
+          if(st.fishing){await rt('fishing','stop');(window.__voyagePollLog??=[]).push('fishing-stop');continue;}
+          if(st.dungeon){await rt('dungeon','exit');(window.__voyagePollLog??=[]).push('dungeon-exit');continue;}
+          const adv=await rt('voyage','advance',{_arg1:1});
+          if(!adv.applied&&!(adv.remaining_distance===0||adv.action==='voyage_arrived')){(window.__voyagePollLog??=[]).push('advance-'+JSON.stringify(adv).slice(0,80));}
+          else (window.__voyagePollLog??=[]).push('adv.');
+        }catch(err){(window.__voyagePollLog??=[]).push('err:'+String(err.message??err).slice(0,60));}
+        await new Promise((resolve)=>setTimeout(resolve,150));
       }
-      return {arrived:false,log:window.__voyagePollLog?.slice?.(-8)??null};
+      return {arrived:false,log:window.__voyagePollLog?.slice?.(-12)??null};
     })()`);
-    assert.ok(arrived.arrived,`voyage ${route.canonical_id} did not arrive within 600s`);
+    assert.ok(arrived.arrived,`voyage ${route.canonical_id} did not arrive within 600s (log=${(arrived.log??[]).join(',')})`);
     this.currentNode=route.to_port_map_node_canonical_id;
     // 到港后由 perform 自动回 location；兜底经任务页返回
     const landed=await this.page.waitFor(`document.body.dataset.page==='location'`,{label:'arrival to location',timeout:30000}).then(()=>true).catch(()=>false);
