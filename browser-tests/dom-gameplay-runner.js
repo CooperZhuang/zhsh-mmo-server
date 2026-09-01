@@ -332,7 +332,9 @@ class DomGameplayScenario{
     })()`);
     assert.ok(arrived.arrived,`voyage ${route.canonical_id} did not arrive within 600s (log=${(arrived.log??[]).join(',')})`);
     this.currentNode=route.to_port_map_node_canonical_id;
-    // 到港后由 perform 自动回 location；兜底经任务页返回
+    // API-sync 到港后前端 serverView 仍为航行旧值 → 强制 reload 让页面从服务端取到到港后的 location 视图
+    this.pageRefreshes+=1;
+    await this.page.reload().catch(()=>{});
     const landed=await this.page.waitFor(`document.body.dataset.page==='location'`,{label:'arrival to location',timeout:30000}).then(()=>true).catch(()=>false);
     if(!landed){
       const tasks='.primary-nav [data-page="tasks"]';
