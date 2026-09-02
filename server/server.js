@@ -33,7 +33,7 @@ const { memoryDigest, buildWorldContext } = require('./ai/ai-memory');
 const { decideChainEvent } = require('./eco/ai-event-chain');
 const { aiGenerateWorldSidequest } = require('./ai/ai-quest-gen');
 const { aiCrewLine } = require('./ai/ai-crew');
-const { aiGrandpaAdvice, buildGrandpaContext } = require('./ai/ai-grandpa');
+const { aiGrandpaAdvice, buildGrandpaContext, buildTradeContext } = require('./ai/ai-grandpa');
 
 const ROOT = path.resolve(__dirname, '..');
 const DIST = process.env.ZHSH_DIST || path.join(ROOT, 'dist');
@@ -648,18 +648,24 @@ const server = http.createServer(async (req, res) => {
         }
       }
       if (pathname === '/api/game/advisor' && req.method === 'POST') {
-        // 「老爷爷」AI 顾问：把玩家状态/任务链/背包打包，让 ollama 给 1-3 条行动建议。
+        // 「老爷爷」AI 顾问：把玩家状态/任务链/背包 + 跨区域贸易机会打包，让 ollama 给 1-3 条行动/跑商建议。
         // 任何 AI 失败都返回保底建议（defaultAdvice），绝不让 AI 错误阻断玩家。
         const { question } = JSON.parse(await readBody(req) || '{}');
+        const state = engine.loadPlayer(auth.playerCanonicalId);
+        const content = loadContent();
+        const ctx = buildGrandpaContext(state, content);
+        const cityId = state.player.current_city_canonical_id
+          ?? (content.map_nodes ?? []).find((n) => n.map_node_canonical_id === state.player.current_map_node_canonical_id)?.city_canonical_id
+          ?? null;
+        const cargoText = Object.values(state.cargo ?? {});
+        const cargoHolds = cargoText.reduce((s, q) => s + Number(q), 0);
+        const cargoCapacity = state.cargo_capacity ?? 0;
+        const trade = buildTradeContext(content, getEconomy(), cityId, state.player.money ?? 0, cargoHolds, cargoCapacity);
         try {
-          const state = engine.loadPlayer(auth.playerCanonicalId);
-          const ctx = buildGrandpaContext(state, loadContent());
-          const advice = await aiGrandpaAdvice(ctx, typeof question === 'string' ? question.slice(0, 200) : '');
+          const advice = await aiGrandpaAdvice(ctx, typeof question === 'string' ? question.slice(0, 200) : '', trade);
           return sendJson(res, 200, advice);
         } catch (err) {
-          const state = engine.loadPlayer(auth.playerCanonicalId);
-          const ctx = buildGrandpaContext(state, loadContent());
-          return sendJson(res, 200, { advice: buildGrandpaContext(state, loadContent()) && `（老爷爷擦擦汗）${err.message}`, source: 'fallback', fallback: true, context: ctx });
+          return sendJson(res, 200, { advice: `（老爷爷擦擦汗）${err.message}`, source: 'fallback', fallback: true, context: ctx, trade });
         }
       }
       if (pathname === '/api/game/task_narrative' && req.method === 'POST') {
