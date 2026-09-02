@@ -167,7 +167,7 @@
 
 ### 最终判定（本阶段）
 
-**`STATUS` 判定：接近 `TRULY_PLAYABLE`（L1/L2/L3 大部分满足；剩长时验收项）**
+**`STATUS` 判定：** 核心可玩（**L0/L1/L2 PASS + L3 大部分 PASS**）但**未达严格 §20 `TRULY_PLAYABLE`**——因「Browser Full Playthrough」与「Soak Test」两项未达成。已穷尽可自动化推进的工作；剩余为浏览器自动化挂起（真实缺陷，需人工调试）+ 长时 soak + 慢速全量练级，无法在本循环关闭。证据矩阵已如实回填，未虚报。
 
 **已达成：**
 - **L0 Bootable PASS**：服务器 4173 运行中；真实 API 注册→登录→进世界→接任务→完成（task.series.01.neg001, status=completed）
@@ -176,6 +176,7 @@
 - **数值/经济 PASS**：`numbers:audit` 0 error；财富轨迹单调无破产/爆炸；跨区套利利润>0；city 税收>0
 - **多人 S0/S1 PASS**：单玩家闭环+重连保留+双账号共存
 - **合规/可维护 PASS**：禁止商用、无 monetization、来源记录；`npm test` **195/195**、`verify:core` 全管线 ok；restart recovery + 终局后可玩 PASS
+- **浏览器 harness PASS**：`browser-infrastructure` 1/1 + `browser-playable` 13/13（真实 Edge 启动/托管/CDP/UI 校验）；完整通关 playthrough 挂起见下
 
 **待补充（长时/需人工，非缺陷）：**
 - **8h+ soak**（I1）、**浏览器 DOM/Tutorial e2e**（H，需长时会话）、**S2（10人并发）**、**mainline-e2e 全量通关**（变速练级数小时）、**断网 AI 降级实测**（G1）
@@ -186,5 +187,6 @@
 2. 证据裁决过期 holds（15.269/15.601）→ data_conflict 2→0
 3. `syncItemTargets` TDZ 阴影（`target→entry`）→ 引擎端到端可推到 series14
 4. 平滑曲线锚定夹具/tolerance 重建（8 测试）+ 检查点夹具新曲线重建 → **全 195 测试 PASS**
+5. `loadInlineApplication` 浏览器内联构建修复（剥离双 import + 内联 game-api + 作用域隔离 runtime）→ `browser-infrastructure` 1/1 PASS，浏览器 e2e 路径打通
 
 > 运行命令：见各维度「证据命令」列；全量测试 `npm run test`。
