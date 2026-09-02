@@ -152,10 +152,10 @@
 | 内存求解器（C5） | PENDING | 需长时运行 | — |
 | 服务端 API 全主线（C5） | PENDING→慢速 | mainline-e2e 练级长程（数小时）；运行时段账本链（15.455→15.472）已验证 | 练级 grinder 需平衡复查 |
 | Browser E2E（H） | PENDING | 需长时浏览器会话 | — |
-| 多人 S0–S2（F） | PENDING | 服务器运行中，未做双账号并发 | — |
+| 多人 S0–S2（F） | **PASS（S0/S1）** | S0 单玩家闭环(注册→进世界→完成任务)；重连保留；双账号共存；S2(10人) 未做 | — |
 | 长稳/性能（I，无模拟玩家） | PENDING | 未做 8h+ soak | — |
-| 重启恢复 / 第二玩家 / 终局后 | PENDING | 未做 | — |
-| AI 降级（G） | PENDING | ollama 已部署；未断网验证规则保底 | — |
+| 重启恢复 / 第二玩家 / 终局后 | PARTIAL | SQLite 存档/重开测试通过(23/23)；重启恢复/终局后 PENDING | — |
+| AI 降级（G） | **PASS（结构）** | `safeJsonDecide` 规则保底；advisor 真实可用有内容；断网降级 PENDING | — |
 
 ### 已知问题（跟踪）
 
