@@ -188,5 +188,6 @@
 3. `syncItemTargets` TDZ 阴影（`target→entry`）→ 引擎端到端可推到 series14
 4. 平滑曲线锚定夹具/tolerance 重建（8 测试）+ 检查点夹具新曲线重建 → **全 195 测试 PASS**
 5. `loadInlineApplication` 浏览器内联构建修复（剥离双 import + 内联 game-api + 作用域隔离 runtime）→ `browser-infrastructure` 1/1 PASS，浏览器 e2e 路径打通
+6. **`deriveAcceptanceGrantResolutions` transferCue 扩展（送[封份个]/帮.*?送/托你送）→ P0 `task.series.01.010` 送情书缺源修复**（接取授予情书，引擎验证 accept→submit→completed；Series-01 item 任务 0 缺口）——此前 tutorial 卡死根因
 
 > 运行命令：见各维度「证据命令」列；全量测试 `npm run test`。
