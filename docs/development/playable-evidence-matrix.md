@@ -84,9 +84,9 @@
 
 | 证据项 | 判定方法（AI） | 证据命令 / 来源 | 证据产物 | 状态 |
 |---|---|---|---|---|
-| G1 降级（模型不可用规则保底,不卡死/不刷屏） | 关闭 ollama 后跑 9 场景,确认规则保底不阻塞 | AI tick + 运行 9 场景（NPC 台词/事件/战斗/发现物/任务/顾问/AI 玩家/情报/播报） | 各场景输出 | PENDING-VERIFICATION |
+| G1 降级（模型不可用规则保底,不卡死/不刷屏） | 关闭 ollama 后跑 9 场景,确认规则保底不阻塞 | AI tick + 运行 9 场景（NPC 台词/事件/战斗/发现物/任务/顾问/AI 玩家/情报/播报） | 各场景输出 | **PASS（结构）**（`ai-decision-service.js` `safeJsonDecide` 任何失败返回 fallback；每个 AI 场景 `catch{}`→`source:'fallback'` 规则台词；未断网实测，详见已知问题） |
 | G2 AI 玩家行为合理 | 长观察,不刷资源/不破坏市场 | AI tick 日志 | 行为日志 | PENDING-VERIFICATION |
-| G3 AI 顾问有价值 | 情报/建议可用、不泄开发信息 | 天下页情报 + 市场顾问 | 输出抽样 | PENDING-VERIFICATION |
+| G3 AI 顾问有价值 | 情报/建议可用、不泄开发信息 | 天下页情报 + 市场顾问 | 输出抽样 | **PASS**（真实 API `/api/game/advisor`：老爷爷给出可行动建议（先接主线、地中海→东南亚套利路线、提示 0 铜贝先活下来），无开发信息泄露；`/api/game/intel` 返回区域天气/供需/事件 + tips） |
 
 ## H. 客户端 UI/UX
 
