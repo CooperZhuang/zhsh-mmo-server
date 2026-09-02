@@ -1,40 +1,45 @@
 'use strict';
 /**
- * 纵横四海 · 策划数值 Excel 回灌
+ * 纵横四海 · 策划数值 Excel → 修正层(patch)生成
  *
- * 读取策划改好的 gameplay-numbers.xlsx（中文表头），把各数值域 normalize_data 的
- * 数值回写进内容基线，改完后重跑管道（import-content → export-task1-content）游戏即生效。
+ * 读取策划改好的 gameplay-numbers.xlsx（中文表头），对比源证据基线(multisource-baseline.json)，
+ * 把「与基线不同的数值」写入 data/runtime/values-patch.json。**不改动 baseline**——
+ * baseline 是 sha 锚定的源证据快照，策划数值改动一律落在 patch 层；export-task1-content 合并 patch 生效。
  *
  * 用法：
  *   node scripts/import-numbers-xlsx.js [--src design/numbers/gameplay-numbers.xlsx] [--dry-run]
- * 说明：默认原地更新基线（git 可追踪 diff）；--dry-run 只打印将改哪几处，不落盘。
- *       仅部分列会回写：kind:'num' 数字列 + 原本就是字符串的列；对象列(如详情)不覆盖。
+ * 说明：--dry-run 只打印将生成哪些 patch，不落盘。
+ *   patch 集合映射：
+ *     monsters(名称/等级/类型) → entity_value_patches.monster_definitions {display_name, level, monster_type}
+ *     drops(概率/数量)          → entity_value_patches.drop_relations {probability, quantity}
+ *     shops(价格)               → entity_value_patches.shop_entries {price}
+ *     物价(价格区间)            → entity_value_patches.city_price_ranges {minimum_price, maximum_price}
+ *     装备(等级/属性)           → entity_value_patches.equipment {level, attack, ...}
  */
 const fs=require('node:fs');
 const path=require('node:path');
 const XLSX=require('xlsx');
 const root=path.resolve(__dirname,'..');
 const baselinePath=path.join(root,'docs','reconstruction-baseline','multisource-baseline.json');
+const patchPath=path.join(root,'data','runtime','values-patch.json');
 const defaultSrc=path.join(root,'design','numbers','gameplay-numbers.xlsx');
 
-// 与 export-numbers-xlsx.js 保持一致：field=内部键，label=中文表头，kind=列类型
+// 数值域 → 表名 + 中文列 + baseline 实体键 与 patch 集合映射
 const DOMAINS=[
-  {key:'monsters',sheet:'怪物',defs:[
-    {field:'name',label:'名称'},{field:'level',label:'等级',kind:'num'},{field:'type',label:'类型',kind:'num'},{field:'city',label:'城市'},{field:'location',label:'地点'},
+  {key:'monsters',sheet:'怪物',patchCollection:'monster_definitions',defs:[
+    {field:'name',label:'名称',patchField:'display_name'},{field:'level',label:'等级',kind:'num'},{field:'type',label:'类型',kind:'num',patchField:'monster_type'},
   ]},
-  {key:'drops',sheet:'掉落',defs:[
-    {field:'monster',label:'怪物'},{field:'dropped_name',label:'掉落物'},{field:'dropped_entity_type',label:'类型'},{field:'probability',label:'概率',kind:'num'},{field:'quantity',label:'数量',kind:'num'},
+  {key:'drops',sheet:'掉落',patchCollection:'drop_relations',defs:[
+    {field:'probability',label:'概率',kind:'num'},{field:'quantity',label:'数量',kind:'num'},
   ]},
-  {key:'shops',sheet:'商店',defs:[
-    {field:'region',label:'区域'},{field:'item_name',label:'商品名'},{field:'price',label:'价格',kind:'num'},{field:'item_details',label:'详情'},
+  {key:'shops',sheet:'商店',patchCollection:'shop_entries',defs:[
+    {field:'price',label:'价格',kind:'num'},
   ]},
-  {key:'city_price_ranges',sheet:'物价',defs:[
-    {field:'city',label:'城市'},{field:'item_name',label:'物品'},{field:'minimum_price',label:'最低价',kind:'num'},{field:'maximum_price',label:'最高价',kind:'num'},{field:'currency',label:'货币'},
+  {key:'city_price_ranges',sheet:'物价',patchCollection:'city_price_ranges',defs:[
+    {field:'minimum_price',label:'最低价',kind:'num'},{field:'maximum_price',label:'最高价',kind:'num'},
   ]},
-  {key:'equipment',sheet:'装备',defs:[
-    {field:'catalog_key',label:'目录键'},{field:'name',label:'名称'},{field:'level',label:'等级',kind:'num'},
-    {field:'attack',label:'攻击',kind:'num'},{field:'maxAttack',label:'最大攻击',kind:'num'},{field:'lj',label:'耐久',kind:'num'},
-    {field:'tx',label:'特性'},{field:'type',label:'类型',kind:'num'},
+  {key:'equipment',sheet:'装备',patchCollection:'equipment',defs:[
+    {field:'level',label:'等级',kind:'num'},{field:'attack',label:'攻击',kind:'num'},{field:'maxAttack',label:'最大攻击',kind:'num'},{field:'defense',label:'防御',kind:'num'},{field:'lj',label:'耐久',kind:'num'},
   ]},
 ];
 
@@ -49,28 +54,36 @@ function main(){
   const baseline=JSON.parse(fs.readFileSync(baselinePath,'utf8'));
   const entities=baseline.configs?.entities??{};
   const wb=XLSX.readFile(src);
-  let changed=0,changes=[];
+  const patch={schema_version:1,description:'策划数值修正层(import-numbers-xlsx 生成; 只叠加不改源证据baseline)',generated_at:new Date().toISOString(),entity_value_patches:{}};
+  let changes=[];
   for(const d of DOMAINS){
     if(!wb.Sheets[d.sheet])continue;
     const byId=new Map((entities[d.key]??[]).map((e)=>[e.canonical_id,e]));
     const rows=XLSX.utils.sheet_to_json(wb.Sheets[d.sheet],{defval:''});
+    const collection=(patch.entity_value_patches[d.patchCollection]??={});
     for(const row of rows){
       const id=row.ID;if(!id)continue;
       const e=byId.get(id);if(!e)continue;
-      const nd={...(e.normalized_data??{})};
-      let changedHere=false;
+      const base=e.normalized_data??{};
+      const delta={};
       for(const def of d.defs){
         const cell=row[def.label];
-        if(def.kind==='num'){const nv=toNum(cell);if(nv!=null&&Number(nd[def.field])!==nv){nd[def.field]=nv;changedHere=true;}}
-        else if(typeof nd[def.field]==='string'&&String(cell??'')&&nd[def.field]!==cell){nd[def.field]=String(cell);changedHere=true;}
+        const patchField=def.patchField??def.field;
+        if(def.kind==='num'){
+          const nv=toNum(cell);
+          if(nv!=null&&Number(base[def.field])!==nv)delta[patchField]=nv;
+        }else if(typeof base[def.field]==='string'&&String(cell??'')&&base[def.field]!==String(cell)){
+          delta[patchField]=String(cell);
+        }
       }
-      if(changedHere){e.normalized_data=nd;changed++;changes.push(`${d.sheet}:${id} → ${d.defs.filter((x)=>x.kind==='num').map((x)=>x.label+'='+nd[x.field]).join(',')}`);}
+      if(Object.keys(delta).length){collection[id]=delta;changes.push(`${d.sheet}:${id} → ${JSON.stringify(delta).slice(0,80)}`);}
     }
   }
-  if(dry){console.log(`[dry-run] 将更新 ${changed} 处数值：`);for(const c of changes.slice(0,40))console.log('  ',c);return;}
-  fs.writeFileSync(baselinePath,JSON.stringify(baseline,null,2)+'\n');
-  console.log(`已回灌 ${changed} 处数值到基线。`);
+  if(!Object.keys(patch.entity_value_patches).length){console.log('[无差异] Excel 与基线一致，无 patch 生成。');return;}
+  if(dry){console.log(`[dry-run] 将生成 ${changes.length} 处 patch:`);for(const c of changes.slice(0,40))console.log('  ',c);return;}
+  fs.writeFileSync(patchPath,JSON.stringify(patch,null,2)+'\n');
+  console.log(`已生成修正层 ${patchPath}（${changes.length} 处）`);
   for(const c of changes.slice(0,20))console.log('  ',c);
-  console.log(`\n下一步：node scripts/import-content.js 重建内容库 → node scripts/export-task1-content.js 导出游戏内容`);
+  console.log(`\n下一步：node scripts/export-task1-content.js 导出游戏内容（自动合并 patch）`);
 }
 main();

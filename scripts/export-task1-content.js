@@ -15,6 +15,37 @@ const rewardRulesPath=path.join(root,'data','runtime','monster-reward-rules.json
 const progressionRulesPath=path.join(root,'data','runtime','progression-rules.json');
 const dungeonEncountersPath=path.join(root,'data','runtime','formal-dungeon-encounters.json');
 const maritimeCapabilitiesPath=path.join(root,'data','runtime','maritime-capabilities.json');
+const valuesPatchPath=path.join(root,'data','runtime','values-patch.json');
+
+// 策划数值修正层：对导出内容对象按 canonical_id + 字段做覆盖（不改 DB/不改 baseline）。
+// patch 由 import-numbers-xlsx 从 Excel 差异生成。集合名映射到导出内容键：
+//   equipment/monster_definitions/drop_relations/recovery_services/shop_entries/formal_items/content_entities
+function applyValuesPatch(contentObj, patch) {
+  if (!patch || !patch.entity_value_patches) return contentObj;
+  const buckets = new Set(['equipment','monsters','drop_relations','recovery_services','shop_entries','formal_items']);
+  const monstersAlias = patch.entity_value_patches.monster_definitions || null;
+  for (const [collection, patches] of Object.entries(patch.entity_value_patches)) {
+    if (collection === 'monster_definitions') continue;
+    if (!buckets.has(collection)) continue;
+    const arr = contentObj[collection];
+    if (!Array.isArray(arr)) continue;
+    for (const item of arr) {
+      const p = patches[item.canonical_id];
+      if (!p) continue;
+      for (const [key, value] of Object.entries(p)) {
+        if (collection === 'equipment' && key === 'level') item.required_level = value;
+        else item[key] = value;
+      }
+    }
+  }
+  if (monstersAlias && Array.isArray(contentObj.monsters)) {
+    for (const item of contentObj.monsters) {
+      const p = monstersAlias[item.source_canonical_id];
+      if (p) Object.assign(item, p);
+    }
+  }
+  return contentObj;
+}
 
 function exportTask1Content({ databasePath = defaultDatabase,outputPath = defaultOutput,selectionPath = defaultSelectionPath } = {}) {
   const db = new DatabaseSync(databasePath,{ readOnly:true });
@@ -168,6 +199,21 @@ function exportTask1Content({ databasePath = defaultDatabase,outputPath = defaul
     const contentEntities=dedupeByCanonical([...databaseContentEntities,...runtimeContentEntities]);
     const itemSources = collectItemSources(db,requiredContentIds);
     const gameplay = collectFormalGameplay(db,{ requiredMonsterIds,tasks,selection,cityIds,rewardRules,maritimeCapabilities,maritimeEntities });
+
+    // 策划数值修正层（values-patch.json）：只叠加、不改 baseline。对 monsters 与 gameplay 内容对象做字段覆盖。
+    let valuesPatch=null;
+    try { valuesPatch=JSON.parse(fs.readFileSync(valuesPatchPath,'utf8')); } catch { valuesPatch=null; }
+    if (valuesPatch) {
+      applyValuesPatch(gameplay, valuesPatch);
+      // monsters 是独立数组（非对象），applyValuesPatch 要求含 .monsters 键——单独处理其命名 patch。
+      const monsterPatch = valuesPatch.entity_value_patches?.monster_definitions;
+      if (monsterPatch) {
+        for (const item of monsters) {
+          const p = monsterPatch[item.source_canonical_id];
+          if (p) { for (const [k, v] of Object.entries(p)) item[k] = v; }
+        }
+      }
+    }
 
     validateTaskRelations(tasks,{ taskLocationIds,requiredNpcIds,requiredMonsterIds,requiredContentIds,npcPlacements,monsterPlacements });
     const series = selectIn(db,'SELECT canonical_id,source_canonical_id,display_name,runtime_capability FROM task_series WHERE canonical_id IN (__IN__) ORDER BY canonical_id',selectedSeriesIds)

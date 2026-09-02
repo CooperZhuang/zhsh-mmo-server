@@ -18,6 +18,7 @@ const root=path.resolve(__dirname,'..');
 
 const baselinePath=path.join(root,'docs','reconstruction-baseline','multisource-baseline.json');
 const defaultOut=path.join(root,'design','numbers','gameplay-numbers.xlsx');
+function deepClone(value) { return JSON.parse(JSON.stringify(value)); }
 
 // 数值域 → 表名 + 中文列(defs: {field: 内部键, label: 中文表头, kind: 'num'|'str'})
 const DOMAINS=[
@@ -73,7 +74,23 @@ function main(){
   const argv=process.argv.slice(2);
   const out=valueAfter(argv,'--out')||defaultOut;
   const baseline=JSON.parse(fs.readFileSync(baselinePath,'utf8'));
-  const entities=baseline.configs?.entities??{};
+  const entities=deepClone(baseline.configs?.entities??{});
+  // 合并策划数值修正层（values-patch.json），让 Excel 反映「当前生效值」而非仅有源证据基线。
+  try {
+    const patch=JSON.parse(fs.readFileSync(path.join(root,'data','runtime','values-patch.json'),'utf8'));
+    const patcher=patch?.entity_value_patches;
+    if (patcher && Array.isArray(entities.equipment)) {
+      const byId=new Map(entities.equipment.map((e)=>[e.canonical_id,e]));
+      for(const [id,p] of Object.entries(patcher.equipment??{})){const e=byId.get(id);if(e)e.normalized_data={...e.normalized_data,...p};}
+    }
+    // 怪物命名的 patch（monster_definitions.display_name）→ monsters.normalized_data.name（Excel 名称列）
+    if (patcher && Array.isArray(entities.monsters)) {
+      const byId=new Map(entities.monsters.map((e)=>[e.canonical_id,e]));
+      for(const [id,p] of Object.entries(patcher.monster_definitions??{})){
+        const e=byId.get(id);if(e&&p.display_name)e.normalized_data={...e.normalized_data,name:p.display_name};
+      }
+    }
+  } catch { /* 无 patch 时忽略 */ }
   const wb=XLSX.utils.book_new();
   for(const d of DOMAINS){
     const arr=entities[d.key]??[];

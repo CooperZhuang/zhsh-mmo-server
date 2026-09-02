@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "description": "策划数值修正层(import-numbers-xlsx 生成; 只叠加不改源证据baseline)",
+  "generated_at": "2026-09-02T17:23:27.055Z",
+  "entity_value_patches": {
+    "monster_definitions": {
+      "entity.monster.cbe1f18ad64d8183": {
+        "display_name": "沙漠蝎王"
+      },
+      "entity.monster.ee31f5f9df972310": {
+        "display_name": "吞兽"
+      },
+      "entity.monster.e9a94e35bb84c0dd": {
+        "display_name": "落日蛮牛"
+      }
+    },
+    "drop_relations": {},
+    "shop_entries": {},
+    "city_price_ranges": {},
+    "equipment": {
+      "entity.equipment.119b1b777a34beb5": {
+        "level": 125
+      },
+      "entity.equipment.9dc6753e905f40b7": {
+        "level": 140
+      }
+    }
+  }
+}
