@@ -173,16 +173,60 @@ let steps=0;const MAX_STEPS=Number(process.env.ZHSH_MAINLINE_MAX_STEPS??4000);
         if(mp){
           await ensureNodeAt(mp.location_canonical_id);
         }
-        for(let k=0;k<40;k+=1){const stx=await state();
-          const expectedNode=mp?content.map_nodes.find(n=>n.location_canonical_id===mp.location_canonical_id)?.map_node_canonical_id:null;
-          if(expectedNode && stx.player?.current_map_node_canonical_id!==expectedNode){
-            await ensureNodeAt(mp.location_canonical_id);
-            await new Promise(r=>setTimeout(r,50));
-            continue;
+        // 击杀掉落怪：胜→收工；败→回练级循环(练到再高2级)再试，最多 4 轮
+        let killed=false;
+        for(let round=0;round<4&&!killed;round+=1){
+          for(let k=0;k<40;k+=1){
+            const stx=await state();
+            const expectedNode=mp?content.map_nodes.find(n=>n.location_canonical_id===mp.location_canonical_id)?.map_node_canonical_id:null;
+            if(expectedNode && stx.player?.current_map_node_canonical_id!==expectedNode){
+              await ensureNodeAt(mp.location_canonical_id);
+              continue;
+            }
+            if(stx.combat){const r=await rt('combat','attack',{rounds:300});if(r.action==='combat_won'){console.log('  [胜] drops=',JSON.stringify(r.drops?.granted??[]).slice(0,100));killed=true;break;}if(r.action==='combat_lost')break;continue;}
+            const sc=await rt('combat','start',{monster_canonical_id:drop.monster_canonical_id});if(sc.error){break;}
           }
-          if(stx.combat){const r=await rt('combat','attack',{rounds:300});if(r.action==='combat_won'){console.log('  [胜] drops=',JSON.stringify(r.drops?.granted??[]).slice(0,100));break;}if(r.action==='combat_lost'){mainlineBlocked=`${name}：${itemTgt.raw_name} 的掉落怪等级不足以击杀(等级/装备墙)`;break;}continue;}
-          const sc=await rt('combat','start',{monster_canonical_id:drop.monster_canonical_id});if(sc.error){console.log('  [start失败]',sc.error);await ensureNodeAt(mp?.location_canonical_id);break;}}
-        continue;}
+          if(killed||!mp)break;
+          // 败了 → 继续练 300 场（targetLevel 提高 2）再试
+          curLevel=(await state()).player?.level??curLevel;
+          targetLevel=Math.max(targetLevel,curLevel)+2;
+          gainStalled=0;gainAttempts=0;
+          const recovery2=content.recovery_services?.find(s=>{
+            const loc=content.locations.find(l=>l.canonical_id===s.location_canonical_id);
+            return loc&&loc.city_canonical_id===cityId;
+          });
+          let retried=0;
+          while(curLevel<targetLevel&&gainStalled<30&&retried<400){
+            retried+=1;
+            let stx=await state();
+            if(stx.combat){const r=await rt('combat','attack',{rounds:200});if(r.action==='combat_won'||r.action==='combat_lost'){await equipBest();continue;}continue;}
+            if(Number(stx.player?.current_health??1)<40&&recovery2){
+              await ensureNodeAt(recovery2.location_canonical_id);
+              await rt('recovery','recover',{recovery_service_canonical_id:recovery2.canonical_id});
+            }
+            const expNode=target.p.location_canonical_id;
+            const expNode2=content.map_nodes.find(n=>n.location_canonical_id===expNode)?.map_node_canonical_id;
+            if(expNode2&&stx.player?.current_map_node_canonical_id!==expNode2){
+              const ft=await act('fast_travel',{location_canonical_id:expNode});
+              if(ft.error){gainStalled+=1;continue;}
+              stx=await state();
+            }
+            const sc=await rt('combat','start',{monster_canonical_id:target.mon.canonical_id});
+            if(sc.error){gainStalled+=1;continue;}
+            const now=(await state()).player;
+            const expGain=Number(now?.experience??0)-lastExperience;
+            if(expGain<=0){gainStalled+=1;}else{gainStalled=0;lastExperience=Number(now.experience);}
+            if(Number(now?.level??curLevel)!==curLevel){
+              curLevel=Number(now.level);
+              const stronger=weak.find(({mon})=>Number(mon.level)<=curLevel-3&&Number(mon.level)>Number(target.mon.level));
+              if(stronger)target=stronger;
+            }
+          }
+          curLevel=(await state()).player?.level??curLevel;
+          console.log('  [重试'+(round+1)+'] 练到 lv'+curLevel+' 再战山猪');
+        }
+        if(!killed){mainlineBlocked=`${name}：${itemTgt.raw_name} 的掉落怪 4 轮仍无法击杀(等级/装备墙)`;continue;}
+      }
       console.log('  [物品目标无商店→航海]',name,itemTgt.raw_name);
       // 航海取得：从当前城市出发找 route，买船（若无），起航并推进到港
       // 先推进任何进行中的航程至靠岸
