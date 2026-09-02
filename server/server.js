@@ -33,6 +33,7 @@ const { memoryDigest, buildWorldContext } = require('./ai/ai-memory');
 const { decideChainEvent } = require('./eco/ai-event-chain');
 const { aiGenerateWorldSidequest } = require('./ai/ai-quest-gen');
 const { aiCrewLine } = require('./ai/ai-crew');
+const { aiGrandpaAdvice, buildGrandpaContext } = require('./ai/ai-grandpa');
 
 const ROOT = path.resolve(__dirname, '..');
 const DIST = process.env.ZHSH_DIST || path.join(ROOT, 'dist');
@@ -644,6 +645,21 @@ const server = http.createServer(async (req, res) => {
           return sendJson(res, 200, banter);
         } catch (err) {
           return sendJson(res, 200, { line: `${name}：${err.message}`, npc: name, source: 'fallback' });
+        }
+      }
+      if (pathname === '/api/game/advisor' && req.method === 'POST') {
+        // 「老爷爷」AI 顾问：把玩家状态/任务链/背包打包，让 ollama 给 1-3 条行动建议。
+        // 任何 AI 失败都返回保底建议（defaultAdvice），绝不让 AI 错误阻断玩家。
+        const { question } = JSON.parse(await readBody(req) || '{}');
+        try {
+          const state = engine.loadPlayer(auth.playerCanonicalId);
+          const ctx = buildGrandpaContext(state, loadContent());
+          const advice = await aiGrandpaAdvice(ctx, typeof question === 'string' ? question.slice(0, 200) : '');
+          return sendJson(res, 200, advice);
+        } catch (err) {
+          const state = engine.loadPlayer(auth.playerCanonicalId);
+          const ctx = buildGrandpaContext(state, loadContent());
+          return sendJson(res, 200, { advice: buildGrandpaContext(state, loadContent()) && `（老爷爷擦擦汗）${err.message}`, source: 'fallback', fallback: true, context: ctx });
         }
       }
       if (pathname === '/api/game/task_narrative' && req.method === 'POST') {
