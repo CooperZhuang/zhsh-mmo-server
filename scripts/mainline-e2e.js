@@ -141,15 +141,19 @@ let steps=0;const MAX_STEPS=Number(process.env.ZHSH_MAINLINE_MAX_STEPS??4000);
               let stx=await state();
               // 活跃战斗最优先：打完再谈回血/移动
               if(stx.combat){const r=await rt('combat','attack',{rounds:200});if(r.action==='combat_won'||r.action==='combat_lost'){await equipBest();continue;}continue;}
-              // 血量低 → 先恢复（教堂在城里；战败回城后必须回血再战）
-              if(Number(stx.player?.current_health??1)<Number(stx.player?.max_health??100)*0.7){
-                if(recovery){await ensureNodeAt(recovery.location_canonical_id);const rr=await rt('recovery','recover',{recovery_service_canonical_id:recovery.canonical_id});continue;}
+              // 血量极低 → 先恢复（教堂在城里；战败回城后必须回血再战）
+              if(Number(stx.player?.current_health??1)<40&&recovery){
+                await ensureNodeAt(recovery.location_canonical_id);
+                await rt('recovery','recover',{recovery_service_canonical_id:recovery.canonical_id});
               }
-              // 战败回城后节点漂移 → 先回目标位置
+              // 战败回城后节点漂移 → 无条件先回练级点（这是 start 失败的唯一根源）
               const expNode=target.p.location_canonical_id;
               const expNode2=content.map_nodes.find(n=>n.location_canonical_id===expNode)?.map_node_canonical_id;
-              if(expNode2&&stx.player?.current_map_node_canonical_id!==expNode2){await ensureNodeAt(expNode);stx=await state();}
-              if(stx.combat){const r=await rt('combat','attack',{rounds:200});if(r.action==='combat_won'||r.action==='combat_lost'){await equipBest();continue;}continue;}
+              if(expNode2&&stx.player?.current_map_node_canonical_id!==expNode2){
+                const ft=await act('fast_travel',{location_canonical_id:expNode});
+                if(ft.error){gainStalled+=1;continue;}
+                stx=await state();
+              }
               const sc=await rt('combat','start',{monster_canonical_id:target.mon.canonical_id});
               if(sc.error){gainStalled+=1;continue;}
               const now=(await state()).player;
