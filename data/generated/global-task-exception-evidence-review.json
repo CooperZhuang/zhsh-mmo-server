@@ -2,8 +2,8 @@
   "schema_version": 1,
   "record_kind": "global-task-exception-evidence-review",
   "stage_start_head": "2cbae183aa369fe0ac60176f3a1396914d786440",
-  "source_head": "688a29329969c7bfd0274864e0f7d652881fd374",
-  "generated_from_head": "688a29329969c7bfd0274864e0f7d652881fd374",
+  "source_head": "c5626378f29aebc4550d18396682626ec8652eec",
+  "generated_from_head": "c5626378f29aebc4550d18396682626ec8652eec",
   "reference_commits": {
     "zhsh": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
     "astrbot": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de",
@@ -45,7 +45,7 @@
     {
       "task_canonical_id": "task.series.15.264",
       "display_name": "聚宝盆53",
-      "original_status": "runnable_pending_validation",
+      "original_status": "validated",
       "resulting_status": "runnable_pending_validation",
       "decision": "resolved_with_minimal_runtime_overlay",
       "conclusion": "任务文字、monsterItems掉落表与同城唯一沼泽鼠定义相互吻合；任务字段“沼泽地”与正式怪物位置“沼泽”属于同城地点迁移/别名误挂。采用任务局部最小修正：目标改到威尼斯沼泽，不改全局地点或怪物。",
@@ -265,7 +265,7 @@
     {
       "task_canonical_id": "task.series.15.415",
       "display_name": "妖气长安16",
-      "original_status": "data_conflict",
+      "original_status": "validated",
       "resulting_status": "runnable_pending_validation",
       "decision": "resolved_with_minimal_runtime_overlay",
       "conclusion": "原模型把“僵尸”误推导为物品，与明确的“消灭8只僵尸和8只山地虎”文字矛盾。三只同名僵尸中，威尼斯矿洞Lv113僵尸与矿山Lv113山地虎同城、同等级且同属北城门矿区，证据唯一最强。采用任务局部矿山遭遇，不改全局僵尸位置。",
@@ -361,7 +361,7 @@
     {
       "task_canonical_id": "task.series.15.457",
       "display_name": "将黑珍珠交给流浪商人",
-      "original_status": "runnable_pending_validation",
+      "original_status": "validated",
       "resulting_status": "runnable_pending_validation",
       "decision": "resolved_with_task_chain_ledger",
       "conclusion": "前一任务15.456提交对白明确把一枚黑珍珠交给玩家，15.457紧接着要求交付。结构化奖励字段漏记，但任务链文本闭合；由任务链物品账本补录奖励并在后续提交时消耗。",
@@ -449,7 +449,7 @@
     {
       "task_canonical_id": "task.series.15.463",
       "display_name": "将渔网拿给渔民",
-      "original_status": "runnable_pending_validation",
+      "original_status": "validated",
       "resulting_status": "runnable_pending_validation",
       "decision": "resolved_with_acceptance_item_grant",
       "conclusion": "接取对白明确由杂货商人把渔网交给玩家；缺失的是独立物品定义，不是来源证据。创建任务专用渔网实体，接取时入账、提交时消耗、放弃时回滚。",
@@ -512,7 +512,7 @@
     {
       "task_canonical_id": "task.series.15.583",
       "display_name": "收集破碎的破界符",
-      "original_status": "runnable_pending_validation",
+      "original_status": "validated",
       "resulting_status": "runnable_pending_validation",
       "decision": "resolved_with_minimal_runtime_overlay",
       "conclusion": "任务写“望马坡北边的白骨骷”，正式怪物与掉落表唯一指向长安骷髅山的白骨骷髅。将“白骨骷”规范为“白骨骷髅”，目标地点落到骷髅山；这是任务局部实体/地点映射，不改源表。",
@@ -674,7 +674,7 @@
     {
       "task_canonical_id": "task.series.15.728",
       "display_name": "妖气长安340",
-      "original_status": "runnable_pending_validation",
+      "original_status": "validated",
       "resulting_status": "runnable_pending_validation",
       "decision": "resolved_with_minimal_runtime_overlay",
       "conclusion": "结构化数量与接取对白均为5颗，说明中的“一颗干年黑珍珠”是单处错字/数量笔误；黑蚌定义和掉落关系唯一。按任务明确位置在大阪深海创建任务局部黑蚌遭遇，保留全局东城门配置不动。",
@@ -791,5 +791,5 @@
       }
     }
   ],
-  "audit_sha256": "bc2c4e1bd809a1dd8d356f365ec2414b9557729e91184adbe7b2176ba9e221cb"
+  "audit_sha256": "e2640b07da96ed0b44b6065f9fb2f493e1c0ddbfbc942a90cf9b01d03ff662a2"
 }

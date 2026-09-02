@@ -111,7 +111,7 @@
   "capability_status": "global_runtime_content",
   "runnable_task_selection": {
     "selector_version": "global-runtime-directory/1.0.0",
-    "selection_hash": "bfb0c2f90422df4d79829c82d8ff75654508475b49926db65438dcef495cc946",
+    "selection_hash": "11010f345ada208a194bd958a9c1ef56021147f8722c540928e85b6b02a5e475",
     "selected_task_count": 651,
     "selected_series_count": 15,
     "formal_stage_start_selected_task_count": 78,
@@ -4020,8 +4020,22 @@
           "candidate_canonical_ids": [
             "entity.item.ab9d3de8bd152677"
           ],
-          "runtime_resolution": null,
-          "source_canonical_id": "task.series.01.010"
+          "runtime_resolution": {
+            "rule": "explicit_receive_dialogue_item_handoff",
+            "formal_source_canonical_id": "runtime.task_acceptance.source.6f57b02a2db7d5a5",
+            "source_kind": "task_acceptance_grant"
+          },
+          "source_canonical_id": "task.series.01.010",
+          "original_target_kind": "item",
+          "source_content_entity_canonical_id": "entity.item.ab9d3de8bd152677",
+          "source_entity_canonical_id": "entity.item.ab9d3de8bd152677",
+          "task_item_policy": {
+            "acquisition_mode": "grant_on_accept",
+            "reservation": "required_until_submit",
+            "abandonment": "rollback_acceptance_grant",
+            "consumption": "submit_only"
+          },
+          "npc_duel": null
         }
       ],
       "rewards": [
@@ -250972,14 +250986,18 @@
     },
     {
       "canonical_id": "entity.item.ab9d3de8bd152677",
-      "source_canonical_id": "entity.item.ab9d3de8bd152677",
+      "source_canonical_id": "task.series.01.010",
       "entity_category": "item",
       "display_name": "情书",
       "normalized_data": {
-        "catalog": "taskItems",
-        "name": "情书",
-        "value": 1
-      }
+        "catalog": "taskAcceptanceItems",
+        "type": 11,
+        "inventory_weight_exempt": true,
+        "source_task_canonical_id": "task.series.01.010",
+        "task_item": true
+      },
+      "provenance_status": "SOURCE_EXPLICIT_RECEIVE_DIALOGUE",
+      "evidence_locator": "task.series.01.010 receive dialogue: 里皮：对了，你可以去雅典居民区帮凯瑟琳小姐送封情书。\n你：没问题，举手之劳。"
     },
     {
       "canonical_id": "entity.item.ac50706c1696095d",
@@ -287529,7 +287547,7 @@
     "preview_routes_supported": false,
     "normal_runtime_reads_this_section": false
   },
-  "content_sha256": "69cb1e888f12abbb10edb041a7683e9afba11b6a1435204d291fc9bec467cd80",
+  "content_sha256": "efc17b388dbb8fb27771cf05fd9a9446bd2af2a0b71130c198f9878265fa7b2e",
   "entity_counts": {
     "tasks": 651,
     "cities": 28,

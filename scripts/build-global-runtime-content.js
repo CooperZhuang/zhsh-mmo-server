@@ -156,7 +156,7 @@ function deriveAcceptanceGrantResolutions(task,graphById,existingResolutions){
   if(task.task_type!=='送物品')return [];
   const predecessorTasks=(task.prerequisites??[]).map((id)=>graphById.get(id)).filter(Boolean);
   const receiveText=(task.dialogues??[]).filter((entry)=>entry.phase==='receive').map((entry)=>entry.normalized_text??entry.original_text??'').join('\n');
-  const transferCue=/(?:这是|制作完成|已经(?:做好|准备好)|拿去|带给|交给|送给|给你|你把|你将)/;
+  const transferCue=/(?:这是|制作完成|已经(?:做好|准备好)|拿去|带给|交给|送给|送[封份个]|给你|你把|你将|帮.*?送|托你送)/;
   const existingTargets=new Set(existingResolutions.map((entry)=>entry.target_canonical_id));const results=[];
   for(const objective of task.objectives??[]){
     if(objective.kind!=='item'||existingTargets.has(objective.canonical_id))continue;const itemName=String(objective.raw_name??'').trim();if(!itemName||!receiveText.includes(itemName)||!transferCue.test(receiveText))continue;

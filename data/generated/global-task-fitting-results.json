@@ -992,7 +992,7 @@
       "directory_status": "validated",
       "runtime_fit": true,
       "runtime_blocking_reasons": [],
-      "implementation_status": "fitted_existing_runtime"
+      "implementation_status": "shared_system_implemented"
     },
     {
       "canonical_id": "task.series.01.011",

@@ -3343,9 +3343,34 @@
       "runtime_overlay": {
         "operational_fit": true,
         "blocking_reasons": [],
-        "target_resolutions": [],
+        "target_resolutions": [
+          {
+            "target_canonical_id": "task.series.01.010.target.01",
+            "runtime_entity_canonical_id": "entity.item.ab9d3de8bd152677",
+            "resolution_rule": "explicit_receive_dialogue_item_handoff",
+            "target_kind_override": "item",
+            "original_target_kind": "item",
+            "task_item_policy": {
+              "acquisition_mode": "grant_on_accept",
+              "reservation": "required_until_submit",
+              "abandonment": "rollback_acceptance_grant",
+              "consumption": "submit_only"
+            },
+            "formal_source": {
+              "canonical_id": "runtime.task_acceptance.source.6f57b02a2db7d5a5",
+              "source_canonical_id": "task.series.01.010",
+              "source_kind": "task_acceptance_grant",
+              "item_name": "情书",
+              "source_task_canonical_id": "task.series.01.010",
+              "evidence_status": "SOURCE_EXPLICIT_RECEIVE_DIALOGUE",
+              "evidence_locator": "task.series.01.010 receive dialogue: 里皮：对了，你可以去雅典居民区帮凯瑟琳小姐送封情书。\n你：没问题，举手之劳。"
+            }
+          }
+        ],
         "reward_resolutions": [],
-        "implemented_shared_systems": [],
+        "implemented_shared_systems": [
+          "task_acceptance_handoff"
+        ],
         "task_location_override": null,
         "evidence_exception_resolution": null
       }
@@ -171121,8 +171146,8 @@
   ],
   "runtime_landing": {
     "stage_start_head": "2cbae183aa369fe0ac60176f3a1396914d786440",
-    "source_head": "688a29329969c7bfd0274864e0f7d652881fd374",
-    "generated_from_head": "688a29329969c7bfd0274864e0f7d652881fd374",
+    "source_head": "c5626378f29aebc4550d18396682626ec8652eec",
+    "generated_from_head": "c5626378f29aebc4550d18396682626ec8652eec",
     "reference_commits": {
       "zhsh": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
       "astrbot": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de",

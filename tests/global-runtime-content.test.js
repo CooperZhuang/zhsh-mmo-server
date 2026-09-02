@@ -54,7 +54,10 @@ test('explicit receive-dialogue handoffs create acceptance grants without duplic
 
   const genericHandoffs=content.tasks.flatMap((entry)=>entry.targets.filter((target)=>
     target.runtime_resolution?.rule==='explicit_receive_dialogue_item_handoff').map((target)=>({task:entry,target})));
-  assert.equal(genericHandoffs.length,15);
+  // 16：原 15 个 + task.series.01.010 情书。01.010「爱的使者1」送情书，接取对白「帮凯瑟琳小姐送封情书」
+  // 明确交给玩家递送，且情书无任何其他来源/前序奖励/掉落实体（曾为 P0 缺口，无源导致 tutorial 无法完成）。
+  // deriveAcceptanceGrantResolutions 的 transferCue 扩展(送[封份个]/帮.*?送/托你送)识别该递送指示形式。
+  assert.equal(genericHandoffs.length,16);
   for(const {task:entry,target} of genericHandoffs){
     assert.equal(entry.task_type,'送物品',entry.canonical_id);
     assert.equal(target.task_item_policy.acquisition_mode,'grant_on_accept',entry.canonical_id);
