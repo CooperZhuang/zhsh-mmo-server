@@ -194,7 +194,8 @@ function playerStats(st){
           let st0=await state();
           target=await setUpTarget(st0);
           if(target){
-            targetLevel=Math.max(curLevel+1,dropLv-2);
+            // 练到 dropLv-4 就尝试击杀(省下练满 dropLv-2 的时间); 败则 kill-drop 循环进重试练级再试。
+            targetLevel=Math.max(curLevel+1,dropLv-4);
             while(curLevel<targetLevel&&gainStalled<30&&gainAttempts<600){
               gainAttempts+=1;
               let stx=await state();
