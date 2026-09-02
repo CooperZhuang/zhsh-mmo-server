@@ -17,6 +17,28 @@ async function goto(locationId){
   const tp=await act('travel_to_city_port',{map_node_canonical_id:destDock?.map_node_canonical_id});
   return act('fast_travel',{location_canonical_id:locationId});
 }
+async function ensureNodeAt(locationId){
+  // 确保玩家位于指定 location 的 map_node（自愈：fast_travel 事务提交后 state 可能短暂返回旧节点）
+  const dest=content.locations.find(l=>l.canonical_id===locationId);
+  if(!dest)return;
+  const expectedNode=content.map_nodes.find(n=>n.location_canonical_id===locationId)?.map_node_canonical_id;
+  for(let retry=0;retry<8;retry+=1){
+    const st=await state();
+    if(st.player?.current_map_node_canonical_id===expectedNode)return;
+    const curCity=st.current_location?.city_canonical_id;
+    if(curCity===dest.city_canonical_id){
+      const ft=await act('fast_travel',{location_canonical_id:locationId});
+      if(ft.error)console.log('  [ensureNode] ft error:',ft.error);
+    }else{
+      const dock=content.map_nodes.find(n=>n.city_canonical_id===curCity&&n.display_name==='码头'&&n.location_canonical_id);
+      if(dock)await act('fast_travel',{location_canonical_id:dock.location_canonical_id});
+      const destDock=content.map_nodes.find(n=>n.city_canonical_id===dest.city_canonical_id&&n.display_name==='码头'&&n.location_canonical_id);
+      if(destDock)await act('travel_to_city_port',{map_node_canonical_id:destDock.map_node_canonical_id});
+      await act('fast_travel',{location_canonical_id:locationId});
+    }
+    await new Promise(r=>setTimeout(r,80));
+  }
+}
 const content=JSON.parse(require('fs').readFileSync(require('path').join(__dirname,'..','web','generated','task1-content.json'),'utf8'));
 let steps=0;const MAX_STEPS=Number(process.env.ZHSH_MAINLINE_MAX_STEPS??4000);
 (async()=>{
@@ -25,8 +47,9 @@ let steps=0;const MAX_STEPS=Number(process.env.ZHSH_MAINLINE_MAX_STEPS??4000);
   token=reg.token;
   console.log('注册:',u);
   let st=await state();
-  let lastTask=null,lastTaskSteps=0;
+  let lastTask=null,lastTaskSteps=0;let mainlineBlocked=null;
   while(steps<MAX_STEPS){
+    if(mainlineBlocked){console.log('主线受阻(等级/装备墙):',mainlineBlocked);break;}
     steps++;
     st=await state();
     const chain=st.all_task_chain??[];
@@ -68,9 +91,55 @@ let steps=0;const MAX_STEPS=Number(process.env.ZHSH_MAINLINE_MAX_STEPS??4000);
       const drop=content.drop_relations.filter(e=>e.canonical_id===itemTgt.runtime_resolution?.formal_source_canonical_id||(e.item_canonical_id??e.content_entity_canonical_id)===itemTgt.entity_canonical_id).sort((a,b)=>Number(b.probability??0)-Number(a.probability??0))[0];
       if(drop&&drop.monster_canonical_id){console.log('  [掉落击杀]',name,itemTgt.raw_name,'←',drop.monster_canonical_id.slice(-8));
         const mp=content.monster_placements.find(p=>p.monster_canonical_id===drop.monster_canonical_id&&p.repeatable);
-        if(mp){const g=await goto(mp.location_canonical_id);console.log('  [goto]',g.action??g.error,g.current_map_node_canonical_id?.slice?.(-8)??'');}
-        for(let k=0;k<40;k+=1){const stx=await state();if(stx.combat){const r=await rt('combat','attack',{rounds:300});if(r.action==='combat_won'){console.log('  [胜] drops=',JSON.stringify(r.drops?.granted??[]).slice(0,100));break;}continue;}
-          const sc=await rt('combat','start',{monster_canonical_id:drop.monster_canonical_id});if(sc.error){console.log('  [start失败]',sc.error);await goto(mp?.location_canonical_id);break;}}
+        // 升级自愈：掉落怪等级远超当前等级 → 刷同城低级怪练级
+        const dropMon=content.monsters.find(m=>m.canonical_id===drop.monster_canonical_id);
+        const dropLv=Number(dropMon?.level??1);
+        let curLevel=(await state()).player?.level??1;
+        if(dropLv>curLevel+5){
+          const cityId=content.locations.find(l2=>l2.canonical_id===mp.location_canonical_id)?.city_canonical_id;
+          const cityLocs=content.locations.filter(l=>l.city_canonical_id===cityId).map(l=>l.canonical_id);
+          const weak=content.monster_placements.filter(p=>cityLocs.includes(p.location_canonical_id)&&p.repeatable)
+            .map(p=>({p,mon:content.monsters.find(m=>m.canonical_id===p.monster_canonical_id)}))
+            .filter(({mon})=>mon&&Number(mon.level)<=Math.max(4,curLevel))
+            .sort((a,b)=>Number(b.mon.level)-Number(a.mon.level));
+          const target=weak[0];
+          if(target){
+            console.log('  [练级] 当前 lv'+curLevel+' vs 目标怪 lv'+dropLv+' → 刷 '+target.mon.display_name+'(lv'+target.mon.level+') 到 lv'+(dropLv-2));
+            const targetLevel=Math.max(curLevel+1,dropLv-2);
+            let gainStalled=0;
+            const recovery=content.recovery_services?.find(s=>{
+              const loc=content.locations.find(l=>l.canonical_id===s.location_canonical_id);
+              return loc&&loc.city_canonical_id===cityId;
+            });
+            let gainAttempts=0;
+            while(curLevel<targetLevel&&gainStalled<3&&gainAttempts<200){
+              gainAttempts+=1;
+              let stx=await state();
+              if(stx.combat){const r=await rt('combat','attack',{rounds:200});if(r.action==='combat_won'||r.action==='combat_lost')continue;continue;}
+              if(Number(stx.player?.current_health??1)<Number(stx.player?.max_health??100)*0.6){
+                if(recovery){await ensureNodeAt(recovery.location_canonical_id);await rt('recovery','recover',{recovery_service_canonical_id:recovery.canonical_id});continue;}
+              }
+              const sc=await rt('combat','start',{monster_canonical_id:target.mon.canonical_id});
+              if(sc.error){gainStalled+=1;continue;}
+              const newLevel=(await state()).player?.level??curLevel;
+              if(newLevel===curLevel){gainStalled+=1;}else{gainStalled=0;curLevel=newLevel;}
+            }
+            curLevel=(await state()).player?.level??curLevel;
+            console.log('  [练级] 完成 → 当前 lv'+curLevel+' (目标 lv'+targetLevel+', 尝试'+gainAttempts+')');
+          }
+        }
+        if(mp){
+          await ensureNodeAt(mp.location_canonical_id);
+        }
+        for(let k=0;k<40;k+=1){const stx=await state();
+          const expectedNode=mp?content.map_nodes.find(n=>n.location_canonical_id===mp.location_canonical_id)?.map_node_canonical_id:null;
+          if(expectedNode && stx.player?.current_map_node_canonical_id!==expectedNode){
+            await ensureNodeAt(mp.location_canonical_id);
+            await new Promise(r=>setTimeout(r,50));
+            continue;
+          }
+          if(stx.combat){const r=await rt('combat','attack',{rounds:300});if(r.action==='combat_won'){console.log('  [胜] drops=',JSON.stringify(r.drops?.granted??[]).slice(0,100));break;}if(r.action==='combat_lost'){mainlineBlocked=`${name}：${itemTgt.raw_name} 的掉落怪等级不足以击杀(等级/装备墙)`;break;}continue;}
+          const sc=await rt('combat','start',{monster_canonical_id:drop.monster_canonical_id});if(sc.error){console.log('  [start失败]',sc.error);await ensureNodeAt(mp?.location_canonical_id);break;}}
         continue;}
       console.log('  [物品目标无商店→航海]',name,itemTgt.raw_name);
       // 航海取得：从当前城市出发找 route，买船（若无），起航并推进到港
