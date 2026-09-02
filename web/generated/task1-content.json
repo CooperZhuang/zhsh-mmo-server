@@ -90664,8 +90664,8 @@
           },
           "source_canonical_id": "task.series.15.269",
           "original_target_kind": "item",
-          "source_content_entity_canonical_id": "runtime.item.57e744db1884c498",
-          "source_entity_canonical_id": "runtime.item.57e744db1884c498",
+          "source_content_entity_canonical_id": "runtime.task_chain.item.57e744db1884c498",
+          "source_entity_canonical_id": "runtime.task_chain.item.57e744db1884c498",
           "task_item_policy": {
             "acquisition_mode": "monster_drop",
             "reservation": "required_until_submit",
@@ -251754,20 +251754,6 @@
       "evidence_locator": "zhsh/config/monsterItems.json"
     },
     {
-      "canonical_id": "runtime.item.57e744db1884c498",
-      "source_canonical_id": "runtime.item.57e744db1884c498",
-      "entity_category": "item",
-      "display_name": "熊皮",
-      "normalized_data": {
-        "catalog": "taskConditionItems",
-        "encounter_match": "task_description_names_encounter",
-        "monster_name": "巨熊",
-        "name": "熊皮",
-        "probability": 1,
-        "probability_adjudication": "one required task item is settled per defeated or harvested source encounter because the task text gives an acquisition condition but no random drop rate"
-      }
-    },
-    {
       "canonical_id": "runtime.item.586fec3896207a43",
       "source_canonical_id": "runtime.item.586fec3896207a43",
       "entity_category": "item",
@@ -253587,7 +253573,7 @@
       "probability": 0.4,
       "quantity": 1,
       "runtime_capability": "queryable",
-      "content_entity_canonical_id": "runtime.item.57e744db1884c498",
+      "content_entity_canonical_id": "runtime.task_chain.item.57e744db1884c498",
       "monster_canonical_id": "derived.monster_definition.9cdb92b5619a712d",
       "monster_display_name": "巨熊"
     },
@@ -253950,7 +253936,7 @@
       "probability": null,
       "quantity": null,
       "runtime_capability": "queryable",
-      "content_entity_canonical_id": "runtime.item.57e744db1884c498",
+      "content_entity_canonical_id": "runtime.task_chain.item.57e744db1884c498",
       "monster_canonical_id": "derived.monster_definition.9cdb92b5619a712d",
       "monster_display_name": "巨熊"
     },
@@ -287543,7 +287529,7 @@
     "preview_routes_supported": false,
     "normal_runtime_reads_this_section": false
   },
-  "content_sha256": "a325aa2c127c7604b019b518cad684c1601cd38141d9ee7730aa44894ff4c4f3",
+  "content_sha256": "36e6e716a4496b02f431583aa26e9f783d5b5415b3b2462bdbb06daecb23b968",
   "entity_counts": {
     "tasks": 651,
     "cities": 28,
@@ -287554,7 +287540,7 @@
     "npc_placements": 359,
     "monsters": 261,
     "monster_placements": 276,
-    "content_entities": 219,
+    "content_entities": 218,
     "item_sources": 151,
     "ships": 21,
     "voyage_routes": 702,
