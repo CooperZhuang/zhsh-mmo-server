@@ -2,8 +2,8 @@
   "schema_version": 1,
   "record_kind": "global-task-model-validation",
   "stage_start_head": "2cbae183aa369fe0ac60176f3a1396914d786440",
-  "source_head": "709720ebd4a65eaaba5781bb6700790e6a5cacd7",
-  "generated_from_head": "709720ebd4a65eaaba5781bb6700790e6a5cacd7",
+  "source_head": "81c64e742dde6f6543bc0c46afd78af6bdfb72f6",
+  "generated_from_head": "81c64e742dde6f6543bc0c46afd78af6bdfb72f6",
   "reference_commits": {
     "zhsh": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
     "astrbot": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de",
@@ -37,68 +37,62 @@
     {
       "name": "remaining_fit_task_count",
       "passed": true,
-      "actual": 534,
-      "expected": 534
+      "actual": 508,
+      "expected": 508
     },
     {
       "name": "independent_direct_fit_count",
       "passed": true,
-      "actual": 640,
-      "expected": 640
+      "actual": 648,
+      "expected": 648
     },
     {
       "name": "independent_exception_count",
       "passed": true,
-      "actual": 11,
-      "expected": 11
+      "actual": 3,
+      "expected": 3
     },
     {
       "name": "remaining_direct_fit_count",
       "passed": true,
-      "actual": 523,
-      "expected": 523
+      "actual": 505,
+      "expected": 505
     },
     {
       "name": "legacy_audit_selector_count",
       "passed": true,
-      "actual": 117,
-      "expected": 117
+      "actual": 143,
+      "expected": 143
     },
     {
       "name": "validated_baseline_count",
       "passed": true,
-      "actual": 78,
-      "expected": 78
+      "actual": 648,
+      "expected": 648
     },
     {
       "name": "directory_status_counts",
       "passed": true,
       "actual": {
-        "blocked_by_shared_system": 3,
-        "data_conflict": 6,
-        "evidence_missing": 2,
-        "runnable_pending_validation": 562,
-        "validated": 78
+        "runnable_pending_validation": 3,
+        "validated": 648
       },
       "expected": {
-        "blocked_by_shared_system": 3,
-        "data_conflict": 6,
-        "evidence_missing": 2,
-        "runnable_pending_validation": 562,
-        "validated": 78
+        "runnable_pending_validation": 3,
+        "validated": 648
       }
     },
     {
       "name": "exception_cluster_task_count",
       "passed": true,
-      "actual": 11,
-      "expected": 11
+      "actual": 3,
+      "expected": 3
     },
     {
       "name": "browser_regression_task_count",
       "passed": true,
-      "actual": 117,
-      "expected": 117
+      "actual": 651,
+      "expected": 651
     },
     {
       "name": "route_waypoint_export_complete",
@@ -115,14 +109,14 @@
     {
       "name": "migrated_collection_target_count",
       "passed": true,
-      "actual": 2,
-      "expected": 2
+      "actual": 0,
+      "expected": 0
     },
     {
       "name": "task_described_drop_resolution_count",
       "passed": true,
-      "actual": 35,
-      "expected": 35
+      "actual": 38,
+      "expected": 38
     }
   ]
 }
