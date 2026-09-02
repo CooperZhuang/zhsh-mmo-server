@@ -101,37 +101,48 @@ let steps=0;const MAX_STEPS=Number(process.env.ZHSH_MAINLINE_MAX_STEPS??4000);
         let gainStalled=0;let gainAttempts=0;let lastExperience=0;
         const cityId=content.locations.find(l2=>l2.canonical_id===mp.location_canonical_id)?.city_canonical_id;
         const cityLocs=content.locations.filter(l=>l.city_canonical_id===cityId).map(l=>l.canonical_id);
-        let weak=content.monster_placements.filter(p=>cityLocs.includes(p.location_canonical_id))
+        // 全部可重复怪(城市内)，按等级升序。练级目标在当前曲线下实时重算，绝不冻结。
+        const cityMons=content.monster_placements.filter(p=>cityLocs.includes(p.location_canonical_id)&&p.repeatable)
           .map(p=>({p,mon:content.monsters.find(m=>m.canonical_id===p.monster_canonical_id)}))
-          .filter(({mon})=>mon&&Number(mon.level)<=Math.max(4,curLevel))
-          .sort((a,b)=>Number(b.mon.level)-Number(a.mon.level));
+          .filter(({mon})=>mon&&Number(mon.rewards?.experience>0))
+          .sort((a,b)=>Number(a.mon.level)-Number(b.mon.level));
         let target=null;
+        const equipped=new Map(); // slot(type) -> {score,canonical_id}
+        const equipBest=async()=>{
+          const st=await state();
+          const level=Number(st.player?.level??1);
+          const ids=Object.keys(st.inventory??{});
+          const byType=new Map();
+          for(const id of ids){
+            const eq=content.equipment.find(x=>x.canonical_id===id);
+            if(!eq||Number(eq.required_level??1)>level)continue;
+            const type=Number(eq.equipment_type);
+            if(type===6)continue;
+            const score=Number(eq.attack??0)*2+Number(eq.defense??0)*2+Number(eq.max_attack??eq.maxAttack??0)+Number(eq.health??0)+Number(eq.agility??0)+Number(eq.morale??0);
+            const cur=equipped.get(type);
+            if(!cur||score>cur.score)byType.set(type,{score,canonical_id:id});
+          }
+          for(const {score,canonical_id:id} of byType.values()){
+            if(score<=(equipped.get([...equipped.keys()].find(k=>equipped.get(k).canonical_id===id))?.score??-1))continue;
+            await rt('equipment','equip',{equipment_canonical_id:id});
+            equipped.set(Number(content.equipment.find(x=>x.canonical_id===id).equipment_type),{score,canonical_id:id});
+          }
+        };
+        // 从当前曲线可安全挑战的最高级怪往下探测：autoResolve 手热一次，输了就降一级。
+        const pickTarget=async(lv,level)=>{
+          const candidates=cityMons.filter(({mon})=>Number(mon.level)<=Math.max(1,level-2)&&Number(mon.level)<lv-2);
+          for(let i=candidates.length-1;i>=0;i-=1){
+            const cand=candidates[i];if(!cand)continue;
+            if(Number(cand.mon.level)<=Math.max(1,level-8))return cand;
+            const probe=await rt('combat','autoResolve',{_arg1:cand.mon.canonical_id});
+            if(probe.action==='combat_won'){await equipBest();return cand;}
+            if(probe.action==='combat_lost')continue;
+          }
+          return candidates[0]??null;
+        };
         if(dropLv>curLevel+5){
-          const safe=weak.find(({mon})=>Number(mon.level)<=curLevel-3)??weak[0];
-          target=safe;
+          target=await pickTarget(dropLv,curLevel);
           if(target){
-            const equipped=new Map(); // slot(type) -> {score,canonical_id}
-            const equipBest=async()=>{
-              const st=await state();
-              const level=Number(st.player?.level??1);
-              const ids=Object.keys(st.inventory??{});
-              const byType=new Map();
-              for(const id of ids){
-                const eq=content.equipment.find(x=>x.canonical_id===id);
-                if(!eq||Number(eq.required_level??1)>level)continue;
-                const type=Number(eq.equipment_type);
-                if(type===6)continue;
-                const score=Number(eq.attack??0)*2+Number(eq.defense??0)*2+Number(eq.max_attack??eq.maxAttack??0)+Number(eq.health??0)+Number(eq.agility??0)+Number(eq.morale??0);
-                const cur=equipped.get(type);
-                // 已穿戴的不再重复 equip（economy：inventory 不含已装备件）
-                if(!cur||score>cur.score)byType.set(type,{score,canonical_id:id});
-              }
-              for(const {score,canonical_id:id} of byType.values()){
-                if(score<=(equipped.get([...equipped.keys()].find(k=>equipped.get(k).canonical_id===id))?.score??-1))continue;
-                await rt('equipment','equip',{equipment_canonical_id:id});
-                equipped.set(Number(content.equipment.find(x=>x.canonical_id===id).equipment_type),{score,canonical_id:id});
-              }
-            };
             console.log('  [练级] 当前 lv'+curLevel+' vs 目标怪 lv'+dropLv+' → 刷 '+target.mon.display_name+'(lv'+target.mon.level+') 到 lv'+(dropLv-2));
             targetLevel=Math.max(curLevel+1,dropLv-2);
             const recovery=content.recovery_services?.find(s=>{
@@ -163,7 +174,7 @@ let steps=0;const MAX_STEPS=Number(process.env.ZHSH_MAINLINE_MAX_STEPS??4000);
                 gainStalled=0;lastExperience=Number((await state()).player?.experience??0);
                 await equipBest();
                 const after=Number(br.progression?.after??curLevel);
-                if(after>curLevel){curLevel=after;const stronger=weak.find(({mon})=>Number(mon.level)<=curLevel-3&&Number(mon.level)>Number(target.mon.level));if(stronger)target=stronger;}
+                if(after>curLevel){curLevel=after;const escalated=await pickTarget(dropLv,curLevel);if(escalated&&Number(escalated.mon.level)>Number(target.mon.level))target=escalated;}
               }else{// combat_lost
                 gainStalled+=1;
               }
@@ -223,7 +234,7 @@ let steps=0;const MAX_STEPS=Number(process.env.ZHSH_MAINLINE_MAX_STEPS??4000);
               gainStalled=0;lastExperience=Number((await state()).player?.experience??0);
               await equipBest();
               const after=Number(br.progression?.after??curLevel);
-              if(after>curLevel){curLevel=after;const stronger=weak.find(({mon})=>Number(mon.level)<=curLevel-3&&Number(mon.level)>Number(target.mon.level));if(stronger)target=stronger;}
+              if(after>curLevel){curLevel=after;const escalated=await pickTarget(dropLv,curLevel);if(escalated&&Number(escalated.mon.level)>Number(target.mon.level))target=escalated;}
             }else{// combat_lost
               gainStalled+=1;
             }
