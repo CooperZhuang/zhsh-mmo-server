@@ -105,7 +105,7 @@ test('convoy purchase rejects insufficient money', () => {
   const st = baseState('node.venice.dock');
   st.player.money = 100;
   const rt = new VoyagePrepRuntime({ storage: memStorage(st), catalog: catalogFor([], [], [item]) });
-  assert.throws(() => rt.purchase('p1', 'convoy.esm', 'ev1'), /银币不足/);
+  assert.throws(() => rt.purchase('p1', 'convoy.esm', 'ev1'), /铜贝不足/);
 });
 
 test('port reputation view sums across cities', () => {

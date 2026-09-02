@@ -24,6 +24,7 @@ function createGameplayState(player = {}) {
       skill_points: 0,
       reputation: 0,
       title: '水手',
+      money: 0,
       ...player,
     },
     inventory_capacity: INVENTORY_CAPACITY,

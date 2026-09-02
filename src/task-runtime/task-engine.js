@@ -21,6 +21,15 @@ const EVENT_TYPES = Object.freeze([
 const ACTIVE_STATUSES = new Set(['accepted','in_progress','completable']);
 const TASK_EVENT_REPLAY_WINDOW=128;
 const { assertRuntimeStorage,assertTaskCatalog } = require('./ports');
+// 金/银/铜 分级显示（忠实 zhsh 源设定「银贝显示换算」）：结算真值恒为铜贝，
+// 显示换算按 1金贝=100银贝=10000铜贝 折算，供 UI/文案展示分级，不改动 money 真值。
+function purseFromCopper(copper) {
+  const n = Math.max(0, Math.floor(Number(copper) || 0));
+  const 金贝 = Math.floor(n / 10000);
+  const 银贝 = Math.floor((n % 10000) / 100);
+  const 铜贝 = n % 100;
+  return { 金贝, 银贝, 铜贝, copper_total: n };
+}
 const { createGameplayState,applyExperienceProgression } = require('./gameplay-state');
 const {abandonTaskItems,assertInventoryRemovalAllowed,consumeTaskItems,defaultPolicy,ensureTaskItemLedger,grantInventoryItem,reconcileTaskItemReservations}=require('./task-item-ledger');
 
@@ -253,6 +262,7 @@ class TaskRuntimeEngine {
     });
     const allTasks=this.listTasks().filter((task)=>!this.isDynamicTask(task.canonical_id)).map(project);
     const tasks=allTasks.filter((entry)=>seriesOf(entry.definition)===activeSeries);
+    state.player.purse = purseFromCopper(state.player.money);
     return { ...state,current_location:node,active_series_canonical_id:activeSeries,
       task_series:this.seriesCanonicalIds.map((id)=>({ canonical_id:id,total:this.catalog.listSeriesTasks(id).length,
         completed:this.catalog.listSeriesTasks(id).filter((task)=>this.getTaskRuntime(state,task.canonical_id)?.status==='completed').length })),

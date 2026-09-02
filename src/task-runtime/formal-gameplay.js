@@ -81,7 +81,7 @@ class ShipRuntime {
       if (!atPort(state,ship.city_canonical_id,ship.port_map_node_canonical_id)) throw new Error('购买船只需在对应港口码头。');
       const limit = Math.min(6,Math.floor(state.player.level / 10) + 1);
       if (Object.keys(state.owned_ships).length >= limit) throw new Error('船只数量已达上限。');
-      if (state.player.money < ship.price) throw new Error('金币不足，无法购买此船。');
+      if (state.player.money < ship.price) throw new Error('铜贝不足，无法购买此船。');
       state.player.money -= ship.price;
       state.owned_ships[shipId] = { purchased_at:this.clock(),source_canonical_id:ship.source_canonical_id ?? null };
       state.current_ship_canonical_id = shipId;
@@ -110,7 +110,7 @@ class VoyageRuntime {
       if (route.required_task_canonical_id && !route.allowed_task_statuses.includes(state.tasks[route.required_task_canonical_id]?.status)) {
         throw new Error('尚未满足此航线的任务条件。');
       }
-      if (state.player.money < Number(route.fee ?? 0)) throw new Error('金币不足，无法支付航海费用。');
+      if (state.player.money < Number(route.fee ?? 0)) throw new Error('铜贝不足，无法支付航海费用。');
       state.player.money -= Number(route.fee ?? 0);
       const ship = this.catalog.getShip(state.current_ship_canonical_id);
       state.voyage = {
@@ -239,7 +239,7 @@ class CookRuntime {
       const recipe=this.catalog.getRecipe(recipeId);
       const city=this.currentCityId(state);
       if(recipe.port_city_canonical_id!==city)throw new Error(`该配方须在对应港口烹制（${recipe.port_city_canonical_id}）。`);
-      if(Number(state.player.money)<Number(recipe.silver_cost??0))throw new Error('银币不足，无法支付烹制费用。');
+      if(Number(state.player.money)<Number(recipe.silver_cost??0))throw new Error('铜贝不足，无法支付烹制费用。');
       for(const [ingredientId,quantity] of Object.entries(recipe.cargo??{})) {
         if(Number(state.inventory[ingredientId]??0)<Number(quantity))throw new Error('食材不足，无法烹制。');
       }
@@ -342,7 +342,7 @@ class VoyagePrepRuntime {
   purchase(playerId,itemId,eventId) {
     return transactEvent(this.storage,playerId,eventId,'convoy_purchase',{ convoy_item_canonical_id:itemId },this.clock,(state) => {
       const item=this.catalog.getConvoyItem(itemId);
-      if(Number(state.player.money)<Number(item.price??0))throw new Error('银币不足。');
+      if(Number(state.player.money)<Number(item.price??0))throw new Error('铜贝不足。');
       state.player.money-=Number(item.price??0);
       const stock=state.convoy_bundles??(state.convoy_bundles={});
       stock[itemId]=(Number(stock[itemId]??0)+1);
