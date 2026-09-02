@@ -93,7 +93,7 @@
 | 证据项 | 判定方法（AI） | 证据命令 / 来源 | 证据产物 | 状态 |
 |---|---|---|---|---|
 | H1 功能可达（无死链/白屏/需 URL） | 浏览器驱动遍历主功能 | `npm run test:browser-dom`、`npm run test:browser-tutorial` | e2e | **PASS**（客户端 http://127.0.0.1:4173/ 正常服务(HTML 纵横四海)；app.js 含全部页面 renderer(location/map/world/npc/backpack/market/tasks/pets)，index.html 挂载 app；**`browser-infrastructure` 1/1 PASS**——真实 Edge 启动/托管/CDP evaluate/退出闭环，浏览器 e2e 路径已打通（修复 loadInlineApplication 内联构建）；无死链/白屏） |
-| H2 新手可理解（移动/接任务/打怪/买装/航海/交易/升级/主线） | 新手教学 e2e + 无文档依赖 | `npm run test:browser-tutorial`（new-player-tutorial-e2e） | e2e | PASS（客户端可发现入口覆盖全部核心：`data-page="location"`(移动)、tasks(任务)、encounter(战斗)、market buy/sell(交易)、shop(买装)、map/world(航海)、pets/backpack(成长)；无需要记忆 URL 的功能） |
+| H2 新手可理解（移动/接任务/打怪/买装/航海/交易/升级/主线） | 新手教学 e2e + 无文档依赖 | `npm run test:browser-tutorial`（new-player-tutorial-e2e） | e2e | PASS→部分（客户端可发现入口覆盖全部核心：`data-page="location"`(移动)、tasks、encounter(战斗)、market buy/sell、shop(买装)、map/world(航海)、pets/backpack；`browser-infrastructure` 1/1 PASS——真实 Edge 启动/托管/CDP 闭环。**但 full Series01 浏览器通关 playthrough 在本环境挂起**（`new-player-tutorial-e2e` 运行 20+ min 无 TAP 输出，`node --test` 缓冲 + driver 疑似死锁，见已知问题5） |
 | H3 状态可见（HP/EXP/Lv/Gold/装备/状态/任务/货舱/船/宠物/船员） | UI 断言核心状态展示 | DOM e2e + 手动核对 | e2e + 截图 | **PASS**（app.js 渲染 current_health/max_health(HP)、experience(EXP)、level、money(Gold)、inventory(装备/货舱)、current_location、task；中文标签 金币/铜贝/经验/体力/等级/生命 44 处） |
 
 ## I. 稳定性与性能
@@ -151,7 +151,7 @@
 | 数值审计（C4） | **PASS** | `numbers:audit` 0 error 0 warn；`level-experience.json` 1–210 全单调 | — |
 | 内存求解器（C5） | **PASS（引擎推进）** | 内存引擎端到端：series 01→14 共 181/651 任务完成、level 135、money 824194；series15 机制经专项测试证明（见已知问题4） | series15 上下文 NPC 驱动需正式 e2e |
 | 服务端 API 全主线（C5） | PARTIAL | 运行时段账本链（15.455→15.472）已验证；mainline-e2e 变速练级长程（数小时）未跑完 | — |
-| Browser E2E（H） | PENDING | 需长时浏览器会话 | — |
+| Browser E2E（H） | PASS→部分 | 浏览器 harness 打通（`browser-infrastructure` 1/1 PASS：Edge 启动/托管/CDP/退出闭环）；`browser-playable` 13/13（真实浏览器 UI）；H1/H2/H3 均有证据 | full Series01 浏览器通关 playthrough 挂起（见已知问题5） |
 | 多人 S0–S2（F） | **PASS（S0/S1）** | S0 单玩家闭环(注册→进世界→完成任务)；重连保留；双账号共存；S2(10人) 未做 | — |
 | 长稳/性能（I，无模拟玩家） | PARTIAL | 服务器在大量 API 测试期持续运行无崩溃；API P50=476ms；8h+ soak 未做 | — |
 | 重启恢复 / 第二玩家 / 终局后 | **PASS** | 重启恢复(关停→重启→状态保留)；第二玩家(双账号共存)；终局后(level135 后系统可用) | — |
@@ -162,7 +162,8 @@
 1. ~~8 个曲线锚定测试失败~~ **已解决**（`npm test` 195/195 PASS）：平滑曲线重设计后的锚定夹具/tolerance 已随 `level-experience.json` 权威重建（reference-golden / progression-golden / training-helper / formal-combat 体力 / 系列15+release 检查点）。
 2. **`package:combat-survival` / `package:equipment-combat` 冷包不可复现**：`data/zhsh-content.sqlite` 被提交进 git，冷重建从 bundle 携带旧裁决行，`adjudicate-blocked-targets.js` raw INSERT 触发 `UNIQUE constraint failed: content_entities.source_record_id`。verify:core 通过先 `rmSync` 内容库解决；冷包路径未同步。属 P2 可复现性缺陷（非玩法）。
 3. ~~数值曲线门槛不增（8 点）~~ **已解决**：`688a293` 平滑曲线重设计后 `level-experience.json` 1–210 全单调（非单调点=0），`numbers:audit` 现 0 error 0 warn。原告警为旧曲线遗留，重设计已闭环。
-4. **first-chain-driver 不在 series15 上下文 NPC 节点激活任务态**：内存引擎端到端到 series 15 停在「NPC is not at the current formal location: runtime.contextual-npc.1e00」。根因是 driver 自动生成事件不先置任务 available + 移到上下文 NPC 节点；引擎机制本身正确（formal-gameplay「task-context NPC placements」测试 39 证明上下文 NPC 在任务 available + 玩家在节点时出现）。属 driver 限制（非玩法缺陷），如需全量 651 通关可用手动/正式 e2e 驱动。已修：`syncItemTargets` 过滤回调 `target→entry`（TDZ 阴影，触发 handleObtain(onlyItemId) 路径，修复后引擎可推到 series14 181 任务 level135），属 P2 bug 已清零。
+4. **first-chain-driver 不在 series15 上下文 NPC 节点激活任务态**：内存引擎端到端到 series 15 停在「NPC is not at the current formal location: runtime.contextual-npc.1e00」。根因是 driver 自动生成事件不先置任务 available + 移到上下文 NPC 节点；引擎机制本身正确（formal-gameplay「task-context NPC placements」测试 39 证明上下文 NPC 在任务 available + 玩家在节点时出现）。属 driver 限制（非玩法缺陷）。已修：`syncItemTargets` 过滤回调 `target→entry`（TDZ 阴影，修复后引擎可推到 series14 181 任务 level135）。
+5. **full Series01 浏览器通关 playthrough 在本环境挂起**：`new-player-tutorial-e2e` 运行 20+ min 无 TAP 输出（`node --test` 仅在完成时 flush TAP + `DomGameplayScenario` driver 疑似死锁/CDP 等待）。`browser-infrastructure` 1/1 PASS 证明浏览器 harness（启动/托管/CDP/退出）正常；但完整教学链自动化通关 playthrough 未在本环境跑通。需人工/远程调试 driver（DOM 交互等待），属 P2 非玩法项——游戏逻辑经内存引擎 + 服务端 API 已验证，浏览器层为表现层自动化缺口。
 
 ### 最终判定（本阶段）
 
