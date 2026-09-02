@@ -106,23 +106,29 @@ let steps=0;const MAX_STEPS=Number(process.env.ZHSH_MAINLINE_MAX_STEPS??4000);
           if(target){
             console.log('  [练级] 当前 lv'+curLevel+' vs 目标怪 lv'+dropLv+' → 刷 '+target.mon.display_name+'(lv'+target.mon.level+') 到 lv'+(dropLv-2));
             const targetLevel=Math.max(curLevel+1,dropLv-2);
-            let gainStalled=0;
+            let gainStalled=0;let lastExperience=(await state()).player?.experience??0;
             const recovery=content.recovery_services?.find(s=>{
               const loc=content.locations.find(l=>l.canonical_id===s.location_canonical_id);
               return loc&&loc.city_canonical_id===cityId;
             });
             let gainAttempts=0;
-            while(curLevel<targetLevel&&gainStalled<3&&gainAttempts<200){
+            while(curLevel<targetLevel&&gainStalled<30&&gainAttempts<600){
               gainAttempts+=1;
               let stx=await state();
+              // 战败回城后节点漂移 → 先回目标位置
+              const expNode=target.p.location_canonical_id;
+              const expNode2=content.map_nodes.find(n=>n.location_canonical_id===expNode)?.map_node_canonical_id;
+              if(expNode2&&stx.player?.current_map_node_canonical_id!==expNode2){await ensureNodeAt(expNode);stx=await state();}
               if(stx.combat){const r=await rt('combat','attack',{rounds:200});if(r.action==='combat_won'||r.action==='combat_lost')continue;continue;}
               if(Number(stx.player?.current_health??1)<Number(stx.player?.max_health??100)*0.6){
                 if(recovery){await ensureNodeAt(recovery.location_canonical_id);await rt('recovery','recover',{recovery_service_canonical_id:recovery.canonical_id});continue;}
               }
               const sc=await rt('combat','start',{monster_canonical_id:target.mon.canonical_id});
               if(sc.error){gainStalled+=1;continue;}
-              const newLevel=(await state()).player?.level??curLevel;
-              if(newLevel===curLevel){gainStalled+=1;}else{gainStalled=0;curLevel=newLevel;}
+              const now=(await state()).player;
+              const expGain=Number(now?.experience??0)-lastExperience;
+              if(expGain<=0){gainStalled+=1;}else{gainStalled=0;lastExperience=Number(now.experience);}
+              if(Number(now?.level??curLevel)!==curLevel)curLevel=Number(now.level);
             }
             curLevel=(await state()).player?.level??curLevel;
             console.log('  [练级] 完成 → 当前 lv'+curLevel+' (目标 lv'+targetLevel+', 尝试'+gainAttempts+')');
