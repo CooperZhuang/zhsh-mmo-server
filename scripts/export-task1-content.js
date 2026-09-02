@@ -541,7 +541,8 @@ function calculateMonsterRewards(monster,rules,encounterType) {
   const level=Math.max(1,Number(monster.level));
   const multiplier=Number(rules.experience.encounter_multipliers[encounterType]??1);
   return { experience:Math.max(Number(rules.experience.minimum),Math.round(level*Number(rules.experience.base_experience_per_level)*multiplier)),
-    copper:Math.max(Number(rules.copper.minimum),level*5),experience_rule_status:rules.experience.evidence_status,
+    copper:Math.max(Number(rules.copper.minimum),Math.round(level*Number(rules.copper.base_copper_per_level)+40*multiplier)),
+    experience_rule_status:rules.experience.evidence_status,
     copper_rule_status:rules.copper.evidence_status,rule_id:rules.rule_id };
 }
 

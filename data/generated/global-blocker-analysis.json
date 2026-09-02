@@ -2,8 +2,8 @@
   "schema_version": 1,
   "record_kind": "global-blocker-analysis",
   "stage_start_head": "2cbae183aa369fe0ac60176f3a1396914d786440",
-  "source_head": "39ff0860417c6e9a5f7e0829dd514ff84e1213b6",
-  "generated_from_head": "39ff0860417c6e9a5f7e0829dd514ff84e1213b6",
+  "source_head": "2a7b7a721c9e54e3cc4a1f6ef2b42365ce6a4a8b",
+  "generated_from_head": "2a7b7a721c9e54e3cc4a1f6ef2b42365ce6a4a8b",
   "reference_commits": {
     "zhsh": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
     "astrbot": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de",
@@ -14,17 +14,17 @@
   "generated_at": "2026-07-18T00:00:00.000Z",
   "accepted_baseline": {
     "head": "4bb1b0097704b2754d63ae53b54c5f41a072bf21",
-    "selected_task_count": 82,
-    "formal_series_count": 14,
-    "remaining_task_count": 569
+    "selected_task_count": 148,
+    "formal_series_count": 15,
+    "remaining_task_count": 503
   },
   "current_result": {
     "selected_task_count": 143,
     "formal_series_count": 15,
     "remaining_task_count": 508,
-    "combined_simulated_unlock_delta": 61,
-    "isolated_delta_sum": 66,
-    "combination_synergy_delta": -5,
+    "combined_simulated_unlock_delta": -5,
+    "isolated_delta_sum": -5,
+    "combination_synergy_delta": 0,
     "selection_hash": "bd66be69fe45a45fe4a9c0cbd87c61b04ab67c063083e012503131bd03c4c6d1",
     "selected_modules": [
       "training_session_continuation",
@@ -38,10 +38,10 @@
     "artifact": "data/generated/global-module-simulation-results.json",
     "generator_version": "global-module-simulator/1.0.0",
     "verified_results": {
-      "baseline_all_modules_disabled": 82,
+      "baseline_all_modules_disabled": 148,
       "training_session_continuation": 148,
-      "task_described_item_sources": 82,
-      "projected_task_entry_combat_state": 82,
+      "task_described_item_sources": 143,
+      "projected_task_entry_combat_state": 148,
       "combined": 143
     },
     "consistency_checks": [
@@ -80,30 +80,21 @@
     },
     {
       "series_canonical_id": "task.series.13",
-      "task_canonical_id": "task.series.13.104",
-      "sequence_position": 3,
+      "task_canonical_id": "task.series.13.142",
+      "sequence_position": 41,
       "reason_codes": [
-        "level_balance_anomaly"
+        "combat_loadout_not_closed"
       ],
-      "blocked_task_count": 66
-    },
-    {
-      "series_canonical_id": "task.series.14",
-      "task_canonical_id": "task.series.14.171",
-      "sequence_position": 1,
-      "reason_codes": [
-        "level_balance_anomaly"
-      ],
-      "blocked_task_count": 9
+      "blocked_task_count": 28
     },
     {
       "series_canonical_id": "task.series.15",
-      "task_canonical_id": "task.series.15.180",
-      "sequence_position": 0,
+      "task_canonical_id": "task.series.15.199",
+      "sequence_position": 19,
       "reason_codes": [
-        "level_balance_anomaly"
+        "combat_loadout_not_closed"
       ],
-      "blocked_task_count": 470
+      "blocked_task_count": 451
     }
   ],
   "current_root_blocker_clusters": [
@@ -170,55 +161,6 @@
   ],
   "module_candidates": [
     {
-      "module": "training_session_continuation",
-      "display_name": "repeatable training session continuation",
-      "selected_for_stage": true,
-      "actual_simulated_unlock_delta": 66,
-      "actual_affected_series_count": 3,
-      "actual_endpoint_changes": [
-        {
-          "series_canonical_id": "task.series.13",
-          "baseline_selected_task_count": 3,
-          "current_selected_task_count": 41,
-          "simulated_unlock_delta": 38,
-          "baseline_terminal_task_canonical_id": "task.series.13.103",
-          "current_terminal_task_canonical_id": "task.series.13.141"
-        },
-        {
-          "series_canonical_id": "task.series.14",
-          "baseline_selected_task_count": 1,
-          "current_selected_task_count": 10,
-          "simulated_unlock_delta": 9,
-          "baseline_terminal_task_canonical_id": "task.series.14.170",
-          "current_terminal_task_canonical_id": "task.series.14.179"
-        },
-        {
-          "series_canonical_id": "task.series.15",
-          "baseline_selected_task_count": 0,
-          "current_selected_task_count": 19,
-          "simulated_unlock_delta": 19,
-          "baseline_terminal_task_canonical_id": null,
-          "current_terminal_task_canonical_id": "task.series.15.198"
-        }
-      ],
-      "cross_series_reuse_scope": {
-        "series_count": 14,
-        "task_count": 127,
-        "basis": "series with explicit level-gated tasks"
-      },
-      "cross_series_reuse_score": 5,
-      "source_evidence_strength_score": 5,
-      "downstream_exposure_score": 5,
-      "implementation_cost_score": 2,
-      "priority_score": 6672,
-      "evidence_basis": [
-        "source encounter cache refresh",
-        "source automatic attack interval",
-        "source free church recovery",
-        "persistent save progression across sessions"
-      ]
-    },
-    {
       "module": "projected_task_entry_combat_state",
       "display_name": "projected task-entry combat state",
       "selected_for_stage": true,
@@ -242,12 +184,45 @@
       ]
     },
     {
-      "module": "task_described_item_sources",
-      "display_name": "task-described encounter item-source closure",
+      "module": "training_session_continuation",
+      "display_name": "repeatable training session continuation",
       "selected_for_stage": true,
       "actual_simulated_unlock_delta": 0,
       "actual_affected_series_count": 0,
       "actual_endpoint_changes": [],
+      "cross_series_reuse_scope": {
+        "series_count": 14,
+        "task_count": 127,
+        "basis": "series with explicit level-gated tasks"
+      },
+      "cross_series_reuse_score": 5,
+      "source_evidence_strength_score": 5,
+      "downstream_exposure_score": 2,
+      "implementation_cost_score": 2,
+      "priority_score": 57,
+      "evidence_basis": [
+        "source encounter cache refresh",
+        "source automatic attack interval",
+        "source free church recovery",
+        "persistent save progression across sessions"
+      ]
+    },
+    {
+      "module": "task_described_item_sources",
+      "display_name": "task-described encounter item-source closure",
+      "selected_for_stage": true,
+      "actual_simulated_unlock_delta": -5,
+      "actual_affected_series_count": 1,
+      "actual_endpoint_changes": [
+        {
+          "series_canonical_id": "task.series.14",
+          "baseline_selected_task_count": 10,
+          "current_selected_task_count": 5,
+          "simulated_unlock_delta": -5,
+          "baseline_terminal_task_canonical_id": "task.series.14.179",
+          "current_terminal_task_canonical_id": "task.series.14.174"
+        }
+      ],
       "cross_series_reuse_scope": {
         "series_count": 0,
         "task_count": 0,
@@ -257,7 +232,7 @@
       "source_evidence_strength_score": 4,
       "downstream_exposure_score": 2,
       "implementation_cost_score": 3,
-      "priority_score": 24,
+      "priority_score": -476,
       "evidence_basis": [
         "task description names the encounter",
         "target location contains a unique matching encounter",
@@ -267,28 +242,12 @@
   ],
   "combined_endpoint_changes": [
     {
-      "series_canonical_id": "task.series.13",
-      "baseline_selected_task_count": 3,
-      "current_selected_task_count": 41,
-      "simulated_unlock_delta": 38,
-      "baseline_terminal_task_canonical_id": "task.series.13.103",
-      "current_terminal_task_canonical_id": "task.series.13.141"
-    },
-    {
       "series_canonical_id": "task.series.14",
-      "baseline_selected_task_count": 1,
+      "baseline_selected_task_count": 10,
       "current_selected_task_count": 5,
-      "simulated_unlock_delta": 4,
-      "baseline_terminal_task_canonical_id": "task.series.14.170",
+      "simulated_unlock_delta": -5,
+      "baseline_terminal_task_canonical_id": "task.series.14.179",
       "current_terminal_task_canonical_id": "task.series.14.174"
-    },
-    {
-      "series_canonical_id": "task.series.15",
-      "baseline_selected_task_count": 0,
-      "current_selected_task_count": 19,
-      "simulated_unlock_delta": 19,
-      "baseline_terminal_task_canonical_id": null,
-      "current_terminal_task_canonical_id": "task.series.15.198"
     }
   ],
   "reference_repository_reuse": {
@@ -312,10 +271,10 @@
   },
   "simulation_cases": {
     "baseline": {
-      "selected_task_count": 82,
-      "remaining_task_count": 569,
-      "selected_series_count": 14,
-      "selection_hash": "2a12da7d5cbd171e8ae26527ae37e1e8022ec94ebaf07da07ed97bc64455467d",
+      "selected_task_count": 148,
+      "remaining_task_count": 503,
+      "selected_series_count": 15,
+      "selection_hash": "93bb64f264d21f9c48660039bc639350a3698ad32300a84346200a0ac8ddb407",
       "active_global_modules": {
         "training_session_continuation": false,
         "task_described_item_sources": false,
@@ -325,9 +284,8 @@
         "task.series.05.036",
         "task.series.10.057",
         "task.series.11.071",
-        "task.series.13.104",
-        "task.series.14.171",
-        "task.series.15.180"
+        "task.series.13.142",
+        "task.series.15.199"
       ],
       "series_endpoints": {
         "task.series.01": {
@@ -391,13 +349,18 @@
           "selection_kind": "complete_series"
         },
         "task.series.13": {
-          "selected_task_count": 3,
-          "terminal_task_canonical_id": "task.series.13.103",
+          "selected_task_count": 41,
+          "terminal_task_canonical_id": "task.series.13.141",
           "selection_kind": "maximal_continuous_prefix"
         },
         "task.series.14": {
-          "selected_task_count": 1,
-          "terminal_task_canonical_id": "task.series.14.170",
+          "selected_task_count": 10,
+          "terminal_task_canonical_id": "task.series.14.179",
+          "selection_kind": "complete_series"
+        },
+        "task.series.15": {
+          "selected_task_count": 19,
+          "terminal_task_canonical_id": "task.series.15.198",
           "selection_kind": "maximal_continuous_prefix"
         }
       }
@@ -406,7 +369,7 @@
       "selected_task_count": 148,
       "remaining_task_count": 503,
       "selected_series_count": 15,
-      "selection_hash": "d816ee314e66b876b3dee570befd7e531f66c66a2cedbd1da40fea5e86dc7fa2",
+      "selection_hash": "50b83179110ed4d966dc558fdca7d88c730386544090920c74a1fbd6386afd92",
       "active_global_modules": {
         "training_session_continuation": true,
         "task_described_item_sources": false,
@@ -498,10 +461,10 @@
       }
     },
     "task_described_item_sources": {
-      "selected_task_count": 82,
-      "remaining_task_count": 569,
-      "selected_series_count": 14,
-      "selection_hash": "cbca9082f1f5a7a7440f82d6159c33e7f741dd7cc63c328c18c584a445234e4d",
+      "selected_task_count": 143,
+      "remaining_task_count": 508,
+      "selected_series_count": 15,
+      "selection_hash": "954bbc8b99c1dbac9e2f7de4cfad45240b20f2dd0d68eab7db8698b0bcb715af",
       "active_global_modules": {
         "training_session_continuation": false,
         "task_described_item_sources": true,
@@ -511,9 +474,9 @@
         "task.series.05.036",
         "task.series.10.057",
         "task.series.11.071",
-        "task.series.13.104",
-        "task.series.14.171",
-        "task.series.15.180"
+        "task.series.13.142",
+        "task.series.14.175",
+        "task.series.15.199"
       ],
       "series_endpoints": {
         "task.series.01": {
@@ -577,22 +540,27 @@
           "selection_kind": "complete_series"
         },
         "task.series.13": {
-          "selected_task_count": 3,
-          "terminal_task_canonical_id": "task.series.13.103",
+          "selected_task_count": 41,
+          "terminal_task_canonical_id": "task.series.13.141",
           "selection_kind": "maximal_continuous_prefix"
         },
         "task.series.14": {
-          "selected_task_count": 1,
-          "terminal_task_canonical_id": "task.series.14.170",
+          "selected_task_count": 5,
+          "terminal_task_canonical_id": "task.series.14.174",
+          "selection_kind": "maximal_continuous_prefix"
+        },
+        "task.series.15": {
+          "selected_task_count": 19,
+          "terminal_task_canonical_id": "task.series.15.198",
           "selection_kind": "maximal_continuous_prefix"
         }
       }
     },
     "projected_task_entry_combat_state": {
-      "selected_task_count": 82,
-      "remaining_task_count": 569,
-      "selected_series_count": 14,
-      "selection_hash": "74105718e57384f53fc6eaa5cb54e7fb14eae73e0edf36655bdee80766acf34c",
+      "selected_task_count": 148,
+      "remaining_task_count": 503,
+      "selected_series_count": 15,
+      "selection_hash": "d2f383d94fe54ad3d84e5c1c0c534619f0bae82647446342c0c639e2f23b064c",
       "active_global_modules": {
         "training_session_continuation": false,
         "task_described_item_sources": false,
@@ -602,9 +570,8 @@
         "task.series.05.036",
         "task.series.10.057",
         "task.series.11.071",
-        "task.series.13.104",
-        "task.series.14.171",
-        "task.series.15.180"
+        "task.series.13.142",
+        "task.series.15.199"
       ],
       "series_endpoints": {
         "task.series.01": {
@@ -668,13 +635,18 @@
           "selection_kind": "complete_series"
         },
         "task.series.13": {
-          "selected_task_count": 3,
-          "terminal_task_canonical_id": "task.series.13.103",
+          "selected_task_count": 41,
+          "terminal_task_canonical_id": "task.series.13.141",
           "selection_kind": "maximal_continuous_prefix"
         },
         "task.series.14": {
-          "selected_task_count": 1,
-          "terminal_task_canonical_id": "task.series.14.170",
+          "selected_task_count": 10,
+          "terminal_task_canonical_id": "task.series.14.179",
+          "selection_kind": "complete_series"
+        },
+        "task.series.15": {
+          "selected_task_count": 19,
+          "terminal_task_canonical_id": "task.series.15.198",
           "selection_kind": "maximal_continuous_prefix"
         }
       }
@@ -683,7 +655,7 @@
       "selected_task_count": 143,
       "remaining_task_count": 508,
       "selected_series_count": 15,
-      "selection_hash": "c39d3b355f3fbfb150edda0bf95af20c7b1f276780b0f7b754d1eb79c39b9d0e",
+      "selection_hash": "4c8b07f1832ebb9a7ea4084e1b62b52a6b73747531a5a5942dd5f0ddb0bfde01",
       "active_global_modules": {
         "training_session_continuation": true,
         "task_described_item_sources": true,
