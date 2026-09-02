@@ -110,7 +110,7 @@
 
 | 证据项 | 判定方法（AI） | 证据命令 / 来源 | 证据产物 | 状态 |
 |---|---|---|---|---|
-| J1 自动化测试（根因修复必加回归） | 全量单测/集成 | `npm run test`（`node --test tests/*.test.js`） | 测试汇总 | FAIL→部分（`npm test` 187 pass / 8 fail。8 fail 均为 688a293 平滑曲线重设计后测试夹具未同步的曲线锚定，已在提交信息中明示「后续批次重建」；非根因缺陷，见已知问题） |
+| J1 自动化测试（根因修复必加回归） | 全量单测/集成 | `npm run test`（`node --test tests/*.test.js`） | 测试汇总 | **PASS（195/195）**（`npm test` 全过；`verify:core` 全管线 ok——内容生成 10 步 + 195 测试。8 个曲线锚定测试已随平滑曲线重建：reference-golden/progression-golden/training-helper/formal-combat 体力/检查点夹具全部对齐） |
 | J2 内容完整性 CI（ID 存在/前置合法/无循环/图可达/NPC-怪物-物品可达/掉落∈[0,1]/required_level 合法/奖励合法） | content audit 自动化,纳入 CI | `npm run data:validate`（扩展）+ `npm run task:model-global:validate` | CI 输出 | **PASS**（`data:validate` passed；`task:model-global:validate` 16 checks PASS——651 任务全量可达、无循环、引用完整） |
 | J3 文档一致（README/bible/ADR/策略/数值/API 与实现一致） | 交叉核对文档 vs server/web/src | 人工/AI 核对 | 核对表 | PENDING-VERIFICATION |
 
@@ -146,7 +146,7 @@
 
 | 项 | 判定 | 结果 | 已知问题（跟踪） |
 |---|---|---|---|
-| 单元/集成测试（J1） | **FAIL→部分** | `npm test` 187 pass / 8 fail（见 §已知问题1） | 8 个曲线锚定夹具未随 688a293 平滑曲线同步 |
+| 单元/集成测试（J1） | **PASS** | `npm test` 195/195；`verify:core` 全管线 ok | —（8 个曲线锚定已重建对齐） |
 | 内容完整性（J2） | **PASS** | `data:validate` + `task:model-global:validate` 16 checks 全过 | — |
 | 数值审计（C4） | **PASS** | `numbers:audit` 8 warn 0 error | 8 warn 为曲线门槛不增（688a293 验收点） |
 | 内存求解器（C5） | PENDING | 需长时运行 | — |
@@ -159,7 +159,7 @@
 
 ### 已知问题（跟踪）
 
-1. **8 个曲线锚定测试失败**（688a293 明示「后续批次重建」）：`formal-core-e2e`×3、`progression-source-golden`×2（阈值/训练路径）、`formal-training-helper`×1、`release-dual-scenario-checkpoint`×2。根因：平滑曲线重设计后夹具未同步，属 P1 可维护性项，非玩法缺陷，不影响金牌路径。
+1. ~~8 个曲线锚定测试失败~~ **已解决**（`npm test` 195/195 PASS）：平滑曲线重设计后的锚定夹具/tolerance 已随 `level-experience.json` 权威重建（reference-golden / progression-golden / training-helper / formal-combat 体力 / 系列15+release 检查点）。
 2. **`package:combat-survival` / `package:equipment-combat` 冷包不可复现**：`data/zhsh-content.sqlite` 被提交进 git，冷重建从 bundle 携带旧裁决行，`adjudicate-blocked-targets.js` raw INSERT 触发 `UNIQUE constraint failed: content_entities.source_record_id`。verify:core 通过先 `rmSync` 内容库解决；冷包路径未同步。属 P2 可复现性缺陷（非玩法）。
 3. **数值曲线门槛不增（8 点）**：`numbers:audit` 的 `exp.curve` 告警（lv13/28/48/63/101/152/180/201），为 688a293 平滑曲线设计产生，需确认是否接受「局部门槛不增」段（P3，数值设计裁决）。
 4. **first-chain-driver 不在 series15 上下文 NPC 节点激活任务态**：内存引擎端到端到 series 15 停在「NPC is not at the current formal location: runtime.contextual-npc.1e00」。根因是 driver 自动生成事件不先置任务 available + 移到上下文 NPC 节点；引擎机制本身正确（formal-gameplay「task-context NPC placements」测试 39 证明上下文 NPC 在任务 available + 玩家在节点时出现）。属 driver 限制（非玩法缺陷），如需全量 651 通关可用手动/正式 e2e 驱动。已修：`syncItemTargets` 过滤回调 `target→entry`（TDZ 阴影，触发 handleObtain(onlyItemId) 路径，修复后引擎可推到 series14 181 任务 level135），属 P2 bug 已清零。
