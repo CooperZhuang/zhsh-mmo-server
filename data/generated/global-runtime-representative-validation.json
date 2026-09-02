@@ -2,8 +2,8 @@
   "schema_version": 1,
   "record_kind": "global-runtime-representative-validation",
   "stage_start_head": "2cbae183aa369fe0ac60176f3a1396914d786440",
-  "source_head": "3efdc763cf464067601ef228f4cec9478f1fbc8f",
-  "generated_from_head": "3efdc763cf464067601ef228f4cec9478f1fbc8f",
+  "source_head": "c4ae609ba9965a1164628dfd0e9c59c4f3fefa6e",
+  "generated_from_head": "c4ae609ba9965a1164628dfd0e9c59c4f3fefa6e",
   "reference_commits": {
     "zhsh": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
     "astrbot": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de",
@@ -12,8 +12,8 @@
   },
   "generator_version": "global-runtime-representative-validation/1.0.0",
   "generated_at": "2026-07-18T00:00:00.000Z",
-  "source_content_sha256": "172c6a9e505587eb8e06580fcaf3f311a9b9155430a95043bd6ed99edf74eb78",
-  "selection_hash": "c7fd5c1d1d9b974015a893c8f2ac354ef997c21e08c9245826953cdabaa932c0",
+  "source_content_sha256": "36e6e716a4496b02f431583aa26e9f783d5b5415b3b2462bdbb06daecb23b968",
+  "selection_hash": "bfb0c2f90422df4d79829c82d8ff75654508475b49926db65438dcef495cc946",
   "validation_strategy": "Representative semantic/runtime-content checks by executor family; no attempt to autoplay all pending tasks.",
   "groups": [
     {
@@ -107,7 +107,7 @@
         },
         {
           "task_canonical_id": "task.series.15.415",
-          "directory_status": "runnable_pending_validation",
+          "directory_status": "validated",
           "target_kinds": [
             "monster"
           ],
@@ -115,7 +115,7 @@
         },
         {
           "task_canonical_id": "task.series.15.542",
-          "directory_status": "runnable_pending_validation",
+          "directory_status": "validated",
           "target_kinds": [
             "monster"
           ],
@@ -135,7 +135,7 @@
       "checks": [
         {
           "task_canonical_id": "task.series.13.142",
-          "directory_status": "runnable_pending_validation",
+          "directory_status": "validated",
           "target_kinds": [
             "monster"
           ],
@@ -151,7 +151,7 @@
         },
         {
           "task_canonical_id": "task.series.15.738",
-          "directory_status": "runnable_pending_validation",
+          "directory_status": "validated",
           "target_kinds": [
             "monster"
           ],
@@ -171,7 +171,7 @@
       "checks": [
         {
           "task_canonical_id": "task.series.15.264",
-          "directory_status": "runnable_pending_validation",
+          "directory_status": "validated",
           "target_kinds": [
             "item"
           ],
@@ -179,7 +179,7 @@
         },
         {
           "task_canonical_id": "task.series.15.583",
-          "directory_status": "runnable_pending_validation",
+          "directory_status": "validated",
           "target_kinds": [
             "item"
           ],
@@ -187,7 +187,7 @@
         },
         {
           "task_canonical_id": "task.series.15.728",
-          "directory_status": "runnable_pending_validation",
+          "directory_status": "validated",
           "target_kinds": [
             "item"
           ],
@@ -215,7 +215,7 @@
         },
         {
           "task_canonical_id": "task.series.15.542",
-          "directory_status": "runnable_pending_validation",
+          "directory_status": "validated",
           "target_kinds": [
             "monster"
           ],
@@ -223,7 +223,7 @@
         },
         {
           "task_canonical_id": "task.series.15.738",
-          "directory_status": "runnable_pending_validation",
+          "directory_status": "validated",
           "target_kinds": [
             "monster"
           ],
@@ -295,7 +295,7 @@
         },
         {
           "task_canonical_id": "task.series.15.728",
-          "directory_status": "runnable_pending_validation",
+          "directory_status": "validated",
           "target_kinds": [
             "item"
           ],
@@ -340,17 +340,17 @@
     "task_type_counts": {
       "打怪": 142,
       "对话": 372,
-      "收集": 62,
+      "收集": 64,
       "送物品": 62,
       "运货": 11
     },
     "target_kind_counts": {
-      "item": 143,
+      "item": 145,
       "monster": 148,
       "npc": 373,
       "npc_duel": 1
     },
-    "runtime_runnable_task_count": 649
+    "runtime_runnable_task_count": 651
   },
   "common_issues_detected_and_addressed": [
     {
@@ -390,5 +390,5 @@
     }
   ],
   "result": "passed",
-  "validation_sha256": "72887d985e10fcf381ea79201a27e940f8fdcc3962d83df8a55e8ac66c617c4e"
+  "validation_sha256": "20eefc0567632e33370042731de35d7cffd8e50c80a94dd5c8362e6b1402f98f"
 }
