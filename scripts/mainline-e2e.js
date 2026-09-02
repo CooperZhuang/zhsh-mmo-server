@@ -43,6 +43,46 @@ async function ensureNodeAt(locationId){
 }
 const content=JSON.parse(require('fs').readFileSync(require('path').join(__dirname,'..','web','generated','task1-content.json'),'utf8'));
 let steps=0;const MAX_STEPS=Number(process.env.ZHSH_MAINLINE_MAX_STEPS??4000);
+
+// —— 战斗预估：与 src/task-runtime/formal-gameplay.js 的 damage()/monsterStats() 完全一致 ——
+function expectedDamage(minAttack,maxAttack,defense,atkAgi,defAgi){
+  const roll=(Number(minAttack)+Number(maxAttack))/2;
+  const reduction=Math.min(0.99,Number(defense)/(Number(defense)+300));
+  const agilityBonus=Math.max(-0.3,Math.min(0.3,(Number(atkAgi)-Number(defAgi))/1000));
+  const crit=1+0.15+Math.max(0,Number(atkAgi)-Number(defAgi))/5000; // 期望暴击修正≈avg
+  return Math.max(1,Math.round(roll*(1-reduction)*(1+agilityBonus)*crit));
+}
+function monsterStats(m){
+  const lv=Math.max(1,Number(m.level));
+  const type=Number(m.monster_type??5);
+  if(type===3||type===4)return{health:Math.floor(200+300*(lv-1)/209),attack:1,max_attack:1,defense:10000,agility:1};
+  const mult=({40:1.5,50:2,45:2.5,6:3,55:3.5}[type])??1;
+  const hm=[45,6,55].includes(type)?mult*10:mult;
+  return{health:Math.floor((50+20*(lv-1))*hm),attack:Math.floor((8+4*(lv-1))*mult),
+    max_attack:Math.floor((12+6*(lv-1))*mult),defense:Math.floor((8+3*(lv-1))*mult),agility:Math.floor((5+2*(lv-1))*mult)};
+}
+// 玩家有效战力 → 对某怪能否战胜（期望击杀轮 <= 期望存活轮）
+function canWin(stats,m){
+  const ms=monsterStats(m);
+  const playerDps=Math.max(1,expectedDamage(stats.attack,stats.max_attack,ms.defense,stats.agility,ms.agility));
+  const monsterDps=Math.max(1,expectedDamage(ms.attack,ms.max_attack,stats.defense,ms.agility,stats.agility));
+  const roundsToKill=Math.ceil(ms.health/playerDps);
+  const roundsToLive=Math.ceil(stats.max_health/monsterDps);
+  return roundsToKill<=roundsToLive;
+}
+// 从 state() 还原玩家有效攻击/防御/体力（含已装备）
+function playerStats(st){
+  const lv=Number(st.player?.level??1);
+  const s={attack:Number(st.player?.base_attack??0),max_attack:Number(st.player?.base_max_attack??0),
+    defense:Number(st.player?.base_defense??0),agility:Number(st.player?.base_agility??0),
+    max_health:Number(st.player?.max_health??100),morale:Number(st.player?.morale??0)};
+  const eq=st.equipment??{};
+  const slots=[eq.weapon,eq.offhand,eq.headgear,eq.clothes,eq.belt,eq.shoes,...(eq.accessories??[])].filter(Boolean);
+  for(const id of slots){const item=content.equipment.find(x=>x.canonical_id===id);if(!item)continue;
+    s.attack+=Number(item.attack??0);s.max_attack+=Number(item.max_attack??item.maxAttack??0);
+    s.defense+=Number(item.defense??0);s.agility+=Number(item.agility??0);s.max_health+=Number(item.health??0);s.morale+=Number(item.morale??0);}
+  return s;
+}
 (async()=>{
   const u='ml'+Date.now().toString(36).slice(-5);
   const reg=await api('/api/auth/register',{method:'POST',body:{username:u,password:'test1234'}});
@@ -128,39 +168,48 @@ let steps=0;const MAX_STEPS=Number(process.env.ZHSH_MAINLINE_MAX_STEPS??4000);
             equipped.set(Number(content.equipment.find(x=>x.canonical_id===id).equipment_type),{score,canonical_id:id});
           }
         };
-        // 从当前曲线可安全挑战的最高级怪往下探测：autoResolve 手热一次，输了就降一级。
-        const pickTarget=async(lv,level)=>{
-          const candidates=cityMons.filter(({mon})=>Number(mon.level)<=Math.max(1,level-2)&&Number(mon.level)<lv-2);
-          for(let i=candidates.length-1;i>=0;i-=1){
-            const cand=candidates[i];if(!cand)continue;
-            if(Number(cand.mon.level)<=Math.max(1,level-8))return cand;
-            const probe=await rt('combat','autoResolve',{_arg1:cand.mon.canonical_id});
-            if(probe.action==='combat_won'){await equipBest();return cand;}
-            if(probe.action==='combat_lost')continue;
-          }
-          return candidates[0]??null;
+        // 用战力预估选出「当前最强且能打赢」的怪（基于真实有效攻击/防御/体力，
+        // 不再靠每次探测碰运气）。等级/装备变化后每次战斗都会重新评估。
+        const pickBest=(st)=>{
+          const stats=playerStats(st);
+          const pool=cityMons.filter(({mon})=>Number(mon.level)<Number(dropLv)-2);
+          let best=null;
+          for(const cand of pool){if(canWin(stats,cand.mon)){if(!best||Number(cand.mon.level)>Number(best.mon.level))best=cand;}}
+          return best??null;
         };
         if(dropLv>curLevel+5){
-          target=await pickTarget(dropLv,curLevel);
+          target=null;
+          const setUpTarget=async(st)=>{
+            const best=pickBest(st);
+            if(best&&(!target||best.mon.canonical_id!==target.mon.canonical_id)){
+              target=best;
+              console.log('  [练级] lv'+Number(st.player?.level??curLevel)+' 选怪 → '+best.mon.display_name+'(lv'+best.mon.level+')');
+            }else if(!best){target=null;}
+            return target;
+          };
+          const recovery=content.recovery_services?.find(s=>{
+            const loc=content.locations.find(l=>l.canonical_id===s.location_canonical_id);
+            return loc&&loc.city_canonical_id===cityId;
+          });
+          let st0=await state();
+          target=await setUpTarget(st0);
           if(target){
-            console.log('  [练级] 当前 lv'+curLevel+' vs 目标怪 lv'+dropLv+' → 刷 '+target.mon.display_name+'(lv'+target.mon.level+') 到 lv'+(dropLv-2));
             targetLevel=Math.max(curLevel+1,dropLv-2);
-            const recovery=content.recovery_services?.find(s=>{
-              const loc=content.locations.find(l=>l.canonical_id===s.location_canonical_id);
-              return loc&&loc.city_canonical_id===cityId;
-            });
             while(curLevel<targetLevel&&gainStalled<30&&gainAttempts<600){
               gainAttempts+=1;
               let stx=await state();
               // 活跃战斗最优先：打完再谈回血/移动
-              if(stx.combat){const r=await rt('combat','attack',{rounds:200});if(r.action==='combat_won'||r.action==='combat_lost'){await equipBest();continue;}continue;}
+              if(stx.combat){const r=await rt('combat','attack',{rounds:200});if(r.action==='combat_won'||r.action==='combat_lost'){await equipBest();stx=await state();continue;}continue;}
+              // 每次战斗后（含升级/换装）重新评估最强可胜怪，升级或改善装备时主动挑战更强目标
+              target=await setUpTarget(stx);
+              if(!target){break;}
               // 血量极低 → 先恢复（教堂在城里；战败回城后必须回血再战）
               if(Number(stx.player?.current_health??1)<40&&recovery){
                 await ensureNodeAt(recovery.location_canonical_id);
                 await rt('recovery','recover',{recovery_service_canonical_id:recovery.canonical_id});
                 stx=await state();
               }
-              // 战败回城后节点漂移 → 无条件先回练级点（这是 start 失败的唯一根源）
+              // 站位：只在目标节点与当前不符时移动（练级怪可能随 re-evaluate 更换）
               const expNode=target.p.location_canonical_id;
               const expNode2=content.map_nodes.find(n=>n.location_canonical_id===expNode)?.map_node_canonical_id;
               if(expNode2&&stx.player?.current_map_node_canonical_id!==expNode2){
@@ -174,9 +223,12 @@ let steps=0;const MAX_STEPS=Number(process.env.ZHSH_MAINLINE_MAX_STEPS??4000);
                 gainStalled=0;lastExperience=Number((await state()).player?.experience??0);
                 await equipBest();
                 const after=Number(br.progression?.after??curLevel);
-                if(after>curLevel){curLevel=after;const escalated=await pickTarget(dropLv,curLevel);if(escalated&&Number(escalated.mon.level)>Number(target.mon.level))target=escalated;}
+                if(after>curLevel)curLevel=after;
               }else{// combat_lost
                 gainStalled+=1;
+                // 战败说明预估过于乐观：把目标降一级（下一轮 setUpTarget 会自动下移）
+                const lowered=cityMons.filter(({mon})=>Number(mon.level)<Number(target.mon.level)).sort((a,b)=>Number(b.mon.level)-Number(a.mon.level));
+                if(lowered.length){target=lowered[0];}
               }
             }
             curLevel=(await state()).player?.level??curLevel;
@@ -216,7 +268,11 @@ let steps=0;const MAX_STEPS=Number(process.env.ZHSH_MAINLINE_MAX_STEPS??4000);
           while(curLevel<targetLevel&&gainStalled<30&&retried<400){
             retried+=1;
             let stx=await state();
-            if(stx.combat){const r=await rt('combat','attack',{rounds:200});if(r.action==='combat_won'||r.action==='combat_lost'){await equipBest();continue;}continue;}
+            if(stx.combat){const r=await rt('combat','attack',{rounds:200});if(r.action==='combat_won'||r.action==='combat_lost'){await equipBest();stx=await state();continue;}continue;}
+            // 每次战斗后重新选出当前最强可胜怪（升级/换装自动挑战更强目标）
+            const next=pickBest(stx);
+            if(next)target=next;
+            if(!target){break;}
             if(Number(stx.player?.current_health??1)<40&&recovery2){
               await ensureNodeAt(recovery2.location_canonical_id);
               await rt('recovery','recover',{recovery_service_canonical_id:recovery2.canonical_id});
@@ -234,9 +290,11 @@ let steps=0;const MAX_STEPS=Number(process.env.ZHSH_MAINLINE_MAX_STEPS??4000);
               gainStalled=0;lastExperience=Number((await state()).player?.experience??0);
               await equipBest();
               const after=Number(br.progression?.after??curLevel);
-              if(after>curLevel){curLevel=after;const escalated=await pickTarget(dropLv,curLevel);if(escalated&&Number(escalated.mon.level)>Number(target.mon.level))target=escalated;}
+              if(after>curLevel)curLevel=after;
             }else{// combat_lost
               gainStalled+=1;
+              const lowered=cityMons.filter(({mon})=>Number(mon.level)<Number(target.mon.level)).sort((a,b)=>Number(b.mon.level)-Number(a.mon.level));
+              if(lowered.length)target=lowered[0];
             }
           }
           curLevel=(await state()).player?.level??curLevel;
