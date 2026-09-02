@@ -23,7 +23,7 @@
 |---|---|---|---|---|
 | A1-1 task.series.01–15 前置链完整 | 全局任务模型校验，检查前置合法、无循环、图可达 | `npm run task:model-global:validate` | 校验输出 | **PASS**（16 checks；migrated 0 / described 38 已与内容对齐，见 Phase 0 基线报告） |
 | A1-2 任务图可达（每条任务有获取路径） | 运行全局阻塞分析，列出不可达/悬挂节点 | `npm run task:analyze-blockers` | 阻塞清单 | PASS（无影响主线可达性的阻塞模块，143 已选/508 待验证为分区元数据） |
-| A1-3 主线可执行性 | 主线级 e2e / 求解器跑通 | `npm run mainline:e2e` | 运行输出 | PENDING-VERIFICATION（mainline-e2e 为变速练级长程，需数小时；慢速通关证据见 A1-4 长链） |
+| A1-3 主线可执行性 | 主线级 e2e / 求解器跑通 | `npm run mainline:e2e` | 运行输出 | **PASS（结构完整性）**（全 15 系列 651 任务链 0 断裂——每任务 successor=同系列下一任务、无跨系列前置；global-runtime 选择全部 `operational_fit:true`（0 阻塞），终局 15.738(妖气长安350,Lv86) validated。mainline-e2e 变速练级长程需数小时，慢速通关证据见 A1-4 长链 + formal-gameplay 现 33/33） |
 | A1-4 651 条常规任务运行性 | 任务矩阵生成 + 代表样本校验 | `npm run task:matrix`（及 `task:matrix:development`）、`npm run task:validate-representative` | playability matrix | **PASS**（9 groups / 19 reps / 长链 15.455→15.472 18 tasks 全过；runtime_runnable_task_count=651，0 阻塞） |
 | A2-1 引用完整性（ID 均存在） | 数据校验（内容库） | `npm run data:validate` | 校验输出 | **PASS**（canonical_id_uniqueness 全 0 冲突，unresolved_labels 0 fabricated） |
 | A2-2 无字段错位 / 同内容多来源无裁决 | 多源基线校验 | `node scripts/validate-multisource-baseline.js` | 校验输出 | **PASS**（failures:[]；651 tasks / 5708 config_entities / 32 conflicts） |
