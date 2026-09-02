@@ -24,6 +24,8 @@ async function ensureNodeAt(locationId){
   const expectedNode=content.map_nodes.find(n=>n.location_canonical_id===locationId)?.map_node_canonical_id;
   for(let retry=0;retry<8;retry+=1){
     const st=await state();
+    // 活跃战斗先打完（否则 fast_travel 一直报 idle 错误）
+    if(st.combat){await rt('combat','attack',{rounds:300});continue;}
     if(st.player?.current_map_node_canonical_id===expectedNode)return;
     const curCity=st.current_location?.city_canonical_id;
     if(curCity===dest.city_canonical_id){
