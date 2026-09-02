@@ -1,8 +1,8 @@
 {
   "schema_version": 4,
   "stage_start_head": "2cbae183aa369fe0ac60176f3a1396914d786440",
-  "source_head": "ad95434578c2e5b18b79802fe247ba32a4f9d70d",
-  "generated_from_head": "ad95434578c2e5b18b79802fe247ba32a4f9d70d",
+  "source_head": "39ff0860417c6e9a5f7e0829dd514ff84e1213b6",
+  "generated_from_head": "39ff0860417c6e9a5f7e0829dd514ff84e1213b6",
   "reference_commits": {
     "zhsh": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
     "astrbot": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de",

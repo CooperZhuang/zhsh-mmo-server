@@ -238415,7 +238415,7 @@
     {
       "canonical_id": "derived.monster_definition.34f89b7965196113",
       "source_canonical_id": "entity.monster.cbe1f18ad64d8183",
-      "display_name": "你看到:",
+      "display_name": "沙漠蝎王",
       "level": 124,
       "monster_type": 5,
       "effect": null,
@@ -266127,7 +266127,7 @@
       "canonical_id": "entity.equipment.119b1b777a34beb5",
       "source_canonical_id": "entity.equipment.119b1b777a34beb5",
       "display_name": "+天魔荆棘皇冠",
-      "required_level": null,
+      "required_level": 125,
       "equipment_type": 2,
       "attributes": {
         "catalog_key": "+天魔荆棘皇冠",
@@ -271861,7 +271861,7 @@
       "canonical_id": "entity.equipment.9dc6753e905f40b7",
       "source_canonical_id": "entity.equipment.9dc6753e905f40b7",
       "display_name": "+天魔玄夜战铠",
-      "required_level": null,
+      "required_level": 140,
       "equipment_type": 6,
       "attributes": {
         "catalog_key": "+天魔玄夜战铠",
@@ -287488,7 +287488,7 @@
     "preview_routes_supported": false,
     "normal_runtime_reads_this_section": false
   },
-  "content_sha256": "8d568c64656d0973219dae80c4e3baed07a7763e297fbb8f20668089eacf3cbc",
+  "content_sha256": "78f2bb6902027af80ff43893cedd2eda9a22efbbfb87782bc0264570a3c745da",
   "entity_counts": {
     "tasks": 651,
     "cities": 28,
