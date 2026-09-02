@@ -139,6 +139,8 @@ let steps=0;const MAX_STEPS=Number(process.env.ZHSH_MAINLINE_MAX_STEPS??4000);
             while(curLevel<targetLevel&&gainStalled<30&&gainAttempts<600){
               gainAttempts+=1;
               let stx=await state();
+              // 活跃战斗最优先：打完再谈回血/移动
+              if(stx.combat){const r=await rt('combat','attack',{rounds:200});if(r.action==='combat_won'||r.action==='combat_lost'){await equipBest();continue;}continue;}
               // 血量低 → 先恢复（教堂在城里；战败回城后必须回血再战）
               if(Number(stx.player?.current_health??1)<Number(stx.player?.max_health??100)*0.7){
                 if(recovery){await ensureNodeAt(recovery.location_canonical_id);const rr=await rt('recovery','recover',{recovery_service_canonical_id:recovery.canonical_id});continue;}
