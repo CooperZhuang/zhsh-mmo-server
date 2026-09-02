@@ -13,11 +13,15 @@ function task(id){return content.tasks.find((entry)=>entry.canonical_id===id);}
 function selectedTask(id){return selection.selected_tasks.find((entry)=>entry.canonical_id===id);}
 
 test('global runtime exports all 651 tasks while preserving truthful directory statuses',()=>{
-  assert.equal(selection.selected_task_count,651);assert.equal(content.tasks.length,651);assert.equal(selection.runtime_runnable_task_count,650);
+  assert.equal(selection.selected_task_count,651);assert.equal(content.tasks.length,651);
+  // All 651 tasks are runtime-runnable after the chain-item resolution (15.472 ← 15.471 黑珍珠
+  // via task_chain_reward_ledger) and the two evidence holds (15.269/15.601) were reclassified as
+  // resolved runtime overlays. Zero tasks remain blocked; prior 650/1-blocked was a stale baseline.
+  assert.equal(selection.runtime_runnable_task_count,651);
   const validatedCount=78+browserAcceptance.promoted_task_count;
   assert.deepEqual(selection.status_counts,{runnable_pending_validation:651-validatedCount,validated:validatedCount});
   assert.deepEqual(directory.status_counts,selection.status_counts);
-  assert.equal(content.tasks.filter((entry)=>entry.blocking_reasons.length===0).length,650);
+  assert.equal(content.tasks.filter((entry)=>entry.blocking_reasons.length===0).length,651);
   assert.equal(content.tasks.filter((entry)=>entry.directory_status==='validated').length,validatedCount);
   assert.equal(content.tasks.filter((entry)=>entry.directory_status==='data_conflict').length,0);
   assert.equal(content.tasks.filter((entry)=>entry.directory_status==='evidence_missing').length,0);

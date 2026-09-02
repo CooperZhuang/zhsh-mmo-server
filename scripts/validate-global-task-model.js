@@ -37,10 +37,15 @@ function main(){
   const waypoint=content.maritime.sailing.route_encounters.find((entry)=>entry.location==='蓬莱仙岛');
   check('route_waypoint_export_complete',Boolean(waypoint?.location_canonical_id&&waypoint?.map_node_canonical_id),true);
   check('contextual_npc_task_count',graph.tasks.filter((entry)=>entry.npcs.contextual_definitions.length>0).length,35);
+  // Re-baselined after adjudicate-blocked-targets §② "干佛草模式统一裁决" converted collection-type
+  // targets from "misclassified monster (runtime migration repair)" to "described-encounter drop"
+  // (source_explicit_task_described_encounter_drop). This dropped migrate 2→0 and raised described 35→38.
+  // Verified non-regression: direct_fit=648, blocked=3 (documented 15.415/15.472/15.698), 195 tests pass,
+  // verify:core deterministic rebuild PASS. Old constants (2/35) are stale from pre-adjudication content.
   check('migrated_collection_target_count',evaluation.tasks.flatMap((entry)=>entry.runtime_item_resolutions)
-    .filter((entry)=>entry.resolution_rule==='normalize_migrated_collection_target_to_item').length,2);
+    .filter((entry)=>entry.resolution_rule==='normalize_migrated_collection_target_to_item').length,0);
   check('task_described_drop_resolution_count',evaluation.tasks.flatMap((entry)=>entry.runtime_item_resolutions)
-    .filter((entry)=>entry.resolution_rule==='source_explicit_task_described_encounter_drop').length,35);
+    .filter((entry)=>entry.resolution_rule==='source_explicit_task_described_encounter_drop').length,38);
 
   const result={schema_version:1,record_kind:'global-task-model-validation',...generationMetadata('global-task-model-validation/1.0.0'),
     scope:'data integrity + 651 independent fitting + 117 regression package + representative shared-system checks; no full DOM or cold ZIP',

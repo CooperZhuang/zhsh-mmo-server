@@ -53,7 +53,10 @@ function main(){
     result:'passed',
   };
 
-  assert(selection.runtime_runnable_task_count===649,'Representative validation expected 649 runnable tasks');
+  // All 651 tasks are runtime-runnable after adjudication resolved the last outstanding
+  // chain-item (15.472 ← 15.471 黑珍珠 via task_chain_reward_ledger) and the two evidence holds
+  // (15.269/15.601) were reclassified as resolved runtime overlays. Zero tasks remain blocked.
+  assert(selection.runtime_runnable_task_count===651,'Representative validation expected 651 runnable tasks');
   assert(content.gameplay_rules?.progression?.canonical_rules?.level_thresholds,'Progression thresholds missing');
   assert(content.voyage_routes.length>0,'Voyage routes missing');
   assert(content.maritime?.fishing&&content.maritime?.diving,'Maritime fishing/diving content missing');

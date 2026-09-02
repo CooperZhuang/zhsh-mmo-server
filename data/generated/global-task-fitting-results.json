@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "stage_start_head": "2cbae183aa369fe0ac60176f3a1396914d786440",
-  "source_head": "4058b33947b07215ce893c4391b936aded485eec",
-  "generated_from_head": "4058b33947b07215ce893c4391b936aded485eec",
+  "source_head": "688a29329969c7bfd0274864e0f7d652881fd374",
+  "generated_from_head": "688a29329969c7bfd0274864e0f7d652881fd374",
   "reference_commits": {
     "zhsh": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
     "astrbot": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de",
@@ -651,10 +651,20 @@
     {
       "class_id": 5,
       "class_name": "extend_existing_common_algorithm",
-      "count": 0,
-      "task_canonical_ids": [],
-      "affected_series": [],
-      "reason_codes": []
+      "count": 1,
+      "task_canonical_ids": [
+        "task.series.15.472"
+      ],
+      "affected_series": [
+        {
+          "canonical_id": "task.series.15",
+          "display_name": "寻裔之路",
+          "count": 1
+        }
+      ],
+      "reason_codes": [
+        "task_chain_item_ledger"
+      ]
     },
     {
       "class_id": 6,
@@ -677,16 +687,15 @@
     {
       "class_id": 7,
       "class_name": "data_error_or_migration_damage",
-      "count": 2,
+      "count": 1,
       "task_canonical_ids": [
-        "task.series.15.415",
-        "task.series.15.472"
+        "task.series.15.415"
       ],
       "affected_series": [
         {
           "canonical_id": "task.series.15",
           "display_name": "寻裔之路",
-          "count": 2
+          "count": 1
         }
       ],
       "reason_codes": [
@@ -9405,13 +9414,20 @@
       "series_canonical_id": "task.series.15",
       "sequence_position": 205,
       "in_remaining_534": true,
-      "class_id": 7,
-      "class_name": "data_error_or_migration_damage",
+      "class_id": 5,
+      "class_name": "extend_existing_common_algorithm",
       "direct_fit": false,
       "reason_codes": [
-        "source_data_and_placement_disagree"
+        "task_chain_item_ledger"
       ],
-      "derivations": [],
+      "derivations": [
+        {
+          "target_canonical_id": "task.series.15.472.target.01",
+          "item_name": "黑珍珠",
+          "source_task_canonical_id": "task.series.15.471",
+          "evidence": "prerequisite reward or adjacent task text"
+        }
+      ],
       "blocking_reasons": [
         {
           "code": "item_without_formal_source",
@@ -9420,21 +9436,16 @@
           "candidate_canonical_ids": []
         }
       ],
-      "affected_shared_systems": [],
+      "affected_shared_systems": [
+        "task_chain_item_ledger"
+      ],
       "evidence_repositories": [
         "zhsh"
       ],
       "directory_status": "validated",
-      "runtime_fit": false,
-      "runtime_blocking_reasons": [
-        {
-          "code": "item_without_formal_source",
-          "target_canonical_id": "task.series.15.472.target.01",
-          "source_entity_canonical_id": "runtime.task_chain.item.8b4fe6ffc18a39c1",
-          "candidate_canonical_ids": []
-        }
-      ],
-      "implementation_status": "evidence_or_data_hold"
+      "runtime_fit": true,
+      "runtime_blocking_reasons": [],
+      "implementation_status": "shared_system_implemented"
     },
     {
       "canonical_id": "task.series.15.473",
@@ -15325,7 +15336,7 @@
   "runtime_fit_summary": {
     "runnable_pending_validation": 3,
     "validated": 648,
-    "runtime_fit_count": 650,
+    "runtime_fit_count": 651,
     "implemented_shared_systems": [
       "task_acceptance_handoff",
       "task_chain_item_ledger",

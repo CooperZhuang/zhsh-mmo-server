@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "stage_start_head": "2cbae183aa369fe0ac60176f3a1396914d786440",
-  "source_head": "4c538c92386f0be50486ecda29f99713a6ee90c1",
-  "generated_from_head": "4c538c92386f0be50486ecda29f99713a6ee90c1",
+  "source_head": "688a29329969c7bfd0274864e0f7d652881fd374",
+  "generated_from_head": "688a29329969c7bfd0274864e0f7d652881fd374",
   "reference_commits": {
     "zhsh": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
     "astrbot": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de",
@@ -13,7 +13,7 @@
   "generated_at": "2026-07-18T00:00:00.000Z",
   "record_kind": "global-runtime-validation",
   "total_task_count": 651,
-  "runtime_runnable_task_count": 650,
+  "runtime_runnable_task_count": 651,
   "status_counts": {
     "runnable_pending_validation": 3,
     "validated": 648
@@ -636,6 +636,6 @@
     "shared_system_blockers_cleared": true,
     "runnable_count_balanced": true
   },
-  "operational_fit_count": 650,
+  "operational_fit_count": 651,
   "result": "passed"
 }

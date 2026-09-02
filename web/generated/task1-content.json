@@ -111,7 +111,7 @@
   "capability_status": "global_runtime_content",
   "runnable_task_selection": {
     "selector_version": "global-runtime-directory/1.0.0",
-    "selection_hash": "7dc91a72446599993cff8d3df1d52d786151d11a22496b4f25615c4331df3e22",
+    "selection_hash": "bfb0c2f90422df4d79829c82d8ff75654508475b49926db65438dcef495cc946",
     "selected_task_count": 651,
     "selected_series_count": 15,
     "formal_stage_start_selected_task_count": 78,
@@ -120,7 +120,7 @@
       "runnable_pending_validation": 3,
       "validated": 648
     },
-    "runtime_runnable_task_count": 650,
+    "runtime_runnable_task_count": 651,
     "implemented_shared_systems": [
       "task_acceptance_handoff",
       "task_chain_item_ledger",
@@ -90650,23 +90650,28 @@
           "runtime_capability": "queryable",
           "raw_category": "item",
           "candidate_canonical_ids_json": "[]",
-          "content_entity_canonical_id": "runtime.item.57e744db1884c498",
+          "content_entity_canonical_id": "runtime.task_chain.item.57e744db1884c498",
           "monster_canonical_id": null,
           "npc_canonical_id": null,
           "location_canonical_id": null,
           "required_quantity": 5,
-          "entity_canonical_id": "runtime.item.57e744db1884c498",
+          "entity_canonical_id": "runtime.task_chain.item.57e744db1884c498",
           "candidate_canonical_ids": [],
           "runtime_resolution": {
-            "rule": "source_explicit_task_described_encounter_drop",
-            "formal_source_canonical_id": "runtime.task-drop.6775a8f5952e17bc",
+            "rule": "task_drop_with_same_city_location_correction",
+            "formal_source_canonical_id": "entity.drop.d9c1cc53c90f8012",
             "source_kind": "monster_drop"
           },
           "source_canonical_id": "task.series.15.269",
-          "original_target_kind": null,
+          "original_target_kind": "item",
           "source_content_entity_canonical_id": "runtime.item.57e744db1884c498",
           "source_entity_canonical_id": "runtime.item.57e744db1884c498",
-          "task_item_policy": null,
+          "task_item_policy": {
+            "acquisition_mode": "monster_drop",
+            "reservation": "required_until_submit",
+            "abandonment": "retain_obtained_item",
+            "consumption": "submit_only"
+          },
           "npc_duel": null
         }
       ],
@@ -129401,7 +129406,10 @@
           "content_entity_canonical_id": "runtime.task_chain.item.8b4fe6ffc18a39c1",
           "quantity": 1,
           "candidate_canonical_ids": [],
-          "runtime_resolution": null,
+          "runtime_resolution": {
+            "rule": "task_chain_reward_ledger",
+            "source_task_canonical_id": "task.series.15.471"
+          },
           "source_canonical_id": "task.series.15.471"
         }
       ],
@@ -129683,8 +129691,23 @@
           "required_quantity": 1,
           "entity_canonical_id": "runtime.task_chain.item.8b4fe6ffc18a39c1",
           "candidate_canonical_ids": [],
-          "runtime_resolution": null,
-          "source_canonical_id": "task.series.15.472"
+          "runtime_resolution": {
+            "rule": "task_chain_reward_ledger",
+            "formal_source_canonical_id": "runtime.task_chain.source.1dc5ef19d696dc7e",
+            "source_kind": "task_chain_reward"
+          },
+          "source_canonical_id": "task.series.15.472",
+          "original_target_kind": "item",
+          "source_content_entity_canonical_id": "runtime.task_chain.item.8b4fe6ffc18a39c1",
+          "source_entity_canonical_id": "runtime.task_chain.item.8b4fe6ffc18a39c1",
+          "task_item_policy": {
+            "acquisition_mode": "prerequisite_reward",
+            "reservation": "required_until_submit",
+            "source_task_canonical_id": "task.series.15.471",
+            "abandonment": "retain_source_reward",
+            "consumption": "submit_only"
+          },
+          "npc_duel": null
         }
       ],
       "rewards": [
@@ -129796,14 +129819,7 @@
         }
       ],
       "contextual_npc_definitions": [],
-      "blocking_reasons": [
-        {
-          "code": "item_without_formal_source",
-          "target_canonical_id": "task.series.15.472.target.01",
-          "source_entity_canonical_id": "runtime.task_chain.item.8b4fe6ffc18a39c1",
-          "candidate_canonical_ids": []
-        }
-      ],
+      "blocking_reasons": [],
       "series_canonical_id": "task.series.15",
       "directory_status": "validated",
       "source_prerequisites": [
@@ -237188,7 +237204,7 @@
         "experience": 2440,
         "copper": 305,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -237214,7 +237230,7 @@
         "experience": 920,
         "copper": 115,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -237240,7 +237256,7 @@
         "experience": 5240,
         "copper": 655,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -237266,7 +237282,7 @@
         "experience": 1840,
         "copper": 230,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -237292,7 +237308,7 @@
         "experience": 2840,
         "copper": 355,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -237318,7 +237334,7 @@
         "experience": 2000,
         "copper": 250,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -237344,7 +237360,7 @@
         "experience": 7360,
         "copper": 920,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -237370,7 +237386,7 @@
         "experience": 1240,
         "copper": 155,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -237396,7 +237412,7 @@
         "experience": 6560,
         "copper": 820,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -237422,7 +237438,7 @@
         "experience": 4440,
         "copper": 555,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -237448,7 +237464,7 @@
         "experience": 5720,
         "copper": 715,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -237474,7 +237490,7 @@
         "experience": 1560,
         "copper": 195,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -237500,7 +237516,7 @@
         "experience": 3040,
         "copper": 380,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -237526,7 +237542,7 @@
         "experience": 2760,
         "copper": 345,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -237552,7 +237568,7 @@
         "experience": 2960,
         "copper": 370,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -237578,7 +237594,7 @@
         "experience": 3760,
         "copper": 470,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -237604,7 +237620,7 @@
         "experience": 4760,
         "copper": 595,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -237630,7 +237646,7 @@
         "experience": 2000,
         "copper": 250,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -237656,7 +237672,7 @@
         "experience": 920,
         "copper": 115,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -237682,7 +237698,7 @@
         "experience": 520,
         "copper": 65,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -237708,7 +237724,7 @@
         "experience": 2080,
         "copper": 260,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -237734,7 +237750,7 @@
         "experience": 1640,
         "copper": 205,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -237760,7 +237776,7 @@
         "experience": 2840,
         "copper": 355,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -237786,7 +237802,7 @@
         "experience": 6360,
         "copper": 795,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -237812,7 +237828,7 @@
         "experience": 2960,
         "copper": 370,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -237838,7 +237854,7 @@
         "experience": 4360,
         "copper": 545,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -237864,7 +237880,7 @@
         "experience": 1000,
         "copper": 125,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -237890,7 +237906,7 @@
         "experience": 5760,
         "copper": 720,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -237916,7 +237932,7 @@
         "experience": 3760,
         "copper": 470,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -237942,7 +237958,7 @@
         "experience": 2280,
         "copper": 285,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -237976,7 +237992,7 @@
         "experience": 640,
         "copper": 80,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -238002,7 +238018,7 @@
         "experience": 4320,
         "copper": 540,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -238028,7 +238044,7 @@
         "experience": 2720,
         "copper": 340,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -238054,7 +238070,7 @@
         "experience": 2640,
         "copper": 330,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -238088,7 +238104,7 @@
         "experience": 480,
         "copper": 60,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -238120,9 +238136,9 @@
       "evidence_status": "SOURCE_EXPLICIT",
       "rewards": {
         "experience": 280,
-        "copper": 35,
+        "copper": 50,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -238148,7 +238164,7 @@
         "experience": 2040,
         "copper": 255,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -238172,9 +238188,9 @@
       "evidence_status": "SOURCE_EXPLICIT",
       "rewards": {
         "experience": 320,
-        "copper": 40,
+        "copper": 50,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -238200,7 +238216,7 @@
         "experience": 440,
         "copper": 55,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -238226,7 +238242,7 @@
         "experience": 4360,
         "copper": 545,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -238252,7 +238268,7 @@
         "experience": 1400,
         "copper": 175,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -238278,7 +238294,7 @@
         "experience": 4240,
         "copper": 530,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -238302,9 +238318,9 @@
       "evidence_status": "SOURCE_EXPLICIT",
       "rewards": {
         "experience": 320,
-        "copper": 40,
+        "copper": 50,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -238330,7 +238346,7 @@
         "experience": 1400,
         "copper": 175,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -238356,7 +238372,7 @@
         "experience": 5720,
         "copper": 715,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -238382,7 +238398,7 @@
         "experience": 5240,
         "copper": 655,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -238408,7 +238424,7 @@
         "experience": 1920,
         "copper": 240,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -238434,7 +238450,7 @@
         "experience": 4960,
         "copper": 620,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -238460,7 +238476,7 @@
         "experience": 880,
         "copper": 110,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -238486,7 +238502,7 @@
         "experience": 6400,
         "copper": 800,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -238512,7 +238528,7 @@
         "experience": 6400,
         "copper": 800,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -238538,7 +238554,7 @@
         "experience": 3760,
         "copper": 470,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -238564,7 +238580,7 @@
         "experience": 5080,
         "copper": 635,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -238590,7 +238606,7 @@
         "experience": 2120,
         "copper": 265,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -238616,7 +238632,7 @@
         "experience": 5840,
         "copper": 730,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -238642,7 +238658,7 @@
         "experience": 3520,
         "copper": 440,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -238668,7 +238684,7 @@
         "experience": 5400,
         "copper": 675,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -238698,7 +238714,7 @@
         "experience": 760,
         "copper": 95,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -238724,7 +238740,7 @@
         "experience": 2920,
         "copper": 365,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -238750,7 +238766,7 @@
         "experience": 4360,
         "copper": 545,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -238774,9 +238790,9 @@
       "evidence_status": "SOURCE_EXPLICIT",
       "rewards": {
         "experience": 120,
-        "copper": 15,
+        "copper": 50,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -238802,7 +238818,7 @@
         "experience": 4080,
         "copper": 510,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -238832,7 +238848,7 @@
         "experience": 680,
         "copper": 85,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -238858,7 +238874,7 @@
         "experience": 3880,
         "copper": 485,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -238884,7 +238900,7 @@
         "experience": 2920,
         "copper": 365,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -238910,7 +238926,7 @@
         "experience": 3040,
         "copper": 380,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -238936,7 +238952,7 @@
         "experience": 1320,
         "copper": 165,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -238962,7 +238978,7 @@
         "experience": 5600,
         "copper": 700,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -238988,7 +239004,7 @@
         "experience": 2520,
         "copper": 315,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -239014,7 +239030,7 @@
         "experience": 4320,
         "copper": 540,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -239040,7 +239056,7 @@
         "experience": 2560,
         "copper": 320,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -239066,7 +239082,7 @@
         "experience": 3040,
         "copper": 380,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -239092,7 +239108,7 @@
         "experience": 2720,
         "copper": 340,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -239120,9 +239136,9 @@
       "evidence_status": "SOURCE_EXPLICIT",
       "rewards": {
         "experience": 280,
-        "copper": 35,
+        "copper": 50,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -239148,7 +239164,7 @@
         "experience": 1120,
         "copper": 140,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -239174,7 +239190,7 @@
         "experience": 2440,
         "copper": 305,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -239202,9 +239218,9 @@
       "evidence_status": "SOURCE_EXPLICIT",
       "rewards": {
         "experience": 120,
-        "copper": 15,
+        "copper": 50,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -239230,7 +239246,7 @@
         "experience": 2440,
         "copper": 305,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -239256,7 +239272,7 @@
         "experience": 2400,
         "copper": 300,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -239282,7 +239298,7 @@
         "experience": 5680,
         "copper": 710,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -239310,9 +239326,9 @@
       "evidence_status": "SOURCE_EXPLICIT",
       "rewards": {
         "experience": 80,
-        "copper": 10,
+        "copper": 50,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -239338,7 +239354,7 @@
         "experience": 1520,
         "copper": 190,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -239364,7 +239380,7 @@
         "experience": 3760,
         "copper": 470,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -239390,7 +239406,7 @@
         "experience": 2880,
         "copper": 360,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -239416,7 +239432,7 @@
         "experience": 1160,
         "copper": 145,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -239448,9 +239464,9 @@
       "evidence_status": "SOURCE_EXPLICIT",
       "rewards": {
         "experience": 200,
-        "copper": 25,
+        "copper": 50,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -239476,7 +239492,7 @@
         "experience": 4840,
         "copper": 605,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -239502,7 +239518,7 @@
         "experience": 3080,
         "copper": 385,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -239528,7 +239544,7 @@
         "experience": 1440,
         "copper": 180,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -239554,7 +239570,7 @@
         "experience": 5960,
         "copper": 745,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -239580,7 +239596,7 @@
         "experience": 2840,
         "copper": 355,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -239606,7 +239622,7 @@
         "experience": 2280,
         "copper": 285,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -239632,7 +239648,7 @@
         "experience": 4600,
         "copper": 575,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -239658,7 +239674,7 @@
         "experience": 6200,
         "copper": 775,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -239684,7 +239700,7 @@
         "experience": 4960,
         "copper": 620,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -239710,7 +239726,7 @@
         "experience": 6320,
         "copper": 790,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -239736,7 +239752,7 @@
         "experience": 4600,
         "copper": 575,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -239770,7 +239786,7 @@
         "experience": 400,
         "copper": 50,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -239796,7 +239812,7 @@
         "experience": 4720,
         "copper": 590,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -239822,7 +239838,7 @@
         "experience": 3760,
         "copper": 470,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -239848,7 +239864,7 @@
         "experience": 6560,
         "copper": 820,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -239874,7 +239890,7 @@
         "experience": 1840,
         "copper": 230,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -239900,7 +239916,7 @@
         "experience": 4320,
         "copper": 540,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -239926,7 +239942,7 @@
         "experience": 4000,
         "copper": 500,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -239952,7 +239968,7 @@
         "experience": 3040,
         "copper": 380,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -239978,7 +239994,7 @@
         "experience": 4440,
         "copper": 555,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -240004,7 +240020,7 @@
         "experience": 4320,
         "copper": 540,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -240030,7 +240046,7 @@
         "experience": 600,
         "copper": 75,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -240056,7 +240072,7 @@
         "experience": 2080,
         "copper": 260,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -240082,7 +240098,7 @@
         "experience": 1960,
         "copper": 245,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -240108,7 +240124,7 @@
         "experience": 1440,
         "copper": 180,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -240136,9 +240152,9 @@
       "evidence_status": "SOURCE_EXPLICIT",
       "rewards": {
         "experience": 40,
-        "copper": 5,
+        "copper": 50,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -240164,7 +240180,7 @@
         "experience": 2080,
         "copper": 260,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -240190,7 +240206,7 @@
         "experience": 2280,
         "copper": 285,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -240216,7 +240232,7 @@
         "experience": 3800,
         "copper": 475,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -240242,7 +240258,7 @@
         "experience": 5560,
         "copper": 695,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -240272,7 +240288,7 @@
         "experience": 880,
         "copper": 110,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -240298,7 +240314,7 @@
         "experience": 5640,
         "copper": 705,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -240324,7 +240340,7 @@
         "experience": 5000,
         "copper": 625,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -240348,9 +240364,9 @@
       "evidence_status": "SOURCE_EXPLICIT",
       "rewards": {
         "experience": 40,
-        "copper": 5,
+        "copper": 50,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -240376,7 +240392,7 @@
         "experience": 2920,
         "copper": 365,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -240402,7 +240418,7 @@
         "experience": 800,
         "copper": 100,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -240428,7 +240444,7 @@
         "experience": 4280,
         "copper": 535,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -240458,7 +240474,7 @@
         "experience": 800,
         "copper": 100,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -240484,7 +240500,7 @@
         "experience": 640,
         "copper": 80,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -240510,7 +240526,7 @@
         "experience": 3040,
         "copper": 380,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -240536,7 +240552,7 @@
         "experience": 4160,
         "copper": 520,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -240562,7 +240578,7 @@
         "experience": 640,
         "copper": 80,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -240588,7 +240604,7 @@
         "experience": 480,
         "copper": 60,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -240614,7 +240630,7 @@
         "experience": 920,
         "copper": 115,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -240640,7 +240656,7 @@
         "experience": 2560,
         "copper": 320,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -240666,7 +240682,7 @@
         "experience": 600,
         "copper": 75,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -240692,7 +240708,7 @@
         "experience": 760,
         "copper": 95,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -240718,7 +240734,7 @@
         "experience": 3040,
         "copper": 380,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -240744,7 +240760,7 @@
         "experience": 4200,
         "copper": 525,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -240770,7 +240786,7 @@
         "experience": 6920,
         "copper": 865,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -240796,7 +240812,7 @@
         "experience": 2080,
         "copper": 260,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -240822,7 +240838,7 @@
         "experience": 4160,
         "copper": 520,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -240848,7 +240864,7 @@
         "experience": 6960,
         "copper": 870,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -240874,7 +240890,7 @@
         "experience": 3760,
         "copper": 470,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -240900,7 +240916,7 @@
         "experience": 4920,
         "copper": 615,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -240926,7 +240942,7 @@
         "experience": 4440,
         "copper": 555,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -240952,7 +240968,7 @@
         "experience": 3160,
         "copper": 395,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -240978,7 +240994,7 @@
         "experience": 760,
         "copper": 95,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -241004,7 +241020,7 @@
         "experience": 3440,
         "copper": 430,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -241030,7 +241046,7 @@
         "experience": 3160,
         "copper": 395,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -241056,7 +241072,7 @@
         "experience": 4760,
         "copper": 595,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -241082,7 +241098,7 @@
         "experience": 3240,
         "copper": 405,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -241108,7 +241124,7 @@
         "experience": 2120,
         "copper": 265,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -241134,7 +241150,7 @@
         "experience": 3000,
         "copper": 375,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -241160,7 +241176,7 @@
         "experience": 3040,
         "copper": 380,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -241186,7 +241202,7 @@
         "experience": 3320,
         "copper": 415,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -241212,7 +241228,7 @@
         "experience": 2080,
         "copper": 260,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -241238,7 +241254,7 @@
         "experience": 1760,
         "copper": 220,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -241264,7 +241280,7 @@
         "experience": 6000,
         "copper": 750,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -241290,7 +241306,7 @@
         "experience": 6200,
         "copper": 775,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -241316,7 +241332,7 @@
         "experience": 2320,
         "copper": 290,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -241342,7 +241358,7 @@
         "experience": 1800,
         "copper": 225,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -241368,7 +241384,7 @@
         "experience": 6960,
         "copper": 870,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -241394,7 +241410,7 @@
         "experience": 4240,
         "copper": 530,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -241420,7 +241436,7 @@
         "experience": 2040,
         "copper": 255,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -241446,7 +241462,7 @@
         "experience": 1960,
         "copper": 245,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -241472,7 +241488,7 @@
         "experience": 5240,
         "copper": 655,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -241498,7 +241514,7 @@
         "experience": 3560,
         "copper": 445,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -241524,7 +241540,7 @@
         "experience": 1840,
         "copper": 230,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -241550,7 +241566,7 @@
         "experience": 5000,
         "copper": 625,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -241576,7 +241592,7 @@
         "experience": 6160,
         "copper": 770,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -241602,7 +241618,7 @@
         "experience": 5680,
         "copper": 710,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -241628,7 +241644,7 @@
         "experience": 4520,
         "copper": 565,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -241654,7 +241670,7 @@
         "experience": 560,
         "copper": 70,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -241680,7 +241696,7 @@
         "experience": 4680,
         "copper": 585,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -241706,7 +241722,7 @@
         "experience": 2600,
         "copper": 325,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -241732,7 +241748,7 @@
         "experience": 4000,
         "copper": 500,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -241758,7 +241774,7 @@
         "experience": 6640,
         "copper": 830,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -241784,7 +241800,7 @@
         "experience": 3080,
         "copper": 385,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -241810,7 +241826,7 @@
         "experience": 3920,
         "copper": 490,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -241836,7 +241852,7 @@
         "experience": 1840,
         "copper": 230,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -241862,7 +241878,7 @@
         "experience": 3400,
         "copper": 425,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -241888,7 +241904,7 @@
         "experience": 1640,
         "copper": 205,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -241914,7 +241930,7 @@
         "experience": 4840,
         "copper": 605,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -241940,7 +241956,7 @@
         "experience": 5560,
         "copper": 695,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -241966,7 +241982,7 @@
         "experience": 4120,
         "copper": 515,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -241992,7 +242008,7 @@
         "experience": 720,
         "copper": 90,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -242018,7 +242034,7 @@
         "experience": 920,
         "copper": 115,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -242044,7 +242060,7 @@
         "experience": 2800,
         "copper": 350,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -242070,7 +242086,7 @@
         "experience": 1880,
         "copper": 235,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -242096,7 +242112,7 @@
         "experience": 6160,
         "copper": 770,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -242122,7 +242138,7 @@
         "experience": 2000,
         "copper": 250,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -242148,7 +242164,7 @@
         "experience": 1080,
         "copper": 135,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -242174,7 +242190,7 @@
         "experience": 5840,
         "copper": 730,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -242200,7 +242216,7 @@
         "experience": 640,
         "copper": 80,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -242226,7 +242242,7 @@
         "experience": 6160,
         "copper": 770,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -242252,7 +242268,7 @@
         "experience": 1960,
         "copper": 245,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -242278,7 +242294,7 @@
         "experience": 5200,
         "copper": 650,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -242304,7 +242320,7 @@
         "experience": 2560,
         "copper": 320,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -242332,9 +242348,9 @@
       "evidence_status": "SOURCE_EXPLICIT",
       "rewards": {
         "experience": 360,
-        "copper": 45,
+        "copper": 50,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -242360,7 +242376,7 @@
         "experience": 1080,
         "copper": 135,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -242386,7 +242402,7 @@
         "experience": 3760,
         "copper": 470,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -242412,7 +242428,7 @@
         "experience": 1240,
         "copper": 155,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -242438,7 +242454,7 @@
         "experience": 920,
         "copper": 115,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -242464,7 +242480,7 @@
         "experience": 2080,
         "copper": 260,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -242490,7 +242506,7 @@
         "experience": 5360,
         "copper": 670,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -242516,7 +242532,7 @@
         "experience": 3920,
         "copper": 490,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -242542,7 +242558,7 @@
         "experience": 2480,
         "copper": 310,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -242568,7 +242584,7 @@
         "experience": 3040,
         "copper": 380,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -242594,7 +242610,7 @@
         "experience": 3760,
         "copper": 470,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -242620,7 +242636,7 @@
         "experience": 1640,
         "copper": 205,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -242646,7 +242662,7 @@
         "experience": 2040,
         "copper": 255,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -242672,7 +242688,7 @@
         "experience": 4360,
         "copper": 545,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -242698,7 +242714,7 @@
         "experience": 4360,
         "copper": 545,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -242724,7 +242740,7 @@
         "experience": 1040,
         "copper": 130,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -242750,7 +242766,7 @@
         "experience": 5600,
         "copper": 700,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -242776,7 +242792,7 @@
         "experience": 3320,
         "copper": 415,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -242802,7 +242818,7 @@
         "experience": 680,
         "copper": 85,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -242828,7 +242844,7 @@
         "experience": 2800,
         "copper": 350,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -242854,7 +242870,7 @@
         "experience": 3240,
         "copper": 405,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -242880,7 +242896,7 @@
         "experience": 5360,
         "copper": 670,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -242906,7 +242922,7 @@
         "experience": 2440,
         "copper": 305,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -242932,7 +242948,7 @@
         "experience": 2560,
         "copper": 320,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -242956,9 +242972,9 @@
       "evidence_status": "SOURCE_EXPLICIT",
       "rewards": {
         "experience": 80,
-        "copper": 10,
+        "copper": 50,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -242992,7 +243008,7 @@
         "experience": 800,
         "copper": 100,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -243018,7 +243034,7 @@
         "experience": 3360,
         "copper": 420,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -243044,7 +243060,7 @@
         "experience": 5960,
         "copper": 745,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -243070,7 +243086,7 @@
         "experience": 840,
         "copper": 105,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -243096,7 +243112,7 @@
         "experience": 2200,
         "copper": 275,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -243122,7 +243138,7 @@
         "experience": 2640,
         "copper": 330,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -243148,7 +243164,7 @@
         "experience": 3760,
         "copper": 470,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -243174,7 +243190,7 @@
         "experience": 4760,
         "copper": 595,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -243200,7 +243216,7 @@
         "experience": 1600,
         "copper": 200,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -243226,7 +243242,7 @@
         "experience": 4760,
         "copper": 595,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -243252,7 +243268,7 @@
         "experience": 6080,
         "copper": 760,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -243278,7 +243294,7 @@
         "experience": 3320,
         "copper": 415,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -243306,9 +243322,9 @@
       "evidence_status": "SOURCE_EXPLICIT",
       "rewards": {
         "experience": 320,
-        "copper": 40,
+        "copper": 50,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -243334,7 +243350,7 @@
         "experience": 3240,
         "copper": 405,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -243360,7 +243376,7 @@
         "experience": 1760,
         "copper": 220,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -243386,7 +243402,7 @@
         "experience": 1040,
         "copper": 130,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -243412,7 +243428,7 @@
         "experience": 7040,
         "copper": 880,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -243438,7 +243454,7 @@
         "experience": 1040,
         "copper": 130,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -243464,7 +243480,7 @@
         "experience": 880,
         "copper": 110,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -243490,7 +243506,7 @@
         "experience": 4920,
         "copper": 615,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -243516,7 +243532,7 @@
         "experience": 3520,
         "copper": 440,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -243542,7 +243558,7 @@
         "experience": 4160,
         "copper": 520,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -243568,7 +243584,7 @@
         "experience": 2560,
         "copper": 320,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -243596,9 +243612,9 @@
       "evidence_status": "SOURCE_EXPLICIT",
       "rewards": {
         "experience": 40,
-        "copper": 5,
+        "copper": 50,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -243624,7 +243640,7 @@
         "experience": 3000,
         "copper": 375,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -243650,7 +243666,7 @@
         "experience": 2800,
         "copper": 350,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -243676,7 +243692,7 @@
         "experience": 2640,
         "copper": 330,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -243710,7 +243726,7 @@
         "experience": 440,
         "copper": 55,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -243736,7 +243752,7 @@
         "experience": 2080,
         "copper": 260,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -243762,7 +243778,7 @@
         "experience": 2080,
         "copper": 260,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -243788,7 +243804,7 @@
         "experience": 1880,
         "copper": 235,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -243814,7 +243830,7 @@
         "experience": 1880,
         "copper": 235,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -243840,7 +243856,7 @@
         "experience": 4680,
         "copper": 585,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -243866,7 +243882,7 @@
         "experience": 3040,
         "copper": 380,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -243892,7 +243908,7 @@
         "experience": 5040,
         "copper": 630,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -243918,7 +243934,7 @@
         "experience": 4520,
         "copper": 565,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -243944,7 +243960,7 @@
         "experience": 6520,
         "copper": 815,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -243970,7 +243986,7 @@
         "experience": 5400,
         "copper": 675,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -243996,7 +244012,7 @@
         "experience": 6920,
         "copper": 865,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -244022,7 +244038,7 @@
         "experience": 7040,
         "copper": 880,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     },
@@ -244048,7 +244064,7 @@
         "experience": 1840,
         "copper": 230,
         "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-        "copper_rule_status": "SOURCE_EXPLICIT",
+        "copper_rule_status": "PLAYABILITY_CALIBRATED",
         "rule_id": "compatibility.monster-rewards.v1"
       }
     }
@@ -249241,6 +249257,23 @@
       "evidence_status": "SOURCE_EXPLICIT"
     },
     {
+      "canonical_id": "runtime.monster_placement.6f1f1981b1da2415",
+      "source_canonical_id": "config/monsterItems.json",
+      "monster_canonical_id": "derived.monster_definition.9cdb92b5619a712d",
+      "location_canonical_id": "entity.location.c0a4560ce36c2c80",
+      "location_resolution_status": "task_scoped_evidence_overlay",
+      "runtime_capability": "queryable",
+      "normalized_data": {
+        "task_canonical_id": "task.series.15.269",
+        "target_canonical_id": "task.series.15.269.target.01",
+        "resolution_rule": "task_drop_with_same_city_location_correction"
+      },
+      "encounter_type": "wild",
+      "repeatable": true,
+      "respawn_rule": "source_location_cache_refresh_5_minutes",
+      "evidence_status": "SOURCE_EXPLICIT"
+    },
+    {
       "canonical_id": "runtime.monster_placement.b16ec828529e4b73",
       "source_canonical_id": "config/monsterItems.json",
       "monster_canonical_id": "derived.monster_definition.ea809ac6a2d77833",
@@ -251722,18 +251755,17 @@
     },
     {
       "canonical_id": "runtime.item.57e744db1884c498",
-      "source_canonical_id": "task.series.15.269",
+      "source_canonical_id": "runtime.item.57e744db1884c498",
       "entity_category": "item",
       "display_name": "熊皮",
       "normalized_data": {
         "catalog": "taskConditionItems",
-        "monster_name": "巨熊",
-        "probability": 1,
         "encounter_match": "task_description_names_encounter",
+        "monster_name": "巨熊",
+        "name": "熊皮",
+        "probability": 1,
         "probability_adjudication": "one required task item is settled per defeated or harvested source encounter because the task text gives an acquisition condition but no random drop rate"
-      },
-      "provenance_status": "SOURCE_EXPLICIT_TASK_CONDITION",
-      "evidence_locator": "task.series.15.269 description + target encounter placement"
+      }
     },
     {
       "canonical_id": "runtime.item.586fec3896207a43",
@@ -252538,19 +252570,34 @@
       "evidence_locator": "config/monsterItems.json JSON Pointer /黑蚌/0; config/task/task15.json array_position=459; index=728"
     },
     {
+      "canonical_id": "runtime.task_chain.item.57e744db1884c498",
+      "source_canonical_id": "config/monsterItems.json",
+      "entity_category": "item",
+      "display_name": "熊皮",
+      "normalized_data": {
+        "catalog": "monsterItems",
+        "monster_name": "巨熊",
+        "probability": null,
+        "encounter_match": null,
+        "probability_adjudication": null
+      },
+      "provenance_status": "SOURCE_EXPLICIT_AND_TASK_CONTEXT",
+      "evidence_locator": "config/monsterItems.json JSON Pointer /巨熊/0; config/task/task15.json array_position=89; index=269"
+    },
+    {
       "canonical_id": "runtime.task_chain.item.8b4fe6ffc18a39c1",
-      "source_canonical_id": "task.series.15.456",
+      "source_canonical_id": "task.series.15.471",
       "entity_category": "item",
       "display_name": "黑珍珠",
       "normalized_data": {
         "catalog": "taskChainItems",
         "type": 11,
         "inventory_weight_exempt": true,
-        "source_task_canonical_id": "task.series.15.456",
+        "source_task_canonical_id": "task.series.15.471",
         "task_item": true
       },
       "provenance_status": "SOURCE_TEXT_AND_ADJACENT_CHAIN",
-      "evidence_locator": "task.series.15.456 submit dialogue -> task.series.15.457"
+      "evidence_locator": "task.series.15.471 -> task.series.15.472"
     },
     {
       "canonical_id": "runtime.task_chain.item.cd2182704d029476",
@@ -283490,6 +283537,20 @@
       "raw_data_json": "\"先知的束带\""
     },
     {
+      "canonical_id": "entity.drop.d9c1cc53c90f8012",
+      "source_canonical_id": "config/monsterItems.json",
+      "monster_canonical_id": "derived.monster_definition.9cdb92b5619a712d",
+      "content_entity_canonical_id": "runtime.task_chain.item.57e744db1884c498",
+      "location_canonical_id": "entity.location.c0a4560ce36c2c80",
+      "drop_kind": "item",
+      "probability": null,
+      "quantity": 1,
+      "guaranteed_for_active_task": true,
+      "evidence_status": "SOURCE_EXPLICIT_AND_TASK_CONTEXT",
+      "evidence_locator": "config/monsterItems.json JSON Pointer /巨熊/0; config/task/task15.json array_position=89; index=269",
+      "raw_data_json": "{\"source\":\"monsterItems\",\"item\":\"熊皮\",\"encounter_match\":null,\"probability_adjudication\":null}"
+    },
+    {
       "canonical_id": "entity.drop.d9e415e6f759eee7",
       "source_canonical_id": "entity.drop.d9e415e6f759eee7",
       "monster_canonical_id": "derived.monster_definition.48583c8541536e09",
@@ -285330,20 +285391,6 @@
       "raw_data_json": "{\"source\":\"taskDescription\",\"item\":\"蛇牙草\",\"encounter_match\":\"target_name_equals_encounter\",\"probability_adjudication\":\"one required task item is settled per defeated or harvested source encounter because the task text gives an acquisition condition but no random drop rate\"}"
     },
     {
-      "canonical_id": "runtime.task-drop.6775a8f5952e17bc",
-      "source_canonical_id": "task.series.15.269",
-      "monster_canonical_id": "derived.monster_definition.9cdb92b5619a712d",
-      "content_entity_canonical_id": "runtime.item.57e744db1884c498",
-      "location_canonical_id": "entity.location.c0a4560ce36c2c80",
-      "drop_kind": "item",
-      "probability": 1,
-      "quantity": 1,
-      "guaranteed_for_active_task": true,
-      "evidence_status": "SOURCE_EXPLICIT_TASK_CONDITION",
-      "evidence_locator": "task.series.15.269 description + target encounter placement",
-      "raw_data_json": "{\"source\":\"taskDescription\",\"item\":\"熊皮\",\"encounter_match\":\"task_description_names_encounter\",\"probability_adjudication\":\"one required task item is settled per defeated or harvested source encounter because the task text gives an acquisition condition but no random drop rate\"}"
-    },
-    {
       "canonical_id": "runtime.task-drop.68d9997f8bfbae52",
       "source_canonical_id": "task.series.13.165",
       "monster_canonical_id": "derived.monster_definition.92644584fc23590f",
@@ -285639,11 +285686,19 @@
         "replacement_condition": "Replace when an authoritative populated monster reward table or an unambiguous original reward formula is recovered and validated jointly against the original level thresholds and task rewards."
       },
       "copper": {
-        "evidence_status": "SOURCE_EXPLICIT",
-        "formula": "level * 5",
-        "minimum": 5,
+        "evidence_status": "PLAYABILITY_CALIBRATED",
+        "formula": "round(level * 10 + 40 * encounter_multiplier)",
+        "base_copper_per_level": 10,
+        "encounter_multipliers": {
+          "wild": 1,
+          "dungeon_normal": 1.5,
+          "task_exclusive": 1,
+          "elite": 1.5,
+          "boss": 2
+        },
+        "minimum": 50,
         "evidence_locator": "zhsh/src/monster.js Monster constructor and assault victory settlement",
-        "replacement_condition": "Replace only if stronger original data supplies per-monster copper rewards."
+        "replacement_condition": "可玩性优先校准(用户确认): 源 level*5 过慢, 改为 10*lv+40 匹配新经验门槛与商店尺度。"
       },
       "encounter_duration_estimate_minutes": 2
     },
@@ -286103,7 +286158,7 @@
               "experience": 900,
               "copper": 75,
               "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-              "copper_rule_status": "SOURCE_EXPLICIT",
+              "copper_rule_status": "PLAYABILITY_CALIBRATED",
               "rule_id": "compatibility.monster-rewards.v1"
             }
           },
@@ -286128,7 +286183,7 @@
               "experience": 1200,
               "copper": 75,
               "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-              "copper_rule_status": "SOURCE_EXPLICIT",
+              "copper_rule_status": "PLAYABILITY_CALIBRATED",
               "rule_id": "compatibility.monster-rewards.v1"
             }
           },
@@ -286188,7 +286243,7 @@
               "experience": 1800,
               "copper": 150,
               "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-              "copper_rule_status": "SOURCE_EXPLICIT",
+              "copper_rule_status": "PLAYABILITY_CALIBRATED",
               "rule_id": "compatibility.monster-rewards.v1"
             }
           },
@@ -286213,7 +286268,7 @@
               "experience": 2400,
               "copper": 150,
               "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-              "copper_rule_status": "SOURCE_EXPLICIT",
+              "copper_rule_status": "PLAYABILITY_CALIBRATED",
               "rule_id": "compatibility.monster-rewards.v1"
             }
           },
@@ -286264,7 +286319,7 @@
               "experience": 2400,
               "copper": 200,
               "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-              "copper_rule_status": "SOURCE_EXPLICIT",
+              "copper_rule_status": "PLAYABILITY_CALIBRATED",
               "rule_id": "compatibility.monster-rewards.v1"
             }
           }
@@ -286287,7 +286342,7 @@
               "experience": 2400,
               "copper": 200,
               "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-              "copper_rule_status": "SOURCE_EXPLICIT",
+              "copper_rule_status": "PLAYABILITY_CALIBRATED",
               "rule_id": "compatibility.monster-rewards.v1"
             }
           }
@@ -286310,7 +286365,7 @@
               "experience": 2400,
               "copper": 200,
               "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-              "copper_rule_status": "SOURCE_EXPLICIT",
+              "copper_rule_status": "PLAYABILITY_CALIBRATED",
               "rule_id": "compatibility.monster-rewards.v1"
             }
           }
@@ -286333,7 +286388,7 @@
               "experience": 2400,
               "copper": 200,
               "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-              "copper_rule_status": "SOURCE_EXPLICIT",
+              "copper_rule_status": "PLAYABILITY_CALIBRATED",
               "rule_id": "compatibility.monster-rewards.v1"
             }
           }
@@ -286356,7 +286411,7 @@
               "experience": 3200,
               "copper": 200,
               "experience_rule_status": "PROVISIONAL_COMPATIBILITY",
-              "copper_rule_status": "SOURCE_EXPLICIT",
+              "copper_rule_status": "PLAYABILITY_CALIBRATED",
               "rule_id": "compatibility.monster-rewards.v1"
             }
           }
@@ -287488,7 +287543,7 @@
     "preview_routes_supported": false,
     "normal_runtime_reads_this_section": false
   },
-  "content_sha256": "78f2bb6902027af80ff43893cedd2eda9a22efbbfb87782bc0264570a3c745da",
+  "content_sha256": "a325aa2c127c7604b019b518cad684c1601cd38141d9ee7730aa44894ff4c4f3",
   "entity_counts": {
     "tasks": 651,
     "cities": 28,
@@ -287498,8 +287553,8 @@
     "npcs": 277,
     "npc_placements": 359,
     "monsters": 261,
-    "monster_placements": 275,
-    "content_entities": 218,
+    "monster_placements": 276,
+    "content_entities": 219,
     "item_sources": 151,
     "ships": 21,
     "voyage_routes": 702,

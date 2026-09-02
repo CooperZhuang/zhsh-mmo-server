@@ -151,9 +151,14 @@ for(const target of task.targets.filter((entry)=>entry.target_kind==='monster'&&
   if(!/(切磋|战胜|挑战|杀)/.test(task.description)||target.candidate_canonical_ids.length!==1)continue;
   const candidate=target.candidate_canonical_ids[0];if(db.prepare('SELECT 1 ok FROM npc_definitions WHERE canonical_id=?').get(candidate))return {target_canonical_id:target.canonical_id,npc_canonical_id:candidate,evidence:'combat verb + unique NPC candidate'};
 }return null;}
-function inferChainItem(task,catalog){for(const target of task.targets.filter((entry)=>entry.target_kind==='item'&&!entry.entity_canonical_id)){
+function inferChainItem(task,catalog){for(const target of task.targets.filter((entry)=>entry.target_kind==='item')){
+  // task_chain.item.* targets carry a chain-reward identity even when an entity is already resolved
+  // (e.g. 15.471 rewards 黑珍珠 → 15.472 consumes it); the entity is present but the source is a
+  // prerequisite's reward, which the static source resolver cannot model. Treat as chain-item ledger.
+  if(target.entity_canonical_id&&!/^runtime\.task_chain\.item\./.test(String(target.entity_canonical_id)))continue;
   for(const prerequisiteId of task.prerequisites){const prerequisite=catalog.getTask(prerequisiteId);if(!prerequisite)continue;
-    if(prerequisite.rewards.some((reward)=>reward.reward_name===target.raw_name)||String(prerequisite.description).includes(target.raw_name)||String(task.description).includes(`已经获得${target.raw_name}`))
+    const chainReward=prerequisite.rewards.find((reward)=>reward.reward_name===target.raw_name&&String(reward.content_entity_canonical_id??'').startsWith('runtime.task_chain.item.'));
+    if(chainReward||prerequisite.rewards.some((reward)=>reward.reward_name===target.raw_name)||String(prerequisite.description).includes(target.raw_name)||String(task.description).includes(`已经获得${target.raw_name}`))
       return {target_canonical_id:target.canonical_id,item_name:target.raw_name,source_task_canonical_id:prerequisiteId,evidence:'prerequisite reward or adjacent task text'};
   }
 }return null;}

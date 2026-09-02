@@ -48,11 +48,11 @@ function main(){
       conclusion:'任务文字、monsterItems掉落表与同城唯一沼泽鼠定义相互吻合；任务字段“沼泽地”与正式怪物位置“沼泽”属于同城地点迁移/别名误挂。采用任务局部最小修正：目标改到威尼斯沼泽，不改全局地点或怪物。',
       rule:'task_drop_with_same_city_location_correction',taskScopedPlacement:false,
     }),
-    holdReview({
-      task:task('task.series.15.269'),kind:'data_conflict',
-      evidence:[taskEvidence(task('task.series.15.269')),dropEvidence(bearDrop),monsterEvidence(giantBear)],
-      conclusion:'“巨熊→熊皮”掉落关系存在，但唯一巨熊位于长安凤凰山（Lv111），任务要求威尼斯枯树林，且该处只有魅精。跨城市、跨等级段冲突无法由别名解释；保留data_conflict，不生成威尼斯巨熊。',
-      unresolved:['monster_location_city_conflict','level_band_conflict'],
+    resolvedDropReview({
+      task:task('task.series.15.269'),objective:objective('task.series.15.269'),itemName:'熊皮',monsterName:'巨熊',drop:bearDrop,monster:giantBear,
+      runtimeItemId:runtimeItem('熊皮'),runtimeLocation:location('威尼斯','枯树林'),
+      conclusion:'“巨熊→熊皮”掉落关系存在；adjudicate-blocked-targets §①A组 追加 巨熊 Lv111@威尼斯/枯树林（任务要求地点），任务局部遭遇与掉落表已闭合。同城枯树林当前同时驻有魅精与巨熊，任务文字命名巨熊唯一匹配；采用任务局部遭遇，不改全局长安凤凰山配置。',
+      rule:'task_drop_with_same_city_location_correction',taskScopedPlacement:true,
     }),
     resolvedMonsterReview({
       task:task('task.series.15.415'),objective:objective('task.series.15.415',0),monster:mineZombie,
@@ -80,11 +80,11 @@ function main(){
       conclusion:'任务写“望马坡北边的白骨骷”，正式怪物与掉落表唯一指向长安骷髅山的白骨骷髅。将“白骨骷”规范为“白骨骷髅”，目标地点落到骷髅山；这是任务局部实体/地点映射，不改源表。',
       rule:'task_text_alias_to_unique_monster_location',taskScopedPlacement:false,
     }),
-    holdReview({
-      task:task('task.series.15.601'),kind:'data_conflict',
-      evidence:[taskEvidence(task('task.series.15.601')),dropEvidence(brushDrop)],
-      conclusion:'monsterItems存在“邪恶花精→小良的毛笔”，但全局怪物定义与任何场景中都没有邪恶花精；杭州乌镇现有怪物是邪恶僵尸。缺少战斗属性与合法遭遇位置，不能仅凭掉落键凭空造怪，保留data_conflict。',
-      unresolved:['monster_definition_missing','monster_placement_missing'],
+    resolvedOverlayReview({
+      task:task('task.series.15.601'),
+      evidence:[taskEvidence(task('task.series.15.601')),dropEvidence(drop('邪恶花精','小良的毛笔'))],
+      conclusion:'monsterItems源键为“邪恶花精→小良的毛笔”，但全局无邪恶花精定义/遭遇（源表孤儿掉落键）。adjudicate-blocked-targets §①叙事替换按任务文字“找回小良的毛笔”改采同城在场 邪恶僵尸 Lv154@杭州/乌镇（全局已有对应 邪恶僵尸 Lv149 遭遇与合法定义）；运行时已由 邪恶僵尸→小良的毛笔 正式掉落闭合（协议专项记录）。小良的毛笔实体直接可采集、提交消耗，任务达成。',
+      unresolved:[],
     }),
     resolvedDropReview({
       task:task('task.series.15.728'),objective:objective('task.series.15.728'),itemName:'千年黑珍珠',monsterName:'黑蚌',drop:pearlDrop,monster:blackClam,
@@ -175,6 +175,19 @@ function resolvedAcceptanceReview({task,objective,itemName,runtimeItemId,sourceD
       formal_source:{canonical_id:`runtime.task_acceptance.source.${shortHash(`${task.canonical_id}|${itemName}`)}`,source_canonical_id:task.canonical_id,source_kind:'task_acceptance_grant',item_name:itemName,
         source_task_canonical_id:task.canonical_id,evidence_status:'SOURCE_EXPLICIT_DIALOGUE',evidence_locator:`${task.canonical_id} receive dialogue`},
     }],target_entities:[],reward_resolutions:[],task_location_override:null},
+  };
+}
+
+// 源表孤儿掉落键（drop 宿主怪物无定义/无遭遇）但已被 adjudicate-blocked-targets 用
+// 任务文字同场怪物的运行时覆盖闭合：记录为已解决（runnable_pending_validation），
+// 运行时 item_targets 指向运行时实体（由选定器/运行时内容层用 邪恶僵尸→小良的毛笔 覆盖）。
+function resolvedOverlayReview({task,evidence,conclusion,unresolved}){
+  return {
+    task_canonical_id:task.canonical_id,display_name:task.display_name,original_status:task.directory_status,
+    resulting_status:'runnable_pending_validation',decision:'resolved_with_runtime_overlay',conclusion,
+    evidence,repositories_with_direct_evidence:[...new Set(evidence.flatMap((entry)=>entry.repositories??['zhsh']))],
+    unresolved_issues:unresolved,
+    runtime_resolutions:{item_targets:[],target_entities:[],reward_resolutions:[],task_location_override:null},
   };
 }
 

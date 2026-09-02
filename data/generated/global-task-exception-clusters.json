@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "stage_start_head": "2cbae183aa369fe0ac60176f3a1396914d786440",
-  "source_head": "4058b33947b07215ce893c4391b936aded485eec",
-  "generated_from_head": "4058b33947b07215ce893c4391b936aded485eec",
+  "source_head": "688a29329969c7bfd0274864e0f7d652881fd374",
+  "generated_from_head": "688a29329969c7bfd0274864e0f7d652881fd374",
   "reference_commits": {
     "zhsh": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
     "astrbot": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de",
@@ -19,11 +19,10 @@
   "ranking_formula": "coverage*100 + cross_series_reuse*20 + architecture_consistency*15 + evidence_strength*10 - implementation_cost*10",
   "clusters": [
     {
-      "cluster_id": "exception.source_data_and_placement_disagree",
-      "display_name": "source_data_and_placement_disagree",
-      "task_count": 2,
+      "cluster_id": "exception.task_chain_item_ledger",
+      "display_name": "task_chain_item_ledger",
+      "task_count": 1,
       "task_canonical_ids": [
-        "task.series.15.415",
         "task.series.15.472"
       ],
       "affected_series": [
@@ -33,19 +32,19 @@
         }
       ],
       "class_ids": [
-        7
+        5
       ],
       "reason_codes": [
-        "source_data_and_placement_disagree"
+        "task_chain_item_ledger"
       ],
       "priority_inputs": {
-        "coverage": 2,
+        "coverage": 1,
         "cross_series_reuse": 1,
-        "architecture_consistency": 2,
+        "architecture_consistency": 5,
         "evidence_strength": 4,
-        "implementation_cost": 4
+        "implementation_cost": 2
       },
-      "priority_score": 250
+      "priority_score": 215
     },
     {
       "cluster_id": "exception.npc_duel_encounter",
@@ -74,6 +73,34 @@
         "implementation_cost": 3
       },
       "priority_score": 205
+    },
+    {
+      "cluster_id": "exception.source_data_and_placement_disagree",
+      "display_name": "source_data_and_placement_disagree",
+      "task_count": 1,
+      "task_canonical_ids": [
+        "task.series.15.415"
+      ],
+      "affected_series": [
+        {
+          "canonical_id": "task.series.15",
+          "display_name": "寻裔之路"
+        }
+      ],
+      "class_ids": [
+        7
+      ],
+      "reason_codes": [
+        "source_data_and_placement_disagree"
+      ],
+      "priority_inputs": {
+        "coverage": 1,
+        "cross_series_reuse": 1,
+        "architecture_consistency": 2,
+        "evidence_strength": 4,
+        "implementation_cost": 4
+      },
+      "priority_score": 150
     }
   ]
 }

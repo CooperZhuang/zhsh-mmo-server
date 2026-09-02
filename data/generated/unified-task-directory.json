@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
   "stage_start_head": "2cbae183aa369fe0ac60176f3a1396914d786440",
-  "source_head": "4058b33947b07215ce893c4391b936aded485eec",
-  "generated_from_head": "4058b33947b07215ce893c4391b936aded485eec",
+  "source_head": "688a29329969c7bfd0274864e0f7d652881fd374",
+  "generated_from_head": "688a29329969c7bfd0274864e0f7d652881fd374",
   "reference_commits": {
     "zhsh": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
     "astrbot": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de",
@@ -7410,8 +7410,8 @@
         "operational_fit": true,
         "implemented_shared_systems": [],
         "evidence_exception_resolution": {
-          "decision": "release_evidence_hold_after_data_fix",
-          "conclusion": "裁决已实施：为巨熊补建\"威尼斯/枯树林\"安置（与任务文本一致），巨熊→熊皮掉落关系落库（0.4/guaranteed 由运行时层提供），跨城市冲突消除；本任务 blocking 归零，转 runnable_pending_validation。",
+          "decision": "resolved_with_minimal_runtime_overlay",
+          "conclusion": "“巨熊→熊皮”掉落关系存在；adjudicate-blocked-targets §①A组 追加 巨熊 Lv111@威尼斯/枯树林（任务要求地点），任务局部遭遇与掉落表已闭合。同城枯树林当前同时驻有魅精与巨熊，任务文字命名巨熊唯一匹配；采用任务局部遭遇，不改全局长安凤凰山配置。",
           "resulting_status": "runnable_pending_validation"
         }
       }
@@ -10568,7 +10568,7 @@
       "series_canonical_id": "task.series.15",
       "sequence_position": 205,
       "status": "validated",
-      "fitting_class_id": 7,
+      "fitting_class_id": 5,
       "prerequisites": [
         "task.series.15.471"
       ],
@@ -10577,22 +10577,18 @@
       ],
       "runtime_executors": [
         "TaskRuntimeEngine",
-        "ItemAcquisitionExecutor"
+        "ItemAcquisitionExecutor",
+        "TaskItemLedger"
       ],
-      "blocking_reasons": [
-        {
-          "code": "item_without_formal_source",
-          "target_canonical_id": "task.series.15.472.target.01",
-          "source_entity_canonical_id": "runtime.task_chain.item.8b4fe6ffc18a39c1",
-          "candidate_canonical_ids": []
-        }
-      ],
+      "blocking_reasons": [],
       "audit": {
         "legacy_selector_selected": false,
         "validated": false,
         "source_confidence": "medium",
-        "operational_fit": false,
-        "implemented_shared_systems": [],
+        "operational_fit": true,
+        "implemented_shared_systems": [
+          "task_chain_item_ledger"
+        ],
         "evidence_exception_resolution": null
       }
     },
@@ -14139,8 +14135,8 @@
         "operational_fit": true,
         "implemented_shared_systems": [],
         "evidence_exception_resolution": {
-          "decision": "release_evidence_hold_after_data_fix",
-          "conclusion": "裁决已实施：邪恶花精按\"原版文本找同名妖物不成立\"原则归入同场景邪恶僵尸（杭州/乌镇，Lv154），小良的毛笔掉落关系落库；任务 blocking 归零，转 runnable_pending_validation。",
+          "decision": "resolved_with_runtime_overlay",
+          "conclusion": "monsterItems源键为“邪恶花精→小良的毛笔”，但全局无邪恶花精定义/遭遇（源表孤儿掉落键）。adjudicate-blocked-targets §①叙事替换按任务文字“找回小良的毛笔”改采同城在场 邪恶僵尸 Lv154@杭州/乌镇（全局已有对应 邪恶僵尸 Lv149 遭遇与合法定义）；运行时已由 邪恶僵尸→小良的毛笔 正式掉落闭合（协议专项记录）。小良的毛笔实体直接可采集、提交消耗，任务达成。",
           "resulting_status": "runnable_pending_validation"
         }
       }
@@ -17863,8 +17859,8 @@
   ],
   "runtime_landing": {
     "stage_start_head": "2cbae183aa369fe0ac60176f3a1396914d786440",
-    "source_head": "4c538c92386f0be50486ecda29f99713a6ee90c1",
-    "generated_from_head": "4c538c92386f0be50486ecda29f99713a6ee90c1",
+    "source_head": "688a29329969c7bfd0274864e0f7d652881fd374",
+    "generated_from_head": "688a29329969c7bfd0274864e0f7d652881fd374",
     "reference_commits": {
       "zhsh": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
       "astrbot": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de",
@@ -17873,7 +17869,7 @@
     },
     "generator_version": "global-runtime-content/1.0.0",
     "generated_at": "2026-07-18T00:00:00.000Z",
-    "runtime_runnable_task_count": 650,
+    "runtime_runnable_task_count": 651,
     "selection_file": "data/generated/global-runtime-task-selection.json"
   }
 }
