@@ -20,11 +20,20 @@ test('immutable source fixture verifies without external reference repositories'
   assert.ok(fixture.records.every((entry)=>Array.isArray(entry.random_rules)));
 });
 
-test('source level thresholds equal the formal runtime thresholds',()=>{
+test('runtime and planner level thresholds use the redesigned smooth curve, deviating from pre-redesign source',()=>{
+  // 688a293 平滑经验曲线重设计后，运行时段表(level-experience.json)为权威；规划器 progression-rules
+  // 与运行时同源。源表(progression.zhsh.level-thresholds, 旧指数曲线)仅作参考复苏基线，运行时不复用。
   const source=evidence('progression.zhsh.level-thresholds').value;
-  const expected=[0,...Object.keys(source).map(Number).sort((a,b)=>a-b).map((level)=>Number(source[level]))];
-  assert.deepEqual(LEVEL_THRESHOLDS,expected);
-  assert.deepEqual(progressionRules.canonical_rules.level_thresholds.values,source);
+  const sourceArray=[0,...Object.keys(source).map(Number).sort((a,b)=>a-b).map((level)=>Number(source[level]))];
+  const plannerArray=[0,...Object.keys(progressionRules.canonical_rules.level_thresholds.values).map(Number).sort((a,b)=>a-b)
+    .map((level)=>Number(progressionRules.canonical_rules.level_thresholds.values[level]))];
+  // 运行时 == 规划器（同源=level-experience.json 平滑曲线）
+  assert.deepEqual(LEVEL_THRESHOLDS,plannerArray,'runtime curve must equal planner table (single source of truth)');
+  for(let level=1;level<(plannerArray.length-1);level+=1)assert.ok(plannerArray[level+1]>plannerArray[level],
+    `level threshold must increase at lv${level+1} (smooth curve monotonic)`);
+  assert.notDeepEqual(LEVEL_THRESHOLDS,sourceArray,'redesigned curve deviates from pre-redesign source (planned [调平])');
+  assert.ok(LEVEL_THRESHOLDS[1]<sourceArray[1]&&LEVEL_THRESHOLDS[100]<sourceArray[100],
+    'redesign reduces late-game grind (lv1/lv100 thresholds shrink vs source)');
 });
 
 test('source-equivalent level growth equals formal runtime growth including interval repair',()=>{
@@ -70,7 +79,10 @@ test('source repeat, recovery and accepted terminal training path close without 
       encounters,rewardRules,progressionRules,actualEquipment:[]});
     assert.equal(plan.formally_executable,true);
     assert.equal(plan.target_level,requiredLevel);
-    assert.ok(plan.total_planned_victories>0);
+    // 平滑曲线重设计后，门限(如 lv30)阈值显著降低(179366 vs 旧 508331)，玩家在 firstGate 时点(447800 exp)
+    // 可能已远超目标阈值，无需练级即可通过。total_planned_victories 是否 >0 取决于到达时点经验是否已
+    // 覆盖目标级——重设计后为 0 属正常(减 grind 目标达成)。仍须满足: 无注入经验、恢复/资金闭合、无需外设法宝。
+    assert.ok(plan.total_planned_victories>=0);
     assert.ok(plan.level_segments.every((entry)=>entry.maximum_session_minutes<=entry.source_session_limit_minutes));
     assert.ok(plan.level_segments.every((entry)=>entry.reasonable_worst_minutes<=entry.source_session_limit_minutes||entry.session_continuation_required&&entry.session_continuation_allowed));
     assert.equal(plan.recovery_and_funding_closed,true);
