@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "selection_hash": "bd66be69fe45a45fe4a9c0cbd87c61b04ab67c063083e012503131bd03c4c6d1",
-  "browser_content_sha256": "9afbbeeda0a13a16016ba5a10d54d453ae8845026f7d3566c8620b9ee626a581",
+  "browser_content_sha256": "8d568c64656d0973219dae80c4e3baed07a7763e297fbb8f20668089eacf3cbc",
   "scenario": "legacy_25_task_checkpoint_migration",
   "result": "passed",
   "initial_completed": 1,

@@ -30,6 +30,12 @@ const EVENT_TYPES = Object.freeze([
   'submit_to_npc',
   'abandon_task',
   'fail_task',
+  // 玩法型任务目标（吸收自外部仓库：烹饪/港口订单/指定港卖出/护航/港口声望）
+  'cook_completed',
+  'trade_order_delivered',
+  'trade_good_sold',
+  'convoy_purchased',
+  'port_reputation_reached',
 ]);
 const ACTIVE_STATUSES = new Set(['accepted','in_progress','completable']);
 const TASK_EVENT_REPLAY_WINDOW=128;
@@ -413,6 +419,11 @@ class TaskRuntimeEngine {
         case 'submit_to_npc': result = this.handleSubmit(state,event); break;
         case 'abandon_task': result = this.handleAbandon(state,event,'abandoned'); break;
         case 'fail_task': result = this.handleAbandon(state,event,'failed'); break;
+        case 'cook_completed': result = this.handleCookComplete(state,event); break;
+        case 'trade_order_delivered': result = this.handleTradeOrderDeliver(state,event); break;
+        case 'trade_good_sold': result = this.handleTradeSell(state,event); break;
+        case 'convoy_purchased': result = this.handleConvoyPurchase(state,event); break;
+        case 'port_reputation_reached': result = this.handlePortReputation(state,event); break;
         default: throw new Error(`Unsupported event type: ${event.type}`);
       }
       this.injectFault('before_event_commit',{ state,event,result });
@@ -538,6 +549,32 @@ class TaskRuntimeEngine {
     const changes = [];
     for (const task of this.activeTasks(state)) changes.push(...this.syncItemTargets(state,task,event.item_canonical_id));
     return { applied: true, action: 'inventory_obtained', item_canonical_id: event.item_canonical_id, quantity, changes };
+  }
+
+  // ---- 玩法型任务目标推进（烹饪/港口订单/指定港卖出/护航/港口声望） ----
+  advancePlayTarget(state, event, targetKind, quantity, eventType, entityId) {
+    const changes = [];
+    for (const task of this.activeTasks(state)) {
+      for (const target of task.targets.filter((entry) => entry.target_kind === targetKind && entry.entity_canonical_id === entityId)) {
+        changes.push(this.advanceTarget(state, task, target, quantity, eventType));
+      }
+    }
+    return { applied: changes.length > 0, action: eventType, changes };
+  }
+  handleCookComplete(state, event) {
+    return this.advancePlayTarget(state, event, 'cook', 1, 'cook_completed', event.recipe_canonical_id);
+  }
+  handleTradeOrderDeliver(state, event) {
+    return this.advancePlayTarget(state, event, 'trade_order', 1, 'trade_order_delivered', event.order_canonical_id);
+  }
+  handleTradeSell(state, event) {
+    return this.advancePlayTarget(state, event, 'trade_sell', positiveInteger(event.quantity ?? 1, 'quantity'), 'trade_good_sold', event.good_canonical_id);
+  }
+  handleConvoyPurchase(state, event) {
+    return this.advancePlayTarget(state, event, 'prepare_voyage', 1, 'convoy_purchased', event.convoy_item_canonical_id);
+  }
+  handlePortReputation(state, event) {
+    return this.advancePlayTarget(state, event, 'trade_reputation', positiveInteger(event.amount ?? 1, 'amount'), 'port_reputation_reached', event.city_canonical_id);
   }
 
   handleConsume(state,event) {
@@ -1925,7 +1962,15 @@ class FormalGameplayCatalog {
     this.maritime = content.maritime ?? {};
     this.fishingGear = index(this.maritime.fishing?.gear);
     this.fishingCatches = index((this.maritime.fishing?.catches ?? []).map((entry)=>({ ...entry,canonical_id:entry.content_entity_canonical_id })));
+    this.recipes = index(content.recipes);
+    this.tradeGoods = index(content.trade_goods);
+    this.tradeOrders = index(content.trade_orders);
+    this.convoyItems = index(content.convoy_items);
   }
+  getRecipe(id) { return required(this.recipes,id,'recipe'); }
+  getTradeGood(id) { return required(this.tradeGoods,id,'trade good'); }
+  getTradeOrder(id) { return required(this.tradeOrders,id,'trade order'); }
+  getConvoyItem(id) { return required(this.convoyItems,id,'convoy item'); }
   getShip(id) { return required(this.ships,id,'ship'); }
   listShipsAtPort(cityId) { return [...this.ships.values()].filter((entry) => entry.city_canonical_id === cityId); }
   getRoute(id) { return required(this.routes,id,'voyage route'); }
@@ -2109,6 +2154,141 @@ class MaritimeRuntime {
     else if(effect.type==='equipmentReward'){const name=effect.equipmentList[Math.min(effect.equipmentList.length-1,Math.floor(this.random()*effect.equipmentList.length))];
       const item=this.catalog.findItemByName(name);if(item){state.inventory[item.canonical_id]=(state.inventory[item.canonical_id]??0)+1;result.content_entity_canonical_id=item.canonical_id;}}
     return result;
+  }
+}
+
+class CookRuntime {
+  constructor({ storage,catalog,taskEngine=null,clock=isoNow }) {
+    this.storage=storage;this.catalog=catalog;this.taskEngine=taskEngine;this.clock=clock;
+  }
+  // 在当前城市港口按配方烹制餐食：扣素材 + 计费 + 产出餐食物品
+  cook(playerId,recipeId,eventId) {
+    return transactEvent(this.storage,playerId,eventId,'recipe_cook',{ recipe_canonical_id:recipeId },this.clock,(state) => {
+      const recipe=this.catalog.getRecipe(recipeId);
+      const city=this.currentCityId(state);
+      if(recipe.port_city_canonical_id!==city)throw new Error(`该配方须在对应港口烹制（${recipe.port_city_canonical_id}）。`);
+      if(Number(state.player.money)<Number(recipe.silver_cost??0))throw new Error('银币不足，无法支付烹制费用。');
+      for(const [ingredientId,quantity] of Object.entries(recipe.cargo??{})) {
+        if(Number(state.inventory[ingredientId]??0)<Number(quantity))throw new Error('食材不足，无法烹制。');
+      }
+      state.player.money-=Number(recipe.silver_cost??0);
+      for(const [ingredientId,quantity] of Object.entries(recipe.cargo??{}))setInventory(state,ingredientId,Number(state.inventory[ingredientId])-Number(quantity));
+      const meal=this.catalog.getItem(recipe.result_item_canonical_id);
+      const mealId=meal.canonical_id;
+      state.inventory[mealId]=(state.inventory[mealId]??0)+1;
+      const buff=meal.normalized_data?.buff??meal.buff??null;
+      return {applied:true,action:'meal_cooked',recipe_canonical_id:recipeId,result_item_canonical_id:mealId,
+        display_name:meal.display_name??mealId,buff,remaining_money:Number(state.player.money)};
+    });
+  }
+  // 食用餐食：设置多场战斗 buff
+  consumeMeal(playerId,mealId,eventId) {
+    return transactEvent(this.storage,playerId,eventId,'meal_consume',{ item_canonical_id:mealId },this.clock,(state) => {
+      if(Number(state.inventory[mealId]??0)<1)throw new Error('背包中没有该餐食。');
+      const meal=this.catalog.getItem(mealId);
+      const buff=meal.normalized_data?.buff??meal.buff??null;
+      if(!buff)throw new Error('该物品不是可食用餐食。');
+      setInventory(state,mealId,Number(state.inventory[mealId])-1);
+      state.player.meal_buff={ ...buff,remaining_battles:Number(buff.battles??3) };
+      return {applied:true,action:'meal_consumed',item_canonical_id:mealId,display_name:meal.display_name??mealId,buff:{...state.player.meal_buff}};
+    });
+  }
+  currentCityId(state) {
+    const node=state.player.current_map_node_canonical_id;
+    const mapNode=this.catalog.content?.map_nodes?.find((entry)=>entry.map_node_canonical_id===node);
+    const loc=this.catalog.content?.locations?.find((entry)=>entry.canonical_id===mapNode?.location_canonical_id);
+    return loc?.city_canonical_id??null;
+  }
+  cityIdFrom(state) { return this.currentCityId(state); }
+}
+
+// 港口订单：在指定港口交付商品，得银币 + 港口声望
+class TradeOrderRuntime {
+  constructor({ storage,catalog=null,clock=isoNow }) { this.storage=storage;this.catalog=catalog;this.clock=clock; }
+  currentCityId(state) {
+    const mapNode=this.catalog.content?.map_nodes?.find((entry)=>entry.map_node_canonical_id===state.player.current_map_node_canonical_id);
+    const loc=this.catalog.content?.locations?.find((entry)=>entry.canonical_id===mapNode?.location_canonical_id);
+    return loc?.city_canonical_id??null;
+  }
+  acceptOrder(playerId,orderId,eventId) {
+    return transactEvent(this.storage,playerId,eventId,'trade_order_accept',{ order_canonical_id:orderId },this.clock,(state) => {
+      const order=this.catalog.getTradeOrder(orderId);
+      const active=state.trade_orders??(state.trade_orders={});
+      if(active[orderId])throw new Error('该订单已在处理中。');
+      active[orderId]={ accepted_at:this.clock(),count:0 };
+      return {applied:true,action:'trade_order_accepted',order_canonical_id:orderId};
+    });
+  }
+  deliverOrder(playerId,orderId,eventId) {
+    return transactEvent(this.storage,playerId,eventId,'trade_order_deliver',{ order_canonical_id:orderId },this.clock,(state) => {
+      const order=this.catalog.getTradeOrder(orderId);
+      const city=this.currentCityId(state);
+      const goodId=order.good_canonical_id;
+      const amount=Number(order.amount??1);
+      if(city!==order.port_city_canonical_id)throw new Error('须在订单指定港口交付。');
+      if(Number(state.inventory[goodId]??0)<amount)throw new Error(`商品不足，需 ${amount} 件。`);
+      setInventory(state,goodId,Number(state.inventory[goodId])-amount);
+      state.player.money+=Number(order.bonus??0);
+      const rep=state.city_reputation??(state.city_reputation={});
+      rep[order.port_city_canonical_id]=(Number(rep[order.port_city_canonical_id]??0)+Number(order.reputation??0));
+      state.city_reputation=rep;
+      const active=state.trade_orders??{};
+      if(active[orderId])delete active[orderId];
+      return {applied:true,action:'trade_order_delivered',order_canonical_id:orderId,bonus:Number(order.bonus??0),
+        reputation:Number(order.reputation??0),money:state.player.money,city_reputation:state.city_reputation};
+    });
+  }
+}
+
+// 指定港卖出：在目标港口出售货物赚价差
+class TradeSellRuntime {
+  constructor({ storage,catalog=null,clock=isoNow }) { this.storage=storage;this.catalog=catalog;this.clock=clock; }
+  currentCityId(state) {
+    const mapNode=this.catalog.content?.map_nodes?.find((entry)=>entry.map_node_canonical_id===state.player.current_map_node_canonical_id);
+    const loc=this.catalog.content?.locations?.find((entry)=>entry.canonical_id===mapNode?.location_canonical_id);
+    return loc?.city_canonical_id??null;
+  }
+  sell(playerId,goodId,quantity,eventId) {
+    return transactEvent(this.storage,playerId,eventId,'trade_good_sell',{ good_canonical_id:goodId,quantity },this.clock,(state) => {
+      const good=this.catalog.getTradeGood(goodId);
+      const city=this.currentCityId(state);
+      const price=Number(good.prices?.[city]??0);
+      if(!price)throw new Error('该商品在当前港口无收购价。');
+      const qty=Number(quantity??1);
+      if(Number(state.inventory[goodId]??0)<qty)throw new Error('商品不足。');
+      setInventory(state,goodId,Number(state.inventory[goodId])-qty);
+      state.player.money+=price*qty;
+      return {applied:true,action:'trade_good_sold',good_canonical_id:goodId,quantity:qty,unit_price:price,
+        gained:price*qty,money:state.player.money};
+    });
+  }
+}
+
+// 护航物资：出航前购买，本航程降风险/抵风暴
+class VoyagePrepRuntime {
+  constructor({ storage,catalog=null,clock=isoNow }) { this.storage=storage;this.catalog=catalog;this.clock=clock; }
+  purchase(playerId,itemId,eventId) {
+    return transactEvent(this.storage,playerId,eventId,'convoy_purchase',{ convoy_item_canonical_id:itemId },this.clock,(state) => {
+      const item=this.catalog.getConvoyItem(itemId);
+      if(Number(state.player.money)<Number(item.price??0))throw new Error('银币不足。');
+      state.player.money-=Number(item.price??0);
+      const stock=state.convoy_bundles??(state.convoy_bundles={});
+      stock[itemId]=(Number(stock[itemId]??0)+1);
+      state.convoy_bundles=stock;
+      return {applied:true,action:'convoy_purchased',convoy_item_canonical_id:itemId,bundle_count:state.convoy_bundles[itemId],
+        money:state.player.money,effect:item.effect};
+    });
+  }
+}
+
+// 港口声望：查询某港累计声望
+class TradeReputationRuntime {
+  constructor({ storage,catalog=null,clock=isoNow }) { this.storage=storage;this.catalog=catalog;this.clock=clock; }
+  view(playerId,eventId) {
+    return transactEvent(this.storage,playerId,eventId,'city_reputation_view',{},this.clock,(state) => {
+      return {applied:true,action:'city_reputation_viewed',city_reputation:state.city_reputation??{},
+        total:Object.values(state.city_reputation??{}).reduce((sum,value)=>sum+Number(value),0)};
+    });
   }
 }
 
@@ -2778,66 +2958,42 @@ class CombatRuntime {
         if(!hasAppliedStamina(previous?.result))delete state.gameplay_events[state.combat.last_attack_event_id];
       }
       state.combat.last_attack_event_id=eventId;
-      let result;const appliedStaminaItems=[];
-      for(let batchRound=0;batchRound<rounds;batchRound+=1) {
-        const stats=effectiveStats(state,this.catalog);const combat=state.combat;
-        combat.round+=1;
-        const playerDamage=damage(stats.attack,stats.max_attack,combat.monster_stats.defense,stats.agility,combat.monster_stats.agility,this.random);
-        const activePet=(state.player.pets??[]).find((p)=>p.active);
-        const petDamage=activePet?damage(activePet.attack??0,(activePet.attack??0)+Math.floor((activePet.attack??0)*0.6),combat.monster_stats.defense,activePet.speed??0,combat.monster_stats.agility,this.random):0;
-        combat.monster_current_health=Math.max(0,combat.monster_current_health-playerDamage-petDamage);
-        if (combat.monster_current_health===0) {
-          const monster=this.catalog.getMonster(combat.monster_canonical_id);const combatId=combat.canonical_id;
-          const experience=Number(monster.rewards?.experience);const money=Number(monster.rewards?.copper);
-          if(!Number.isFinite(experience)||!Number.isFinite(money))throw new Error(`Monster reward rule missing: ${monster.canonical_id}`);
-          state.player.experience+=experience;state.player.money+=money;const progression=applyExperienceProgression(state);state.combat=null;
-          if(activePet){activePet.experience=(activePet.experience??0)+Math.floor(experience*0.5);}
-          if(monster.repeatable===false)state.encounter_defeats[combat.encounter_defeat_key??combat.placement_canonical_id]={defeated_at:this.clock(),monster_canonical_id:monster.canonical_id,task_context_canonical_id:combat.task_context_canonical_id??null};
-          recordPlayerMemory(state,{type:'combat',text:`击败了${monster.display_name??monster.canonical_id}${monster.repeatable===false?'（强敌）':''}`,importance:monster.repeatable===false?3:1});
-          adjustCrewLoyalty(state, +2); // 并肩取胜 → 船员忠诚提升
-          return { applied:true,action:'combat_won',combat_canonical_id:combatId,monster_canonical_id:monster.canonical_id,
-            location_canonical_id:combat.location_canonical_id,player_damage:playerDamage,pet_damage:petDamage,experience,money,progression,
-            stamina_item:appliedStaminaItems.at(-1)??null,stamina_items:[...appliedStaminaItems],batched_rounds:batchRound+1 };
-        }
-        const monsterDamage=damage(combat.monster_stats.attack,combat.monster_stats.max_attack,stats.defense,combat.monster_stats.agility,stats.agility,this.random);
-        state.player.current_health=Math.max(0,state.player.current_health-monsterDamage);
-        // 未知道具吸收：怪物状态效果（中毒/虚弱/诅咒/缓慢）+ 周期技能（伤害倍增）
-        const monsterEffect=combat.monster_stats.effect;
-        if (monsterEffect) {
-          const effectRoll=this.random();
-          if (effectRoll < Number(monsterEffect.chance ?? 0)) {
-            const active=state.player.effects ?? (state.player.effects={});
-            const existing=active[monsterEffect.name];
-            active[monsterEffect.name]={ rounds: Math.max(existing?.rounds ?? 0, Number(monsterEffect.rounds ?? 1)), round: combat.round };
-            combat.last_effects=combat.last_effects??[]; combat.last_effects.push(monsterEffect.name);
-            if(monsterEffect.damage_multiplier) {
-              state.player.current_health=Math.max(0,state.player.current_health-Math.round(monsterDamage*(Number(monsterEffect.damage_multiplier)-1)));
-            }
-          }
-        }
-        const monsterSpecial=combat.monster_stats.special;
-        if (monsterSpecial && Number(monsterSpecial.every ?? 0) > 0 && combat.round % Number(monsterSpecial.every) === 0) {
-          const specialDamage=Math.round(monsterDamage*Number(monsterSpecial.damage_multiplier ?? 1));
-          state.player.current_health=Math.max(0,state.player.current_health-specialDamage);
-          combat.last_special=monsterSpecial.name;
-        }
-        const staminaItem=state.player.current_health>0?useActiveStaminaItem(state,this.catalog,{automatic:true}):{applied:false,reason:'player_defeated'};
-        if(staminaItem.applied)appliedStaminaItems.push(staminaItem);
-        if (state.player.current_health===0) {
-          const defeatedAt=state.player.current_map_node_canonical_id;
-          state.player.current_health=1;
-          state.player.current_map_node_canonical_id=state.player.defeat_return_map_node_canonical_id ?? state.player.current_map_node_canonical_id;
-          if (!state.unlocked_map_nodes.includes(state.player.current_map_node_canonical_id)) state.unlocked_map_nodes.push(state.player.current_map_node_canonical_id);
-          state.combat=null;state.dungeon=null;state.voyage=null;state.fishing=null;state.maritime_encounter=null;
-          adjustCrewLoyalty(state, -5); // 落败 → 船员忠诚受挫
-          return { applied:true,action:'combat_lost',player_damage:playerDamage,monster_damage:monsterDamage,
-            stamina_item:appliedStaminaItems.at(-1)??staminaItem,stamina_items:[...appliedStaminaItems],
-            defeated_at_map_node_canonical_id:defeatedAt,return_map_node_canonical_id:state.player.current_map_node_canonical_id,current_health:1,batched_rounds:batchRound+1 };
-        }
-        result={ applied:true,action:'combat_round',player_damage:playerDamage,monster_damage:monsterDamage,pet_damage:petDamage,
-          stamina_item:appliedStaminaItems.at(-1)??staminaItem,stamina_items:[...appliedStaminaItems],combat:{ ...combat },player_health:state.player.current_health,batched_rounds:batchRound+1 };
-      }
+      const result=runCombatRounds(state,this.catalog,this.random,rounds);
       return result;
+    });
+    if (result.action==='combat_won') {
+      if (this.taskEngine&&isActiveMonsterTarget(this.storage.loadPlayer(playerId),result.monster_canonical_id,this.taskEngine.catalog)) this.taskEngine.processEvent(playerId,{ event_id:`${eventId}.task`,type:'defeat_monster',monster_canonical_id:result.monster_canonical_id,location_canonical_id:result.location_canonical_id });
+      if (this.dropRuntime) result.drops=this.dropRuntime.settle(playerId,result.monster_canonical_id,result.combat_canonical_id,`${eventId}.drops`);
+      if(this.taskEngine&&Number(result.progression?.levels_gained??0)>0)result.unlocked_task_canonical_ids=this.taskEngine.refreshAvailability(playerId).unlocked;
+    }
+    return result;
+  }
+  // 一键战斗：单事务内校验站位→建场→模拟整场到胜/负，返回终态。
+  // 省去 E2E/客户端 start+分批次 attack+state 轮询的多重往返（每往返一次完整 loadPlayer/replace）。
+  autoResolve(playerId,monsterId,eventId,{ rounds=2000 }={}) {
+    if (typeof eventId === 'object' && eventId !== null) {
+      const opts=eventId;
+      eventId = typeof arguments[3] === 'string' ? arguments[3] : `combat-resolve.${this.clock()}`;
+      rounds = opts.rounds ?? 2000;
+    }
+    rounds=positive(rounds);
+    const monster=this.catalog.getMonster(monsterId);
+    const result=transactEvent(this.storage,playerId,eventId,'combat_auto_resolve',{ monster_canonical_id:monsterId,rounds },this.clock,(state) => {
+      if (state.combat) throw new Error('Combat is already active');
+      const dungeonPlacement=state.dungeon&&monster.dungeon_canonical_id===state.dungeon.canonical_id&&monster.dungeon_stage_canonical_id===state.dungeon.stage_canonical_id;
+      const placement=dungeonPlacement?{ canonical_id:monster.dungeon_stage_canonical_id,location_canonical_id:monster.location_canonical_id,
+        encounter_type:monster.encounter_type,repeatable:monster.repeatable }:
+        this.catalog.listMonsterPlacements(monsterId).find((entry)=>entry.map_node_canonical_id===state.player.current_map_node_canonical_id);
+      if(!placement)throw new Error('Monster is not at the current formal location');
+      const activeTaskIds=activeMonsterTargetTaskIds(state,monsterId,this.taskEngine?.catalog);
+      if(placement.encounter_type==='task_exclusive'&&!activeTaskIds.length)throw new Error('Task-exclusive monster requires an active matching task');
+      const taskContextCanonicalId=placement.encounter_type==='task_exclusive'?activeTaskIds[0]:null;
+      const defeatKey=encounterDefeatKey(placement,taskContextCanonicalId);
+      if(placement.repeatable===false&&state.encounter_defeats?.[defeatKey])throw new Error('Non-repeatable encounter is already defeated');
+      const stats=monsterStats(monster);
+      state.combat={ canonical_id:`combat.${eventId}`,monster_canonical_id:monsterId,placement_canonical_id:placement.canonical_id,location_canonical_id:placement.location_canonical_id,
+        task_context_canonical_id:taskContextCanonicalId,encounter_defeat_key:defeatKey,monster_current_health:stats.health,monster_stats:stats,round:0,started_at:this.clock() };
+      return runCombatRounds(state,this.catalog,this.random,rounds);
     });
     if (result.action==='combat_won') {
       if (this.taskEngine&&isActiveMonsterTarget(this.storage.loadPlayer(playerId),result.monster_canonical_id,this.taskEngine.catalog)) this.taskEngine.processEvent(playerId,{ event_id:`${eventId}.task`,type:'defeat_monster',monster_canonical_id:result.monster_canonical_id,location_canonical_id:result.location_canonical_id });
@@ -2891,6 +3047,72 @@ class DungeonRuntime {
   }
 }
 
+// 战斗轮次循环：从 state.combat 开始模拟，直到胜/负或打满 maxRounds 轮。
+// 被 combat.attack（分批）与 combat.autoResolve（一次性整场）共用，保证结算逻辑单一来源。
+function runCombatRounds(state,catalog,random,maxRounds) {
+  let result;const appliedStaminaItems=[];
+  for(let batchRound=0;batchRound<maxRounds;batchRound+=1) {
+    const stats=effectiveStats(state,catalog);const combat=state.combat;
+    combat.round+=1;
+    const playerDamage=damage(stats.attack,stats.max_attack,combat.monster_stats.defense,stats.agility,combat.monster_stats.agility,random);
+    const activePet=(state.player.pets??[]).find((p)=>p.active);
+    const petDamage=activePet?damage(activePet.attack??0,(activePet.attack??0)+Math.floor((activePet.attack??0)*0.6),combat.monster_stats.defense,activePet.speed??0,combat.monster_stats.agility,random):0;
+    combat.monster_current_health=Math.max(0,combat.monster_current_health-playerDamage-petDamage);
+    if (combat.monster_current_health===0) {
+      const monster=catalog.getMonster(combat.monster_canonical_id);const combatId=combat.canonical_id;
+      const experience=Number(monster.rewards?.experience);const money=Number(monster.rewards?.copper);
+      if(!Number.isFinite(experience)||!Number.isFinite(money))throw new Error(`Monster reward rule missing: ${monster.canonical_id}`);
+      state.player.experience+=experience;state.player.money+=money;const progression=applyExperienceProgression(state);state.combat=null;
+      if(activePet){activePet.experience=(activePet.experience??0)+Math.floor(experience*0.5);}
+      if(monster.repeatable===false)state.encounter_defeats[combat.encounter_defeat_key??combat.placement_canonical_id]={defeated_at:new Date().toISOString(),monster_canonical_id:monster.canonical_id,task_context_canonical_id:combat.task_context_canonical_id??null};
+      recordPlayerMemory(state,{type:'combat',text:`击败了${monster.display_name??monster.canonical_id}${monster.repeatable===false?'（强敌）':''}`,importance:monster.repeatable===false?3:1});
+      adjustCrewLoyalty(state, +2); // 并肩取胜 → 船员忠诚提升
+      // 餐食 buff：每获胜一场递减剩余场次，归零自动清除
+      const mealBuffAfter=consumeMealBattle(state);
+      return { applied:true,action:'combat_won',combat_canonical_id:combatId,monster_canonical_id:monster.canonical_id,
+        location_canonical_id:combat.location_canonical_id,player_damage:playerDamage,pet_damage:petDamage,experience,money,progression,
+        stamina_item:appliedStaminaItems.at(-1)??null,stamina_items:[...appliedStaminaItems],batched_rounds:batchRound+1,meal_buff:mealBuffAfter };
+    }
+    const monsterDamage=damage(combat.monster_stats.attack,combat.monster_stats.max_attack,stats.defense,combat.monster_stats.agility,stats.agility,random);
+    state.player.current_health=Math.max(0,state.player.current_health-monsterDamage);
+    const monsterEffect=combat.monster_stats.effect;
+    if (monsterEffect) {
+      const effectRoll=random();
+      if (effectRoll < Number(monsterEffect.chance ?? 0)) {
+        const active=state.player.effects ?? (state.player.effects={});
+        const existing=active[monsterEffect.name];
+        active[monsterEffect.name]={ rounds: Math.max(existing?.rounds ?? 0, Number(monsterEffect.rounds ?? 1)), round: combat.round };
+        combat.last_effects=combat.last_effects??[]; combat.last_effects.push(monsterEffect.name);
+        if(monsterEffect.damage_multiplier) {
+          state.player.current_health=Math.max(0,state.player.current_health-Math.round(monsterDamage*(Number(monsterEffect.damage_multiplier)-1)));
+        }
+      }
+    }
+    const monsterSpecial=combat.monster_stats.special;
+    if (monsterSpecial && Number(monsterSpecial.every ?? 0) > 0 && combat.round % Number(monsterSpecial.every) === 0) {
+      const specialDamage=Math.round(monsterDamage*Number(monsterSpecial.damage_multiplier ?? 1));
+      state.player.current_health=Math.max(0,state.player.current_health-specialDamage);
+      combat.last_special=monsterSpecial.name;
+    }
+    const staminaItem=state.player.current_health>0?useActiveStaminaItem(state,catalog,{automatic:true}):{applied:false,reason:'player_defeated'};
+    if(staminaItem.applied)appliedStaminaItems.push(staminaItem);
+    if (state.player.current_health===0) {
+      const defeatedAt=state.player.current_map_node_canonical_id;
+      state.player.current_health=1;
+      state.player.current_map_node_canonical_id=state.player.defeat_return_map_node_canonical_id ?? state.player.current_map_node_canonical_id;
+      if (!state.unlocked_map_nodes.includes(state.player.current_map_node_canonical_id)) state.unlocked_map_nodes.push(state.player.current_map_node_canonical_id);
+      state.combat=null;state.dungeon=null;state.voyage=null;state.fishing=null;state.maritime_encounter=null;
+      adjustCrewLoyalty(state, -5); // 落败 → 船员忠诚受挫
+      return { applied:true,action:'combat_lost',player_damage:playerDamage,monster_damage:monsterDamage,
+        stamina_item:appliedStaminaItems.at(-1)??staminaItem,stamina_items:[...appliedStaminaItems],
+        defeated_at_map_node_canonical_id:defeatedAt,return_map_node_canonical_id:state.player.current_map_node_canonical_id,current_health:1,batched_rounds:batchRound+1 };
+    }
+    result={ applied:true,action:'combat_round',player_damage:playerDamage,monster_damage:monsterDamage,pet_damage:petDamage,
+      stamina_item:appliedStaminaItems.at(-1)??staminaItem,stamina_items:[...appliedStaminaItems],combat:{ ...combat },player_health:state.player.current_health,batched_rounds:batchRound+1 };
+  }
+  return result;
+}
+
 function effectiveStats(state,catalog) {
   const stamina=activeStaminaItem(state,catalog);
   const result={ attack:Number(state.player.base_attack),max_attack:Number(state.player.base_max_attack),defense:Number(state.player.base_defense),agility:Number(state.player.base_agility),max_health:Number(state.player.max_health)+Number(stamina?.semantics.add_hp??0),morale:Number(state.player.morale) };
@@ -2906,7 +3128,24 @@ function effectiveStats(state,catalog) {
     for (const tier of bonuses) if (count>=Number(tier.pieces)) applied=tier;
     if (applied) { for (const [stat,value] of Object.entries(applied.stats??{})) { result[stat]=(result[stat]??0)+Number(value); } }
   }
+  // 餐食 buff：食用后多场战斗获得攻击/防御/体力加成
+  const mealBuff=state.player?.meal_buff;
+  if(mealBuff&&Number(mealBuff.remaining_battles??0)>0){
+    result.attack+=Number(mealBuff.attack??0);result.max_attack+=Number(mealBuff.attack??0);
+    result.defense+=Number(mealBuff.defense??0);result.agility+=Number(mealBuff.agility??0);
+    result.max_health+=Number(mealBuff.max_health??0);result.morale+=Number(mealBuff.morale??0);
+  }
   return result;
+}
+
+// 每获胜一场递减餐食 buff 剩余场次，归零清除
+function consumeMealBattle(state) {
+  const buff=state.player?.meal_buff;
+  if(!buff||Number(buff.remaining_battles??0)<=0){state.player.meal_buff=null;return null;}
+  const next=Number(buff.remaining_battles)-1;
+  if(next<=0){state.player.meal_buff=null;return null;}
+  state.player.meal_buff={ ...buff,remaining_battles:next };
+  return { ...state.player.meal_buff };
 }
 
 function monsterStats(monster) {
@@ -3073,7 +3312,7 @@ function required(map,id,label) { const value=map.get(id);if(!value)throw new Er
 function stableJson(value) { if(value===null||typeof value!=='object')return JSON.stringify(value);if(Array.isArray(value))return`[${value.map(stableJson).join(',')}]`;return`{${Object.keys(value).sort().map((key)=>`${JSON.stringify(key)}:${stableJson(value[key])}`).join(',')}}`; }
 function isoNow() { return new Date().toISOString(); }
 
-module.exports = { CombatRuntime,DiscoverRuntime,DivingRuntime,DropRuntime,DungeonRuntime,EconomyRuntime,EquipmentRuntime,EquipmentEnhanceRuntime,FishingRuntime,FormalGameplayCatalog,GuildRuntime,CityRuntime,ItemRuntime,MarketRuntime,MaritimeRuntime,PetRuntime,RecoveryRuntime,RecruitRuntime,SkillRuntime,ShipRuntime,VoyageRuntime,EQUIPMENT_SLOT_BY_TYPE,applyTitle,chooseFishingWaitOutcome,damage,effectiveStats,fishingRarityWeights,monsterStats };
+module.exports = { CombatRuntime,CookRuntime,DiscoverRuntime,DivingRuntime,DropRuntime,DungeonRuntime,EconomyRuntime,EquipmentRuntime,EquipmentEnhanceRuntime,FishingRuntime,FormalGameplayCatalog,GuildRuntime,CityRuntime,ItemRuntime,MarketRuntime,MaritimeRuntime,PetRuntime,RecoveryRuntime,RecruitRuntime,SkillRuntime,ShipRuntime,TradeOrderRuntime,TradeReputationRuntime,TradeSellRuntime,VoyagePrepRuntime,VoyageRuntime,EQUIPMENT_SLOT_BY_TYPE,applyTitle,chooseFishingWaitOutcome,consumeMealBattle,damage,effectiveStats,fishingRarityWeights,monsterStats };
 
 },
 "src/task-runtime/stamina-item.js": function(module,exports,require){
