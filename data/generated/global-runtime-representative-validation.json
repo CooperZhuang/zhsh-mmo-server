@@ -2,8 +2,8 @@
   "schema_version": 1,
   "record_kind": "global-runtime-representative-validation",
   "stage_start_head": "2cbae183aa369fe0ac60176f3a1396914d786440",
-  "source_head": "8770734ee0360ca02516b2e81ef4e510863b33f3",
-  "generated_from_head": "8770734ee0360ca02516b2e81ef4e510863b33f3",
+  "source_head": "553666408fe79e3dca4c4b4f8eea5223b8e02066",
+  "generated_from_head": "553666408fe79e3dca4c4b4f8eea5223b8e02066",
   "reference_commits": {
     "zhsh": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
     "astrbot": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de",
@@ -12,7 +12,7 @@
   },
   "generator_version": "global-runtime-representative-validation/1.0.0",
   "generated_at": "2026-07-18T00:00:00.000Z",
-  "source_content_sha256": "36e6e716a4496b02f431583aa26e9f783d5b5415b3b2462bdbb06daecb23b968",
+  "source_content_sha256": "dd3d40ce3f91a5fe54ac0dccb1f5aed4a00d6a7da45b32da46b80f26a98a786d",
   "selection_hash": "bfb0c2f90422df4d79829c82d8ff75654508475b49926db65438dcef495cc946",
   "validation_strategy": "Representative semantic/runtime-content checks by executor family; no attempt to autoplay all pending tasks.",
   "groups": [
@@ -390,5 +390,5 @@
     }
   ],
   "result": "passed",
-  "validation_sha256": "a663e0da4e0e49b6f005119aadc713dd2e10ccc05aaaed352ca8d500467a9d94"
+  "validation_sha256": "b39f0af6f78984c47cac42b28235808ef3ca856af1b033ceb929098af66aa389"
 }

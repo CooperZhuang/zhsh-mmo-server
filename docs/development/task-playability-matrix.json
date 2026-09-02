@@ -1,8 +1,8 @@
 {
   "schema_version": 4,
   "stage_start_head": "2cbae183aa369fe0ac60176f3a1396914d786440",
-  "source_head": "2e321b42348d5e250688847aec2ae736c1b1d5fc",
-  "generated_from_head": "2e321b42348d5e250688847aec2ae736c1b1d5fc",
+  "source_head": "65d9bee82e36d60d992f8f0c2b87e63c0d2a3c42",
+  "generated_from_head": "65d9bee82e36d60d992f8f0c2b87e63c0d2a3c42",
   "reference_commits": {
     "zhsh": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
     "astrbot": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de",
