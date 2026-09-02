@@ -6,6 +6,8 @@ const {main:packageStage}=require('./package-global-recovery-stage');
 const root=path.resolve(__dirname,'..');
 const coldCommands=[
   {label:'node scripts/import-content.js',args:['scripts/import-content.js']},
+  {label:'node scripts/adjudicate-blocked-targets.js',args:['scripts/adjudicate-blocked-targets.js']},
+  {label:'node scripts/import-numbers-xlsx.js',args:['scripts/import-numbers-xlsx.js']},
   {label:'node --test tests/combat-survival-source-golden.test.js',args:['--test','tests/combat-survival-source-golden.test.js']},
   {label:'node scripts/select-runnable-tasks.js',args:['scripts/select-runnable-tasks.js']},
   {label:'node --test tests/reference-golden-rules.test.js',args:['--test','tests/reference-golden-rules.test.js']},
