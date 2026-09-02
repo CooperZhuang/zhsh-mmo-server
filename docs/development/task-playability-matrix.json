@@ -1,8 +1,8 @@
 {
   "schema_version": 4,
   "stage_start_head": "2cbae183aa369fe0ac60176f3a1396914d786440",
-  "source_head": "39ff0860417c6e9a5f7e0829dd514ff84e1213b6",
-  "generated_from_head": "39ff0860417c6e9a5f7e0829dd514ff84e1213b6",
+  "source_head": "2e321b42348d5e250688847aec2ae736c1b1d5fc",
+  "generated_from_head": "2e321b42348d5e250688847aec2ae736c1b1d5fc",
   "reference_commits": {
     "zhsh": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
     "astrbot": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de",
@@ -87185,7 +87185,7 @@
         "closed": false,
         "resolved": [
           {
-            "item_canonical_id": "runtime.item.57e744db1884c498",
+            "item_canonical_id": "runtime.task_chain.item.57e744db1884c498",
             "source": null,
             "closed": false
           }
@@ -87196,7 +87196,7 @@
         "required": true,
         "resolved_item_sources": [
           {
-            "item_canonical_id": "runtime.item.57e744db1884c498",
+            "item_canonical_id": "runtime.task_chain.item.57e744db1884c498",
             "source": null,
             "closed": false
           }
