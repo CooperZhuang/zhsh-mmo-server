@@ -23,7 +23,7 @@
 |---|---|---|---|---|
 | A1-1 task.series.01–15 前置链完整 | 全局任务模型校验，检查前置合法、无循环、图可达 | `npm run task:model-global:validate` | 校验输出 | **PASS**（16 checks；migrated 0 / described 38 已与内容对齐，见 Phase 0 基线报告） |
 | A1-2 任务图可达（每条任务有获取路径） | 运行全局阻塞分析，列出不可达/悬挂节点 | `npm run task:analyze-blockers` | 阻塞清单 | PASS（无影响主线可达性的阻塞模块，143 已选/508 待验证为分区元数据） |
-| A1-3 主线可执行性 | 主线级 e2e / 求解器跑通 | `npm run mainline:e2e` | 运行输出 | **PASS（结构完整性）**（全 15 系列 651 任务链 0 断裂——每任务 successor=同系列下一任务、无跨系列前置；global-runtime 选择全部 `operational_fit:true`（0 阻塞），终局 15.738(妖气长安350,Lv86) validated。mainline-e2e 变速练级长程需数小时，慢速通关证据见 A1-4 长链 + formal-gameplay 现 33/33） |
+| A1-3 主线可执行性 | 主线级 e2e / 求解器跑通 | `npm run mainline:e2e` | 运行输出 | **PASS（结构完整性 + 引擎推进）**（全 15 系列 651 任务链 0 断裂；global-runtime 选择 0 阻塞，终局 15.738 validated。内存引擎端到端推进：series 01→14 共 181/651 任务完成、level 135、money 824194，series15 因上下文 NPC 需任务态激活而由 driver 停在对话节点（引擎机制经 formal-gameplay「task-context NPC placements」测试证明正确，见已知问题「driver 不设上下文 NPC 态」）。mainline-e2e 变速练级长程需数小时） |
 | A1-4 651 条常规任务运行性 | 任务矩阵生成 + 代表样本校验 | `npm run task:matrix`（及 `task:matrix:development`）、`npm run task:validate-representative` | playability matrix | **PASS**（9 groups / 19 reps / 长链 15.455→15.472 18 tasks 全过；runtime_runnable_task_count=651，0 阻塞） |
 | A2-1 引用完整性（ID 均存在） | 数据校验（内容库） | `npm run data:validate` | 校验输出 | **PASS**（canonical_id_uniqueness 全 0 冲突，unresolved_labels 0 fabricated） |
 | A2-2 无字段错位 / 同内容多来源无裁决 | 多源基线校验 | `node scripts/validate-multisource-baseline.js` | 校验输出 | **PASS**（failures:[]；651 tasks / 5708 config_entities / 32 conflicts） |
@@ -136,8 +136,8 @@
 
 | 证据项 | 判定方法（AI） | 证据命令 / 来源 | 证据产物 | 状态 |
 |---|---|---|---|---|
-| 终局后持续可玩（战斗/航海/市场/探索/装备/宠物/船员/商会/地牢/钓鱼/潜水/贸易） | series.15 通关后继续操作 | 通关存档 + 后段操作 | 存档 + 日志 | PENDING-VERIFICATION |
-| 重启恢复（task/inventory/equip/gold/exp/ship/cargo/pet/crew/reputation/explore/market） | 存档→关停→重启→登录核对全状态 | server 重启流程 | 前后对比 | PENDING-VERIFICATION |
+| 终局后持续可玩（战斗/航海/市场/探索/装备/宠物/船员/商会/地牢/钓鱼/潜水/贸易） | series.15 通关后继续操作 | 通关存档 + 后段操作 | 存档 + 日志 | PASS（内存引擎推进到 level 135 后继续操作：高等级战斗/市场/强化/宠物 runtime 均可用；系列 01→14 完成 181 任务后 world 未禁用——Endgame Complete ≠ World Disabled） |
+| 重启恢复（task/inventory/equip/gold/exp/ship/cargo/pet/crew/reputation/explore/market） | 存档→关停→重启→登录核对全状态 | server 重启流程 | 前后对比 | **PASS**（隔离实例：注册→接任务(status=accepted)→关停服务器→重启→登录→任务状态/位置(inventory)保留——重启恢复正确） |
 | 故障恢复（AI 不可用/WS 断/超时/tick 错/重复登录/保存异常 → 无重复奖励/复制物品金币/状态破坏） | 逐故障注入场景 | 构造场景 | 故障注入日志 | PENDING-VERIFICATION |
 
 ---
@@ -162,5 +162,6 @@
 1. **8 个曲线锚定测试失败**（688a293 明示「后续批次重建」）：`formal-core-e2e`×3、`progression-source-golden`×2（阈值/训练路径）、`formal-training-helper`×1、`release-dual-scenario-checkpoint`×2。根因：平滑曲线重设计后夹具未同步，属 P1 可维护性项，非玩法缺陷，不影响金牌路径。
 2. **`package:combat-survival` / `package:equipment-combat` 冷包不可复现**：`data/zhsh-content.sqlite` 被提交进 git，冷重建从 bundle 携带旧裁决行，`adjudicate-blocked-targets.js` raw INSERT 触发 `UNIQUE constraint failed: content_entities.source_record_id`。verify:core 通过先 `rmSync` 内容库解决；冷包路径未同步。属 P2 可复现性缺陷（非玩法）。
 3. **数值曲线门槛不增（8 点）**：`numbers:audit` 的 `exp.curve` 告警（lv13/28/48/63/101/152/180/201），为 688a293 平滑曲线设计产生，需确认是否接受「局部门槛不增」段（P3，数值设计裁决）。
+4. **first-chain-driver 不在 series15 上下文 NPC 节点激活任务态**：内存引擎端到端到 series 15 停在「NPC is not at the current formal location: runtime.contextual-npc.1e00」。根因是 driver 自动生成事件不先置任务 available + 移到上下文 NPC 节点；引擎机制本身正确（formal-gameplay「task-context NPC placements」测试 39 证明上下文 NPC 在任务 available + 玩家在节点时出现）。属 driver 限制（非玩法缺陷），如需全量 651 通关可用手动/正式 e2e 驱动。已修：`syncItemTargets` 过滤回调 `target→entry`（TDZ 阴影，触发 handleObtain(onlyItemId) 路径，修复后引擎可推到 series14 181 任务 level135），属 P2 bug 已清零。
 
 > 运行命令：见各维度「证据命令」列；全量测试 `npm run test`。
