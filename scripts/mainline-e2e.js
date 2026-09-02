@@ -97,6 +97,7 @@ let steps=0;const MAX_STEPS=Number(process.env.ZHSH_MAINLINE_MAX_STEPS??4000);
         const dropMon=content.monsters.find(m=>m.canonical_id===drop.monster_canonical_id);
         const dropLv=Number(dropMon?.level??1);
         let curLevel=(await state()).player?.level??1;
+        let targetLevel=0;
         if(dropLv>curLevel+5){
           const cityId=content.locations.find(l2=>l2.canonical_id===mp.location_canonical_id)?.city_canonical_id;
           const cityLocs=content.locations.filter(l=>l.city_canonical_id===cityId).map(l=>l.canonical_id);
@@ -131,7 +132,7 @@ let steps=0;const MAX_STEPS=Number(process.env.ZHSH_MAINLINE_MAX_STEPS??4000);
               }
             };
             console.log('  [练级] 当前 lv'+curLevel+' vs 目标怪 lv'+dropLv+' → 刷 '+target.mon.display_name+'(lv'+target.mon.level+') 到 lv'+(dropLv-2));
-            let targetLevel=Math.max(curLevel+1,dropLv-2);
+            targetLevel=Math.max(curLevel+1,dropLv-2);
             let gainStalled=0;let lastExperience=(await state()).player?.experience??0;
             const recovery=content.recovery_services?.find(s=>{
               const loc=content.locations.find(l=>l.canonical_id===s.location_canonical_id);
