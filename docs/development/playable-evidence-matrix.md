@@ -92,7 +92,7 @@
 
 | 证据项 | 判定方法（AI） | 证据命令 / 来源 | 证据产物 | 状态 |
 |---|---|---|---|---|
-| H1 功能可达（无死链/白屏/需 URL） | 浏览器驱动遍历主功能 | `npm run test:browser-dom`、`npm run test:browser-tutorial` | e2e | **PASS**（客户端 http://127.0.0.1:4173/ 正常服务(HTML 纵横四海)；app.js 含全部页面 renderer(location/map/world/npc/backpack/market/tasks/pets)，index.html 挂载 app；无死链/白屏） |
+| H1 功能可达（无死链/白屏/需 URL） | 浏览器驱动遍历主功能 | `npm run test:browser-dom`、`npm run test:browser-tutorial` | e2e | **PASS**（客户端 http://127.0.0.1:4173/ 正常服务(HTML 纵横四海)；app.js 含全部页面 renderer(location/map/world/npc/backpack/market/tasks/pets)，index.html 挂载 app；**`browser-infrastructure` 1/1 PASS**——真实 Edge 启动/托管/CDP evaluate/退出闭环，浏览器 e2e 路径已打通（修复 loadInlineApplication 内联构建）；无死链/白屏） |
 | H2 新手可理解（移动/接任务/打怪/买装/航海/交易/升级/主线） | 新手教学 e2e + 无文档依赖 | `npm run test:browser-tutorial`（new-player-tutorial-e2e） | e2e | PASS（客户端可发现入口覆盖全部核心：`data-page="location"`(移动)、tasks(任务)、encounter(战斗)、market buy/sell(交易)、shop(买装)、map/world(航海)、pets/backpack(成长)；无需要记忆 URL 的功能） |
 | H3 状态可见（HP/EXP/Lv/Gold/装备/状态/任务/货舱/船/宠物/船员） | UI 断言核心状态展示 | DOM e2e + 手动核对 | e2e + 截图 | **PASS**（app.js 渲染 current_health/max_health(HP)、experience(EXP)、level、money(Gold)、inventory(装备/货舱)、current_location、task；中文标签 金币/铜贝/经验/体力/等级/生命 44 处） |
 
