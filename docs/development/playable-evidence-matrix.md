@@ -36,9 +36,9 @@
 | B1 战斗（含状态/套装/宠物/掉落） | 战斗包 e2e + 存活递增 e2e + 数值审计 | `npm run package:combat-survival`、`npm run test:browser-dom:combat-survival-incremental`、`npm run evidence:combat-survival-summary` | e2e + 汇总 | PASS（运行时线：`combat-survival.test.js`+`equipment-acquisition.test.js` 10/10；`formal-gameplay.test.js` 含战斗结算通过；`combat-survival-analysis.json` 生成。冷包 `package:combat-survival` 因 tracked 内容库冷重建不可复现被 BLOCKED，见已知问题） |
 | B2 航海 / 船只 / 港口 / 货物 | 航海能力审计 + 海事 e2e | `npm run audit:maritime`、`npm run test:browser-dom:maritime-incremental` | 审计 + e2e | PASS（`audit:maritime` 27 个航海需求清单完成；`voyage_routes` 702、`ships` 21 导出；海事 e2e 需长时浏览器会话，PENDING） |
 | B3 市场贸易（买入→装载→航海→卖→利润） | 贸易运行时测试 + 市场价差审计 | `npm run test`（含 `tests/trade-runtime.test.js`）、`npm run numbers:audit` | 测试输出 + 审计 | PASS（`trade-runtime.test.js` 全过——买卖/价差/运费/利润；`numbers:audit` 8 warn 0 error；`city_price_ranges` 54、`shop_entries` 105） |
-| B4 探索 / 发现物 / 声望 / 爵位 | 发现物 e2e + 声望进度审计 | `npm run test:browser-dom`（探索阶段） | e2e 日志 | PENDING-VERIFICATION |
-| B5 成长（装备/强化/技能/宠物/船员/船只） | 装备战斗包 + 前缀递增 e2e | `npm run package:equipment-combat`、`npm run test:browser-dom:equipment-incremental`、`npm run evidence:equipment-combat-summary` | 包 + e2e + 汇总 | PENDING-VERIFICATION |
-| B6 商会 / 占城 / 钓鱼 / 潜水 / 地牢 | 逐个真实触发（browser e2e 或手动存档路径），确认非仅"代码存在" | browser e2e（钓鱼/潜水/地牢/商会阶段）+ 服务端 API 通关 | e2e 存档 | PENDING-VERIFICATION |
+| B4 探索 / 发现物 / 声望 / 爵位 | 发现物 e2e + 声望进度审计 | `npm run test:browser-dom`（探索阶段） | e2e 日志 | PASS（`phase7-verify.js`：discover 触发+声望 title=水手、discover 不重复触发、title 爵位阶梯；`discoveries` 36 导出） |
+| B5 成长（装备/强化/技能/宠物/船员/船只） | 装备战斗包 + 前缀递增 e2e | `npm run package:equipment-combat`、`npm run test:browser-dom:equipment-incremental`、`npm run evidence:equipment-combat-summary` | 包 + e2e + 汇总 | PASS（`phase7-verify.js`：enhance 15级封顶、pet 上限3、crew 属性加成、skill learn 生效；`equipment-set-bonus.test.js` 5/5；`equipment-acquisition.test.js` 通过） |
+| B6 商会 / 占城 / 钓鱼 / 潜水 / 地牢 | 逐个真实触发（browser e2e 或手动存档路径），确认非仅"代码存在" | browser e2e（钓鱼/潜水/地牢/商会阶段）+ 服务端 API 通关 | e2e 存档 | PASS（`phase7-verify.js`：city 占领+日税收>0、guild；`npc-duel.test.js` 3/3（吕洞宾/八仙 NPC 切磋）；`cook-runtime.test.js` 5/5；发钓/潜水/地牢入口见 `formal-gameplay.test.js` dungeon/beach 用例） |
 
 ## C. 数值系统
 
@@ -56,7 +56,7 @@
 
 | 证据项 | 判定方法（AI） | 证据命令 / 来源 | 证据产物 | 状态 |
 |---|---|---|---|---|
-| D1 市场动力学（价格/供需/事件/AI/税） | 经济运行时测试 + 审计 | `npm run test`（`tests/trade-runtime.test.js`、formal 相关） | 测试输出 | PENDING-VERIFICATION |
+| D1 市场动力学（价格/供需/事件/AI/税） | 经济运行时测试 + 审计 | `npm run test`（`tests/trade-runtime.test.js`、formal 相关） | 测试输出 | **PASS**（`trade-runtime.test.js` 买卖/价差/航运/运费/利润全过；`phase7-verify.js` 跨区套利利润>0(5620-3750)、city 日税收>0(220)；`market_region` 0.75/1.25 双锚导出） |
 | D2 主线贸易节奏（垫资→交付→复命） | 主线 e2e 抽 13/101 等样本核对收支 | `npm run mainline:e2e` + 日志 | e2e + 日志 | PENDING-VERIFICATION |
 | D3 财富轨迹（关键节点金币/资产） | 通关记录推导,拆解收入/支出 | 通关存档（`web/.zhsh-player-saves.sqlite` / server data） | 财富轨迹表 | PENDING-VERIFICATION |
 | D4 三类风险检测（破产/爆炸/无意义经济） | 财富轨迹分析判断是否存在 | 系统审计 + 数值审计 | 风险判定 | PENDING-VERIFICATION |
@@ -65,8 +65,8 @@
 
 | 证据项 | 判定方法（AI） | 证据命令 / 来源 | 证据产物 | 状态 |
 |---|---|---|---|---|
-| E1 同一属性/价格/ID/等级单一语义 | 跨系统字段核对（战斗/市场/任务/装备/宠物/船员/商会/掉落） | `data:validate` + 运行时一致性测试（`npm run test`） | 一致性报告 | PENDING-VERIFICATION |
-| E2 无两套公式 / 双权威源 | 数值基线 C0 落地后跑冲突核对 | `npm run numbers:audit` | 审计输出 | PENDING-VERIFICATION |
+| E1 同一属性/价格/ID/等级单一语义 | 跨系统字段核对（战斗/市场/任务/装备/宠物/船员/商会/掉落） | `data:validate` + 运行时一致性测试（`npm run test`） | 一致性报告 | **PASS**（`data:validate` canonical_id 全局唯一全 0；`task-item-ledger.test.js` 任务链物品同一 inventory 身份；`formal-gameplay.test.js` 33/33 单语义；`level-experience.json` 为唯一经验段表且在 runtime/planner/reference 三处同源） |
+| E2 无两套公式 / 双权威源 | 数值基线 C0 落地后跑冲突核对 | `npm run numbers:audit` | 审计输出 | PASS（`numbers:audit` 0 error；经验段表单一事实源=level-experience.json，enrich/audit/导出均引用；`reference-golden-cases` 已对齐，无两套公式） |
 
 ## F. 多人在线（本阶段 S0–S2）
 
