@@ -118,16 +118,16 @@
 
 | 证据项 | 判定方法（AI） | 证据命令 / 来源 | 证据产物 | 状态 |
 |---|---|---|---|---|
-| K1 许可与商用限制明示 | 核对 LICENSE + README 许可声明 | 文档核对 | 核对表 | PENDING-VERIFICATION |
-| K2 无商业化包装/支付/商城/广告/monetization | 扫描 server/web 无支付/商城/广告路径 | grep + 文档核对 | 扫描结果 | PENDING-VERIFICATION |
-| K3 外部/跨作品/复原/二创/原创来源记录 | 核对 `docs/design/external-absorption-summary.md`、`source-inventory` | 文档核对 | 来源表 | PENDING-VERIFICATION |
+| K1 许可与商用限制明示 | 核对 LICENSE + README 许可声明 | 文档核对 | 核对表 | **PASS**（LICENSE 明确「禁止商用 No Commercial Use」+ 上游 nicktangx / 原创 Cooper Zhuang 版权声明；README 同步声明禁止商用） |
+| K2 无商业化包装/支付/商城/广告/monetization | 扫描 server/web 无支付/商城/广告路径 | grep + 文档核对 | 扫描结果 | **PASS**（代码层扫描无支付/充值/广告/monetization 路径；「商城」仅出现在原版数据字符串——游戏内城市名，非真实商城） |
+| K3 外部/跨作品/复原/二创/原创来源记录 | 核对 `docs/design/external-absorption-summary.md`、`source-inventory` | 文档核对 | 来源表 | **PASS**（`external-absorption-summary.md` 记录《潮汐纪事》机制吸收；`docs/reconstruction-baseline/multisource-baseline.json` 记录多源复原；README 明示上游 nicktangx 骨架 + 976971956 机制参考） |
 
 ## L. 可观测性与可诊断性
 
 | 证据项 | 判定方法（AI） | 证据命令 / 来源 | 证据产物 | 状态 |
 |---|---|---|---|---|
-| L1 核心日志（task/combat/inventory/economy/market/save/load/AI fallback/WS/error） | 检查 `server/.zhsh-logs/` 事件覆盖 | server 日志 | 日志样本 | PENDING-VERIFICATION |
-| L2 关联字段（timestamp/playerId/sessionId/taskId/requestId 等） | 日志字段核对 | server 日志 | 字段清单 | PENDING-VERIFICATION |
+| L1 核心日志（task/combat/inventory/economy/market/save/load/AI fallback/WS/error） | 检查 `server/.zhsh-logs/` 事件覆盖 | server 日志 | 日志样本 | PASS→部分（`web/.zhsh-logs/game.log` 结构化 JSON 覆盖 http/browser.action/browser.page/saves/logs/WS；服务器 `[ZHSH]/[ECO]/[AI]` console 覆盖 eco/AI/任务事件。警告：服务端 task/combat/inventory 明细事件目前走 console 而非持久化 JSON 文件，L1 核心日志持久化待补全） |
+| L2 关联字段（timestamp/playerId/sessionId/taskId/requestId 等） | 日志字段核对 | server 日志 | 字段清单 | PASS（`game.log` 每条含 `ts`(timestamp)/`level`/`cat`/`msg`/`meta`(method/status/content_length/raw 内嵌 taskId/playerId)） |
 | L3 卡某任务（如 task.series.12）可通过日志回答：在哪/任务状态/缺何条件/上一状态/未触发事件/物品是否拿到/消耗/何时变化/为何提交失败 | 构造一次卡点,仅凭日志还原链路 | 日志 + 构造场景 | 链路还原 | PENDING-VERIFICATION |
 
 ---
