@@ -138,7 +138,6 @@ let steps=0;const MAX_STEPS=Number(process.env.ZHSH_MAINLINE_MAX_STEPS??4000);
               const loc=content.locations.find(l=>l.canonical_id===s.location_canonical_id);
               return loc&&loc.city_canonical_id===cityId;
             });
-            let gainAttempts=0;
             while(curLevel<targetLevel&&gainStalled<30&&gainAttempts<600){
               gainAttempts+=1;
               let stx=await state();
