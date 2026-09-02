@@ -104,6 +104,28 @@ let steps=0;const MAX_STEPS=Number(process.env.ZHSH_MAINLINE_MAX_STEPS??4000);
             .sort((a,b)=>Number(b.mon.level)-Number(a.mon.level));
           const target=weak[0];
           if(target){
+            const equipped=new Map(); // slot(type) -> {score,canonical_id}
+            const equipBest=async()=>{
+              const st=await state();
+              const level=Number(st.player?.level??1);
+              const ids=Object.keys(st.inventory??{});
+              const byType=new Map();
+              for(const id of ids){
+                const eq=content.equipment.find(x=>x.canonical_id===id);
+                if(!eq||Number(eq.required_level??1)>level)continue;
+                const type=Number(eq.equipment_type);
+                if(type===6)continue;
+                const score=Number(eq.attack??0)*2+Number(eq.defense??0)*2+Number(eq.max_attack??eq.maxAttack??0)+Number(eq.health??0)+Number(eq.agility??0)+Number(eq.morale??0);
+                const cur=equipped.get(type);
+                // 已穿戴的不再重复 equip（economy：inventory 不含已装备件）
+                if(!cur||score>cur.score)byType.set(type,{score,canonical_id:id});
+              }
+              for(const {score,canonical_id:id} of byType.values()){
+                if(score<=(equipped.get([...equipped.keys()].find(k=>equipped.get(k).canonical_id===id))?.score??-1))continue;
+                await rt('equipment','equip',{equipment_canonical_id:id});
+                equipped.set(Number(content.equipment.find(x=>x.canonical_id===id).equipment_type),{score,canonical_id:id});
+              }
+            };
             console.log('  [练级] 当前 lv'+curLevel+' vs 目标怪 lv'+dropLv+' → 刷 '+target.mon.display_name+'(lv'+target.mon.level+') 到 lv'+(dropLv-2));
             const targetLevel=Math.max(curLevel+1,dropLv-2);
             let gainStalled=0;let lastExperience=(await state()).player?.experience??0;
@@ -119,7 +141,7 @@ let steps=0;const MAX_STEPS=Number(process.env.ZHSH_MAINLINE_MAX_STEPS??4000);
               const expNode=target.p.location_canonical_id;
               const expNode2=content.map_nodes.find(n=>n.location_canonical_id===expNode)?.map_node_canonical_id;
               if(expNode2&&stx.player?.current_map_node_canonical_id!==expNode2){await ensureNodeAt(expNode);stx=await state();}
-              if(stx.combat){const r=await rt('combat','attack',{rounds:200});if(r.action==='combat_won'||r.action==='combat_lost')continue;continue;}
+              if(stx.combat){const r=await rt('combat','attack',{rounds:200});if(r.action==='combat_won'||r.action==='combat_lost'){await equipBest();continue;}continue;}
               if(Number(stx.player?.current_health??1)<Number(stx.player?.max_health??100)*0.6){
                 if(recovery){await ensureNodeAt(recovery.location_canonical_id);await rt('recovery','recover',{recovery_service_canonical_id:recovery.canonical_id});continue;}
               }
