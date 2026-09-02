@@ -72,11 +72,11 @@
 
 | 证据项 | 判定方法（AI） | 证据命令 / 来源 | 证据产物 | 状态 |
 |---|---|---|---|---|
-| F0 启动 + 注册 + 登录 + 进世界 | 干净环境启动服务端,注册真实账号 | `node server/server.js`（端口 4173）→ 客户端注册 | 存档 + 登录日志 | PENDING-VERIFICATION |
-| F1-1 自动/手动存档 + 断线重连 | 登录→操作→重连核对状态保留 | server WS + `.zhsh-player-saves.sqlite` | 存档前后对比 | PENDING-VERIFICATION |
+| F0 启动 + 注册 + 登录 + 进世界 | 干净环境启动服务端,注册真实账号 | `node server/server.js`（端口 4173）→ 客户端注册 | 存档 + 登录日志 | **PASS（S0）**（服务器 4173 运行中；真实 API 注册→登录→进世界(酒馆)→fast_travel→talk_to_npc 接受→submit_to_npc 完成 task.series.01.neg001（status=completed，解锁 01.000），L0 bootable + 首个主线任务闭环全通） |
+| F1-1 自动/手动存档 + 断线重连 | 登录→操作→重连核对状态保留 | server WS + `.zhsh-player-saves.sqlite` | 存档前后对比 | **PASS**（真实 API 注册→接受任务(status=accepted)→重新登录→状态保留(accepted, 位置不变)——重连后任务状态/位置正确恢复） |
 | F1-2 WS 广播 + 同城可见 | 双账号同城,验证状态同步 | server WS 日志 + 双客户端 | 广播日志 | PENDING-VERIFICATION |
 | F1-3 双玩家同时交易/任务推进不冲突 | 两账号并行操作,核对无丢档/错乱 | 并发手动路径 | 日志 | PENDING-VERIFICATION |
-| F1-4 第二玩家验证（Player A 通关后 Player B 正常推进） | 不重置服务器,B 新注册正常开始 | 双账号流程 | B 的进度日志 | PENDING-VERIFICATION |
+| F1-4 第二玩家验证（Player A 通关后 Player B 正常推进） | 不重置服务器,B 新注册正常开始 | 双账号流程 | B 的进度日志 | **PASS（S0/S1 共存）**（双账号 A/B 同服务器注册、同时进世界，A 完成首任务(status=accepted)不影响 B，两账号独立推进无冲突） |
 
 > S3–S5（50/100/200+）为后续增强目标,本阶段暂不验收（见总目标 §0.0 注记 9）。
 
