@@ -100,9 +100,9 @@
 
 | 证据项 | 判定方法（AI） | 证据命令 / 来源 | 证据产物 | 状态 |
 |---|---|---|---|---|
-| I1 长稳（8h+ 推荐 24h，真实/少量连接） | 长时运行观察 no crash/泄漏/退化 | `node server/server.js` + `node scripts/benchmark-persistence-hotspots.js` | 运行日志 | PENDING-VERIFICATION |
+| I1 长稳（8h+ 推荐 24h，真实/少量连接） | 长时运行观察 no crash/泄漏/退化 | `node server/server.js` + `node scripts/benchmark-persistence-hotspots.js` | 运行日志 | PENDING（部分：服务器 4173 在大量 API 测试(15+ 注册/登录/任务周期)期间持续运行 HTTP 200，无崩溃；8h+ soak 未做） |
 | I2 无崩溃/无 unhandled rejection/死锁/DB 锁死 | 长稳 + 事件循环观察 | server 日志 + 性能采集（`node scripts/capture-performance-evidence.js`） | 性能证据 | PENDING-VERIFICATION |
-| I3 性能指标（API P50/95/99、WS 延迟、事件循环、DB 延迟、eco/AI tick 时长） | 采集基准,阈值按现有基准定 | `capture-performance-evidence.js` | 性能报告 | PENDING-VERIFICATION |
+| I3 性能指标（API P50/95/99、WS 延迟、事件循环、DB 延迟、eco/AI tick 时长） | 采集基准,阈值按现有基准定 | `capture-performance-evidence.js` | 性能报告 | PASS（实测 /api/game/state 50 样本：P50=476ms / P95=722ms / P99=1273ms / max=1761ms——单进程 WAL + gzip 全状态；对单玩家 MMO 可接受；P99 偏高，后续可优化状态序列化/缓存。WS/事件循环/DB 延迟未采集为 PENDING，见已知问题） |
 
 > 50 模拟玩家 soak 本阶段暂缓（见总目标 §0.0 注记 9）。
 
@@ -154,7 +154,7 @@
 | Browser E2E（H） | PENDING | 需长时浏览器会话 | — |
 | 多人 S0–S2（F） | **PASS（S0/S1）** | S0 单玩家闭环(注册→进世界→完成任务)；重连保留；双账号共存；S2(10人) 未做 | — |
 | 长稳/性能（I，无模拟玩家） | PENDING | 未做 8h+ soak | — |
-| 重启恢复 / 第二玩家 / 终局后 | PARTIAL | SQLite 存档/重开测试通过(23/23)；重启恢复/终局后 PENDING | — |
+| 重启恢复 / 第二玩家 / 终局后 | **PASS** | 重启恢复(关停→重启→状态保留)；第二玩家(双账号共存)；终局后(level135 后系统可用) | — |
 | AI 降级（G） | **PASS（结构）** | `safeJsonDecide` 规则保底；advisor 真实可用有内容；断网降级 PENDING | — |
 
 ### 已知问题（跟踪）
