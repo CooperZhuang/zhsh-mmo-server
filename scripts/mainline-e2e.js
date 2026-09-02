@@ -100,9 +100,11 @@ let steps=0;const MAX_STEPS=Number(process.env.ZHSH_MAINLINE_MAX_STEPS??4000);
           const cityLocs=content.locations.filter(l=>l.city_canonical_id===cityId).map(l=>l.canonical_id);
           const weak=content.monster_placements.filter(p=>cityLocs.includes(p.location_canonical_id)&&p.repeatable)
             .map(p=>({p,mon:content.monsters.find(m=>m.canonical_id===p.monster_canonical_id)}))
+            // 优先刷明显低于自己的怪（稳赢攒 xp+装备），无则退而求其次
             .filter(({mon})=>mon&&Number(mon.level)<=Math.max(4,curLevel))
             .sort((a,b)=>Number(b.mon.level)-Number(a.mon.level));
-          const target=weak[0];
+          const safe=weak.find(({mon})=>Number(mon.level)<=curLevel-3)??weak[0];
+          let target=safe;
           if(target){
             const equipped=new Map(); // slot(type) -> {score,canonical_id}
             const equipBest=async()=>{
@@ -151,7 +153,12 @@ let steps=0;const MAX_STEPS=Number(process.env.ZHSH_MAINLINE_MAX_STEPS??4000);
               const now=(await state()).player;
               const expGain=Number(now?.experience??0)-lastExperience;
               if(expGain<=0){gainStalled+=1;}else{gainStalled=0;lastExperience=Number(now.experience);}
-              if(Number(now?.level??curLevel)!==curLevel)curLevel=Number(now.level);
+              if(Number(now?.level??curLevel)!==curLevel){
+                curLevel=Number(now.level);
+                // 升级后换更强的安全怪（加速练级）
+                const stronger=weak.find(({mon})=>Number(mon.level)<=curLevel-3&&Number(mon.level)>Number(target.mon.level));
+                if(stronger)target=stronger;
+              }
             }
             curLevel=(await state()).player?.level??curLevel;
             console.log('  [练级] 完成 → 当前 lv'+curLevel+' (目标 lv'+targetLevel+', 尝试'+gainAttempts+')');
