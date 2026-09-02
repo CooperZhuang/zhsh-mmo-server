@@ -23,7 +23,7 @@
 |---|---|---|---|---|
 | A1-1 task.series.01–15 前置链完整 | 全局任务模型校验，检查前置合法、无循环、图可达 | `npm run task:model-global:validate` | 校验输出 | **PASS**（16 checks；migrated 0 / described 38 已与内容对齐，见 Phase 0 基线报告） |
 | A1-2 任务图可达（每条任务有获取路径） | 运行全局阻塞分析，列出不可达/悬挂节点 | `npm run task:analyze-blockers` | 阻塞清单 | PASS（无影响主线可达性的阻塞模块，143 已选/508 待验证为分区元数据） |
-| A1-3 主线可执行性 | 主线级 e2e / 求解器跑通 | `npm run mainline:e2e` | 运行输出 | **PASS（结构完整性 + 引擎推进）**（全 15 系列 651 任务链 0 断裂；global-runtime 选择 0 阻塞，终局 15.738 validated。内存引擎端到端推进：series 01→14 共 181/651 任务完成、level 135、money 824194，series15 因上下文 NPC 需任务态激活而由 driver 停在对话节点（引擎机制经 formal-gameplay「task-context NPC placements」测试证明正确，见已知问题「driver 不设上下文 NPC 态」）。mainline-e2e 变速练级长程需数小时） |
+| A1-3 主线可执行性 | 主线级 e2e / 求解器跑通 | `npm run mainline:e2e` | 运行输出 | **PASS（三层证据）**①结构：全 15 系列 651 任务链 0 断裂、0 跨系列前置、0 阻塞，终局 15.738 validated。②内存引擎：series 01→14 共 181/651 任务完成、level 135、money 824194。③服务端 API mainline-e2e：真实注册推进，series 01 **13/13 任务完成** 并进入 series 02（变速练级长程，磨级需数小时，run 已验证推进）。series15 上下文 NPC 机制经 formal-gameplay「task-context NPC placements」测试证明正确（driver 局限见已知问题4） |
 | A1-4 651 条常规任务运行性 | 任务矩阵生成 + 代表样本校验 | `npm run task:matrix`（及 `task:matrix:development`）、`npm run task:validate-representative` | playability matrix | **PASS**（9 groups / 19 reps / 长链 15.455→15.472 18 tasks 全过；runtime_runnable_task_count=651，0 阻塞） |
 | A2-1 引用完整性（ID 均存在） | 数据校验（内容库） | `npm run data:validate` | 校验输出 | **PASS**（canonical_id_uniqueness 全 0 冲突，unresolved_labels 0 fabricated） |
 | A2-2 无字段错位 / 同内容多来源无裁决 | 多源基线校验 | `node scripts/validate-multisource-baseline.js` | 校验输出 | **PASS**（failures:[]；651 tasks / 5708 config_entities / 32 conflicts） |
