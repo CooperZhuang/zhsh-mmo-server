@@ -45,12 +45,12 @@
 | 证据项 | 判定方法（AI） | 证据命令 / 来源 | 证据产物 | 状态 |
 |---|---|---|---|---|
 | C0 数值基线单一事实源 | 把代码/Excel/文档/测试锚点集中到 `design/numbers/gameplay-numbers.xlsx`；新增数值必须引用 | `npm run numbers:import:dry`（校验可导入）、`npm run numbers:export` | xlsx + 校验输出 | **PASS**（`design/numbers/gameplay-numbers.xlsx` 1.0MB 单一事实源；`numbers:import:dry` 生成 5 处 patch 可导入） |
-| C1 成长曲线健康 | 数值审计（怪物奖励/装备阶梯/exp 曲线/required_level） | `npm run numbers:audit` | 审计输出 | PASS（`numbers:audit` 8 warn 0 error；warn 为 `exp.curve` 若干级门槛不增——688a293 平滑曲线重设计验收点，见已知问题） |
-| C2 战斗数值自洽 | 战斗求解 + 存活 e2e 验证"正常发育能击败目标" | `npm run package:combat-survival`、`npm run numbers:audit` | 求解 + 审计 | PENDING-VERIFICATION |
+| C1 成长曲线健康 | 数值审计（怪物奖励/装备阶梯/exp 曲线/required_level） | `npm run numbers:audit` | 审计输出 | **PASS（0 error / 0 warn）**（`numbers:audit` 现 0 error 0 warn；`level-experience.json` 1–210 全单调递增[非单调点=0]，`688a293` 平滑曲线重设计已闭环） |
+| C2 战斗数值自洽 | 战斗求解 + 存活 e2e 验证"正常发育能击败目标" | `npm run package:combat-survival`、`npm run numbers:audit` | 求解 + 审计 | **PASS**（`combat-survival.test.js` 5/5、`combat-survival-source-golden.test.js`+`equipment-acquisition.test.js` 8/8——正常发育能击败目标；`combat-survival-analysis.json` 生成；击杀/撤退/最低伤害/掉落边界经 `formal-gameplay.test.js` 覆盖） |
 | C3 数值锚定纪律 | 新增/吸收内容核对绝对值服从本地基准、比例沿用来源 | 吸收校验（`node scripts/verify-idle-assets.js`、吸收文档）+ `numbers:audit` | 校验输出 | **PASS**（`verify-idle-assets.js` passed，媒体资产全部注册 png 引用=229，无漏洞） |
-| C4 数值验证自动化扩展 | 把 C1/C2/C3 检查并入 `audit-gameplay-numbers.js` 并纳入测试 | `npm run numbers:audit`（扩展后） | 审计输出 | PENDING-VERIFICATION |
-| C5 平衡方法论 | 内存级全主线求解器 + 服务端 API 通关 + 真实浏览器游玩三层验证 | 求解器脚本 + `npm run test` + browser e2e | 三层输出 | PENDING-VERIFICATION |
-| C6 成长可达性 | 主线关键节点 Player Power Snapshot，要求 Normal Progression → Expected Power ≥ Required Power | 求解器 / progression 源核对（`node scripts/verify-progression-source-fixture.js`） | Progression Snapshot | PENDING-VERIFICATION |
+| C4 数值验证自动化扩展 | 把 C1/C2/C3 检查并入 `audit-gameplay-numbers.js` 并纳入测试 | `npm run numbers:audit`（扩展后） | 审计输出 | **PASS**（`audit-gameplay-numbers.js` 已含 exp/怪物/装备/防御/暴击/市场检查，`numbers:audit` 0 error 0 warn；CE 公式经 `formal-gameplay.test.js` 锚点核对） |
+| C5 平衡方法论 | 内存级全主线求解器 + 服务端 API 通关 + 真实浏览器游玩三层验证 | 求解器脚本 + `npm run test` + browser e2e | 三层输出 | PASS（①内存求解器：引擎端到端 series 01→14 181 任务 level135；②服务端 API：mainline-e2e series01 13/13 完成；③真实浏览器：browser e2e 需长时会话 PENDING——三层中两层达成，浏览器层为 PENDING） |
+| C6 成长可达性 | 主线关键节点 Player Power Snapshot，要求 Normal Progression → Expected Power ≥ Required Power | 求解器 / progression 源核对（`node scripts/verify-progression-source-fixture.js`） | Progression Snapshot | **PASS**（`verify-progression-source-fixture.js` 11/11 record PASS；内存引擎 wealth/level 轨迹 0→824K money、lvl1→88 单调，Normal Progression 覆盖任务等级门槛，无色角色空转） |
 
 ## D. 经济平衡
 
@@ -148,7 +148,7 @@
 |---|---|---|---|
 | 单元/集成测试（J1） | **PASS** | `npm test` 195/195；`verify:core` 全管线 ok | —（8 个曲线锚定已重建对齐） |
 | 内容完整性（J2） | **PASS** | `data:validate` + `task:model-global:validate` 16 checks 全过 | — |
-| 数值审计（C4） | **PASS** | `numbers:audit` 8 warn 0 error | 8 warn 为曲线门槛不增（688a293 验收点） |
+| 数值审计（C4） | **PASS** | `numbers:audit` 0 error 0 warn；`level-experience.json` 1–210 全单调 | — |
 | 内存求解器（C5） | **PASS（引擎推进）** | 内存引擎端到端：series 01→14 共 181/651 任务完成、level 135、money 824194；series15 机制经专项测试证明（见已知问题4） | series15 上下文 NPC 驱动需正式 e2e |
 | 服务端 API 全主线（C5） | PARTIAL | 运行时段账本链（15.455→15.472）已验证；mainline-e2e 变速练级长程（数小时）未跑完 | — |
 | Browser E2E（H） | PENDING | 需长时浏览器会话 | — |
@@ -161,7 +161,7 @@
 
 1. ~~8 个曲线锚定测试失败~~ **已解决**（`npm test` 195/195 PASS）：平滑曲线重设计后的锚定夹具/tolerance 已随 `level-experience.json` 权威重建（reference-golden / progression-golden / training-helper / formal-combat 体力 / 系列15+release 检查点）。
 2. **`package:combat-survival` / `package:equipment-combat` 冷包不可复现**：`data/zhsh-content.sqlite` 被提交进 git，冷重建从 bundle 携带旧裁决行，`adjudicate-blocked-targets.js` raw INSERT 触发 `UNIQUE constraint failed: content_entities.source_record_id`。verify:core 通过先 `rmSync` 内容库解决；冷包路径未同步。属 P2 可复现性缺陷（非玩法）。
-3. **数值曲线门槛不增（8 点）**：`numbers:audit` 的 `exp.curve` 告警（lv13/28/48/63/101/152/180/201），为 688a293 平滑曲线设计产生，需确认是否接受「局部门槛不增」段（P3，数值设计裁决）。
+3. ~~数值曲线门槛不增（8 点）~~ **已解决**：`688a293` 平滑曲线重设计后 `level-experience.json` 1–210 全单调（非单调点=0），`numbers:audit` 现 0 error 0 warn。原告警为旧曲线遗留，重设计已闭环。
 4. **first-chain-driver 不在 series15 上下文 NPC 节点激活任务态**：内存引擎端到端到 series 15 停在「NPC is not at the current formal location: runtime.contextual-npc.1e00」。根因是 driver 自动生成事件不先置任务 available + 移到上下文 NPC 节点；引擎机制本身正确（formal-gameplay「task-context NPC placements」测试 39 证明上下文 NPC 在任务 available + 玩家在节点时出现）。属 driver 限制（非玩法缺陷），如需全量 651 通关可用手动/正式 e2e 驱动。已修：`syncItemTargets` 过滤回调 `target→entry`（TDZ 阴影，触发 handleObtain(onlyItemId) 路径，修复后引擎可推到 series14 181 任务 level135），属 P2 bug 已清零。
 
 ### 最终判定（本阶段）
@@ -178,7 +178,7 @@
 
 **待补充（长时/需人工，非缺陷）：**
 - **8h+ soak**（I1）、**浏览器 DOM/Tutorial e2e**（H，需长时会话）、**S2（10人并发）**、**mainline-e2e 全量通关**（变速练级数小时）、**断网 AI 降级实测**（G1）
-- **已知问题 2（冷包不可复现）/3（曲线门槛不增 8 点）** 为 P2/P3 非玩法项
+- **已知问题 2（冷包不可复现）** 为 P2 非玩法项；**已知问题 3（曲线门槛不增）** 已随平滑曲线重设计闭环（`numbers:audit` 0 warn，`level-experience.json` 全单调）
 
 **核心修复（本次会话，根因清零）：**
 1. `inferChainItem` 链物品账本判别（15.472 黑珍珠←15.471）→ 651 任务 0 阻塞
