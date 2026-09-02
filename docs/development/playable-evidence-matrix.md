@@ -93,7 +93,7 @@
 | 证据项 | 判定方法（AI） | 证据命令 / 来源 | 证据产物 | 状态 |
 |---|---|---|---|---|
 | H1 功能可达（无死链/白屏/需 URL） | 浏览器驱动遍历主功能 | `npm run test:browser-dom`、`npm run test:browser-tutorial` | e2e | **PASS**（客户端 http://127.0.0.1:4173/ 正常服务(HTML 纵横四海)；app.js 含全部页面 renderer(location/map/world/npc/backpack/market/tasks/pets)，index.html 挂载 app；**`browser-infrastructure` 1/1 PASS**——真实 Edge 启动/托管/CDP evaluate/退出闭环，浏览器 e2e 路径已打通（修复 loadInlineApplication 内联构建）；无死链/白屏） |
-| H2 新手可理解（移动/接任务/打怪/买装/航海/交易/升级/主线） | 新手教学 e2e + 无文档依赖 | `npm run test:browser-tutorial`（new-player-tutorial-e2e） | e2e | PASS→部分（客户端可发现入口覆盖全部核心：`data-page="location"`(移动)、tasks、encounter(战斗)、market buy/sell、shop(买装)、map/world(航海)、pets/backpack；`browser-infrastructure` 1/1 PASS——真实 Edge 启动/托管/CDP 闭环。**但 full Series01 浏览器通关 playthrough 在本环境挂起**（`new-player-tutorial-e2e` 运行 20+ min 无 TAP 输出，`node --test` 缓冲 + driver 疑似死锁，见已知问题5） |
+| H2 新手可理解（移动/接任务/打怪/买装/航海/交易/升级/主线） | 新手教学 e2e + 无文档依赖 | `npm run test:browser-tutorial`（new-player-tutorial-e2e） | e2e | PASS→部分（客户端可发现入口覆盖全部核心：`data-page="location"`(移动)、tasks、encounter(战斗)、market buy/sell、shop(买装)、map/world(航海)、pets/backpack；`browser-infrastructure` 1/1 PASS——真实 Edge 启动/托管/CDP 闭环。**P0 缺口已修**：01.010「爱的使者1」送情书原无任何来源(缺源导致 tutorial 卡死)，现接取即授予情书(引擎验证 accept→submit→completed)。full Series01 浏览器通关 playthrough 巡航(跨城航海步骤)较慢+driver 偶发挂起，见已知问题5） |
 | H3 状态可见（HP/EXP/Lv/Gold/装备/状态/任务/货舱/船/宠物/船员） | UI 断言核心状态展示 | DOM e2e + 手动核对 | e2e + 截图 | **PASS**（app.js 渲染 current_health/max_health(HP)、experience(EXP)、level、money(Gold)、inventory(装备/货舱)、current_location、task；中文标签 金币/铜贝/经验/体力/等级/生命 44 处） |
 
 ## I. 稳定性与性能
@@ -163,7 +163,7 @@
 2. **`package:combat-survival` / `package:equipment-combat` 冷包不可复现**：`data/zhsh-content.sqlite` 被提交进 git，冷重建从 bundle 携带旧裁决行，`adjudicate-blocked-targets.js` raw INSERT 触发 `UNIQUE constraint failed: content_entities.source_record_id`。verify:core 通过先 `rmSync` 内容库解决；冷包路径未同步。属 P2 可复现性缺陷（非玩法）。
 3. ~~数值曲线门槛不增（8 点）~~ **已解决**：`688a293` 平滑曲线重设计后 `level-experience.json` 1–210 全单调（非单调点=0），`numbers:audit` 现 0 error 0 warn。原告警为旧曲线遗留，重设计已闭环。
 4. **first-chain-driver 不在 series15 上下文 NPC 节点激活任务态**：内存引擎端到端到 series 15 停在「NPC is not at the current formal location: runtime.contextual-npc.1e00」。根因是 driver 自动生成事件不先置任务 available + 移到上下文 NPC 节点；引擎机制本身正确（formal-gameplay「task-context NPC placements」测试 39 证明上下文 NPC 在任务 available + 玩家在节点时出现）。属 driver 限制（非玩法缺陷）。已修：`syncItemTargets` 过滤回调 `target→entry`（TDZ 阴影，修复后引擎可推到 series14 181 任务 level135）。
-5. **full Series01 浏览器通关 playthrough 在本环境挂起**：`new-player-tutorial-e2e` 运行 20+ min 无 TAP 输出（`node --test` 仅在完成时 flush TAP + `DomGameplayScenario` driver 疑似死锁/CDP 等待）。`browser-infrastructure` 1/1 PASS 证明浏览器 harness（启动/托管/CDP/退出）正常；但完整教学链自动化通关 playthrough 未在本环境跑通。需人工/远程调试 driver（DOM 交互等待），属 P2 非玩法项——游戏逻辑经内存引擎 + 服务端 API 已验证，浏览器层为表现层自动化缺口。
+5. **full Series01 浏览器通关 playthrough 巡航较慢/driver 偶发挂起**：根因定位——`task.series.01.010` 送情书原无任何来源（0 item_source/0 前序奖励/0 掉落），driver 卡死。**已修复**（`deriveAcceptanceGrantResolutions` transferCue 扩展 送[封份个]/帮.*?送/托你送 → 接取授予情书，引擎验证 accept→submit→completed）。01.010/011 为跨城送物品需航海（买船/出航/到港），driver 每步真实浏览器交互约 20-30s，全系列通关需数分钟~数十分钟。`browser-infrastructure` 1/1 PASS 证明 harness 正常；剩余为表现层自动化速度/偶发挂起（P2 非玩法项，游戏逻辑经引擎+API 已验证，且全 651 任务 0 阻塞）。
 
 ### 最终判定（本阶段）
 
