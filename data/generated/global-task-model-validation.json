@@ -2,8 +2,8 @@
   "schema_version": 1,
   "record_kind": "global-task-model-validation",
   "stage_start_head": "2cbae183aa369fe0ac60176f3a1396914d786440",
-  "source_head": "32309ea7f6115d67bca9c518833ac4411ede02af",
-  "generated_from_head": "32309ea7f6115d67bca9c518833ac4411ede02af",
+  "source_head": "e7983960469267ee2f8ab9b6a7fb60423f10a818",
+  "generated_from_head": "e7983960469267ee2f8ab9b6a7fb60423f10a818",
   "reference_commits": {
     "zhsh": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
     "astrbot": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de",
