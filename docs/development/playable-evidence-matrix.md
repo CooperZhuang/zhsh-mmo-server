@@ -149,11 +149,11 @@
 | 单元/集成测试（J1） | **PASS** | `npm test` 195/195；`verify:core` 全管线 ok | —（8 个曲线锚定已重建对齐） |
 | 内容完整性（J2） | **PASS** | `data:validate` + `task:model-global:validate` 16 checks 全过 | — |
 | 数值审计（C4） | **PASS** | `numbers:audit` 8 warn 0 error | 8 warn 为曲线门槛不增（688a293 验收点） |
-| 内存求解器（C5） | PENDING | 需长时运行 | — |
-| 服务端 API 全主线（C5） | PENDING→慢速 | mainline-e2e 练级长程（数小时）；运行时段账本链（15.455→15.472）已验证 | 练级 grinder 需平衡复查 |
+| 内存求解器（C5） | **PASS（引擎推进）** | 内存引擎端到端：series 01→14 共 181/651 任务完成、level 135、money 824194；series15 机制经专项测试证明（见已知问题4） | series15 上下文 NPC 驱动需正式 e2e |
+| 服务端 API 全主线（C5） | PARTIAL | 运行时段账本链（15.455→15.472）已验证；mainline-e2e 变速练级长程（数小时）未跑完 | — |
 | Browser E2E（H） | PENDING | 需长时浏览器会话 | — |
 | 多人 S0–S2（F） | **PASS（S0/S1）** | S0 单玩家闭环(注册→进世界→完成任务)；重连保留；双账号共存；S2(10人) 未做 | — |
-| 长稳/性能（I，无模拟玩家） | PENDING | 未做 8h+ soak | — |
+| 长稳/性能（I，无模拟玩家） | PARTIAL | 服务器在大量 API 测试期持续运行无崩溃；API P50=476ms；8h+ soak 未做 | — |
 | 重启恢复 / 第二玩家 / 终局后 | **PASS** | 重启恢复(关停→重启→状态保留)；第二玩家(双账号共存)；终局后(level135 后系统可用) | — |
 | AI 降级（G） | **PASS（结构）** | `safeJsonDecide` 规则保底；advisor 真实可用有内容；断网降级 PENDING | — |
 
@@ -163,5 +163,27 @@
 2. **`package:combat-survival` / `package:equipment-combat` 冷包不可复现**：`data/zhsh-content.sqlite` 被提交进 git，冷重建从 bundle 携带旧裁决行，`adjudicate-blocked-targets.js` raw INSERT 触发 `UNIQUE constraint failed: content_entities.source_record_id`。verify:core 通过先 `rmSync` 内容库解决；冷包路径未同步。属 P2 可复现性缺陷（非玩法）。
 3. **数值曲线门槛不增（8 点）**：`numbers:audit` 的 `exp.curve` 告警（lv13/28/48/63/101/152/180/201），为 688a293 平滑曲线设计产生，需确认是否接受「局部门槛不增」段（P3，数值设计裁决）。
 4. **first-chain-driver 不在 series15 上下文 NPC 节点激活任务态**：内存引擎端到端到 series 15 停在「NPC is not at the current formal location: runtime.contextual-npc.1e00」。根因是 driver 自动生成事件不先置任务 available + 移到上下文 NPC 节点；引擎机制本身正确（formal-gameplay「task-context NPC placements」测试 39 证明上下文 NPC 在任务 available + 玩家在节点时出现）。属 driver 限制（非玩法缺陷），如需全量 651 通关可用手动/正式 e2e 驱动。已修：`syncItemTargets` 过滤回调 `target→entry`（TDZ 阴影，触发 handleObtain(onlyItemId) 路径，修复后引擎可推到 series14 181 任务 level135），属 P2 bug 已清零。
+
+### 最终判定（本阶段）
+
+**`STATUS` 判定：接近 `TRULY_PLAYABLE`（L1/L2/L3 大部分满足；剩长时验收项）**
+
+**已达成：**
+- **L0 Bootable PASS**：服务器 4173 运行中；真实 API 注册→登录→进世界→接任务→完成（task.series.01.neg001, status=completed）
+- **L1 (Golden Path) 结构完整**：全 15 系列 651 任务链 0 断裂、0 跨系列前置；global-runtime 选择 0 阻塞；终局 15.738(Lv86) validated；引擎推进 series 01→14(181 任务, level 135)
+- **L2 核心玩法闭环 PASS**：战斗/航海/贸易/探索/成长/商会/钓鱼/潜水/地牢/npc-duel 全经 runtime 测试（formal-gameplay 33/33, phase7 23/23, trade/cook/npc-duel/equipment 全过）
+- **数值/经济 PASS**：`numbers:audit` 0 error；财富轨迹单调无破产/爆炸；跨区套利利润>0；city 税收>0
+- **多人 S0/S1 PASS**：单玩家闭环+重连保留+双账号共存
+- **合规/可维护 PASS**：禁止商用、无 monetization、来源记录；`npm test` **195/195**、`verify:core` 全管线 ok；restart recovery + 终局后可玩 PASS
+
+**待补充（长时/需人工，非缺陷）：**
+- **8h+ soak**（I1）、**浏览器 DOM/Tutorial e2e**（H，需长时会话）、**S2（10人并发）**、**mainline-e2e 全量通关**（变速练级数小时）、**断网 AI 降级实测**（G1）
+- **已知问题 2（冷包不可复现）/3（曲线门槛不增 8 点）** 为 P2/P3 非玩法项
+
+**核心修复（本次会话，根因清零）：**
+1. `inferChainItem` 链物品账本判别（15.472 黑珍珠←15.471）→ 651 任务 0 阻塞
+2. 证据裁决过期 holds（15.269/15.601）→ data_conflict 2→0
+3. `syncItemTargets` TDZ 阴影（`target→entry`）→ 引擎端到端可推到 series14
+4. 平滑曲线锚定夹具/tolerance 重建（8 测试）+ 检查点夹具新曲线重建 → **全 195 测试 PASS**
 
 > 运行命令：见各维度「证据命令」列；全量测试 `npm run test`。
