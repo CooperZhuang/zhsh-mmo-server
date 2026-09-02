@@ -724,7 +724,7 @@ class TaskRuntimeEngine {
   syncItemTargets(state,task,onlyItemId = null) {
     const changes = [];
     for (const target of task.targets.filter((entry) => entry.target_kind === 'item'
-      && (!onlyItemId || entry.entity_canonical_id === onlyItemId || (target.candidate_canonical_ids ?? []).includes(onlyItemId)))) {
+      && (!onlyItemId || entry.entity_canonical_id === onlyItemId || (entry.candidate_canonical_ids ?? []).includes(onlyItemId)))) {
       const before = this.getTaskProgress(state,task.canonical_id,target.canonical_id);
       const after = Math.min(target.required_quantity,this.itemTargetQuantity(state,target));
       this.setTaskProgress(state,task.canonical_id,target.canonical_id,after);
