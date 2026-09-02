@@ -362,6 +362,30 @@ test('public sailing events use source probabilities, persist effects and pause 
   assert.equal(routeMaritime.dismiss(f.playerId,'route-dismiss').action,'maritime_encounter_dismissed');
 });
 
+test('combat.autoResolve wins a whole battle in one transaction and settles drops',()=>{
+  const f=fixture();const sourcePlacement=content.monster_placements.find((entry)=>entry.encounter_type==='wild'&&entry.repeatable);
+  const monster=f.catalog.getMonster(sourcePlacement.monster_canonical_id);
+  const placement=f.catalog.listMonsterPlacements(monster.canonical_id).find((entry)=>entry.location_canonical_id===sourcePlacement.location_canonical_id);
+  mutate(f.storage,f.playerId,(state)=>{state.player.current_map_node_canonical_id=placement.map_node_canonical_id;
+    state.player.base_attack=1000;state.player.base_max_attack=1000;state.player.max_health=999999;state.player.current_health=999999;});
+  const won=f.combat.autoResolve(f.playerId,monster.canonical_id,'auto-resolve-win');
+  assert.equal(won.action,'combat_won');assert.equal(won.batched_rounds>0,true);assert.equal(f.engine.loadPlayer(f.playerId).combat,null);
+  assert.ok(f.engine.loadPlayer(f.playerId).drop_settlements[won.combat_canonical_id]);
+  // 幂等：同 event_id 重放不重复结算
+  const replay=f.combat.autoResolve(f.playerId,monster.canonical_id,'auto-resolve-win');
+  assert.equal(replay.idempotent_replay,true);assert.equal(replay.combat_canonical_id,won.combat_canonical_id);
+});
+
+test('combat.autoResolve returns combat_lost when the player is hopelessly outmatched',()=>{
+  const f=fixture();const sourcePlacement=content.monster_placements.find((entry)=>entry.encounter_type==='wild'&&entry.repeatable);
+  const monster=f.catalog.getMonster(sourcePlacement.monster_canonical_id);
+  const placement=f.catalog.listMonsterPlacements(monster.canonical_id).find((entry)=>entry.location_canonical_id===sourcePlacement.location_canonical_id);
+  mutate(f.storage,f.playerId,(state)=>{state.player.current_map_node_canonical_id=placement.map_node_canonical_id;
+    state.player.base_attack=1;state.player.base_max_attack=1;state.player.max_health=10;state.player.current_health=10;});
+  const lost=f.combat.autoResolve(f.playerId,monster.canonical_id,'auto-resolve-lost');
+  assert.equal(lost.action,'combat_lost');assert.equal(f.engine.loadPlayer(f.playerId).combat,null);
+});
+
 test('additional series task.series.03 runs end-to-end at its source level requirement',()=>{
   const db=new DatabaseSync(path.resolve('data','zhsh-content.sqlite'),{readOnly:true});
   try { const catalog=new SqliteTaskCatalog(db);const storage=new MemoryRuntimeStorage();const engine=new TaskRuntimeEngine({catalog,storage,seriesCanonicalId:'task.series.03'});

@@ -1030,68 +1030,42 @@ class CombatRuntime {
         if(!hasAppliedStamina(previous?.result))delete state.gameplay_events[state.combat.last_attack_event_id];
       }
       state.combat.last_attack_event_id=eventId;
-      let result;const appliedStaminaItems=[];
-      for(let batchRound=0;batchRound<rounds;batchRound+=1) {
-        const stats=effectiveStats(state,this.catalog);const combat=state.combat;
-        combat.round+=1;
-        const playerDamage=damage(stats.attack,stats.max_attack,combat.monster_stats.defense,stats.agility,combat.monster_stats.agility,this.random);
-        const activePet=(state.player.pets??[]).find((p)=>p.active);
-        const petDamage=activePet?damage(activePet.attack??0,(activePet.attack??0)+Math.floor((activePet.attack??0)*0.6),combat.monster_stats.defense,activePet.speed??0,combat.monster_stats.agility,this.random):0;
-        combat.monster_current_health=Math.max(0,combat.monster_current_health-playerDamage-petDamage);
-        if (combat.monster_current_health===0) {
-          const monster=this.catalog.getMonster(combat.monster_canonical_id);const combatId=combat.canonical_id;
-          const experience=Number(monster.rewards?.experience);const money=Number(monster.rewards?.copper);
-          if(!Number.isFinite(experience)||!Number.isFinite(money))throw new Error(`Monster reward rule missing: ${monster.canonical_id}`);
-          state.player.experience+=experience;state.player.money+=money;const progression=applyExperienceProgression(state);state.combat=null;
-          if(activePet){activePet.experience=(activePet.experience??0)+Math.floor(experience*0.5);}
-          if(monster.repeatable===false)state.encounter_defeats[combat.encounter_defeat_key??combat.placement_canonical_id]={defeated_at:this.clock(),monster_canonical_id:monster.canonical_id,task_context_canonical_id:combat.task_context_canonical_id??null};
-          recordPlayerMemory(state,{type:'combat',text:`击败了${monster.display_name??monster.canonical_id}${monster.repeatable===false?'（强敌）':''}`,importance:monster.repeatable===false?3:1});
-          adjustCrewLoyalty(state, +2); // 并肩取胜 → 船员忠诚提升
-          // 餐食 buff：每获胜一场递减剩余场次，归零自动清除
-          const mealBuffAfter=consumeMealBattle(state);
-          return { applied:true,action:'combat_won',combat_canonical_id:combatId,monster_canonical_id:monster.canonical_id,
-            location_canonical_id:combat.location_canonical_id,player_damage:playerDamage,pet_damage:petDamage,experience,money,progression,
-            stamina_item:appliedStaminaItems.at(-1)??null,stamina_items:[...appliedStaminaItems],batched_rounds:batchRound+1,meal_buff:mealBuffAfter };
-        }
-        const monsterDamage=damage(combat.monster_stats.attack,combat.monster_stats.max_attack,stats.defense,combat.monster_stats.agility,stats.agility,this.random);
-        state.player.current_health=Math.max(0,state.player.current_health-monsterDamage);
-        // 未知道具吸收：怪物状态效果（中毒/虚弱/诅咒/缓慢）+ 周期技能（伤害倍增）
-        const monsterEffect=combat.monster_stats.effect;
-        if (monsterEffect) {
-          const effectRoll=this.random();
-          if (effectRoll < Number(monsterEffect.chance ?? 0)) {
-            const active=state.player.effects ?? (state.player.effects={});
-            const existing=active[monsterEffect.name];
-            active[monsterEffect.name]={ rounds: Math.max(existing?.rounds ?? 0, Number(monsterEffect.rounds ?? 1)), round: combat.round };
-            combat.last_effects=combat.last_effects??[]; combat.last_effects.push(monsterEffect.name);
-            if(monsterEffect.damage_multiplier) {
-              state.player.current_health=Math.max(0,state.player.current_health-Math.round(monsterDamage*(Number(monsterEffect.damage_multiplier)-1)));
-            }
-          }
-        }
-        const monsterSpecial=combat.monster_stats.special;
-        if (monsterSpecial && Number(monsterSpecial.every ?? 0) > 0 && combat.round % Number(monsterSpecial.every) === 0) {
-          const specialDamage=Math.round(monsterDamage*Number(monsterSpecial.damage_multiplier ?? 1));
-          state.player.current_health=Math.max(0,state.player.current_health-specialDamage);
-          combat.last_special=monsterSpecial.name;
-        }
-        const staminaItem=state.player.current_health>0?useActiveStaminaItem(state,this.catalog,{automatic:true}):{applied:false,reason:'player_defeated'};
-        if(staminaItem.applied)appliedStaminaItems.push(staminaItem);
-        if (state.player.current_health===0) {
-          const defeatedAt=state.player.current_map_node_canonical_id;
-          state.player.current_health=1;
-          state.player.current_map_node_canonical_id=state.player.defeat_return_map_node_canonical_id ?? state.player.current_map_node_canonical_id;
-          if (!state.unlocked_map_nodes.includes(state.player.current_map_node_canonical_id)) state.unlocked_map_nodes.push(state.player.current_map_node_canonical_id);
-          state.combat=null;state.dungeon=null;state.voyage=null;state.fishing=null;state.maritime_encounter=null;
-          adjustCrewLoyalty(state, -5); // 落败 → 船员忠诚受挫
-          return { applied:true,action:'combat_lost',player_damage:playerDamage,monster_damage:monsterDamage,
-            stamina_item:appliedStaminaItems.at(-1)??staminaItem,stamina_items:[...appliedStaminaItems],
-            defeated_at_map_node_canonical_id:defeatedAt,return_map_node_canonical_id:state.player.current_map_node_canonical_id,current_health:1,batched_rounds:batchRound+1 };
-        }
-        result={ applied:true,action:'combat_round',player_damage:playerDamage,monster_damage:monsterDamage,pet_damage:petDamage,
-          stamina_item:appliedStaminaItems.at(-1)??staminaItem,stamina_items:[...appliedStaminaItems],combat:{ ...combat },player_health:state.player.current_health,batched_rounds:batchRound+1 };
-      }
+      const result=runCombatRounds(state,this.catalog,this.random,rounds);
       return result;
+    });
+    if (result.action==='combat_won') {
+      if (this.taskEngine&&isActiveMonsterTarget(this.storage.loadPlayer(playerId),result.monster_canonical_id,this.taskEngine.catalog)) this.taskEngine.processEvent(playerId,{ event_id:`${eventId}.task`,type:'defeat_monster',monster_canonical_id:result.monster_canonical_id,location_canonical_id:result.location_canonical_id });
+      if (this.dropRuntime) result.drops=this.dropRuntime.settle(playerId,result.monster_canonical_id,result.combat_canonical_id,`${eventId}.drops`);
+      if(this.taskEngine&&Number(result.progression?.levels_gained??0)>0)result.unlocked_task_canonical_ids=this.taskEngine.refreshAvailability(playerId).unlocked;
+    }
+    return result;
+  }
+  // 一键战斗：单事务内校验站位→建场→模拟整场到胜/负，返回终态。
+  // 省去 E2E/客户端 start+分批次 attack+state 轮询的多重往返（每往返一次完整 loadPlayer/replace）。
+  autoResolve(playerId,monsterId,eventId,{ rounds=2000 }={}) {
+    if (typeof eventId === 'object' && eventId !== null) {
+      const opts=eventId;
+      eventId = typeof arguments[3] === 'string' ? arguments[3] : `combat-resolve.${this.clock()}`;
+      rounds = opts.rounds ?? 2000;
+    }
+    rounds=positive(rounds);
+    const monster=this.catalog.getMonster(monsterId);
+    const result=transactEvent(this.storage,playerId,eventId,'combat_auto_resolve',{ monster_canonical_id:monsterId,rounds },this.clock,(state) => {
+      if (state.combat) throw new Error('Combat is already active');
+      const dungeonPlacement=state.dungeon&&monster.dungeon_canonical_id===state.dungeon.canonical_id&&monster.dungeon_stage_canonical_id===state.dungeon.stage_canonical_id;
+      const placement=dungeonPlacement?{ canonical_id:monster.dungeon_stage_canonical_id,location_canonical_id:monster.location_canonical_id,
+        encounter_type:monster.encounter_type,repeatable:monster.repeatable }:
+        this.catalog.listMonsterPlacements(monsterId).find((entry)=>entry.map_node_canonical_id===state.player.current_map_node_canonical_id);
+      if(!placement)throw new Error('Monster is not at the current formal location');
+      const activeTaskIds=activeMonsterTargetTaskIds(state,monsterId,this.taskEngine?.catalog);
+      if(placement.encounter_type==='task_exclusive'&&!activeTaskIds.length)throw new Error('Task-exclusive monster requires an active matching task');
+      const taskContextCanonicalId=placement.encounter_type==='task_exclusive'?activeTaskIds[0]:null;
+      const defeatKey=encounterDefeatKey(placement,taskContextCanonicalId);
+      if(placement.repeatable===false&&state.encounter_defeats?.[defeatKey])throw new Error('Non-repeatable encounter is already defeated');
+      const stats=monsterStats(monster);
+      state.combat={ canonical_id:`combat.${eventId}`,monster_canonical_id:monsterId,placement_canonical_id:placement.canonical_id,location_canonical_id:placement.location_canonical_id,
+        task_context_canonical_id:taskContextCanonicalId,encounter_defeat_key:defeatKey,monster_current_health:stats.health,monster_stats:stats,round:0,started_at:this.clock() };
+      return runCombatRounds(state,this.catalog,this.random,rounds);
     });
     if (result.action==='combat_won') {
       if (this.taskEngine&&isActiveMonsterTarget(this.storage.loadPlayer(playerId),result.monster_canonical_id,this.taskEngine.catalog)) this.taskEngine.processEvent(playerId,{ event_id:`${eventId}.task`,type:'defeat_monster',monster_canonical_id:result.monster_canonical_id,location_canonical_id:result.location_canonical_id });
@@ -1143,6 +1117,72 @@ class DungeonRuntime {
         map_node_canonical_id:returnContext==='voyage'?null:dungeon.map_node_canonical_id};
     });
   }
+}
+
+// 战斗轮次循环：从 state.combat 开始模拟，直到胜/负或打满 maxRounds 轮。
+// 被 combat.attack（分批）与 combat.autoResolve（一次性整场）共用，保证结算逻辑单一来源。
+function runCombatRounds(state,catalog,random,maxRounds) {
+  let result;const appliedStaminaItems=[];
+  for(let batchRound=0;batchRound<maxRounds;batchRound+=1) {
+    const stats=effectiveStats(state,catalog);const combat=state.combat;
+    combat.round+=1;
+    const playerDamage=damage(stats.attack,stats.max_attack,combat.monster_stats.defense,stats.agility,combat.monster_stats.agility,random);
+    const activePet=(state.player.pets??[]).find((p)=>p.active);
+    const petDamage=activePet?damage(activePet.attack??0,(activePet.attack??0)+Math.floor((activePet.attack??0)*0.6),combat.monster_stats.defense,activePet.speed??0,combat.monster_stats.agility,random):0;
+    combat.monster_current_health=Math.max(0,combat.monster_current_health-playerDamage-petDamage);
+    if (combat.monster_current_health===0) {
+      const monster=catalog.getMonster(combat.monster_canonical_id);const combatId=combat.canonical_id;
+      const experience=Number(monster.rewards?.experience);const money=Number(monster.rewards?.copper);
+      if(!Number.isFinite(experience)||!Number.isFinite(money))throw new Error(`Monster reward rule missing: ${monster.canonical_id}`);
+      state.player.experience+=experience;state.player.money+=money;const progression=applyExperienceProgression(state);state.combat=null;
+      if(activePet){activePet.experience=(activePet.experience??0)+Math.floor(experience*0.5);}
+      if(monster.repeatable===false)state.encounter_defeats[combat.encounter_defeat_key??combat.placement_canonical_id]={defeated_at:new Date().toISOString(),monster_canonical_id:monster.canonical_id,task_context_canonical_id:combat.task_context_canonical_id??null};
+      recordPlayerMemory(state,{type:'combat',text:`击败了${monster.display_name??monster.canonical_id}${monster.repeatable===false?'（强敌）':''}`,importance:monster.repeatable===false?3:1});
+      adjustCrewLoyalty(state, +2); // 并肩取胜 → 船员忠诚提升
+      // 餐食 buff：每获胜一场递减剩余场次，归零自动清除
+      const mealBuffAfter=consumeMealBattle(state);
+      return { applied:true,action:'combat_won',combat_canonical_id:combatId,monster_canonical_id:monster.canonical_id,
+        location_canonical_id:combat.location_canonical_id,player_damage:playerDamage,pet_damage:petDamage,experience,money,progression,
+        stamina_item:appliedStaminaItems.at(-1)??null,stamina_items:[...appliedStaminaItems],batched_rounds:batchRound+1,meal_buff:mealBuffAfter };
+    }
+    const monsterDamage=damage(combat.monster_stats.attack,combat.monster_stats.max_attack,stats.defense,combat.monster_stats.agility,stats.agility,random);
+    state.player.current_health=Math.max(0,state.player.current_health-monsterDamage);
+    const monsterEffect=combat.monster_stats.effect;
+    if (monsterEffect) {
+      const effectRoll=random();
+      if (effectRoll < Number(monsterEffect.chance ?? 0)) {
+        const active=state.player.effects ?? (state.player.effects={});
+        const existing=active[monsterEffect.name];
+        active[monsterEffect.name]={ rounds: Math.max(existing?.rounds ?? 0, Number(monsterEffect.rounds ?? 1)), round: combat.round };
+        combat.last_effects=combat.last_effects??[]; combat.last_effects.push(monsterEffect.name);
+        if(monsterEffect.damage_multiplier) {
+          state.player.current_health=Math.max(0,state.player.current_health-Math.round(monsterDamage*(Number(monsterEffect.damage_multiplier)-1)));
+        }
+      }
+    }
+    const monsterSpecial=combat.monster_stats.special;
+    if (monsterSpecial && Number(monsterSpecial.every ?? 0) > 0 && combat.round % Number(monsterSpecial.every) === 0) {
+      const specialDamage=Math.round(monsterDamage*Number(monsterSpecial.damage_multiplier ?? 1));
+      state.player.current_health=Math.max(0,state.player.current_health-specialDamage);
+      combat.last_special=monsterSpecial.name;
+    }
+    const staminaItem=state.player.current_health>0?useActiveStaminaItem(state,catalog,{automatic:true}):{applied:false,reason:'player_defeated'};
+    if(staminaItem.applied)appliedStaminaItems.push(staminaItem);
+    if (state.player.current_health===0) {
+      const defeatedAt=state.player.current_map_node_canonical_id;
+      state.player.current_health=1;
+      state.player.current_map_node_canonical_id=state.player.defeat_return_map_node_canonical_id ?? state.player.current_map_node_canonical_id;
+      if (!state.unlocked_map_nodes.includes(state.player.current_map_node_canonical_id)) state.unlocked_map_nodes.push(state.player.current_map_node_canonical_id);
+      state.combat=null;state.dungeon=null;state.voyage=null;state.fishing=null;state.maritime_encounter=null;
+      adjustCrewLoyalty(state, -5); // 落败 → 船员忠诚受挫
+      return { applied:true,action:'combat_lost',player_damage:playerDamage,monster_damage:monsterDamage,
+        stamina_item:appliedStaminaItems.at(-1)??staminaItem,stamina_items:[...appliedStaminaItems],
+        defeated_at_map_node_canonical_id:defeatedAt,return_map_node_canonical_id:state.player.current_map_node_canonical_id,current_health:1,batched_rounds:batchRound+1 };
+    }
+    result={ applied:true,action:'combat_round',player_damage:playerDamage,monster_damage:monsterDamage,pet_damage:petDamage,
+      stamina_item:appliedStaminaItems.at(-1)??staminaItem,stamina_items:[...appliedStaminaItems],combat:{ ...combat },player_health:state.player.current_health,batched_rounds:batchRound+1 };
+  }
+  return result;
 }
 
 function effectiveStats(state,catalog) {

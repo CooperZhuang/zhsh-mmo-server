@@ -147,6 +147,7 @@ let steps=0;const MAX_STEPS=Number(process.env.ZHSH_MAINLINE_MAX_STEPS??4000);
               if(Number(stx.player?.current_health??1)<40&&recovery){
                 await ensureNodeAt(recovery.location_canonical_id);
                 await rt('recovery','recover',{recovery_service_canonical_id:recovery.canonical_id});
+                stx=await state();
               }
               // 战败回城后节点漂移 → 无条件先回练级点（这是 start 失败的唯一根源）
               const expNode=target.p.location_canonical_id;
@@ -154,18 +155,17 @@ let steps=0;const MAX_STEPS=Number(process.env.ZHSH_MAINLINE_MAX_STEPS??4000);
               if(expNode2&&stx.player?.current_map_node_canonical_id!==expNode2){
                 const ft=await act('fast_travel',{location_canonical_id:expNode});
                 if(ft.error){gainStalled+=1;continue;}
-                stx=await state();
               }
-              const sc=await rt('combat','start',{monster_canonical_id:target.mon.canonical_id});
-              if(sc.error){gainStalled+=1;continue;}
-              const now=(await state()).player;
-              const expGain=Number(now?.experience??0)-lastExperience;
-              if(expGain<=0){gainStalled+=1;}else{gainStalled=0;lastExperience=Number(now.experience);}
-              if(Number(now?.level??curLevel)!==curLevel){
-                curLevel=Number(now.level);
-                // 升级后换更强的安全怪（加速练级）
-                const stronger=weak.find(({mon})=>Number(mon.level)<=curLevel-3&&Number(mon.level)>Number(target.mon.level));
-                if(stronger)target=stronger;
+              // 一键战斗：校验站位后整场一次结算，返回胜/负+经验+等级
+              const br=await rt('combat','autoResolve',{_arg1:target.mon.canonical_id});
+              if(br.error){gainStalled+=1;continue;}
+              if(br.action==='combat_won'){
+                gainStalled=0;lastExperience=Number((await state()).player?.experience??0);
+                await equipBest();
+                const after=Number(br.progression?.after??curLevel);
+                if(after>curLevel){curLevel=after;const stronger=weak.find(({mon})=>Number(mon.level)<=curLevel-3&&Number(mon.level)>Number(target.mon.level));if(stronger)target=stronger;}
+              }else{// combat_lost
+                gainStalled+=1;
               }
             }
             curLevel=(await state()).player?.level??curLevel;
@@ -186,7 +186,11 @@ let steps=0;const MAX_STEPS=Number(process.env.ZHSH_MAINLINE_MAX_STEPS??4000);
               continue;
             }
             if(stx.combat){const r=await rt('combat','attack',{rounds:300});if(r.action==='combat_won'){console.log('  [胜] drops=',JSON.stringify(r.drops?.granted??[]).slice(0,100));killed=true;break;}if(r.action==='combat_lost')break;continue;}
-            const sc=await rt('combat','start',{monster_canonical_id:drop.monster_canonical_id});if(sc.error){break;}
+            // 一键战斗：对掉落怪整场一次结算（胜→收工，负→break 进练级重试轮）
+            const br=await rt('combat','autoResolve',{_arg1:drop.monster_canonical_id});
+            if(br.error){break;}
+            if(br.action==='combat_won'){console.log('  [胜] drops=',JSON.stringify(br.drops?.granted??[]).slice(0,100));killed=true;break;}
+            break; // combat_lost → 退出本轮，进重试练级
           }
           if(killed||!mp)break;
           // 败了 → 继续练 300 场（targetLevel 提高 2）再试
@@ -205,23 +209,23 @@ let steps=0;const MAX_STEPS=Number(process.env.ZHSH_MAINLINE_MAX_STEPS??4000);
             if(Number(stx.player?.current_health??1)<40&&recovery2){
               await ensureNodeAt(recovery2.location_canonical_id);
               await rt('recovery','recover',{recovery_service_canonical_id:recovery2.canonical_id});
+              stx=await state();
             }
             const expNode=target.p.location_canonical_id;
             const expNode2=content.map_nodes.find(n=>n.location_canonical_id===expNode)?.map_node_canonical_id;
             if(expNode2&&stx.player?.current_map_node_canonical_id!==expNode2){
               const ft=await act('fast_travel',{location_canonical_id:expNode});
               if(ft.error){gainStalled+=1;continue;}
-              stx=await state();
             }
-            const sc=await rt('combat','start',{monster_canonical_id:target.mon.canonical_id});
-            if(sc.error){gainStalled+=1;continue;}
-            const now=(await state()).player;
-            const expGain=Number(now?.experience??0)-lastExperience;
-            if(expGain<=0){gainStalled+=1;}else{gainStalled=0;lastExperience=Number(now.experience);}
-            if(Number(now?.level??curLevel)!==curLevel){
-              curLevel=Number(now.level);
-              const stronger=weak.find(({mon})=>Number(mon.level)<=curLevel-3&&Number(mon.level)>Number(target.mon.level));
-              if(stronger)target=stronger;
+            const br=await rt('combat','autoResolve',{_arg1:target.mon.canonical_id});
+            if(br.error){gainStalled+=1;continue;}
+            if(br.action==='combat_won'){
+              gainStalled=0;lastExperience=Number((await state()).player?.experience??0);
+              await equipBest();
+              const after=Number(br.progression?.after??curLevel);
+              if(after>curLevel){curLevel=after;const stronger=weak.find(({mon})=>Number(mon.level)<=curLevel-3&&Number(mon.level)>Number(target.mon.level));if(stronger)target=stronger;}
+            }else{// combat_lost
+              gainStalled+=1;
             }
           }
           curLevel=(await state()).player?.level??curLevel;
