@@ -74,7 +74,9 @@ test('source repeat, recovery and accepted terminal training path close without 
       WHERE p.runtime_capability='queryable' AND m.monster_type IN (3,4,5) ORDER BY m.level,m.canonical_id,l.canonical_id`).all()
       .filter((entry)=>selection.resources.city_canonical_ids.includes(entry.city_canonical_id));
     const requiredLevel=Number(db.prepare(`SELECT level_requirement FROM task_definitions WHERE canonical_id='task.series.11.065'`).get().level_requirement);
-    const firstGate=selection.level_reachability[0];
+    // 平滑曲线重设计后等级门槛大幅降低：多数目标级玩家起步即可达，level_reachability 可能为空（无需训练）。
+    // 此时以 lv1/0 起点验证规划器仍能给出不注入经验的可行路径，或确认任务直接可达。
+    const firstGate=selection.level_reachability[0]??{from_level:1,from_experience:0};
     const plan=planTrainingPath({currentLevel:firstGate.from_level,currentExperience:firstGate.from_experience,targetLevel:requiredLevel,
       encounters,rewardRules,progressionRules,actualEquipment:[]});
     assert.equal(plan.formally_executable,true);
