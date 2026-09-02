@@ -2,8 +2,8 @@
   "schema_version": 1,
   "record_kind": "global-runtime-representative-validation",
   "stage_start_head": "2cbae183aa369fe0ac60176f3a1396914d786440",
-  "source_head": "d30f89ad6d86464b0227bf15dac37c3d4290c790",
-  "generated_from_head": "d30f89ad6d86464b0227bf15dac37c3d4290c790",
+  "source_head": "32309ea7f6115d67bca9c518833ac4411ede02af",
+  "generated_from_head": "32309ea7f6115d67bca9c518833ac4411ede02af",
   "reference_commits": {
     "zhsh": "b841e0e7f6dfcc5ef5dccd22c42989b12847816e",
     "astrbot": "807503c16e80aa9ea1c698e0fadd4e6ab5e564de",
@@ -390,5 +390,5 @@
     }
   ],
   "result": "passed",
-  "validation_sha256": "dd6232496ae9b356491eeaf3632c5222fec16764b1a97b480e2ec2cd60457419"
+  "validation_sha256": "c901a023c105cd405a995d3a924956b5a25b09d954b279cd283aee90121f5029"
 }
