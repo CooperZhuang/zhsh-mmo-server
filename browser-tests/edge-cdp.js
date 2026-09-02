@@ -166,12 +166,27 @@ class EdgePage{
     for(const entry of authoritativeAssetRegistry.assets){const file=path.join(webRoot,...entry.target_resource_path.split('/'));
       entry.target_resource_path=`data:image/png;base64,${fs.readFileSync(file).toString('base64')}`;}
     const authoritativeAssets=JSON.stringify(authoritativeAssetRegistry);
-    const runtime=fs.readFileSync(path.join(webRoot,'generated','task-runtime-browser.js'),'utf8').replace(/^export const /gm,'const ');
-    const app=fs.readFileSync(path.join(webRoot,'app.js'),'utf8').replace(/^import .*?from '\.\/generated\/task-runtime-browser\.js';\s*/,'')
+    // task-runtime-browser.js 以 `__entry` 打包并 `export const NAME=__entry.NAME;` 收尾。剥离 export 后这些
+    // const 与 app.js 本地同名(如 buildCityMapEntries)冲突。把绑定收进内层 IIFE，仅向顶层解构 app.js 需要的
+    // 3 个名字，其余名字留在内层作用域，避免与 app.js 同名函数冲突。
+    const runtimeRaw=fs.readFileSync(path.join(webRoot,'generated','task-runtime-browser.js'),'utf8');
+    // 取导出锚点（第一个 `export const ` 行之前的所有源码，含 __entry 定义）
+    const exportMarker='\nexport const BrowserRuntimeStorage=';
+    const headEnd=runtimeRaw.indexOf(exportMarker);
+    const runtimeHead=headEnd>=0?runtimeRaw.slice(0,headEnd):runtimeRaw;
+    // 构造内层 IIFE：运行全部 runtime 定义，return 出所需名字
+    const runtime=`const { BrowserTaskCatalog,FormalGameplayCatalog,effectiveStats }=(()=>{${runtimeHead}
+return { BrowserTaskCatalog:__entry.BrowserTaskCatalog,FormalGameplayCatalog:__entry.FormalGameplayCatalog,effectiveStats:__entry.effectiveStats };})();`;
+    // app.js 顶部有两处 import（game-api.js + task-runtime-browser.js）；IIFE 内不能有顶层 import。
+    const gameApiModule=fs.readFileSync(path.join(webRoot,'game-api.js'),'utf8').replace(/^export function /gm,'function ');
+    const app=fs.readFileSync(path.join(webRoot,'app.js'),'utf8')
+      .replace(/^import[^\r\n]*from '\.\/game-api\.js';\s*/,'')
+      .replace(/^import[^\r\n]*from '\.\/generated\/task-runtime-browser\.js';\s*/,'')
       .replace('storage = new BrowserRuntimeStorage();','storage = new BrowserRuntimeStorage({durableStore:globalThis.__ZHSH_UAT_DURABLE_STORE__});');
     const source=`(()=>{${runtime}
 const __ZHSH_INLINE_CONTENT__=${content};const __ZHSH_INLINE_VISUALS__=${authoritativeAssets};
 const fetch=async(url)=>({ok:true,json:async()=>structuredClone(String(url).includes('authoritative-assets')?__ZHSH_INLINE_VISUALS__:__ZHSH_INLINE_CONTENT__)});
+${gameApiModule}
 ${app}
 })()\n//# sourceURL=zhsh-inline-app.js`;
     await this.evaluate(source);await this.waitFor(()=>document.readyState==='complete');
