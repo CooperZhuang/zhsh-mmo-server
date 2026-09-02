@@ -131,7 +131,7 @@ let steps=0;const MAX_STEPS=Number(process.env.ZHSH_MAINLINE_MAX_STEPS??4000);
               }
             };
             console.log('  [练级] 当前 lv'+curLevel+' vs 目标怪 lv'+dropLv+' → 刷 '+target.mon.display_name+'(lv'+target.mon.level+') 到 lv'+(dropLv-2));
-            const targetLevel=Math.max(curLevel+1,dropLv-2);
+            let targetLevel=Math.max(curLevel+1,dropLv-2);
             let gainStalled=0;let lastExperience=(await state()).player?.experience??0;
             const recovery=content.recovery_services?.find(s=>{
               const loc=content.locations.find(l=>l.canonical_id===s.location_canonical_id);
