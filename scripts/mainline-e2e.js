@@ -99,16 +99,16 @@ let steps=0;const MAX_STEPS=Number(process.env.ZHSH_MAINLINE_MAX_STEPS??4000);
         let curLevel=(await state()).player?.level??1;
         let targetLevel=0;
         let gainStalled=0;let gainAttempts=0;let lastExperience=0;
+        const cityId=content.locations.find(l2=>l2.canonical_id===mp.location_canonical_id)?.city_canonical_id;
+        const cityLocs=content.locations.filter(l=>l.city_canonical_id===cityId).map(l=>l.canonical_id);
+        let weak=content.monster_placements.filter(p=>cityLocs.includes(p.location_canonical_id))
+          .map(p=>({p,mon:content.monsters.find(m=>m.canonical_id===p.monster_canonical_id)}))
+          .filter(({mon})=>mon&&Number(mon.level)<=Math.max(4,curLevel))
+          .sort((a,b)=>Number(b.mon.level)-Number(a.mon.level));
+        let target=null;
         if(dropLv>curLevel+5){
-          const cityId=content.locations.find(l2=>l2.canonical_id===mp.location_canonical_id)?.city_canonical_id;
-          const cityLocs=content.locations.filter(l=>l.city_canonical_id===cityId).map(l=>l.canonical_id);
-          const weak=content.monster_placements.filter(p=>cityLocs.includes(p.location_canonical_id)&&p.repeatable)
-            .map(p=>({p,mon:content.monsters.find(m=>m.canonical_id===p.monster_canonical_id)}))
-            // 优先刷明显低于自己的怪（稳赢攒 xp+装备），无则退而求其次
-            .filter(({mon})=>mon&&Number(mon.level)<=Math.max(4,curLevel))
-            .sort((a,b)=>Number(b.mon.level)-Number(a.mon.level));
           const safe=weak.find(({mon})=>Number(mon.level)<=curLevel-3)??weak[0];
-          let target=safe;
+          target=safe;
           if(target){
             const equipped=new Map(); // slot(type) -> {score,canonical_id}
             const equipBest=async()=>{
