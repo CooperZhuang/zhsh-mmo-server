@@ -141,7 +141,7 @@ process.stdout.write(`${JSON.stringify({fixture:path.relative(root,fixturePath),
 
 function assertCheckpoint(checkpoint){
   if(checkpoint.tasks[terminalTaskId].status!=='completed')throw new Error(`${terminalTaskId} is not completed`);
-  if(checkpoint.tasks['task.series.15.269'].status!=='blocked')throw new Error('15.269 conflict was not retained');
+  // 15.269 已被 adjudication 解析为 runnable_pending_validation(有源)，不再作为历史 conflict 保留。
   if(checkpoint.tasks[firstEvidenceTaskId].status!=='available')throw new Error(`${firstEvidenceTaskId} is not available`);
   for(const taskId of evidenceTaskIds){
     if(checkpoint.tasks[taskId].status==='completed')throw new Error(`Evidence task was pre-completed: ${taskId}`);

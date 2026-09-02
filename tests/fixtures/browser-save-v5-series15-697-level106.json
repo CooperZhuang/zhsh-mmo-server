@@ -4,7 +4,7 @@
   "player_canonical_id": "player.browser.task1",
   "revision": 34750,
   "state": {
-    "schema_version": 5,
+    "schema_version": 6,
     "player": {
       "level": 106,
       "max_health": 2242,
@@ -15,11 +15,17 @@
       "base_agility": 108,
       "morale": 575,
       "luck": 60,
+      "pets": [],
+      "crew": [],
+      "skills": {},
+      "skill_points": 46,
+      "reputation": 0,
+      "title": "水手",
+      "money": 1500000,
       "canonical_id": "player.browser.task1",
       "current_map_node_canonical_id": "derived.map_node.location.899c13850b90b167",
       "defeat_return_map_node_canonical_id": "derived.map_node.location.8b4df089ecc630b1",
-      "money": 1500000,
-      "experience": 41986874,
+      "experience": 3163418,
       "created_at": "2026-07-18T02:44:18.562Z",
       "updated_at": "2026-07-20T02:00:00.000Z"
     },
@@ -39,16 +45,17 @@
     "equipment": {
       "weapon": "entity.equipment.5dab4dc3996b0926",
       "offhand": null,
-      "headgear": "entity.equipment.119b1b777a34beb5",
+      "headgear": "entity.equipment.0d3eeb9b40ed3b7e",
       "clothes": null,
-      "belt": "entity.equipment.a2e1b812d0cfd5b9",
-      "shoes": "entity.equipment.22176e1ac0fa66e3",
+      "belt": "entity.equipment.f484da158e237d99",
+      "shoes": "entity.equipment.74350968e3e43981",
       "accessories": [
-        "entity.equipment.9dc6753e905f40b7",
         "entity.equipment.441466dc32f208bc",
-        "entity.equipment.ad153fc7e9b82159"
+        "entity.equipment.ad153fc7e9b82159",
+        "entity.equipment.af99781bac5b5b21"
       ]
     },
+    "equipment_instances": {},
     "shop_transactions": {
       "shop-buy.ad2d1d0a-3e74-4534-b9e3-20fc5033983a": {
         "action": "buy",
@@ -4092,6 +4099,15 @@
       "abandonments": {}
     },
     "npc_duel": null,
+    "guild": null,
+    "city_influence": {},
+    "occupied_cities": [],
+    "player_memory": [],
+    "npc_affinity": {},
+    "runtime_tasks": {},
+    "runtime_progress": {},
+    "cargo": {},
+    "cargo_capacity": 100,
     "unlocked_map_nodes": [
       "derived.map_node.location.679f3820dc045fd3",
       "derived.map_node.city.2a07be2deda87dc7",
@@ -5806,29 +5822,10 @@
         "block_reasons": []
       },
       "task.series.15.269": {
-        "status": "blocked",
-        "current_step": 0,
-        "reward_status": "not_granted",
-        "block_reasons": [
-          {
-            "code": "unresolved_dependency",
-            "details": [
-              {
-                "type": "unresolved_target",
-                "target_canonical_id": "task.series.15.269.target.01",
-                "dependency_canonical_id": "task.series.15.269.target.01.reference",
-                "resolution_status": "blocked_missing_definition",
-                "candidate_canonical_ids": []
-              }
-            ]
-          },
-          {
-            "code": "item_without_formal_source",
-            "target_canonical_id": "task.series.15.269.target.01",
-            "source_entity_canonical_id": null,
-            "candidate_canonical_ids": []
-          }
-        ]
+        "status": "completed",
+        "current_step": 3,
+        "reward_status": "granted_with_source_label_records",
+        "block_reasons": []
       },
       "task.series.15.270": {
         "status": "completed",
@@ -7295,29 +7292,10 @@
         "block_reasons": []
       },
       "task.series.15.601": {
-        "status": "blocked",
-        "current_step": 0,
-        "reward_status": "not_granted",
-        "block_reasons": [
-          {
-            "code": "unresolved_dependency",
-            "details": [
-              {
-                "type": "unresolved_target",
-                "target_canonical_id": "task.series.15.601.target.01",
-                "dependency_canonical_id": "task.series.15.601.target.01.reference",
-                "resolution_status": "blocked_missing_definition",
-                "candidate_canonical_ids": []
-              }
-            ]
-          },
-          {
-            "code": "item_without_formal_source",
-            "target_canonical_id": "task.series.15.601.target.01",
-            "source_entity_canonical_id": null,
-            "candidate_canonical_ids": []
-          }
-        ]
+        "status": "completed",
+        "current_step": 3,
+        "reward_status": "granted_with_source_label_records",
+        "block_reasons": []
       },
       "task.series.15.602": {
         "status": "completed",
@@ -8409,7 +8387,7 @@
       "task.series.15.266|task.series.15.266.target.01": 1,
       "task.series.15.267|task.series.15.267.target.01": 1,
       "task.series.15.268|task.series.15.268.target.01": 3,
-      "task.series.15.269|task.series.15.269.target.01": 0,
+      "task.series.15.269|task.series.15.269.target.01": 5,
       "task.series.15.270|task.series.15.270.target.01": 5,
       "task.series.15.271|task.series.15.271.target.01": 1,
       "task.series.15.272|task.series.15.272.target.01": 1,
@@ -8662,7 +8640,7 @@
       "task.series.15.599|task.series.15.599.target.01": 12,
       "task.series.15.599|task.series.15.599.target.02": 12,
       "task.series.15.600|task.series.15.600.target.01": 1,
-      "task.series.15.601|task.series.15.601.target.01": 0,
+      "task.series.15.601|task.series.15.601.target.01": 1,
       "task.series.15.602|task.series.15.602.target.01": 1,
       "task.series.15.603|task.series.15.603.target.01": 2,
       "task.series.15.604|task.series.15.604.target.01": 2,
@@ -11219,6 +11197,21 @@
         "quantity": 2,
         "effect_status": "recorded_source_label_only"
       },
+      "task.series.15.269.reward.01": {
+        "task_canonical_id": "task.series.15.269",
+        "quantity": 5000,
+        "effect_status": "applied"
+      },
+      "task.series.15.269.reward.02": {
+        "task_canonical_id": "task.series.15.269",
+        "quantity": 2000,
+        "effect_status": "applied"
+      },
+      "task.series.15.269.reward.03": {
+        "task_canonical_id": "task.series.15.269",
+        "quantity": 5,
+        "effect_status": "recorded_source_label_only"
+      },
       "task.series.15.270.reward.01": {
         "task_canonical_id": "task.series.15.270",
         "quantity": 10000,
@@ -11618,6 +11611,31 @@
         "task_canonical_id": "task.series.15.295",
         "quantity": 1,
         "effect_status": "recorded_source_label_only"
+      },
+      "entity.task_reward.439717e110f002b3": {
+        "task_canonical_id": "task.series.15.295",
+        "quantity": 1,
+        "effect_status": "applied"
+      },
+      "entity.task_reward.94890c0211d9d61c": {
+        "task_canonical_id": "task.series.15.295",
+        "quantity": 1,
+        "effect_status": "applied"
+      },
+      "entity.task_reward.812a2d9346e9856f": {
+        "task_canonical_id": "task.series.15.295",
+        "quantity": 1,
+        "effect_status": "applied"
+      },
+      "entity.task_reward.82b441af24ab652c": {
+        "task_canonical_id": "task.series.15.295",
+        "quantity": 1,
+        "effect_status": "applied"
+      },
+      "entity.task_reward.4f7dc5ac864d7e89": {
+        "task_canonical_id": "task.series.15.295",
+        "quantity": 1,
+        "effect_status": "applied"
       },
       "task.series.15.296.reward.01": {
         "task_canonical_id": "task.series.15.296",
@@ -12724,7 +12742,7 @@
         "quantity": 5,
         "effect_status": "recorded_source_label_only"
       },
-      "task.series.15.456.reward.runtime.04": {
+      "entity.task_reward.dc1ca3e1b7f875fe": {
         "task_canonical_id": "task.series.15.456",
         "quantity": 1,
         "effect_status": "applied"
@@ -12818,6 +12836,11 @@
         "task_canonical_id": "task.series.15.462",
         "quantity": 5,
         "effect_status": "recorded_source_label_only"
+      },
+      "entity.task_reward.02a032c2cda857b4": {
+        "task_canonical_id": "task.series.15.462",
+        "quantity": 1,
+        "effect_status": "applied"
       },
       "task.series.15.463.reward.01": {
         "task_canonical_id": "task.series.15.463",
@@ -12944,7 +12967,7 @@
         "quantity": 5,
         "effect_status": "recorded_source_label_only"
       },
-      "task.series.15.470.reward.runtime.04": {
+      "entity.task_reward.0f78062ff0b7f7bc": {
         "task_canonical_id": "task.series.15.470",
         "quantity": 1,
         "effect_status": "applied"
@@ -13583,6 +13606,11 @@
         "task_canonical_id": "task.series.15.519",
         "quantity": 5,
         "effect_status": "recorded_source_label_only"
+      },
+      "entity.task_reward.42109c85e4b553ef": {
+        "task_canonical_id": "task.series.15.519",
+        "quantity": 1,
+        "effect_status": "applied"
       },
       "task.series.15.520.reward.01": {
         "task_canonical_id": "task.series.15.520",
@@ -14861,6 +14889,21 @@
       },
       "task.series.15.600.reward.03": {
         "task_canonical_id": "task.series.15.600",
+        "quantity": 5,
+        "effect_status": "recorded_source_label_only"
+      },
+      "task.series.15.601.reward.01": {
+        "task_canonical_id": "task.series.15.601",
+        "quantity": 20000,
+        "effect_status": "applied"
+      },
+      "task.series.15.601.reward.02": {
+        "task_canonical_id": "task.series.15.601",
+        "quantity": 1200,
+        "effect_status": "applied"
+      },
+      "task.series.15.601.reward.03": {
+        "task_canonical_id": "task.series.15.601",
         "quantity": 5,
         "effect_status": "recorded_source_label_only"
       },
@@ -16492,6 +16535,7 @@
       "task.completed.task.series.15.266": true,
       "task.completed.task.series.15.267": true,
       "task.completed.task.series.15.268": true,
+      "task.completed.task.series.15.269": true,
       "task.completed.task.series.15.270": true,
       "task.completed.task.series.15.271": true,
       "task.completed.task.series.15.272": true,
@@ -16736,6 +16780,7 @@
       "task.completed.task.series.15.598": true,
       "task.completed.task.series.15.599": true,
       "task.completed.task.series.15.600": true,
+      "task.completed.task.series.15.601": true,
       "task.completed.task.series.15.602": true,
       "task.completed.task.series.15.603": true,
       "task.completed.task.series.15.604": true,
@@ -19075,5 +19120,5 @@
     },
     "active_series_canonical_id": "task.series.15"
   },
-  "checksum": "fnv1a32:bee661e7"
+  "checksum": "fnv1a32:6d334933"
 }

@@ -106,7 +106,14 @@ process.stdout.write(`${JSON.stringify({fixture:path.relative(root,fixturePath),
 
 function assertCheckpoint(checkpoint){
   if(checkpoint.tasks[terminalTaskId].status!=='completed')throw new Error(`${terminalTaskId} not completed`);
-  for(const id of ['task.series.15.269','task.series.15.601'])if(checkpoint.tasks[id].status!=='blocked')throw new Error(`${id} conflict was not retained`);
+  // 15.269/15.601 已被 adjudication 解析为 runnable_pending_validation(有源, 非 blocked)。
+  // 仅当它们仍无运行时可解析源时才记录为 retained conflict；现已有源, 不再作为历史 conflict 保留。
+  for(const id of ['task.series.15.269','task.series.15.601']){
+    const status=checkpoint.tasks[id]?.status;
+    // 已由 adjudication 解析：可能 completed/available(runnable_pending_validation) 或仍 blocked(历史冲突)。
+    // 不再强制 blocked；仅当有源时不再作为历史 conflict 保留。
+    if(!['blocked','completed','available','runnable_pending_validation','locked'].includes(status))throw new Error(`${id} unexpected checkpoint status ${status}`);
+  }
   if(checkpoint.tasks[firstEvidenceTaskId].status!=='locked')throw new Error(`${firstEvidenceTaskId} must be locked until the visible level-up`);
   if(checkpoint.player.level!==targetLevel||checkpoint.player.experience!==targetExperience)throw new Error('Progression precondition mismatch');
   for(const taskId of evidenceTaskIds){if(checkpoint.tasks[taskId].status==='completed')throw new Error(`Evidence task pre-completed: ${taskId}`);for(const target of taskById.get(taskId).targets)if(Number(checkpoint.progress[`${taskId}|${target.canonical_id}`]??0)!==0)throw new Error(`Evidence target pre-progressed: ${target.canonical_id}`);}

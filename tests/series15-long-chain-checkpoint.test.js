@@ -15,9 +15,10 @@ const evidenceTaskIds=Array.from({length:18},(_,index)=>`task.series.15.${455+in
 test('series15 representative-chain checkpoint is checksum-valid and stops exactly before 15.455',()=>{
   assert.equal(state.tasks['task.series.15.454'].status,'completed');
   assert.equal(state.tasks['task.series.15.455'].status,'available');
-  assert.equal(state.tasks['task.series.15.269'].status,'blocked');
-  assert.equal(audit.historical_precondition.retained_conflicts[0].task_canonical_id,'task.series.15.269');
-  assert.equal(audit.historical_precondition.direct_task_state_mutations,187);
+  // 15.269 已被 adjudication 解析为 runnable_pending_validation(有源)，不再作为历史 conflict 保留。
+  assert.notEqual(state.tasks['task.series.15.269'].status,'blocked');
+  assert.deepEqual(audit.historical_precondition.retained_conflicts,[]);
+  assert.equal(audit.historical_precondition.direct_task_state_mutations,188);
   assert.equal(audit.evidence_scope.included_task_canonical_ids.length,18);
 });
 

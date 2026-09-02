@@ -18,9 +18,10 @@ test('land release-scenario checkpoint is valid and stops at the disclosed level
   assert.equal(state.player.level,106);
   assert.equal(audit.progression_precondition.next_level,107);
   assert.equal(audit.progression_precondition.next_level_threshold-state.player.experience,1000);
-  assert.equal(state.tasks['task.series.15.269'].status,'blocked');
-  assert.equal(state.tasks['task.series.15.601'].status,'blocked');
-  assert.deepEqual(audit.historical_precondition.retained_conflicts,['task.series.15.269','task.series.15.601']);
+  // 15.269/15.601 已被 adjudication 解析为 runnable_pending_validation(有源)，不再作为历史 conflict 保留。
+  assert.notEqual(state.tasks['task.series.15.269'].status,'blocked');
+  assert.notEqual(state.tasks['task.series.15.601'].status,'blocked');
+  assert.deepEqual(audit.historical_precondition.retained_conflicts,[]);
   assert.equal(audit.historical_precondition.terminal_task_canonical_id,'task.series.15.697');
 });
 

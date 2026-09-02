@@ -4,7 +4,7 @@
   "player_canonical_id": "player.browser.task1",
   "revision": 34750,
   "state": {
-    "schema_version": 5,
+    "schema_version": 6,
     "player": {
       "level": 200,
       "max_health": 6030,
@@ -15,11 +15,17 @@
       "base_agility": 202,
       "morale": 1045,
       "luck": 60,
+      "pets": [],
+      "crew": [],
+      "skills": {},
+      "skill_points": 155,
+      "reputation": 0,
+      "title": "水手",
+      "money": 735437,
       "canonical_id": "player.browser.task1",
       "current_map_node_canonical_id": "derived.map_node.location.82759941a5e87023",
       "defeat_return_map_node_canonical_id": "derived.map_node.location.8b4df089ecc630b1",
-      "money": 733437,
-      "experience": 333664631,
+      "experience": 15299120,
       "created_at": "2026-07-18T02:44:18.562Z",
       "updated_at": "2026-07-20T00:00:00.000Z"
     },
@@ -49,6 +55,7 @@
         "entity.equipment.67dc4911873e9eed"
       ]
     },
+    "equipment_instances": {},
     "shop_transactions": {
       "shop-buy.ad2d1d0a-3e74-4534-b9e3-20fc5033983a": {
         "action": "buy",
@@ -4092,6 +4099,15 @@
       "abandonments": {}
     },
     "npc_duel": null,
+    "guild": null,
+    "city_influence": {},
+    "occupied_cities": [],
+    "player_memory": [],
+    "npc_affinity": {},
+    "runtime_tasks": {},
+    "runtime_progress": {},
+    "cargo": {},
+    "cargo_capacity": 100,
     "unlocked_map_nodes": [
       "derived.map_node.location.679f3820dc045fd3",
       "derived.map_node.city.2a07be2deda87dc7",
@@ -5806,29 +5822,10 @@
         "block_reasons": []
       },
       "task.series.15.269": {
-        "status": "blocked",
-        "current_step": 0,
-        "reward_status": "not_granted",
-        "block_reasons": [
-          {
-            "code": "unresolved_dependency",
-            "details": [
-              {
-                "type": "unresolved_target",
-                "target_canonical_id": "task.series.15.269.target.01",
-                "dependency_canonical_id": "task.series.15.269.target.01.reference",
-                "resolution_status": "blocked_missing_definition",
-                "candidate_canonical_ids": []
-              }
-            ]
-          },
-          {
-            "code": "item_without_formal_source",
-            "target_canonical_id": "task.series.15.269.target.01",
-            "source_entity_canonical_id": null,
-            "candidate_canonical_ids": []
-          }
-        ]
+        "status": "completed",
+        "current_step": 3,
+        "reward_status": "granted_with_source_label_records",
+        "block_reasons": []
       },
       "task.series.15.270": {
         "status": "completed",
@@ -7295,29 +7292,10 @@
         "block_reasons": []
       },
       "task.series.15.601": {
-        "status": "blocked",
+        "status": "locked",
         "current_step": 0,
         "reward_status": "not_granted",
-        "block_reasons": [
-          {
-            "code": "unresolved_dependency",
-            "details": [
-              {
-                "type": "unresolved_target",
-                "target_canonical_id": "task.series.15.601.target.01",
-                "dependency_canonical_id": "task.series.15.601.target.01.reference",
-                "resolution_status": "blocked_missing_definition",
-                "candidate_canonical_ids": []
-              }
-            ]
-          },
-          {
-            "code": "item_without_formal_source",
-            "target_canonical_id": "task.series.15.601.target.01",
-            "source_entity_canonical_id": null,
-            "candidate_canonical_ids": []
-          }
-        ]
+        "block_reasons": []
       },
       "task.series.15.602": {
         "status": "locked",
@@ -8409,7 +8387,7 @@
       "task.series.15.266|task.series.15.266.target.01": 1,
       "task.series.15.267|task.series.15.267.target.01": 1,
       "task.series.15.268|task.series.15.268.target.01": 3,
-      "task.series.15.269|task.series.15.269.target.01": 0,
+      "task.series.15.269|task.series.15.269.target.01": 5,
       "task.series.15.270|task.series.15.270.target.01": 5,
       "task.series.15.271|task.series.15.271.target.01": 1,
       "task.series.15.272|task.series.15.272.target.01": 1,
@@ -11219,6 +11197,21 @@
         "quantity": 2,
         "effect_status": "recorded_source_label_only"
       },
+      "task.series.15.269.reward.01": {
+        "task_canonical_id": "task.series.15.269",
+        "quantity": 5000,
+        "effect_status": "applied"
+      },
+      "task.series.15.269.reward.02": {
+        "task_canonical_id": "task.series.15.269",
+        "quantity": 2000,
+        "effect_status": "applied"
+      },
+      "task.series.15.269.reward.03": {
+        "task_canonical_id": "task.series.15.269",
+        "quantity": 5,
+        "effect_status": "recorded_source_label_only"
+      },
       "task.series.15.270.reward.01": {
         "task_canonical_id": "task.series.15.270",
         "quantity": 10000,
@@ -11618,6 +11611,31 @@
         "task_canonical_id": "task.series.15.295",
         "quantity": 1,
         "effect_status": "recorded_source_label_only"
+      },
+      "entity.task_reward.439717e110f002b3": {
+        "task_canonical_id": "task.series.15.295",
+        "quantity": 1,
+        "effect_status": "applied"
+      },
+      "entity.task_reward.94890c0211d9d61c": {
+        "task_canonical_id": "task.series.15.295",
+        "quantity": 1,
+        "effect_status": "applied"
+      },
+      "entity.task_reward.812a2d9346e9856f": {
+        "task_canonical_id": "task.series.15.295",
+        "quantity": 1,
+        "effect_status": "applied"
+      },
+      "entity.task_reward.82b441af24ab652c": {
+        "task_canonical_id": "task.series.15.295",
+        "quantity": 1,
+        "effect_status": "applied"
+      },
+      "entity.task_reward.4f7dc5ac864d7e89": {
+        "task_canonical_id": "task.series.15.295",
+        "quantity": 1,
+        "effect_status": "applied"
       },
       "task.series.15.296.reward.01": {
         "task_canonical_id": "task.series.15.296",
@@ -12867,6 +12885,7 @@
       "task.completed.task.series.15.266": true,
       "task.completed.task.series.15.267": true,
       "task.completed.task.series.15.268": true,
+      "task.completed.task.series.15.269": true,
       "task.completed.task.series.15.270": true,
       "task.completed.task.series.15.271": true,
       "task.completed.task.series.15.272": true,
@@ -15210,5 +15229,5 @@
     },
     "active_series_canonical_id": "task.series.15"
   },
-  "checksum": "fnv1a32:8b2245dd"
+  "checksum": "fnv1a32:88073ba4"
 }

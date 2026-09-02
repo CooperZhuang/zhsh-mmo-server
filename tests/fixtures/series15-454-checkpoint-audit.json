@@ -3,7 +3,7 @@
   "record_kind": "series15_representative_chain_release_acceptance_precondition",
   "generated_at": "2026-07-20T00:00:00.000Z",
   "source_fixture": "tests/fixtures/browser-save-v4-formal-72-of-72.json",
-  "output_fixture": "tests/fixtures/browser-save-v5-series15-454-level200.json",
+  "output_fixture": "tests\\fixtures\\browser-save-v5-series15-454-level200.json",
   "evidence_scope": {
     "included_task_canonical_ids": [
       "task.series.15.455",
@@ -32,7 +32,7 @@
     "series_canonical_id": "task.series.15",
     "first_task_canonical_id": "task.series.15.180",
     "terminal_task_canonical_id": "task.series.15.454",
-    "completed_task_count": 187,
+    "completed_task_count": 188,
     "completed_task_canonical_ids": [
       "task.series.15.180",
       "task.series.15.181",
@@ -123,6 +123,7 @@
       "task.series.15.266",
       "task.series.15.267",
       "task.series.15.268",
+      "task.series.15.269",
       "task.series.15.270",
       "task.series.15.271",
       "task.series.15.272",
@@ -222,53 +223,27 @@
       "task.series.15.453",
       "task.series.15.454"
     ],
-    "retained_conflicts": [
-      {
-        "task_canonical_id": "task.series.15.269",
-        "status": "blocked",
-        "directory_status": "data_conflict",
-        "blocking_reasons": [
-          {
-            "code": "unresolved_dependency",
-            "details": [
-              {
-                "type": "unresolved_target",
-                "target_canonical_id": "task.series.15.269.target.01",
-                "dependency_canonical_id": "task.series.15.269.target.01.reference",
-                "resolution_status": "blocked_missing_definition",
-                "candidate_canonical_ids": []
-              }
-            ]
-          },
-          {
-            "code": "item_without_formal_source",
-            "target_canonical_id": "task.series.15.269.target.01",
-            "source_entity_canonical_id": null,
-            "candidate_canonical_ids": []
-          }
-        ]
-      }
-    ],
-    "direct_task_state_mutations": 187,
+    "retained_conflicts": [],
+    "direct_task_state_mutations": 188,
     "exclusion": "Historical task statuses are a disclosed fixture precondition and are not acceptance evidence; no task in the 15.455-15.472 evidence scope is completed, progressed, rewarded, or supplied with its task items."
   },
   "reward_accounting": {
     "baseline": {
-      "level": 45,
+      "level": 91,
       "experience": 2157960,
       "money": 208395,
       "completed_task_count": 72
     },
     "reward_totals": {
-      "experience": 3466748,
-      "money": 525042,
-      "source_label_items": 829,
-      "resolved_items_recorded_as_historically_consumed": 15
+      "experience": 3471748,
+      "money": 527042,
+      "source_label_items": 834,
+      "resolved_items_recorded_as_historically_consumed": 20
     },
-    "historical_reward_grant_count": 576,
-    "final_experience": 333664631,
-    "final_money": 733437,
-    "level_checkpoint_experience_supplement": 328039923
+    "historical_reward_grant_count": 584,
+    "final_experience": 15299120,
+    "final_money": 735437,
+    "level_checkpoint_experience_supplement": 9669412
   },
   "level_checkpoint": {
     "target_level": 200,
@@ -352,7 +327,7 @@
     "completed_evidence_tasks": [],
     "progressed_evidence_targets": [],
     "active_task_item_reservations": [],
-    "money": 733437,
+    "money": 735437,
     "level": 200,
     "current_map_node_canonical_id": "derived.map_node.location.82759941a5e87023"
   }
