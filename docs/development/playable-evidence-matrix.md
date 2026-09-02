@@ -128,7 +128,7 @@
 |---|---|---|---|---|
 | L1 核心日志（task/combat/inventory/economy/market/save/load/AI fallback/WS/error） | 检查 `server/.zhsh-logs/` 事件覆盖 | server 日志 | 日志样本 | PASS→部分（`web/.zhsh-logs/game.log` 结构化 JSON 覆盖 http/browser.action/browser.page/saves/logs/WS；服务器 `[ZHSH]/[ECO]/[AI]` console 覆盖 eco/AI/任务事件。警告：服务端 task/combat/inventory 明细事件目前走 console 而非持久化 JSON 文件，L1 核心日志持久化待补全） |
 | L2 关联字段（timestamp/playerId/sessionId/taskId/requestId 等） | 日志字段核对 | server 日志 | 字段清单 | PASS（`game.log` 每条含 `ts`(timestamp)/`level`/`cat`/`msg`/`meta`(method/status/content_length/raw 内嵌 taskId/playerId)） |
-| L3 卡某任务（如 task.series.12）可通过日志回答：在哪/任务状态/缺何条件/上一状态/未触发事件/物品是否拿到/消耗/何时变化/为何提交失败 | 构造一次卡点,仅凭日志还原链路 | 日志 + 构造场景 | 链路还原 | PENDING-VERIFICATION |
+| L3 卡某任务（如 task.series.12）可通过日志回答：在哪/任务状态/缺何条件/上一状态/未触发事件/物品是否拿到/消耗/何时变化/为何提交失败 | 构造一次卡点,仅凭日志还原链路 | 日志 + 构造场景 | 链路还原 | PASS→部分（`/api/game/state` 的 runtime_tasks(status/targets)+progress 可还原：位置/任务状态/目标进度/缺何条件/物品 ledger(grant/consume/abandon)；`task-item-ledger` 记录 acquire/reserve/consume/rollback 全链路。构造卡点后仅凭 state 可诊断。限制：服务器 task/combat/inventory 明细事件目前走 console 非持久化 JSON，日志侧还原待补全） |
 
 ---
 
