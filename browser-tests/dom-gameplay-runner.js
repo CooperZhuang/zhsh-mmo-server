@@ -311,6 +311,9 @@ class DomGameplayScenario{
     const arrived=await this.page.evaluate(`(async()=>{
       const token=localStorage.getItem('zhsh_token')??'';
       const rt=async(gadget,method,args={})=>{
+        // 服务端分发为 fn(playerId, ...[_arg1,_arg2,_arg3].filter, evId)。
+        // voyage.advance(playerId,eventId,{ticks}) 需 _arg1=<eventId>, _arg2={ticks:N}；
+        // maritime.dismiss/fishing.stop/dungeon.exit(playerId,eventId) 只需 _arg1=<eventId>。
         const r=await fetch('/api/game/runtime',{method:'POST',headers:{'Content-Type':'application/json',Authorization:'Bearer '+token},body:JSON.stringify({gadget,method,args,event_id:gadget+'-'+method+'.'+Date.now()})});
         return r.json();
       };
@@ -319,10 +322,10 @@ class DomGameplayScenario{
         try{
           const st=await (async()=>{const rr=await fetch('/api/game/state',{headers:{Authorization:'Bearer '+token}});return rr.ok?await rr.json():null;})();
           if(!st||!st.voyage)return {arrived:true,node:st?.player?.current_map_node_canonical_id??null};
-          if(st.maritime_encounter){await rt('maritime','dismiss');(window.__voyagePollLog??=[]).push('dismiss');continue;}
-          if(st.fishing){await rt('fishing','stop');(window.__voyagePollLog??=[]).push('fishing-stop');continue;}
-          if(st.dungeon){await rt('dungeon','exit');(window.__voyagePollLog??=[]).push('dungeon-exit');continue;}
-          const adv=await rt('voyage','advance',{_arg1:1});
+          if(st.maritime_encounter){await rt('maritime','dismiss',{_arg1:'mdis.'+Date.now()});(window.__voyagePollLog??=[]).push('dismiss');continue;}
+          if(st.fishing){await rt('fishing','stop',{_arg1:'fstop.'+Date.now()});(window.__voyagePollLog??=[]).push('fishing-stop');continue;}
+          if(st.dungeon){await rt('dungeon','exit',{_arg1:'dexit.'+Date.now()});(window.__voyagePollLog??=[]).push('dungeon-exit');continue;}
+          const adv=await rt('voyage','advance',{_arg1:'vadv.'+Date.now(),_arg2:{ticks:1}});
           if(!adv.applied&&!(adv.remaining_distance===0||adv.action==='voyage_arrived')){(window.__voyagePollLog??=[]).push('advance-'+JSON.stringify(adv).slice(0,80));}
           else (window.__voyagePollLog??=[]).push('adv.');
         }catch(err){(window.__voyagePollLog??=[]).push('err:'+String(err.message??err).slice(0,60));}
