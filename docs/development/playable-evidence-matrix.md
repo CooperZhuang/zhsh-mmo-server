@@ -190,5 +190,6 @@
 5. `loadInlineApplication` 浏览器内联构建修复（剥离双 import + 内联 game-api + 作用域隔离 runtime）→ `browser-infrastructure` 1/1 PASS，浏览器 e2e 路径打通
 6. **`deriveAcceptanceGrantResolutions` transferCue 扩展（送[封份个]/帮.*?送/托你送）→ P0 `task.series.01.010` 送情书缺源修复**（接取授予情书，引擎验证 accept→submit→completed；Series-01 item 任务 0 缺口）——此前 tutorial 卡死根因
 7. **e2e 授予型物品通用分支**（`mainline-e2e`/`dom-gameplay-runner` 补 `grant_on_accept`/`task_chain_reward`/`task_acceptance_grant`，实测 mainline 通过 01.010+01.011）
+8. **`sail` 移除中途 `restartBrowser`**（出港后依赖服务端状态 `arrived` 轮询推进到港，去掉整浏览器重启；195/195 无回归）
 
 > 运行命令：见各维度「证据命令」列；全量测试 `npm run test`。
