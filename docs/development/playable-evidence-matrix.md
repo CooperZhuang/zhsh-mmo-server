@@ -163,7 +163,7 @@
 2. **`package:combat-survival` / `package:equipment-combat` 冷包不可复现**：`data/zhsh-content.sqlite` 被提交进 git，冷重建从 bundle 携带旧裁决行，`adjudicate-blocked-targets.js` raw INSERT 触发 `UNIQUE constraint failed: content_entities.source_record_id`。verify:core 通过先 `rmSync` 内容库解决；冷包路径未同步。属 P2 可复现性缺陷（非玩法）。
 3. ~~数值曲线门槛不增（8 点）~~ **已解决**：`688a293` 平滑曲线重设计后 `level-experience.json` 1–210 全单调（非单调点=0），`numbers:audit` 现 0 error 0 warn。原告警为旧曲线遗留，重设计已闭环。
 4. **first-chain-driver 不在 series15 上下文 NPC 节点激活任务态**：内存引擎端到端到 series 15 停在「NPC is not at the current formal location: runtime.contextual-npc.1e00」。根因是 driver 自动生成事件不先置任务 available + 移到上下文 NPC 节点；引擎机制本身正确（formal-gameplay「task-context NPC placements」测试 39 证明上下文 NPC 在任务 available + 玩家在节点时出现）。属 driver 限制（非玩法缺陷）。已修：`syncItemTargets` 过滤回调 `target→entry`（TDZ 阴影，修复后引擎可推到 series14 181 任务 level135）。
-5. **full Series01 浏览器通关 playthrough 在跨城航海步骤自动作较慢/偶发挂起**：根因（游戏内容）已定位并**修复**——`task.series.01.010` 送情书原无任何来源（0 item_source/0 前序奖励/0 掉落），driver 卡死；现已经 `deriveAcceptanceGrantResolutions` transferCue 扩展（送[封份个]/帮.*?送/托你送）→ 接取授予情书，**引擎验证 accept→submit→completed**，Series-01 全部 item 任务扫描 0 缺口。残留：01.010/011 为跨城（威尼斯→雅典）送物品需航海。**跨城航海游戏逻辑已用真实服务端 API 端到端验证可用**（`set_money`→`ships.purchase`→`voyage.start`=voyage_started→`voyage.advance` 触发 ship_dungeon_discovery 海事随机遭遇并推进；route fee 0，船 2 金可负担）。浏览器 driver 的 `sail` 步骤（买船/出航/到港 DOM 点击 + 中途 `restartBrowser`）为该环境 CDP 自动作慢/偶发挂起，非游戏缺陷。属 P2 表现层自动作鲁棒性项，`browser-infrastructure` 1/1 证明 harness 正常；需人工/远程调试 voyage driver 或延长窗口（游戏逻辑已由引擎+API 验证，全 651 任务 0 阻塞）。
+5. **full Series01 浏览器通关 playthrough 在跨城航海步骤自动作较慢/偶发挂起**：根因（游戏内容）已定位并**修复**——`task.series.01.010` 送情书原无任何来源（0 item_source/0 前序奖励/0 掉落），driver 卡死；现已经 `deriveAcceptanceGrantResolutions` transferCue 扩展（送[封份个]/帮.*?送/托你送）→ 接取授予情书，**引擎验证 accept→submit→completed**，Series-01 全部 item 任务扫描 0 缺口。残留：01.010/011 为跨城（威尼斯→雅典）送物品需航海。**跨城航海游戏逻辑已用真实服务端 API 端到端验证可用**（`set_money`→`ships.purchase`→`voyage.start`=voyage_started→`voyage.advance` 触发 ship_dungeon_discovery 海事随机遭遇并推进；route fee 0，船 2 金可负担）。**e2e 授予型物品分支已补**（`mainline-e2e`+`dom-gameplay-runner` 现处理 `grant_on_accept`/`task_chain_reward`/`task_acceptance_grant`，实测 mainline 通过 01.010+01.011 两个此前卡住的跨城送物品任务）。残留为浏览器 driver 的 `sail` 步骤（买船/出航/到港 DOM 点击 + 中途 `restartBrowser`）在该环境 CDP 自动作慢/偶发挂起，非游戏缺陷。属 P2 表现层自动作鲁棒性项，`browser-infrastructure` 1/1 证明 harness 正常；需人工/远程调试 voyage driver 或延长窗口（游戏逻辑已由引擎+API 验证，全 651 任务 0 阻塞）。
 
 ### 最终判定（本阶段）
 
@@ -189,5 +189,6 @@
 4. 平滑曲线锚定夹具/tolerance 重建（8 测试）+ 检查点夹具新曲线重建 → **全 195 测试 PASS**
 5. `loadInlineApplication` 浏览器内联构建修复（剥离双 import + 内联 game-api + 作用域隔离 runtime）→ `browser-infrastructure` 1/1 PASS，浏览器 e2e 路径打通
 6. **`deriveAcceptanceGrantResolutions` transferCue 扩展（送[封份个]/帮.*?送/托你送）→ P0 `task.series.01.010` 送情书缺源修复**（接取授予情书，引擎验证 accept→submit→completed；Series-01 item 任务 0 缺口）——此前 tutorial 卡死根因
+7. **e2e 授予型物品通用分支**（`mainline-e2e`/`dom-gameplay-runner` 补 `grant_on_accept`/`task_chain_reward`/`task_acceptance_grant`，实测 mainline 通过 01.010+01.011）
 
 > 运行命令：见各维度「证据命令」列；全量测试 `npm run test`。
