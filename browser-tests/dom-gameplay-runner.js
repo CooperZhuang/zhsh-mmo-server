@@ -286,7 +286,7 @@ class DomGameplayScenario{
     // 自愈：航行中（第一趟未靠岸）→ 续航至靠岸，不再重复出发
     const activeCount=await this.page.countVisible('[data-voyage-advance="1"]');
     if(activeCount===1||await this.page.countVisible('[data-voyage-start]')===0&&(await this.page.text('.wap-page')??'').includes('剩余航程')){
-      if(this.contextReopens===0){await this.advanceVoyageStep();if(await this.page.pageName()==='voyage'){await this.restartBrowser();await this.ensurePage('voyage');}}
+      // 航行中：直接以服务端状态推进到港（下方 arrived 轮询），不重启浏览器（restartBrowser 慢且易挂起）
       for(let step=0;step<500;step+=1){if(await this.page.pageName()==='location')break;await this.advanceVoyageStep();}
       if(await this.page.pageName()==='location'){this.currentNode=route.to_port_map_node_canonical_id;return;}
     }
@@ -306,7 +306,7 @@ class DomGameplayScenario{
     if(!voyageStarted)throw new Error(`voyage ${route.canonical_id} did not start (server voyage null); page=${await this.page.pageName()}`);
     const startError=await this.page.text('.error');
     if(startError){const diagnostic=await this.exportSave('voyage-start-error');throw new Error(`Voyage start failed for ${route.canonical_id}: ${startError}; money=${diagnostic.state.player.money}; fee=${route.fee}`);}
-    if(this.contextReopens===0){await this.advanceVoyageStep();if(await this.page.pageName()==='voyage'){await this.restartBrowser();await this.ensurePage('voyage');}}
+    // 出航后直接用下方 arrived 轮询以服务端状态推进到港，不重启浏览器（restartBrowser 慢且易挂起）
     // 权威确认到港：以服务端状态为准同步推进（遇海上发现/钓鱼/副本先排空，再 advance 直至靠岸）
     const arrived=await this.page.evaluate(`(async()=>{
       const token=localStorage.getItem('zhsh_token')??'';
