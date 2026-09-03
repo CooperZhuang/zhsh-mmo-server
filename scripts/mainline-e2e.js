@@ -126,6 +126,15 @@ function playerStats(st){
     }
     const itemTgt=(d.targets??[]).find(t=>t.target_kind==='item');
     if(itemTgt){
+      // 授予型物品（task_chain_reward / task_acceptance_grant）：接取/前序奖励时服务器已给，
+      // 无需世界获取；只需在背包确认。若后续提交时校验不足，说明授予链路异常，停下上报。
+      const grantType=itemTgt.task_item_policy?.acquisition_mode==='grant_on_accept'||['task_chain_reward','task_acceptance_grant'].includes(itemTgt.runtime_resolution?.source_kind);
+      if(grantType){
+        const hold=await state();const held=Number(hold.inventory?.[itemTgt.entity_canonical_id]??0);
+        if(held<Number(itemTgt.required_quantity??1)){console.log('  [授予不足]',name,itemTgt.raw_name,'held',held,'required',itemTgt.required_quantity,', 尝试重新接受绑定');}
+        else console.log('  [授予已持]',name,itemTgt.raw_name,'×'+held);
+        continue;
+      }
       const shop=content.shop_entries.find(e=>e.task_target_canonical_id===itemTgt.canonical_id||e.task_item_canonical_id===itemTgt.entity_canonical_id||e.content_entity_canonical_id===itemTgt.entity_canonical_id);
       if(shop){await goto(shop.location_canonical_id);
         for(let q=0;q<Number(itemTgt.required_quantity??1);q+=1)await rt('economy','buy',{shop_entry_canonical_id:shop.canonical_id,quantity:1});

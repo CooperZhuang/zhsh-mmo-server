@@ -497,9 +497,17 @@ class DomGameplayScenario{
   async obtainItemTarget(task,target){
     if(await this.taskProgressComplete(task.canonical_id,target.canonical_id))return;
     if(target.runtime_resolution?.source_kind==='fishing')return this.obtainFishingTarget(task,target);
+    // 授予型物品（grant_on_accept / task_chain_reward / task_acceptance_grant）：接取/前序奖励时服务器已入背包，
+    // 无需世界获取。若背包已足则直接去提交；否则等待授予（任务已接受，服务器应在接取时发放）。
+    const grantType=target.task_item_policy?.acquisition_mode==='grant_on_accept'||['task_chain_reward','task_acceptance_grant'].includes(target.runtime_resolution?.source_kind);
+    if(grantType){
+      const exported=await this.exportSave(`grant-check-${task.canonical_id}`);
+      const heldNow=Number(exported.state.inventory?.[target.entity_canonical_id]??0);
+      if(heldNow<Number(target.required_quantity))this.trace(`grant ${task.canonical_id} ${target.raw_name}: held ${heldNow}/${target.required_quantity}`);
+      return;
+    }
     const shop=this.content.shop_entries.find((entry)=>entry.task_target_canonical_id===target.canonical_id||entry.task_item_canonical_id===target.entity_canonical_id);
     const drop=this.content.drop_relations.find((entry)=>entry.canonical_id===target.runtime_resolution?.formal_source_canonical_id);
-    if(!shop&&!drop&&task.canonical_id==='task.series.01.010'){await this.reach(task.submit_location_canonical_id);assert.equal(await this.taskProgressComplete(task.canonical_id,target.canonical_id),true,'voyage arrival must obtain the formal letter');return;}
     assert.ok(shop||drop,`No formal DOM item source for ${task.canonical_id} ${target.raw_name}`);
     if(shop){await this.reach(shop.location_canonical_id);await this.ensurePage('shop');await this.measure('shop');
       for(let quantity=0;quantity<target.required_quantity;quantity+=1)await this.click(selector('data-shop-buy',shop.canonical_id),{save:true});return;}
